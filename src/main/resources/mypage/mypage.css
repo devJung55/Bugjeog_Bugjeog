@@ -1,0 +1,194 @@
+body.mypage {
+    color: #333;
+}
+
+button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.mypage {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+section.Container-Profile {
+    position: relative;
+    max-width: 1060px;
+    width: 87.72%;
+    padding-bottom: 100px;
+    margin: 0 auto;
+}
+
+nav.NavBar_presentation {
+    display: block;
+    position: relative;
+    line-height: normal;
+}
+
+nav.NavBar_presentation p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    padding: 50px 0 20px;
+}
+
+nav.NavBar_presentation button {
+    width: 100%;
+    display: none;
+    position: relative;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+main.MatchUp-Container {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0 auto;
+    max-width: 1060px;
+    position: relative;
+}
+
+main.MatchUp-Container aside.Aside{
+    padding: 42px 20px 41px;
+    border: 1px solid #e1e2e3;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-bottom: 0;
+    top: 0;
+    left: 0;
+    width: 250px;
+    position: absolute;
+}
+
+aside.Aside div.Aside-content {
+    border-top: 1px solid #e1e2e3;
+}
+
+aside.Aside .Aside-content {
+    padding: 30px 20px;
+}
+
+header.Aside-profile {
+    width: 100%;
+    text-align: center;
+}
+
+div.Aside-avatar {
+    line-height: 1.4;
+}
+
+div.Aside-avatar_image {
+    display: inline-block;
+    position: relative;
+    width: 77px;
+    height: 77px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: 50%;
+}
+
+div.Aside-me {
+    margin-top: 31px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.07;
+    color: #999;
+}
+
+div.Aside-me_name, div.Aside-me_email  {
+    line-height: 1.3;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.Aside-me_name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+div.Aside-me_email {
+    margin-top: 20px;
+}
+
+div.Aside-me_tel {
+    margin-top: 10px;
+}
+
+a.Aside-edit {
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #e1e2e3;
+    margin: 30px auto 0;
+    font-size: 16px;
+    line-height: .94;
+    color: #333;
+}
+
+div.MatchUpStatus-container {
+    position: relative;
+    padding: 30px 25px 30px 20px;
+}
+
+.list_container a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 23px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.06;
+}
+
+.list_container a:first-child {
+    margin-top: 0;
+}
+
+.MatchUpStatus-container .MatchUpStatus-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 23px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.06;
+}
+
+.MatchUpStatus-item:first-child {
+    margin-top: 0;
+}
+
+.MatchUpStatus-label {
+    word-break: break-word;
+    line-height: 22px;
+}
+
+.MatchUpStatus-value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+div.Aside-pageList {
+    padding: 30px 20px;
+    border-top: 1px solid #e1e2e3;
+}
+
+div.Aside-pageList a {
+    display: flex;
+}
