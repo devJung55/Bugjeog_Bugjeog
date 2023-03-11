@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    }
+
+    body{
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+        background-color: #f8f8f8;
+    }
+
+    a, button, input {
+        font-family: inherit;
+    }
+
+    .boardList-header {
+        background: #fff;
+    }
+
+    a {
+        font-family: inherit;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    li, ul {
+        list-style: none;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+    }
+
+    .boardList-wrap {
+        width: 1068px;
+        display: flex;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .boardList-content-box {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .boardList-title-box {
+        background-color: #f8f8f8;
+        position: fixed;
+        top: 50px;
+        z-index: 1;
+        padding-top: 40px;
+    }
+
+    .boardList-title-box-layout {
+        display: flex;
+        position: fixed;
+        background-color: #fff;
+        padding: 0;
+        z-index: 1;
+        width: 1068px;
+        position: relative;
+        top: auto;
+        border: 1px solid #e1e2e3;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+    }
+
+    .boardList-title-box-layout h2 {
+        padding: 19px 30px;
+    }
+
+    .boardList-content-section-box {
+        margin-top: 153px;
+        width: 791px;
+    }
+
+    .write-button-box {
+        border: 1px solid #e1e2e3;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        width: 1068px;
+    }
+
+    .write-button-layout {
+        width: 100%;
+        padding: 29px 30px 31px;
+    }
+
+    .write-button {
+        flex: 1 1;
+        height: 56px;
+        width: 100%;
+        padding: 0 19px;
+        border-radius: 4px;
+        border: 1px solid #e1e2e3;
+        background-color: #fff;
+        cursor: pointer;
+        color: #333;
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .write-button span {
+        font-size: 25px;
+    }
+
+    .write-button-icon-box {
+        display: flex;
+        align-items: inherit;
+        justify-content: inherit;
+    }
+
+    .write-button-icon {
+        user-select: none;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        fill: currentColor;
+        flex-shrink: 0;
+        font-size: inherit;
+    }
+
+    .boardList-content {
+        width: 1068px;
+        background-color: #fff;
+        border: 1px solid #e1e2e4;
+        border-top: 0;
+    }
+
+    .content-box {
+        display: block;
+        margin-bottom: 2px;
+        position: relative;
+        padding: 29px 29px 30px;
+    }
+
+    .content-box-layout {
+        margin-bottom: 9px;
+    }
+
+    .content-member-info-box {
+        display: flex;
+        width: 0;
+    }
+
+    .content-member-info-box-layout {
+        display: inline-flex;
+        align-items: center;   
+    }
+
+    .content-member-text-left {
+        text-align: left;
+        display: flex;
+    }
+
+    .content-member-image-box {
+        position: relative;
+        margin-right: 7px;
+    }
+
+    .content-member-image-size {
+        width: 28px;
+        height: 28px;
+    }
+
+    .content-member-image-size img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        clip-path: circle(50% at 50% 50%);
+    }
+
+    .content-member-info {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .content-persnal-distributor-box {
+        display: flex;
+        margin-bottom: 3px;
+        align-items: center;
+    }
+
+    .content-register-name-box {
+        font-size: 13px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #333;
+        max-width: 399px;
+        margin-right: 4px;
+    }
+
+    .content-persnal-distributor {
+        display: flex;
+        white-space: nowrap;
+        margin-right: 4px;
+    }
+
+    .content-member-type {
+        align-items: center;
+        padding: 0 4px;
+        height: 19px;
+        background: #f6f6f6;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 19px;
+        color: #008ae2;
+        margin-right: 4px;
+    }
+
+    .register-date {
+        flex: none;
+        line-height: 100%;
+        white-space: nowrap;
+        font-size: 12px;
+        color: #939393;
+    }
+    
+    .content {
+        display: block;
+        width: 1008px;
+    }
+
+    .content-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 5px;
+        line-height: 23px;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .board-register-button-box {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        width: 1060px;
+        height: 100%;
+        margin: 0 auto;
+        pointer-events: none;
+    }
+
+    .board-register-button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        font-size: 26px;
+        border-radius: 50%;
+        background-color: #36f;
+        box-shadow: 1px 2px 8px 0 rgb(0 0 0 / 30%);
+        cursor: pointer;
+        color: #fff;
+        border: 0;
+        pointer-events: all;
+        display: none;
+    }
+
+    .board-register-button-icon-box {
+        display: flex;
+        align-items: inherit;
+        justify-content: inherit;
+    }
+
+    .board-register-button-icon {
+        user-select: none;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        fill: currentColor;
+        flex-shrink: 0;
+        font-size: inherit;
+    }
+
+    .board-detail-image {
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        width: 136px;
+        height: 106px;
+        border-radius: 5px;
+        object-fit: contain;
+    }
+
+    /* 이미지를 넣었다면 hasImage 클래스 넣어주기 */
+    a.hasImage {
+        width: 780px;
+    }
