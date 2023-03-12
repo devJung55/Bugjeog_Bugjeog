@@ -364,7 +364,7 @@ main {
     top: 0;
     width: 700px;
     height: 100%;
-    background: url(img/service_background.png);
+    background: url(../../image/notice/service_right_back.png);
     background-size: contain;
 }
 
@@ -377,7 +377,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    background: url(img/wantedway_background.png) no-repeat;
+    background: url(../../image/notice/service_background.png) no-repeat;
     background-position: center;
     background-position-y: 370px;
     background-size: cover;

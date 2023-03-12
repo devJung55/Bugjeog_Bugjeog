@@ -65,7 +65,7 @@ body a, body a:focus {
 /* 첫번째 섹션 */
 .section_frist {
     text-align: center;
-    background-image: url(../../static/image/notice/faq_top_img.jpg);
+    background-image: url(../../image/notice/faq_top_img.jpg);
     background-size: cover;
     background-position: center center;
     background-color: rgba(204, 96, 47, 0);
