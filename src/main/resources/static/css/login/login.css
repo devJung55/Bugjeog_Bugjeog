@@ -1,0 +1,239 @@
+* {
+    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
+}
+
+html, body, #allPage{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+/*     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    word-break: keep-all; */
+    overflow-wrap: anywhere;
+}
+
+.fullPage{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    background-color: #f7f7f7;
+}
+
+.gapWithLogin {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    /*     flex-direction: column; */
+    align-items: flex-end;
+}
+
+.allLogIn {
+    border-radius: 5px;
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+    display: flex;
+/*     flex-direction: column; */
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+}
+
+.inside{
+    overflow: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.logoPart{
+    display: flex;
+   /*  -webkit-box-pack: center; */
+    justify-content: center;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding-top: 56px;
+}
+
+.logo{
+    display: flex;
+    /* -webkit-box-align: inherit; */
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.wantedRealLogo{
+    user-select: none;
+/*     width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+/*     -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0; */
+    flex-shrink: 0;
+    font-size: inherit;
+    width: 93px;
+    height: 28px;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.form-companyMoto{
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.023em;
+    font-size: 24px;
+    line-height: 32px;
+    --text-size-subtitle: 24px;
+    --text-height-subtitle: 32px;
+    --text-spacing-subtitle: -0.023em;
+}
+
+.form-companySimpleIntro{
+    color: #888;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 45px;
+}
+
+.form-blankEmail{
+    margin: 17px 0px 7px;
+}
+
+.form-guideEmail{
+    color: #888;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.form-input-writeEmail{
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #e1e2e3;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form-button-countinueEmail:disabled {
+    color: #ccc;
+    background-color:#f2f4f7;
+    border: none;
+    cursor: default;
+}
+
+.form-button-countinueEmail{
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: v#36f;
+    border: none;
+    margin-top: 30px;
+}
+
+.form-button-cuntinueEmail-ment{
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form-button-countinueEmail span {
+    color: var(--theme-palette-colors-common-white);
+}
+
+.form-button-countinueEmail:disabled span {
+    color: var(--theme-palette-colors-gray-300);
+}
+
+.form-or {
+    color: #939393;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.025em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.form-otherLogin {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    max-width: 360px;
+    /* -webkit-box-pack: center; */
+    justify-content: center;
+}
+
+.form-otherLogin>button {
+    flex: 1;
+    margin: 0;
+    max-width: 25%;
+}
+
+.form-btn-other {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.logo-btn{
+    display: flex;
+    /* -webkit-box-align: inherit; */
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.form-btn-other img{
+    width: 56px;
+    height: 56px;
+}
+
+.appleLogo {
+    user-select: none;
+    /* width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}

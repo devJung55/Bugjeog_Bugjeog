@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> wanted 로그인</title>
+    <link rel="stylesheet" href="../../static/css/login/login.css">
 </head>
 <body>
     <div id="allPage">
@@ -14,7 +15,7 @@
                     <div class="inside">
                         <div class="logoPart">
                             <span class="logo">
-                                <!-- wanted 로고 svg -->
+                                <img src="../../static/image/login/wantedLogo.png" class="wantedRealLogo">
                             </span>
                         </div>
                         <!-- 로고 아래 로그인 화면  -->  
@@ -30,7 +31,7 @@
                                           "커리어 성장의 모든 것"
                                     </h2>
                                       <!-- 이메일 작성 -->
-                                        <div class=" form-blankEmail">
+                                        <div class="form-blankEmail">
                                             <label for="email" class="form-guideEmail">
                                              이메일
                                             </label>
@@ -47,8 +48,8 @@
                                                         <div class="form-otherLogin">
                                                             <button type="button" class="form-btn-other">
                                                                 <span class="logo-btn">
-                                                                    <!-- svg apple -->
-                                                                </span>
+                                                                    <img src="../../static/image/login/appleLogo.png" class="appleLogo">
+                                                                </span> <!-- css 여기까지 함 애플 avg class="css-1h4714s" viewBox는 뭐지-->
                                                                     <p class="word-of-logo">
                                                                         Apple
                                                                     </p>
@@ -102,14 +103,23 @@
                                             ⓒ Wantedlab, Inc.
                                         </p> 
                                     <!-- 언어 변경 버튼 -->  
-                                    <div class="form-country-change"> <!-- flex 있음 -->
-                                        <div class="country-part">
-                                            <img src="" class="flag-img">
-                                                <div class="">
-
-                                                </div>
-                                        </div>
-                                    </div>    
+                                <div class="form-country-change"> <!-- flex 있음 -->
+                                    <div class="country-part">
+                                        <img src="" class="flag-img">
+                                            <div class="three-country">
+                                                <select class="choice-one">
+                                                    <option value="ko_KR">한국어</option>
+                                                    <option value="en_US">English</option>
+                                                    <option value="ja">日本語</option>
+                                                </select>
+                                                 <div class="under-bar">
+                                                    <span class="check-bar">
+                                                        <!-- svg안에 path -->
+                                                    </span> 
+                                                </div> 
+                                            </div>
+                                    </div>
+                                </div>    
                         </form> 
                     </div>
                 </div>
