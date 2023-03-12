@@ -15,7 +15,7 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
     box-sizing: border-box;
 }
 
-section.Container-Profile {
+section.Container_Profile {
     position: relative;
     max-width: 1060px;
     width: 87.72%;
