@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유 게시판 목록</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../../static/css/boardList/free-boardList.css">
+</head>
+<body>
+    <div class="all-wrap">
+        
+        <div id="header"></div>
+
+        <div class="boardList-wrap">
+            <aside class="boardList-aside-box">
+                <div class="aside-area-box">
+                    <div class="profile-box-not-login">
+                        <h2 class="profile-not-login-title">My 커뮤니티</h2>
+                        <!-- 로그인이 안되잇을 경우 display:block-->
+                        <!-- 로그인이 되잇을 경우 display:none-->
+                        <button  type="button" class="login-button" style="display:none;">
+                            <div class="profile-image-not-login"></div>
+                            <div class="profile-username-wrap">
+                                <span class="not-login-span">로그인 해주세요</span>
+                            </div>
+                            <span class="profile-arrow">
+                                <svg width="18" height="18">
+                                    <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <!-- 로그인이 되 잇을 경우 display:block-->
+                        <!-- 로그인이 안되 잇을 경우 display:none-->
+                        <button  type="button" class="login-button">
+                            <div class="profile-image-login">
+                                <img src="../../static/image/boardList/distributor_icon.png">
+                            </div>
+                            <div class="profile-username-wrap">
+                                <div class="profile-user-info-box">
+                                    <span class="profile-userName">임종욱</span>
+                                    <div style="display: flex;">
+                                        <div class="profile-userType">유통업자</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="profile-arrow">
+                                <svg width="18" height="18">
+                                    <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="profile-banner-box">
+                        <button type="button" class="profile-banner-button">
+                            <div class="profile-banner-message">
+                                유통업체 찾고 싶다면?
+                                <br>
+                                북적북적
+                            </div>
+                        </button>
+                    </div>
+                    <div class="ranking-box">
+                        <h3 class="ranking-title">이달의 추천 유통업체</h3>
+                        <p class="ranking-subTitle">관심있는 유통업체를 찾아보세요.</p>
+                        <div class="ranking-list-box">
+                            <a href="#" class="distributor-box">
+                                <div class="distributor-image-box">
+                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                </div>
+                                <div class="distributor-name">유통업체 이름</div>
+                                <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
+                                    <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="distributor-box">
+                                <div class="distributor-image-box">
+                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                </div>
+                                <div class="distributor-name">유통업체 이름</div>
+                                <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
+                                    <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="distributor-box">
+                                <div class="distributor-image-box">
+                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                </div>
+                                <div class="distributor-name">유통업체 이름</div>
+                                <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
+                                    <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="distributor-box">
+                                <div class="distributor-image-box">
+                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                </div>
+                                <div class="distributor-name">유통업체 이름</div>
+                                <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
+                                    <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="distributor-box">
+                                <div class="distributor-image-box">
+                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                </div>
+                                <div class="distributor-name">유통업체 이름</div>
+                                <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
+                                    <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <main class="boardList-content-box">
+                <div class="boardList-title-box">
+                    <div class="boardList-title-box-layout">
+                        <h2 >자유 게시판</h2>
+                        <!-- 글 작성 버튼  넣을지 말지 고민 중-->
+                    </div>
+                </div>  
+                <div class="boardList-content-section-box">
+                    <section class="write-button-box">
+                        <div class="write-button-layout">
+                            <button type="button" class="write-button">
+                                커리어와 라이프스타일에 대해 자유롭게 이야기 해주세요!
+                                <span>
+                                    <span class="write-button-icon-box">
+                                        <svg viewBox="0 0 24 24" class="write-button-icon">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9338 2.08059C17.5629 1.80534 17.0366 1.83583 16.7002 2.17212L3.43579 15.4323L3.33867 15.5461C3.22211 15.7068 3.1582 15.9013 3.1582 16.1023V19.8947L3.16685 20.0233C3.22958 20.4857 3.62596 20.8421 4.10558 20.8421H7.2678L7.39635 20.8335C7.85877 20.7707 8.21517 20.3744 8.21517 19.8947L8.20652 19.7662C8.14379 19.3038 7.74742 18.9474 7.2678 18.9474H5.05168V16.4956L13.2631 8.28674L15.7123 10.7359L9.7494 16.6985L9.65767 16.8047C9.38244 17.1756 9.41297 17.7019 9.74927 18.0383C10.1192 18.4083 10.719 18.4083 11.0891 18.0384L21.8281 7.30155L21.9198 7.1953C22.195 6.82447 22.1645 6.29818 21.8283 5.96181L18.04 2.17233L17.9338 2.08059ZM17.0521 9.39616L19.8181 6.63032L17.3688 4.18232L14.6031 6.94717L17.0521 9.39616Z"></path>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </section>
+                    <section class="boardList-content">
+                        <div class="boardList-recommend-box">
+                            <h2>추천 자유게시판 💘</h2>
+                        </div>
+                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
+                        <article class="content-box">
+                            <div class="content-box-layout">
+                                <a href="#" class="content-member-info-box">
+                                    <div class="content-member-info-box-layout">
+                                        <div class="content-member-text-left">
+                                            <div class="content-member-image-box">
+                                                <div class="content-member-image-size">
+                                                    <img src="../../static/image/boardList/distributor_icon.png">
+                                                </div>
+                                            </div>
+                                            <div class="content-member-info">
+                                                <div class="content-persnal-distributor-box">
+                                                    <div class="content-register-name-box">
+                                                        <span>임종욱</span>
+                                                    </div>
+                                                    <div class="content-persnal-distributor">
+                                                        <div class="content-member-type">유통업체</div>
+                                                    </div>
+                                                </div>
+                                                <span class="register-date">1시간 전</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <a href="" class="content hasImage">
+                                <h3 class="content-title">
+                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.
+                                </h3>
+                                <p class="content-detail">
+                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준
+                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음
+                                </p>
+                                <!-- 이미지를 넣었다면 여기에 넣어주기 없다면 없애기 -->
+                                <!-- 이미지를 넣었다면 감싸고있는 a태그에 hasImage클래스 넣어주기 표시해둠 -->
+                                <div>
+                                    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fcommunity%2F2023%2F3%2Fe636fef8cd94bc0c9c921510c71ffae98c9c636065c75c113e4dd42a027129c9&w=384&q=90" class="board-detail-image">
+                                </div>
+                                <!-- 이미지 끝 -->
+                                <div class="like-reply-count-box">
+                                    <div class="like-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>
+                                        </svg>
+                                        <span class="like-count">10</span>
+                                    </div>
+                                    <div class="reply-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>
+                                        </svg>
+                                        <span class="reply-count">5</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <!-- 여기 까지 -->
+                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
+                        <article class="content-box">
+                            <div class="content-box-layout">
+                                <a href="#" class="content-member-info-box">
+                                    <div class="content-member-info-box-layout">
+                                        <div class="content-member-text-left">
+                                            <div class="content-member-image-box">
+                                                <div class="content-member-image-size">
+                                                    <img src="../../static/image/boardList/self_employ_icon.png">
+                                                </div>
+                                            </div>
+                                            <div class="content-member-info">
+                                                <div class="content-persnal-distributor-box">
+                                                    <div class="content-register-name-box">
+                                                        <span>임종욱</span>
+                                                    </div>
+                                                    <div class="content-persnal-distributor">
+                                                        <div class="content-member-type">이용자</div>
+                                                    </div>
+                                                </div>
+                                                <span class="register-date">1시간 전</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- 이미지가 없어서 hasImage클래스 없음 -->
+                            <a href="#" class="content">
+                                <h3 class="content-title">
+                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.
+                                </h3>
+                                <p class="content-detail">
+                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준
+                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음
+                                </p>
+                                <!-- 이미지 넣는 위치-->
+                                <div class="like-reply-count-box">
+                                    <div class="like-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>
+                                        </svg>
+                                        <span class="like-count">10</span>
+                                    </div>
+                                    <div class="reply-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>
+                                        </svg>
+                                        <span class="reply-count">5</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <!-- 여기 까지 -->
+                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
+                        <article class="content-box">
+                            <div class="content-box-layout">
+                                <a href="#" class="content-member-info-box">
+                                    <div class="content-member-info-box-layout">
+                                        <div class="content-member-text-left">
+                                            <div class="content-member-image-box">
+                                                <div class="content-member-image-size">
+                                                    <img src="../../static/image/boardList/self_employ_icon.png">
+                                                </div>
+                                            </div>
+                                            <div class="content-member-info">
+                                                <div class="content-persnal-distributor-box">
+                                                    <div class="content-register-name-box">
+                                                        <span>임종욱</span>
+                                                    </div>
+                                                    <div class="content-persnal-distributor">
+                                                        <div class="content-member-type">이용자</div>
+                                                    </div>
+                                                </div>
+                                                <span class="register-date">1시간 전</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- 이미지가 없어서 hasImage클래스 없음 -->
+                            <a href="#" class="content">
+                                <h3 class="content-title">
+                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.
+                                </h3>
+                                <p class="content-detail">
+                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준
+                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음
+                                </p>
+                                <!-- 이미지 넣는 위치-->
+                                <div class="like-reply-count-box">
+                                    <div class="like-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>
+                                        </svg>
+                                        <span class="like-count">10</span>
+                                    </div>
+                                    <div class="reply-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>
+                                        </svg>
+                                        <span class="reply-count">5</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <!-- 여기 까지 -->
+                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
+                        <article class="content-box">
+                            <div class="content-box-layout">
+                                <a href="#" class="content-member-info-box">
+                                    <div class="content-member-info-box-layout">
+                                        <div class="content-member-text-left">
+                                            <div class="content-member-image-box">
+                                                <div class="content-member-image-size">
+                                                    <img src="../../static/image/boardList/self_employ_icon.png">
+                                                </div>
+                                            </div>
+                                            <div class="content-member-info">
+                                                <div class="content-persnal-distributor-box">
+                                                    <div class="content-register-name-box">
+                                                        <span>임종욱</span>
+                                                    </div>
+                                                    <div class="content-persnal-distributor">
+                                                        <div class="content-member-type">이용자</div>
+                                                    </div>
+                                                </div>
+                                                <span class="register-date">1시간 전</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- 이미지가 없어서 hasImage클래스 없음 -->
+                            <a href="#" class="content">
+                                <h3 class="content-title">
+                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.
+                                </h3>
+                                <p class="content-detail">
+                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준
+                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음
+                                </p>
+                                <!-- 이미지 넣는 위치-->
+                                <div class="like-reply-count-box">
+                                    <div class="like-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>
+                                        </svg>
+                                        <span class="like-count">10</span>
+                                    </div>
+                                    <div class="reply-count-box">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>
+                                        </svg>
+                                        <span class="reply-count">5</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <!-- 여기 까지 -->
+                    </section>
+                </div>
+            </main>
+            <div class="board-register-button-box">
+                <button type="button" class="board-register-button">
+                    <span class="board-register-button-icon-box">
+                        <svg viewBox="0 0 24 24" class="board-register-button-icon">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9338 2.08059C17.5629 1.80534 17.0366 1.83583 16.7002 2.17212L3.43579 15.4323L3.33867 15.5461C3.22211 15.7068 3.1582 15.9013 3.1582 16.1023V19.8947L3.16685 20.0233C3.22958 20.4857 3.62596 20.8421 4.10558 20.8421H7.2678L7.39635 20.8335C7.85877 20.7707 8.21517 20.3744 8.21517 19.8947L8.20652 19.7662C8.14379 19.3038 7.74742 18.9474 7.2678 18.9474H5.05168V16.4956L13.2631 8.28674L15.7123 10.7359L9.7494 16.6985L9.65767 16.8047C9.38244 17.1756 9.41297 17.7019 9.74927 18.0383C10.1192 18.4083 10.719 18.4083 11.0891 18.0384L21.8281 7.30155L21.9198 7.1953C22.195 6.82447 22.1645 6.29818 21.8283 5.96181L18.04 2.17233L17.9338 2.08059ZM17.0521 9.39616L19.8181 6.63032L17.3688 4.18232L14.6031 6.94717L17.0521 9.39616Z" fill="#fff"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="modal">
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-box">
+                <div class="modal-content-box">
+                    <div class="modal-content-image-box">
+                        <img src="../../static/image/boardList/logo-icon.png">
+                    </div>
+                    <div class="modal-content-member-name-box">
+                        <span>
+                            임종욱
+                        </span>
+                    </div>
+                    <div class="modal-content-confirm-box">
+                        해당 이름으로 게시글과 댓글이 등록됩니다.
+                        <br>
+                        계속하시겠어요?
+                    </div>
+                </div>
+                <div class="modal-confirm-button-box">
+                    <div class="modal-confirm-agree-button-box">
+                        <button class="modal-confirm-agrre-button confirm-button">예</button>
+                    </div>
+                    <div class="modal-confirm-no-button-box">
+                        <button class="modal-confirm-no-button confirm-button">아니요</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/boardList/free-boardList.js"></script>
+</html>
