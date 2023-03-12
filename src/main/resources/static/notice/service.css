@@ -1,0 +1,469 @@
+
+
+/* 헤더*/
+#header {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 10;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.header_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_nav_logo {
+    display: flex;
+    height: 30px;
+    align-items: center;
+}
+
+.header_nav_wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 50px;
+}
+
+.header_nav_link {
+    color: #666;
+    padding: 8px 13px 8px 13px;
+    border: 1px solid #E1E2E3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    height: 14px;
+    min-width: 50px;
+    max-width: 80px;
+    display: inline-block;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.header_nav_divider {
+    width: 1px;
+    height: 10px;
+    background-color: #E1E2E3;
+    margin-right: 30px;
+}
+
+.header_nav_items {
+    display: flex;
+    flex-direction: row;
+}
+
+#nav-vision-pc {
+    margin-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#nav-status-pc{
+    margin-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#nav-services-pc {
+    margin-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#nav-bugjeogway-pc {
+    margin-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#nav-contacts-pc {
+    margin-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.header_nav_link {
+    color: #666;
+    padding: 8px 13px 8px 13px;
+    border: 1px solid #E1E2E3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    height: 14px;
+    min-width: 50px;
+    max-width: 80px;
+    display: inline-block;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+
+
+
+/* 메인 */
+main {
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_mobile_overlay {
+    position: fixed;
+    z-index: 4;
+    background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+
+/* vision */
+#vision {
+    height: 1152px;
+    width: 100%;
+}
+
+.vision_hero {
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.vision_hero_wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.vision_here_text {
+    color: #fff;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 62px;
+    z-index: 1;
+    word-break: keep-all;
+}
+
+.vision_show {
+    /*background-image :*/
+    width : 100%;
+    height : 100%;
+    background-repeat : no-repeat;
+    background-size : contain;
+}
+
+.vision_show_div {
+    margin : 0 auto
+}
+
+.vision_hide {
+    /*background-image :*/
+    width : 100%;
+    height : 100%;
+    background-repeat : no-repeat;
+    background-size : contain;
+}
+
+.vision_hide {
+    margin : 0 auto
+}
+
+.vision_statement {
+    height: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 190px;
+    background: linear-gradient(0deg, #ECF1F9 -3.42%, #F7F7F7 55.15%);
+}
+
+.vision_statement_wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.common_wrapper {
+    width: 1060px;
+    max-width: 1060px;
+}
+
+.vision__statement_wrapper > p:first-child {
+    align-self: flex-start;
+    margin-right: 20px;
+}
+
+.vision_statement_wrapper > p:last-child {
+    align-self: flex-end;
+    margin-left: 20px;
+}
+
+.vision_statement_wrapper > p {
+    color: #333;
+    font-size: 26px;
+    line-height: 46px;
+    font-weight: 600;
+    width: 50%;
+    margin: 0;
+    word-break: keep-all;
+}
+
+.show_sm {
+    display: none !important;
+}
+
+.hide_sm {
+    display: inherit !important;
+}
+
+
+/* status */
+#status {
+    height: 744px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.status_title {
+    width: 100%;
+    height: 196px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.status_title > p {
+    color: #333;
+    font-size: 40px;
+    line-height: 56px;
+    font-weight: 700;
+    margin: 0;
+    word-break: keep-all;
+}
+
+
+.status_list_outer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 65px;
+}
+
+.status_list_inner {
+    display: flex;
+    flex-direction: row;
+}
+
+.status_list_item {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status_list_item > p {
+    color: #333;
+    margin: 38px 10px 0px 10px;
+    font-size: 22px;
+    line-height: 41.6px;
+    font-weight: 600;
+    width: calc(100% - 40px);
+    text-align: center;
+    word-break: keep-all;
+}
+
+
+
+
+/* services */
+#services {
+    height: 1558px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.services_wrapper_outer {
+    margin-top: 140px;
+}
+
+.services_wrapper_inner {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    height: 100%;
+}
+
+.services_header {
+    color: #333;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+    margin: 0;
+    margin-bottom: 41px;
+    word-break: keep-all;
+}
+
+.services_item {
+    margin: 29px 0px;
+}
+
+.services_item_header {
+    color: #3366FF;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 39.2px;
+    vertical-align: middle;
+}
+
+.services_item_header > img {
+    transform: translateY(2px);
+}
+
+.services_item_description {
+    color: #333;
+    font-size: 22px;
+    line-height: 35.2px;
+    margin: 10px 0px 0px 0px;
+}
+
+
+.services_background_wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 700px;
+    height: 100%;
+    background: url(img/service_background.png);
+    background-size: contain;
+}
+
+
+
+
+/* bugjeogway */
+#bugjeogway {
+    height: 1042px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url(img/wantedway_background.png) no-repeat;
+    background-position: center;
+    background-position-y: 370px;
+    background-size: cover;
+}
+
+.bugjeogway_card {
+    margin-top: 60px;
+    padding: 80px 150px 0px 150px;
+    width: 576px;
+    background-color: rgba(255, 255, 255, 0.36);
+    box-shadow: 6px 6px 68px rgba(102, 117, 170, 0.03), 34px 36px 127px rgba(116, 126, 158, 0.1);
+    border-radius: 25px;
+    backdrop-filter: blur(30px);
+}
+
+.bugjeogway_card_header {
+    font-size: 40px;
+    line-height: 56px;
+    font-weight: 700;
+    text-align: center;
+    word-break: keep-all;
+}
+
+.bugjeogway_card_description {
+    font-size: 20px;
+    line-height: 36px;
+    word-break: keep-all;
+}
+
+
+/* contacts */
+#contacts {
+    height: 451px;
+    width: 100%;
+    margin-top: 120px;
+    background: url(img/contacts_background.png) 50% 50% no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.contacts_wrapper{
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts_information {
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts_information > h2 {
+    font-size: 33px;
+    font-weight: 600;
+    line-height: 46.2px;
+    margin: 0;
+    color: #333;
+}
+
+.contacts_information > p {
+    font-size: 16px;
+    margin: 10px 0px 50px 0px;
+    color: #333;
+}
+
+.contacts_information > p > span:first-child {
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.contacts_button_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
