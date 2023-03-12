@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #fff;
+}
+
+button {
+    border: none;
+}
+ 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+footer.footer {
+    padding: 18px 0 65px;
+    background-color: #fff;
+    border-top: 1px solid #ececec;
+}
+
+.footer_row {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto 18px;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.nav_links {
+    display: flex;
+    align-items: center;
+}
+
+.nav_links_logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 43px;
+    width: 113px;
+}
+
+.nav_links_links {
+    display: flex;
+}
+
+.nav_links_links a {
+    font-size: 15px;
+    color: #3a3a3a;
+    font-weight: 500;
+    line-height: 2.6;
+    margin-right: 45px;
+    white-space: nowrap;
+}
+
+.social_links {
+    display: flex;
+    flex-wrap: nowrap;
+    line-height: 2.6;
+}
+
+.social_links a {
+    position: relative;
+    display: block;
+    float: left;
+    height: 20px;
+}
+
+.social_links a img {
+    margin-left: 14px;
+}
+
+.footer_row_more_css {
+    border-top: 1px solid #ececec;
+    padding-top: 25px;
+}
+
+p.footer_text {
+    float: left;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6666666667em;
+    color: #767676;
+    width: calc(100% - 290px);
+    margin-right: 40px;
+}

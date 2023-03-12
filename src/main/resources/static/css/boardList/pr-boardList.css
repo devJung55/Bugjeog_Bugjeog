@@ -229,6 +229,11 @@ hr {
     width: calc(25% - 15px);
 }
 
+.info-box-layout:hover {
+    transition-duration: 0.1s;
+    transform: translateY(-5px);
+}
+
 .image-box {
     position: relative;
     height: auto;
@@ -344,18 +349,32 @@ hr {
     align-items: center;
 }
 
+.icon-box {
+    display: flex;
+    margin-right: 10px;
+}
+
 .review-icon-box {
-    padding-top: 2px;
     margin-right: 4px;
+    padding-top: 1px;
 }
 
 .review-icon {
     width: 17px;
 }
 
+.review-grade-icon{
+    filter: invert(92%) sepia(63%) saturate(357%) hue-rotate(93deg) brightness(85%) contrast(84%);
+    width: 14px;
+}
+
 .review-count {
-    font-size : 15px;
-    font-weight: bold;
+    font-size : 13px;
+    color: #b1b1b1;
+}
+
+.review-grade-count {
+    font-size : 13px;
     color: #b1b1b1;
 }
 
@@ -380,4 +399,19 @@ hr {
     width: 19px;
     height: 20px;
     transform: rotate(-90deg);
+}
+
+.pr-register-button {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 9999px;
+    background-color: #36f;
+    margin-left: auto;
+    white-space: nowrap;
+    color: #fff;
+    border : none;
 }
