@@ -1,0 +1,122 @@
+div.whole_wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
+div.header-padding {
+    height: 50px;
+}
+
+div.mypage_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #fff;
+
+}
+
+header.member_img_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+div.img_wrapper {
+    border-radius: 50%;
+    border: 1px solid #e1e2e3;
+    ;
+    background-color: #fff;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+img.img_profile {
+    overflow-clip-margin: content-box;
+    min-width: 80px;
+    aspect-ratio: auto 80 / 80;
+    min-height: 80px;
+    box-sizing: border-box;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+label.edit_wrapper {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    right: -7px;
+    bottom: -7px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #36f;
+    color: #fff;
+}
+
+span.edit_span {
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: inherit;
+    align-items: inherit;
+    -webkit-box-pack: inherit;
+    justify-content: inherit;
+}
+
+span.edit_span img {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    font-size: inherit;
+    display: inline-block;
+    fill: currentColor;
+    user-select: none;
+    width: 30px;
+    /* height: 15px; */
+    filter: invert(100%);
+}
+
+p.welcome_msg {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    box-sizing: border-box;
+    color: #000;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: -0.0236em;
+    font-size: 28px;
+    line-height: 38px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
