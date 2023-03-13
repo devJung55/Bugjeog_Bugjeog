@@ -100,30 +100,33 @@
                         <div class="MatchUpForm EnterInterestArea-Wrapper">
                             <header class="Form-header">
                                 <dl class="Form-title">
-                                    <dt>전문분야 설정</dt>
+                                    <dt>유통 분야 설정</dt>
                                 </dl>
                             </header>
                             <div class="FormBlock">
                                 <div class="FormBlock-content">
                                     <div class="MainResume-fieldset">
                                         <div class="fieldset-Static_content-first">
-                                            <div class="Static-label is-flex">직군</div>
+                                            <div class="Static-label is-flex">대분류</div>
                                             <div class="Static-body">
-                                                물류·무역
+                                                <!-- 물류·무역 -->
+                                                식품
                                             </div>
                                         </div>
-                                        <div class="fieldset-Static_content-second">
-                                            <div class="Static-label is-flex">직무</div>
+                                        <div class="fieldset-Static_content-others">
+                                            <div class="Static-label is-flex">소분류</div>
                                             <div class="Static-body">
-                                                지게차 운전사
+                                                해산물
                                             </div>
                                         </div>
-                                        <div class="fieldset-Static_content-second">
-                                            <div class="Static-label is-flex">경력</div>
+                                        <!--
+                                        <div class="fieldset-Static_content-others">
+                                            <div class="Static-label is-flex">운영기간</div>
                                             <div class="Static-body">
                                                 1년
                                             </div>
                                         </div>
+                                        -->
                                         <a href="" class="MainResume-edit">
                                             <span class="img_span is-flex">
                                                 <img src="../../static/image/mypage/Writing-64.png" alt="">
@@ -150,13 +153,13 @@
                                             </button>
                                         </div>
                                         <div class="InputGroup is-relative">
-                                            <h6 class="FormButton-label">구직 여부 설정</h6>
+                                            <h6 class="FormButton-label">운영 여부 설정</h6>
                                             <div class="InputGroup-body">
                                                 <div class="JobSearchIntentionSelector-wrapper">
                                                     <select name="" id="" class="JobSearchIntentionSelector-select">
-                                                        <option value="">현재 구직 중</option>
-                                                        <option value="">관심 있음</option>
-                                                        <option value="">전혀 관심 없음</option>
+                                                        <option value="">현재 운영 중</option>
+                                                        <option value="">운영 예정</option>
+                                                        <option value="">현재 운영 중단</option>
                                                     </select>
                                                 </div>
                                                 <!-- 
@@ -184,7 +187,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(function () {
-        $('.Aside_include').load('mypage_aside.html');
+        $('.Aside_include').load('fragment/mypage_aside_business.html');
         // $('.footer_html').load('footer.html');
     });
 </script>
