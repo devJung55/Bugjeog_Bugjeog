@@ -150,11 +150,11 @@ button{
 #content{
     max-width: 710px;
     margin-bottom: 80px;
-    font-size: 1.7rem;
+    font-size: 17px;
     line-height: 1.65;
     color: #333;
     text-align: left;
-    white-space: pre-wrap;
+    white-space: pre-line;
     word-wrap: break-word;
     word-break: keep-all;
 }
