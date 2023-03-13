@@ -20,6 +20,8 @@
         <div class="padding_for_header"></div>
         <section class="Container_Profile mypage is-block">
             <div class="">
+                <!-- 공통요소(페이지명) -->
+                
                 <nav class="presentation">
                     <h2 class="Nav_title">
                         <p>지원 현황</p>
@@ -27,6 +29,9 @@
                     </h2>
                 </nav>
                 <div class="Wrapper_container is-flex">
+                    <!-- <main class="MatchUp-Container"> -->
+                        <aside class="Aside_include"></aside>
+                    <!-- </main> -->
                     <div class="aside_list"></div>
 
                     <!-- 메인 컨텐츠 랩퍼 -->
@@ -154,4 +159,10 @@
     </div>
 </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(function () {
+            $('.Aside_include').load('mypage_aside.html');
+            // $('.footer_html').load('footer.html');
+        });
+    </script>
 </html>
