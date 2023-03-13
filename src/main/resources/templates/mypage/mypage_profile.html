@@ -1,12 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css">
 </head>
+
 <body>
-    
+    <div class="Container_Profile">
+        <div class="padding_for_header"></div>
+        <main class="MatchUp-Container">
+            <nav class="NavBar_presentation mypage">
+                <h2 class="Nav_title mypage">
+                    <p>프로필</p>
+                    <button class="Nav_button">프로필</button>
+                </h2>
+            </nav>
+            <section class="main_container is-relative">
+                <!-- 사이드 메뉴 인클루드 -->
+                <aside class="Aside_include"></aside>
+                <section>
+                    <aside class="CareerConnectBanner">
+                        <picture></picture>
+                    </aside>
+                    <div>
+                        <div class="MatchUpForm ResumeWordCountWarning-Wrapper is-flex">
+                            <div class="ResumeWordCountWarning-body is-flex" style="display: flex;">
+                                <p class="ResumeWordCountWarning-count">
+                                    이력서 글자 수 :
+                                    <span class="current_char">343자</span>
+                                    / 최소 400자
+                                </p>
+                                <p class="ResumeWordCountWarning-guide">글자 수가 400자 이상이면, 직접 제안받을 확률이 높아집니다.</p>
+                            </div>
+                            <a href="" class="ResumeWordCountWarning-button is-flex">이력서 강화하기</a>
+                        </div>
+                        <div class="MatchUpForm MainResume_Wrapper">
+                            <header class="Form-header MainResume_Header">
+                                <h1 class="Form-title">
+                                    <dt>기본 이력서</dt>
+                                </h1>
+                            </header>
+                            <div class="FormBlock">
+                                <div class="FormBlock-content">
+                                    <div class="MainResume-Static_Wrapper">
+                                        <div class="MainResume-Static_label is-flex">기본 이력서 선택</div>
+                                        <div class="MainResume-Static_body">
+                                            <div class="MainResume-DefaultResumeSelector">
+                                                <button class="MainResume-DefaultResumeSelector_button is-flex">
+                                                    <div class="ResumeLang_container">한</div>
+                                                    <span>이준상 1</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="MainResume-fieldset">
+                                        <div class="fieldset-Static_content-first">
+                                            <div class="Static-label is-flex">기본 이력서 선택</div>
+                                            <div class="Static-body">
+                                                <div class="ResumeEntry-wrapper">
+                                                    <span class="ResumeEnty-major">대학교</span>
+                                                    <span class="ResumeEnty-minor">학과</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fieldset-Static_content-second">
+                                            <div class="Static-label is-flex">직장</div>
+                                            <div class="Static-body">
+                                                <div class="ResumeEntry-wrapper">
+                                                    <span class="ResumeEnty-major">회사명</span>
+                                                    <span class="ResumeEnty-minor">직무</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="" class="MainResume-edit">
+                                            <span class="img_span is-flex"></span>
+                                        </a>
+                                    </div>
+                                    <div class="MainResume-about"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="MatchUpForm">
+                            <header class="Form-header">
+                                <d1>
+                                    <dt>전문분야 설정</dt>
+                                </d1>
+                            </header>
+                            <div class="FormBlock">
+                                <div class="FormBlock-content">
+                                    <div class="EnterInterestArea-fieldset">
+                                        <div class="Static">
+                                            <div class="Static-label">직군</div>
+                                            <div class="Static-body">물류·무역</div>
+                                        </div>
+                                        <div class="Static">
+                                            <div class="Static-label">직무</div>
+                                            <div class="Static-body">지게차 운전사</div>
+                                        </div>
+                                        <div class="Static">
+                                            <div class="Static-label">경력</div>
+                                            <div class="Static-body">1년</div>
+                                        </div>
+                                        <a href="" class="EnterInterestArea-edit">
+                                            <span class="SvgIcon_root">
+                                                <svg class="SvgIcon_root_svg"></svg>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="FormBlock">
+                                <div class="FormBlock content">
+                                    <div class="AdditionalForm">
+                                        <div class="FormButton">
+                                            <h6 class="FormButton-label">추천인 선택</h6>
+                                            <button class="FormButton-button">
+                                                선택하기
+                                                <svg></svg>
+                                            </button>
+                                        </div>
+                                        <div class="FormButton">
+                                            <h6 class="FormButton-label">제외기업설정</h6>
+                                            <button class="FormButton-button">
+                                                선택하기
+                                                <svg></svg>
+                                            </button>
+                                        </div>
+                                        <div class="InputGroup">
+                                            <h6 class="InputGroup-label">구직 여부 설정</h6>
+                                            <div class="InputGroup-body">
+                                                <div class="JobSearchIntentionSelector-wrapper">
+                                                    <select name="" id="" class="JobSearchIntentionSelector-select">
+                                                        <option value="">현재 구직 중</option>
+                                                        <option value="">관심 있음</option>
+                                                        <option value="">전혀 관심 없음</option>
+                                                    </select>
+                                                </div>
+                                                <span>
+                                                    이력서 공개중
+                                                </span>
+                                                <p class="JobSearchIntentionSelector-status desc-text">
+                                                    기업으로부터 면접 제안을 받으실 수 있습니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function () {
+        $('.Aside_include').load('mypage_aside.html');
+        // $('.footer_html').load('footer.html');
+    });
+</script>
+
 </html>
