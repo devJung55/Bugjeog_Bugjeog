@@ -413,7 +413,7 @@ main {
     height: 451px;
     width: 100%;
     margin-top: 120px;
-    background: url(img/contacts_background.png) 50% 50% no-repeat;
+    background: url(../../image/notice/service_bottom_img.png) 50% 50% no-repeat;
     background-size: cover;
     display: flex;
     justify-content: center;
