@@ -349,6 +349,19 @@ hr {
     align-items: center;
 }
 
+.location-box {
+    margin : 5px 0;
+}
+
+.location-box-layout {
+    border: 1px solid #36f;
+    width: 30px;
+    height: 14px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
 .icon-box {
     display: flex;
     margin-right: 10px;
