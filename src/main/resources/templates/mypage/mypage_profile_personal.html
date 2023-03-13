@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css">
+    <link rel="stylesheet" href="../../static/css/mypage/">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../../static/css/mypage/font.css">
+</head>
+
+<body class="profile_body">
+    <div class="Container_Profile">
+        <div class="padding_for_header"></div>
+        <main class="MatchUp-Container">
+            <nav class="NavBar_presentation mypage">
+                <h2 class="Nav_title mypage">
+                    <p>프로필</p>
+                    <button class="Nav_button">프로필</button>
+                </h2>
+            </nav>
+            <section class="main_container is-relative">
+                <!-- 사이드 메뉴 인클루드 -->
+                <aside class="Aside_include"></aside>
+                <section>
+                    <aside class="CareerConnectBanner">
+                        <picture>
+                            <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
+                            <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
+                        </picture>
+                    </aside>
+                    <div>
+                        <header class="summary_wrapper">
+                            <h2 class="summay_title">나의 활동</h2>
+                            <ul class="summary_status">
+                                <li>
+                                    <a href="">
+                                        <em>0</em>
+                                        <span>찜한 업체</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        게시글 개수(자유)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        댓글 개수(자유)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        답변 개수(자유)
+                                    </a>
+                                </li>
+                            </ul>
+                        </header>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function () {
+        $('.Aside_include').load('fragment/mypage_aside.html');
+        // $('.footer_html').load('footer.html');
+    });
+</script>
+
+</html>
