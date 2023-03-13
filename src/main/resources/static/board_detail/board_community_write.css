@@ -28,6 +28,7 @@ body{
     width: 135px;
     height: 40px;
     margin-left: auto;
+    position: relative;
 }
 #regist_btn{
     cursor: pointer;
@@ -48,6 +49,8 @@ body{
     height: 100%;
     background-color: #f2f4f7;
     color: #c4c4c4;
+    position: absolute;
+    top: -9px;
 }
 #btn_span{
     width: 100%;
@@ -68,6 +71,7 @@ body{
     display: flex;
     max-width: 790px;
     margin: 0 auto;
+    margin-top: 52px;
 }
 #title{
     display: flex;
