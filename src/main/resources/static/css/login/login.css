@@ -2,6 +2,10 @@
     font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html, body, #allPage{
     padding: 0;
     margin: 0;
@@ -169,11 +173,11 @@ form {
 }
 
 .form-button-countinueEmail span {
-    color: var(--theme-palette-colors-common-white);
+    color: #fff;
 }
 
 .form-button-countinueEmail:disabled span {
-    color: var(--theme-palette-colors-gray-300);
+    color: #ccc;
 }
 
 .form-or {
@@ -205,9 +209,9 @@ form {
 .form-btn-other {
     display: flex;
     flex-direction: column;
-    -webkit-box-align: center;
+    /* -webkit-box-align: center; */
     align-items: center;
-    -webkit-box-pack: start;
+    /* -webkit-box-pack: start; */
     justify-content: flex-start;
     border: none;
     background: none;
@@ -228,7 +232,7 @@ form {
     height: 56px;
 }
 
-.appleLogo {
+.siteLogo {
     user-select: none;
     /* width: 1em;
     height: 1em; */
@@ -236,4 +240,96 @@ form {
     fill: currentColor;
     flex-shrink: 0;
     font-size: inherit;
+}
+
+.word-of-logo {
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.031em;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: capitalize;
+}
+
+.css-5h6l1p>button>p {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.form-otherLogin>button>p {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.form-google-btn{
+    display: flex;
+    flex-direction: column;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    /* -webkit-box-pack: start; */
+    justify-content: flex-start;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.form-google-btn span {
+    position: relative;
+}
+
+.word-of-logo {
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.031em;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: capitalize;
+}
+
+.form-forgetPlace{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-btn-forget{
+    color: #767676;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 30px;
+}
+
+.form-forgetPlace >p{
+    margin-bottom: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-btn{
+    display: flex;
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.right-icon{
+    user-select: none;
+    /* width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+    margin-left: 3px;
+    width: 12px;
+    height: 12px;
+}
 }
