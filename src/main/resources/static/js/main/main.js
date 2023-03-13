@@ -1,20 +1,20 @@
 /* ------------------------ 메인 슬라이더 배너 ------------------------  */
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
-const banner = document.querySelector("div.banner");
-const imageDiv = document.querySelectorAll("div.banner div");
-const lastImageDiv = document.createElement("div");
-const firstImageDiv = document.createElement("div");
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
+const banner = document.querySelector("div.slick_track");
+const banner1 = document.querySelector("a.banner1");
+const banner2 = document.querySelector("a.banner2");
+const imageDiv = document.querySelectorAll("div.image_image a img");
+const lastImageDiv = document.createElement("img");
+const firstImageDiv = document.createElement("img");
+const next = document.querySelector(".top_banner_next_arrow");
+const prev = document.querySelector(".top_banner_prev_arrow");
 const buttons = document.querySelectorAll(".buttons button");
 let checkArrow = false;
 let count = 1;
 let auto = setInterval(autoSlide, 2000);
 let temp = buttons[0];
 let pageCount = document.querySelector("#count-length");
-
-
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 buttons.forEach(button => {
@@ -23,20 +23,20 @@ buttons.forEach(button => {
         count = parseInt(button.innerHTML);
         changeButtonStyle();
         banner.style.transition = "transform 0.3s";
-        banner.style.transform = `translate(${-1060 * count}px)`;
+        banner.style.transform = `translate(${-1084 * count}px)`;
         auto = setInterval(autoSlide, 2000);
     });
 });
 
-imageDiv.forEach((div, i) => div.style.backgroundImage = `url(../../static/image/main/banner${i+1}.webp)`)
+imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.webp`));
 
-banner.appendChild(lastImageDiv);
-lastImageDiv.style.backgroundImage = `url(../../static/image/main/banner1.webp)`;
+banner1.appendChild(lastImageDiv);
+lastImageDiv.setAttribute("src",`../../static/image/main/banner6.webp`);
 
-banner.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.style.backgroundImage = `url(../../static/image/main/banner${imageDiv.length}.webp)`
+banner2.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
+firstImageDiv.setAttribute("src",`../../static/image/main/banner1.webp`);
 
-banner.style.transform = `translate(-1060px)`;
+banner.style.transform = `translate(-1084px)`;
 
 function changeButtonStyle() {
     if(temp){
@@ -53,13 +53,13 @@ function changeButtonStyle() {
 
 function autoSlide(){
     banner.style.transition = "transform 0.3s";
-    banner.style.transform = `translate(${-1060 * ++count}px)`;
+    banner.style.transform = `translate(${-1084 * ++count}px)`;
     console.log(count);
     if(count == 7) {
         count = 1;
         setTimeout(function(){
             banner.style.transition = "transform 0s";
-            banner.style.transform = "translate(-1060px)";
+            banner.style.transform = "translate(-1084px)";
         }, 300);
     }
     changeButtonStyle();
@@ -70,12 +70,12 @@ prev.addEventListener("click", function(){
     checkArrow = true;
     clearInterval(auto);
     banner.style.transition = "transform 0.3s";
-    banner.style.transform = `translate(${-1060 * --count}px)`;
+    banner.style.transform = `translate(${-1084 * --count}px)`;
     if(count == 0) {
         count = 6;
         setTimeout(function(){
             banner.style.transition = "transform 0s";
-            banner.style.transform = `translate(${-1060 * (imageDiv.length)}px)`;
+            banner.style.transform = `translate(${-1084 * (imageDiv.length)}px)`;
         }, 300);
     }
     changeButtonStyle();
@@ -88,12 +88,12 @@ next.addEventListener("click", function(){
     checkArrow = true;
     clearInterval(auto);
     banner.style.transition = "transform 0.3s";
-    banner.style.transform = `translate(${-1060 * ++count}px)`;
+    banner.style.transform = `translate(${-1084 * ++count}px)`;
     if(count == 7) {
         count = 1;
         setTimeout(function(){
             banner.style.transition = "transform 0s";
-            banner.style.transform = "translate(-1060px)";
+            banner.style.transform = "translate(-1084px)";
         }, 300);
     }
     changeButtonStyle();
