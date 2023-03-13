@@ -18,6 +18,10 @@ ol, ul {
     list-style: none;
 }
 
+img {
+    vertical-align: middle;
+}
+
 footer.footer {
     padding: 18px 0 65px;
     background-color: #fff;
