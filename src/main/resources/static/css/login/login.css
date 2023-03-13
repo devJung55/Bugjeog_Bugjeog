@@ -332,4 +332,66 @@ form {
     width: 12px;
     height: 12px;
 }
+
+.form-blankblank {
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #e1e2e3;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-termsOfUse{
+    margin: 30px auto 15px auto;
+    display: flex;
+    flex-direction: row;
+    /* -webkit-box-pack: center; */
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.small-btn{
+    color: #767676;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.form-termsOfUse>a:first-of-type {
+    margin-right: 12px;
+}
+
+.form-termsOfUse a:last-child {
+    font-weight: 900;
+}
+
+.inc-btn{
+    color: #888;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.025em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 30px;
+}
+
+.form-country-change{
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center; /* ? */
+    justify-content: center;
+}
+
+.country-part{
+    width: 140px;
+    position: relative;
 }
