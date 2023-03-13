@@ -176,10 +176,8 @@ hr {
 .sort-button {
     background-color: #fff;
     height: 20px;
-    padding-right: 16px;
-    padding-left: 16px;
     border-radius: 5px;
-    width: 100px;
+    width: 75px;
     font-size: 16px;
     font-weight: 500;
     border: none;
@@ -199,10 +197,6 @@ hr {
     width: 1px;
     height: 20px;
     display: inline-block;
-}
-
-.popluar-button {
-    margin-left: 10px;
 }
 
 .boardList-info-box {
@@ -354,10 +348,8 @@ hr {
 }
 
 .location-box-layout {
-    border: 1px solid #36f;
     width: 30px;
     height: 14px;
-    text-align: center;
     border-radius: 20px;
     font-size: 11px;
 }
