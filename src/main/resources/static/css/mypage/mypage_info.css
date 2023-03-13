@@ -42,7 +42,6 @@ header.member_img_container {
 div.img_wrapper {
     border-radius: 50%;
     border: 1px solid #e1e2e3;
-    ;
     background-color: #fff;
     position: relative;
     width: 80px;
@@ -114,7 +113,7 @@ p.welcome_msg {
     color: #000;
     font-weight: 400;
     text-align: center;
-    letter-spacing: -0.0236em;
+    letter-spacing: -0.083em;
     font-size: 28px;
     line-height: 38px;
     margin-top: 15px;
