@@ -6,30 +6,25 @@ body {
     padding: 0;
 }
 
-
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
+.article-body ul, .comment-body ul, .answer-text ul, .question-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
+
 
 body ul, body ol {
     list-style-type: none;
     padding-left: 0;
     margin-bottom: 0;
 }
-
 ol, ul {
     margin-top: 0;
-    margin-bottom: 10px;
 }
 
 body a, body a:hover, body a:focus {
     outline: 0;
     text-decoration: none;
-    background-color: transparent;
+    transition: all 250ms ease-in-out;
 }
 
 
@@ -69,7 +64,7 @@ body a, body a:hover, body a:focus {
 
 
 .row {
-    margin-right: -15px;
+    margin-right: 0px;
     margin-left: -15px;
 }
 
@@ -94,8 +89,8 @@ body a, body a:hover, body a:focus {
 }
 
 
-
 /* 메인 */
+
 [role="main"] {
     min-height: 70vh;
     margin-bottom: -30px;
@@ -140,6 +135,7 @@ body a, body a:hover, body a:focus {
 
 .member_introduce > li a {
     color: #757575;
+    font-size: 14px;
 }
 
 .member_introduce li + li:before {
@@ -149,8 +145,11 @@ body a, body a:hover, body a:focus {
     color: rgba(51, 122, 183, 1);
 }
 
-.main_container {
-    margin-bottom: 50px;
+.member_introduce > li:last-child a {
+    color: #333333;
+}
+
+.first_container {
     width: 1170px;
     padding-right: 15px;
     padding-left: 15px;
@@ -158,93 +157,66 @@ body a, body a:hover, body a:focus {
     margin-left: auto;
 }
 
-.main_container_body {
-    padding-bottom: 50px;
+.article_wrapper {
+
 }
 
-.member_member {
-    width: 100%;
+.article_base {
+    padding-right: 80px;
+    width: 75%;
     float: left;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
     padding-left: 15px;
 }
 
-.member_title {
-    font-size: 1.6em;
+.article_head {
+    font-size: 21px;
+    line-height: 1.5em;
     font-weight: 600;
-    margin-bottom: 20px;
-    padding-top: 10px;
-    margin-top: 20px;
-    font-family: inherit;
-    line-height: 1.1;
-    color: inherit;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
-.list_times {
-
-}
-
-.section_tree {
-    margin-bottom: 30px;
-}
-
-.section_tree_faq {
-    display: inline-block;
-    float: none;
-    margin: -2px;
-    vertical-align: top;
-    margin-bottom: 60px !important;
-    width: 50%;
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-.section_article_block {
-    padding: 20px;
-    padding-left: 0px;
-    padding-right: 0px;
-    margin: 15px 0;
-}
-
-.section_article_block_h3 {
-    margin-top: 0;
-    font-size: 1.3em;
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-family: inherit;
-    line-height: 1.1;
-    color: inherit;
-}
-
-.section-tree h3 a {
-    color: #333;
-}
-
-.article_list {
-
-}
-
-.article_ {
-    padding: 10px 0px;
-    position: relative;
+.article_body {
     font-size: 1.1em;
-    line-height: 2;
+    line-height: 1.6;
 }
 
-ul.article_list > li a {
-    color: black;
+p {
+    margin: 0 0 10px;
 }
 
+.article_body ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
 
+사용자 에이전트 스타일시트
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+}
 
+.second_container {
+    padding-top: 120px;
+    padding-bottom: 150px;
+    width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
-/* 푸터 */
+.article_bottom {
+    color: #747474;
+}
 
-
-
-
-
+.inquire_a_tag {
+    color: #3366FF;
+    font-weight: bold;
+}

@@ -1,3 +1,12 @@
+body{font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", 
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 body ul, body ol {
     list-style-type: none;
     padding-left: 0;
@@ -228,6 +237,10 @@ ul.category-list li p {
     margin-left: auto;
 }
 
+.category_view {
+    display: flex;
+}
+
 .category_view_question {
     width: 50%;
     float: left;
@@ -338,6 +351,42 @@ img {
     font-family: inherit;
     line-height: 1.1;
 }
+
+
+
+
+
+
+/* 문의하기 버튼 */
+
+.inquire_ {
+    border: 1px solid #f5f5f5;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #3366FF;
+    position: relative;
+    display: block;
+}
+
+.inquire_write {
+    padding: 11px 40px 10px 40px;
+    color: #FFFFFF !important;
+    font-weight: 600;
+}
+
+.questionmark {
+    margin-top: -3px;
+    width: 22px;
+}
+
+
+
+
+
+
+
+
+
 
 
 /* 푸터 */
