@@ -8,6 +8,10 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
     line-height: inherit;
 }
 
+div.padding_for_header {
+    height: 50px;
+}
+
 .mypage {
     margin: 0;
     padding: 0;
@@ -15,7 +19,7 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
     box-sizing: border-box;
 }
 
-section.Container-Profile {
+section.Container_Profile {
     position: relative;
     max-width: 1060px;
     width: 87.72%;
@@ -29,7 +33,7 @@ nav.NavBar_presentation {
     line-height: normal;
 }
 
-nav.NavBar_presentation p {
+h2.Nav_title p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -39,9 +43,10 @@ nav.NavBar_presentation p {
     font-weight: 700;
     color: #333;
     padding: 50px 0 20px;
+    margin: 0;
 }
 
-nav.NavBar_presentation button {
+h2.Nav_title button {
     width: 100%;
     display: none;
     position: relative;
@@ -191,4 +196,12 @@ div.Aside-pageList {
 
 div.Aside-pageList a {
     display: flex;
+}
+
+main.MatchUp-Container aside.Aside {
+    padding: 0;
+}
+
+.mypage-wrapper {
+    padding-top: 50px;
 }
