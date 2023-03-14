@@ -299,12 +299,17 @@ form button{
     padding: 13px 5px;
     border-radius: 5px;
     bottom: 27px;
+    width: 110px;
+    height: 45px;
 }
 #declaration_ul{
     list-style: none;
     color: #333;
     font-size: 13px;
     font-weight: 700;
+    padding: 0;
+    position: absolute;
+    top: 0px;
 }
 .declaration_button{
     color: #fe415c;
@@ -325,3 +330,14 @@ form button{
     right: 19px;
     height: 7px;
 }
+#bubble::after{
+    margin-top: -12px;
+    border-bottom-left-radius: 2px;
+    transform: rotate(-55deg) skewX(-20deg);
+    content: "";
+    border: 1px solid #cdcdcd;
+    background-color: #fff;
+    height: 14px;
+    width: 14px;
+    display: block;
+} 
