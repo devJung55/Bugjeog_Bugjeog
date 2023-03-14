@@ -119,3 +119,94 @@ p.welcome_msg {
     margin-top: 15px;
     margin-bottom: 0px;
 }
+
+p.manageAccount {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: -0.0195em;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+p.manageAccount_message {
+    color: #767676;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+ul.accountInfo_Wrapper {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    box-sizing: border-box;
+    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ul.accountInfo_Wrapper li {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: inherit;
+}
+
+li.nameChange, li.phoneChange {
+    border-top: 1px solid #e1e2e3;
+}
+
+p.emailText {
+    color: #333;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+    flex: 1 1 0%;
+    margin-right: 10px;
+    word-break: break-all;
+}
+
+p.changeTitle {
+    color: #000;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+    min-width: 120px;
+    margin-right: 15px;
+}
+
+p.changeText {
+    color: #888;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+    flex: 1 1 0%;
+    margin-right: 10px;
+    word-break: break-all;
+}
+
+section.info_content {
+    width: 100%;
+    border: 1px solid #e1e2e3;
+    border-radius: 8px;
+    padding: 0px 20px;
+    margin-bottom: 30px;
+}
