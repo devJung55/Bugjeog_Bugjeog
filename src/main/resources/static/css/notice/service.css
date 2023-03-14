@@ -17,8 +17,6 @@ body {
     justify-content: center;
     align-items: center;
     filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.1));
-    margin-top: -8px;
-    margin-left: -5px;
 }
 
 .header_wrapper {
@@ -148,6 +146,9 @@ main {
 #vision {
     height: 1152px;
     width: 100%;
+    background-image: url(../../image/notice/service_banner.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .vision_hero {
@@ -177,8 +178,21 @@ main {
     word-break: keep-all;
 }
 
+.img_class {
+    display: inherit !important;
+}
+
+.service_img {
+    position: absolute;
+    min-width: 100vw;
+    max-width: 100vw;
+    top: 50%;
+    left: 50%;
+    transform: t
+}
+
 .vision_show {
-    /*background-image :*/
+    /* background-image : url(../../image/notice/service_banner.png); */
     width : 100%;
     height : 100%;
     background-repeat : no-repeat;
