@@ -1,0 +1,22 @@
+body{
+    font-family: Pretendard Variable,Pretendard JP Variable,-apple-system,system-ui,BlinkMacSystemFont,
+    Roboto,Segoe UI,Helvetica,Arial,Apple SD Gothic Neo,Nanum Gothic,Malgun Gothic,Apple Color Emoji,
+    Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+}
+#all_wrap{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10%);
+    width: 100%;
+    padding: 0!important;
+    border-radius: 0!important;
+    border-top-left-radius: 5px!important;
+    border-top-right-radius: 5px!important;
+    will-change: transform;
+    transform: translateZ(0);
+    margin-top: 53px;
+    height: calc(100% - 53px)!important;
+    max-width: 1280px;
+}
