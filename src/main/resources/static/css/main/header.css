@@ -18,6 +18,10 @@ ol, ul {
     list-style: none;
 }
 
+img {
+    vertical-align: middle;
+}
+
 header.nav_bar {
     position: fixed;
     top: 0;
