@@ -232,6 +232,12 @@ form {
     height: 56px;
 }
 
+.form-google-btn svg{    /* img */
+    width: 56px;
+    height: 56px;
+}
+
+
 .siteLogo {
     user-select: none;
     /* width: 1em;
@@ -250,11 +256,6 @@ form {
     font-size: 11px;
     line-height: 14px;
     text-transform: capitalize;
-}
-
-.css-5h6l1p>button>p {
-    margin-top: 8px;
-    margin-bottom: 0;
 }
 
 .form-otherLogin>button>p {

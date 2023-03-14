@@ -5,8 +5,146 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <style>
+        * {
+            margin : 0px;
+            padding: 0px;
+        }
+
+        body, all-wrap {
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
+        .join-box-layout {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7;
+        }
+
+        .join-box {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .join-box-border {
+            border-radius: 5px;
+            width: 100%;
+            max-height: calc(100vh - 100px);
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--theme-palette-colors-contents-bg);
+            border: 1px solid var(--theme-palette-colors-bluegray-200);
+        }
+
+        .join-title-box {
+            padding: 0px 20px;
+            height: 64px;
+            flex: 0 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        
+        .join-cancel-button-box {
+            min-width: 64px;
+            display: flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+        .join-cancel-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 8px;
+            margin: -8px;
+            fill: var(--theme-palette-colors-black-100);
+        }
+
+        .join-cancel-button p {
+            color: var(--theme-palette-colors-black-100);
+            text-align: center;
+            letter-spacing: var(--text-spacing-headline);
+            line-height: var(--text-height-headline);
+            min-width: 64px;
+            display: flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+        .join-title-box-layout {
+            display: flex;
+            flex: 1 1 0%;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+        .join-title-box-layout p {
+            color: var(--theme-palette-colors-black-100);
+            font-weight: var(--text-weight-headline-bold);
+            text-align: center;
+            letter-spacing: var(--text-spacing-headline);
+            font-size: var(--text-size-headline);
+            line-height: var(--text-height-headline);
+            display: flex;
+            flex: 1 1 0%;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
+    <div class="all-wrap">
+        <div class="join-box-layout">
+            <div class="join-box">
+                <div class="join-box-border">
+                    <div class="join-title-box ">
+                        <div class="join-cancel-button-box">
+                            <button type="button" class="join-cancel-button">
+                                <p>취소</p>
+                            </button>
+                        </div>
+                        <div class="join-title-box-layout">
+                            <p>회원가입</p>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
