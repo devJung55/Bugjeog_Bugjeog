@@ -15,10 +15,10 @@ body{
 }
 #aside{
     flex: 0 0 180px;
+    margin: 0;
     margin-right: 100px;
     box-sizing: border-box;
     display: block;
-    margin: 0;
     padding: 0;
     border: 0;
 }
@@ -139,7 +139,7 @@ button{
     white-space: nowrap;
 }
 #title{
-    font-size: 2.8rem;
+    font-size: 28px;
     font-weight: 700;
     color: #333;
     word-break: break-all;
@@ -150,11 +150,11 @@ button{
 #content{
     max-width: 710px;
     margin-bottom: 80px;
-    font-size: 1.7rem;
+    font-size: 17px;
     line-height: 1.65;
     color: #333;
     text-align: left;
-    white-space: pre-wrap;
+    white-space: pre-line;
     word-wrap: break-word;
     word-break: keep-all;
 }
@@ -287,3 +287,57 @@ form button{
     width: 12px;
     height: 12px;
 }
+#declaration{
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: absolute;
+    right: -14px;
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 13px 5px;
+    border-radius: 5px;
+    bottom: 27px;
+    width: 110px;
+    height: 45px;
+}
+#declaration_ul{
+    list-style: none;
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0;
+    position: absolute;
+    top: 0px;
+}
+.declaration_button{
+    color: #fe415c;
+    display: block;
+    padding: 4px 17px 4px 10px;
+    border-radius: 3px;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+#bubble{
+    top: 100%;
+    position: absolute;
+    overflow: hidden;
+    right: 19px;
+    height: 7px;
+}
+#bubble::after{
+    margin-top: -12px;
+    border-bottom-left-radius: 2px;
+    transform: rotate(-55deg) skewX(-20deg);
+    content: "";
+    border: 1px solid #cdcdcd;
+    background-color: #fff;
+    height: 14px;
+    width: 14px;
+    display: block;
+} 
