@@ -227,7 +227,7 @@ form {
     justify-content: inherit;
 }
 
-.form-btn-other img{
+.form-btn-other svg{    /* img */
     width: 56px;
     height: 56px;
 }
@@ -265,9 +265,9 @@ form {
 .form-google-btn{
     display: flex;
     flex-direction: column;
-    /* -webkit-box-align: center; */
+    -webkit-box-align: center;
     align-items: center;
-    /* -webkit-box-pack: start; */
+    -webkit-box-pack: start;
     justify-content: flex-start;
     border: none;
     background: none;
