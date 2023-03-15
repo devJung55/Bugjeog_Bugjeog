@@ -21,7 +21,7 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         clearInterval(auto);
         count = parseInt(button.innerHTML);
-        changeButtonStyle();
+        /* changeButtonStyle(); */
         banner.style.transition = "transform 0.3s";
         banner.style.transform = `translate(${-1084 * count}px)`;
         auto = setInterval(autoSlide, 2000);
@@ -38,7 +38,7 @@ firstImageDiv.setAttribute("src",`../../static/image/main/banner1.png`);
 
 banner.style.transform = `translate(-1084px)`;
 
-function changeButtonStyle() {
+/* function changeButtonStyle() {
     if(temp){
         temp.style.background = "white";
         temp.style.color = "black";
@@ -48,8 +48,9 @@ function changeButtonStyle() {
     buttons[count - 1].style.color = "white";
     temp = buttons[count - 1];
     
-    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
-}
+} */
+
+
 
 function autoSlide(){
     banner.style.transition = "transform 0.3s";
@@ -62,7 +63,8 @@ function autoSlide(){
             banner.style.transform = "translate(-1084px)";
         }, 300);
     }
-    changeButtonStyle();
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
+    /* changeButtonStyle(); */
 }
 
 prev.addEventListener("click", function(){
@@ -78,9 +80,10 @@ prev.addEventListener("click", function(){
             banner.style.transform = `translate(${-1084 * (imageDiv.length)}px)`;
         }, 300);
     }
-    changeButtonStyle();
+    /* changeButtonStyle(); */
     auto = setInterval(autoSlide, 2000);
     setTimeout(()=>{checkArrow = false}, 300);
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
 });
 
 next.addEventListener("click", function(){
@@ -96,9 +99,10 @@ next.addEventListener("click", function(){
             banner.style.transform = "translate(-1084px)";
         }, 300);
     }
-    changeButtonStyle();
+    /* changeButtonStyle(); */
     auto = setInterval(autoSlide, 2000);
     setTimeout(()=>{checkArrow = false}, 300);
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
 });
 
 
@@ -120,7 +124,7 @@ $searchClose.on("click", function(e) {
 });
 
 
-/* ------------------------ 메인 슬라이더 배너 ------------------------  */
+/* ------------------------ 메인 즐겨찾기 클릭 이벤트 ------------------------  */
 
 
 const $bookMarks = $(".book-mark");
@@ -134,14 +138,3 @@ $bookMarks.each((i, bookMark) => {
         }
     });
 });
-
-
-
-
-
-
-
-
-
-
-
