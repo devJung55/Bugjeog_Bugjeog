@@ -149,10 +149,13 @@ a {
 }
 
 .page-box {
-    display: inline-block;
     padding-left: 0;
     margin: 20px 0;
     border-radius: 4px;
+}
+
+.page-box-layout {
+    text-align: center;
 }
 
 .page-button-box {
