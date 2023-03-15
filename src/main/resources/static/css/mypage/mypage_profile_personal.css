@@ -92,3 +92,16 @@ ul.summary_status li a span {
     font-size: 16px;
     line-height: 19px;
 }
+
+header.summary_wrapper {
+    display: block;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    background: #fff;
+    border: 1px solid #e1e2e3;
+    border-radius: 5px;
+    margin: 0 0 20px;
+    padding: 26px 0 34px;
+}

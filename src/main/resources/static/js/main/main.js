@@ -21,24 +21,24 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         clearInterval(auto);
         count = parseInt(button.innerHTML);
-        changeButtonStyle();
+        /* changeButtonStyle(); */
         banner.style.transition = "transform 0.3s";
         banner.style.transform = `translate(${-1084 * count}px)`;
         auto = setInterval(autoSlide, 2000);
     });
 });
 
-imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.webp`));
+imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.png`));
 
 banner1.appendChild(lastImageDiv);
-lastImageDiv.setAttribute("src",`../../static/image/main/banner6.webp`);
+lastImageDiv.setAttribute("src",`../../static/image/main/banner6.png`);
 
 banner2.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.setAttribute("src",`../../static/image/main/banner1.webp`);
+firstImageDiv.setAttribute("src",`../../static/image/main/banner1.png`);
 
 banner.style.transform = `translate(-1084px)`;
 
-function changeButtonStyle() {
+/* function changeButtonStyle() {
     if(temp){
         temp.style.background = "white";
         temp.style.color = "black";
@@ -48,8 +48,9 @@ function changeButtonStyle() {
     buttons[count - 1].style.color = "white";
     temp = buttons[count - 1];
     
-    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
-}
+} */
+
+
 
 function autoSlide(){
     banner.style.transition = "transform 0.3s";
@@ -62,7 +63,8 @@ function autoSlide(){
             banner.style.transform = "translate(-1084px)";
         }, 300);
     }
-    changeButtonStyle();
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
+    /* changeButtonStyle(); */
 }
 
 prev.addEventListener("click", function(){
@@ -78,9 +80,10 @@ prev.addEventListener("click", function(){
             banner.style.transform = `translate(${-1084 * (imageDiv.length)}px)`;
         }, 300);
     }
-    changeButtonStyle();
+    /* changeButtonStyle(); */
     auto = setInterval(autoSlide, 2000);
     setTimeout(()=>{checkArrow = false}, 300);
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
 });
 
 next.addEventListener("click", function(){
@@ -96,9 +99,10 @@ next.addEventListener("click", function(){
             banner.style.transform = "translate(-1084px)";
         }, 300);
     }
-    changeButtonStyle();
+    /* changeButtonStyle(); */
     auto = setInterval(autoSlide, 2000);
     setTimeout(()=>{checkArrow = false}, 300);
+    pageCount.innerHTML =`${count} / ${imageDiv.length}`;
 });
 
 
@@ -117,4 +121,20 @@ $searchButton.on("click", function(e) {
 
 $searchClose.on("click", function(e) {
     $searchBar.css("display", "none");
+});
+
+
+/* ------------------------ 메인 즐겨찾기 클릭 이벤트 ------------------------  */
+
+
+const $bookMarks = $(".book-mark");
+
+$bookMarks.each((i, bookMark) => {
+    $(bookMark).on("click", function() {
+        if($(this).attr("fill") == "rgb(51, 102, 255)") {
+            $(this).attr("fill", "black");
+        } else {
+            $(this).attr("fill", "rgb(51, 102, 255)");
+        }
+    });
 });
