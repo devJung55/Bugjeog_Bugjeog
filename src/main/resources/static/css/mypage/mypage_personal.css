@@ -1,5 +1,4 @@
 header.summary_wrapper {
-    display: block;
     box-sizing: border-box;
     font-family: inherit;
     font-size: inherit;
@@ -19,7 +18,6 @@ h2.summary_title {
     margin-inline-end: 0px;
     margin: 0;
     border: 0;
-    box-sizing: border-box;
     font-family: inherit;
     line-height: inherit;
     font-size: 18px;
@@ -28,6 +26,9 @@ h2.summary_title {
 }
 
 ul.summary_status {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -39,9 +40,11 @@ ul.summary_status {
     padding: 0;
     border: 0;
     list-style: none;
+    display: flex;
 }
 
-ul.summary_status li {
+li.summary_content {
+    list-style: none;
     display: list-item;
     text-align: -webkit-match-parent;
     box-sizing: border-box;
@@ -53,11 +56,9 @@ ul.summary_status li {
     border-left: 1px solid #e1e2e3;
 }
 
-ul.summary_status li:first-of-type {
-    border: none;
-}
-
-ul.summary_status li a {
+li.summary_content a {
+    list-style: none;
+    text-align: -webkit-match-parent;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -66,12 +67,17 @@ ul.summary_status li a {
     text-decoration: inherit;
     cursor: pointer;
     color: inherit;
-    align-items: center;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-ul.summary_status li a em {
+li.summary_content a em {
+    list-style: none;
+    text-align: -webkit-match-parent;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -83,7 +89,7 @@ ul.summary_status li a em {
     font-style: normal;
 }
 
-ul.summary_status li a span {
+li.summary_content a span {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -91,17 +97,4 @@ ul.summary_status li a span {
     font-family: inherit;
     font-size: 16px;
     line-height: 19px;
-}
-
-header.summary_wrapper {
-    display: block;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    background: #fff;
-    border: 1px solid #e1e2e3;
-    border-radius: 5px;
-    margin: 0 0 20px;
-    padding: 26px 0 34px;
 }
