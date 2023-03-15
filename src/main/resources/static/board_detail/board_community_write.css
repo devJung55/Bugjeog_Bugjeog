@@ -60,6 +60,7 @@ body{
     position: relative;
     width: 100%;
     padding-top: 60px;
+    background: #f8f8f8;
 }
 #wrap_div{
     flex-direction: column;
@@ -69,7 +70,7 @@ body{
     border-top: 0;
     background-color: #fff;
     display: flex;
-    max-width: 790px;
+    max-width: 708px;
     margin: 0 auto;
     margin-top: 52px;
 }
@@ -181,4 +182,8 @@ body{
     background-color: #36f;
     display: block;
     transform: rotate(-55deg) skewX(-20deg);
+}
+#em{
+    font-style: normal;
+    color: #36f;
 }
