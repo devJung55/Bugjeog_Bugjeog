@@ -50,6 +50,14 @@ body{
     width: 87.72%;
     margin: 40px auto 0;
 }
+#main_img{
+    background: #e0e0e0;
+    background-position: 50%;
+    background-size: cover;
+    width: 700px;
+    height: 400px;
+    margin-right: 30px;
+}
 #right_section{
     flex-grow: 1;
     width: 360px;
@@ -211,4 +219,123 @@ body{
     border: 1px solid #e1e2e4;
     background: #fff;
     box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+}
+#profile_img_nickname{
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 110px;
+}
+#profile_my_img{
+    width: 37px;
+    height: 37px;
+    margin-right: 9px;
+}
+#my_nickname{
+    font-size: 14px;
+    color: #000;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 650px;
+}
+.wid_hei{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+#form_wrap{
+    border-radius: 4px;
+    border: 1px solid #e1e2e3;
+    background-color: #fff;
+    height: 146px;
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    margin-left: 110px;
+}
+#reply_textarea{
+    width: 100%;
+    height: 84px;
+    padding: 16px 20px;
+    border: 0;
+    resize: none;
+    outline: none;
+}
+form button{
+    width: 70px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #f2f4f7;
+    color: #c4c4c4;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    min-width: 64px;
+    border-radius: 25px;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+#reply_wrap{
+    padding: 25px 39px 100px;
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+    border-top: 0;
+    margin-left: 69px;
+}
+#reply_wrap_div{
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 25px;
+    position: relative;
+}
+#reply_my{
+    width: 37px;
+    height: 37px;
+    border: 1px solid #ececec;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #d8d8d8;
+    background-image: url(https://static.wanted.co.kr/images/profile_default.png);
+    background-size: cover;
+}
+#reply_my_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: circle(50% at 50% 50%);
+    vertical-align: middle;
+}
+#reply_nickname{
+    font-size: 14px;
+    margin-right: 4px;
+    color: #333;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#reply_date{
+    font-size: 12px;
+    color: #939393;
+    flex: none;
+    line-height: 100%;
+    white-space: nowrap;
+}
+#reply_content{
+    margin-top: 18px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+    word-wrap: break-word;
 }

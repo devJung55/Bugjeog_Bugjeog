@@ -7,43 +7,43 @@
     <title>문의 등록 - 원티드 고객센터</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../static/board_detail/board_community_write.css">
+    <link rel="stylesheet" href="../../static/board_detail/board_inquiry_write.css">
 </head>
 <body>
     <main style="min-height: 70vh; margin-bottom: -30px;">
         <section id="breadcrumb"></section>
         <div id="container">
-            <div style="float: left; padding-left: 15px;">
+            <div style="float: left; padding-left: 15px; width: 75%;">
                 <ol id="breadcrumbs">
                     <li>
-                        <a>원티드 고객센터</a>
+                        <a id="client">원티드 고객센터</a>
                     </li>
                     <li id="register_inquiry"> 문의 등록</li>
                 </ol>
             </div>
         </div>
-        <div>
+        <div id="center">
             <section style="width: 100%;">
                 <h2 id="inquiry_register">문의 등록</h2>
-                <div>
-                    <form action="">
-                        <div>
-                            <label for="">
+                <div style="margin-bottom: 40px; background: #ffff;">
+                    <form>
+                        <div id="email_address">
+                            <label id="label_first">
                                 이메일 주소 <!-- ::after -->
                             </label>
-                            <input type="text" placeholder="가입하신 이메일 주소를 기입해주세요. (비회원은 수신 가능한 이메일)">
+                            <input id="email_input_first" type="text" placeholder="가입하신 이메일 주소를 기입해주세요. (비회원은 수신 가능한 이메일)">
                         </div>
-                        <div>
-                            <label for="">
+                        <div style="margin-top: 17px;">
+                            <label id="label_second">
                                 제목 <!-- after -->
                             </label>
-                            <input type="text" placeholder="(예) 이벤트 신청 문의 | 보상금 신청 | 수수료 정산 등, 키워드를 넣으시면 도움말 문서가 자동 검색 됩니다.">
+                            <input id="email_input_second" type="text" placeholder="(예) 이벤트 신청 문의 | 보상금 신청 | 수수료 정산 등, 키워드를 넣으시면 도움말 문서가 자동 검색 됩니다.">
                         </div>
-                        <div>
-                            <label for="">
+                        <div style="margin-top: 17px;">
+                            <label id="label_third">
                                 설명 <!-- after -->
                             </label>
-                            <textarea placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea>></textarea>
+                            <textarea id="explanation" placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea>></textarea>
                         </div>
                         <div>
                             <label for="">
