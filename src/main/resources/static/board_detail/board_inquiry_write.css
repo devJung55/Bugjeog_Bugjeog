@@ -84,16 +84,42 @@ label{
     margin-bottom: 5px;
     font-weight: 700;
 }
-#email_address::after{
+#label_first::after{
     content: "*";
     color: red;
     margin-left: 2px;
 }
-#email_input{
+#label_second::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#label_third::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#email_input_first{
     border: 1px solid #ddd;
     margin-bottom: 15px;
     min-height: 35px;
     border-radius: 3px;
     padding: 0 10px;
     width: 100%;
+}
+#email_input_second{
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    min-height: 35px;
+    border-radius: 3px;
+    padding: 0 10px;
+    width: 100%;
+}
+#explanation{
+    min-height: 120px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 5px;
+    overflow: auto;
 }
