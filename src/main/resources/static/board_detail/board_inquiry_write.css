@@ -1,0 +1,44 @@
+body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+#breadcrumb{
+    background-color: transparent;
+    border-bottom: 1px solid #ECECEC;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+#container{
+    margin-bottom: 20px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+#breadcrumbs{
+    padding: 15px 5px;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+#breadcrumbs li{
+    color: #767676 !important;
+    display: inline-block;
+}
+#register_inquiry::before{
+    content: "\f105";
+    font-family: 'FontAwesome';
+    padding: 0 5px;
+    color: rgba(51, 122, 183, 1);
+}
+#inquiry_register{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    margin-top: 20px;
+    line-height: 1.1;
+    color: inherit;
+}

@@ -1,4 +1,10 @@
-
+body{font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", 
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
 
 /* 헤더*/
 #header {
@@ -140,6 +146,9 @@ main {
 #vision {
     height: 1152px;
     width: 100%;
+    background-image: url(../../image/notice/service_banner.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .vision_hero {
@@ -169,8 +178,21 @@ main {
     word-break: keep-all;
 }
 
+.img_class {
+    display: inherit !important;
+}
+
+.service_img {
+    position: absolute;
+    min-width: 100vw;
+    max-width: 100vw;
+    top: 50%;
+    left: 50%;
+    transform: t
+}
+
 .vision_show {
-    /*background-image :*/
+    /* background-image : url(../../image/notice/service_banner.png); */
     width : 100%;
     height : 100%;
     background-repeat : no-repeat;
@@ -364,7 +386,7 @@ main {
     top: 0;
     width: 700px;
     height: 100%;
-    background: url(img/service_background.png);
+    background: url(../../image/notice/service_right_back.png);
     background-size: contain;
 }
 
@@ -377,7 +399,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
-    background: url(img/wantedway_background.png) no-repeat;
+    background: url(../../image/notice/service_background.png) no-repeat;
     background-position: center;
     background-position-y: 370px;
     background-size: cover;
@@ -413,7 +435,7 @@ main {
     height: 451px;
     width: 100%;
     margin-top: 120px;
-    background: url(img/contacts_background.png) 50% 50% no-repeat;
+    background: url(../../image/notice/service_bottom_img.png) 50% 50% no-repeat;
     background-size: cover;
     display: flex;
     justify-content: center;
