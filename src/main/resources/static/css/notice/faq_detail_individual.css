@@ -1,0 +1,324 @@
+body{font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", 
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.article-body ul, .comment-body ul, .answer-text ul, .question-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+
+body ul, body ol {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+ol, ul {
+    margin-top: 0;
+}
+
+body a, body a:hover, body a:focus {
+    outline: 0;
+    text-decoration: none;
+    transition: all 250ms ease-in-out;
+}
+
+
+/* 헤더 */
+.header {
+    background-color: rgba(204, 96, 47, 0);
+}
+
+.header-inner {
+    width: 1170px;
+   /*  padding-right: 15px; */
+    padding-left: 65px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 1px;
+    padding-bottom: 7px;
+}
+
+.left_top {
+    width: 25%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.header_logo {
+
+}
+
+.header_logo_img{
+    max-width: 180px;
+    max-height: 20px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+
+.header_logo_img1 {
+    max-height: 30px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 10px;
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+}
+
+.row {
+    margin-right: -15px;
+    /* margin-left: -15px; */
+}
+
+.row:after {
+    clear: both;
+}
+
+.row:after, .row:before {
+    display: table;
+    content: " ";
+}
+
+
+.container:before {
+    display: table;
+    content: " ";
+}
+
+.container:after {
+    display: table;
+    content: " ";
+}
+
+
+
+
+
+/* 메인 */
+
+[role="main"] {
+    min-height: 70vh;
+    margin-bottom: -30px;
+}
+
+.top_line {
+    padding: inherit;
+    background-color: transparent;
+    border-bottom: 1px solid #ECECEC;
+    margin-bottom: 20px;
+    list-style: none;
+    border-radius: 4px;
+}
+
+.introduce_line {
+    margin-bottom: 20px;
+    padding-right: 15px;
+    padding-left: 0px;
+    width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.introduce_line_member {
+    float: left;
+    padding-left: 15px;
+    width: 75%;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+}
+
+.member_introduce {
+    padding: 15px 25px;
+}
+
+.member_introduce > li {
+    color: #767676 !important;
+    display: inline-block;
+}
+
+.member_introduce > li a {
+    color: #757575;
+    font-size: 14px;
+}
+
+/* .member_introduce li + li:before {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    padding: 0 5px;
+    color: rgba(51, 122, 183, 1);
+} */
+
+.member_introduce > li:last-child a {
+    color: #333333;
+}
+
+.arrow-ircon {
+    width: 11px;
+}
+
+.first_container {
+    width: 1175px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.article_wrapper {
+
+}
+
+.article_base {
+    padding-right: 80px;
+    width: 65%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-top: 30px;
+}
+
+.article_head {
+    font-size: 21px;
+    line-height: 1.5em;
+    font-weight: 600;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.article_body {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.article_body ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 15.4px;
+}
+
+
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+}
+
+.second_container {
+    padding-top: 120px;
+    padding-bottom: 150px;
+    width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.article_bottom {
+    color: #747474;
+}
+
+.inquire_a_tag {
+    color: #3366FF;
+    font-weight: bold;
+}
+
+
+.right_section {
+
+}
+
+.right_section_list{
+    padding-right: 11px;
+    float: right;
+    border: 1px solid #ececec;
+    padding-top: 25px;
+    padding-bottom: 22px;
+    margin-top: 100px !important;
+    border-radius: 5px;
+    padding-left: 9px;
+}
+
+.article_sidebar {
+    font-size: 12px;
+}
+
+.sidebar_title {
+    padding-left: 15px;
+    margin-top: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+
+
+
+
+.article_sidebar section > ul {
+    padding-left: 0;
+}
+
+.article_sidebar section > ul > li {
+    padding-left: 15px;
+    padding-right: 15px;
+    /* background-color: #f2f4f7; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 1.4;
+    position: relative;
+    font-size: 1.1em;
+}
+
+.article_sidebar ul li a{
+    color: #454545;
+}
+
+.article_sidebar section > ul > li:hover {
+    background-color: #f2f4f7;
+}
+
+    /* 문의하기 버튼 */
+    
+    .inquire_ {
+        position: fixed;
+        bottom: 50px;
+        right: 200px;
+        border: 1px solid #f5f5f5;
+        border-radius: 50%;
+        text-align: center;
+        background-color: #3366FF;
+        display: block;
+        width: 70px;
+        height: 70px;
+    
+    }
+    
+    .inquire_write {
+        color: #FFFFFF !important;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .questionmark {
+        margin-top: 10px;
+        width: 47px;
+    }
