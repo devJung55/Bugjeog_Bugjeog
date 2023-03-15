@@ -481,6 +481,59 @@
             margin-left: 28px;
         }
 
+        .join-check-do {
+            height: 22px;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            margin-right: 18px;
+            cursor: pointer;
+        }
+
+        .join-inside-marketing {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: inherit;
+            -webkit-box-align: inherit;
+            -ms-flex-align: inherit;
+            align-items: inherit;
+            -webkit-box-pack: inherit;
+            -ms-flex-pack: inherit;
+            -webkit-justify-content: inherit;
+            justify-content: inherit;
+        }
+
+        .join-box-of-check {
+            user-select: none;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            fill: currentColor;
+            flex-shrink: 0;
+            font-size: inherit;
+        }
+
+        .join-check-do svg {
+            color: rgb(136, 136, 136);
+            margin-right: 7px;
+        }
+
+        .join-checked-ment {
+            color: var(--theme-palette-colors-gray-600);
+            font-weight: var(--text-weight-body-normal);
+            text-align: left;
+            letter-spacing: var(--text-spacing-body);
+            font-size: var(--text-size-body);
+            line-height: var(--text-height-body);
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
     </style>
 </head>
 <body>
@@ -589,8 +642,14 @@
                              </div>
                              <!-- 이메일, 앱푸시, .. 파트 -->
                              <div class="join-three-check">
-                                <label class=""></label>
-
+                                <label class="join-check-do">
+                                    <input type="checkbox" name="accept_marketing_email">
+                                        <span class="join-inside-marketing">
+                                            <!-- svg 안 먹는듯 -->
+                                            <svg viewBox="0 0 12 8" class="join-box-of-check"><path d="M1.5 4L4.5 7L10.5 1" stroke="var(--theme-palette-colors-gray-300)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
+                                      <p class="join-checked-ment">이메일</p>  
+                                </label>
                              </div>
                         </form>
                     </div>
