@@ -10,16 +10,84 @@
     <link rel="stylesheet" href="../../static/board_detail/board_community_write.css">
 </head>
 <body>
-    <section id="breadcrumb"></section>
-    <div>
-        <div>
-            <ol>
-                <li>
-                    <a>원티드 고객센터</a>
-                </li>
-                <li> 문의 등록</li>
-            </ol>
+    <main style="min-height: 70vh; margin-bottom: -30px;">
+        <section id="breadcrumb"></section>
+        <div id="container">
+            <div style="float: left; padding-left: 15px;">
+                <ol id="breadcrumbs">
+                    <li>
+                        <a>원티드 고객센터</a>
+                    </li>
+                    <li id="register_inquiry"> 문의 등록</li>
+                </ol>
+            </div>
         </div>
-    </div>
+        <div>
+            <section style="width: 100%;">
+                <h2 id="inquiry_register">문의 등록</h2>
+                <div>
+                    <form action="">
+                        <div>
+                            <label for="">
+                                이메일 주소 <!-- ::after -->
+                            </label>
+                            <input type="text" placeholder="가입하신 이메일 주소를 기입해주세요. (비회원은 수신 가능한 이메일)">
+                        </div>
+                        <div>
+                            <label for="">
+                                제목 <!-- after -->
+                            </label>
+                            <input type="text" placeholder="(예) 이벤트 신청 문의 | 보상금 신청 | 수수료 정산 등, 키워드를 넣으시면 도움말 문서가 자동 검색 됩니다.">
+                        </div>
+                        <div>
+                            <label for="">
+                                설명 <!-- after -->
+                            </label>
+                            <textarea placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea>></textarea>
+                        </div>
+                        <div>
+                            <label for="">
+                                연락처 
+                            </label>
+                            <input type="text" placeholder="&quot; - &quot; 없이 번호만 입력">
+                        </div>
+                        <div>
+                            <label for="">첨부 파일</label>
+                            <div>
+                                <input type="file">
+                                <span>
+                                    <!-- before -->
+                                    <a href="">파일 추가</a>
+                                    또는 파일을 여기로 드래그
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <p>
+                                <strong>개인정보 수집 및 이용에 대한 동의 내용</strong>
+                                <br>
+                                ①개인정보 수집 항목: 이메일, 연락처
+                                <br>
+                                ②수집목적: 고객식별, 문의 응대, 서비스 품질 향상
+                                <br>
+                                ③보유 및 이용기간: 수집 목적이 달성되면 지체없이 모든 개인정보를 파기합니다. 단, 관계법령에서 일정 기간 정보의 보관을 규정한 경우에 한해 분리 보관 후 파기합니다.
+                                <br>
+                                <br>
+                                *위 동의는 거부할 수 있으며, 거부시 해당 문의를 처리할 수 없습니다. 
+                            </p>
+                            <label for="">
+                                동의합니다.<!-- after -->
+                            </label>
+                            <input type="checkbox">
+                        </div>
+                        <footer>
+                            <input type="submit" value="제출">
+                        </footer>
+                    </form>
+                </div>
+            </section>
+            <!-- after -->
+        </div>
+    </main>
 </body>
 </html>
