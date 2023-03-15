@@ -121,7 +121,12 @@ body {
     text-align: center;
 }
 
-
+.header_logo_img1 {
+    max-height: 30px;
+    margin-top: 1px;
+    max-width: 200px;
+    margin-right: 10px;
+}
 
 
 
