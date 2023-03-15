@@ -28,13 +28,13 @@ buttons.forEach(button => {
     });
 });
 
-imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.webp`));
+imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.png`));
 
 banner1.appendChild(lastImageDiv);
-lastImageDiv.setAttribute("src",`../../static/image/main/banner6.webp`);
+lastImageDiv.setAttribute("src",`../../static/image/main/banner6.png`);
 
 banner2.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.setAttribute("src",`../../static/image/main/banner1.webp`);
+firstImageDiv.setAttribute("src",`../../static/image/main/banner1.png`);
 
 banner.style.transform = `translate(-1084px)`;
 
@@ -118,3 +118,30 @@ $searchButton.on("click", function(e) {
 $searchClose.on("click", function(e) {
     $searchBar.css("display", "none");
 });
+
+
+/* ------------------------ 메인 슬라이더 배너 ------------------------  */
+
+
+const $bookMarks = $(".book-mark");
+
+$bookMarks.each((i, bookMark) => {
+    $(bookMark).on("click", function() {
+        if($(this).attr("fill") == "rgb(51, 102, 255)") {
+            $(this).attr("fill", "black");
+        } else {
+            $(this).attr("fill", "rgb(51, 102, 255)");
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
