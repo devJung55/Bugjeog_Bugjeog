@@ -134,6 +134,7 @@ body{
     max-width: 1060px;
     margin: 0 auto;
     list-style: none;
+    padding-left: 0;
 }
 .footer_li{
     margin-left: 0;
