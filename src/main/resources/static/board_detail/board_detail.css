@@ -124,7 +124,6 @@ body{
 }
 #footer_ul{
     padding-top: 24px;
-    overflow-x: auto;
     display: flex;
     margin-bottom: 29px;
     scroll-snap-type: x mandatory;
