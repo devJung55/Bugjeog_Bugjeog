@@ -64,8 +64,14 @@ table {
 	font-weight: bold;
 }
 
+a.main_bar_logo_a {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .logo-box img {
-	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
+	/* filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%); */
 	width: 80px;
 }
 
