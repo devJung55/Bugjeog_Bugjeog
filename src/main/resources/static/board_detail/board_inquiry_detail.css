@@ -10,7 +10,7 @@ body{
 
 #main {
     display: flex;
-    width: 1070px;
+    width: 800px;
     margin: 80px auto 0;
 }
 #aside{

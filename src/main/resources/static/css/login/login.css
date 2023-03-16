@@ -1,0 +1,398 @@
+* {
+    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #allPage{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+/*     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    word-break: keep-all; */
+    overflow-wrap: anywhere;
+}
+
+.fullPage{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    background-color: #f7f7f7;
+}
+
+.gapWithLogin {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    /*     flex-direction: column; */
+    align-items: flex-end;
+}
+
+.allLogIn {
+    border-radius: 5px;
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+    display: flex;
+/*     flex-direction: column; */
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+}
+
+.inside{
+    overflow: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.logoPart{
+    display: flex;
+   /*  -webkit-box-pack: center; */
+    justify-content: center;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding-top: 56px;
+}
+
+.logo{
+    display: flex;
+    /* -webkit-box-align: inherit; */
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.wantedRealLogo{
+    user-select: none;
+/*     width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+/*     -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0; */
+    flex-shrink: 0;
+    font-size: inherit;
+    width: 93px;
+    height: 28px;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.form-companyMoto{
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.023em;
+    font-size: 24px;
+    line-height: 32px;
+    --text-size-subtitle: 24px;
+    --text-height-subtitle: 32px;
+    --text-spacing-subtitle: -0.023em;
+}
+
+.form-companySimpleIntro{
+    color: #888;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 45px;
+}
+
+.form-blankEmail{
+    margin: 17px 0px 7px;
+}
+
+.form-guideEmail{
+    color: #888;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.form-input-writeEmail{
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #e1e2e3;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form-button-countinueEmail:disabled {
+    color: #ccc;
+    background-color:#f2f4f7;
+    border: none;
+    cursor: default;
+}
+
+.form-button-countinueEmail{
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: v#36f;
+    border: none;
+    margin-top: 30px;
+}
+
+.form-button-cuntinueEmail-ment{
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form-button-countinueEmail span {
+    color: #fff;
+}
+
+.form-button-countinueEmail:disabled span {
+    color: #ccc;
+}
+
+.form-or {
+    color: #939393;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.025em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.form-otherLogin {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    max-width: 360px;
+    /* -webkit-box-pack: center; */
+    justify-content: center;
+}
+
+.form-otherLogin>button {
+    flex: 1;
+    margin: 0;
+    max-width: 25%;
+}
+
+.form-btn-other {
+    display: flex;
+    flex-direction: column;
+    /* -webkit-box-align: center; */
+    align-items: center;
+    /* -webkit-box-pack: start; */
+    justify-content: flex-start;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.logo-btn{
+    display: flex;
+    /* -webkit-box-align: inherit; */
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.form-btn-other svg{    /* img */
+    width: 56px;
+    height: 56px;
+}
+
+.form-google-btn svg{    /* img */
+    width: 56px;
+    height: 56px;
+}
+
+
+.siteLogo {
+    user-select: none;
+    /* width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.word-of-logo {
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.031em;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: capitalize;
+}
+
+.form-otherLogin>button>p {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.form-google-btn{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.form-google-btn span {
+    position: relative;
+}
+
+.word-of-logo {
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.031em;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: capitalize;
+}
+
+.form-forgetPlace{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-btn-forget{
+    color: #767676;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 30px;
+}
+
+.form-forgetPlace >p{
+    margin-bottom: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-btn{
+    display: flex;
+    align-items: inherit;
+    /* -webkit-box-pack: inherit; */
+    justify-content: inherit;
+}
+
+.right-icon{
+    user-select: none;
+    /* width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+    margin-left: 3px;
+    width: 12px;
+    height: 12px;
+}
+
+.form-blankblank {
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #e1e2e3;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-termsOfUse{
+    margin: 30px auto 15px auto;
+    display: flex;
+    flex-direction: row;
+    /* -webkit-box-pack: center; */
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.small-btn{
+    color: #767676;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.form-termsOfUse>a:first-of-type {
+    margin-right: 12px;
+}
+
+.form-termsOfUse a:last-child {
+    font-weight: 900;
+}
+
+.inc-btn{
+    color: #888;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.025em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 30px;
+}
+
+.form-country-change{
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center; /* ? */
+    justify-content: center;
+}
+
+.country-part{
+    width: 140px;
+    position: relative;
+}
