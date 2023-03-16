@@ -26,6 +26,8 @@ body{
     list-style-type: none;
     margin-bottom: 0;
     margin-top: 0;
+    position: relative;
+    left: 162px;
 }
 #breadcrumbs li{
     color: #767676 !important;
@@ -203,8 +205,6 @@ label{
 #footer_submit{
     font-size: 1.2em;
     border-radius: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
     cursor: pointer;
     background-color: #757575;
     color: #fff;
@@ -220,4 +220,6 @@ label{
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
+    padding-left: 40px;
+    padding-right: 40px;
 }
