@@ -339,3 +339,27 @@ form button{
     word-break: break-word;
     word-wrap: break-word;
 }
+.event_content{
+    flex-direction: column;
+    grid-gap: 4px;
+    gap: 4px;
+    margin-top: 12px;
+    display: flex;
+    padding-right: 4px!important;
+}
+.event_content_p{
+    font-size: 18px;
+    line-height: 144.4%;
+    letter-spacing: -.0002em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: normal;
+    font-weight: 600;
+    color: #171717;
+    margin: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}

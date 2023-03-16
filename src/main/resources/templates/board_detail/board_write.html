@@ -22,6 +22,7 @@
         </div>
         <div id="wrap">
             <div id="wrap_div">
+                <input id="location" type="text" placeholder="지역을 적어주세요.">
                 <div id="title">
                     <textarea id="title_textarea" placeholder="제목을 입력해 주세요."></textarea>
                     <!-- <textarea></textarea> -->
@@ -53,4 +54,21 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    // 초기 등록 버튼 색상 설정
+$('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+
+// textarea 입력시 등록 버튼 색상 변경
+$('#content_textarea, #title_textarea').on('input', function() {
+  var contentLength = $('#content_textarea').val().length;
+  var titleLength = $('#title_textarea').val().length;
+  if (contentLength > 0 && titleLength > 0) {
+    $('#regist_btn').css("color", "white").css("background-color", "blue");
+  } else {
+    $('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+  }
+});
+
+
+</script>
 </html>

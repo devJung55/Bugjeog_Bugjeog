@@ -120,12 +120,8 @@
                                 <div class="footer_li_div">
                                     <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
                                 </div>
-                            </a>
-                        </li>
-                        <li class="footer_li">
-                            <a style="--base-font-size: 10;">
-                                <div class="footer_li_div">
-                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                <div class="event_content">
+                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
                                 </div>
                             </a>
                         </li>
@@ -134,12 +130,28 @@
                                 <div class="footer_li_div">
                                     <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
                                 </div>
+                                <div class="event_content">
+                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                </div>
                             </a>
                         </li>
                         <li class="footer_li">
                             <a style="--base-font-size: 10;">
                                 <div class="footer_li_div">
                                     <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                </div>
+                                <div class="event_content">
+                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="footer_li">
+                            <a style="--base-font-size: 10;">
+                                <div class="footer_li_div">
+                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                </div>
+                                <div class="event_content">
+                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
                                 </div>
                             </a>
                         </li>
@@ -207,5 +219,24 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-
+<script>
+$(document).ready(function() {
+    // 등록 버튼 초기 색상 설정
+    $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+  
+    // textarea 입력시 등록 버튼 색상 변경
+    $('#reply_textarea').on('input', function() {
+      if ($(this).val().length > 0) {
+        $('button[type="submit"]').css("color", "white").css("background-color", "blue");
+      } else {
+        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+      }
+    });
+  });
+  const $top = $("#up_btn");
+  $top.click(function(){
+        $('html, body').animate({scrollTop:0},400);
+	    return false;
+    });
+</script>
 </html>
