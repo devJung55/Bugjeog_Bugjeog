@@ -367,7 +367,8 @@ span.svg_icon svg {
     top: 0;
     display: block;
 
-    margin: 0 166px;
+    /* margin: 0 166px; */
+    padding: 0px 0% 0 19.9%;
 }
 
 .slick-track:before {

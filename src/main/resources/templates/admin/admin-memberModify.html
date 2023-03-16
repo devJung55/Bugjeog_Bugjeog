@@ -59,10 +59,12 @@
                                     <hr>
                                     <div class="board-info-box">
                                         <div class="member-img-box">
-                                        <div class="member-img"></div>
-                                            <div class="member-nickname-box">
-                                                <span>벅벅코딩</span>
+                                            <div class="member-img">
+                                                <span>x</span>
                                             </div>
+                                            <!-- <div class="member-nickname-box">
+                                                <span>벅벅코딩</span>
+                                            </div> -->
                                         </div>
                                         <div class="member-info-box">
                                             <div class="member-info-tag-box">
@@ -77,20 +79,26 @@
                                                     <span class="info-tag">이메일</span>
                                                     <!-- 이메일 -->
                                                     <div class="info">
-                                                        <input type="text" class="member-email" name="memberEmail">
+                                                        <input type="text" class="member-email input-style" name="memberEmail">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">휴대폰 번호</span>
                                                     <div class="info">
-                                                        <input type="text" class="member-birth member_phone_number" name="memberPhoneNumber">
+                                                        <input type="text" class="member-birth input-style member_phone_number" name="memberPhoneNumber">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">계정 상태</span>
                                                     <!-- 핸드폰 번호 -->
-                                                    <div class="info">
-                                                        <input type="text" class="member-phone member_status" name="memberStatus">
+                                                    <div class="radio">
+                                                        <!-- <input type="text" class="member-phone member_status" name="memberStatus"> -->
+                                                        <input type="radio" name="memberStatus" id="nomal">
+                                                        <label for="nomal">일반 계정</label>
+                                                        <input type="radio" name="memberStatus" id="yellow">
+                                                        <label for="yellow">휴면 계정</label>
+                                                        <input type="radio" name="memberStatus" id="black">
+                                                        <label for="black">탈퇴 계정</label>
                                                     </div>
                                                 </div>
                                                 <div class="button-box">
@@ -108,6 +116,13 @@
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script>
+        const $deleteImg = $(".member-img span");
+
+        $deleteImg.on("click", function() {
+            $(this).attr("background-image", "url('../../../static/image/admin/nomal_person_icon.png')");
+        });
+    </script>
     <script src="../../static/js/admin/menuLoad.js"></script>
     <script src="../../static/js/admin/modify-member.js"></script>
     <script src="../../static/js/admin/prev.js"></script>
