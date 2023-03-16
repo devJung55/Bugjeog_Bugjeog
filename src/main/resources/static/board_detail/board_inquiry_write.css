@@ -1,5 +1,5 @@
 body{
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Noto Sans KR", sans-serif !important;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
@@ -17,22 +17,28 @@ body{
     padding-right: 0px;
     padding-left: 0px;
 }
+#container::before{
+    display: table;
+    content: " ";
+}
 #breadcrumbs{
     padding: 15px 5px;
     list-style-type: none;
     margin-bottom: 0;
     margin-top: 0;
+    position: relative;
+    left: 162px;
 }
 #breadcrumbs li{
     color: #767676 !important;
     display: inline-block;
 }
-#register_inquiry::before{
+/* #register_inquiry::before{
     content: "\f105";
     font-family: 'FontAwesome';
     padding: 0 5px;
     color: rgba(51, 122, 183, 1);
-}
+} */
 #inquiry_register{
     font-size: 1.5em;
     font-weight: 600;
@@ -41,4 +47,179 @@ body{
     margin-top: 20px;
     line-height: 1.1;
     color: inherit;
+}
+#client{
+    color: #757575;
+    outline: 0;
+    text-decoration: none;
+    transition: all 250ms ease-in-out;
+    background-color: transparent;
+    list-style-type: none;
+}
+#container::after{
+    clear: both;
+    display: table;
+    content: " ";
+}
+#center{
+    padding-right: 0px;
+    width: 1170px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#center::before{
+    display: table;
+    content: " ";
+}
+#email_address{
+    width: 100%;
+    float: left;
+    display: inline-grid;
+    padding-right: 5px;
+    margin-bottom: 10px;
+    margin-top: 17px;
+}
+label{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+#label_first::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#label_second::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#label_third::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#email_input_first{
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    min-height: 35px;
+    border-radius: 3px;
+    padding: 0 10px;
+    width: 100%;
+}
+#email_input_second{
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    min-height: 35px;
+    border-radius: 3px;
+    padding: 0 10px;
+    width: 100%;
+}
+#explanation{
+    min-height: 120px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 5px;
+    overflow: auto;
+}
+#phone_number{
+    width: 100%;
+    float: right;
+    display: inline-grid;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    margin-top: 17px;
+}
+#phone_input{
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    min-height: 35px;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+#upload_dropzone{
+    background: #fff;
+    border: 2px dashed #ddd;
+    font-size: 12px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+#dropzone_input{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    min-height: 35px;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+#upload_file{
+    text-decoration: none;
+    font-size: 13px;
+    outline: 0;
+    color: rgba(51, 122, 183, 1);
+    transition: all 250ms ease-in-out;
+    background-color: transparent;
+    line-height: 24px;
+    text-align: center;
+}
+#upload_file::before{
+    content: "";
+    font-family: "entypo";
+    font-size: 30px;
+    color: #d1d1d1;
+    line-height: 24px;
+    text-align: center;
+}
+#label_agree{
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+#label_agree::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+#label_agree_box{
+    float: left;
+    min-height: auto;
+    margin-right: 5px;
+    margin: 4px 0 0;
+    line-height: normal;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+#footer_submit{
+    font-size: 1.2em;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #757575;
+    color: #fff;
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    padding-left: 40px;
+    padding-right: 40px;
 }
