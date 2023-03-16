@@ -18,7 +18,7 @@
                     <li>
                         <a id="client">원티드 고객센터</a>
                     </li>
-                    <li id="register_inquiry"> 문의 등록</li>
+                    <li id="register_inquiry">> 문의 등록</li>
                 </ol>
             </div>
         </div>
@@ -43,28 +43,28 @@
                             <label id="label_third">
                                 설명 <!-- after -->
                             </label>
-                            <textarea id="explanation" placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea>></textarea>
+                            <textarea id="explanation" placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea></textarea>
                         </div>
-                        <div>
-                            <label for="">
+                        <div id="phone_number">
+                            <label>
                                 연락처 
                             </label>
-                            <input type="text" placeholder="&quot; - &quot; 없이 번호만 입력">
+                            <input id="phone_input" type="text" placeholder="&quot; - &quot; 없이 번호만 입력">
                         </div>
-                        <div>
-                            <label for="">첨부 파일</label>
-                            <div>
-                                <input type="file">
+                        <div style="margin-top: 17px;">
+                            <label>첨부 파일</label>
+                            <div id="upload_dropzone">
+                                <input type="file" multiple="true" id="dropzone_input">
                                 <span>
                                     <!-- before -->
-                                    <a href="">파일 추가</a>
+                                    <a id="upload_file">파일 추가</a>
                                     또는 파일을 여기로 드래그
                                 </span>
                             </div>
                         </div>
-                        <div>
-                            <p>
-                                <strong>개인정보 수집 및 이용에 대한 동의 내용</strong>
+                        <div style="margin-top: 17px;">
+                            <p style="margin: 0 0 10px;">
+                                <strong style="font-weight: 700;">개인정보 수집 및 이용에 대한 동의 내용</strong>
                                 <br>
                                 ①개인정보 수집 항목: 이메일, 연락처
                                 <br>
@@ -75,13 +75,13 @@
                                 <br>
                                 *위 동의는 거부할 수 있으며, 거부시 해당 문의를 처리할 수 없습니다. 
                             </p>
-                            <label for="">
+                            <label id="label_agree">
                                 동의합니다.<!-- after -->
+                                <input id="label_agree_box" type="checkbox">
                             </label>
-                            <input type="checkbox">
                         </div>
-                        <footer>
-                            <input type="submit" value="제출">
+                        <footer style="padding-top: 30px; text-align: center;">
+                            <input id="footer_submit" type="submit" value="제출">
                         </footer>
                     </form>
                 </div>
@@ -90,4 +90,5 @@
         </div>
     </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </html>
