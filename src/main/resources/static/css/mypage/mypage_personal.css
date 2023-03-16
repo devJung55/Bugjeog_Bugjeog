@@ -309,5 +309,67 @@ a.PostItem_body {
 }
 
 h3.PostItem_title {
-    
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+    font-size: 19px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+    line-height: 23px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.PostItem_bottom {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 12px;
+}
+
+div.PostItem_like, div.PostItem_comments {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    color: #36f;
+}
+
+div.PostItem_like img, div.PostItem_comments img {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 16px;
+}
+
+div.PostItem_like span, div.PostItem_comments span {
+    border: 0;
+    margin: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+    font-weight: 700;
+    line-height: 100%;
+    font-size: 12px;
+    margin-left: 4px;
+    padding: 0.3em 0 0;
 }
