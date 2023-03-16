@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>회원정보 수정</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../../static/css/mypage/font_mypage_info.css">
@@ -13,22 +13,7 @@
 <body>
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
-            <header class="mypage_info_header">
-                <div class="info_wrapper">
-                    <a href="" class="info_logo">
-                        <span class="logo_wrapper">
-                            <img src="../../static/image/mypage/logo.png" alt="">
-                        </span>
-                    </a>
-                    <div class="info_header_right">
-                        <div style="display: none;"></div>
-                        <hr style="display: none;">
-                        <button class="button_logout">
-                            <span>로그아웃</span>
-                        </button>
-                    </div>
-                </div>
-            </header>
+            <header id="header" style="width: 100%;"></header>
             <div class="header-padding">
             </div>
             <main class="mypage_info_container">
@@ -95,7 +80,7 @@
                         </li>
                     </ul>
                 </section>
-                <section class="service_wrapper is-hidden">
+                <!-- <section class="service_wrapper is-hidden">
                     <p class="service_header">
                         서비스 바로가기
                     </p>
@@ -128,7 +113,7 @@
                             </div>
                             <p class="css-1fw8n94">Spotlight</p>
                             </a>
-                        </div>
+                        </div> -->
 
                     <!--                
                     <div class="logo_wrapper">
@@ -148,11 +133,18 @@
                 -->
                 </section>
 
-                <!-- 7n6kim -->
-                <footer class="login_link_service"></footer>
+                <!--  -->
+                <footer id="footer"></footer>
             </main>
             <footer></footer>
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function () {
+        $('#header').load('fragment/mypage_dedicated_header.html');
+        // $('#footer').load('footer.html');
+    });
+</script>
 </html>
