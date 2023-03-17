@@ -10,213 +10,230 @@
     <link rel="stylesheet" href="../../static/board_detail/board_detail.css">
 </head>
 <body>
+<div id="modal_wrap">
+    <div id="dimmer"></div>
+    <div id="event_detail_modal">
+        <button id="event_detail_modal_btn">
+            <span style="display: flex;">
+                <svg id="event_detail_modal_svg" viewBox="0 0 24 24">
+                    <path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path>
+                </svg>
+            </span>
+        </button>
+    </div>
     <div id="all_wrap">
-        <div style="overflow-y: auto; flex: 1 1;">
-            <div id="third_div">
-                <div id="title">
-                    <div id="title_div">
-                        <div>
-                            <h2 id="title_h2">원티드 단독 포지션</h2>
-                        </div>
-                    </div>
-                </div>
-                <section id="section_info">
-                    <header style="display: flex;">
-                        <section id="main_img" style="background-image: url(//static.wanted.co.kr/images/events/2753/5b48c0be.jpg);"></section>
-                        <section id="right_section">
-                            <h2 class="title_h2">원티드 단독 포지션</h2>
-                            <h4 class="h4">일자</h4>
-                            <h5 class="h5">2023.02.27 (월) ~ 2023.03.17 (금)</h5>
-                            <h4 class="h4">장소</h4>
-                            <h5 class="h5">온라인</h5>
-                            <h4 class="h4">주최자</h4>
-                            <h5 class="h5">원티드랩</h5>
-                        </section>
-                        <div style="display: flex; justify-content: space-between;">
-                            <div style="margin-left: 10px; flex: 1 1 auto;">
-                                <a></a>
-                            </div>
-                        </div>
-                    </header>
-                    <div style="width: calc(100% - 360px); color: #333;">
-                        <div id="content">
+        <div id="all_wrap_div">
+            <div style="overflow-y: auto; flex: 1 1;">
+                <div id="third_div">
+                    <div id="title">
+                        <div id="title_div">
                             <div>
-                                <blockquote id="blockquote">
-                                    <b>원티드 단독 포지션이란?</b>
-                                    <br>
-                                    <b>타 채용 사이트(자사 포함)에 등록 없이 원티드에만 게재한 포지션 &nbsp;</b>
-                                    <br>
-                                </blockquote>
-                                <br>
-                                <b>▢ 진행 일정</b>
-                                <br>
-                                <span class="colour"> &nbsp;• 참여기업 모집 : 2/27(월) ~ 3/17(금)</span>
-                                <br>
-                                <span class="colour"> &nbsp;•  포지션 등록 : 2/27(월) 이후</span>
-                                <br>
-                                <span class="colour">&nbsp;• 포지션 노출 : 3/6(월) ~ 3/31(금)</span>
-                                <br>
-                                <br>
-                                <b>▢ 참여 방법 &nbsp;</b>
-                                <br>
-                                <span class="colour"> &nbsp;•&nbsp;</span>
-                                ‘참가 신청하기’&nbsp; 버튼을 통해 설문 제출 (예상 참여 포지션 수 기재)
-                                <br>
-                                <span class="colour"> &nbsp;•&nbsp;</span>
-                                참가할 포지션 명에 [원티드 단독]&nbsp; 추가 후 포지션 등록
-                                <br>
-                                &nbsp; &nbsp; 예) [원티드 단독] 서버개발자
-                                <br>
-                                <br>
-                                <b>▢ 참여 혜택 &nbsp;</b>
-                                <br>
-                                <b>&nbsp;</b>
-                                <span class="colour">• 테마관 노출</span>
-                                <br>
-                                <span class="colour">&nbsp; • 원티드 홈 메인 배너 게재</span>
-                                <br>
-                                <span class="colour">&nbsp; • 원티드 회원 대상 CRM (이메일, 앱푸시)</span>
-                                <br>
-                                <span class="colour">&nbsp;  • 구글, 인스타그램 등 외부 광고 지원 &nbsp;</span>
-                                <br>
-                                <span class="colour">&nbsp; &nbsp;</span>
-                                <br>
-                                <span class="colour">포지션 제목에 [원티드 단독] 태그 노출</span>
-                                <span class="colour"></span>
-                                <br>
-                                <br>
-                                <b>▢ 유의사항</b>
-                                <span class="colour">
-                                    <br>
-                                    &nbsp;•&nbsp;
-                                </span>
-                                타 채용 사이트(자사 포함) 포지션 확인 시 원티드 혜택에서 제외될 수 있습니다.
-                                <br>
-                                <br>
-                                <span class="colour">※ 최종 합격 시 합격자 연봉의 7% 수수료가 발생됩니다.</span>
-                                <br>
-                                <span class="colour">※ 신청 현황에 따라 선착순을 기준으로 하되, 원티드 사용 및 기업 규모 등을 고려해 선정됩니다.</span>
-                                <br>
-                                <span class="colour">※ 문의: 채용사업팀 (</span>
-                                <a>biz@wantedlab.com</a>
-                                <span class="colour">&nbsp; / 010-</span>
-                                <span class="colour">2348-8505</span>
-                                <span class="colour">&nbsp;</span>
-                                <br>
-                                <br>
-                                <br>
-                                <b>원티드랩에 게시되는 포지션은 원티드랩의 동의없이 무단전재, 재배포, 재가공할 수 없습니다.</b>
-                                <span class="colour">&nbsp;</span>
-                                <br>
+                                <h2 id="title_h2">원티드 단독 포지션</h2>
                             </div>
                         </div>
                     </div>
-                </section>
-                <div id="footer">
-                    <h2 id="footer_title">이 회사의 다른 글</h2>
-                    <ul id="footer_ul">
-                        <li class="footer_li">
-                            <a style="--base-font-size: 10;">
-                                <div class="footer_li_div">
-                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                    <section id="section_info">
+                        <header style="display: flex;">
+                            <section id="main_img" style="background-image: url(//static.wanted.co.kr/images/events/2753/5b48c0be.jpg);">
+                                <button class="main_img_btn" id="main_img_btn_left"><</button>
+                                <button class="main_img_btn" id="main_img_btn_right">></button>
+                            </section>
+                            <section id="right_section">
+                                <h2 class="title_h2">원티드 단독 포지션</h2>
+                                <h4 class="h4">일자</h4>
+                                <h5 class="h5">2023.02.27 (월) ~ 2023.03.17 (금)</h5>
+                                <h4 class="h4">장소</h4>
+                                <h5 class="h5">온라인</h5>
+                                <h4 class="h4">주최자</h4>
+                                <h5 class="h5">원티드랩</h5>
+                            </section>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="margin-left: 10px; flex: 1 1 auto;">
+                                    <a></a>
                                 </div>
-                                <div class="event_content">
-                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                            </div>
+                        </header>
+                        <div style="width: calc(100% - 360px); color: #333;">
+                            <div id="content">
+                                <div>
+                                    <blockquote id="blockquote">
+                                        <b>원티드 단독 포지션이란?</b>
+                                        <br>
+                                        <b>타 채용 사이트(자사 포함)에 등록 없이 원티드에만 게재한 포지션 &nbsp;</b>
+                                        <br>
+                                    </blockquote>
+                                    <br>
+                                    <b>▢ 진행 일정</b>
+                                    <br>
+                                    <span class="colour"> &nbsp;• 참여기업 모집 : 2/27(월) ~ 3/17(금)</span>
+                                    <br>
+                                    <span class="colour"> &nbsp;•  포지션 등록 : 2/27(월) 이후</span>
+                                    <br>
+                                    <span class="colour">&nbsp;• 포지션 노출 : 3/6(월) ~ 3/31(금)</span>
+                                    <br>
+                                    <br>
+                                    <b>▢ 참여 방법 &nbsp;</b>
+                                    <br>
+                                    <span class="colour"> &nbsp;•&nbsp;</span>
+                                    ‘참가 신청하기’&nbsp; 버튼을 통해 설문 제출 (예상 참여 포지션 수 기재)
+                                    <br>
+                                    <span class="colour"> &nbsp;•&nbsp;</span>
+                                    참가할 포지션 명에 [원티드 단독]&nbsp; 추가 후 포지션 등록
+                                    <br>
+                                    &nbsp; &nbsp; 예) [원티드 단독] 서버개발자
+                                    <br>
+                                    <br>
+                                    <b>▢ 참여 혜택 &nbsp;</b>
+                                    <br>
+                                    <b>&nbsp;</b>
+                                    <span class="colour">• 테마관 노출</span>
+                                    <br>
+                                    <span class="colour">&nbsp; • 원티드 홈 메인 배너 게재</span>
+                                    <br>
+                                    <span class="colour">&nbsp; • 원티드 회원 대상 CRM (이메일, 앱푸시)</span>
+                                    <br>
+                                    <span class="colour">&nbsp;  • 구글, 인스타그램 등 외부 광고 지원 &nbsp;</span>
+                                    <br>
+                                    <span class="colour">&nbsp; &nbsp;</span>
+                                    <br>
+                                    <span class="colour">포지션 제목에 [원티드 단독] 태그 노출</span>
+                                    <span class="colour"></span>
+                                    <br>
+                                    <br>
+                                    <b>▢ 유의사항</b>
+                                    <span class="colour">
+                                        <br>
+                                        &nbsp;•&nbsp;
+                                    </span>
+                                    타 채용 사이트(자사 포함) 포지션 확인 시 원티드 혜택에서 제외될 수 있습니다.
+                                    <br>
+                                    <br>
+                                    <span class="colour">※ 최종 합격 시 합격자 연봉의 7% 수수료가 발생됩니다.</span>
+                                    <br>
+                                    <span class="colour">※ 신청 현황에 따라 선착순을 기준으로 하되, 원티드 사용 및 기업 규모 등을 고려해 선정됩니다.</span>
+                                    <br>
+                                    <span class="colour">※ 문의: 채용사업팀 (</span>
+                                    <a>biz@wantedlab.com</a>
+                                    <span class="colour">&nbsp; / 010-</span>
+                                    <span class="colour">2348-8505</span>
+                                    <span class="colour">&nbsp;</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <b>원티드랩에 게시되는 포지션은 원티드랩의 동의없이 무단전재, 재배포, 재가공할 수 없습니다.</b>
+                                    <span class="colour">&nbsp;</span>
+                                    <br>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div id="footer">
+                        <h2 id="footer_title">이 회사의 다른 글</h2>
+                        <ul id="footer_ul">
+                            <li class="footer_li">
+                                <a style="--base-font-size: 10;">
+                                    <div class="footer_li_div">
+                                        <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                    </div>
+                                    <div class="event_content">
+                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="footer_li">
+                                <a style="--base-font-size: 10;">
+                                    <div class="footer_li_div">
+                                        <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                    </div>
+                                    <div class="event_content">
+                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="footer_li">
+                                <a style="--base-font-size: 10;">
+                                    <div class="footer_li_div">
+                                        <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                    </div>
+                                    <div class="event_content">
+                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="footer_li">
+                                <a style="--base-font-size: 10;">
+                                    <div class="footer_li_div">
+                                        <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
+                                    </div>
+                                    <div class="event_content">
+                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div style="display: flex; justify-content: center;">
+                            <a id="event_all">
+                                이벤트 모두 보기
+                                <svg width="12" height="12" viewBox="0 0 12 12" margin-left="5px" margin-right="10px">
+                                    <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
+                                </svg>
                             </a>
-                        </li>
-                        <li class="footer_li">
-                            <a style="--base-font-size: 10;">
-                                <div class="footer_li_div">
-                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
-                                </div>
-                                <div class="event_content">
-                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="footer_li">
-                            <a style="--base-font-size: 10;">
-                                <div class="footer_li_div">
-                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
-                                </div>
-                                <div class="event_content">
-                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="footer_li">
-                            <a style="--base-font-size: 10;">
-                                <div class="footer_li_div">
-                                    <img class="footer_img" src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90" alt="">
-                                </div>
-                                <div class="event_content">
-                                    <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <div style="display: flex; justify-content: center;">
-                        <a id="event_all">
-                            이벤트 모두 보기
-                            <svg width="12" height="12" viewBox="0 0 12 12" margin-left="5px" margin-right="10px">
-                                <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
-                            </svg>
-                        </a>
+                        </div>
                     </div>
-                </div>
-                <div id="reply_wrap">
-                    <div id="reply_wrap_div">
-                        <div style="display: flex; justify-content: space-between;">
-                            <a style="display: flex; width: 0;">
-                                <div style="display: inline-flex; align-items: center; margin-right: auto;">
-                                    <div style="text-align: left; display: flex; align-items: center;">
-                                        <div style="position: relative; margin-right: 7px;">
-                                            <div id="reply_my">
-                                                <img id="reply_my_img" src="https://static.wanted.co.kr/oneid-user/ffNcGwxKt4ar38bNTAWNx4/A99F9jPw4kvEHiFUXHjYJL.jpg" alt="">
+                    <div id="reply_wrap">
+                        <div id="reply_wrap_div">
+                            <div style="display: flex; justify-content: space-between;">
+                                <a style="display: flex; width: 0;">
+                                    <div style="display: inline-flex; align-items: center; margin-right: auto;">
+                                        <div style="text-align: left; display: flex; align-items: center;">
+                                            <div style="position: relative; margin-right: 7px;">
+                                                <div id="reply_my">
+                                                    <img id="reply_my_img" src="https://static.wanted.co.kr/oneid-user/ffNcGwxKt4ar38bNTAWNx4/A99F9jPw4kvEHiFUXHjYJL.jpg" alt="">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column;">
-                                            <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                                <div id="reply_nickname">DesignK</div>
+                                            <div style="display: flex; flex-direction: column;">
+                                                <div style="display: flex; margin-bottom: 3px; align-items: center;">
+                                                    <div id="reply_nickname">DesignK</div>
+                                                </div>
+                                                <span id="reply_date">2023.03.14</span>
                                             </div>
-                                            <span id="reply_date">2023.03.14</span>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
+                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
                         </div>
-                        <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
                     </div>
-                </div>
-                <div style="margin-bottom: 85px; margin-top: 20px;">
-                    <div id="profile_img_nickname">
-                        <div class="profile_img" id="profile_my_img">
-                            <img src="https://static.wanted.co.kr/oneid-user/L4E3ozEiTqhh3eRaiNgCBa/45f1d3e9d934840bd111609d08491368ff2583c8f4b1a4cde363627ce6dc6d3a" alt="" class="wid_hei">
+                    <div style="margin-bottom: 85px; margin-top: 20px;">
+                        <div id="profile_img_nickname">
+                            <div class="profile_img" id="profile_my_img">
+                                <img src="https://static.wanted.co.kr/oneid-user/L4E3ozEiTqhh3eRaiNgCBa/45f1d3e9d934840bd111609d08491368ff2583c8f4b1a4cde363627ce6dc6d3a" alt="" class="wid_hei">
+                            </div>
+                            <span id="my_nickname">최선규</span>
                         </div>
-                        <span id="my_nickname">최선규</span>
+                        <div id="form_wrap">
+                            <form action="">
+                                <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
+                                <button type="submit">
+                                    <span>등록</span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                    <div id="form_wrap">
-                        <form action="">
-                            <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
-                            <button type="submit">
-                                <span>등록</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div id="up_div">
-                    <button id="up_btn">
-                        <span id="up_btn_span">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2674 5.29328L5.53033 11.0303C5.23744 11.3232 4.76256 11.3232 4.46967 11.0303C4.17678 10.7374 4.17678 10.2626 4.46967 9.96967L11.4697 2.96967C11.5063 2.93306 11.5457 2.90102 11.5873 2.87356C11.8784 2.68135 12.274 2.71339 12.5303 2.96967L19.5303 9.96967C19.8232 10.2626 19.8232 10.7374 19.5303 11.0303C19.2374 11.3232 18.7626 11.3232 18.4697 11.0303L12.7326 5.29328C12.744 5.34522 12.75 5.39918 12.75 5.45455V21.4545C12.75 21.8688 12.4142 22.2045 12 22.2045C11.5858 22.2045 11.25 21.8688 11.25 21.4545V5.45455C11.25 5.39918 11.256 5.34522 11.2674 5.29328ZM11.8387 4.72193C11.8907 4.71054 11.9446 4.70455 12 4.70455C12.0554 4.70455 12.1093 4.71054 12.1613 4.72193L12 4.56066L11.8387 4.72193Z" fill="black"></path>
-                            </svg>
-                        </span>
-                    </button>
                 </div>
             </div>
         </div>
+        <div id="up_div">
+            <button id="up_btn">
+                <span id="up_btn_span">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2674 5.29328L5.53033 11.0303C5.23744 11.3232 4.76256 11.3232 4.46967 11.0303C4.17678 10.7374 4.17678 10.2626 4.46967 9.96967L11.4697 2.96967C11.5063 2.93306 11.5457 2.90102 11.5873 2.87356C11.8784 2.68135 12.274 2.71339 12.5303 2.96967L19.5303 9.96967C19.8232 10.2626 19.8232 10.7374 19.5303 11.0303C19.2374 11.3232 18.7626 11.3232 18.4697 11.0303L12.7326 5.29328C12.744 5.34522 12.75 5.39918 12.75 5.45455V21.4545C12.75 21.8688 12.4142 22.2045 12 22.2045C11.5858 22.2045 11.25 21.8688 11.25 21.4545V5.45455C11.25 5.39918 11.256 5.34522 11.2674 5.29328ZM11.8387 4.72193C11.8907 4.71054 11.9446 4.70455 12 4.70455C12.0554 4.70455 12.1093 4.71054 12.1613 4.72193L12 4.56066L11.8387 4.72193Z" fill="black"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
