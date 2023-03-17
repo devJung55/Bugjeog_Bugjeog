@@ -33,6 +33,10 @@
                         <!-- <textarea></textarea> -->
                     </div>
                 </div>
+                <div id="thumb-nail">
+                    <span id="btn_x">X</span>
+                    <div class="file-name"></div>
+                </div>
             </div>
         </div>
     </form>
@@ -73,37 +77,36 @@ $('#content_textarea, #title_textarea').on('input', function() {
 
 });
 
+        const file = document.querySelector('#file_input');
+        const imgDiv = document.querySelector('.file-name');
+        const closeSpan = document.querySelector('#btn_x');
+        const input = document.querySelector('#file_input');
+        const fileName = document.querySelector('.file-name');
 
-file.addEventListener('change', function (e) {
-    /* X버튼 생기게하기 */
-    closeButton.style.display = 'inline-block';
-    this.style.display = 'none';
-    console.log(e.target.files[0]);
+        // x 버튼을 누르면, 기본 이미지로 변경!
+        closeSpan.addEventListener('click', function (e) {
+            e.preventDefault();
+            input.value = "";
+            fileName.innerHTML = "";
+            this.style.display = 'none';
+            imgDiv.style.backgroundImage = "none";
+        });
 
-    /* 파일절대경로얻기 */
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-
-    /* 이미지인지 확인 */
-    /* 이미지면 체크된 인덱스의 div.image에 넣기 아니면 no_image 띄어주기 */
-    reader.onload = function(e) {
-            let result = e.target.result;
+        file.addEventListener('change', function (e) {
+            closeSpan.style.display = "inline-block";
+            this.style.display = 'none';
+            let reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
-
-            if (result.includes('image')) {
-                imgDiv.style.backgroundImage = `url('${result}')`;
-            } else {
-                imgDiv.style.backgroundImage = `url('/src/main/resources/static/image/no_image.png')`;
-            }
-
-        }
-
-        /* X버튼 생기게하기 */
-        closeButton.style.display = 'inline-block';
-        this.style.display = 'none';
-        console.log(e.target.files[0]);
-
-    });
+            reader.onload = function (e) {
+                let result = e.target.result;
+                if (result.includes('image')) {
+                    imgDiv.style.backgroundImage = `url('${result}')`;
+                } else {
+                    imgDiv.style.backgroundImage = `url('no_image.png')`;
+                }
+            };
+        });
+    
 
 
 </script>
