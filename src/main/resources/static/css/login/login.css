@@ -1,10 +1,10 @@
-* {
-    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
-}
 
-* {
-    box-sizing: border-box;
-}
+        /* 폰트 */
+        *{
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            border: 1px;
+        }
+            
 
 html, body, #allPage{
     padding: 0;
@@ -50,7 +50,7 @@ html, body, #allPage{
 }
 
 .inside{
-    overflow: auto;
+    /* overflow: auto; */
     position: relative;
     padding: 20px;
 }
@@ -129,7 +129,7 @@ form {
 }
 
 .form-input-writeEmail{
-    width: 100%;
+    width: 93%;
     height: 50px;
     min-height: 50px;
     padding: 0px 12px;
