@@ -22,6 +22,7 @@
         </div>
         <div id="wrap">
             <div id="wrap_div">
+                <input id="location" type="text" placeholder="지역을 적어주세요.">
                 <div id="title">
                     <textarea id="title_textarea" placeholder="제목을 입력해 주세요."></textarea>
                     <!-- <textarea></textarea> -->
@@ -41,10 +42,10 @@
             <div></div>
         </div>
         <label>
-            <input type="file" style="display: none;">
+            <input id="file_input" type="file" style="display: none;">
             <div id="plus_button">
                 <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z" fill="currentColor"></path>
+                    <path id="thumb_nail" fill-rule="evenodd" clip-rule="evenodd" d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z" fill="currentColor"></path>
                     <mask id="mask0_150_2361" maskUnits="userSpaceOnUse" x="1" y="4" width="22" height="16"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z" fill="white"></path></mask><g mask="url(#mask0_150_2361)"><rect width="24" height="24" fill="currentColor"></rect></g>
                 </svg>
                 <span id="picture_count">(<em id="em">0</em>/1)</span>
@@ -53,4 +54,57 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(document).ready(function() {
+
+// 초기 등록 버튼 색상 설정
+$('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+
+// textarea 입력시 등록 버튼 색상 변경
+$('#content_textarea, #title_textarea').on('input', function() {
+  var contentLength = $('#content_textarea').val().length;
+  var titleLength = $('#title_textarea').val().length;
+  if (contentLength > 0 && titleLength > 0) {
+    $('#regist_btn').css("color", "white").css("background-color", "blue");
+  } else {
+    $('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+  }
+});
+
+});
+
+
+file.addEventListener('change', function (e) {
+    /* X버튼 생기게하기 */
+    closeButton.style.display = 'inline-block';
+    this.style.display = 'none';
+    console.log(e.target.files[0]);
+
+    /* 파일절대경로얻기 */
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+
+    /* 이미지인지 확인 */
+    /* 이미지면 체크된 인덱스의 div.image에 넣기 아니면 no_image 띄어주기 */
+    reader.onload = function(e) {
+            let result = e.target.result;
+            reader.readAsDataURL(e.target.files[0]);
+
+            if (result.includes('image')) {
+                imgDiv.style.backgroundImage = `url('${result}')`;
+            } else {
+                imgDiv.style.backgroundImage = `url('/src/main/resources/static/image/no_image.png')`;
+            }
+
+        }
+
+        /* X버튼 생기게하기 */
+        closeButton.style.display = 'inline-block';
+        this.style.display = 'none';
+        console.log(e.target.files[0]);
+
+    });
+
+
+</script>
 </html>
