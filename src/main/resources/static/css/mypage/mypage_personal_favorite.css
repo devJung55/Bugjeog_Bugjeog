@@ -78,6 +78,7 @@ ul.favorite_list_ul {
     list-style: none;
     margin: -10px;
     padding: 0;
+    display: flex;
 }
 
 /* 카드 리스트 각 카드 */
@@ -193,5 +194,50 @@ button.is-absolute {
 
 /* 카드 내용 */
 div.card_body {
-    
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 14px 0;
+}
+
+header.card_header {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-align: left;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div.category_wrapper>span {
+    font-size: small;
+}
+
+div.card_location {
+    font-size: small;
 }
