@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 유통업체 게시물 상세보기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/admin/admin-member.css">
+    </head>
+    <body>
+        <div>
+            <div class="info-title-box info-title-box-flex">
+                <div class="logo-box-layout">
+                    <div class="logo-box">
+                        <a href="javascript:void(0)" class="main_bar_logo_a">
+                            <img src="../../static/image/boardList/logo-icon.png">
+                            <img src="../../static/image/boardList/logo_title.png">
+                        </a>
+                    </div>
+                    <!-- <div class="logo-title">
+                        <span>북적북적</span>
+                    </div> -->
+                </div>
+                <div>
+                    <div class="select-name">
+                        <span>유통업체 게시물 상세보기</span>	
+                    </div>
+                </div>
+            </div>
+            <div class="wrap"> 
+            
+                <!-- 사이드 바 -->
+                <div id="side-bar"></div>
+                <!-- 사이드 바 끝-->
+            
+                <div class="container">
+                    <div class="container-margin">
+                        <!-- 헤더 -->
+                        <div class="prev-button-layout">
+                            <div>
+                                <a>
+                                    <img src="../../static/image/admin/prev_icon.png" class="prev-icon">
+                                    <span class="prev-title">리스트로 돌아가기</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="info-flex">
+                            <!-- 내용 섹션 -->
+                            <section class="board-info-box-layout">
+                                <div class="board-info-box board-info-box-flex">
+                                    <div class="board-info-title-box">
+                                        <span>유통업체 게시물</span>
+                                    </div>
+                                    <div class="modify-button-box">
+                                        <a href="adminPage-modifyMember.jsp">
+                                            <img src="../../static/image/admin/gear_icon.png" class="gear-icon">
+                                            <span>수정</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="board-info-box">
+                                    <div class="member-img-box">
+                                        <div class="board-img"></div>
+                                        <!-- <div class="member-nickname-box">
+                                            <span>벅벅코딩</span>
+                                        </div> -->
+                                    </div>
+                                    <div class="member-info-box">
+                                        <div class="member-info-tag-box">
+                                            <span class="info-tag">대표이름</span>
+                                            <!-- 이름 -->
+                                            <div class="info">
+                                                <span>임순철</span>
+                                            </div>
+                                        </div>	
+                                        <div class="member-info-tag-box">
+                                            <span class="info-tag">회사명</span>
+                                            <!-- 이메일 -->
+                                            <div class="info">
+                                                <span>ljw1234@naver.com</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-info-tag-box">
+                                            <span class="info-tag">회사번호</span>
+                                            <!-- 가입 날짜 -->
+                                            <div class="info">
+                                                <span>02-1234-1234</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-info-tag-box">
+                                            <span class="info-tag">지역</span>
+                                            <!-- 가입 날짜 -->
+                                            <div class="info">
+                                                <span>서울</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-info-tag-box">
+                                            <span class="info-tag">계정 상태</span>
+                                            <!-- 핸드폰 번호 -->
+                                            <div class="info">
+                                                <span>일반 계정</span>
+                                            </div>
+                                        </div>
+                                    </div>	
+                                </div>
+                            </section>
+
+
+                            <!-- 없앨까 ???  -->
+
+
+                            <section class="board-info-box-layout board-info-box-layout2">
+                                <div class="board-info-box">
+                                    <div class="board-info-title-box">
+                                        <span>활동 정보</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="member-info">
+                                    <div class="info-margin">
+                                        <span class="info-tag">가입 날짜</span>
+                                        <!-- 유저 가입날짜  -->
+                                        <h4>2023.01.01</h4>
+                                    </div>
+                                    <div class="info-margin margin">
+                                        <span class="info-tag">작성</span>
+                                        <!-- 유저 작성한 것들  -->
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>게시물</span>
+                                            </div>
+                                            <div  class="count">
+                                                <!-- 작성한 게시물 갯수 뽑아주기 -->
+                                                <span>0개</span>
+                                            </div>
+                                        </div>
+                                        <div class="info-margin">	
+                                            <div class="write-count-box">
+                                                <div> 
+                                                    <span>댓글</span>
+                                                </div>
+                                                <div class="count">
+                                                    <!-- 작성한 댓글 갯수 뽑아주기 -->
+                                                    <span>0개</span>
+                                                </div>
+                                            </div>
+                                        </div>	
+                                    </div>
+                                </div>
+                            </section>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="../../static/js/admin/menuLoad.js"></script>
+    <script src="../../static/js/admin/prev.js"></script>
+</html>
