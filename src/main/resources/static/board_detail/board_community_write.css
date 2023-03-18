@@ -187,3 +187,8 @@ body{
     font-style: normal;
     color: #36f;
 }
+#location{
+    margin-bottom: 26px;
+    height: 20px;
+    width: 233px;
+}
