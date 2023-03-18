@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" as="style" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="../../static/css/mypage/font.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
 </head>
+
 <body class="profile_body">
     <div class="Container_Profile">
         <div class="padding_for_header"></div>
@@ -84,126 +85,42 @@
                                 </li>
                             </ul>
                         </div> -->
-                        <div>
-                            <!-- 첫번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
+                        <div class="favorite_list_wrapper">
+                            <h2 class="favorite_list_title">관심업체 리스트</h2>
+                            <div class="favorite_list">
+                                <div class="list_container">
+                                    <ul class="favorite_list_ul">
+                                        <li>
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header"></header>
+                                                        <div class="card_business_name"></div>
+                                                        <div class="card_category_L"></div>
+                                                        <div class="card_category_S"></div>
+                                                        <div class="card_location"></div>
+                                                        <div class="card_content"></div>
                                                     </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                </a>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-
-
-                            <!-- 두번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                        </li>
+                                        <li>
+                                            <div class="list_card">
+                                                <label for="" class="card_label">
+                                                    <header class="card_thumbnail_wrapper"><img src="" alt=""
+                                                            class="card_thumbnail"></header>
+                                                </label>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-
-<!--                        댓글 폼
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href="">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                            </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                    </h3>
-                                    <p class="PostItem_content">
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        --
-                                        <div class="PostItem_like">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
--->
+                            </div>
                         </div>
                     </div>
                 </section>
