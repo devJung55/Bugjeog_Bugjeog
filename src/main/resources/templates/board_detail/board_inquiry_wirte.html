@@ -56,12 +56,19 @@
                             <div id="upload_dropzone">
                                 <input type="file" multiple="true" id="dropzone_input">
                                 <span>
-                                    <!-- before -->
+                                    <img style="width: 40px;" src="../../static/image/board_detail/cloud.PNG" alt="">
                                     <a id="upload_file">파일 추가</a>
                                     또는 파일을 여기로 드래그
                                 </span>
                             </div>
                         </div>
+                        <label for="attach">
+                            <div class="image">
+                                <span id="x_btn" style="display: none;">X</span>
+                            </div>
+                            <div class="file-name"></div>
+                        </label>
+                        <input type="file" id="attach" style="display: none" />
                         <div style="margin-top: 17px;">
                             <p style="margin: 0 0 10px;">
                                 <strong style="font-weight: 700;">개인정보 수집 및 이용에 대한 동의 내용</strong>
@@ -91,4 +98,30 @@
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    const file = document.querySelector('input[type=file]');
+    const imgDiv = document.querySelector('label[for=attach] div');
+    const closeSpan = document.querySelector('#x_btn');
+    const input = document.querySelector('#dropzone_input');
+    const fileName = document.querySelector('.file-name');
+
+    // x 버튼을 누르면, 기본 이미지로 변경!
+    closeSpan.addEventListener('click', function (e) {
+        input.value = "";
+        fileName.innerHTML = "";
+        this.style.display = 'none';
+    });
+
+    file.addEventListener('change', function (e) {
+        let name = e.target.files[0].name;
+        fileName.innerHTML = name;
+        closeSpan.style.display = "inline-block";
+        this.style.display = 'none';
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function (e) {
+            let result = e.target.result;
+        };
+    });
+</script>
 </html>

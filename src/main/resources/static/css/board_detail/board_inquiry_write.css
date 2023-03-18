@@ -173,14 +173,6 @@ label{
     line-height: 24px;
     text-align: center;
 }
-#upload_file::before{
-    content: "";
-    font-family: "entypo";
-    font-size: 30px;
-    color: #d1d1d1;
-    line-height: 24px;
-    text-align: center;
-}
 #label_agree{
     display: inline-block;
     max-width: 100%;
