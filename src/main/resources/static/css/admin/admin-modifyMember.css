@@ -8,7 +8,7 @@
 
 .info-flex {
 	display: flex;
-	justify-content: space-between;
+    justify-content: center;
 }
 
 .board-info-box-layout {
@@ -78,7 +78,7 @@ a.main_bar_logo_a {
 }
 
 .container-margin {
-	margin: 40px 305px 0px;
+	margin: 40px 305px 40px;
 }
 
 .board-info-box-layout {
@@ -119,13 +119,23 @@ hr {
 }
 
 .member-img {
-	width: 80px;
-	height: 80px;
+	width: 150px;
+    height: 150px;
 	border-radius: 50%;
 	background-image: url('../../../static/image/admin/nomal_person_icon.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
+}
+
+.member-img span {
+	font-size: 28px;
+    display: flex;
+    font-weight: 300;
+    justify-content: flex-end;
+	font-variant: all-small-caps;
+	color: #C1C1C1;
+	cursor: pointer;
 }
 
 .member-nickname-box {
@@ -162,11 +172,11 @@ div.info-name {
 	margin : 20px;	
 }
 
-input {
+.input-style {
 	font-family: 'GmarketSansMedium';
 	outline: none;
 	border: none;
-	width: 50%;
+	width: 73%;
 	border-bottom: 1px solid #c1c1c1;
 	height: 20px;
 	font-size: 15px;
