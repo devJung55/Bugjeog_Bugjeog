@@ -322,3 +322,116 @@ p {
         margin-top: 10px;
         width: 47px;
     }
+
+    
+
+/* 푸터 */
+footer {
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 60px;
+    color: #333;
+    border-top: 1px solid #ececec;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.footer-container::before {
+    display: table;
+    content:  " ";
+}
+
+.footer-container::after {
+    display: table;
+    content:  " ";
+    clear: both;
+}
+
+.footer-box {
+    margin-right: -15px;
+    margin-left: -15px;
+    text-align: center;
+}
+
+.footer-info {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+    width: 15%;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.footer-image {
+    width : 70px;
+    max-height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.footer-image-box {
+    display: flex;
+}
+
+.footer-info-title {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    float: left;
+    width: 15%;
+}
+
+.footer-info-title h3 {
+    line-height: 1.1;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #666666;
+    font-size: 16px;
+    margin-top: 25px;
+}
+
+.footer-info-title h3::after {
+    content: "";
+    height: 2px;
+    display: block;
+    margin-top: 10px;
+    max-width: 50px;
+}
+
+.footer-aside {
+    background-color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.footer-aside-container {
+    width: 1170px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.footer-aside-container p {
+    margin-bottom: 0;
+    text-align: left;
+    line-height: 1.5;
+    color: #666666;
+    font-size: 13px;
+}
