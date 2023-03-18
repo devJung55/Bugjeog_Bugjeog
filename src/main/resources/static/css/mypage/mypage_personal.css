@@ -1,4 +1,5 @@
 header.summary_wrapper {
+    display: block;
     box-sizing: border-box;
     font-family: inherit;
     font-size: inherit;
@@ -18,6 +19,7 @@ h2.summary_title {
     margin-inline-end: 0px;
     margin: 0;
     border: 0;
+    box-sizing: border-box;
     font-family: inherit;
     line-height: inherit;
     font-size: 18px;
@@ -26,9 +28,6 @@ h2.summary_title {
 }
 
 ul.summary_status {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -40,11 +39,9 @@ ul.summary_status {
     padding: 0;
     border: 0;
     list-style: none;
-    display: flex;
 }
 
-li.summary_content {
-    list-style: none;
+ul.summary_status li {
     display: list-item;
     text-align: -webkit-match-parent;
     box-sizing: border-box;
@@ -56,9 +53,11 @@ li.summary_content {
     border-left: 1px solid #e1e2e3;
 }
 
-li.summary_content a {
-    list-style: none;
-    text-align: -webkit-match-parent;
+ul.summary_status li:first-of-type {
+    border: none;
+}
+
+ul.summary_status li a {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -67,17 +66,12 @@ li.summary_content a {
     text-decoration: inherit;
     cursor: pointer;
     color: inherit;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+    display: flex;
 }
 
-li.summary_content a em {
-    list-style: none;
-    text-align: -webkit-match-parent;
-    cursor: pointer;
-    font-family: inherit;
-    color: inherit;
+ul.summary_status li a em {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -89,7 +83,7 @@ li.summary_content a em {
     font-style: normal;
 }
 
-li.summary_content a span {
+ul.summary_status li a span {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -99,277 +93,15 @@ li.summary_content a span {
     line-height: 19px;
 }
 
-div.CommunityProfile_body {
-    margin: 0;
-    padding: 0;
+header.summary_wrapper {
+    display: block;
+    box-sizing: border-box;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    box-sizing: border-box;
-    margin-top: 10px;
-    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e1e2e3;
     border-radius: 5px;
-    border: 1px solid #e1e2e4;
-    background-color: #fff;
-}
-
-div.CommunityProfile_header {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 71px;
-    padding-top: 30px;
-    padding-left: 30px;
-    border-bottom: 1px solid #ececec;
-}
-
-div.CommunityProfile_header h2 {
-    display: block;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    box-sizing: border-box;
-    margin-bottom: 21px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 22px;
-    color: #333;
-}
-
-ul.CommunityProfile_tabs {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    list-style: none;
-    box-sizing: border-box;
-    display: inline-flex;
-}
-
-ul.CommunityProfile_tabs li {
-    list-style: none;
-    text-align: -webkit-match-parent;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    position: relative;
-    display: inline-flex;
-    height: 40px;
-    padding-top: 5px;
-    font-size: 15px;
-    color: #8a8a8a;
-    margin-right: 16px;
-}
-ul.CommunityProfile_tabs li a {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    text-decoration: inherit;
-    cursor: pointer;
-    box-sizing: border-box;
-    color: #8a8a8a;
-}
-
-ul.CommunityProfile_tabs li.CommunityProfile_current {
-    font-weight: 700;
-}
-
-ul.CommunityProfile_tabs li.CommunityProfile_current a {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    text-decoration: inherit;
-    cursor: pointer;
-    box-sizing: border-box;
-    color: #36f;
-}
-
-ul.CommunityProfile_tabs li.CommunityProfile_current:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    border-radius: 1px;
-    background-color: #36f;
-}
-
-article.PostItem_wrapper {
-    display: block;
-    margin-bottom: 2px;
-    position: relative;
-    padding: 29px 29px 30px;
-}
-
-div.PostItem_top {
-    box-sizing: border-box;
-    margin-bottom: 9px;
-}
-
-div.PostItem_top a {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    text-decoration: inherit;
-    cursor: pointer;
-    box-sizing: border-box;
-    color: inherit;
-    display: flex;
-    width: 0;
-}
-
-div.AuthorBox_Wrapper {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-}
-
-div.AuthorBox_horizontalBox {
-    box-sizing: border-box;
-    align-items: center;
-    display: flex;
-}
-
-div.AuthorBox_avatarWrapper {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
-    position: relative;
-    margin-right: 7px;
-}
-
-div.AuthorBox_avatar {
-    margin: 0;
-    padding: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    border: 1px solid #ececec;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #d8d8d8;
-    background-image: url(https://static.wanted.co.kr/images/profile_default.png);
-    background-size: cover;
-    box-sizing: border-box;
-    width: 28px;
-    height: 28px;
-}
-
-div.AuthorBox_avatar img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: middle;
-    box-sizing: border-box;
-    object-fit: cover;
-    clip-path: circle(50% at 50% 50%);
-    width: 100%;
-    height: 100%;
-}
-
-a.PostItem_body {
-    box-sizing: border-box;
-    display: block;
-    width: 730px;
-    padding-left: 35px;
-    color: inherit;
-}
-
-h3.PostItem_title {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    box-sizing: border-box;
-    font-size: 19px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 5px;
-    line-height: 23px;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-div.PostItem_bottom {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
-    display: flex;
-    margin-top: 12px;
-}
-
-div.PostItem_like, div.PostItem_comments {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: border-box;
-    align-items: center;
-    display: flex;
-    color: #36f;
-}
-
-div.PostItem_like img, div.PostItem_comments img {
-    overflow-clip-margin: content-box;
-    overflow: hidden;
-    box-sizing: border-box;
-    width: 16px;
-}
-
-div.PostItem_like span, div.PostItem_comments span {
-    border: 0;
-    margin: 0;
-    font-family: inherit;
-    box-sizing: border-box;
-    font-weight: 700;
-    line-height: 100%;
-    font-size: 12px;
-    margin-left: 4px;
-    padding: 0.3em 0 0;
+    margin: 0 0 20px;
+    padding: 26px 0 34px;
 }
