@@ -33,6 +33,35 @@
                         <!-- <textarea></textarea> -->
                     </div>
                 </div>
+                <div id="thumbnail-list" style="display: flex;">
+                    <div style="width: 200px; height: 200px;">
+                        <label for="attach">
+                            <div class="image">
+                                <span style="display: none;">X</span>
+                            </div>
+                            <div class="file-name" style="width: 100%; height: 100%;"></div>
+                        </label>
+                    <input type="file" id="attach" style="display: none">
+                    </div>
+                    <div style="width: 200px; height: 200px;">
+                        <label for="attach">
+                            <div class="image">
+                                <span style="display: none;">X</span>
+                            </div>
+                        <div class="file-name"></div>
+                    </label>
+                    <input type="file" id="attach" style="display: none">
+                    </div>
+                    <div style="width: 200px; height: 200px;">
+                        <label for="attach">
+                            <div class="image">
+                                <span style="display: none;">X</span>
+                            </div>
+                        <div class="file-name"></div>
+                    </label>
+                    <input type="file" id="attach" style="display: none">
+                    </div>
+                </div>
             </div>
         </div>
     </form>
@@ -69,6 +98,63 @@ $('#content_textarea, #title_textarea').on('input', function() {
   }
 });
 
+
+/* 파일 썸네일 */
+/* 파일인풋 */
+const file = document.querySelector('.attach');
+const imgButton = document.querySelector(".imgButton");
+console.log(imgButton);
+/* x버튼 */
+/* const closeButton = document.querySelector('span.closeImgButton'); */
+
+let count = 0;
+function handleFiles(files) {
+    /* 썸네일 담을 div */
+    const thumbnailList = document.getElementById("thumbnail-list");
+
+    /* 파일 개수가 8개 이상이면 모달창 띄우고 break */
+    for (let i = 0; i < files.length; i++) {
+        if(files.length > 3) {
+            showModal.classList.add("showModal");
+            break;
+        }
+
+      /* 파일절대경로얻기 */  
+      const file = files[i];
+      const reader = new FileReader();
+
+      /* <div id="thumbnail-list" class="imageThumbnail"> <span class="closeImgButton"></span> </div> */
+      /* 원래 넣고 싶은 html인데 background image를 바꿔줘야 하는데 안먹음 */
+      /* 썸네일 담을 div의 자식에게 img로 생성 */
+      reader.onload = function(event) {
+        const thumbnail = document.createElement("img");
+        thumbnail.append
+        let result = event.target.result;
+        thumbnail.classList.add("imageThumbnail");
+        thumbnail.src = event.target.result;
+        thumbnailList.prepend(thumbnail);
+        };
+      reader.readAsDataURL(file);
+    }
+
+    /* files의 length가 파일을 onload 했을 때 갯수로 들어감 */
+    /* 그래서 count 전역변수로 선언해서 onload 할때마다 갯수 더해줌 */
+    count += files.length
+    console.log("count: "+ count);
+
+    /* 7개 onload 후 2개 onload하면 8개 초과로 이미지가 추가가 되면 안되는데 추가가 되는 오류가 있음 */
+    if(files.length <= 3){
+        if(count > 2) {
+            const thumbnail = document.removeElement("img");
+        }
+    }
+}
+
+const fileInput = document.getElementById("attach");
+
+fileInput.addEventListener("change", function(event) {
+    handleFiles(event.target.files);
+});
 
 </script>
 </html>

@@ -191,11 +191,17 @@ body{
     margin-bottom: 26px;
     height: 20px;
     width: 233px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #e1e2e3;
+    outline: none;
 }
 #thumb-nail{
     position: relative;
-    width: 700px;
+    width: 500px;
     height: 500px;
+    align-self: center;
 }
 #btn_x{
     text-align: center;
