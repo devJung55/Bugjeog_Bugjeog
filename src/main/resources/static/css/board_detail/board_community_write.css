@@ -192,3 +192,27 @@ body{
     height: 20px;
     width: 233px;
 }
+#thumb-nail{
+    position: relative;
+    width: 700px;
+    height: 500px;
+}
+#btn_x{
+    text-align: center;
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #00000094;
+}
+.file-name{
+    width: 100%;
+    height: 100%;
+    background-size: 100% !important;
+    background: no-repeat;
+}
