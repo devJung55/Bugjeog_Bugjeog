@@ -126,11 +126,24 @@
                                             </div>
                                         </div>
                                         -->
-                                        <a href="" class="MainResume-edit js-modal-trigger" data-target="modal-js-example">
+                                        <button id="modal" class="MainResume-edit js-modal-trigger" onclick="openModal()">
                                             <span class="img_span is-flex">
                                                 <img src="../../static/image/mypage/Writing-64.png" alt="">
                                             </span>
-                                        </a>
+                                        </button>
+                                        <!-- <a href="" class="MainResume-edit js-modal-trigger"
+                                            data-target="modal-js-example">
+                                            <span class="img_span is-flex">
+                                                <img src="../../static/image/mypage/Writing-64.png" alt="">
+                                            </span>
+                                        </a> -->
+                                        <div class="modal">
+                                            <div class="modal-background"></div>
+                                            <div class="modal-content">
+                                                Any other Bulma elements you want
+                                            </div>
+                                            <button class="modal-close is-large" aria-label="close"></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -191,6 +204,7 @@
     });
 </script>
 <script>
+const $el = document.querySelector(".modal");
     document.addEventListener('DOMContentLoaded', () => {
         // Functions to open and close a modal
         function openModal($el) {
@@ -218,7 +232,8 @@
         });
 
         // Add a click event on various child elements to close the parent modal
-        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || [])
+        .forEach(($close) => {
             const $target = $close.closest('.modal');
 
             $close.addEventListener('click', () => {
