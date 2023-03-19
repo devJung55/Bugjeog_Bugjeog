@@ -53,10 +53,9 @@ nav.nav_main_bar {
     display: flex;
 }
 
-.main_bar_logo_a img {
-    width: 74px;
-    height: 23px;
-}
+/* .main_bar_logo_a img {
+    width: 80;
+} */
 
 button.main_bar_hamberger {
     margin-top: -2px;

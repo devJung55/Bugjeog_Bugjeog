@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문의 등록 - 원티드 고객센터</title>
+    <title>문의 등록 - 북적북적 고객센터</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="../../static/css/board_detail/board_inquiry_write.css">
 </head>
 <body>
+    <!-- 헤더 -->
+    <header class="header" style="background-color: white;">
+        <div class="header-inner container">
+            <div class="row">
+                <div class="left_top">
+                    <div class="header_logo">
+                        <a>
+                            <img src="../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
+                        </a>
+                        <a>
+                            <img src="../../static/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
+                        </a>
+                    </div>
+                </div>
+                <div class="right_top"></div>
+            </div>
+        </div>
+    </header>
     <main style="min-height: 70vh; margin-bottom: -30px;">
         <section id="breadcrumb"></section>
         <div id="container">
             <div style="float: left; padding-left: 15px; width: 75%;">
                 <ol id="breadcrumbs">
                     <li>
-                        <a id="client">원티드 고객센터</a>
+                        <a id="client">북적북적 고객센터</a>
                     </li>
-                    <li id="register_inquiry">> 문의 등록</li>
+                    <img src="../../static/image/notice/arrow.png" alt="" class="arrow-ircon">
+                    <li id="register_inquiry" style="color: #333333 !important;"> 문의 등록</li>
                 </ol>
             </div>
         </div>
@@ -95,6 +114,47 @@
         </div>
     </main>
 </body>
+ <!-- 푸터 -->
+ <footer>
+    <div class="footer-container">
+        <div class="footer-box">
+            <div class="footer-info">
+                <a href="javascript:void(0)" class="footer-image-box">
+                <!--<img src="../../static/image/boardList/logo-icon.png" class="footer-image">
+                    <img src="../../static/image/boardList/logo_title.png" class="footer-image" style="width: 90px;"> -->
+                    <img src="../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="footer-image">
+                </a>
+            </div>
+            <div class="footer-info-title">
+                <a style="outline: 0; text-decoration: none; transition: all 250ms ease-in-out;" href="javascript:void(0)">
+                    <h3>기업소개</h3>
+                </a>
+            </div>
+            <div class="footer-info-title">
+                <a style="outline: 0; text-decoration: none; transition: all 250ms ease-in-out;" href="javascript:void(0)">
+                    <h3>이용약관</h3>
+                </a>
+            </div>
+            <div class="footer-info-title">
+                <a style="outline: 0; text-decoration: none; transition: all 250ms ease-in-out;" href="javascript:void(0)">
+                    <h3>개인정보처리방침</h3>
+                </a>
+            </div>
+            <div class="footer-info-title">
+                <a style="outline: 0; text-decoration: none; transition: all 250ms ease-in-out;" href="javascript:void(0)">
+                    <h3>고객센터</h3>
+                </a>
+            </div>
+        </div>
+        <aside class="footer-aside">
+            <div class="footer-aside-container">
+                <p>(주)북적북적 (대표이사:이순철) | 서울특별시 강남구 테헤란로 146 | 통신판매업번호 : 2015 - 서울강남 - 03148호</p>
+                <p>유료직업소개사업등록번호 : (국내) 제2999-3230259-14-5-0118호 | 사업자등록번호 : 000-1234-1234 |  02-538-0017</p>
+                <p>© Wantedlab, Inc</p>
+            </div>
+        </aside>
+    </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
     const file = document.querySelector('input[type=file]');
