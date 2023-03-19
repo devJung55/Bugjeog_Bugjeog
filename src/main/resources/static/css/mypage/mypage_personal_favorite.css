@@ -1,0 +1,264 @@
+div.favorite_list_wrapper {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 26px 30px 30px;
+    border: none;
+}
+
+h2.favorite_list_title {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    margin-bottom: 30px;
+}
+
+div.favorite_list {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+div.list_container {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+ul.favorite_list_ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    list-style: none;
+    margin: -10px;
+    padding: 0;
+    display: flex;
+}   
+
+/* 카드 리스트 각 카드 */
+ul.favorite_list_ul>li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 25%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    width: 33.3333333333%;
+}
+
+div.list_card {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+a.card_wrapper {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
+    color: inherit;
+    display: block;
+}
+
+header.card_thumbnail_wrapper {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    padding-bottom: 75%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+    
+}
+
+button.card_favorite_marker {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: inherit;
+    border-radius: 3px;
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    background: none;
+    padding: 8px 6px;
+    width: 42px;
+    height: 42px;
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    z-index: 1;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+button.is-absolute {
+    position: absolute !important;
+}
+
+/* 카드 내용 */
+div.card_body {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 14px 0;
+}
+
+header.card_header {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-align: left;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div.category_wrapper>span {
+    font-size: small;
+}
+
+div.card_location {
+    font-size: small;
+}
+div.paging_wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+/* ul.num_wrapper {
+
+} */
+
+ul>span {
+    margin-right: 3px;
+}
+
+ul.num_wrapper li {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+div.paging_wrapper>label, ul.num_wrapper>li>label {
+    cursor: pointer;
+}

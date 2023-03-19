@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" as="style" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="../../static/css/mypage/font.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
 </head>
+
 <body class="profile_body">
     <div class="Container_Profile">
         <div class="padding_for_header"></div>
@@ -84,126 +85,305 @@
                                 </li>
                             </ul>
                         </div> -->
-                        <div>
-                            <!-- 첫번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
+                        <div class="favorite_list_wrapper">
+                            <h2 class="favorite_list_title">관심업체 리스트</h2>
+                            <div class="favorite_list">
+                                <div class="list_container">
+                                    <ul class="favorite_list_ul columns" style="overflow: hidden;">
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
                                                     </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                </a>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-
-
-                            <!-- 두번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
                                                     </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                </a>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-
-<!--                        댓글 폼
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href="">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
                                                     </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                </a>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="column is-one-third">
+                                            <div class="list_card">
+                                                <a href="" class="card_wrapper">
+                                                    <header class="card_thumbnail_wrapper is-relative"
+                                                        style="background-image: url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F35569%2Ftg4lpnt6elhyy9bp__400_400.png&w=400&q=75);">
+                                                        <button type="button" class="card_favorite_marker is-absolute">
+                                                            <img src="" alt="">
+                                                        </button>
+                                                    </header>
+                                                    <div class="card_body">
+                                                        <header class="card_header">가구 납품 담당자</header>
+                                                        <div class="card_business_name">디옴</div>
+                                                        <div class="category_wrapper">
+                                                            <span class="card_category_L">대분류</span>
+                                                            <span> / </span>
+                                                            <span class="card_category_S">소분류</span>
+                                                        </div>
+                                                        <div class="card_location">경기</div>
+                                                        <div class="card_content">게시글 내용</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!--  <div class="paging_wrapper">
+                                        <label for="" class="btn_paging_before">
+                                            <button class="is-hidden"></button>
+                                            <span style="margin-right: 3px;"> < </span>
+                                        </label>
+                                        <ul class="num_wrapper">
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        1
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        2
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        3
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        4
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        5
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        6
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        7
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        8
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label for="" class="num_label">
+                                                    <button class="is-hidden btn_paging"></button>
+                                                    <span class="paging_num">
+                                                        9
+                                                    </span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <label for="" >
+                                            <button class="btn_paging_before is-hidden"></button>
+                                            <span> > </span>
+                                        </label>
+                                    </div> -->
                                 </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                    </h3>
-                                    <p class="PostItem_content">
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        --
-                                        <div class="PostItem_like">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
--->
+                            </div>
                         </div>
                     </div>
                 </section>
