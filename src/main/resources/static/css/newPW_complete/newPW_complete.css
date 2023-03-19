@@ -1,0 +1,143 @@
+        /* 폰트 */
+        *{
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        }
+
+        html, body, #__next {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+            text-rendering: optimizeLegibility;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+
+        .newPW-end-all-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7;
+        }
+
+        .newPW-end-middle-wrap {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .newPW-end-box {
+            border-radius: 5px;
+            width: 100%;
+            max-height: calc(100vh - 100px);
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border: 1px solid #e1e2e3;
+        }
+
+        .newPW-end-top {
+            /* padding: 0 20px; */
+            height: 75px;
+            flex: none;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .newPW-end-leftTop {
+            min-width: 64px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+        .newPW-end-title {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .newPW-end-titleWord {
+            color: #000;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: -0.002em;
+            font-size: 18px;
+            line-height: 26px;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .newPw-end-rightTop {
+            display: flex;
+            min-width: 64px;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .newPW-end-bigWord {
+            color: #000;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: -0.0195em;
+            font-size: 22px;
+            line-height: 28px;
+            margin-top: 16px;
+            margin-bottom: 30px;
+        }
+
+
+        .newPW-end-smallWord{
+            color: #888;
+            font-weight: 400;
+            text-align: center;
+            letter-spacing: 0.0056em;
+            font-size: 14px;
+            line-height: 24px;
+            margin-top: -22px;
+        }
+
+        .newPW-end-back {
+            width: 87%;
+            margin: auto;
+            display: block;
+            height: 50px;
+            min-height: 50px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #36f;
+            border: none;
+            margin-top: 51px;
+            margin-bottom: 20px;
+        }
+
+        .newPW-end-back-ment {
+            /* color: #000; */
+            color: #fff;
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: 0.0056em;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .newPW-end-back-ment span {
+            color: #fff;
+        }
