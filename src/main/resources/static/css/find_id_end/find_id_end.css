@@ -1,0 +1,270 @@
+       
+        /* 폰트 */
+        *{
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        }
+        
+        
+        .html, body, #__next {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+            text-rendering: optimizeLegibility;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+        }
+        
+        
+        * {
+        box-sizing: border-box;
+        }
+            .find-end-all-wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            background-color: #f7f7f7;
+        }
+
+        .find-end-mid-wrap{
+            max-width: 400px;
+            width: 100%;
+            margin: 0px auto;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            justify-content: center;
+            align-items: flex-end;
+            background-color: #fff;
+        }
+
+        .find-end-center-wrap {
+            border-radius: 5px;
+            width: 100%;
+            max-height: calc(100vh - 100px);
+            overflow: auto;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            background-color: #fff;
+            border: 1px solid #e1e2e3;
+        }
+
+        .find-end-Top{
+            padding: 0px 20px;
+            height: 64px;
+            flex: 0 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .find-end-right{
+            min-width: 64px;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+        .find-right-arrow{
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 8px;
+            margin: -8px;
+            fill: #000;
+        }
+
+        .find-small-arrow{
+            display: flex;
+            -webkit-box-align: inherit;
+            align-items: inherit;
+            -webkit-box-pack: inherit;
+            justify-content: inherit;
+        }
+
+        .svg-ssilta{
+            user-select: none;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .find-end-title-border {
+            display: flex;
+            flex: 1 1 0%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .find-end-ment{
+            color: #000;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.002em;
+            font-size: 18px;
+            line-height: 26px;
+            display: flex;
+            flex: 1 1 0%;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+        .find-end-whatThis {
+            display: flex;
+            min-width: 64px;
+            -webkit-box-pack: end;
+            justify-content: flex-end;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+        .find-end-titleMent {
+            overflow: auto;
+            position: relative;
+            padding: 20px;
+        }
+
+        .find-end-mentment{
+            color: #000;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.0195em;
+            font-size: 22px;
+            line-height: 28px;
+            margin-top: 10px;
+        }
+        
+        .find-end-mentSec{
+            color: #888;
+            font-weight: 400;
+            text-align: center;
+            letter-spacing: 0.0096em;
+            font-size: 15px;
+            line-height: 22px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .no-css-wtv > div {
+            gap: 12px;
+        }   
+
+        .find-end-email-border {
+            padding: 13px 0px;
+            min-height: 50px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            background-color: #f8f8f8;
+        }
+
+        .find-end-email {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .find-end-draw{
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            margin-right: -8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+            z-index: 10;
+        }
+
+        .find-end-drBorder{
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e1e2e3;
+            background-color: #fff;
+        }
+
+        .find-end-inside-drBorder {
+            display: flex;
+            align-items: inherit;
+            justify-content: inherit;
+        }
+        
+        .find-end-whelk {
+            user-select: none;
+            display: inline-block;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* .find-end-whelk svg {
+            font-size: 12px;
+            width: 1em;
+            height: 1em;
+        } */
+
+        .find-end-draw svg {
+            width: 65%;
+            height: 100%;
+        }
+
+        .find-end-emailWrite {
+            color: #000;
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: 0.0056em;
+            font-size: 16px;
+            line-height: 24px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            overflow-wrap: initial;
+        }
+
+        .find-end-backBorder {
+            width: 100%;
+            height: 50px;
+            min-height: 50px;
+            border-radius: 25px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #36f;
+            border: none;
+        }
+
+        .find-end-comeBack {
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: 0.0056em;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .find-end-backBorder span {
+            color: #fff;
+        }

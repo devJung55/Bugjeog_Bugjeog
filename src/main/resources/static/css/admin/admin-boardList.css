@@ -100,6 +100,11 @@ a.main_bar_logo_a {
 	text-align: right;
 }
 
+.delete-box-layout {
+	display: flex;
+    justify-content: flex-end;
+}
+
 .delete-button {
 	box-shadow: 2px 2px 7px -2px grey;
     font-family: 'GmarketSansMedium';
