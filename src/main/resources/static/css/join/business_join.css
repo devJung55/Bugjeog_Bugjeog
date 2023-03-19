@@ -96,6 +96,7 @@ html, body, #__next {
 
 .join-cancel-button p {
     color: #000;
+    
     text-align: center;
     letter-spacing: -0.002em;
     line-height: 26px;
@@ -107,6 +108,7 @@ html, body, #__next {
 }
 
 .join-title-box-layout {
+    
     display: flex;
     flex: 1 1 0%;
     align-items: center;
@@ -141,6 +143,7 @@ html, body, #__next {
 }
 
 .join-real-title {
+    margin-right: 23px;
     color: var(--theme-palette-colors-black-100);
     font-weight: var(--text-weight-headline-bold);
     text-align: center;
