@@ -41,12 +41,12 @@
 }
 
 .logo-box img {
-	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
+	/* filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%); */
 	width: 80px;
 }
 
 .logo-box {
-	padding: 4px 10px 0px 25px;
+	    padding: 9px 10px 0px 50px;
 }
 
 .logo-box-layout {

@@ -391,3 +391,6 @@ form button{
     color: #333;
     width: 240px;
 }
+#side_title{
+    cursor: pointer;
+}
