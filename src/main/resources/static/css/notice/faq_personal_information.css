@@ -27,6 +27,19 @@ body a, body a:hover, body a:focus {
     transition: all 250ms ease-in-out;
 }
 
+body a {
+    outline: 0;
+    text-decoration: none;
+    color: rgba(51, 122, 183, 1);  
+    transition: all 250ms ease-in-out;
+    font-size: 15.4px;
+}
+
+
+strong {
+    font-weight: 700;
+}
+
 
 /* 헤더 */
 .header {
@@ -203,8 +216,13 @@ img {
     line-height: 1.6;
 }
 
+strong {
+    font-weight: 700;
+}
+
 p {
     margin: 0 0 10px;
+    font-size: 15.4px;
 }
 
 .article_body ul {
@@ -286,17 +304,16 @@ p {
     line-height: 1.4;
     position: relative;
     font-size: 1.1em;
-    
+}
+
+.article_sidebar ul li a{
+    color: #454545;
 }
 
 .article_sidebar section > ul > li:hover {
     background-color: #f2f4f7;
 }
 
-.article_sidebar ul li a{
-    color: #454545;
-}
-    
     /* 문의하기 버튼 */
     
     .inquire_ {
