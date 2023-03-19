@@ -52,16 +52,21 @@
                             <input id="phone_input" type="text" placeholder="&quot; - &quot; 없이 번호만 입력">
                         </div>
                         <div style="margin-top: 17px;">
-                            <label>첨부 파일</label>
-                            <div id="upload_dropzone">
-                                <input type="file" multiple="true" id="dropzone_input">
-                                <span>
-                                    <!-- before -->
-                                    <a id="upload_file">파일 추가</a>
-                                    또는 파일을 여기로 드래그
-                                </span>
-                            </div>
+                            <label for="attach">첨부 파일
+                                <div id="upload_dropzone">
+                                    <input type="file" multiple="true" class="dropzone_input" id="attach">
+                                    <span>
+                                        <img style="width: 40px;" src="../../static/image/board_detail/cloud.PNG" alt="">
+                                        <a id="upload_file">파일 추가</a>
+                                        또는 파일을 여기로 드래그
+                                    </span>
+                                </div>
+                            </label>
                         </div>
+                            <div class="image" style="display: flex">
+                                <div class="file-name"></div>
+                                <div id="x_btn"></div>
+                            </div>
                         <div style="margin-top: 17px;">
                             <p style="margin: 0 0 10px;">
                                 <strong style="font-weight: 700;">개인정보 수집 및 이용에 대한 동의 내용</strong>
@@ -91,4 +96,34 @@
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    const file = document.querySelector('input[type=file]');
+    const imgDiv = document.querySelector('label[for=attach] div');
+    const closeSpan = document.querySelector('#x_btn');
+    const input = document.querySelector('#dropzone_input');
+    const fileName = document.querySelector('.file-name');
+
+    // x 버튼을 누르면, 기본 이미지로 변경!
+    closeSpan.addEventListener('click', function (e) {
+        console.log("들어옴?")
+       /*  e.preventDefault(); */
+        file.value = "";
+        fileName.innerHTML = "";
+        this.style.display = 'none';
+    });
+
+    file.addEventListener('change', function (e) {
+        let name = e.target.files[0].name;
+        fileName.innerHTML = name;
+        closeSpan.style.display = "inline-block";
+        this.style.display = 'none';
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function (e) {
+            let result = e.target.result;
+        };
+    });
+
+
+</script>
 </html>
