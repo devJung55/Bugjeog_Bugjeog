@@ -342,3 +342,61 @@ form button{
     width: 14px;
     display: block;
 } 
+
+/* 헤더 */
+.header {
+    background-color: rgba(204, 96, 47, 0);
+}
+
+.header-inner {
+    width: 1170px;
+   /*  padding-right: 15px; */
+    padding-left: 65px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 1px;
+    padding-bottom: 7px;
+}
+
+.left_top {
+    width: 25%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.header_logo_img{
+    max-width: 180px;
+    max-height: 20px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+
+.header_logo_img1 {
+    max-height: 30px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 10px;
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+}
+
+.row {
+    margin-right: -15px;
+    /* margin-left: -15px; */
+}
+
+.row:after {
+    clear: both;
+}
+
+.row:after, .row:before {
+    display: table;
+    content: " ";
+}
