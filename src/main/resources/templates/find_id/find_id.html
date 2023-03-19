@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정 찾기</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../../static/css/find_id/find_id.css">
+</head>
+<body>
+    <div id="__next">
+        <div class="find-all-wrap">
+            <div class="find-middle-wrap">
+                <div class="find-id-box">
+                    <div class="find-id-title">
+                        <div class="find-left-side">
+                            <button type="button" class="find-left-arrow">
+                                <span class="find-arrow-inside">
+                                    <svg viewBox="0 0 18 18" class="find-arrow-svg"><path d="m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"></path></svg>
+                                </span>
+                            </button>
+                        </div>
+                        <!-- 계정찾기 타이틀 -->
+                        <div class="find-middle-side">
+                            <p class="find-ment">계정 찾기</p>
+                        </div>
+                        <div class="find-blank"></div>
+                    </div>
+                    <!-- 정보 입력 -->
+                     <div class="find-info-box">
+                        <p class="find-enter-info">
+                            계정을 찾기 위해 전화번호를 입력해주세요.
+                        </p>
+                         <div class="find-num-ment">
+                            <label for="mobile" class="find-write-ment">휴대폰 번호</label>
+                         </div>
+                            <div>
+                                <div class="find-enter-anything">
+                                    <input type="text" placeholder="(예시) 01013245678" name="mobile" class="find-enter-pn" value>
+                                    <button type="button" class="find-take-btn" disabled>
+                                        <span class="find-take-btn-ment">인증번호 받기</span>
+                                    </button>
+                                </div>
+                                <!-- 인증번호 입력칸 -->
+                                <div class="find-enter-anything">
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="find-enter-pn" value>
+                                </div>
+                            </div>
+                          <button type="button" class="find-countinue">
+                            <span class="find-countinue-ment">계속</span>
+                          </button>  
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

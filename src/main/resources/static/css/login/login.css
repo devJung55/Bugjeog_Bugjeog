@@ -1,10 +1,9 @@
-* {
-    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
-}
 
-* {
-    box-sizing: border-box;
-}
+/* 폰트 */
+*{
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    }
+    
 
 html, body, #allPage{
     padding: 0;
@@ -50,7 +49,7 @@ html, body, #allPage{
 }
 
 .inside{
-    overflow: auto;
+    /* overflow: auto; */
     position: relative;
     padding: 20px;
 }
@@ -105,7 +104,24 @@ form {
     --text-spacing-subtitle: -0.023em;
 }
 
-.form-companySimpleIntro{
+.choice-container{
+    display: flex;
+    margin: 34px;
+    height: 17px;
+    
+}
+
+.private-business{
+    font-weight: 570;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid #2f5fef;
+}
+
+/* .form-companySimpleIntro{
     color: #888;
     font-weight: 400;
     text-align: center;
@@ -113,7 +129,7 @@ form {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 45px;
-}
+} */
 
 .form-blankEmail{
     margin: 17px 0px 7px;
@@ -129,7 +145,7 @@ form {
 }
 
 .form-input-writeEmail{
-    width: 100%;
+    width: 93%;
     height: 50px;
     min-height: 50px;
     padding: 0px 12px;
@@ -141,6 +157,7 @@ form {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 8px;
+    opacity: 0.5;
 }
 
 .form-button-countinueEmail:disabled {
@@ -181,6 +198,7 @@ form {
 }
 
 .form-or {
+    cursor: pointer;
     color: #939393;
     font-weight: 600;
     text-align: center;
@@ -239,6 +257,18 @@ form {
 
 
 .siteLogo {
+    user-select: none;
+    /* width: 1em;
+    height: 1em; */
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.siteLogo-naver {
+    transform: translateX(15px);
+    width: 65%;
     user-select: none;
     /* width: 1em;
     height: 1em; */
