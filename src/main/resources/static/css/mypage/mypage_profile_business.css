@@ -213,3 +213,16 @@ select.JobSearchIntentionSelector-select {
     border: none;
     background: none;
 }
+
+div.modal-background {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(10,10,10,.86);
+}
+
+div.modal-content {
+        position: relative;
+}
