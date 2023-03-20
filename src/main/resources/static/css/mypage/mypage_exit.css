@@ -288,6 +288,12 @@ div.accept_wrapper {
     margin: 10px 0px;
 }
 
+div.accept_wrapper>span {
+    display: flex;
+}
+div.accept_wrapper>span>img {
+    width: 24px;
+}
 div.accept_checkbox {
     width: 18px;
     height: 18px;
