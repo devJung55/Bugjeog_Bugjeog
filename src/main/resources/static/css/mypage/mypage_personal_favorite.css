@@ -263,3 +263,7 @@ ul.num_wrapper li {
 div.paging_wrapper>label, ul.num_wrapper>li>label {
     cursor: pointer;
 }
+
+ul.num_wrapper>li>label.num_label.current_page>span.paging_num {
+    font-weight: 600;
+}
