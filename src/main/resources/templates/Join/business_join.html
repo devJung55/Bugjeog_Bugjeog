@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개인 회원가입</title>
+    <title>사업자 회원가입</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../static/css/join/join.css">
+    <link rel="stylesheet" href="../../static/css/join/business_join.css">
 </head>
 <body>
     <div id="__next">
@@ -20,7 +20,7 @@
                             </button>
                         </div>
                         <div class="join-title-box-layout">
-                            <p class="join-real-title">회원가입</p>
+                            <p class="join-real-title">사업자 회원가입</p>
                         </div>
                         <div class="join-what-is-this"></div>
                     </div>
@@ -34,9 +34,18 @@
                                 <input type="email" placeholder="이메일을 입력해주세요." name="email" class="join-info-input" value>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
-                                <label for="username" class="join-infor-ment">이름</label>
+                                <label for="companyname" class="join-infor-ment">대표자명</label>
                             </div>
                                 <input type="text" placeholder="이름을 입력해주세요." name="username" class="join-info-input">
+                            <div class="infor-write-border">
+                                <label for="companyname" class="join-infor-ment">회사명</label>
+                            </div>
+                                <input type="text" placeholder="회사명을 입력해주세요." name="username" class="join-info-input">
+                            <div class="infor-write-border">
+                                <label for="companyname" class="join-infor-ment">사업자 번호</label>
+                            </div>
+                                <input type="text" placeholder="사업자 번호 입력해주세요." name="username" class="join-info-input">
+
                              <!-- 휴대폰 번호 입력 -->
                             <div class="join-infor-write-border">
                                 <label for="mobile" class="join-infor-ment">휴대폰 번호</label>
@@ -109,7 +118,7 @@
                                 <div class="join-square-terms"></div>
                                     <input type="checkbox" name="is_accept_event_all" class="join-input-line">
                                     <div class="join-back-blank">
-                                        <p class="join-terms-sentence">소식,  콘텐츠, 이벤트 등 맞춤 정보 받기</p>
+                                        <p class="join-terms-sentence">소식, 커리어 콘텐츠, 이벤트 등 맞춤 정보 받기</p>
                                     </div>
                              </div>
                              <!-- 이메일, 앱푸시, .. 파트 -->
@@ -151,6 +160,5 @@
         </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../static/js/login/login.js"></script>
+
 </html>

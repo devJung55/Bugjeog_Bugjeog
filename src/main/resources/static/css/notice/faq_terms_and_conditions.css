@@ -27,6 +27,18 @@ body a, body a:hover, body a:focus {
     transition: all 250ms ease-in-out;
 }
 
+body a {
+    outline: 0;
+    text-decoration: none;
+    color: rgba(51, 122, 183, 1);  
+    transition: all 250ms ease-in-out;
+}
+
+
+strong {
+    font-weight: 700;
+}
+
 
 /* 헤더 */
 .header {
@@ -63,12 +75,11 @@ body a, body a:hover, body a:focus {
     margin-bottom: 4px;
 }
 
-
 .header_logo_img1 {
-    max-height: 30px;
-    margin-top: 12px;
+    max-height: 33px;
+    margin-top: 9px;
     max-width: 200px;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 
 img {
@@ -203,22 +214,18 @@ img {
     line-height: 1.6;
 }
 
+strong {
+    font-weight: 700;
+}
+
 p {
     margin: 0 0 10px;
+    font-size: 15.4px;
 }
 
 .article_body ul {
     list-style-type: disc;
     padding-left: 20px;
-    font-size: 15.4px;
-}
-
-
-body a {
-    outline: 0;
-    text-decoration: none;
-    color: rgba(51, 122, 183, 1);
-    transition: all 250ms ease-in-out;
     font-size: 15.4px;
 }
 
@@ -377,15 +384,16 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
     float: left;
-    width: 15%;
+    width: 7%;
     margin-top: 5px;
     text-align: left;
 }
 
 .footer-image {
-    margin-bottom: -80px;
-    margin-top: -82px;
-    max-width: 210px;
+    max-height: 33px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 0px;
 }
 
 .footer-image-box {
