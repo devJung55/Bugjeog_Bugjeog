@@ -28,6 +28,7 @@ body a, body a:hover, body a:focus {
 }
 
 
+
 /* 헤더 */
 .header {
     background-color: rgba(204, 96, 47, 0);
@@ -35,8 +36,8 @@ body a, body a:hover, body a:focus {
 
 .header-inner {
     width: 1170px;
-    /* padding-right: 15px; */
-    padding-left: 145px;
+   /*  padding-right: 15px; */
+    padding-left: 65px;
     margin-right: auto;
     margin-left: auto;
     padding-top: 1px;
@@ -63,13 +64,13 @@ body a, body a:hover, body a:focus {
     margin-bottom: 4px;
 }
 
-
 .header_logo_img1 {
-    max-height: 30px;
-    margin-top: 12px;
+    max-height: 33px;
+    margin-top: 9px;
     max-width: 200px;
-    margin-right: 10px;
+    margin-right: 0px;
 }
+
 
 img {
     vertical-align: middle;
@@ -132,7 +133,7 @@ img {
 
 .introduce_line_member {
     float: left;
-    padding-left: 78px;
+    padding-left: 15px;
     width: 75%;
     position: relative;
     min-height: 1px;
@@ -140,8 +141,7 @@ img {
 }
 
 .member_introduce {
-    padding-left: 0px;
-    padding: 15px 5px;
+    padding: 15px 25px;
 }
 
 .member_introduce > li {
@@ -187,7 +187,7 @@ img {
     float: left;
     position: relative;
     min-height: 1px;
-    padding-left: 75px;
+    padding-left: 15px;
     padding-top: 30px;
 }
 
@@ -197,7 +197,6 @@ img {
     font-weight: 600;
     margin-bottom: 40px;
     margin-top: 40px;
-    margin-left: 11px;
 }
 
 .article_body {
@@ -205,9 +204,6 @@ img {
     line-height: 1.6;
 }
 
-p {
-    margin: 0 11px 10px;
-}
 
 .article_body ul {
     list-style-type: disc;
@@ -255,7 +251,7 @@ p {
     border: 1px solid #ececec;
     padding-top: 25px;
     padding-bottom: 22px;
-    margin-top: 37px !important;
+    margin-top: 100px !important;
     border-radius: 5px;
     padding-left: 9px;
 }
@@ -293,11 +289,10 @@ p {
 .article_sidebar ul li a{
     color: #454545;
 }
-    
+
 .article_sidebar section > ul > li:hover {
     background-color: #f2f4f7;
 }
-
 
     /* 문의하기 버튼 */
     
@@ -325,7 +320,6 @@ p {
         margin-top: 10px;
         width: 47px;
     }
-
 
     
 
@@ -372,15 +366,16 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
     float: left;
-    width: 15%;
+    width: 7%;
     margin-top: 5px;
     text-align: left;
 }
 
 .footer-image {
-    margin-bottom: -80px;
-    margin-top: -82px;
-    max-width: 210px;
+    max-height: 33px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 0px;
 }
 
 .footer-image-box {
@@ -427,9 +422,16 @@ footer {
     margin-left: auto;
 }
 
+
+strong {
+    font-weight: 700;
+}
+
 p {
     margin: 0 0 10px;
+    font-size: 15.4px;
 }
+
 
 .footer-aside-container p {
     margin-bottom: 0;

@@ -204,9 +204,15 @@ img {
     line-height: 1.6;
 }
 
+strong {
+    font-weight: 700;
+}
+
 p {
     margin: 0 0 10px;
+    font-size: 15.4px;
 }
+
 
 .article_body ul {
     list-style-type: disc;
@@ -425,9 +431,6 @@ footer {
     margin-left: auto;
 }
 
-p {
-    margin: 0 0 10px;
-}
 
 .footer-aside-container p {
     margin-bottom: 0;
