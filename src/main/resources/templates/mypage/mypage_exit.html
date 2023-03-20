@@ -131,12 +131,14 @@
                                     </label>
                                 </div>
                             </article>
-                            <button class="exit_button button_confirm" id="button_confirm">
-                                <span>회원 탈퇴</span>
-                            </button>
-                            <button class="exit_button button_cancel">
-                                <span>회원 탈퇴 취소</span>
-                            </button>
+                            <form action="">
+                                <button class="exit_button button_confirm" id="button_confirm">
+                                    <span>회원 탈퇴</span>
+                                </button>
+                                <button class="exit_button button_cancel">
+                                    <span>회원 탈퇴 취소</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -162,16 +164,15 @@
     $($checkboxs).on('click', (e)=>{
         var $hidden = $(e.currentTarget).children('span.is-hidden');
         var $show = $(e.currentTarget).children('span.is-show');
-
+        
         $hidden.removeClass('is-hidden').addClass('is-show');
         $show.removeClass('is-show').addClass('is-hidden');
-
-        console.log($checkboxs.children('span.is-flex.btn_accept.is-show').length);
-        console.log($checkboxs.children('span.is-flex.btn_accept.is-show').length == 2);
-        if($checkboxs.children('span.is-flex.btn_accept.is-show').length == 2){
-            $('#button_confirm').addClass('button_active');
-        } else if($('#button_confirm').hasClass('button_active')){
-            $('#button_confirm').removeClass('button_active');
+        var isAcceptAll = $checkboxs.children('span.is-flex.btn_accept.is-show').length == 2;
+        
+        if(isAcceptAll){
+            $btnConfirm.addClass('button_active');
+        } else if($btnConfirm.hasClass('button_active')){
+            $btnConfirm.removeClass('button_active');
         }
     });
 </script>
