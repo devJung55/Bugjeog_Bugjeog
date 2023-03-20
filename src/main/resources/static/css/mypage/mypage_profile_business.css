@@ -48,9 +48,9 @@ aside.Title_wrapper>picture>img {
 }
 aside.Title_wrapper>picture>span {
     z-index: 1;
-    font-size: 30px;
+    font-size: 20px;
     color: white;
-    margin-top: 30px;
+    margin-top: 62px;
     display: inline-block;
     margin-left: 16px;
 }
@@ -270,15 +270,28 @@ select.JobSearchIntentionSelector-select {
     background: none;
 }
 
-div.modal-background {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: rgba(10,10,10,.86);
+div.box.modal_box {
+    min-width: 25vw;
+    min-height: 50vh;
+    background-color: #e1e2e3;
 }
 
-div.modal-content {
-        position: relative;
+div.apply_wrapper {
+    background-color: #36f;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px 0;
+}
+
+div.apply_wrapper>span>a {
+    color: #fff;
+}
+
+div.apply_wrapper_upper {
+    display: flex;
+    justify-content: flex-end;
 }
