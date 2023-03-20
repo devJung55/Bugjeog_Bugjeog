@@ -368,6 +368,7 @@ span.svg_icon svg {
 
     /* margin: 0 166px; */
     padding: 0px 0% 0 19.9%;
+    /* padding: 0px 0% 0 11.9%; */
 }
 
 .slick-track:before {
@@ -729,8 +730,8 @@ h2.matching_title {
 
 nav.short_container {
     margin: 0 auto;
-    padding: 60px 0 85px;
-        max-width: 1060px;
+    padding: 80px 0 15px;
+    max-width: 1060px;
 }
 
 nav.short_container ul {
@@ -811,7 +812,7 @@ aside.ranking_wrapper {
 
 header.ranking_header {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 header.ranking_header h2 {
@@ -1205,4 +1206,21 @@ p.footer_text {
     padding: 0.3em 0 0;
     line-height: 100%;
     font-weight: 700;
+}
+
+.lsc_wrapper {
+    position: relative;
+}
+
+.sort_wrapper {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.sort_wrapper div {
+    font-weight: 600;
+    margin-left: 10px;
+    cursor: pointer;
 }
