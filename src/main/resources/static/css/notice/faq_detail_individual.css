@@ -28,6 +28,7 @@ body a, body a:hover, body a:focus {
 }
 
 
+
 /* 헤더 */
 .header {
     background-color: rgba(204, 96, 47, 0);
@@ -203,9 +204,6 @@ img {
     line-height: 1.6;
 }
 
-p {
-    margin: 0 0 10px;
-}
 
 .article_body ul {
     list-style-type: disc;
@@ -424,9 +422,16 @@ footer {
     margin-left: auto;
 }
 
+
+strong {
+    font-weight: 700;
+}
+
 p {
     margin: 0 0 10px;
+    font-size: 15.4px;
 }
+
 
 .footer-aside-container p {
     margin-bottom: 0;
