@@ -1,83 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>첨부파일 썸네일</title>
-        <style>
-            div {
-                width: 150px;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* 창고사진등록 */
+.imageContainer {
+  flex: 1 1 0%;
+  width: 333px;
+}
 
-            div.file-name {
-                text-align: center;
-                font-size: 20px;
-            }
+.imageWrapperPadding > div{
+  padding: 3px 0px 0px;
+}
 
-            label[for='attach'] div.image {
-                position: relative;
-                height: 150px;
-                background-image: url('https://cdn-icons-png.flaticon.com/512/272/272446.png');
-                background-size: 100%;
-                cursor: pointer;
-            }
+.imageWrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0px;
+}
 
-            div span {
-                text-align: center;
-                display: none;
-                width: 30px;
-                height: 30px;
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 20px;
-                font-weight: bold;
-                color: white;
-                background-color: #00000094;
-            }
-        </style>
-    </head>
-    <body>
-        <label for="attach">
-                <div class="image">
-                    <span>X</span>
+.imageDiv{
+  display: flex;
+    flex-flow: row wrap;
+    gap: 9px;
+    font-size: 20px !important;
+}
+
+.imgTextWrapper{
+  margin: 11px 0px 7px;
+  line-height: 16px;
+  font-size: 13px;
+  color: rgb(153, 153, 153);
+}
+
+.imageDiv > div {
+  height: 72px;
+  width: 72px;
+}
+
+imageDiv > span {
+  font-size: 20px;
+}
+
+.imgButton{
+  cursor:pointer;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 6px;
+}
+
+.imageFileInput{
+  display: none;
+}
+
+.closeImgButton {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuNSIgY3g9IjkiIGN5PSI5IiByPSI5Ii8+CiAgICAgICAgPGcgc3Ryb2tlPSIjRkZGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTEyLjI1OSAxMi4xMzUgNS43NjggNS42NDRNNS43NjIgMTIuMTMzbDYuNDk3LTYuNDk3Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K) 0px 0px no-repeat;
+}
+
+.cameraIconImg{
+  margin: 20px;
+  display: inline-block;
+  width: 1.875rem;
+  height: 1.875rem;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwYXRoIGQ9Ik0wIDBoMzB2MzBIMHoiLz4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Ljc3OSA2LjExMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjMiPgogICAgICAgICAgICA8cGF0aCBkPSJNMTEuNzkyIDBjLjM5OSAwIC43MTcuMDU2Ljk1NS4xNy4xNzkuMDg0LjM0Ni4xOTkuNTAzLjM0NGwuMTUzLjE1NS42MzEuNzAzYy4xMjIuMTMuMjM0LjIzMy4zMzcuMzFhLjk1Ljk1IDAgMCAwIC4zNC4xNmMuMTI1LjAzMS4yOTIuMDQ3LjUwMy4wNDdsMi45MDYtLjAwM2MxLjI4NCAwIDIuMzI0IDEuMDYyIDIuMzI0IDIuMzd2MTEuMTUxYzAgMS4zMS0xLjA0IDIuMzctMi4zMjQgMi4zN0gyLjMyNGMtMS4yODMgMC0yLjMyNC0xLjA2LTIuMzI0LTIuMzdWNC4yNTdjMC0xLjMxIDEuMDQtMi4zNyAyLjMyNC0yLjM3aDIuOTgzYy4yNDUtLjAwOS40MzItLjA0NS41NTktLjEwOC4xMS0uMDU1LjIzLS4xNDUuMzYtLjI3bC4xMzQtLjEzNy42MzEtLjcwM2MuMi0uMjIuNDE4LS4zODcuNjU3LS41LjE5LS4wOS40MzItLjE0NC43MjUtLjE2Mkw4LjYwMyAwaDMuMTg5eiIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMC4xNDIiIGN5PSI5LjUyOSIgcj0iMy41NTYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.imageThumbnail{
+  background-position: center;
+  height: 72px;
+  width: 72px;
+  display: inline-flex;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.imgTextDiv {
+  display: flex;
+  flex-direction: row;
+  margin-top: 7px;
+}
+    </style>
+</head>
+<body>
+    <!-- 창고사진등록 -->
+    <div class="termsLine"></div>
+    <div class="termStart">
+        <div class="termsLayout">
+            <div class="termsTitle">
+                <label class="termsLabel">
+                    창고사진등록<span class="RequiredInput">*</span>
+                </label>
+            </div>
+            <div class="imageContainer">
+                <div class="imageWrapperPadding">
+                    <div class="imageWrapper">
+                        <div id="thumbnail-list" class="imageDiv">
+                            <div class="imgButtonWrap">
+                                <label for="photo-picker">
+                                    <div class="imgButton" >
+                                        <span class="cameraIconImg"></span>
+                                    </div>
+                                    <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="imgTextWrapper">
+                            <div class="imgTextDiv">
+                                <span></span>
+                                30MB 이하의 이미지만 업로드 가능합니다.
+                            </div>
+                            <div class="imgTextDiv">
+                                <span></span>
+                                상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
+                            </div>
+                            <div class="imgTextDiv">
+                                <span></span>
+                                사진은 최대 8장까지 등록가능합니다.
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <div class="file-name"></div>
-        </label>
-        <input type="file" id="attach" style="display: none" />
-    </body>
-    <script>
-        const file = document.querySelector('input[type=file]');
-        const imgDiv = document.querySelector('label[for=attach] div');
-        const closeSpan = document.querySelector('div span');
-        const input = document.querySelector('#attach');
-        const fileName = document.querySelector('.file-name');
+            </div>
+        </div>
+    </div>
+    <div class="submitLayout">
+        <button class="submitButton" type="submit" width="240" height="56" radius="3">
+            <span class="buttonBox">등록하기</span>
+        </button>
+    </div>
+    </div>
+</div>
+</body>
+<script>
+    /* 파일 썸네일 */
+/* 파일인풋 */
+const file = document.querySelector('input[type=file]');
+const imgButton = document.querySelector(".imgButton");
+console.log(imgButton);
+/* x버튼 */
+ const closeButton = document.querySelector('span.closeImgButton'); 
 
-        // x 버튼을 누르면, 기본 이미지로 변경!
-        closeSpan.addEventListener('click', function (e) {
-            e.preventDefault();
-            input.value = "";
-            fileName.innerHTML = "";
-            this.style.display = 'none';
-            imgDiv.style.backgroundImage = `url('https://cdn-icons-png.flaticon.com/512/272/272446.png')`;
-        });
+let count = 0;
+function handleFiles(files) {
+    /* 썸네일 담을 div */
+    const thumbnailList = document.getElementById("thumbnail-list");
 
-        file.addEventListener('change', function (e) {
-            let name = e.target.files[0].name;
-            fileName.innerHTML = name;
-            closeSpan.style.display = "inline-block";
-            this.style.display = 'none';
-            let reader = new FileReader();
-            reader.readAsDataURL(e.target.files[0]);
-            reader.onload = function (e) {
-                let result = e.target.result;
-                if (result.includes('image')) {
-                    imgDiv.style.backgroundImage = `url('${result}')`;
-                } else {
-                    imgDiv.style.backgroundImage = `url('no_image.png')`;
-                }
-            };
-        });
-    </script>
+    /* 파일 개수가 8개 이상이면 모달창 띄우고 break */
+    for (let i = 0; i < files.length; i++) {
+        if(files.length > 8) {
+            showModal.classList.add("showModal");
+            break;
+        }
+
+      /* 파일절대경로얻기 */  
+      const file = files[i];
+      const reader = new FileReader();
+
+      /* <div id="thumbnail-list" class="imageThumbnail"> <span class="closeImgButton"></span> </div> */
+      /* 원래 넣고 싶은 html인데 background image를 바꿔줘야 하는데 안먹음 */
+      /* 썸네일 담을 div의 자식에게 img로 생성 */
+      reader.onload = function(event) {
+        const thumbnail = document.createElement("img");
+        thumbnail.append
+        let result = event.target.result;
+        thumbnail.classList.add("imageThumbnail");
+        thumbnail.src = event.target.result;
+        thumbnailList.prepend(thumbnail);
+        };
+      reader.readAsDataURL(file);
+    }
+
+    /* files의 lenght가 파일을 onload 했을 때 갯수로 들어감 */
+    /* 그래서 count 전역변수로 선언해서 onload 할때마다 갯수 더해줌 */
+    count += files.length
+    console.log("count: "+ count);
+
+    /* 7개 onload 후 2개 onload하면 8개 초과로 이미지가 추가가 되면 안되는데 추가가 되는 오류가 있음 */
+    if(files.length <= 8){
+        if(count > 7) {
+            imgButton.style.display = "none";
+            const thumbnail = document.removeElement("img");
+        }
+    }
+}
+
+const fileInput = document.getElementById("photo-picker");
+
+fileInput.addEventListener("change", function(event) {
+    handleFiles(event.target.files);
+});
+</script>
 </html>
