@@ -207,7 +207,6 @@ div.info_wrapper {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    justify-content: space-between;
     padding: 0 !important;
 }
 
@@ -246,7 +245,7 @@ p.exit_site {
     letter-spacing: 0.0056em;
     font-size: 14px;
     line-height: 24px;
-    min-width: 120px;
+    min-width: 80px;
     margin: 0px 12px;
 }
 
@@ -288,6 +287,12 @@ div.accept_wrapper {
     margin: 10px 0px;
 }
 
+div.accept_wrapper>span {
+    display: flex;
+}
+div.accept_wrapper>span>img {
+    width: 24px;
+}
 div.accept_checkbox {
     width: 18px;
     height: 18px;

@@ -1,0 +1,21 @@
+div.is_answer {
+    width: 60px;
+    height: 30px;
+    border: 1px solid #f4f4f4;
+    border-radius: 10px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 12px;
+}
+
+div.answer_no {
+    color: #ccc;
+    background-color: #f2f4f7;
+}
+
+div.answer_yes {
+    color: #fff;
+    background-color: #36f;
+}
