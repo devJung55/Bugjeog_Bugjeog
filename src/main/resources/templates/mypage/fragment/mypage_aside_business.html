@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,59 +11,60 @@
     <!-- <link rel="stylesheet" href="../../static/css/mypage/mypage.css"> -->
 </head>
 
-<body class="mypage">
-    <!-- <div class="mypage-wrapper"> -->
+<body>
+        <!-- <div class="mypage-wrapper"> -->
 
         <!-- 공통요소(컨테이너) -->
         <!-- <section class="Container_Profile mypage is-block"> -->
-            <!-- <main class="MatchUp-Container"> -->
-                <!-- CareerConnectBanner_ MatchUp_CareerConnectBanner_ -->
+        <!-- <main class="MatchUp-Container"> -->
+        <!-- CareerConnectBanner_ MatchUp_CareerConnectBanner_ -->
 
-                <!-- 사이드 바 -->
-                <aside class="Aside is-block">
+        <!-- 사이드 바 -->
+        <aside th:fragment="aside_business" class="Aside is-block">
 
-                    <header class="Aside-profile Aside-content">
-                        <div class="Aside-avatar">
-                            <div class="Aside-avatar_image">
-                                <img src="../../static/image/mypage/user_icon.png" alt=".\img\user_icon.png">
-                            </div>
-                        </div>
-                        <div class="Aside-me">
-                            <div class="Aside-me_name">이준상</div>
-                            <div class="Aside-me_email">miraclelee0613@gmail.com</div>
-                            <div class="Aside-me_tel">010-7728-7518</div>
-                        </div>
-                        <a href="" class="Aside-edit is-flex">기본정보 수정</a>
-                    </header>
-
-                    <div class="MatchUpStatus-container Aside-content list_container">
-                        <a href="" class="MatchUpStatus-item">
-                            <span>관심 업체</span>
-                            <strong>0</strong>
-                        </a>
-                        <a href="" class="MatchUpStatus-item">
-                            <span>방문자 수</span>
-                            <strong>0</strong>
-                        </a>
-                        <a href="" class="MatchUpStatus-item">
-                            <span>거래 요청</span>
-                            <strong>0</strong>
-                        </a>
+            <header class="Aside-profile Aside-content">
+                <div class="Aside-avatar">
+                    <div class="Aside-avatar_image">
+                        <img src="../../static/image/mypage/user_icon.png" alt=".\img\user_icon.png">
                     </div>
-                    <div class="Aside-pageList Aside-content list_container">
-                        
-                        <a href="" class="Aside-setting">계정 설정</a>
+                </div>
+                <div class="Aside-me">
+                    <div class="Aside-me_name">이준상</div>
+                    <div class="Aside-me_email">miraclelee0613@gmail.com</div>
+                    <div class="Aside-me_tel">010-7728-7518</div>
+                </div>
+                <a href="" class="Aside-edit is-flex">기본정보 수정</a>
+            </header>
 
-                        <!-- My원티드 페이지가 아닐 경우 활성화 -->
-                        <a href="" class="Aside-myinfo">My 원티드</a>
+            <div class="MatchUpStatus-container Aside-content list_container">
+                <a href="" class="MatchUpStatus-item">
+                    <span>관심 업체</span>
+                    <strong>0</strong>
+                </a>
+                <a href="" class="MatchUpStatus-item">
+                    <span>방문자 수</span>
+                    <strong>0</strong>
+                </a>
+                <a href="" class="MatchUpStatus-item">
+                    <span>거래 요청</span>
+                    <strong>0</strong>
+                </a>
+            </div>
+            <div class="Aside-pageList Aside-content list_container">
 
-                        <!-- 프로필 페이지가 아닐 경우 활성화 -->
-                        <a href="" class="Aside-profile">프로필</a>
-                    </div>
-                </aside>
-            <!-- </main> -->
+                <a href="" class="Aside-setting">계정 설정</a>
+
+                <!-- My원티드 페이지가 아닐 경우 활성화 -->
+                <a href="" class="Aside-myinfo">My 원티드</a>
+
+                <!-- 프로필 페이지가 아닐 경우 활성화 -->
+                <a href="" class="Aside-profile">프로필</a>
+            </div>
+        </aside>
+        <!-- </main> -->
         <!-- </section> -->
-    <!-- </div> -->
+        <!-- </div> -->
+    </div>
 </body>
 
 </html>
