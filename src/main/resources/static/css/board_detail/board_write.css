@@ -16,3 +16,37 @@ width: 1.125rem;
 height: 1.125rem;
 background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuNSIgY3g9IjkiIGN5PSI5IiByPSI5Ii8+CiAgICAgICAgPGcgc3Ryb2tlPSIjRkZGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTEyLjI1OSAxMi4xMzUgNS43NjggNS42NDRNNS43NjIgMTIuMTMzbDYuNDk3LTYuNDk3Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K) 0px 0px no-repeat;
 }
+.cate-button {
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    min-width: 64px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e2e4;
+    outline: none;
+    scroll-snap-align: start;
+    height: 40px;
+    position: relativet;
+    display: flex;
+    padding: 9px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 146.7%;
+    color: #8a8a8a;
+}
+
+.cate-button-box{
+    color: #36f;
+    border: 1px solid #36f;
+}
+.cate-button-active{
+    color: #36f;
+    border: 1px solid #36f;
+}
+.category_span{
+    width: 100%;
+    cursor: pointer;
+}
