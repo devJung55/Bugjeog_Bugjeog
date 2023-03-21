@@ -13,6 +13,10 @@
             <div class="gapWithLogin">
                 <div class="allLogIn">
                     <div class="inside">
+                        <div class="choice-container">
+                            <div class="private-business">개인</div>
+                            <div class="private-business">사업자</div>
+                        </div>
                         <div class="logoPart">
                             <span class="logo">
                                 <img src="../../static/image/main/logo1-removebg-preview.png" class="wantedRealLogo">
@@ -24,10 +28,10 @@
                                 <h1 class="form-companyMoto">
                                     현명한 거래의 시작, 북적북적
                                 </h1>
-                                    <div class="choice-container">
+                                    <!-- <div class="choice-container">
                                         <div class="private-business">개인</div>
                                         <div class="private-business">사업자</div>
-                                    </div>
+                                    </div> -->
                                  <!-- 회사 간단 소개 -->
                                     <!-- <h2 class="form-companySimpleIntro">
                                         "취업, 이직, 커리어 콘텐츠까지"
@@ -41,10 +45,12 @@
                                             </label>
                                         </div>
                                              <!-- 이메일 입력하는 곳 -->
-                                              <input type="email" placeholder="이메일을 입력해 주세요." name="email" class="form-input-writeEmail"> <!-- value 값 있음 -->
+                                              <input type="email" placeholder="이메일을 입력해 주세요." name="email" class="form-input-writeEmail id-input"> <!-- value 값 있음 -->
+                                              <p class="error-message-email"></p>
                                               <!-- 비밀번호 입력 -->
-                                              <input type="email" placeholder="비밀번호를 입력해 주세요." name="email" class="form-input-writeEmail"> <!-- value 값 있음 -->
-                                              <button type="submit" class="form-button-countinueEmail">
+                                              <input type="password" placeholder="비밀번호를 입력해 주세요." name="email" class="form-input-writeEmail password-input" id="inputPW"> <!-- value 값 있음 -->
+                                              <p class="error-message-password"></p>
+                                              <button type="submit" class="form-button-countinueEmail" disabled>
                                                        <span class="form-button-cuntinueEmail-ment">
                                                        이메일로 로그인
                                                        </span>
