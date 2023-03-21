@@ -21,7 +21,7 @@
     $name.blur(function(){
         let nameVal = $name.val();
         if(!nameVal){
-            $nameError.text("이름을 입력해주세요.");
+            $nameError.text("대표자명을 입력해주세요.");
         }else {
             $nameError.text("");
         }
@@ -34,7 +34,7 @@
     $companyName.blur(function(){
         let companyNameVal = $companyName.val();
         if(!companyNameVal){
-            $companyNameError.text("대표자명을 입력해주세요.");
+            $companyNameError.text("회사명을 입력해주세요.");
         }else {
             $companyNameError.text("");
         }
