@@ -64,7 +64,8 @@
                                     <p class="exit_account">탈퇴하려는 계정</p>
                                     <div class="profile_wrapper">
                                         <div class="profile_img">
-                                            <img src="https://static.wanted.co.kr/oneid-user/EJFYAcYpUoRwvZhu8KMYB7/kL7znP8HLscoJSREZnW3zB.jpg" alt="">
+                                            <img src="https://static.wanted.co.kr/oneid-user/EJFYAcYpUoRwvZhu8KMYB7/kL7znP8HLscoJSREZnW3zB.jpg"
+                                                alt="">
                                         </div>
                                         <p class="profile_email">miraclelee0613@gmail.com</p>
                                     </div>
@@ -74,12 +75,11 @@
                                     <div class="info_wrapper">
                                         <div class="info_logo">
                                             <div class="logo_wrapper">
-                                                <img src="../../static/image/boardList/logo-icon.png" alt="">
+                                                <img src="../../static/image/main/logo1-removebg-preview.png" alt="">
                                                 <!-- <img src="../../static/image/boardList/logo_title.png" alt=""> -->
                                             </div>
                                         </div>
-                                        <p class="exit_site">북적북적</p>
-                                        <div>
+                                        <div class="list_wrapper">
                                             <p class="list_content">
                                                 · 활동 데이터
                                             </p>
@@ -94,31 +94,50 @@
 
                                 <div>
                                     <!-- first -->
-                                    <div class="accept_wrapper">
-                                        <div class="accept_checkbox"></div>
+                                    <label class="accept_wrapper">
+                                        <!-- 빈 체크박스 -->
+                                        <span class="is-flex is-show">
+                                            <img src="../../static/image/mypage/checkbox-64.png" alt=""
+                                                style="width: 24px;">
+                                        </span>
+
+                                        <!-- 체크된 체크박스 -->
+                                        <span class="is-flex is-hidden btn_accept">
+                                            <img src="../../static/image/mypage/checkbox-checked-64.png" alt=""
+                                                style="width: 24px;">
+                                        </span>
                                         <input class="accept_checkbox" type="text">
                                         <div class="accept_text_wrapper">
                                             <p class="accept_text">회원 탈퇴 이후 미결된 금액을 받을 수 없음을 이해했으며 동의합니다.</p>
                                         </div>
-                                    </div>
-                                    
+                                    </label>
+
                                     <!-- second -->
-                                    <div class="accept_wrapper">
-                                        <div class="accept_checkbox">
-                                        </div>
+                                    <label class="accept_wrapper">
+                                        <!-- 빈 체크박스 -->
+                                        <span class="is-flex is-show">
+                                            <img src="../../static/image/mypage/checkbox-64.png" alt="">
+                                        </span>
+
+                                        <!-- 체크된 체크박스 -->
+                                        <span class="is-flex btn_accept is-hidden">
+                                            <img src="../../static/image/mypage/checkbox-checked-64.png" alt="">
+                                        </span>
                                         <input class="accept_checkbox" type="text">
                                         <div class="accept_text_wrapper">
                                             <p class="accept_text">회원 탈퇴를 진행하여 해당 OneID 계정에 귀속된 모든 정보를 삭제하는 데 동의합니다.</p>
                                         </div>
-                                    </div>
+                                    </label>
                                 </div>
                             </article>
-                            <button class="exit_button button_confirm">
-                                <span>회원 탈퇴</span>
-                            </button>
-                            <button class="exit_button button_cancel">
-                                <span>회원 탈퇴 취소</span>
-                            </button>
+                            <form action="">
+                                <button class="exit_button button_confirm" id="button_confirm">
+                                    <span>회원 탈퇴</span>
+                                </button>
+                                <button class="exit_button button_cancel">
+                                    <span>회원 탈퇴 취소</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -133,6 +152,27 @@
     $(function () {
         $('#header').load('fragment/mypage_dedicated_header.html');
         // $('.footer_html').load('footer.html');
+    });
+</script>
+<script>
+    const $checkboxs = $('label.accept_wrapper');
+    const $checkboxAceept = $('span.btn_accept');
+    const $btnConfirm = $('#button_confirm');
+
+    // console.log($($checkboxs[0]).children('span'));
+    $($checkboxs).on('click', (e)=>{
+        var $hidden = $(e.currentTarget).children('span.is-hidden');
+        var $show = $(e.currentTarget).children('span.is-show');
+        
+        $hidden.removeClass('is-hidden').addClass('is-show');
+        $show.removeClass('is-show').addClass('is-hidden');
+        var isAcceptAll = $checkboxs.children('span.is-flex.btn_accept.is-show').length == 2;
+        
+        if(isAcceptAll){
+            $btnConfirm.addClass('button_active');
+        } else if($btnConfirm.hasClass('button_active')){
+            $btnConfirm.removeClass('button_active');
+        }
     });
 </script>
 

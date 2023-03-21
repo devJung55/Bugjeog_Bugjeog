@@ -4,6 +4,8 @@ section.main_container {
     border: 0;
     box-sizing: border-box;
     padding-left: 270px;
+    margin-bottom: 24px;
+    min-height: 672px;
 }
 
 header.summary_wrapper {
@@ -308,7 +310,7 @@ div.AuthorBox_avatar img {
     height: 100%;
 }
 
-a.PostItem_body {
+.PostItem_body {
     box-sizing: border-box;
     display: block;
     width: 730px;
@@ -363,6 +365,14 @@ div.PostItem_like, div.PostItem_comments {
     color: #36f;
 }
 
+div.PostItem_like label {
+    cursor: pointer;
+}
+
+div.PostItem_comments {
+    margin-left: 8px;
+}
+
 div.PostItem_like img, div.PostItem_comments img {
     overflow-clip-margin: content-box;
     overflow: hidden;
@@ -380,4 +390,12 @@ div.PostItem_like span, div.PostItem_comments span {
     font-size: 12px;
     margin-left: 4px;
     padding: 0.3em 0 0;
+}
+
+.PostItem_content {
+    color: #363636;
+}
+
+div.paging_wrapper {
+    margin-bottom: 16px;
 }

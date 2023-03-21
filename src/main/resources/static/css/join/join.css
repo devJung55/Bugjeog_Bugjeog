@@ -10,6 +10,7 @@
 } */
 /* 이부분 지울지 말지 */
 html, body, #__next {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -606,5 +607,23 @@ input[type="checkbox" i] {
 
 .join-final-btn-ment:disabled span {
     color: #ccc;
+}
+
+.error-msg {
+    font-size: 14px;
+    color: red;
+}
+
+.phone-active {
+    border : 1px solid #e1e2e3;
+    background-color: #fff;
+}
+
+.phone-active span {
+    color: #36f;
+}
+
+.authcode-input {
+    background-color: #f2f4f7;
 }
 

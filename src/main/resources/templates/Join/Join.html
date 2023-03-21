@@ -32,11 +32,13 @@
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
                                 <input type="email" placeholder="이메일을 입력해주세요." name="email" class="join-info-input" value>
+                                <span class="email-error error-msg"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
-                                <label for="username" class="join-infor-ment">이름</label>
+                                <label for="memberName" class="join-infor-ment">이름</label>
                             </div>
-                                <input type="text" placeholder="이름을 입력해주세요." name="username" class="join-info-input">
+                                <input type="text" placeholder="이름을 입력해주세요." name="memberName" class="join-info-input">
+                                <span class="name-error error-msg"></span>
                              <!-- 휴대폰 번호 입력 -->
                             <div class="join-infor-write-border">
                                 <label for="mobile" class="join-infor-ment">휴대폰 번호</label>
@@ -48,13 +50,14 @@
                                     </select>
                                 </div> -->
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="(예시) 01013245768" name="mobile" class="join-info-input">
+                                    <input type="text" placeholder="(예시) 01013245768" name="memberPhoneNumeber" class="join-info-input">
                                     <button type="button" class="join-num-check-button">
                                         <span class="join-code-num">인증번호 받기</span>
                                     </button>
                                 </div>
+                                <span class="phone-error error-msg"></span>
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input">
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input">
                                 </div>
                             </div> 
                             <!-- 비밀번호 -->
@@ -152,5 +155,57 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../static/js/login/login.js"></script>
+<script>
+
+    // 이메일 검사
+    const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    const $email = $("input[name='email']");
+    const $emailError = $(".email-error");
+
+    $email.blur(function(){
+        let emailVal = $email.val();
+        if(!emailVal){
+            $emailError.text("이메일을 입력해주세요.");
+        }else if(!regEmail.test(emailVal)){
+            $emailError.text("이메일 형식에 맞춰서 작성해주세요.");
+        }else {
+            $emailError.text("");
+        }
+    });
+
+    // 이름 검사
+    const $name = $("input[name='memberName']");
+    const $nameError = $(".name-error");
+
+    $name.blur(function(){
+        let nameVal = $name.val();
+        if(!nameVal){
+            $nameError.text("이름을 입력해주세요.");
+        }else {
+            $nameError.text("");
+        }
+    });
+
+    // 휴대폰 검사
+    const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
+    const $phone = $("input[name='memberPhoneNumeber']");
+    const $phoneError = $(".phone-error");
+    const $Checkbutton = $(".join-num-check-button");
+
+    $phone.blur(function(){
+        let phoneVal = $phone.val();
+        if(!phoneVal){
+            $Checkbutton.removeClass("phone-active");
+            $phoneError.text("핸드폰 번호를 입력해주세요.");
+        }else if(!regPhone.test(phoneVal)){
+            $Checkbutton.removeClass("phone-active");
+            $phoneError.text("올바른 형식이 아닙니다.");
+        }else {
+            $Checkbutton.addClass("phone-active");
+            $phoneError.text("");
+        }
+    });
+
+    
+</script>
 </html>

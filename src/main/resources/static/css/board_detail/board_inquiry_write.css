@@ -1,5 +1,5 @@
 body{
-    font-family: "Noto Sans KR", sans-serif !important;
+    font-family: Pretendard Variable,Pretendard JP Variable,-apple-system, system-ui,BlinkMacSystemFont,Roboto,Segoe UI,Helvetica,Arial,Apple SD Gothic Neo, Nanum Gothic,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
@@ -335,6 +335,9 @@ img {
 .arrow-ircon {
     width: 11px;
 }
+
+
+
 /* 푸터 */
 footer {
     background-color: rgba(255, 255, 255, 1);
@@ -378,15 +381,16 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
     float: left;
-    width: 15%;
+    width: 7%;
     margin-top: 5px;
     text-align: left;
 }
 
 .footer-image {
-    margin-bottom: -80px;
-    margin-top: -82px;
-    max-width: 210px;
+    max-height: 33px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 0px;
 }
 
 .footer-image-box {
@@ -443,24 +447,6 @@ p {
     line-height: 1.5;
     color: #666666;
     font-size: 13px;
-}
-
-.footer-info {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    float: left;
-    width: 7%;
-    margin-top: 5px;
-    text-align: left;
-}
-
-.footer-image {
-    max-height: 33px;
-    margin-top: 12px;
-    max-width: 200px;
-    margin-right: 0px;
 }
 
 

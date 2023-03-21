@@ -242,10 +242,7 @@ div.category_wrapper>span {
 div.card_location {
     font-size: small;
 }
-div.paging_wrapper{
-    display: flex;
-    justify-content: center;
-}
+
 
 /* ul.num_wrapper {
 
@@ -255,11 +252,3 @@ ul>span {
     margin-right: 3px;
 }
 
-ul.num_wrapper li {
-    display: inline-block;
-    margin-right: 3px;
-}
-
-div.paging_wrapper>label, ul.num_wrapper>li>label {
-    cursor: pointer;
-}

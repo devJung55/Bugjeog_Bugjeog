@@ -407,6 +407,8 @@ img {
     max-width: 200px;
     margin-right: 0px;
 }
+
+
 /* 푸터 */
 footer {
     background-color: rgba(255, 255, 255, 1);
@@ -450,15 +452,16 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
     float: left;
-    width: 15%;
+    width: 7%;
     margin-top: 5px;
     text-align: left;
 }
 
 .footer-image {
-    margin-bottom: -80px;
-    margin-top: -82px;
-    max-width: 210px;
+    max-height: 33px;
+    margin-top: 12px;
+    max-width: 200px;
+    margin-right: 0px;
 }
 
 .footer-image-box {
@@ -517,22 +520,5 @@ p {
     font-size: 13px;
 }
 
-.footer-info {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    float: left;
-    width: 7%;
-    margin-top: 5px;
-    text-align: left;
-}
-
-.footer-image {
-    max-height: 33px;
-    margin-top: 12px;
-    max-width: 200px;
-    margin-right: 0px;
-}
 
 
