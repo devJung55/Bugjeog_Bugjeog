@@ -207,7 +207,6 @@ div.info_wrapper {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    justify-content: space-between;
     padding: 0 !important;
 }
 
@@ -246,7 +245,7 @@ p.exit_site {
     letter-spacing: 0.0056em;
     font-size: 14px;
     line-height: 24px;
-    min-width: 120px;
+    min-width: 80px;
     margin: 0px 12px;
 }
 
@@ -277,7 +276,7 @@ hr.exit_partition_line {
     height: 1px;
 }
 
-div.accept_wrapper {
+label.accept_wrapper {
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -288,6 +287,12 @@ div.accept_wrapper {
     margin: 10px 0px;
 }
 
+label.accept_wrapper>span {
+    display: flex;
+}
+label.accept_wrapper>span>img {
+    width: 24px;
+}
 div.accept_checkbox {
     width: 18px;
     height: 18px;
@@ -400,4 +405,5 @@ div.wrapper_wrapper p.profile_email {
     margin-block-end: 0;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    margin-left: 8px;
 }

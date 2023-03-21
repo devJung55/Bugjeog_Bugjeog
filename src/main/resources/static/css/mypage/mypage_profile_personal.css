@@ -363,6 +363,10 @@ div.PostItem_like, div.PostItem_comments {
     color: #36f;
 }
 
+div.PostItem_comments {
+    margin-left: 8px;
+}
+
 div.PostItem_like img, div.PostItem_comments img {
     overflow-clip-margin: content-box;
     overflow: hidden;

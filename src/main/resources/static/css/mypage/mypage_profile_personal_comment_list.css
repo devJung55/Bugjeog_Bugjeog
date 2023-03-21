@@ -1,0 +1,43 @@
+h3.Author_title {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    line-height: 23px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.AuthorBox_horizontalBox {
+    margin-right: 50px;
+}
+
+a.PostItem_body {
+    display: flex;
+    padding: 0;
+}
+
+a.PostItem_body>div {
+    margin: auto 0;
+    margin-left: 24px;
+}
+
+a.PostItem_body>div>img {
+    width: 16px;
+    height: 16px;
+}
+
+a.PostItem_body>p {
+    margin-left: 8px;
+}

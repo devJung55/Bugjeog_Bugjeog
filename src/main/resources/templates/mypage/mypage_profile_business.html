@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +10,61 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../../static/css/mypage/font.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile_business.css">
 </head>
-
-<body class="profile_body">
+<style>
+    body.profile_body {
+        background-color: #f8f8f8;
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+<body class="profile_body is-relative">
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                <div class="modal_content_wrapper">
+                    <section class="info_content">
+                        <p class="manageAccount">
+                            유통 분야 설정
+                        </p>
+                        <p class="manageAccount_message">
+                            유통 분야를 관리할 수 있습니다.
+                        </p>
+                        <ul class="info_wrapper">
+                            <li class="emailChange">
+                                <p class="changeTitle">대분류(기존:${})</p>
+                                <br>
+                                <select name="large_category"></select>
+                            </li>
+                            <li class="emailChange">
+                                <p class="changeTitle">소분류(기존:${})</p>
+                                <br>
+                                <select name="small_category"></select>
+                            </li>
+                            <div class="modal_apply_label_wrapper is-hidden">
+                                <label for="">
+                                    <div class="apply_wrapper btn_active">
+                                        <button type="submit" class="is-hidden">
+                                        </button>
+                                        <span>적용하기</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </ul>
+                    </section>
+                    <section>
+                        
+                    </section>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!--  -->
     <div class="Container_Profile">
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
@@ -28,179 +79,96 @@
                 <!-- <aside th:replace="~{fragment/mypage_aside_business :: aside_business}"></aside> -->
                 <aside class="Aside_include"></aside>
                 <section>
-                    <aside class="CareerConnectBanner">
+                    <aside class="Title_wrapper">
                         <picture>
-                            <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
+                            <span>유통 분야 설정</span>
                             <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
                         </picture>
                     </aside>
                     <div>
-                        <!--
-                        <div class="MatchUpForm ResumeWordCountWarning-Wrapper is-flex">
-                            <div class="ResumeWordCountWarning-body is-flex" style="display: flex;">
-                                <p class="ResumeWordCountWarning-count">
-                                    이력서 글자 수 :
-                                    <span class="current_char">343자</span>
-                                    / 최소 400자
-                                </p>
-                                <p class="ResumeWordCountWarning-guide">글자 수가 400자 이상이면, 직접 제안받을 확률이 높아집니다.</p>
-                            </div>
-                            <a href="" class="ResumeWordCountWarning-button is-flex">이력서 강화하기</a>
-                        </div>
-                        <div class="MatchUpForm MainResume_Wrapper">
-                            <header class="Form-header MainResume_Header">
-                                <h1 class="Form-title">
-                                    <dt>기본 이력서</dt>
-                                </h1>
-                            </header>
-                            <div class="FormBlock">
-                                <div class="FormBlock-content">
-                                    <div class="MainResume-Static_Wrapper">
-                                        <div class="MainResume-Static_label is-flex">기본 이력서 선택</div>
-                                        <div class="MainResume-Static_body">
-                                            <div class="MainResume-DefaultResumeSelector">
-                                                <button class="MainResume-DefaultResumeSelector_button is-flex">
-                                                    <div class="ResumeLang_container">한</div>
-                                                    <span>이준상 1</span>
+                        <div class="MatchUpForm EnterInterestArea-Wrapper">
+                            <form action="">
+                                <div class="FormBlock">
+                                    <div class="FormBlock-content">
+                                        <div class="MainResume-fieldset">
+                                            <div class="fieldset-Static_content-first">
+                                                <div class="Static-label is-flex">대분류</div>
+                                                <div class="Static-body">
+                                                    동·식물성 유지
+                                                </div>
+                                            </div>
+                                            <div class="fieldset-Static_content-others">
+                                                <div class="Static-label is-flex">소분류</div>
+                                                <div class="Static-body">
+                                                    음료주류
+                                                </div>
+                                            </div>
+                                            <div class="apply_wrapper_upper is-hidden">
+                                                <label for="">
+                                                    <div class="apply_wrapper">
+                                                        <span>
+                                                            <a href="">
+                                                                적용하기
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <!-- 모달 트리거 버튼 -->
+                                            <a class="MainResume-edit js-modal-trigger" data-target="modal-js-example">
+                                                <span class="img_span is-flex">
+                                                    <img src="../../static/image/mypage/Writing-64.png" alt="">
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="">
+                                <div class="FormBlock Recommendation-Wrapper">
+                                    <div class="FormBlock content">
+                                        <div class="AdditionalForm">
+                                            <!-- <div class="FormButton">
+                                                <h6 class="FormButton-label">추천인 선택</h6>
+                                                <button class="FormButton-button">
+                                                    선택하기
+                                                    <img src="../../static/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="MainResume-fieldset">
-                                        <div class="fieldset-Static_content-first">
-                                            <div class="Static-label is-flex">학교</div>
-                                            <div class="Static-body">
-                                                <div class="ResumeEntry-wrapper">
-                                                    <span class="ResumeEnty-major">대학교 | </span>
-                                                    <span class="ResumeEnty-minor">학과</span>
+                                            <div class="FormButton">
+                                                <h6 class="FormButton-label">제외기업설정</h6>
+                                                <button class="FormButton-button">
+                                                    선택하기
+                                                    <img src="../../static/image/mypage/arrow-right-64.png" alt="">
+                                                </button>
+                                            </div> -->
+                                            <div class="InputGroup is-relative">
+                                                <h6 class="FormButton-label">운영 여부 설정</h6>
+                                                <div class="InputGroup-body">
+                                                    <div class="JobSearchIntentionSelector-wrapper">
+                                                        <select name="" id="" class="JobSearchIntentionSelector-select">
+                                                            <option value="">현재 운영 중</option>
+                                                            <option value="">운영 예정</option>
+                                                            <option value="">현재 운영 중단</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="fieldset-Static_content-second">
-                                            <div class="Static-label is-flex">직장</div>
-                                            <div class="Static-body">
-                                                <div class="ResumeEntry-wrapper">
-                                                    <span class="ResumeEnty-major">회사명</span>
-                                                    <span class="ResumeEnty-minor">직무</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="" class="MainResume-edit">
-                                            <span class="img_span is-flex">
-                                                <img src="../../static/image/mypage/Writing-64.png" alt="">
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="MainResume-about"></div>
-                                </div>
-                            </div>
-                        </div>
-                    -->
-                        <div class="MatchUpForm EnterInterestArea-Wrapper">
-                            <header class="Form-header">
-                                <dl class="Form-title">
-                                    <dt>유통 분야 설정</dt>
-                                </dl>
-                            </header>
-                            <div class="FormBlock">
-                                <div class="FormBlock-content">
-                                    <div class="MainResume-fieldset">
-                                        <div class="fieldset-Static_content-first">
-                                            <div class="Static-label is-flex">대분류</div>
-                                            <div class="Static-body">
-                                                <!-- 물류·무역 -->
-                                                식품
-                                            </div>
-                                        </div>
-                                        <div class="fieldset-Static_content-others">
-                                            <div class="Static-label is-flex">소분류</div>
-                                            <div class="Static-body">
-                                                해산물
-                                            </div>
-                                        </div>
-                                        <!--
-                                        <div class="fieldset-Static_content-others">
-                                            <div class="Static-label is-flex">운영기간</div>
-                                            <div class="Static-body">
-                                                1년
-                                            </div>
-                                        </div>
-                                        -->
-                                        <a id="modal" class="MainResume-edit js-modal-trigger" data-target="modal">
-                                            <span class="img_span is-flex">
-                                                <img src="../../static/image/mypage/Writing-64.png" alt="">
-                                            </span>
-                                        </a>
-                                        <!-- <a href="" class="MainResume-edit js-modal-trigger"
-                                            data-target="modal-js-example">
-                                            <span class="img_span is-flex">
-                                                <img src="../../static/image/mypage/Writing-64.png" alt="">
-                                            </span>
-                                        </a> -->
-                                        <div class="modal">
-                                            <div class="modal-background"></div>
-                                            <div class="modal-content">
-                                                Any other Bulma elements you want
-                                            </div>
-                                            <button class="modal-close is-large" aria-label="close"></button>
-                                        </div>
-                                        <div id="modal-js-example" class="modal">
-                                            <div class="modal-background"></div>
-
-                                            <div class="modal-content">
-                                                <div class="box">
-                                                    <p>Modal JS example</p>
-                                                    <!-- Your content -->
-                                                </div>
-                                            </div>
-
-                                            <button class="modal-close is-large" aria-label="close"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="FormBlock Recommendation-Wrapper">
-                                <div class="FormBlock content">
-                                    <div class="AdditionalForm">
-                                        <div class="FormButton">
-                                            <h6 class="FormButton-label">추천인 선택</h6>
-                                            <button class="FormButton-button">
-                                                선택하기
-                                                <img src="../../static/image/mypage/arrow-right-64.png" alt="">
-                                            </button>
-                                        </div>
-                                        <div class="FormButton">
-                                            <h6 class="FormButton-label">제외기업설정</h6>
-                                            <button class="FormButton-button">
-                                                선택하기
-                                                <img src="../../static/image/mypage/arrow-right-64.png" alt="">
-                                            </button>
-                                        </div>
-                                        <div class="InputGroup is-relative">
-                                            <h6 class="FormButton-label">운영 여부 설정</h6>
-                                            <div class="InputGroup-body">
-                                                <div class="JobSearchIntentionSelector-wrapper">
-                                                    <select name="" id="" class="JobSearchIntentionSelector-select">
-                                                        <option value="">현재 운영 중</option>
-                                                        <option value="">운영 예정</option>
-                                                        <option value="">현재 운영 중단</option>
-                                                    </select>
-                                                </div>
-                                                <!-- 
-                                                <span>
-                                                    이력서 공개중
-                                                </span>
-                                                -->
-                                                <!--                                                 
-                                                <p class="JobSearchIntentionSelector-status desc-text">
-                                                    기업으로부터 면접 제안을 받으실 수 있습니다.
-                                                </p>
-                                                -->
+                                            <div class="apply_wrapper_upper">
+                                                <label for="">
+                                                    <div class="apply_wrapper">
+                                                        <span>
+                                                            <a href="">
+                                                                적용하기
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </section>
@@ -214,53 +182,56 @@
         $('.Aside_include').load('fragment/mypage_aside_business.html');
         // $('.footer_html').load('footer.html');
     });
+
 </script>
+<script src="../../static/js/mypage/mypage_profile_business.js"></script>
+<script src="../../static/js/mypage/mypage_profile_business_select.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Functions to open and close a modal
-        function openModal($el) {
-            $el.classList.add('is-active');
-        }
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     // Functions to open and close a modal
+    //     function openModal($el) {
+    //         $el.classList.add('is-active');
+    //     }
 
-        function closeModal($el) {
-            $el.classList.remove('is-active');
-        }
+    //     function closeModal($el) {
+    //         $el.classList.remove('is-active');
+    //     }
 
-        function closeAllModals() {
-            (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-                closeModal($modal);
-            });
-        }
+    //     function closeAllModals() {
+    //         (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    //             closeModal($modal);
+    //         });
+    //     }
 
-        // Add a click event on buttons to open a specific modal
-        (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-            const modal = $trigger.dataset.target;
-            const $target = document.getElementById(modal);
+    //     // Add a click event on buttons to open a specific modal
+    //     (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    //         const modal = $trigger.dataset.target;
+    //         const $target = document.getElementById(modal);
 
-            $trigger.addEventListener('click', () => {
-                openModal($target);
-            });
-        });
+    //         $trigger.addEventListener('click', () => {
+    //             openModal($target);
+    //         });
+    //     });
 
-        // Add a click event on various child elements to close the parent modal
-        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || [])
-            .forEach(($close) => {
-                const $target = $close.closest('.modal');
+    //     // Add a click event on various child elements to close the parent modal
+    //     (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || [])
+    //         .forEach(($close) => {
+    //             const $target = $close.closest('.modal');
 
-                $close.addEventListener('click', () => {
-                    closeModal($target);
-                });
-            });
+    //             $close.addEventListener('click', () => {
+    //                 closeModal($target);
+    //             });
+    //         });
 
-        // Add a keyboard event to close all modals
-        document.addEventListener('keydown', (event) => {
-            const e = event || window.event;
+    //     // Add a keyboard event to close all modals
+    //     document.addEventListener('keydown', (event) => {
+    //         const e = event || window.event;
 
-            if (e.keyCode === 27) { // Escape key
-                closeAllModals();
-            }
-        });
-    });
+    //         if (e.keyCode === 27) { // Escape key
+    //             closeAllModals();
+    //         }
+    //     });
+    // });
 </script>
 
 </html>
