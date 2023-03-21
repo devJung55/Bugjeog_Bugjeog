@@ -57,7 +57,7 @@ body{
 }
 #title_h2{
     margin-right: 20px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     color: #333;
 }
@@ -81,7 +81,7 @@ body{
     position: relative;
 }
 .title_h2{
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 35px;
     letter-spacing: -1px;
@@ -89,7 +89,7 @@ body{
     word-break: break-word;
 }
 .h4{
-    font-size: 13px;
+    font-size: 20px;
     line-height: 20px;
     font-weight: 400;
     color: #999;
@@ -98,7 +98,7 @@ body{
     word-break: break-word;
 }
 .h5{
-    font-size: 13px;
+    font-size: 18px;
     line-height: 20px;
     min-height: 20px;
     font-weight: 600;

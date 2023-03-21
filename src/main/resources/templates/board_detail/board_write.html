@@ -24,6 +24,22 @@
         <div id="wrap">
             <div id="wrap_div">
                 <input id="location" type="text" placeholder="지역을 적어주세요.">
+                <input id="location" type="text" placeholder="회사이름을 적어주세요.">
+                <input id="location" type="text" placeholder="설립일을 적어주세요.">
+                <input id="location" type="text" placeholder="대표자명을 적어주세요.">
+                <input id="location" type="text" placeholder="소재지를 적어주세요.">
+                <input id="location" type="text" placeholder="슬로건을 적어주세요.">
+                <div style="display: flex;">
+                    <button type="button" class="cate-button cate-button-active" id="gogi">
+                        <span class="category_span">육류</span>
+                    </button>
+                    <button type="button" class="cate-button" id="seafood">
+                        <span class="category_span">해산물</span>
+                    </button>
+                    <button type="button" class="cate-button" id="vegetable">
+                        <span class="category_span">채소</span>
+                    </button>
+                </div>
                 <div id="title">
                     <textarea id="title_textarea" placeholder="제목을 입력해 주세요."></textarea>
                     <!-- <textarea></textarea> -->
@@ -100,6 +116,16 @@ $('#content_textarea, #title_textarea').on('input', function() {
   }
 });
 
+    /* 카테고리 버튼 이벤트 */
+    const $cateButton = $(".cate-button");
+    
+    $cateButton.each((i, e) => {
+
+        $(e).click(function(){
+            $cateButton.removeClass("cate-button-active");
+            $(e).addClass("cate-button-active");
+        });
+    });
 
 /* 파일 썸네일 */
 /* 파일인풋 */
