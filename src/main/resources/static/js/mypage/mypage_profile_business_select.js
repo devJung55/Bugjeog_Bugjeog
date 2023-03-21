@@ -1,6 +1,6 @@
 const $lCateValue = $('div.fieldset-Static_content-first div.Static-body');
 const $sCateValue = $('div.fieldset-Static_content-others div.Static-body');
-
+const $wrapper = $("div.modal_apply_label_wrapper");
 $('document').ready(function () {
     var area0 = ["대분류 선택"
         , "동물성 생산품", "식물성 생산품", "동·식물성 유지"
@@ -42,15 +42,17 @@ $('document').ready(function () {
 
     $("select[name=large_category]").change(function () {
         var area = "area" + $("option", $(this)).index($("option:selected", $(this))); // 대분류의 소분류 Array
-        var $sCate = $(this).next().next(); // select.small_category
+        var $sCate = $("select[name=small_category]");
         $("option", $sCate).remove(); // 소분류 초기화
 
-        if (area == "area0")
+        if (area == "area0") {
             $sCate.append("<option value=''>소분류 선택</option>");
-        else {
+            $wrapper.addClass('is-hidden');
+        } else {
             $.each(eval(area), function () {
                 $sCate.append("<option value='" + this + "'>" + this + "</option>");
             });
+            $wrapper.removeClass('is-hidden');
         }
     });
 
@@ -60,6 +62,4 @@ $('document').ready(function () {
         $lCateValue.text($("select[name=large_category]").val());
         $sCateValue.text(this.value);
     });
-
-
 });

@@ -10,43 +10,52 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../../static/css/mypage/font.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css">
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile_business.css">
 </head>
-
+<style>
+    body.profile_body {
+        background-color: #f8f8f8;
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
 <body class="profile_body is-relative">
-    <!--  -->
     <div id="modal-js-example" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <div><span>test</span></div>
-            <div class="box modal_box">
+            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
                 <div class="modal_content_wrapper">
-                    <!-- 대분류 -->
-                    <select name="large_category">
-                        <!--
-                        <option value="">동물성 생산품</option>
-                        <option value="">식물성 생산품</option>
-                        <option value="">동·식물성 유지</option>
-                        <option value="">조제식료품</option>
-                        <option value="">광물성 생산품</option>
-                        <option value="">화학공업</option>
-                        <option value="">플라스틱, 고무</option>
-                        <option value="">원피, 가죽, 모피</option>
-                        <option value="">목재, 농세공품</option>
-                        <option value="">펄프, 종이, 서적</option>
-                        <option value="">섬유, 의류</option>
-                        <option value="">신발, 모자, 우산</option>
-                        <option value="">석재, 도자, 유리</option>
-                        <option value="">진주, 귀금속</option>
-                        <option value="">철강, 금속</option>
-                        <option value="">기계, 전기, 전자</option>
-                        <option value="">광학, 정밀, 시계</option>
-                        <option value="">잡품</option>
-                        -->
-                    </select>
-                    <br>
-                    <select name="small_category"></select>
+                    <section class="info_content">
+                        <p class="manageAccount">
+                            유통 분야 설정
+                        </p>
+                        <p class="manageAccount_message">
+                            유통 분야를 관리할 수 있습니다.
+                        </p>
+                        <ul class="info_wrapper">
+                            <li class="emailChange">
+                                <p class="changeTitle">대분류(기존:${})</p>
+                                <br>
+                                <select name="large_category"></select>
+                            </li>
+                            <li class="emailChange">
+                                <p class="changeTitle">소분류(기존:${})</p>
+                                <br>
+                                <select name="small_category"></select>
+                            </li>
+                        </ul>
+                    </section>
+                    <div class="modal_apply_label_wrapper is-hidden">
+                        <label for="">
+                            <div class="apply_wrapper btn_active">
+                                <button type="submit" class="is-hidden">
+                                </button>
+                                <span>적용하기</span>
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,7 +100,7 @@
                                                     음료주류
                                                 </div>
                                             </div>
-                                            <div class="apply_wrapper_upper">
+                                            <div class="apply_wrapper_upper is-hidden">
                                                 <label for="">
                                                     <div class="apply_wrapper">
                                                         <span>

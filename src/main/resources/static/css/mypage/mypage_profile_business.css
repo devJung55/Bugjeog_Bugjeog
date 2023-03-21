@@ -272,7 +272,7 @@ select.JobSearchIntentionSelector-select {
 
 div.box.modal_box {
     min-width: 25vw;
-    min-height: 50vh;
+    min-height: 350px;
     background-color: #e1e2e3;
 }
 
@@ -287,11 +287,24 @@ div.apply_wrapper {
     padding: 8px 0;
 }
 
-div.apply_wrapper>span>a {
+div.apply_wrapper span, div.apply_wrapper a {
     color: #fff;
 }
 
 div.apply_wrapper_upper {
     display: flex;
     justify-content: flex-end;
+}
+
+div.modal_content_wrapper>section.info_content {
+    background-color: #fff;
+}
+
+div.modal_apply_label_wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal_apply_label_wrapper>label {
+    cursor: pointer;
 }
