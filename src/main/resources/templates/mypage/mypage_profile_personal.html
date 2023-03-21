@@ -19,6 +19,7 @@
 
 <body class="profile_body">
     <div class="Container_Profile">
+        <header id="header"></header>
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
             <nav class="NavBar_presentation mypage">
@@ -109,17 +110,24 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
+                                <div class="PostItem_body">
+                                    <div class="PostItem_header">
+                                        <a href="">
+                                            <h3 class="PostItem_title">
+                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
+                                            </h3>
+                                            <p class="PostItem_content">
+                                                합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
+                                                뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
+                                            </p>
+                                        </a>
+                                    </div>
                                     <div class="PostItem_bottom">
                                         <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
+                                            <label for="">
+                                                <button style="display: none;"></button>
+                                                <img src="../../static/image/mypage/like_before.png" alt="">
+                                            </label>
                                             <span class="button_count">2</span>
                                         </div>
                                         <div class="PostItem_comments">
@@ -127,7 +135,7 @@
                                             <span class="button_count">2</span>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </article>
 
 
@@ -150,17 +158,24 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
+                                <div class="PostItem_body">
+                                    <div class="PostItem_header">
+                                        <a href="">
+                                            <h3 class="PostItem_title">
+                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
+                                            </h3>
+                                            <p class="PostItem_content">
+                                                합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
+                                                뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
+                                            </p>
+                                        </a>
+                                    </div>
                                     <div class="PostItem_bottom">
                                         <div class="PostItem_like">
-                                            <img src="../../static/image/mypage/like_before.png" alt="">
+                                            <label for="">
+                                                <button style="display: none;"></button>
+                                                <img src="../../static/image/mypage/like_before.png" alt="">
+                                            </label>
                                             <span class="button_count">2</span>
                                         </div>
                                         <div class="PostItem_comments">
@@ -168,7 +183,7 @@
                                             <span class="button_count">2</span>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </article>
 
 <!--                        글 폼
@@ -214,14 +229,17 @@
                 </section>
             </section>
         </main>
+        <footer id="footer"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(function () {
         $('.Aside_include').load('fragment/mypage_aside.html');
+        $('#header').load('../main/header.html');
+        $('#footer').load('../main/footer.html');
         // $('.footer_html').load('footer.html');
     });
 </script>
-
+<script src="../../static/js/mypage/mypage_profile_personal.js"></script>
 </html>

@@ -20,6 +20,7 @@
 
 <body class="profile_body">
     <div class="Container_Profile">
+        <header id="header"></header>
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
             <nav class="NavBar_presentation mypage">
@@ -196,12 +197,15 @@
                 </section>
             </section>
         </main>
+        <footer id="footer"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(function () {
         $('.Aside_include').load('fragment/mypage_aside.html');
+        $('#header').load('../main/header.html');
+        $('#footer').load('../main/footer.html');
         // $('.footer_html').load('footer.html');
     });
 </script>
