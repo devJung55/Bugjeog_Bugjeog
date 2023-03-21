@@ -97,6 +97,14 @@
         line-height: 24px;
         color: #939393;
     }
+
+    label.header_profile_img {
+        overflow: hidden;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        margin-right: 16px;
+    }
 </style>
 
 <body>
@@ -110,10 +118,11 @@
             <div class="info_header_right">
                 <div style="display: none;"></div>
                 <hr style="display: none;">
-                <label for="">
+                <label for="" class="header_profile_img" style="cursor: pointer;">
                     <a href=""></a>
+                    <img src="https://static.wanted.co.kr/oneid-user/EJFYAcYpUoRwvZhu8KMYB7/kL7znP8HLscoJSREZnW3zB.jpg"
+                        alt="">
                 </label>
-                <a href="">프로필로 돌아가기</a>
                 <button class="button_logout">
                     <span>로그아웃</span>
                 </button>
