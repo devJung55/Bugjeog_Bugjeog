@@ -17,6 +17,8 @@ section.main_container {
     border: 0;
     box-sizing: border-box;
     padding-left: 270px;
+    margin-bottom: 32px;
+    min-height: 672px;
 }
 
 div.ResumeWordCountWarning-Wrapper {
