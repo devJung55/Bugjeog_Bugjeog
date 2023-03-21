@@ -35,15 +35,21 @@
                             유통 분야를 관리할 수 있습니다.
                         </p>
                         <ul class="info_wrapper">
-                            <li class="emailChange">
-                                <p class="changeTitle">대분류(기존:${})</p>
+                            <li class="list_category">
+                                <p class="category_type">대분류</p>
                                 <br>
-                                <select name="large_category"></select>
+                                <div class="select_wrapper">
+                                    <span>기존: 동·식물성 유지</span>
+                                    <select name="large_category"></select>
+                                </div>
                             </li>
-                            <li class="emailChange">
-                                <p class="changeTitle">소분류(기존:${})</p>
+                            <li class="list_category">
+                                <p class="category_type">소분류</p>
                                 <br>
-                                <select name="small_category"></select>
+                                <div class="select_wrapper">
+                                    <span>기존: 음료주류</span>
+                                    <select name="small_category"></select>
+                                </div>
                             </li>
                             <div class="modal_apply_label_wrapper is-hidden">
                                 <label for="">
@@ -66,6 +72,7 @@
     </div>
     <!--  -->
     <div class="Container_Profile">
+        <header id="header"></header>
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
             <nav class="NavBar_presentation mypage">
@@ -174,6 +181,7 @@
                 </section>
             </section>
         </main>
+        <footer id="footer"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -184,54 +192,15 @@
     });
 
 </script>
+<script>
+    $(function () {
+        $('.Aside_include').load('fragment/mypage_aside_business.html');
+        $('#header').load('../main/header.html');
+        $('#footer').load('../main/footer.html');
+        // $('.footer_html').load('footer.html');
+    });
+</script>
 <script src="../../static/js/mypage/mypage_profile_business.js"></script>
 <script src="../../static/js/mypage/mypage_profile_business_select.js"></script>
-<script>
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     // Functions to open and close a modal
-    //     function openModal($el) {
-    //         $el.classList.add('is-active');
-    //     }
-
-    //     function closeModal($el) {
-    //         $el.classList.remove('is-active');
-    //     }
-
-    //     function closeAllModals() {
-    //         (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-    //             closeModal($modal);
-    //         });
-    //     }
-
-    //     // Add a click event on buttons to open a specific modal
-    //     (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    //         const modal = $trigger.dataset.target;
-    //         const $target = document.getElementById(modal);
-
-    //         $trigger.addEventListener('click', () => {
-    //             openModal($target);
-    //         });
-    //     });
-
-    //     // Add a click event on various child elements to close the parent modal
-    //     (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || [])
-    //         .forEach(($close) => {
-    //             const $target = $close.closest('.modal');
-
-    //             $close.addEventListener('click', () => {
-    //                 closeModal($target);
-    //             });
-    //         });
-
-    //     // Add a keyboard event to close all modals
-    //     document.addEventListener('keydown', (event) => {
-    //         const e = event || window.event;
-
-    //         if (e.keyCode === 27) { // Escape key
-    //             closeAllModals();
-    //         }
-    //     });
-    // });
-</script>
 
 </html>

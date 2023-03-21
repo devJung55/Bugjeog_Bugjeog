@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="../../static/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <link rel="stylesheet" href="../../static/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
+    <link rel="stylesheet" href="../../static/css/mypage/mypage_paging.css">
 </head>
 
 <body class="profile_body">
     <div class="Container_Profile">
+        <header id="header"></header>
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
             <nav class="NavBar_presentation mypage">
@@ -391,12 +393,15 @@
                 </section>
             </section>
         </main>
+        <footer id="footer"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(function () {
         $('.Aside_include').load('fragment/mypage_aside.html');
+        $('#header').load('../main/header.html');
+        $('#footer').load('../main/footer.html');
         // $('.footer_html').load('footer.html');
     });
 </script>
