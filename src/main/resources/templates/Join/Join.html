@@ -18,7 +18,7 @@
                             <!-- <button type="button" class="join-cancel-button">
                                 <p class="join-real-cancel-button">취소</p>
                             </button> -->
-                        </div>
+                        </div> 
                         <div class="join-title-box-layout">
                             <p class="join-real-title">회원가입</p>
                         </div>
@@ -55,90 +55,89 @@
                                         <span class="join-code-num">인증번호 받기</span>
                                     </button>
                                 </div>
-                                <span class="phone-error error-msg"></span>
+                                <p class="phone-error error-msg"></p>
                                 <div class="join-write-num-part">
                                     <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input">
+                                    <button class="authcode-check-button" type="button">
+                                        <span>인증하기</span>
+                                    </button>
                                 </div>
                             </div> 
                             <!-- 비밀번호 -->
                             <div class="infor-write-border">
                                 <label for="password" class="join-infor-ment">비밀번호</label>
                             </div>
-                                <input type="password" placeholder="비밀번호를 입력해주세요." name="password" class="join-pw-input" value>
-                                    <p class="join-wrong-pw-ment">
-                                        올바르지 않은 비밀번호입니다.
-                                    </p>
+                                <input type="password" placeholder="비밀번호를 입력해주세요." name="memberPassword" class="join-pw-input" value>
+                                <p class="password-error error-msg"></p>
                                 <input type="password" placeholder="비밀번호를 다시 한번 입력해주세요." name="passwordConfirm" class="join-info-input" value>
-                                    <p class="join-different-pw-ment">
-                                        비밀번호가 서로 일치하지 않습니다.
-                                    </p>
-                                    <p class="join-retry-pw-ment">
-                                        영문 대소문자, 숫자, 득수문자를 3가지 이상으로 조합해 8자 이상 16자 이하로 입력해주세요.
-                                    </p>
-                             <!-- 이용약관 동의 -->
+                                <p class="password-check-error error-msg"></p>    
+                            <!-- 이용약관 동의 -->
                              <div class="join-terms-border">
-                                <div class="join-terms-agree"></div>
-                                    <input type="checkbox" name="is_agree_all" class="join-terms-agree-all">
-                                    <div class="join-back-terms">
-                                        <p class="join-all-agree-ment">전체동의</p>
+                                <div class="join-terms-agree">
+                                    <div class="checkbox-display">
+                                        <span class="checkbox-active">
+                                            <svg viewBox="0 0 12 8" class="checkbox-icon"><path d="M1.5 4L4.5 7L10.5 1" stroke="#fff" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
                                     </div>
+                                </div>
+                                <input type="checkbox" id="allSelect" class="checkButton">
+                                <div class="join-back-terms">
+                                    <p class="join-all-agree-ment">전체동의</p>
+                                </div>
                              </div> 
                           <hr class="join-under-line">
                           <!-- 전체동의 아래 약관 시작 -->
                              <div class="join-list-terms">
-                                <div class="join-square-terms"></div>
-                                    <input type="checkbox" name="is_above_14" class="join-input-line">
+                                <div class="join-terms-agree check-state">
+                                    <div class="checkbox-display">
+                                        <span class="checkbox-active">
+                                            <svg viewBox="0 0 12 8" class="checkbox-icon"><path d="M1.5 4L4.5 7L10.5 1" stroke="#fff" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                    <input type="checkbox" name="check" class="checkButton">
                                 <div class="join-back-blank">
                                     <p class="join-terms-sentence">만 14세 이상입니다. (필수)</p>
                                 </div>    
                              </div>
                              <div class="join-list-terms">
-                                <div class="join-square-terms"></div>
-                                    <input type="checkbox" name="is_terms_conditions" class="join-input-line">
+                                <div class="join-terms-agree check-state">
+                                    <div class="checkbox-display">
+                                        <span class="checkbox-active">
+                                            <svg viewBox="0 0 12 8" class="checkbox-icon"><path d="M1.5 4L4.5 7L10.5 1" stroke="#fff" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                    <input type="checkbox" name="check" class="checkButton">
                                 <div class="join-back-blank">
                                     <p class="join-terms-sentence">이용약관 동의 (필수)</p>
                                 </div>
-                                    <a href="https://id.wanted.jobs/terms/ko" target="_blank" class="join-deep-terms">자세히</a>   
                              </div>
                              <div class="join-list-terms">
-                                <div class="join-square-terms"></div>
-                                    <input type="checkbox" name="is_collect_information" class="join-input-line">
+                                <div class="join-terms-agree check-state">
+                                    <div class="checkbox-display">
+                                        <span class="checkbox-active">
+                                            <svg viewBox="0 0 12 8" class="checkbox-icon"><path d="M1.5 4L4.5 7L10.5 1" stroke="#fff" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                    <input type="checkbox" name="check" class="checkButton">
                                     <div class="join-back-blank">
                                         <p class="join-terms-sentence">개인정보 수집 및 이용 동의</p>
                                     </div>
-                                 <a href="https://id.wanted.jobs/privacy/ko" target="_blank" class="join-deep-terms">자세히</a>
                              </div>
                              <div class="join-list-terms">
-                                <div class="join-square-terms"></div>
-                                    <input type="checkbox" name="is_accept_event_all" class="join-input-line">
+                                <div class="join-terms-agree check-state">
+                                    <div class="checkbox-display">
+                                        <span class="checkbox-active">
+                                            <svg viewBox="0 0 12 8" class="checkbox-icon"><path d="M1.5 4L4.5 7L10.5 1" stroke="#fff" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                    <input type="checkbox" name="check" class="checkButton">
                                     <div class="join-back-blank">
                                         <p class="join-terms-sentence">소식,  콘텐츠, 이벤트 등 맞춤 정보 받기</p>
                                     </div>
-                             </div>
-                             <!-- 이메일, 앱푸시, .. 파트 -->
-                             <div class="join-three-check">
-                                <label class="join-check-do">
-                                    <input type="checkbox" name="accept_marketing_email">
-                                        <span class="join-inside-marketing">
-                                            <!-- svg 안 먹는듯 -->
-                                            <svg viewBox="0 0 12 8" class="join-box-of-check"><path d="M1.5 4L4.5 7L10.5 1" stroke="#ccc" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                        </span>
-                                      <p class="join-checked-ment">이메일</p>  
-                                </label>
-                                <label class="join-check-do">
-                                    <input type="checkbox" name="accept_marketing_push">
-                                        <span class="join-inside-marketing">
-                                            <svg viewBox="0 0 12 8" class="join-box-of-check"><path d="M1.5 4L4.5 7L10.5 1" stroke="#ccc" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                        </span>
-                                       <p class="join-checked-ment">앱 푸시</p> 
-                                </label>
-                                <label class="join-check-do">
-                                    <input type="checkbox" name="accept_marketing_sms">
-                                        <span class="join-inside-marketing">
-                                            <svg viewBox="0 0 12 8" class="join-box-of-check"><path d="M1.5 4L4.5 7L10.5 1" stroke="#ccc" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                        </span>
-                                       <p class="join-checked-ment">문자 메세지</p> 
-                                </label>
                              </div>
                             <div class="join-start-all-border">
                                 <div class="join-start-bottom-border"></div>
@@ -155,57 +154,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-
-    // 이메일 검사
-    const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    const $email = $("input[name='email']");
-    const $emailError = $(".email-error");
-
-    $email.blur(function(){
-        let emailVal = $email.val();
-        if(!emailVal){
-            $emailError.text("이메일을 입력해주세요.");
-        }else if(!regEmail.test(emailVal)){
-            $emailError.text("이메일 형식에 맞춰서 작성해주세요.");
-        }else {
-            $emailError.text("");
-        }
-    });
-
-    // 이름 검사
-    const $name = $("input[name='memberName']");
-    const $nameError = $(".name-error");
-
-    $name.blur(function(){
-        let nameVal = $name.val();
-        if(!nameVal){
-            $nameError.text("이름을 입력해주세요.");
-        }else {
-            $nameError.text("");
-        }
-    });
-
-    // 휴대폰 검사
-    const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-    const $phone = $("input[name='memberPhoneNumeber']");
-    const $phoneError = $(".phone-error");
-    const $Checkbutton = $(".join-num-check-button");
-
-    $phone.blur(function(){
-        let phoneVal = $phone.val();
-        if(!phoneVal){
-            $Checkbutton.removeClass("phone-active");
-            $phoneError.text("핸드폰 번호를 입력해주세요.");
-        }else if(!regPhone.test(phoneVal)){
-            $Checkbutton.removeClass("phone-active");
-            $phoneError.text("올바른 형식이 아닙니다.");
-        }else {
-            $Checkbutton.addClass("phone-active");
-            $phoneError.text("");
-        }
-    });
-
-    
-</script>
+<script src="../../static/js/join/join.js"></script>
 </html>
