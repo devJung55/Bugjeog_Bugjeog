@@ -187,7 +187,78 @@ html, body, #__next {
         margin-bottom: 8px;
     }
 
+    .certification-box{
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        position: absolute;
+        right: 15px;
+        top: 7px;
+        width: auto;
+        min-width: 56px;
+        height: 35px;
+        min-height: 35px;
+        padding: 0px 3px;
+        border-radius: 5px;
+        border: none !important;
+        display: none;
+    }
+
+    .certification-ment {
+        /* color: #000; */
+        font-weight: #600;
+        text-align: left;
+        letter-spacing: 0.0145em;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .certification-box span {
+        color: #36f;
+    }
+
+    .cerfing-ment{
+        color: #36f;
+        font-weight: 400;
+        text-align: left;
+        letter-spacing: 0.0192em;
+        font-size: 13px;
+        line-height: 18px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .error-msg {
+        font-size: 14px;
+        color: red;
+    }
+    
+    .phone-active {
+        border : 1px solid #e1e2e3;
+        background-color: #fff;
+    }
+    
+    .phone-active span {
+        color: #36f;
+    }
+
+    .authcode-input {
+        background-color: #f2f4f7;
+    }
+
+    .authcode-input-active {
+        background-color: inherit;
+    }
+
+    .auth-msg {
+        font-size: 14px;
+        color: #36f;
+        display: none;
+    }
+
     .find-take-btn {
+        border: none;
         height: 50px;
         min-height: 50px;
         font-size: 16px;
@@ -199,7 +270,7 @@ html, body, #__next {
         border-radius: 5px;
     }
 
-    .find-take-btn:disabled {
+    /* .find-take-btn:disabled {
         color: #ccc;
         background-color: #f2f4f7;
         cursor: default;
@@ -207,7 +278,7 @@ html, body, #__next {
 
     .find-take-btn:disabled {
         border: 1px solid #f2f4f7;
-    }
+    } */
 
     .find-take-btn-ment {
         font-weight: 600;
