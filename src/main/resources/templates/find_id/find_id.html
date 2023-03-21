@@ -43,13 +43,14 @@
                                     </button>
                                 </div>
                                 <!-- 인증번호 입력칸 -->
+                                <div class="phone-error error-msg"></div>
                                 <div class="find-enter-anything">
-                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="find-enter-pn" value>
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="find-enter-pn authcode-input" value>
                                     <button type="button" class="certification-box">
                                         <span class="certification-ment">인증하기</span>
                                     </button>
                                 </div>
-                                <p class="cerfing-ment">인증번호가 요청되었습니다.</p>
+                                <!-- <p class="cerfing-ment">인증번호가 요청되었습니다.</p> -->
                             </div>
                           <button type="button" class="find-countinue">
                             <span class="find-countinue-ment">계속</span>
@@ -61,72 +62,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- <script src="../../static/js/find_id/find_id.js"></script> -->
-<script>
-    // 핸드폰
-   const $certificationCheckButton = $(".certification-ment");   // .find-take-btn //.certification-number-check
-   const $phone = $("input[name=mobile]");   // name=moblie
-   const $errorMessagePhone = $(".cerfing-ment");    //.error-message-phone
-   let rgbPhone = /^(\d{0,3})(\d{0,4})(\d{0,4})$/; 
-   let phoneCheck;   
-   $phone.on("blur", function(){
-        console.log("들어옴?")
-	//    $.ajax({
-        
-	// 		url: contextPath + "/checkPhoneOk.member",
-	// 		data: {memberPhoneNumber: $phone.val()},
-	// 		success : function(result){
-	// 			phoneCheck = JSON.parse(result);
-				
-				 if($phone.val().length == 0){
-			    	  $errorMessagePhone.text("핸드폰 번호를 입력해주세요.");
-                      console.log("1")
-			    	  $errorMessagePhone.css("display","block");
-			    	  $errorMessagePhone.css("color","red");
-			    	  joinCheckAll[8] = false;
-			    	  $certificationBox.fadeOut();
-			    	  
-			       }else if(!rgbPhone.test($phone.val())){
-			    	  $errorMessagePhone.text("형식에 맞게 작성해주세요.");
-                      console.log("2")
-				   	  $errorMessagePhone.css("display","block");
-			    	  joinCheckAll[8] = false;
-				   	  $errorMessagePhone.css("color","red");
-				   	$certificationBox.fadeOut();
-				   	
-			       }else if(!($phone.val().length == 11)){
-			    	   $errorMessagePhone.text("핸드폰 자리 11자리로 입력해주세요.");
-                       console.log("3")
-					   $errorMessagePhone.css("display","block");
-					   $errorMessagePhone.css("color","red");
-			    	  joinCheckAll[8] = false;
-					   $certificationBox.fadeOut();
-					   
-			       }else if(!($phone.val().substring(0,3) == "010")){
-			    	   $errorMessagePhone.text("010으로 시작해주세요.");
-                       console.log("4")
-					   $errorMessagePhone.css("display","block");
-					   $errorMessagePhone.css("color","red");
-			    	  joinCheckAll[8] = false;
-					   $certificationBox.fadeOut();
-			       }
-			       
-			       else if(phoneCheck.check){
-			    	   $errorMessagePhone.text("중복된 핸드폰 번호입니다.");
-                       console.log("5")
-			    	   $errorMessagePhone.css("display","block");
-			 	   	   $errorMessagePhone.css("color","red");
-			    	  joinCheckAll[8] = false;
-			 	   		$certificationBox.fadeOut();
-			 	   		
-                   }else{
-			    	   joinCheckAll[8] = phoneCheck;
-                       console.log("6")
-			    	   $errorMessagePhone.css("display","none");
-			    	   $certificationBox.fadeIn();
-			       }
-			});
-		// });
-//    });
-</script>
+<script src="../../static/js/find_id/find_id.js"></script>
 </html>
