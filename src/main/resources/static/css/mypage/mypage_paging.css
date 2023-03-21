@@ -1,0 +1,20 @@
+/* mypage_profile_personal_liked.html */
+/* mypage_profile_personal_favorite.html */
+
+div.paging_wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+ul.num_wrapper li {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+div.paging_wrapper>label, ul.num_wrapper>li>label {
+    cursor: pointer;
+}
+
+ul.num_wrapper>li>label.num_label.current_page>span.paging_num {
+    font-weight: 600;
+}
