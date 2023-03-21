@@ -272,7 +272,7 @@ select.JobSearchIntentionSelector-select {
 
 div.box.modal_box {
     min-width: 25vw;
-    min-height: 350px;
+    /* min-height: 350px; */
     background-color: #e1e2e3;
 }
 
@@ -307,4 +307,14 @@ div.modal_apply_label_wrapper{
 
 .modal_apply_label_wrapper>label {
     cursor: pointer;
+}
+
+ul.info_wrapper {
+    position: relative;
+}
+
+div.modal_apply_label_wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
