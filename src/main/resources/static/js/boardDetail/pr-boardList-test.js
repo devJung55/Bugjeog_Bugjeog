@@ -10,11 +10,11 @@ let $reviewImage = $(".img_size");
 // 해당 이미지들을 감싸고 있는 div ()
 let $reviewBox = $(".file-banner-box");
 // 슬라이드 카운트 세기 위함
+let bannerCount;
 let $allImg = $(".img_size");
 $reviewBox.prepend(firstImageImg);
-let index = 0; // 슬라이드 인덱스 초기화
+let index = 1; // 슬라이드 인덱스 초기화
 let checkArrow = false;
-let $temp;
 let data1 = $($reviewImage[0]).attr("src");
 let data2 = $($reviewImage[2]).attr("src");
 
@@ -36,50 +36,39 @@ $reviewBox.append(lastImageImg);
 $(firstImageImg).addClass("img_size");
 $(lastImageImg).addClass("img_size");
 
+$reviewBox.css("transform" , `translate(-700px)`);
+
 
 $left.click(function() {
-    $allImg = $(".img_size");
+    $allImg = $(".file-banner-box");
+    bannerCount = $allImg.length;
     if (checkArrow) { return; }
     checkArrow = true;
     $allImg.css("transition", "transform 0.3s");
     $allImg.css("transform", `translate(${-700 * --index}px)`);
-    if (index == -1) {
-        $temp = $allImg.first().detach();
-        $reviewBox.append($temp);
-        $allImg = $(".img_size");
-        $allImg.css("transition", "transform 0s");
-        $allImg.css("transform", `translate(${-700 * 4}px)`);
+    if (index == 0) {
+        index = 3;
         setTimeout(() => {
-            $temp = $allImg.first().detach();
-            $reviewBox.append($temp);
-            $allImg = $(".img_size");
             $allImg.css("transition", "transform 0s");
-            $allImg.css("transform", `translate(${-700 * 4}px)`);
-            index = 3;
+            $allImg.css("transform", `translate(${-700 * 3}px)`);
         }, 300);
     }
     setTimeout(() => { checkArrow = false }, 300);
 });
 
 $right.click(function() {
-    $allImg = $(".img_size");
+    $allImg = $(".file-banner-box");
     if (checkArrow) { return; }
     checkArrow = true;
+    index++;
     $allImg.css("transition", "transform 0.3s");
-    $allImg.css("transform", `translate(${-700 * ++index}px)`);
-    if (index == 5) {
-        $temp = $allImg.first().detach();
-        $reviewBox.append($temp);
-        $allImg = $(".img_size");
-        $allImg.css("transition", "transform 0s");
-        $allImg.css("transform", `translate(${-700}px)`);
+    $allImg.css("transform", `translate(${-700 * index}px)`);
+    console.log(index);
+    if (index == 4) {
+        index = 1;
         setTimeout(() => {
-            $temp = $allImg.first().detach();
-            $reviewBox.append($temp);
-            $allImg = $(".img_size");
             $allImg.css("transition", "transform 0s");
-            $allImg.css("transform", `translate(${-700}px)`);
-            index = 1;
+            $allImg.css("transform", `translate(-700px)`);
         }, 300);
     }
     setTimeout(() => { checkArrow = false }, 300);

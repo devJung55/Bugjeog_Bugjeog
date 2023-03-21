@@ -40,21 +40,39 @@
         }
     });
 
+// 회사명 검사
+        const $regCompanyDate = RegExp(/^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/);
+        const $openCompanyDate = $(".open-company-date");
+        const $openCompanyDateError = $(".open-company-date-error");
+    
+        $openCompanyDate.blur(function(){
+            let openCompanyDateVal = $openCompanyDate.val();
+            if(!openCompanyDateVal){
+                $openCompanyDateError.text("설립일을 입력해주세요.");
+
+            }else if(!$regCompanyDate.test(openCompanyDateVal)){
+                $openCompanyDateError.text("형식에 맞게 입력해주세요.");
+
+            }else {
+                $openCompanyDateError.text("");
+            }
+        });
+
     // 사업자 번호 검사
-    const regBusinessNumber = /^(\d{3,3})+[-]+(\d{2,2})+[-]+(\d{5,5})/;
+    const regBusinessNumber = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
     const $businessNumber = $(".business-number");
     const $businessNumberError = $(".business-number-error");
 
     $businessNumber.blur(function(){
-        let businessNumberVal = $businessNumber.val();
-        if(!businessNumberVal){
+        if(!$businessNumber.val()){
             $businessNumberError.text("사업자번호를 입력해주세요.");
 
-        }else if(!regBusinessNumber.test(businessNumberVal)){
+        }else if(!regBusinessNumber.test($businessNumber.val())){
             $businessNumberError.text("형식에 맞춰서 작성해주세요.");
-        
+
         }else {
-            $companyNameError.text("");
+
+            $businessNumberError.text("");
         }
     });
 
