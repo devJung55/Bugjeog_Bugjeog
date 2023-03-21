@@ -202,7 +202,7 @@ form {
 }      
 
 .join-info-input {
-    width: 91%;
+    width: 93%;
     height: 50px;
     min-height: 50px;
     padding: 0px 12px;
@@ -290,7 +290,7 @@ option {
 }
 
 .join-pw-input{
-    width: 91%;
+    width: 93%;
     height: 50px;
     min-height: 50px;
     padding: 0px 12px;
@@ -445,15 +445,6 @@ hr {
     height: 100%;
     position: absolute;
     cursor: pointer;
-}
-
-input[type="checkbox" i] {
-    display: none;
-    background-color: initial;
-    appearance: auto;
-    margin: 3px 3px 3px 4px;
-    padding: initial;
-    border: initial;
 }
 
 .join-back-blank {
@@ -627,3 +618,99 @@ input[type="checkbox" i] {
     background-color: #f2f4f7;
 }
 
+.authcode-input-active {
+    background-color: inherit;
+}
+
+.phone-error, .password-error {
+    margin-top: 0;
+    display: none;
+}
+
+.font-size {
+    font-size: 11px;
+}
+
+.checkbox-active-box {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: #36f;
+}
+
+.checkbox-active {
+    display: flex;
+    -webkit-box-align: inherit;
+    align-items: inherit;
+    -webkit-box-pack: inherit;
+    justify-content: inherit;
+}
+
+
+.checkbox-icon {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.checkbox-display {
+    display: none;
+}
+
+.checkButton {
+    opacity: 0;
+    width: calc(100% - 90px);
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.check-display {
+    display: none;
+}
+
+.input-jar {
+    display: none;
+}
+
+.authcode-check-button {
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color:#fff;
+    position: absolute;
+    right: 15px;
+    top: 7px;
+    width: auto;
+    min-width: 56px;
+    height: 35px;
+    min-height: 35px;
+    padding: 0px 3px;
+    border-radius: 5px;
+    border: none !important;
+    display: none;
+}
+
+.authcode-check-button span {
+    color : #36f;
+    font-weight: bold;
+    text-align: left;
+    letter-spacing: 0.0145em;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.auth-msg {
+    font-size: 14px;
+    color: #36f;
+    display: none;
+}
