@@ -87,6 +87,8 @@ body{
     letter-spacing: -1px;
     color: #333;
     word-break: break-word;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
 }
 .h4{
     font-size: 20px;
@@ -96,6 +98,8 @@ body{
     margin-top: 10px;
     margin-bottom: 2px;
     word-break: break-word;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
 }
 .h5{
     font-size: 18px;
@@ -104,6 +108,8 @@ body{
     font-weight: 600;
     color: #333;
     word-break: break-word;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
 }
 #content{
     padding-bottom: 80px;
@@ -392,6 +398,11 @@ form button{
     left: 0;
     z-index: 555;
 }
+
+.modal-active {
+    display: none;
+}
+
 #dimmer{
     z-index: -1;
     position: fixed;
@@ -411,7 +422,7 @@ form button{
     padding-right: 15px;
     top: 8px;
 }
-#event_detail_modal_svg{
+.event_detail_modal_svg{
     width: 32px!important;
     height: 32px!important;
     color: #fff;
@@ -419,7 +430,7 @@ form button{
     fill: currentColor;
     flex-shrink: 0;
 }
-#event_detail_modal_btn{
+.event_detail_modal_btn{
     cursor: pointer;
     font-family: inherit;
     font-size: inherit;
@@ -432,13 +443,14 @@ form button{
 .main_img_btn{
     background: none;
     position: absolute;
-    bottom: 50%;
+    bottom: 44%;
     cursor: pointer;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: #f2f4f7;
     border: none;
+    font-size: 25px;
 }
 #main_img_btn_right{
     right: 0;
