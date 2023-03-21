@@ -43,9 +43,14 @@
                                     </button>
                                 </div>
                                 <!-- 인증번호 입력칸 -->
+                                <div class="phone-error error-msg"></div>
                                 <div class="find-enter-anything">
-                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="find-enter-pn" value>
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="find-enter-pn authcode-input" value>
+                                    <button type="button" class="certification-box">
+                                        <span class="certification-ment">인증하기</span>
+                                    </button>
                                 </div>
+                                <!-- <p class="cerfing-ment">인증번호가 요청되었습니다.</p> -->
                             </div>
                           <button type="button" class="find-countinue">
                             <span class="find-countinue-ment">계속</span>
@@ -56,4 +61,6 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../../static/js/find_id/find_id.js"></script>
 </html>
