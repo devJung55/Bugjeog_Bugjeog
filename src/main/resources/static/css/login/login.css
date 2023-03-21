@@ -40,7 +40,7 @@ html, body, #allPage{
 .allLogIn {
     border-radius: 5px;
     width: 100%;
-    max-height: calc(100vh - 100px);
+    max-height: calc(107vh - 92px);
     overflow: auto;
     background-color: #fff;
     border: 1px solid #e1e2e3;
@@ -109,13 +109,17 @@ form {
 }
 
 .choice-container{
-    margin-top: 17px;
+    width: 150px;
+    margin-left: 101px;
+    margin-top: 0px;
+    margin-bottom: 27px;
+    padding-top: 0px;
     display: flex;
-    margin: 34px;
     height: 17px;
     
 }
 
+/* 클릭 전 */
 .private-business{
     font-weight: 570;
     cursor: pointer;
@@ -123,7 +127,21 @@ form {
     height: 30px;
     margin: 0 auto;
     text-align: center;
-    border-bottom: 1px solid #2f5fef;
+    color: #cccc;
+    
+    /* border-bottom: 1px solid #2f5fef; */
+}
+
+/* 클릭 후 */
+.choice-container .change-effect{
+    color: black;
+    
+    font-weight: 570;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* .form-companySimpleIntro{
@@ -163,6 +181,16 @@ form {
     font-weight: 400;
     margin-bottom: 8px;
     opacity: 0.5;
+}
+
+.error-message-email{
+    margin-top: auto;
+    font-size: 13px;
+}
+
+.error-message-password{
+    margin-top: auto;
+    font-size: 13px;
 }
 
 .form-button-countinueEmail:disabled {

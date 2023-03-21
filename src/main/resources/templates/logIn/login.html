@@ -14,7 +14,7 @@
                 <div class="allLogIn">
                     <div class="inside">
                         <div class="choice-container">
-                            <div class="private-business">개인</div>
+                            <div class="private-business change-effect">개인</div>
                             <div class="private-business">사업자</div>
                         </div>
                         <div class="logoPart">
@@ -98,9 +98,12 @@
                                                     <button type="button" class="form-forgetPlace">
                                                         <p class="form-btn-forget">
                                                             계정을 잊으셨나요?
-                                                            <span class="logo-btn">
-                                                                <img src="../../static/image/login/right_arrow_icon.png" class="right-icon">
-                                                            </span>
+                                                        </p>
+                                                    </button> 
+
+                                                    <button type="button" class="form-forgetPlace join-button">
+                                                        <p class="form-btn-forget">
+                                                            회원가입
                                                         </p>
                                                     </button> 
                                                 <hr class="form-blankblank">  
@@ -144,4 +147,32 @@
 <!-- js 수정해야함 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/login/login.js"></script>
+<script>
+    const test = $(".private-business");
+    $(".join-button").click(function(){
+        location.href = "www.naver.com";
+    });
+
+    test.each((i , e) => {
+        $(e).click(function(){
+            test.removeClass("change-effect");
+            $(e).addClass("change-effect");
+                console.log($(e).text() == "개인");
+            if($(e).text() == "개인"){
+
+
+                $(".join-button").click(function(){
+                    location.href = "www.naver.com";
+                    /* 개인 회원가입쪽 컨트롤러 보내주기 */
+                });
+            }else {
+                $(".join-button").click(function(){
+                    location.href = "www.goo.com";
+                    /* 사업자 회원가입쪽 컨트롤러 보내주기 */
+                });
+            }
+        });
+    });
+
+</script>
 </html>
