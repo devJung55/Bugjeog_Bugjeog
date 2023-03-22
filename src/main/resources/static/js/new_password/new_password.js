@@ -27,3 +27,5 @@
             $passwordCheckError.hide();
         }
     });
+
+    
