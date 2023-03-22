@@ -652,3 +652,16 @@ form button{
     font-size: 16px; 
     position: relative;
   }
+  #correction_delete{
+    position: absolute;
+    top: 29px;
+    right: 138px;
+    font-size: 18px;
+  }
+  #float_delete{
+    float: right; 
+    cursor: pointer; 
+    position: absolute; 
+    right: -23px;
+    top: -10px;
+  }
