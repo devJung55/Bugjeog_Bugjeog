@@ -504,3 +504,120 @@ form button{
 }
 
 .scrollLock { overflow: hidden; }
+
+
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 1em;
+    /* height: 1.5em; */
+    line-height: 1.5em;
+    font-size: 1.5em;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.5em;
+    width: 1.5em;
+    cursor: pointer;
+  }
+  
+  /* .rating label:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5em;
+    color: #ddd;
+  } */
+
+  #label1:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  
+  #label2:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 1em;
+    /* left: calc(1.5em + 10px); */
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  
+  #label3:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 2em;
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  
+  #label4:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 3em;
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  
+  #label5:before {
+    content: "\2605";
+    position: absolute;
+    top: 0;
+    left: 4em;
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  
+  .rating input:checked ~ label:before {
+    color: #ffcc00 !important;
+  }
+  
+  .rating .score {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 0.8em;
+    color: #999;
+    display: none;
+  }
+  
+  .score {
+    position: relative;
+    top: -1px;
+    line-height: 20px;
+    left: 10em;
+    font-size: 1em;
+    display: block;
+    font-size: 20px;
+    color: black;
+    /* position: absolute;
+    top: 100%;
+    right: 0 !important;
+    font-size: 1em;
+    display: block;
+    color: black; */
+  }
+  
+  .rating input:checked ~ .score {
+    display: block;
+  }
