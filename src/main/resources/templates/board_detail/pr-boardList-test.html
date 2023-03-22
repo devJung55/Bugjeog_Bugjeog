@@ -1033,23 +1033,30 @@
                                                 <button type="submit">
                                                     <span>등록</span>
                                                 </button>
+                                                <div class="rating-reply">
+                                                    <input type="radio" id="star1" name="rating" class="star" value="1" />
+                                                    <label for="star1" id="label1"></label>
+                                                    <input type="radio" id="star2" name="rating"  class="star" value="2" />
+                                                    <label for="star2" id="label2"></label>
+                                                    <input type="radio" id="star3" name="rating" class="star"  value="3" />
+                                                    <label for="star3" id="label3"></label>
+                                                    <input type="radio" id="star4" name="rating" class="star"  value="4" />
+                                                    <label for="star4" id="label4"></label>
+                                                    <input type="radio" id="star5" name="rating" class="star" value="5" />
+                                                    <label for="star5" id="label5"></label>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="margin: 0 110px 30px; display: flex;">
+                                <div id="review_score_box_layout">
                                     총 리뷰 개수: 1개
-                                    <div class="rating">
-                                        <input type="radio" id="star5" name="rating" value="5" />
-                                        <label for="star5" id="label5"></label>
-                                        <input type="radio" id="star4" name="rating" value="4" />
-                                        <label for="star4" id="label4"></label>
-                                        <input type="radio" id="star3" name="rating" value="3" />
-                                        <label for="star3" id="label3"></label>
-                                        <input type="radio" id="star2" name="rating" value="2" />
-                                        <label for="star2" id="label2"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" />
-                                        <label for="star1" id="label1"></label>
+                                    <div class="review-score-box" style="position: absolute; bottom: -26px; left: -5px;">
+                                        <label class="review-score"></label>
+                                        <label class="review-score"></label>
+                                        <label class="review-score"></label>
+                                        <label class="review-score"></label>
+                                        <label class="review-score"></label>
                                     </div>
                                 </div>
                                 <div id="reply_wrap">
@@ -1069,6 +1076,13 @@
                                                                 <div id="reply_nickname">DesignK</div>
                                                             </div>
                                                             <span id="reply_date">2023.03.14</span>
+                                                            <div class="review-score-box">
+                                                                <label class="review-score"></label>
+                                                                <label class="review-score"></label>
+                                                                <label class="review-score"></label>
+                                                                <label class="review-score"></label>
+                                                                <label class="review-score"></label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

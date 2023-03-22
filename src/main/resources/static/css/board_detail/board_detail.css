@@ -354,6 +354,7 @@ form button{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-left: 4px;
 }
 #reply_date{
     font-size: 12px;
@@ -361,6 +362,7 @@ form button{
     flex: none;
     line-height: 100%;
     white-space: nowrap;
+    padding-left: 4px;
 }
 #reply_content{
     margin-top: 18px;
@@ -520,7 +522,6 @@ form button{
   }
   
   .rating label {
-    position: absolute;
     top: 0;
     left: 0;
     height: 1.5em;
@@ -537,9 +538,8 @@ form button{
     color: #ddd;
   } */
 
-  #label1:before {
+  #label1::before {
     content: "\2605";
-    position: absolute;
     top: 0;
     left: 0;
     font-size: 1.5em;
@@ -547,9 +547,8 @@ form button{
     height: 1.5em;
   }
   
-  #label2:before {
+  #label2::before {
     content: "\2605";
-    position: absolute;
     top: 0;
     left: 1em;
     /* left: calc(1.5em + 10px); */
@@ -558,9 +557,8 @@ form button{
     height: 1.5em;
   }
   
-  #label3:before {
+  #label3::before {
     content: "\2605";
-    position: absolute;
     top: 0;
     left: 2em;
     font-size: 1.5em;
@@ -568,9 +566,8 @@ form button{
     height: 1.5em;
   }
   
-  #label4:before {
+  #label4::before {
     content: "\2605";
-    position: absolute;
     top: 0;
     left: 3em;
     font-size: 1.5em;
@@ -578,9 +575,8 @@ form button{
     height: 1.5em;
   }
   
-  #label5:before {
+  #label5::before {
     content: "\2605";
-    position: absolute;
     top: 0;
     left: 4em;
     font-size: 1.5em;
@@ -588,12 +584,14 @@ form button{
     height: 1.5em;
   }
   
-  .rating input:checked ~ label:before {
+  .rating input:checked ~ label::before {
     color: #ffcc00 !important;
   }
-  
+
+  .rating-reply input:checked ~ label::before {
+    color: #ffcc00 !important;
+  }
   .rating .score {
-    position: absolute;
     top: 100%;
     left: 0;
     font-size: 0.8em;
@@ -620,4 +618,37 @@ form button{
   
   .rating input:checked ~ .score {
     display: block;
+  }
+  
+  .rating-reply {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .review-score-box {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .star {
+    display: none;
+  }
+
+
+  .review-score::before {
+    content: "\2605";
+    top: 0;
+    left: 4em;
+    font-size: 1.5em;
+    color: #ddd;
+    height: 1.5em;
+  }
+  #review_score_box_layout{
+    margin: 0 110px 30px; 
+    display: flex; 
+    font-size: 16px; 
+    position: relative;
   }
