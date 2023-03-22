@@ -38,53 +38,41 @@ img {
     opacity: 1;
 }
 
-.shinyStar:nth-child(1) {
-    top: 61%;
-    left: 28%;
-    margin-top: -51px;
-    margin-left: 62px;
-    animation-delay: 0s;
-    animation-duration: 11s;
+.shinyStar {
+    top: 45%;
+    left: 19%;
+    margin-top: -91px;
+    margin-left: -56px;
 }
 .shinyStar:nth-child(2) {
-    top: 57%;
-    left: 77%;
-    margin-top: -86px;
-    margin-left: 54px;
-    animation-delay: 2s;
-    animation-duration: 9s;
+    top: 61%;
+    left: 88%;
+    margin-top: -39px;
+    margin-left: -6px;
 }
 .shinyStar:nth-child(3) {
-    top: 31%;
-    left: 33%;
-    margin-top: -26px;
-    margin-left: -26px;
-    animation-delay: 10s;
-    animation-duration: 7s;
+    top: 59%;
+    left: 37%;
+    margin-top: -83px;
+    margin-left: -80px;
 }
 .shinyStar:nth-child(4) {
-    top: 62%;
-    left: 77%;
-    margin-top: -88px;
-    margin-left: -25px;
-    animation-delay: 2s;
-    animation-duration: 10s;
+    top: 69%;
+    left: 79%;
+    margin-top: -223px;
+    margin-left: -1px;
 }
 .shinyStar:nth-child(5) {
-    top: 57%;
-    left: 33%;
-    margin-top: -28px;
-    margin-left: -89px;
-    animation-delay: 9s;
-    animation-duration: 9s;
+    top: 44%;
+    left: 20%;
+    margin-top: -64px;
+    margin-left: -95px;
 }
 .shinyStar:nth-child(6) {
-    top: 67%;
-    left: 67%;
-    margin-top: -90px;
-    margin-left: -44px;
-    animation-delay: 8s;
-    animation-duration: 7s;
+    top: 57%;
+    left: 83%;
+    margin-top: -8px;
+    margin-left: 86px;
 }
 
 .shinyStuffOnTop{
@@ -102,7 +90,7 @@ img {
     content: "";
     width: 100%;
     height: 100%;
-    background: #f8f8fa;
+    background: white;
     border-radius: 50%;
     position: absolute;
 }
@@ -116,7 +104,7 @@ img {
     content: "";
     width: 100%;
     height: 100%;
-    background: #f8f8fa;
+    background: white;
     border-radius: 50%;
     position: absolute;
 }
@@ -136,7 +124,7 @@ img {
     content: "";
     width: 100%;
     height: 100%;
-    background: #f8f8fa;
+    background: white;
     border-radius: 50%;
     position: absolute;
 }
@@ -150,7 +138,7 @@ img {
     content: "";
     width: 100%;
     height: 100%;
-    background: #f8f8fa;
+    background: white;
     border-radius: 50%;
     position: absolute;
 }
