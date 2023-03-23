@@ -6,5 +6,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class MypageService {
+public class MyPageService {
 }
