@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../static/css/mypage/font.css">
-    <link rel="stylesheet" href="../../static/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_paging.css">
+    <link rel="stylesheet" href="../../../../static/css/mypage/font.css">
+    <link rel="stylesheet" href="../../../../static/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
+    <link rel="stylesheet" href="../../../../static/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
+    <link rel="stylesheet" href="../../../../static/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
+    <link rel="stylesheet" href="../../../../static/css/mypage/mypage_paging.css">
 </head>
 
 <body class="profile_body">
@@ -397,14 +397,9 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(function () {
-        $('.Aside_include').load('../mypage/fragment/mypage_aside.html');
-        $('#header').load('../main/header.html');
-        $('#footer').load('../main/footer.html');
-        // $('.footer_html').load('footer.html');
-    });
-</script>
+<script>$('.Aside_include').load('fragment/aside_personal.html');</script>
+<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
+<script src="../../../static/js/mypage/include_fixed.js"></script>
 <script>
     const $pagingLabel = $('label.num_label');
 
