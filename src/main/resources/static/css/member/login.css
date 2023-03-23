@@ -109,8 +109,9 @@ form {
 }
 
 .choice-container{
-    width: 150px;
-    margin-left: 101px;
+    font-size: 14px;
+    width: 90px;
+    margin-left: 224px;
     margin-top: 0px;
     margin-bottom: 27px;
     padding-top: 0px;
@@ -177,7 +178,7 @@ form {
     border: 1px solid #e1e2e3;
     color: #333;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 8px;
     opacity: 0.5;
