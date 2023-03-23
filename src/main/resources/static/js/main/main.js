@@ -28,13 +28,13 @@ buttons.forEach(button => {
     });
 });
 
-imageDiv.forEach((div, i) => div.setAttribute("src",`../../static/image/main/banner${i+1}.png`));
+imageDiv.forEach((div, i) => div.setAttribute("src",`/image/main/banner${i+1}.png`));
 
 banner1.appendChild(lastImageDiv);
-lastImageDiv.setAttribute("src",`../../static/image/main/banner6.png`);
+lastImageDiv.setAttribute("src",`/image/main/banner6.png`);
 
 banner2.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.setAttribute("src",`../../static/image/main/banner1.png`);
+firstImageDiv.setAttribute("src",`/image/main/banner1.png`);
 
 banner.style.transform = `translate(-1084px)`;
 
