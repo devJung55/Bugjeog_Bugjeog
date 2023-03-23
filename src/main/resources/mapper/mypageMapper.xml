@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper">
+    <select id="select" resultType="memberVO">
+        select member_email, member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path
+        from tbl_member where member_id = #{member_id};
+    </select>
 </mapper>

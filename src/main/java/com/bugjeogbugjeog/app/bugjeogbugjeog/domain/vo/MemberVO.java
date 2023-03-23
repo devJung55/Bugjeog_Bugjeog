@@ -14,7 +14,7 @@ public class MemberVO {
     private String memberName;
     private String memberRegisterDate;
     private Long memberStatus;
-    private String memberImgOriginal_name;
+    private String memberImgOriginalName;
     private String memberImgUuid;
     private String memberImgPath;
 }
