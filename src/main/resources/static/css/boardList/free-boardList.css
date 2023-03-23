@@ -120,11 +120,34 @@
     .profile-image-login {
         width: 38px;
         height: 38px;
+        border-radius: 50%;
+        background-color: #FFCD4A;
     }
 
     .profile-image-login img {
         width: 100%;
         height: 100%;
+    }
+
+    .profile-member-status {
+        padding: 4px 6px 5px;
+    }
+
+    .profile-image {
+        font-size: 24px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .profile-member-status-box {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #FFCD4A;
+    }
+
+    .profile-member-status-box-layout {
+        padding: 4px 6px 5px 9px;
     }
 
     .profile-username-wrap {
@@ -267,7 +290,6 @@
     .distributor-image-box img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
         clip-path: circle(50% at 50% 50%);
     }
     
@@ -439,14 +461,26 @@
     .content-member-image-size {
         width: 28px;
         height: 28px;
+        border-radius: 50%;
+        background-color: #FFCD4A;
     }
 
     .content-member-image-size img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
         clip-path: circle(50% at 50% 50%);
     }
+
+    .content-member-status {
+        padding: 4px 6px 5px;
+    }
+
+    .content-member-status span {
+        font-size: 17px;
+        font-weight: 500;
+        color: #fff;    
+    }
+
 
     .content-member-info {
         display: flex;
