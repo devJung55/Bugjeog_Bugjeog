@@ -45,13 +45,13 @@
             <section style="width: 100%;">
                 <h2 id="inquiry_register">문의 등록</h2>
                 <div style="margin-bottom: 40px; background: #ffff;">
-                    <form>
+<!--                     <form>
                         <div id="email_address">
                             <label id="label_first">
-                                이메일 주소 <!-- ::after -->
+                                이메일 주소 after
                             </label>
                             <input id="email_input_first" type="text" placeholder="가입하신 이메일 주소를 기입해주세요. (비회원은 수신 가능한 이메일)">
-                        </div>
+                        </div> -->
                         <div style="margin-top: 17px;">
                             <label id="label_second">
                                 제목 <!-- after -->
@@ -64,12 +64,12 @@
                             </label>
                             <textarea id="explanation" placeholder="상세한 문의 사항을 기입해주세요. 저희 지원 스태프가 영업일 기준 1~2일 이내 가능한 빨리 답변 드릴 수 있도록 노력하겠습니다."></textarea></textarea>
                         </div>
-                        <div id="phone_number">
+<!--                         <div id="phone_number">
                             <label>
                                 연락처 
                             </label>
                             <input id="phone_input" type="text" placeholder="&quot; - &quot; 없이 번호만 입력">
-                        </div>
+                        </div> -->
                         <div style="margin-top: 17px;">
                             <label for="attach">첨부 파일
                                 <div id="upload_dropzone">
@@ -82,6 +82,10 @@
                                 </div>
                             </label>
                         </div>
+                        <label id="label_agree">
+                            동의합니다.
+                            <input id="label_agree_box" type="checkbox">
+                        </label>
                             <div class="image" style="display: flex">
                                 <div class="file-name"></div>
                                 <div id="x_btn"></div>
