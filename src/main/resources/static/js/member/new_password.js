@@ -27,5 +27,3 @@
             $passwordCheckError.hide();
         }
     });
-
-    

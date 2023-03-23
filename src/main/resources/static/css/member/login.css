@@ -111,12 +111,13 @@ form {
 .choice-container{
     font-size: 14px;
     width: 90px;
-    margin-left: 224px;
+    margin-left: 213px;
     margin-top: 0px;
-    margin-bottom: 27px;
+    margin-bottom: 16px;
     padding-top: 0px;
     display: flex;
     height: 17px;
+
     
 }
 
@@ -156,7 +157,8 @@ form {
 } */
 
 .form-blankEmail{
-    margin: 17px 0px 7px;
+    margin: 19px 5px 0px;
+    margin-left: 6px;
 }
 
 .form-guideEmail{
