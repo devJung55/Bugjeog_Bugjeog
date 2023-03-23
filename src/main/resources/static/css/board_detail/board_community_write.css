@@ -240,3 +240,50 @@ width: 1.125rem;
 height: 1.125rem;
 background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuNSIgY3g9IjkiIGN5PSI5IiByPSI5Ii8+CiAgICAgICAgPGcgc3Ryb2tlPSIjRkZGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTEyLjI1OSAxMi4xMzUgNS43NjggNS42NDRNNS43NjIgMTIuMTMzbDYuNDk3LTYuNDk3Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K) 0px 0px no-repeat;
 }
+.profile-image {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+}
+.profile-member-status-box {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #FFCD4A;
+}
+.profile-image-login {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #FFCD4A;
+}
+
+.profile-image-login img {
+    width: 100%;
+    height: 100%;
+}
+.profile-member-status {
+    padding: 4px 6px 5px;
+}
+.content-member-image-size {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #FFCD4A;
+}
+
+.content-member-image-size img {
+    width: 100%;
+    height: 100%;
+    clip-path: circle(50% at 50% 50%);
+}
+
+.content-member-status {
+    padding: 4px 6px 5px;
+}
+
+.content-member-status span {
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;    
+}
