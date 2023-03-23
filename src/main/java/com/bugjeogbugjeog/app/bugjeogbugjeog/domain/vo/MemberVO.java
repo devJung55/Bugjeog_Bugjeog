@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MemberVO {
-    private Long member_id;
-    private String member_email;
-    private String member_password;
-    private String member_phone_number;
-    private String member_name;
-    private String member_register_date;
-    private Long member_status;
-    private String member_img_original_name;
-    private String member_img_uuid;
-    private String member_img_path;
+    private Long memberId;
+    private String memberEmail;
+    private String memberPassword;
+    private String memberPhoneNumber;
+    private String memberName;
+    private String memberRegisterDate;
+    private Long memberStatus;
+    private String memberImgOriginal_name;
+    private String memberImgUuid;
+    private String memberImgPath;
 }

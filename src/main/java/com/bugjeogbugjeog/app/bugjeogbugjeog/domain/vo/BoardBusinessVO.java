@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class BoardBusinessVO {
-    private Long board_business_id;
-    private Long business_id;
-    private String board_business_title;
-    private String board_business_content;
-    private String board_business_register_date;
-    private String board_business_update_date;
+    private Long boardBusinessId;
+    private Long businessId;
+    private String boardBusinessTitle;
+    private String boardBusinessContent;
+    private String boardBusinessRegisterDate;
+    private String boardBusinessUpdateDate;
 }
