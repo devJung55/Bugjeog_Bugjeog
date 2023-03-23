@@ -8,11 +8,11 @@
     <title>유통업체 프로필</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../static/css/mypage/font.css">
-    <link rel="stylesheet" href="../../static/css/mypage/mypage.css">
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_info.css">
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_profile.css">
-    <link rel="stylesheet" href="../../static/css/mypage/mypage_profile_business.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/font.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile_business.css">
 </head>
 <style>
     body.profile_body {
@@ -124,7 +124,7 @@
                                             <!-- 모달 트리거 버튼 -->
                                             <a class="MainResume-edit js-modal-trigger" data-target="modal-js-example">
                                                 <span class="img_span is-flex">
-                                                    <img src="../../static/image/mypage/Writing-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/Writing-64.png" alt="">
                                                 </span>
                                             </a>
                                         </div>
@@ -139,14 +139,14 @@
                                                 <h6 class="FormButton-label">추천인 선택</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="../../static/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div>
                                             <div class="FormButton">
                                                 <h6 class="FormButton-label">제외기업설정</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="../../static/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div> -->
                                             <div class="InputGroup is-relative">
@@ -185,22 +185,9 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(function () {
-        $('.Aside_include').load('fragment/mypage_aside_business.html');
-        // $('.footer_html').load('footer.html');
-    });
-
-</script>
-<script>
-    $(function () {
-        $('.Aside_include').load('../mypage/fragment/mypage_aside_business.html');
-        $('#header').load('../main/header.html');
-        $('#footer').load('../main/footer.html');
-        // $('.footer_html').load('footer.html');
-    });
-</script>
-<script src="../../static/js/mypage/mypage_profile_business.js"></script>
-<script src="../../static/js/mypage/mypage_profile_business_select.js"></script>
+<script>$('.Aside_include').load('fragment/aside_business.html');</script>
+<script src="../../../static/js/mypage/include_fixed.js"></script>
+<script src="../../../static/js/mypage/mypage_profile_business.js"></script>
+<script src="../../../static/js/mypage/mypage_profile_business_select.js"></script>
 
 </html>
