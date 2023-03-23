@@ -28,13 +28,13 @@
                         <div class="find-blank"></div>
                     </div>
                     <!-- 정보 입력 -->
-                     <div class="find-info-box">
+                    <div class="find-info-box">
                         <p class="find-enter-info">
                             계정을 찾기 위해 전화번호를 입력해주세요.
                         </p>
-                         <div class="find-num-ment">
+                        <div class="find-num-ment">
                             <label for="mobile" class="find-write-ment">휴대폰 번호</label>
-                         </div>
+                        </div>
                             <div>
                                 <div class="find-enter-anything">
                                     <input type="text" placeholder="(예시) 01013245678" name="mobile" class="find-enter-pn" value>
@@ -52,10 +52,10 @@
                                 </div>
                                 <!-- <p class="cerfing-ment">인증번호가 요청되었습니다.</p> -->
                             </div>
-                          <button type="button" class="find-countinue">
+                        <button type="submit" class="find-countinue">
                             <span class="find-countinue-ment">계속</span>
-                          </button>  
-                     </div>
+                        </button>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,4 +63,12 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/member/find_id.js"></script>
+<script>
+$inputs.on("blur", function(e) {
+    // console.log(this);
+    console.log(e.target);
+    console.log($(this).val());
+
+});
+</script>
 </html>

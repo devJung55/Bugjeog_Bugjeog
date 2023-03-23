@@ -289,6 +289,7 @@ html, body, #__next {
     }
 
     .find-countinue {
+        background-color: #36f;
         width: 100%;
         height: 50px;
         min-height: 50px;
@@ -296,27 +297,35 @@ html, body, #__next {
         font-size: 16px;
         margin-bottom: 10px;
         cursor: pointer;
-       /*  background-color: #36f; */
+        /* background-color: #36f; */
         border: none;
         margin-top: 30px;
     }
 
     .find-countinue:disabled {
-        color: #ccc;
+        color: #fff;
         background-color: #f2f4f7;
         border: none;
         cursor: default;
     }
 
     .find-countinue-ment {
-        opacity: 0.3;
+        color: #fff;
         font-weight: 600;
         text-align: left;
         letter-spacing:0.0056em;
-        font-size: 19px;
+        font-size: 18px;
         line-height: 24px;
     }
 
     .find-countinue:disabled span {
         color: #ccc;
     }
+
+    /* .btn_continue_active {
+        background-color: #36f;
+    } */
+
+    /* .btn_continue_active>span {
+        color: white;
+    } */
