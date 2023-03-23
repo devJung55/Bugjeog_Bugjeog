@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class InterestingCompanyVO {
-    private Long interesting_company_id;
-    private Long member_id;
-    private Long business_id;
+    private Long interestingCompanyId;
+    private Long memberId;
+    private Long businessId;
 }
