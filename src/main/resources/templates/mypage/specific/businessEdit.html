@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유통업체 프로필</title>
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/font.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/mypage_info.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile_business.css">
+    <link rel="stylesheet" href="https:/necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https:/cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/mypage/font.css">
+    <link rel="stylesheet" href="/css/mypage/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_profile.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_profile_business.css">
 </head>
 <style>
     body.profile_body {
@@ -21,6 +21,7 @@
         height: 100vh;
     }
 </style>
+<div th:insert="~{main/header :: header}"></div>
 <body class="profile_body is-relative">
     <div id="modal-edit_business" class="modal">
         <div class="modal-background"></div>
@@ -89,7 +90,7 @@
                     <aside class="Title_wrapper">
                         <picture>
                             <span>유통 분야 설정</span>
-                            <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
+                            <img src="https:/static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
                         </picture>
                     </aside>
                     <div>
@@ -124,7 +125,7 @@
                                             <!-- 모달 트리거 버튼 -->
                                             <a class="MainResume-edit js-modal-trigger" data-target="modal-edit_business">
                                                 <span class="img_span is-flex">
-                                                    <img src="../../../static/image/mypage/Writing-64.png" alt="">
+                                                    <img src="/image/mypage/Writing-64.png" alt="">
                                                 </span>
                                             </a>
                                         </div>
@@ -139,14 +140,14 @@
                                                 <h6 class="FormButton-label">추천인 선택</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div>
                                             <div class="FormButton">
                                                 <h6 class="FormButton-label">제외기업설정</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div> -->
                                             <div class="InputGroup is-relative">
@@ -183,11 +184,12 @@
         </main>
         <footer id="footer"></footer>
     </div>
+    <block th:insert="~{main/footer :: footer}"></block>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_business.html');</script>
-<script src="../../../static/js/mypage/include_fixed.js"></script>
-<script src="../../../static/js/mypage/mypage_profile_business.js"></script>
-<script src="../../../static/js/mypage/mypage_profile_business_select.js"></script>
+<script src="/js/mypage/include_fixed.js"></script>
+<script src="/js/mypage/mypage_profile_business.js"></script>
+<script src="/js/mypage/mypage_profile_business_select.js"></script>
 
 </html>

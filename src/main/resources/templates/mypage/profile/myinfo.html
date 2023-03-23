@@ -8,8 +8,8 @@
     <title>회원정보 수정</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/font_mypage_info.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_info.css">
 </head>
 
 <body>
@@ -22,11 +22,11 @@
             <main class="mypage_info_container">
                 <header class="member_img_container">
                     <div class="img_wrapper">
-                        <img class="img_profile" src="../../../static/image/mypage/member_no_image.png" alt="">
+                        <img class="img_profile" src="/image/mypage/member_no_image.png" alt="">
                         <label class="edit_wrapper">
                             <input style="display: none;" type="text">
                             <span class="edit_span">
-                                <img src="../../../static/image/mypage/ink-pen-64.png" alt="">
+                                <img src="/image/mypage/ink-pen-64.png" alt="">
                             </span>
                         </label>
                     </div>
@@ -51,7 +51,7 @@
                             <p class="changeText">이준상</p>
                             <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_name">
                                 <span class="img_span is-flex">
-                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                    <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
                             </a>
                         </li>
@@ -60,7 +60,7 @@
                             <p class="changeText">010-7728-7518</p>
                             <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone">
                                 <span class="img_span is-flex">
-                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                    <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
                             </a>
                         </li>
@@ -79,14 +79,14 @@
                             <p class="changeTitle">비밀번호 변경</p>
                             <p class="changeText"></p>
                             <a class="changeButton">
-                                <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                <img src="/image/mypage/arrow-right-64.png" alt="">
                             </a>
                         </li>
                         <li class="changeDefault">
                             <p class="changeTitle">회원 탈퇴</p>
                             <p class="changeText"></p>
                             <a class="changeButton">
-                                <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
+                                <img src="/image/mypage/arrow-right-64.png" alt="">
                             </a>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                         <div class="modal_content_top_right">
                             <!-- <button type="button" class="modal_exit_button">
                                 <span class="modal_exit_span">
-                                    <img src="../../../static/image/mypage/x-64.png" alt="">
+                                    <img src="/image/mypage/x-64.png" alt="">
                                 </span>
                             </button> -->
                             
@@ -155,7 +155,7 @@
                         <div class="modal_content_top_right is-relative">
                             <!-- <button type="button" class="modal_exit_button" aria-label="close">
                                 <span class="modal_exit_span">
-                                    <img src="../../../static/image/mypage/x-64.png" alt="">
+                                    <img src="/image/mypage/x-64.png" alt="">
                                 </span>
                             </button> -->
                             
@@ -342,7 +342,7 @@
                                         </select>
                                         <div class="open_select_wrapper">
                                             <span class="open_img_wrapper">
-                                                <img src="../../../static/image/mypage/arrow-down-48.png" alt="">
+                                                <img src="/image/mypage/arrow-down-48.png" alt="">
                                             </span>
                                         </div>
                                     </div>
@@ -385,16 +385,16 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<!-- <script src="../../../static/js/mypage/include_fixed.js"></script> -->
-<script src="../../../static/js/mypage/myinfo.js"></script>
+<!-- <script src="/js/mypage/include_fixed.js"></script> -->
+<script src="/js/mypage/myinfo.js"></script>
 <script>
     const $phone = $("input[name='mobile']");
 </script>
 
 <!-- 인증 번호 등 모달 관련 js -->
-<script src="../../../static/js/mypage/myinfo_modal.js"></script>
+<script src="/js/mypage/myinfo_modal.js"></script>
 
 <!-- 아이디 찾기 js 가져옴 -->
-<script src="../../../static/js/mypage/edit_phone.js"></script>
+<script src="/js/mypage/edit_phone.js"></script>
 
 </html>
