@@ -1,3 +1,7 @@
+* {
+    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
+}
+
 div.whole_wrapper {
     padding: 0;
     margin: 0;
@@ -268,3 +272,345 @@ p.service_text {
     margin-bottom: 30px;
 }
 
+div.modal_content_wrapper {
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+div.modal_content_top {
+    padding: 0px 20px;
+    height: 64px;
+    width: 100%;    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+div.modal_content_bottom {
+    padding: 0px 20px 20px;
+}
+
+div.modal_content_top_left {
+    min-width: 64px;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+div.modal_content_top_center {
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+p.modal_content_top_name_wrapper {
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: -0.002em;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+p.modal_content_name {
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: -0.002em;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+div.modal_content_top_right {
+    display: flex;
+    min-width: 64px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+button.modal_exit_button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    fill: #000;
+}
+
+span.modal_exit_span {
+    justify-content: inherit;
+    align-items: inherit;
+    -webkit-box-pack: inherit;
+}
+
+span.modal_exit_span>img {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: 20px;
+    fill: inherit;
+}
+
+form>div.modal_edit_input_wrapper {
+    margin: 30px 0px;
+}
+
+input.edit_input_name {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #e1e2e3;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+div.modal_edit_btn_wrapper {
+    display: flex;
+    justify-content: right;
+}
+
+button.modal_cancel {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;
+}
+
+span.modal_btn_span {
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+    color: #36f;
+}
+
+button.modal_save {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #36f;
+    border: none;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;   
+}
+
+div.box.modal_box {
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0 !important;
+    padding: 0;
+}
+
+div.modal-content {
+    width: 400px;
+    /* height: 262px !important; */
+}
+
+button.modal_save>span.modal_btn_span {
+    color: #fff;
+}
+
+div.modal_content_main_wrapper {
+    margin: 30px 0px;
+}
+
+div.modal_phone_select_wrapper {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #e1e2e3;
+    background-color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+select.select_location {
+    padding-left: 12px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    appearance: none;
+    height: 100%;
+    border: none;
+    background: none;
+    z-index: 1;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+}
+
+div.open_select_wrapper {
+    position: absolute;
+    right: 20px;
+    font-size: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+span.open_img_wrapper {
+    display: flex;
+    -webkit-box-align: inherit;
+    align-items: inherit;
+    -webkit-box-pack: inherit;
+    justify-content: inherit;
+}
+
+span.open_img_wrapper>img {
+    width: 10px;
+    height: 10px;
+}
+
+div.modal_input_number {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+input.modal_input:read-only {
+    color: #ccc;
+    -webkit-text-fill-color: #ccc;
+    background-color: #f2f4f7;
+    opacity: 1;
+}
+
+input.modal_input {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: #f2f4f7;
+    border: 1px solid #e1e2e3;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+button.auth_number {
+    height: 50px;
+    min-height: 50px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    margin-left: 10px;
+    padding: 0px 15px;
+    width: auto;
+    flex: 0 0 auto;
+    border-radius: 5px;
+    border: 1px solid #e1e2e3;
+}
+
+span.edit_phone_number {
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.auth_number.btn_active>span {
+    color: #36f;
+}
+
+.auth_number:disabled>span {
+    color: #ccc;
+}
+
+.auth_number:disabled {
+    color: #ccc;
+    background-color: #f2f4f7;
+    cursor: default;
+    border: 1px solid #f2f4f7;
+}
+
+p.auth_done {
+    color: #08ba9c;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.modal_input_number>label {
+    width: auto;
+}
+
+.error-msg {
+    font-size: 14px;
+    color: red;
+}
+
+.auth_msg {
+    color: #36f;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.auth_remain_time {
+    font-weight: 600;
+}
+
+.modal-close::after, .modal-close::before {
+    background-color: #000;
+}
+
+div.modal_content_top_right>button.modal-close {
+    /* right: -8px;
+    top: 12px; */
+    right: 0;
+    top: 0;
+}
