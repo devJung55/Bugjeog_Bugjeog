@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main/*")
+@RequestMapping("/mypage/*")
+/*@RequestMapping("/main/*")*/
 public class TestController {
 
-    @GetMapping("/main")
+    @GetMapping("/profile/exit")
     public String main(){
-        return "main/main";
+        return "mypage/profile/myinfo";
     }
+
+/*    @GetMapping("/main")
+    public void main(){
+    }*/
 }
