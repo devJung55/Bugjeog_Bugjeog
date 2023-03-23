@@ -11,6 +11,7 @@
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text(!phoneVal ? "핸드폰 번호를 입력해주세요." : "올바른 형식이 아닙니다.")
+            $editPhone.text("번호 입력");
         }else {
             $Checkbutton.css("cursor", "pointer");
             $Checkbutton.addClass("phone-active");
@@ -18,6 +19,7 @@
             $phoneError.text("");
             $btnAuthNums.removeAttr('disabled');
             $btnAuthNums.addClass('btn_active');
+            $editPhone.text("인증번호 받기");
         }
     });
 

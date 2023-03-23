@@ -346,7 +346,7 @@
                                     <div class="modal_input_number column columns is-full m-0 p-0">
                                         <div class="columns column is-multiline m-0 p-0">
                                             <input name="mobile" type="text" class="modal_input column is-full" placeholder="(예시) 01013245768">
-                                            <span class="phone-error error-msg column is-full p-0"></span>
+                                            <span class="phone-error error-msg column is-full p-0" readonly>01077287518</span>
                                         </div>
                                         <label for="" class="">
                                             <button type="button" class="auth_number find-take-btn btn_active">
@@ -391,16 +391,14 @@
     const $btnSave = $('button.modal_save');
     const $btnAuthNums = $($('button.auth_number')[0]);
     const $inputPhone = $('input.modal_input.column');
-    const $editPhone = $('span.edit_phone_number')[0];
-    console.log($inputPhone);
-
+    const $editPhoneBtnText = $($('span.edit_phone_number')[0]);
 
 
     $btnAuthNums.on('click', (e) => {
-        if ($btnAuthNums.hasClass('btn_active')) {
+        if ($btnAuthNums.hasClass('btn_active')&$editPhoneBtnText.text=="번호 변경") {
             $btnAuthNums.removeClass('btn_active');
             $btnAuthNums.attr('disabled', 'disabled');
-            $editPhone.text("인증번호 받기");
+            
         }
     });
 </script>
