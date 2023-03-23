@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class BoardFreeImgVO {
-    private Long board_free_img_id;
-    private Long board_free_id;
-    private String board_free_img_original_name;
-    private String board_free_img_uuid;
-    private String board_free_img_path;
+    private Long boardFreeImgId;
+    private Long boardFreeId;
+    private String boardFreeImgOriginalName;
+    private String boardFreeImgUuid;
+    private String boardFreeImgPath;
 }

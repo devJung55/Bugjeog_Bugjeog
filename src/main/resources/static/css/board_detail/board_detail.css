@@ -657,6 +657,7 @@ form button{
     top: 29px;
     right: 138px;
     font-size: 18px;
+    cursor: pointer;
   }
   #float_delete{
     float: right; 
