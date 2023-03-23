@@ -1,6 +1,5 @@
     // 휴대폰 검사
     const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-    const $phone = $("input[name='mobile']");
     const $phoneError = $(".phone-error");
     const $Checkbutton = $(".find-take-btn");
     $phoneError.hide();
@@ -11,15 +10,15 @@
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text(!phoneVal ? "핸드폰 번호를 입력해주세요." : "올바른 형식이 아닙니다.")
-            $editPhone.text("번호 입력");
-        }else {
+            $editPhoneBtnText.text(editPhoneText);
+        }else if(!($editPhoneBtnText.text().trim() == "인증번호 재전송")){
             $Checkbutton.css("cursor", "pointer");
             $Checkbutton.addClass("phone-active");
             $phoneError.hide();
             $phoneError.text("");
             $btnAuthNums.removeAttr('disabled');
             $btnAuthNums.addClass('btn_active');
-            $editPhone.text("인증번호 받기");
+            $editPhoneBtnText.text(sendAuthText);
         }
     });
 

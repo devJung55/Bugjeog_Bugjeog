@@ -588,3 +588,29 @@ p.auth_done {
     font-size: 14px;
     color: red;
 }
+
+.auth_msg {
+    color: #36f;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.auth_remain_time {
+    font-weight: 600;
+}
+
+.modal-close::after, .modal-close::before {
+    background-color: #000;
+}
+
+div.modal_content_top_right>button.modal-close {
+    /* right: -8px;
+    top: 12px; */
+    right: 0;
+    top: 0;
+}

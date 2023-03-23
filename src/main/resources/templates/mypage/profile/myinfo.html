@@ -103,18 +103,19 @@
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper">
+                <div class="modal_content_wrapper is-relative">
                     <div class="modal_content_top">
                         <div class="modal_content_top_left"></div>
                         <div class="modal_content_top_center">
                             <p class="modal_content_name">이름</p>
                         </div>
                         <div class="modal_content_top_right">
-                            <button type="button" class="modal_exit_button">
+                            <!-- <button type="button" class="modal_exit_button">
                                 <span class="modal_exit_span">
                                     <img src="../../../static/image/mypage/x-64.png" alt="">
                                 </span>
-                            </button>
+                            </button> -->
+                            
                         </div>
                     </div>
                     <div class="modal_content_bottom">
@@ -133,10 +134,11 @@
                             </div>
                         </form>
                     </div>
+                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
+                <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
     <!-- 휴대폰 번호 변경 모달창 -->
@@ -150,12 +152,13 @@
                         <div class="modal_content_top_center">
                             <p class="modal_content_name">휴대폰 번호</p>
                         </div>
-                        <div class="modal_content_top_right">
-                            <button type="button" class="modal_exit_button">
+                        <div class="modal_content_top_right is-relative">
+                            <!-- <button type="button" class="modal_exit_button" aria-label="close">
                                 <span class="modal_exit_span">
                                     <img src="../../../static/image/mypage/x-64.png" alt="">
                                 </span>
-                            </button>
+                            </button> -->
+                            
                         </div>
                     </div>
                     <div class="modal_content_bottom">
@@ -345,24 +348,23 @@
                                     </div>
                                     <div class="modal_input_number column columns is-full m-0 p-0">
                                         <div class="columns column is-multiline m-0 p-0">
-                                            <input name="mobile" type="text" class="modal_input column is-full" placeholder="(예시) 01013245768">
-                                            <span class="phone-error error-msg column is-full p-0" readonly>01077287518</span>
+                                            <input name="mobile" value="01077287518" class="modal_input column is-full"
+                                                placeholder="(예시) 01013245768" type="text" readonly>
+                                            <span class="phone-error error-msg column is-full p-0"></span>
                                         </div>
                                         <label for="" class="">
                                             <button type="button" class="auth_number find-take-btn btn_active">
-                                                <span class="edit_phone_number">
-                                                    번호 변경
-                                                </span>
+                                                <span class="edit_phone_number">번호 변경</span>
                                             </button>
                                         </label>
                                     </div>
                                     <div class="modal_input_number column is-full p-0">
                                         <input type="text" class="modal_input" placeholder="인증번호를 입력해주세요.">
                                     </div>
-                                    <p class="auth_done">인증되었습니다</p>
+                                    <p class="auth_msg auth_msg_done"></p>
+                                    <p class="auth_msg auth_remain_time"></p>
                                 </div>
                             </div>
-
                             <div class="modal_edit_btn_wrapper">
                                 <button type="button" class="modal_cancel">
                                     <span class="modal_btn_span">취소</span>
@@ -373,10 +375,10 @@
                             </div>
                         </form>
                     </div>
+                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
             </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
 </body>
@@ -385,23 +387,14 @@
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
 <!-- <script src="../../../static/js/mypage/include_fixed.js"></script> -->
 <script src="../../../static/js/mypage/myinfo.js"></script>
+<script>
+    const $phone = $("input[name='mobile']");
+</script>
+
+<!-- 인증 번호 등 모달 관련 js -->
 <script src="../../../static/js/mypage/myinfo_modal.js"></script>
 
-<script>
-    const $btnSave = $('button.modal_save');
-    const $btnAuthNums = $($('button.auth_number')[0]);
-    const $inputPhone = $('input.modal_input.column');
-    const $editPhoneBtnText = $($('span.edit_phone_number')[0]);
-
-
-    $btnAuthNums.on('click', (e) => {
-        if ($btnAuthNums.hasClass('btn_active')&$editPhoneBtnText.text=="번호 변경") {
-            $btnAuthNums.removeClass('btn_active');
-            $btnAuthNums.attr('disabled', 'disabled');
-            
-        }
-    });
-</script>
+<!-- 아이디 찾기 js 가져옴 -->
 <script src="../../../static/js/mypage/edit_phone.js"></script>
 
 </html>
