@@ -14,4 +14,9 @@ public class MyPageService {
     public MemberVO memberInfo(Long memberId){
         return mypageDAO.findById(memberId);
     };
+
+    //    회원정보 수정
+    public void memberUpdate(MemberVO memberVO) {
+        mypageDAO.updateById(memberVO);
+    }
 }

@@ -7,8 +7,9 @@
     <title>원티드- 나다운 일의시작</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../../static/css/board_detail/board_community_write.css">
-    <link rel="stylesheet" href="../../../static/css/board_detail/board_write.css">
+<!--    <link rel="stylesheet" href="css/board_detail/board_community_write.css">-->
+    <link rel="stylesheet" href="/css/board_detail/board_community_write.css">
+    <link rel="stylesheet" href="/css/board_detail/board_write.css">
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
@@ -34,7 +35,7 @@
                     <button type="button" class="cate-button" id="vegetable">
                         <span class="category_span">채소</span>
                     </button>
-                    <button type="button" class="cate-button" id="vegetable">
+                    <button type="button" class="cate-button" id="spice">
                         <span class="category_span">향신료</span>
                     </button>
                 </div>
@@ -104,7 +105,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
     // 초기 등록 버튼 색상 설정
-$('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+$('#regist_btn').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242,244,247)");
 
 // textarea 입력시 등록 버튼 색상 변경
 $('#content_textarea, #title_textarea').on('input', function() {
