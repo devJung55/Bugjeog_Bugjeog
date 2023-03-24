@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class BusinessBoardDAO {
-
     private final BusinessBoardMapper businessBoardMapper;
     private final BusinessBoardImgMapper businessBoardImgMapper;
 

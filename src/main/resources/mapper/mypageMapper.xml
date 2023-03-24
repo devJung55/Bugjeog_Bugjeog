@@ -22,19 +22,20 @@
 
     <!-- 좋아요 한 게시물 수-->
     <select id="likeCount" resultType="int">
-        select count(free_like_id) from tbl_frre_like where member_id = #{memberId}
+        select count(free_like_id) from tbl_free_like where member_id = #{memberId}
     </select>
 
     <!-- 좋아요 한 게시물 번호들-->
     <select id="likeListNumber" resultType="long">
-        select board_free_id from tbl_frre_like where member_id = #{memberId}
+        select board_free_id from tbl_free_like where member_id = #{memberId}
     </select>
 
     <!-- 좋아요 한 게시물 리스트-->
-<!--    <select id="likeList" resultType="likeDTO">
-        select member_id, member_email, member_password ,member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path,
+    <select id="likeList" resultType="likeDTO">
+        select m.member_id, member_email, member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path,
         board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
-        from board_free_id = #{board_free_id}
-    </select>-->
+        from tbl_board_free b join tbl_member m
+        on b.member_id = m.member_id and board_free_id = #{boardFreeId}
+    </select>
 
 </mapper>

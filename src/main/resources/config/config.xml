@@ -16,5 +16,6 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO" alias="freeReplyVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO" alias="businessVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.LikeDTO" alias="likeDTO"/>
     </typeAliases>
 </configuration>
