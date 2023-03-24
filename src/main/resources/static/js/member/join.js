@@ -1,8 +1,18 @@
 
     // 이메일 검사
     const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    const $email = $("input[name='email']");
+    const $email = $("input[type='email']");
     const $emailError = $(".email-error");
+
+    let emailCheck = false;
+    let nameCheck = false;
+    let phoneNumberCheck = false;
+    let authCodeCheck = false;
+    let passwordCheck1 = false;
+    let passwordCheck2 = false;
+    let allCheckBox = false;
+    let must1CheckBox = false;
+    let must2CheckBox = false;
 
     $email.blur(function(){
         let emailVal = $email.val();
@@ -12,6 +22,8 @@
             $emailError.text("이메일 형식에 맞춰서 작성해주세요.");
         }else {
             $emailError.text("");
+            emailCheck = true;
+            console.log(emailCheck);
         }
     });
 
@@ -25,12 +37,14 @@
             $nameError.text("이름을 입력해주세요.");
         }else {
             $nameError.text("");
+            nameCheck = true;
+            console.log(nameCheck);
         }
     });
 
     // 휴대폰 검사
     const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-    const $phone = $("input[name='memberPhoneNumeber']");
+    const $phone = $(".join-phone-number");
     const $phoneError = $(".phone-error");
     const $Checkbutton = $(".join-num-check-button");
 
@@ -50,10 +64,12 @@
             $Checkbutton.addClass("phone-active");
             $phoneError.hide();
             $phoneError.text("");
+            phoneNumberCheck = true;
+            console.log(phoneNumberCheck);
         }
     });
 
-    // 인증번호 보내기 클릭 시 
+    // 인증번호 보내기 클릭 시
     $Checkbutton.click(function(){
         $(".authcode-input").addClass("authcode-input-active");
         $(".auth-msg").show();
@@ -65,6 +81,7 @@
         if($authcode.val().length == 4){
             $(".auth-msg").hide();
             $authCheckButton.show();
+            authCodeCheck = true;
         }
     });
     // 비밀번호 검사
@@ -82,10 +99,11 @@
             $passwordError.removeClass("font-size");
         }else if(!regPassword.test(passwordVal)){
             $passwordError.addClass("font-size");
-            $passwordError.text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.");
         }else {
             $passwordError.hide();
             $passwordError.text("");
+            passwordCheck1 = true;
+            console.log(passwordCheck1);
         }
     });
 
@@ -95,26 +113,30 @@
             $passwordCheckError.text("비밀번호를 확인해주세요.");
         }else {
             $passwordCheckError.hide();
+            passwordCheck2 = true;
+            console.log(passwordCheck2);
         }
     });
-    
+
 	$("#allSelect").click(function() {
         console.log("눌림");
 	    if($("#allSelect").is(":checked")) {
             $("input[name=check]").prop("checked", true);
             $(".join-terms-agree").addClass("checkbox-active-box");
             $(".checkbox-display").show();
+            allCheckBox = true;
+            console.log(allCheckBox);
         }else {
             $(".checkbox-display").hide();
             $(".join-terms-agree").removeClass("checkbox-active-box");
             $("input[name=check]").prop("checked", false);
         }
     });
-	
+
 	$("input[name=check]").click(function() {
 	    var total = $("input[name=check]").length;
 	    var checked = $("input[name=check]:checked").length;
-	
+
 	    if(total != checked){
             $($(".join-terms-agree")[0]).removeClass("checkbox-active-box");
             $($(".checkbox-display")[0]).hide();
@@ -122,14 +144,15 @@
         } else {
             $($(".join-terms-agree")[0]).addClass("checkbox-active-box");
             $($(".checkbox-display")[0]).show();
-            $("#allSelect").prop("checked", true); 
-        }    
+            $("#allSelect").prop("checked", true);
+        }
 	});
 
     $("input[name=check]").each((i, e) => {
 
         $(e).click(function(){
             console.log(i);
+
             if($(e).is(":checked")){
                 $($(".checkbox-display")[i+1]).show();
                 $($(".check-state")[i]).addClass("checkbox-active-box");
@@ -138,4 +161,31 @@
                 $($(".checkbox-display")[i+1]).hide();
             }
         });
+    });
+
+
+    /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
+
+    const $joinButton = $(".join-jjoin-btn-border");
+    let $must1 = $(".must1");
+    let $must2 = $(".must2");
+
+    $joinButton.on("click", function(e) {
+        if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
+            $(document.joinForm).submit();
+        } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
+
+        }
+    });
+
+    $must1.on("click", function(e) {
+        if($must1.is(":checked")) {
+            must1CheckBox = true;
+        }
+    });
+
+    $must2.on("click", function(e) {
+        if($must2.is(":checked")) {
+            must2CheckBox = true;
+        }
     });

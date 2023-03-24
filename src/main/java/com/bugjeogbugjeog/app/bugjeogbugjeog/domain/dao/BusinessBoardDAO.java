@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RequiredArgsConstructor
 public class BusinessBoardDAO {
-
     private final BusinessBoardMapper businessBoardMapper;
     private final BusinessBoardImgMapper businessBoardImgMapper;
 
