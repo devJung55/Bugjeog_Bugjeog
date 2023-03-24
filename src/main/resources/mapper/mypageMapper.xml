@@ -31,10 +31,10 @@
     </select>
 
     <!-- 좋아요 한 게시물 리스트-->
-    <select id="likeList" resultType="likeDTO">
+<!--    <select id="likeList" resultType="likeDTO">
         select member_id, member_email, member_password ,member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path,
         board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
         from board_free_id = #{board_free_id}
-    </select>
+    </select>-->
 
 </mapper>
