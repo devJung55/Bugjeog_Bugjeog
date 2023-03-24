@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardMapper">
-    <select id="" resultType="boardBusinessDTO">
-
+    <select id="selectAll" resultType="boardBusinessDTO">
+        SELECT board_business_id, business_id, board_business_title
+        , board_business_content, board_business_register_date, board_business_update_date
+        FROM tbl_board_business
     </select>
 </mapper>
