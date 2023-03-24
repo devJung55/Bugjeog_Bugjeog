@@ -218,21 +218,37 @@
             if ($($tabLis[i]).hasClass('CommunityProfile_current')) { $($tabLis[i]).removeClass('CommunityProfile_current'); }
         }
         $target.addClass('CommunityProfile_current');
+        $boardListWrapper.empty()
 
         console.log($target.children('button')[0].innerHTML);
-        console.log($boardListWrapper.empty());
         switch($target.children('button')[0].innerHTML){
             case '작성글':
-                showListPost(list);
+                $.ajax({
+                    success(list){
+                        showListPost(list);
+                    }
+                });
                 break;
             case '작성댓글':
-                showListReply(list);
+                $.ajax({
+                    success(list){
+                        showListComment(list);
+                    }
+                });
                 break;
             case '좋아요':
-                showListLike(list);
+                $.ajax({
+                    success(list){
+                        showListLike(list);
+                    }
+                });
                 break;
             case '문의글':
-                showListInquiry(list);
+                $.ajax({
+                    success(list){
+                        showListInquiry(list);
+                    }
+                });
                 break;
         }
 
