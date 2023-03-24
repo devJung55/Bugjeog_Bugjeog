@@ -1,7 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.LikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -55,7 +55,7 @@ public class MypageMapperTest {
     @Test
     public void likeListTest(){
         List<Long> memberIds = myPageMapper.likeListNumber(1L);
-        List<LikeDTO> datas = new ArrayList<>();
+        List<MemberLikeDTO> datas = new ArrayList<>();
 
         memberIds.stream().forEach(data -> datas.add(myPageMapper.likeList(data)));
        datas.stream().forEach(data -> log.info(data.toString()));

@@ -1,6 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.LikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,5 +26,5 @@ public interface MyPageMapper {
     public List<Long> likeListNumber(Long memberId);
 
 //    좋아요 한 게시물 리스트
-    public LikeDTO likeList(Long boardFreeId);
+    public MemberLikeDTO likeList(Long boardFreeId);
 }
