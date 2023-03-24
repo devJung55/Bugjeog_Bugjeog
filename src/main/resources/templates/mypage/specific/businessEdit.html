@@ -86,8 +86,8 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <!-- <aside th:replace="~{fragment/mypage_aside_business :: aside_business}"></aside> -->
-                <aside class="Aside_include"></aside>
+                <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
+                <!--<aside class="Aside_include"></aside>-->
                 <section>
                     <aside class="Title_wrapper">
                         <picture>
@@ -102,13 +102,13 @@
                                     <div class="FormBlock-content">
                                         <div class="MainResume-fieldset">
                                             <div class="fieldset-Static_content-first">
-                                                <div class="Static-label is-flex">대분류</div>
+                                                <div class="Static-label is-flex">지역선택</div>
                                                 <div class="Static-body">
                                                     동·식물성 유지
                                                 </div>
                                             </div>
                                             <div class="fieldset-Static_content-others">
-                                                <div class="Static-label is-flex">소분류</div>
+                                                <div class="Static-label is-flex">카테고리</div>
                                                 <div class="Static-body">
                                                     음료주류
                                                 </div>
@@ -125,11 +125,11 @@
                                                 </label>
                                             </div>
                                             <!-- 모달 트리거 버튼 -->
-                                            <a class="MainResume-edit js-modal-trigger" data-target="modal-edit_business">
+<!--                                            <a class="MainResume-edit js-modal-trigger" data-target="modal-edit_business">
                                                 <span class="img_span is-flex">
                                                     <img src="/image/mypage/Writing-64.png" alt="">
                                                 </span>
-                                            </a>
+                                            </a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -152,18 +152,6 @@
                                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div> -->
-                                            <div class="InputGroup is-relative">
-                                                <h6 class="FormButton-label">운영 여부 설정</h6>
-                                                <div class="InputGroup-body">
-                                                    <div class="JobSearchIntentionSelector-wrapper">
-                                                        <select name="" id="" class="JobSearchIntentionSelector-select">
-                                                            <option value="">현재 운영 중</option>
-                                                            <option value="">운영 예정</option>
-                                                            <option value="">현재 운영 중단</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="apply_wrapper_upper">
                                                 <label for="">
                                                     <div class="apply_wrapper">
@@ -184,12 +172,11 @@
                 </section>
             </section>
         </main>
-        <footer id="footer"></footer>
+        <footer id="footer" th:insert="~{main/footer :: footer}"></footer>
     </div>
-    <block th:insert="~{main/footer :: footer}"></block>
 </body>
 <script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('fragment/aside_business.html');</script>
+<!--<script>$('.Aside_include').load('fragment/aside_business.html');</script>-->
 <script src="/js/mypage/include_fixed.js"></script>
 <script src="/js/mypage/mypage_profile_business.js"></script>
 <script src="/js/mypage/mypage_profile_business_select.js"></script>

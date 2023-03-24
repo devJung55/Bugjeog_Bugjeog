@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /*@RequestMapping("/main/*")*/
 public class TestController {
 
-    @GetMapping("/profile")
+    @GetMapping("/profile/favorite")
     public String main(){
         return "mypage/specific/personalFavoriteList";
+    }
+    @GetMapping("/profile/edit")
+    public String main2(){
+        return "mypage/specific/businessEdit";
     }
 
 /*    @GetMapping("/main")
