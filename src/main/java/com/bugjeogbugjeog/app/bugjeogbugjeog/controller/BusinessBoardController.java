@@ -39,7 +39,7 @@ public class BusinessBoardController {
     }
 
     @GetMapping("/board/business/list")
-    public void showList(Model model) { model.addAttribute(); }
+    public void showList(Model model) { ; }
 
     @GetMapping("/board/business/detail")
     public void detail() {
