@@ -15,8 +15,8 @@ public class MypageMapperTest {
 
     @Test
     public void selectTest(){
-        myPageMapper.select(1L);
+        
+        log.info(myPageMapper.select(1L).toString());
     }
-
 
 }
