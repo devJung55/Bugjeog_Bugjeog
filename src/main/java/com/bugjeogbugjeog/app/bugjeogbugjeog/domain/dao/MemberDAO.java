@@ -15,4 +15,8 @@ public class MemberDAO {
         memberMapper.insertMember(memberVO);
     }
 
+//    이메일 중복검사
+    public Long findByEmail(String memberEmail) {
+        return memberMapper.selectByEmail(memberEmail);
+    }
 }

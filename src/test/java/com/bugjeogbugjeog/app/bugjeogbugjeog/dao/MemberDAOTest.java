@@ -26,4 +26,10 @@ public class MemberDAOTest {
 
         memberDAO.register(memberVO);
     }
+
+//    이메일 중복검사
+    @Test
+    public void selectEmail() {
+        log.info(memberDAO.findByEmail("jjy1234@naver.com").toString());
+    }
 }
