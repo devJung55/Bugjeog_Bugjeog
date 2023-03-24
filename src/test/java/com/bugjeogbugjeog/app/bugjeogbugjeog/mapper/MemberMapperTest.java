@@ -17,8 +17,8 @@ public class MemberMapperTest {
     public void insertMemberTest() {
         MemberVO memberVO = new MemberVO();
 
-        memberVO.setMemberEmail("jjy1234@naver.com");
-        memberVO.setMemberName("정지영");
+        memberVO.setMemberEmail("kjp@naver.com");
+        memberVO.setMemberName("킹자지");
         memberVO.setMemberPhoneNumber("01012341234");
         memberVO.setMemberPassword("1234");
 
