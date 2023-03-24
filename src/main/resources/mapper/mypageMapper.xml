@@ -40,6 +40,16 @@
         on i.member_id = m.member_id and i.member_id = #{memberId}
     </select>
 
+    <!-- 이용자의 문의글 작성 수-->
+    <select id="inquireCount" resultType="int">
+        select count(member_id) from tbl_board_inquiry where member_id = #{memberId}
+    </select>
+
+    <!-- 문의 게시판 답변했는지 안했는지 유무 확인 -->
+    <select id="answerCheck" resultType="long">
+        select board_inquiry_id from tbl_board_inquiry_answer where board_inquiry_id = #{boardInquiryId};
+    </select>
+
     <!--유통 업체 정보 조회-->
     <select id="selectBuisness" resultType="businessVO">
         select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_img_original_name, business_img_uuid, business_img_path
