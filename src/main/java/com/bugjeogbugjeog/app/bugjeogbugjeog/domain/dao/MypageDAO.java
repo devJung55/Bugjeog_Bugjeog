@@ -14,5 +14,10 @@ public class MypageDAO {
     public MemberVO findById(Long memberId){
         return myPageMapper.select(memberId);
     };
+    
+    // 회원정보 수정
+    public void updateById(MemberVO memberVO){
+        myPageMapper.update(memberVO);
+    };
 
 }
