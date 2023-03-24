@@ -1,4 +1,4 @@
-package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
+package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -8,15 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class MypageMapperTest {
+public class MyPageServiceTests {
 
     @Autowired
-    MyPageMapper myPageMapper;
+    MyPageService myPageService;
 
     @Test
-    public void selectTest(){
-        
-        log.info(myPageMapper.select(1L).toString());
+    public void memberInfoTest(){
+        log.info(myPageService.memberInfo(1L).toString());
     }
 
 }
