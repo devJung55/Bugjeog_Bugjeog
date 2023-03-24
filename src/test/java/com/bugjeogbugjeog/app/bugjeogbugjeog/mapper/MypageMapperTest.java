@@ -32,4 +32,9 @@ public class MypageMapperTest {
         myPageMapper.update(memberVO);
     }
 
+    @Test
+    public void selectBuisnessTest(){
+        myPageMapper.selectBuisness(1L);
+    }
+
 }
