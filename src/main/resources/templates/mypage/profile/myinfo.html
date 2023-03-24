@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
 
 <body>
 
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
-            <header id="header" style="width: 100%;"></header>
+            <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
             <div class="header-padding">
             </div>
             <main class="mypage_info_container">

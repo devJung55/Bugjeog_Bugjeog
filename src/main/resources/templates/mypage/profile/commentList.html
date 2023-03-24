@@ -16,11 +16,13 @@
     <!-- <link rel="stylesheet" href="/css/mypage/mypage_personal.css"> -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal_comment_list.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body class="profile_body">
     <div class="Container_Profile">
-        <div th:insert="~{main/header :: header}"></div> <!-- 작동 안됨 수정 필요 -->
+        <header th:insert="~{main/header :: header}"></header>
         <!-- <header id="header"></header> -->
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
@@ -198,7 +200,7 @@
                 </section>
             </section>
         </main>
-        <block th:insert="~{main/footer :: footer}"></block><!-- 작동 안됨 수정 필요 -->
+        <block th:insert="~{main/footer :: footer}"></block>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

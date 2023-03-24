@@ -5,120 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>mypageHeader</title>
     <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
-<style>
-    header.mypage_info_header {
-        box-sizing: border-box;
-        display: flex;
-        width: 100%;
-        height: 50px;
-        -webkit-box-pack: center;
-        justify-content: center;
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
-    }
-
-    div.info_wrapper {
-        box-sizing: border-box;
-        max-width: 1060px;
-        width: 100%;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        padding: 0 20px;
-    }
-
-    a.info_logo {
-        box-sizing: border-box;
-        color: inherit;
-        text-decoration: none;
-    }
-
-    span.logo_wrapper {
-        box-sizing: border-box;
-        display: flex;
-        -webkit-box-align: inherit;
-        align-items: inherit;
-        -webkit-box-pack: inherit;
-        justify-content: inherit;
-    }
-
-    span.logo_wrapper img {
-        overflow-clip-margin: content-box;
-        overflow: hidden;
-        box-sizing: border-box;
-        flex-shrink: 0;
-        font-size: inherit;
-        height: 36px;
-        user-select: none;
-        display: inline-block;
-        fill: currentColor;
-    }
-
-    div.info_header_right {
-        display: flex;
-        margin-left: auto;
-        -webkit-box-align: center;
-        align-items: center;
-    }
-
-    button.button_logout {
-        appearance: auto;
-        writing-mode: horizontal-tb !important;
-        text-rendering: auto;
-        color: buttontext;
-        letter-spacing: normal;
-        word-spacing: normal;
-        line-height: normal;
-        text-transform: none;
-        text-indent: 0px;
-        text-shadow: none;
-        display: inline-block;
-        text-align: center;
-        padding: 1px 6px;
-        height: 50px;
-        min-height: 50px;
-        border-radius: 25px;
-        font-size: 16px;
-        cursor: pointer;
-        background-color: #fff;
-        border: none;
-        width: auto;
-        margin: 0;
-    }
-
-    button.button_logout span {
-        box-sizing: border-box;
-        font-weight: 600;
-        text-align: left;
-        letter-spacing: 0.0056em;
-        font-size: 16px;
-        line-height: 24px;
-        color: #939393;
-    }
-
-    label.header_profile_img {
-        overflow: hidden;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        margin-right: 16px;
-    }
-</style>
-
 <body>
-<header th:fragment="logout_header"></header>
-    <header class="mypage_info_header">
+    <header class="mypage_info_header" th:fragment="logout_header">
         <div class="info_wrapper">
             <a href="" class="info_logo">
                 <span class="logo_wrapper">
-                    <!-- <img src="../../static/image/mypage/logo.png" alt=""> -->
+                     <img src="/image/main/logo1-removebg-preview.png" alt="">
                 </span>
             </a>
             <div class="info_header_right">
-                <div style="display: none;"></div>
-                <hr style="display: none;">
                 <button class="button_logout">
                     <span>로그아웃</span>
                 </button>
