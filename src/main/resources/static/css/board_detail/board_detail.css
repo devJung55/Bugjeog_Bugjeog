@@ -262,6 +262,7 @@ textarea {
     flex-direction: row;
     align-items: center;
     margin: 0 0 18px;
+    position: relative;
 }
 #profile_my_img{
     width: 37px;
@@ -622,11 +623,11 @@ form button{
   }
   
   .rating-reply {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: row-reverse;
+      position: absolute;
+      top: 7px;
+      left: 91px;
+      display: flex;
+      flex-direction: row-reverse;
   }
 
   .review-score-box {
