@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <!-- <link rel="stylesheet" href="/css/mypage/mypage_personal.css"> -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body class="profile_body">
     <div class="Container_Profile">
-        <header id="header"></header>
+        <header id="header" th:insert="~{main/header :: header}"></header>
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
             <nav class="NavBar_presentation mypage">
@@ -229,7 +231,7 @@
                 </section>
             </section>
         </main>
-        <footer id="footer"></footer>
+        <footer id="footer" th:insert="~{main/footer :: footer}"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
