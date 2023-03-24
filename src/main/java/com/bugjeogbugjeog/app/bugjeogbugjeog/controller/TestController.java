@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /*@RequestMapping("/main/*")*/
 public class TestController {
 
-    @GetMapping("/pr-")
 
 //    @GetMapping("/profile/favorite")
 //    public String main(){
