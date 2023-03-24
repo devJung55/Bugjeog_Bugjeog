@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_exit.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
 <style>
     html,
@@ -21,10 +22,9 @@
 </style>
 
 <body>
-<block th:insert="~{mypage/fragment/header :: logout_header}"></block>
     <div class="wrapper_wrapper">
         <div class="whole_wrapper">
-            <header id="header" style="width: 100%; position: fixed;"></header>
+            <div id="header" style="width: 100%; position: fixed;" th:insert="~{mypage/fragment/header :: logout_header}"></div>
             <main class="mainbody_wrapper">
                 <div class="main_wrapper_first">
                     <div class="main_wrapper is-flex">
@@ -149,17 +149,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $(function () {
-        $('#header').load('fragment/header.html');
-        // $('.footer_html').load('footer.html');
-    });
-</script>
-<script>
     const $checkboxs = $('label.accept_wrapper');
     const $checkboxAceept = $('span.btn_accept');
     const $btnConfirm = $('#button_confirm');
 
-    // console.log($($checkboxs[0]).children('span'));
     $($checkboxs).on('click', (e)=>{
         var $hidden = $(e.currentTarget).children('span.is-hidden');
         var $show = $(e.currentTarget).children('span.is-show');

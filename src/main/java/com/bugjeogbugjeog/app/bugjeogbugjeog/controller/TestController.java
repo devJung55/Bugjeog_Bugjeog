@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /*@RequestMapping("/main/*")*/
 public class TestController {
 
-    @GetMapping("/profile/exit")
+    @GetMapping("/profile")
     public String main(){
-        return "mypage/profile/myinfo";
+        return "mypage/profile/likedList";
     }
 
 /*    @GetMapping("/main")
