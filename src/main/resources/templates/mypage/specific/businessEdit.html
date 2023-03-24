@@ -8,13 +8,13 @@
     <title>유통업체 프로필</title>
     <link rel="stylesheet" href="https:/necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https:/cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="/css/mypage/font.css">
-    <link rel="stylesheet" href="/css/mypage/mypage.css">
-    <link rel="stylesheet" href="/css/mypage/mypage_info.css">
-    <link rel="stylesheet" href="/css/mypage/mypage_profile.css">
-    <link rel="stylesheet" href="/css/mypage/mypage_profile_business.css">
-    <link rel="stylesheet" href="/css/main/header.css">
-    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/font.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/mypage_profile_business.css">
+    <link rel="stylesheet" href="../../../static/css/main/header.css">
+    <link rel="stylesheet" href="../../../static/css/main/footer.css">
 </head>
 <style>
     body.profile_body {
@@ -87,7 +87,7 @@
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
                 <!-- <aside th:replace="~{fragment/mypage_aside_business :: aside_business}"></aside> -->
-                <aside class="Aside_include"></aside>
+                <aside class="Aside_include"></aside><!-- th:삽입으로 전환 필요 -->
                 <section>
                     <aside class="Title_wrapper">
                         <picture>
@@ -127,7 +127,7 @@
                                             <!-- 모달 트리거 버튼 -->
                                             <a class="MainResume-edit js-modal-trigger" data-target="modal-edit_business">
                                                 <span class="img_span is-flex">
-                                                    <img src="/image/mypage/Writing-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/Writing-64.png" alt="">
                                                 </span>
                                             </a>
                                         </div>
@@ -142,14 +142,14 @@
                                                 <h6 class="FormButton-label">추천인 선택</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div>
                                             <div class="FormButton">
                                                 <h6 class="FormButton-label">제외기업설정</h6>
                                                 <button class="FormButton-button">
                                                     선택하기
-                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
+                                                    <img src="../../../static/image/mypage/arrow-right-64.png" alt="">
                                                 </button>
                                             </div> -->
                                             <div class="InputGroup is-relative">
@@ -189,9 +189,9 @@
     <block th:insert="~{main/footer :: footer}"></block>
 </body>
 <script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('fragment/aside_business.html');</script>
-<script src="/js/mypage/include_fixed.js"></script>
-<script src="/js/mypage/mypage_profile_business.js"></script>
-<script src="/js/mypage/mypage_profile_business_select.js"></script>
+<script>$('.Aside_include').load('fragment/aside_business.html');</script><!-- th:삽입후 제거 -->
+<script src="../../../static/js/mypage/include_fixed.js"></script><!-- th:삽입후 제거 -->
+<script src="../../../static/js/mypage/mypage_profile_business.js"></script>
+<script src="../../../static/js/mypage/mypage_profile_business_select.js"></script>
 
 </html>
