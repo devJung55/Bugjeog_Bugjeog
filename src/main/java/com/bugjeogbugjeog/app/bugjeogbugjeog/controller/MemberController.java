@@ -33,16 +33,15 @@ public class MemberController {
         return new RedirectView("/member/login");
     }
 
-//    인증번호 발송
-    @ResponseBody
-    @PostMapping("sms-certification/sends")
-    public void sendSms() {
-
-    }
-
 //    자영업자 로그인
     @GetMapping("login")
     public void login(Model model) {
         model.addAttribute(new MemberVO());
+    }
+
+//    자영업자 로그인 완료
+    @PostMapping("login")
+    public void login(MemberVO memberVO) {
+
     }
 }

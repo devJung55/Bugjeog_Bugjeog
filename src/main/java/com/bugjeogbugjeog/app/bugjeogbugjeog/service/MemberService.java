@@ -14,4 +14,9 @@ public class MemberService {
     public void join(MemberVO memberVO) {
         memberDAO.register(memberVO);
     }
+
+//    이메일 중복검사
+    public Long checkEmail(String memberEmail) {
+        return memberDAO.findByEmail(memberEmail);
+    }
 }
