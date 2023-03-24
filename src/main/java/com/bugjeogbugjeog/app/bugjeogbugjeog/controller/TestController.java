@@ -12,7 +12,7 @@ public class TestController {
 
     @GetMapping("/profile")
     public String main(){
-        return "mypage/profile/likedList";
+        return "mypage/specific/personalFavoriteList";
     }
 
 /*    @GetMapping("/main")
