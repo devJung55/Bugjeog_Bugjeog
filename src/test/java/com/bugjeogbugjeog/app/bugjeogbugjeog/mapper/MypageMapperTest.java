@@ -37,4 +37,14 @@ public class MypageMapperTest {
         myPageMapper.selectBuisness(1L);
     }
 
+
+    @Test
+    public void likeCountTest(){
+        log.info(String.valueOf(myPageMapper.likeCount(1L)));
+    }
+
+    @Test
+    public void likeListNumberTest(){
+        myPageMapper.likeListNumber(1L);
+    }
 }
