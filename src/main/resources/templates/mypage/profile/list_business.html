@@ -91,7 +91,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="CommunityProfile_list">
                             <!-- 첫번째 글 -->
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
@@ -204,5 +204,43 @@
 <script>$('.Aside_include').load('../fragment/aside_personal.html');</script><!-- th:삽입후 제거 -->
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
 <script src="../../../static/js/mypage/include_fixed.js"></script><!-- th:삽입후 제거 -->
-<script src="../../../static/js/mypage/switch_tab.js"></script>
+<script>
+    const $tabLis = $('ul.CommunityProfile_tabs').children('li');
+    const $boardListWrapper = $($('div.CommunityProfile_list')[0]);
+</script>
+<!-- <script src="../../../static/js/mypage/switch_tab.js"></script> -->
+<script src="../../../static/js/mypage/showList.js"></script>
+<script>
+    $tabLis.on('click', (e) => {
+        console.log(e.currentTarget);
+        var $target = $(e.currentTarget);
+        for (let i = 0; i < $tabLis.length; i++) {
+            if ($($tabLis[i]).hasClass('CommunityProfile_current')) { $($tabLis[i]).removeClass('CommunityProfile_current'); }
+        }
+        $target.addClass('CommunityProfile_current');
+
+        console.log($target.children('button')[0].innerHTML);
+        console.log($boardListWrapper.empty());
+        switch($target.children('button')[0].innerHTML){
+            case '작성글':
+                showListPost(list);
+                break;
+            case '작성댓글':
+                showListReply(list);
+                break;
+            case '좋아요':
+                showListLike(list);
+                break;
+            case '문의글':
+                showListInquiry(list);
+                break;
+        }
+
+
+});
+
+
+</script>
+
+
 </html>
