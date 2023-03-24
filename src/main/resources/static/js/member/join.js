@@ -174,7 +174,7 @@
         if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
             $(document.joinForm).submit();
         } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
-
+            $(document.joinForm).submit();
         }
     });
 

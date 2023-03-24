@@ -7,4 +7,10 @@
         (member_email, member_password, member_phone_number, memeber_name)
         values(#{memberEmail}, #{memberPassword}, #{memberPhoneNumber}, #{memberName})
     </insert>
+
+    <!-- 이메일 중복검사 -->
+    <select id="selectByEmail" parameterType="String" resultType="Long">
+        select count(member_email) from tbl_member
+        where member_email = #{memberEmail}
+    </select>
 </mapper>
