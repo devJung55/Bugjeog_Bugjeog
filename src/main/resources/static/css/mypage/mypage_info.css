@@ -45,7 +45,6 @@ header.member_img_container {
 
 div.img_wrapper {
     border-radius: 50%;
-    border: 1px solid #e1e2e3;
     background-color: #fff;
     position: relative;
     width: 80px;
@@ -73,8 +72,8 @@ label.edit_wrapper {
     align-items: center;
     position: absolute;
     cursor: pointer;
-    right: -7px;
-    bottom: -7px;
+    right: -5px;
+    bottom: -2px;
     width: 32px;
     height: 32px;
     border-radius: 50%;

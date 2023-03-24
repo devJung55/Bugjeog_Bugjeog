@@ -3,7 +3,9 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO" alias="boardBusinessImgVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessImgDTO" alias="boardBusinessImgDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO" alias="boardBusinessVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO" alias="boardBusinessDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryAnswerVO" alias="boardInquiryAnswerVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO" alias="boardInquiryVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO" alias="businessReviewVO"/>

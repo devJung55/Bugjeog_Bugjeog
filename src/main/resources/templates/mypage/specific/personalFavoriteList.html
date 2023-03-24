@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
     <link rel="stylesheet" href="/css/mypage/mypage_paging.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body class="profile_body">
@@ -31,14 +33,15 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include"></aside>
+                <aside th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
+<!--                <aside class="Aside_include"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
                         <picture>
                             <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
                             <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
                         </picture>
-                    </aside>
+                    </aside>-->
                     <!-- <div style="display: none;">
                         <header class="summary_wrapper">
                             <h2 class="summary_title">나의 활동</h2>
@@ -401,7 +404,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script>
+<script src="/js/mypage/include_fixed.js"></script>4
 <script>
     const $pagingLabel = $('label.num_label');
 

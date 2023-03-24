@@ -16,11 +16,13 @@
     <!-- <link rel="stylesheet" href="/css/mypage/mypage_personal.css"> -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal_comment_list.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body class="profile_body">
     <div class="Container_Profile">
-        <div th:insert="~{main/header :: header}"></div> <!-- 작동 안됨 수정 필요 -->
+        <header th:insert="~{main/header :: header}"></header>
         <!-- <header id="header"></header> -->
         <div class="padding_for_header"></div>
         <main class="MatchUp-Container">
@@ -44,12 +46,6 @@
                         <header class="summary_wrapper">
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
-                                <li class="summary_content" style="border: none;">
-                                    <a href="">
-                                        <em>0</em>
-                                        <span>최근본</span>
-                                    </a>
-                                </li>
                                 <li class="summary_content">
                                     <a href="">
                                         <em>0</em>
@@ -68,6 +64,12 @@
                                         <span>좋아요</span>
                                     </a>
                                 </li>
+                                <li class="summary_content" style="border: none;">
+                                    <a href="">
+                                        <em>0</em>
+                                        <span>문의글</span>
+                                    </a>
+                                </li>
                             </ul>
                         </header>
                     </div>
@@ -75,9 +77,6 @@
                         <div class="CommunityProfile_header">
                             <h2>내 활동</h2>
                             <ul class="CommunityProfile_tabs">
-                                <li class="">
-                                    <a href="/my/recents">최근본</a>
-                                </li>
                                 <li class="">
                                     <a href="/my/posts">작성글</a>
                                 </li>
@@ -198,7 +197,7 @@
                 </section>
             </section>
         </main>
-        <block th:insert="~{main/footer :: footer}"></block><!-- 작동 안됨 수정 필요 -->
+        <block th:insert="~{main/footer :: footer}"></block>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

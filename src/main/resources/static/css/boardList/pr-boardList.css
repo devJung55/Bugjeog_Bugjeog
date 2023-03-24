@@ -90,8 +90,8 @@ button {
 }
 
 .select-button-box-active {
-    box-shadow : 0 1px 4px 0 rgb(0 0 0 / 10%);  
-    border-bottom-color: #36f; 
+    box-shadow : 0 1px 4px 0 rgb(0 0 0 / 10%);
+    border-bottom-color: #36f;
 }
 
 .select-button-box-layout {
@@ -246,7 +246,7 @@ hr {
     left: 0;
     top: 0;
     object-position: center;
-    z-index: 2;   
+    z-index: 2;
     object-fit: cover;
 }
 
@@ -296,7 +296,7 @@ hr {
     vertical-align: middle;
     outline: 0;
     width: fit-content;
-    line-height: normal;    
+    line-height: normal;
     height: 24px;
 }
 
@@ -338,7 +338,7 @@ hr {
 .review-count-box {
     display: flex;
     padding: 0;
-    padding-right: 4px;    
+    padding-right: 4px;
     margin-top: 8px;
     align-items: center;
 }

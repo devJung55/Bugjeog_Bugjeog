@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
             <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
@@ -31,7 +30,7 @@
                         </label>
                     </div>
                     <p class="welcome_msg">
-                        <th:block  th:text="${memberVO.memberName}"></th:block>님, 환영해요.
+                        <th:block  th:text="${businessVO.businessCeoName}"></th:block>님, 환영해요.
                     </p>
                 </header>
                 <section class="info_content member_info_container">
@@ -41,15 +40,16 @@
                     <p class="manageAccount_message">
                         서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.
                     </p>
-                    <ul class="info_wrapper" th:object="${memberVO}">
+                    <ul class="info_wrapper" th:object="${businessVO}">
                         <li class="emailChange">
                             <p class="changeTitle">이메일</p>
-                            <p class="emailText" th:text="*{memberEmail}"></p>
+                            <p class="emailText" th:text="*{businessEmail}"></p>
                         </li>
+
                         <li class="changeDefault">
-                            <p class="changeTitle">이름</p>
-                            <p class="changeText" th:text="*{memberName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_name">
+                            <p class="changeTitle">대표자명</p>
+                            <p class="changeText" th:text="*{businessCeoName}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_ceo_name">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
@@ -57,8 +57,26 @@
                         </li>
                         <li class="changeDefault">
                             <p class="changeTitle">휴대폰 번호</p>
-                            <p class="changeText" th:text="*{memberPhoneNumber}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone">
+                            <p class="changeText" th:text="*{businessPhoneNumber}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone_number">
+                                <span class="img_span is-flex">
+                                    <img src="/image/mypage/arrow-right-64.png" alt="">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="changeDefault">
+                            <p class="changeTitle">회사명</p>
+                            <p class="changeText" th:text="*{businessComponyName}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_business_compony_name">
+                                <span class="img_span is-flex">
+                                    <img src="/image/mypage/arrow-right-64.png">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="changeDefault">
+                            <p class="changeTitle">사업자 번호</p>
+                            <p class="changeText" th:text="*{businessNumber}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_business_number">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -98,8 +116,8 @@
         </div>
     </div>
 
-    <!-- 이름 변경 모달창 -->
-    <div id="modal-edit_name" class="modal">
+    <!-- 사업자 이름 변경 모달창 -->
+    <div id="modal-edit_ceo_name" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
@@ -114,7 +132,7 @@
                         <form>
                             <div class="modal_edit_input_wrapper">
                                 <input type="text" placeholder="이름을 입력해주세요." name="username" class="edit_input_name"
-                                    th:value="${memberVO.memberName}">
+                                    th:value="${businessVO.businessCeoName}">
                             </div>
                             <div class="modal_edit_btn_wrapper">
                                 <button type="button" class="modal_cancel">
@@ -134,7 +152,7 @@
     </div>
 
     <!-- 휴대폰 번호 변경 모달창 -->
-    <div id="modal-edit_phone" class="modal">
+    <div id="modal-edit_phone_number" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
