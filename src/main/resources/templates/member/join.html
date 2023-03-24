@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개인 회원가입</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../static/css/member/join.css">
+    <link rel="stylesheet" href="/css/member/join.css">
 </head>
 <body>
     <div id="__next">
@@ -26,22 +26,22 @@
                     </div>
                     <!-- 회원가입 작성 시작 -->
                     <div class="join-write-start">
-                        <form class="join-inside-box">
+                        <form class="join-inside-box" name="joinForm" action="/member/join" method="post" th:object="${memberVO}">
                             <div class="join-infor-write-border">
-                                <label for="email" class="join-infor-ment">이메일</label>
+                                <label for="memberEmail" class="join-infor-ment">이메일</label>
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
-                                <input type="email" placeholder="이메일을 입력해주세요." name="email" class="join-info-input" value>
+                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}">
                                 <span class="email-error error-msg"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
                                 <label for="memberName" class="join-infor-ment">이름</label>
                             </div>
-                                <input type="text" placeholder="이름을 입력해주세요." name="memberName" class="join-info-input">
+                                <input type="text" placeholder="이름을 입력해주세요." class="join-info-input" th:field="*{memberName}">
                                 <span class="name-error error-msg"></span>
                              <!-- 휴대폰 번호 입력 -->
                             <div class="join-infor-write-border">
-                                <label for="mobile" class="join-infor-ment">휴대폰 번호</label>
+                                <label for="memberPhoneNumber" class="join-infor-ment">휴대폰 번호</label>
                             </div> 
                             <div>
                                 <!-- <div class="join-num-counrty-check">
@@ -50,7 +50,7 @@
                                     </select>
                                 </div> -->
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="(예시) 01013245768" name="memberPhoneNumeber" class="join-info-input">
+                                    <input type="text" placeholder="(예시) 01013245768" class="join-info-input join-phone-number" th:field="*{memberPhoneNumber}">
                                     <button type="button" class="join-num-check-button">
                                         <span class="join-code-num">인증번호 받기</span>
                                     </button>
@@ -65,9 +65,9 @@
                             </div> 
                             <!-- 비밀번호 -->
                             <div class="infor-write-border">
-                                <label for="password" class="join-infor-ment">비밀번호</label>
+                                <label for="memberPassword" class="join-infor-ment">비밀번호</label>
                             </div>
-                                <input type="password" placeholder="비밀번호를 입력해주세요." name="memberPassword" class="join-pw-input" value>
+                                <input type="password" placeholder="비밀번호를 입력해주세요." class="join-pw-input" th:field="*{memberPassword}">
                                 <p class="password-error error-msg"></p>
                                 <input type="password" placeholder="비밀번호를 다시 한번 입력해주세요." name="passwordConfirm" class="join-info-input" value>
                                 <p class="password-check-error error-msg"></p>    
@@ -95,7 +95,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                    <input type="checkbox" name="check" class="checkButton">
+                                    <input type="checkbox" name="check" class="checkButton must1">
                                 <div class="join-back-blank">
                                     <p class="join-terms-sentence">만 14세 이상입니다. (필수)</p>
                                 </div>    
@@ -108,7 +108,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                    <input type="checkbox" name="check" class="checkButton">
+                                    <input type="checkbox" name="check" class="checkButton must2">
                                 <div class="join-back-blank">
                                     <p class="join-terms-sentence">이용약관 동의 (필수)</p>
                                 </div>
@@ -142,7 +142,7 @@
                             <div class="join-start-all-border">
                                 <div class="join-start-bottom-border"></div>
                                 <div class="join-start-top-blank"></div>
-                              <button type="submit" class="join-jjoin-btn-border">
+                              <button type="button" class="join-jjoin-btn-border">
                                 <span class="join-final-btn-ment" >가입하기</span>
                               </button>  
                            </div>  
@@ -154,5 +154,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../static/js/member/join.js"></script>
+<script src="/js/member/join.js"></script>
 </html>
