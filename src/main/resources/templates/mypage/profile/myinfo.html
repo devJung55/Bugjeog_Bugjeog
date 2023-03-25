@@ -5,14 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
-
 <body>
+    <!-- 파일 넣으면 뜰 모달-->
+    <div class="file-modal-display">
+        <div class="file-modal">
+            <div class="file-modal-box">
+                <div class="file-modal-title-box-layout">
+                    <div class="file-modal-cell"></div>
+                    <div class="file-modal-title-box">
+                        <p class="file-modal-title">
+                            프로필 사진
+                        </p>
+                    </div>
+                    <div class="file-modal-exit-box">
+                        <button class="file-modal-exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="file-modal-image-box-layout">
+                    <div class="file-modal-image-box">
+                        <img src="/image/boardList/distributor_icon.png" class="file-modal-image">
+                    </div>
+                    <div class="file-modal-button-box">
+                        <button class="image-cancel-button">
+                            <span>취소</span>
+                        </button>
+                        <button class="image-save-button">
+                            <span>저장</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
@@ -22,9 +56,14 @@
             <main class="mypage_info_container">
                 <header class="member_img_container">
                     <div class="img_wrapper">
-                        <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                        <th:block th:if="${memberVO.memberImgUuid == null}">
+                            <img class="img_profile-normal" src="/image/boardList/self_employ_icon.png">
+                        </th:block>
+                        <th:block th:if="${memberVO.memberImgUuid != null}">
+                            <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                        </th:block>
                         <label class="edit_wrapper">
-                            <input style="display: none;" type="file">
+                            <input style="display: none;" type="file" name="file">
                             <span class="edit_span">
                                 <img src="/image/mypage/ink-pen-64.png">
                             </span>
@@ -91,10 +130,18 @@
                         </li>
                     </ul>
                 </section>
-
-                <footer id="footer"></footer>
+                <div class="footer-wrap">
+                    <div style="display: flex">
+                        <a href="javascript:void(0)" class="footer-link">
+                            이용약관
+                        </a>
+                        <a href="javascript:void(0)" class="footer-link font-bold">
+                            개인정보처리방침
+                        </a>
+                    </div>
+                    <p class="footer-p">© bugjeogbugjeog, Inc.</p>
+                </div>
             </main>
-            <footer></footer>
         </div>
     </div>
 
@@ -191,20 +238,99 @@
             </div>
         </div>
     </div>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('fragment/aside_personal.html');</script>
-<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<!-- <script src="/js/mypage/include_fixed.js"></script> -->
 <script src="/js/mypage/myinfo.js"></script>
-<script>
-    const $phone = $("input[name='mobile']");
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
 </script>
+<script>
+    /* 파일 모달창 닫기*/
+    const $fileModal = $(".file-modal-display");
+    const $fileExitButton = $(".file-modal-exit");
+    const $fileCancelButton = $(".image-cancel-button");
 
+    $fileExitButton.click(function(){
+        $fileModal.hide();
+    });
+
+    $fileCancelButton.click(function(e){
+        e.preventDefault();
+        $fileModal.hide();
+    });
+
+    globalThis.uuid;
+    FileList.prototype.forEach = Array.prototype.forEach;
+
+    // 썸네일
+    $("input[name='file']").on("change", function(e){
+        e.preventDefault();
+        const $file = $("input[name=file]")[0].files[0];
+        let formData = new FormData();
+        formData.append("file", $file);
+
+        $.ajax({
+            url: "/mypage/profile/upload-file",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(uuid) {
+                globalThis.uuid = uuid;
+                console.log($file.type);
+                    if($file.type.startsWith("image")){
+                        $fileModal.show();
+                        $(".file-modal-image").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
+                    }else{
+                        alert("이미지 파일만 넣어주세요.");
+                    }
+            }
+        });
+    });
+
+    $(".image-save-button").on("click", function(){
+        const $file = $("input[name=file]")[0].files[0];
+        let member = new Object();
+
+        member.memberImgOriginalName = $file.name;
+        member.memberImgUuid = globalThis.uuid;
+        member.memberImgPath = toStringByFormatting(new Date());
+        member.memberId = 1;
+        $.ajax({
+            url: "/mypage/profile/file-memeber-save",
+            type: "post",
+            data: JSON.stringify(member),
+            contentType: "application/json; charset=utf-8",
+            success: function(){
+                $fileModal.hide();
+                $(".img_profile").attr("src",`/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
+            }
+        });
+    });
+
+
+// ========================================================
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function toStringByFormatting(source, delimiter = '/') {
+        const year = source.getFullYear();
+        const month = leftPad(source.getMonth() + 1);
+        const day = leftPad(source.getDate());
+
+        return [year, month, day].join(delimiter);
+    }
+// ========================================================
+
+</script>
 <!-- 인증 번호 등 모달 관련 js -->
 <script src="/js/mypage/myinfo_modal.js"></script>
-
 <!-- 아이디 찾기 js 가져옴 -->
 <script src="/js/mypage/edit_phone.js"></script>
 
