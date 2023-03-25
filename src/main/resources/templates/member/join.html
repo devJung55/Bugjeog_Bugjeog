@@ -31,8 +31,8 @@
                                 <label for="memberEmail" class="join-infor-ment">이메일</label>
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
-                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}">
-                                <span class="email-error error-msg"></span>
+                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}" oninput="joinService.checkEmail()">
+                                <span class="email-error error-msg check-email"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
                                 <label for="memberName" class="join-infor-ment">이름</label>
