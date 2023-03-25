@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.Base64;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member/*")
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
 
