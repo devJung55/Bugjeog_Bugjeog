@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>검색 목록 사이트</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
-    <link rel="stylesheet" href="../../../static/css/boardList/boardList-search.css">
+    <link rel="stylesheet" href="/css/boardList/boardList-search.css">
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
@@ -43,14 +43,14 @@
             </div>
             <ul class="boardList-info-box">
                 <!-- 없을 경우의 태그 -->
-                <li class="info-box-layout info-box-none">
+                <li class="info-box-layout info-box-none" style="display:none;">
                     <h3 class="info-none-title">
                         없는 검색결과 입니다.
                     </h3>
                 </li>
                 <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
                 <!-- 작업 시 display:none 삭제 -->
-               <li class="info-box-layout" style="display:none;">
+               <li class="info-box-layout">    <!--  style="display:none;"  으로 조회-->
                 <a href="#"><!-- 상세보기 모달 버튼 -->
                     <div class="image-box">
                         <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
@@ -71,7 +71,7 @@
                     <div class="review-count-box">
                         <div class="icon-box">
                             <div class="review-icon-box">
-                                <img src="../../../static/image/boardList/review_icon.png" class="review-icon">
+                                <img src="/image/boardList/review_icon.png" class="review-icon">
                             </div>
                             <div>
                                 <span class="review-count">0</span>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="icon-box">
                             <div class="review-icon-box">
-                                <img src="../../../static/image/boardList/star_icon.png" class="review-grade-icon">
+                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
                             </div>
                             <div>
                                 <span class="review-grade-count">1.0</span>
@@ -92,10 +92,10 @@
             </ul>
         </div>
         <button  type="button" class="scroll-top-button">
-            <img src="../../../static/image/boardList/arrow_icon.png" class="top-button">
+            <img src="/image/boardList/arrow_icon.png" class="top-button">
         </button>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../../static/js/boardList/pr-boardList.js"></script>
+<script src="/js/boardList/pr-boardList.js"></script>
 </html>
