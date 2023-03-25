@@ -18,7 +18,7 @@ public interface MyPageMapper {
     public void update(MemberVO memberVO);
 
 //    유통업체 회원정보 조회
-    public BusinessVO selectBuisness(Long business_id);
+    public BusinessVO selectBuisness(Long businessId);
 
 //    좋아요 한 게시물 수
     public Integer likeCount(Long memberId);
