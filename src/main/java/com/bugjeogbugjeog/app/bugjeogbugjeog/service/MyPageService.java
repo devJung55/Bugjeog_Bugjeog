@@ -32,15 +32,13 @@ public class MyPageService {
             String apiSecret = "";
             String fromNumber = "";
 
-        Random
-
             Message coolsms = new Message(apiKey, apiSecret);
 
             HashMap<String, String> params = new HashMap<>();
             params.put("to", memberPhoneNumber);
             params.put("from", fromNumber);
             params.put("type", "sms");
-            params.put("text", "[SumSum] 인증번호 "+authCode+" 를 입력하세요.");
+            params.put("text", "[SumSum] 인증번호 "+" 를 입력하세요.");
             params.put("app_version", "test app 1.2"); // application name and version
 
             try {
@@ -50,5 +48,6 @@ public class MyPageService {
                 System.out.println(e.getMessage());
                 System.out.println(e.getCode());
             }
+            return 1;
     }
 }
