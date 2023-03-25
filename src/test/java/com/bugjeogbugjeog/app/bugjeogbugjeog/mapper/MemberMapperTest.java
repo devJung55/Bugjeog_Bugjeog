@@ -24,4 +24,10 @@ public class MemberMapperTest {
 
         memberMapper.insertMember(memberVO);
     }
+
+//    이메일 중복검사
+    @Test
+    public void checkEmail() {
+        log.info(memberMapper.selectByEmail("jjy1234@naver.com").toString());
+    }
 }
