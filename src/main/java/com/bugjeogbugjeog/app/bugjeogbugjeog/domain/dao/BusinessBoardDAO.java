@@ -15,12 +15,15 @@ public class BusinessBoardDAO {
     private final BusinessBoardImgMapper businessBoardImgMapper;
 
     //    추가
-//    public void insert(OrderVO orderVO);
+    public void save(BoardBusinessDTO boardBusinessDTO){ businessBoardMapper.insert(boardBusinessDTO); }
+
     //    삭제
-//    public void delete(Long orderId);
-    //    조회(총 결제 금액까지)
-//    public OrderDTO select(Long orderId);
-    //    목록(총 결제 금액까지)
+    public void deleteById(Long boardBusinessId){ businessBoardMapper.delete(boardBusinessId);}
+
+    //    조회(이미지 정보까지)
+    public BoardBusinessDTO findById(Long businessId){ return businessBoardMapper.select(businessId);}
+
+    //    목록
     public List<BoardBusinessDTO> findAll(){ return businessBoardMapper.selectAll(); }
 
 
