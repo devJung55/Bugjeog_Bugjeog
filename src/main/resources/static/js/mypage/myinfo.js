@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (e) => {
+    e.preventDefault();
     // Functions to open and close a modal
     function openModal($el) {
         $el.classList.add('is-active');
@@ -8,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         $el.classList.remove('is-active');
     }
 
-    function closeAllModals() {
+    function closeAllModals(e) {
+        e.preventDefault();
         (document.querySelectorAll('.modal') || []).forEach(($modal) => {
             closeModal($modal);
         });
@@ -19,16 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = $trigger.dataset.target;
         const $target = document.getElementById(modal);
 
-        $trigger.addEventListener('click', () => {
+        $trigger.addEventListener('click', (e) => {
+            e.preventDefault();
             openModal($target);
         });
     });
 
     // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    (document.querySelectorAll(' .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
         const $target = $close.closest('.modal');
 
-        $close.addEventListener('click', () => {
+        $close.addEventListener('click', (e) => {
+            e.preventDefault();
             closeModal($target);
         });
     });
