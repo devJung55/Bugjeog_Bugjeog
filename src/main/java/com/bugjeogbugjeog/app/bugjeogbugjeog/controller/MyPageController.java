@@ -95,11 +95,12 @@ public class MyPageController {
         return memberName;
     }
 
-//    유저 정보 보내기
+//    핸드폰 중복검사
     @GetMapping("memberPhoneCheck")
     @ResponseBody
-    public void memberPhoneCheck(@RequestBody Long memberId){
-        MemberVO memberVO = memberVO(memberId);
+    public Boolean memberPhoneCheck(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
+        log.info(String.valueOf(myPageService.PhoneNumberCheck(memberPhoneNumber)));
+        return myPageService.PhoneNumberCheck(memberPhoneNumber);
     }
 
     // 핸드폰 인증 번호

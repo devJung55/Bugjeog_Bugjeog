@@ -17,6 +17,9 @@ public interface MyPageMapper {
 //    회원정보 수정
     public void update(MemberVO memberVO);
 
+//    휴대폰 모든 정보 조회
+    public List<String> selectAllPhoneNumber();
+
 //    유통업체 회원정보 조회
     public BusinessVO selectBuisness(Long businessId);
 
