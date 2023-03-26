@@ -42,8 +42,8 @@ public class BusinessBoardController {
     public void showList(Model model) { model.addAttribute(businessBoardService.getList()); }
 
     @GetMapping("/board/business/detail")
-    public void detail() {
-        ;
+    public void detail(Long boardBusinessId, Model model) {
+        model.addAttribute(businessBoardService);
     }
 
     @GetMapping("/board/business/write")
