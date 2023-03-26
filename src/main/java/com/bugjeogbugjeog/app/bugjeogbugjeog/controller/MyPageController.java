@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -38,23 +39,41 @@ public class MyPageController {
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
     }
 
-    @PostMapping("update-file")
+    @PostMapping("upload-file")
     @ResponseBody
-    public String memberUpdate(HttpServletRequest req,@RequestParam("file") MultipartFile multipartFile) throws IOException {
-        HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
-        MemberVO memberVO = myPageService.memberInfo(memberId);
+    public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+       log.info(multipartFile.toString());
         String path = "C:/upload/" + getPath();
-
         File file = new File(path);
-
         if(!file.exists()) {file.mkdirs();}
 
         String uuid = UUID.randomUUID().toString();
         multipartFile.transferTo(new File(path, uuid + "_" + multipartFile.getOriginalFilename()));
 
+        if(multipartFile.getContentType().startsWith("image")){
+            FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuid + "_" + multipartFile.getOriginalFilename()));
+            Thumbnailator.createThumbnail(multipartFile.getInputStream(), out, 400, 400);
+            out.close();
+        }
         return uuid;
+    }
+
+    //    파일 불러오기
+    @GetMapping("display")
+    @ResponseBody
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+    }
+
+    //    파일 저장
+    @PostMapping("file-memeber-save")
+    @ResponseBody
+    public void fileSave(@RequestBody MemberVO member){
+        MemberVO memberVO = myPageService.memberInfo(member.getMemberId());
+        memberVO.setMemberImgOriginalName(member.getMemberImgOriginalName());
+        memberVO.setMemberImgPath(member.getMemberImgPath());
+        memberVO.setMemberImgUuid(member.getMemberImgUuid());
+        myPageService.memberUpdate(memberVO);
     }
 
     //    현재 날짜 경로 구하기
