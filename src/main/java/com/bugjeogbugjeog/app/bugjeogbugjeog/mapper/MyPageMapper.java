@@ -17,6 +17,9 @@ public interface MyPageMapper {
 //    회원정보 수정
     public void update(MemberVO memberVO);
 
+//    회원정보 삭제
+    public void deleteMember(Long memberId);
+
 //    휴대폰 모든 정보 조회
     public List<String> selectAllPhoneNumber();
 

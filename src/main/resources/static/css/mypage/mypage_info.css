@@ -861,3 +861,140 @@ a {
 .code-button {
     display: none;
 }
+
+.password-modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.password-modal-box {
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.password-modal-title-layout {
+    padding: 0px 20px;
+    height: 64px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.password-modal-title-box {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-modal-exit {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    fill: #000;
+}
+
+.password-modal-input-box-layout {
+    padding: 0px 20px 20px;
+}
+
+.password-modal-input-box {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.password-input {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #e1e2e3;
+    color: var(--theme-palette-colors-gray-900);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.password-title-box {
+    margin-bottom: 8px;
+}
+
+.password-title-box span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.password-modal-button-box-layout {
+    display: flex;
+    justify-content: right;
+}
+
+.password-cancel {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;
+}
+
+.password-cancel span {
+    color : #36f;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.password-save {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #36f;
+    border: none;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;
+}
+
+.password-save span {
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.password-modal-display {
+    display: none;
+}
