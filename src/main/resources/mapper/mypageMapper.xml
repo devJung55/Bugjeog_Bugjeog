@@ -7,6 +7,10 @@
         from tbl_member where member_id = #{member_id}
     </select>
 
+    <!-- 모든 유저 핸드폰 번호 조회-->
+    <select id="selectAllPhoneNumber" resultType="String">
+        select member_phone_number from tbl_member
+    </select>
     <!--이용자  정보 업데이트-->
     <update id="update">
         UPDATE tbl_member
