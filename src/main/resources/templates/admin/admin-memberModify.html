@@ -8,15 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modifyMember.css">
-    </head>
-    <body>
+    <link rel="stylesheet" href="/css/admin/admin-modifyMember.css">
+    <link rel="stylesheet" href="/css/admin/side-menu.css">
+</head>
+<body>
+    <div th:insert="~{admin/side-menu :: aside_admin_list}"></div>
         <div>
             <div class="info-title-box info-title-box-flex">
                 <div class="logo-box-layout">
                     <div class="logo-box">
                         <a href="javascript:void(0)" class="main_bar_logo_a">
-                            <img src="../../static/image/main/logo1-removebg-preview.png">
+                            <img src="/image/main/logo1-removebg-preview.png">
                         </a>
                     </div>
                     <!-- <div class="logo-title">
@@ -42,7 +44,7 @@
                             <div class="prev-button-layout">
                                 <div>
                                     <a>
-                                        <img src="../../static/image/admin/prev_icon.png" class="prev-icon">
+                                        <img src="/image/admin/prev_icon.png" class="prev-icon">
                                         <span class="prev-title">회원정보로 돌아가기</span>
                                     </a>
                                 </div>
@@ -113,16 +115,16 @@
                 </div>
             </div>
         </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script>
-        const $deleteImg = $(".member-img span");
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    const $deleteImg = $(".member-img span");
 
-        $deleteImg.on("click", function() {
-            $(this).attr("background-image", "url('../../../static/image/admin/nomal_person_icon.png')");
-        });
-    </script>
-    <script src="../../static/js/admin/menuLoad.js"></script>
-    <script src="../../static/js/admin/modify-member.js"></script>
-    <script src="../../static/js/admin/prev.js"></script>
+    $deleteImg.on("click", function() {
+        $(this).attr("background-image", "url('..//image/admin/nomal_person_icon.png')");
+    });
+</script>
+<script src="/js/admin/modify-member.js"></script>
+<script src="/js/admin/prev.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
 </html>
