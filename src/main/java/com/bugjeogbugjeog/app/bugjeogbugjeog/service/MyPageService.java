@@ -27,6 +27,31 @@ public class MyPageService {
         mypageDAO.updateById(memberVO);
     }
 
+    //    파일 저장
+    public void fileSave(MemberVO member){
+        MemberVO memberVO = mypageDAO.findById(member.getMemberId());
+
+        memberVO.setMemberImgOriginalName(member.getMemberImgOriginalName());
+        memberVO.setMemberImgPath(member.getMemberImgPath());
+        memberVO.setMemberImgUuid(member.getMemberImgUuid());
+
+        mypageDAO.updateById(memberVO);
+    }
+
+    //    이름 변경
+    public void updateName(Long memberId, String memberName){
+        MemberVO memberVO = mypageDAO.findById(memberId);
+        memberVO.setMemberName(memberName);
+        mypageDAO.updateById(memberVO);
+    }
+
+    //    핸드폰 번호 변경
+    public void updatePhoneNumber(Long memberId , String memberPhoneNumber){
+        MemberVO memberVO = mypageDAO.findById(memberId);
+        memberVO.setMemberPhoneNumber(memberPhoneNumber);
+        mypageDAO.updateById(memberVO);
+    }
+
     // sms 발송 서비스
     public String memberSMS(String memberPhoneNumber){
         String apiKey = "";
@@ -39,26 +64,26 @@ public class MyPageService {
         for (int i = 0; i < 4; i++) {
             code += random.nextInt(10);
         }
-            Message coolsms = new Message(apiKey, apiSecret);
+        Message coolsms = new Message(apiKey, apiSecret);
 
-            HashMap<String, String> params = new HashMap<>();
-            params.put("to", memberPhoneNumber);
-            params.put("from", fromNumber);
-            params.put("type", "sms");
-            params.put("text", "[북적북적] 인증번호 "+ code +" 를 입력하세요.");
-            params.put("app_version", "test app 1.2"); // application name and version
+        HashMap<String, String> params = new HashMap<>();
+        params.put("to", memberPhoneNumber);
+        params.put("from", fromNumber);
+        params.put("type", "sms");
+        params.put("text", "[북적북적] 인증번호 "+ code +" 를 입력하세요.");
+        params.put("app_version", "test app 1.2"); // application name and version
 
-            try {
-                JSONObject obj = coolsms.send(params);
-                System.out.println(obj.toString());
-            } catch (CoolsmsException e) {
-                System.out.println(e.getMessage());
-                System.out.println(e.getCode());
-            }
-            return code;
+        try {
+            JSONObject obj = coolsms.send(params);
+            System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+        }
+        return code;
     }
 
-//    핸드폰 중복검사
+    //    핸드폰 중복검사
     public Boolean PhoneNumberCheck(String memberPhoneNumber){
         List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
         boolean check = false;
@@ -70,5 +95,5 @@ public class MyPageService {
         }
         return check;
     }
-    
+
 }
