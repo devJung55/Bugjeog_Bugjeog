@@ -15,7 +15,8 @@ public class AdminMapperTest {
     AdminMapper adminMapper;
 
     @Test
-    public void selectAll(){
-        adminMapper.selectAll();
+    public void selectAllTest(){
+        adminMapper.selectAllMember();
     }
+
 }

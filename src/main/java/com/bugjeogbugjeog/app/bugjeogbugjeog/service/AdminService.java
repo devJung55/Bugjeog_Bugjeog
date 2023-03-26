@@ -11,9 +11,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminService {
 
-    private final AdminDAO adminDAO;
+//    private final AdminDAO adminDAO;
 
     /* 회원 목록 조회 */
-    public List<MemberVO> showList(){ return adminDAO.findAll(); }
+//    public List<MemberVO> showMemberList(){ return adminDAO.findAll();}
+
+    /* 회원 상세 보기 */
+//    public MemberVO showMember(Long MemberId);
+
+    /* 회원 삭제 */
+//    public void deleteMember(Long memberId);
+
+    /* 회원 수정 */
+//    public void updateMember(MemberVO memberVO);
+
 
 }
