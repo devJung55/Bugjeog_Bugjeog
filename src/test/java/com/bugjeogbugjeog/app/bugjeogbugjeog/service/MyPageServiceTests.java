@@ -27,6 +27,12 @@ public class MyPageServiceTests {
         memberVO.setMemberPhoneNumber("010-4444-5555");
         myPageService.memberUpdate(memberVO);
     }
+    
+//    핸드폰 중복검사
+    @Test
+    public void phoneNumberCheck(){
+        log.info(String.valueOf(myPageService.PhoneNumberCheck("01012341234")));
+    }
 
     
 }

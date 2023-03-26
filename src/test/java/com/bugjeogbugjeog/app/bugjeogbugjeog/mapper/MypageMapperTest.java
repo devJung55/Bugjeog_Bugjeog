@@ -36,6 +36,19 @@ public class MypageMapperTest {
 
         myPageMapper.update(memberVO);
     }
+    
+//    휴대폰 정보 조회
+    @Test
+    public void selectAllPhoneNumberTest(){
+        myPageMapper.selectAllPhoneNumber();
+    }
+
+//     회원탈퇴
+    @Test
+    public void deleteMemberTest(){
+        myPageMapper.deleteMember(2L);
+    }
+
 
     //    유통업체 회원정보 조회
     @Test

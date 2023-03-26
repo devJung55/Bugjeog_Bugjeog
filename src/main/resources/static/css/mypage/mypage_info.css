@@ -1,5 +1,19 @@
-* {
-    font-family: Pretendard,'Pretendard JP','Pretendard Std',-apple-system,system-ui,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,'Apple SD Gothic Neo','Malgun Gothic','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol',sans-serif;
+@charset "utf-8";
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+button {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+input {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+section {
+    margin-bottom: 30px;
 }
 
 div.whole_wrapper {
@@ -52,6 +66,19 @@ div.img_wrapper {
 }
 
 img.img_profile {
+    overflow-clip-margin: content-box;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto 80 / 80;
+    box-sizing: border-box;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img.img_profile-normal {
     overflow-clip-margin: content-box;
     min-width: 80px;
     aspect-ratio: auto 80 / 80;
@@ -568,6 +595,17 @@ span.edit_phone_number {
     border: 1px solid #f2f4f7;
 }
 
+.code-button:disabled>span {
+    color: #ccc;
+}
+
+.code-button:disabled {
+    color: #ccc;
+    background-color: #f2f4f7;
+    cursor: default;
+    border: 1px solid #f2f4f7;
+}
+
 p.auth_done {
     color: #08ba9c;
     font-weight: 400;
@@ -612,4 +650,351 @@ div.modal_content_top_right>button.modal-close {
     top: 12px; */
     right: 0;
     top: 0;
+}
+
+.file-modal-display {
+    display: none;
+}
+
+.file-modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.file-modal-box {
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.file-modal-title-box-layout {
+    padding: 0px 20px;
+    height: 64px;
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.file-modal-cell {
+    min-width: 64px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.file-modal-title-box {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-modal-title {
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: -0.002em;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-modal-exit-box {
+    display: flex;
+    min-width: 64px;
+    justify-content: flex-end;
+    align-items: center;
+}
+.file-modal-exit {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    fill: #000;
+}
+
+.file-modal-exit-icon-box {
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+.file-modal-exit-icon {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: 20px;
+}
+
+.file-modal-image-box-layout {
+    padding: 0px 20px 20px;
+}
+
+.file-modal-image-box {
+    position: relative;
+    left: -20px;
+    width: calc(100% + 40px);
+    background: rgb(0, 0, 0);
+    margin-top: 30px;
+    user-select: none;
+}
+
+.file-modal-image-box img {
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+    margin: 0px auto;
+}
+
+.file-modal-button-box {
+    display: flex;
+    justify-content: right;
+    margin: 30px 0px 10px;
+}
+
+.image-cancel-button {
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #36f;
+    border: 1px solid #e1e2e3;
+    height: 50px;
+    margin-right: 8px;
+    margin-bottom: 0px;
+    width: 92px;
+}
+
+.image-cancel-button span {
+    color: #36f;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.image-save-button {
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background: #36f;
+    height: 50px;
+    width: 92px;
+    margin-bottom: 0px;
+}
+
+.image-save-button span {
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.footer-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-p {
+    margin-top: 10px;
+    margin-right: 15px;
+    color: #888;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.0192em;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.footer-link {
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+    letter-spacing: 0.025em;
+    font-size: 12px;
+    line-height: 16px;
+    margin-right: 12px;
+}
+
+.font-bold {
+    font-weight: 900;
+}
+
+.code-button {
+    display: none;
+}
+
+.password-modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.password-modal-box {
+    width: 100%;
+    max-width: 400px;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.password-modal-title-layout {
+    padding: 0px 20px;
+    height: 64px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.password-modal-title-box {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-modal-exit {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    fill: #000;
+}
+
+.password-modal-input-box-layout {
+    padding: 0px 20px 20px;
+}
+
+.password-modal-input-box {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.password-input {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    padding: 0px 12px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #e1e2e3;
+    color: var(--theme-palette-colors-gray-900);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.password-title-box {
+    margin-bottom: 8px;
+}
+
+.password-title-box span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.password-modal-button-box-layout {
+    display: flex;
+    justify-content: right;
+}
+
+.password-cancel {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e2e3;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;
+}
+
+.password-cancel span {
+    color : #36f;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.password-save {
+    height: 50px;
+    min-height: 50px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #36f;
+    border: none;
+    width: auto;
+    padding: 0px 32px;
+    margin-left: 8px;
+}
+
+.password-save span {
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.0056em;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.password-modal-display {
+    display: none;
 }
