@@ -10,7 +10,7 @@ public interface BusinessBoardMapper {
     //    추가
     public void insert(BoardBusinessDTO boardBusinessDTO);
     //    삭제
-//    public void delete(Long orderId);
+    public void delete(Long orderId);
     //    조회(이미지까지)
     public BoardBusinessDTO select(Long businessId);
     //    목록

@@ -14,6 +14,7 @@ public class BusinessBoardMapperTest {
     @Autowired
     BusinessBoardMapper businessBoardMapper;
 
+//    게시글 등록
     @Test
     public void insertTest(){
         BoardBusinessDTO dto = new BoardBusinessDTO();
@@ -24,7 +25,13 @@ public class BusinessBoardMapperTest {
         businessBoardMapper.insert(dto);
     }
 
-//
+//    게시글 삭제
+    @Test
+    public void deleteTest(){
+        businessBoardMapper.delete(1L);
+    }
+
+//  게시글 목록
     @Test
     public void selectAllTest(){ log.info(businessBoardMapper.selectAll().toString()); }
 

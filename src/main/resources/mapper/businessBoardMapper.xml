@@ -16,6 +16,11 @@
         )
     </insert>
 
+    <delete id="delete" parameterType="long">
+        delete from tbl_board_business
+        where board_business_id=#{boardBusinessId}
+    </delete>
+
     <select id="select" parameterType="long" resultType="boardBusinessDTO">
         select board_business_id, business_id, board_business_title
         , board_business_content, board_business_register_date, board_business_update_date
