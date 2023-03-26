@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,19 +39,31 @@ public class BusinessBoardController {
         return new RedirectView("/board/business/list");
     }
 
+//    리스트
     @GetMapping("/board/business/list")
     public void showList(Model model) { model.addAttribute(businessBoardService.getList()); }
 
+//    @PostMapping("/board/business/list")
+//    public void searchList(){
+//
+//    }
+
     @GetMapping("/board/business/detail")
-    public void detail() {
-        ;
+    public void detail(Long boardBusinessId, Model model) {
+        model.addAttribute(businessBoardService);
     }
 
     @GetMapping("/board/business/write")
-    public void write() {
-        ;
+    public void write() {;}
+
+    @PostMapping("/board/business/write")
+    public RedirectView register(BoardBusinessDTO boardBusinessDTO) {
+        businessBoardService.registerBoard(boardBusinessDTO);
+        return new RedirectView("/board/business/list");
     }
 
+    @PostMapping("/board/business/delete")
+    public void delete(Long boardBusinessId) { businessBoardService.remove(boardBusinessId);}
 
 //    @GetMapping("upload")
 //    public String goUploadForm(){
