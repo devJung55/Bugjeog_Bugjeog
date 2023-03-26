@@ -23,6 +23,11 @@ public class BoardBusinessControllerTest {
         businessBoardService.registerBoard(dto);
     }
 
+    @Test
+    public void deleteTest() {
+        businessBoardService.remove(2L);
+    }
+
 
 
 

@@ -24,9 +24,7 @@ public class BusinessBoardService {
     }
 
     //    삭제
-    public void remove(Long businessId) {
-        businessBoardDAO.deleteById(businessId);
-    }
+    public void remove(Long businessId) { businessBoardDAO.deleteById(businessId); }
 
     //    조회(총 결제 금액까지)
     public BoardBusinessDTO getBoard(Long businessId) {

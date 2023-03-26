@@ -39,6 +39,7 @@ public class BusinessBoardController {
         return new RedirectView("/board/business/list");
     }
 
+//    리스트
     @GetMapping("/board/business/list")
     public void showList(Model model) { model.addAttribute(businessBoardService.getList()); }
 
