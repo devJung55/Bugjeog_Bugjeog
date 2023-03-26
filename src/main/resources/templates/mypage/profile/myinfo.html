@@ -362,7 +362,7 @@
         member.memberId = 1;
         $.ajax({
             url: "/mypage/profile/file-memeber-save",
-            type: "post",
+            type: "patch",
             data: JSON.stringify(member),
             contentType: "application/json; charset=utf-8",
             success: function(){
