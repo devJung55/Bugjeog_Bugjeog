@@ -8,6 +8,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="/css/boardList/free-boardList.css">
     <link rel="stylesheet" href="/css/main/header.css">
+<!--    <link rel="stylesheet" href="/css/main/footer.css">-->
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
@@ -299,7 +300,7 @@
             </div>
         </div>
     </div>
-    <div id="modal">
+<div id="modal">
         <div class="modal">
             <div class="modal-background"></div>
             <div class="modal-box">
@@ -329,9 +330,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<!--    <block th:insert="~{main/footer :: footer}"></block>-->
+</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!--<script src="../../../static/js/boardList/free-boardList.js"></script>-->
 <script src="/js/boardList/free-boardList.js"></script>
 </html>
