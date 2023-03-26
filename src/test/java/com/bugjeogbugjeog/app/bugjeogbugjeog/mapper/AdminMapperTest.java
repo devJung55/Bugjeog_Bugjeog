@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,10 @@ public class AdminMapperTest {
     @Autowired
     AdminMapper adminMapper;
 
+    /* 회원 */
+
     @Test
-    public void selectAllMemberTest(){
-        List<MemberVO> memberVO = adminMapper.selectAllMember();
-    }
+    public void selectAllMemberTest(){List<MemberVO> memberVO = adminMapper.selectAllMember();}
 
     @Test
     public void selectMemberTest(){
@@ -42,4 +43,34 @@ public class AdminMapperTest {
 
 
 
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 유통 회원 */
+
+   /* @Test
+    public void selectAllBusiness(){List<BusinessVO> businessVO = adminMapper.selectAllBusiness();}
+
+    @Test
+    public void selectBusiness(){
+        BusinessVO businessVO = new BusinessVO();
+        adminMapper.selectBusiness(1L).toString();
+    }
+
+    @Test
+    public void updateBusiness(){
+        BusinessVO businessVO = adminMapper.selectBusiness(2L);
+        businessVO.setBusinessCompanyName("최강 유통");
+        adminMapper.updateBusiness(businessVO);
+    }*/
+
+    @Test
+    public void deleteBusiness(){
+        adminMapper.deleteBusiness(1L);
+    }
+
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+
+    /* ------------------------------------------------------------------------------------------------------------- */
 }

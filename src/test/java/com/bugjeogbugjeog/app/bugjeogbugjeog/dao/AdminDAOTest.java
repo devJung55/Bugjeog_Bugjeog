@@ -40,4 +40,24 @@ public class AdminDAOTest {
     public void deleteMember(){
         adminDAO.removeMember(6L);
     }
+
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 유통 회원 */
+
+/*
+    @Test
+    public void findAllBusiness(){}
+
+    @Test
+    public void findByIdBusiness(){}
+
+    @Test
+    public void updateBusiness(){}
+
+    @Test
+    public void deleteBusiness(){}
+*/
+    /* ------------------------------------------------------------------------------------------------------------- */
 }
