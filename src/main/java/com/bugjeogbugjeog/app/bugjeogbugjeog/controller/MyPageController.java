@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,6 +37,23 @@ public class MyPageController {
         Long memberId = 1L;
 
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
+    }
+
+    @GetMapping("exit")
+    public void exit(HttpServletRequest req,Model model){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
+        model.addAttribute("memberVO",myPageService.memberInfo(memberId));
+    }
+
+    @PostMapping("withdraw")
+    public RedirectView withdraw(HttpServletRequest req){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 3L;
+        myPageService.memberWithdraw(memberId);
+        return new RedirectView("/main/main.html");// 수정해야하는 부분
     }
 
     @PostMapping("upload-file")
