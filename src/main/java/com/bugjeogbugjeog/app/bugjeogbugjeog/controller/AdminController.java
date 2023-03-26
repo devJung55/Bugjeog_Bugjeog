@@ -7,21 +7,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/*")
+@RequestMapping("/admins/*")
 public class AdminController {
 
 
     /* 회원 목록 조회 */
-    @GetMapping("/test")
-    public String adminMemberList(){
-        return "/admin/admin-memberList";
+    @GetMapping("/admins/admin-memberList")
+    public void adminMemberList(){
     }
 
     /* 회원 상세 보기 */
+    @GetMapping("/admins/admin-member")
+    public void adminMember(){
+
+    }
 
     /* 회원 삭제 */
 
     /* 회원 수정 */
+    @GetMapping("/admins/admin-memberModify")
+    public void adminMemberModify(){
+
+    }
 
 
 }
