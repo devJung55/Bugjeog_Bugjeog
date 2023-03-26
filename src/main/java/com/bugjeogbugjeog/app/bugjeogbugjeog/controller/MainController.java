@@ -12,7 +12,7 @@ public class MainController {
     public String mainPage(){ return "main/main";}
     /* http://localhost:10000/main/ */
 
-    /*검색 결과*/
+    /*검색 결과*//*서치로 다시 만들기 noresult search로 이름 바꾸기*/
     @GetMapping("/search")
     public String search(){ return "board/noresult";}
 }
