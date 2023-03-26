@@ -37,7 +37,7 @@
                                     </p>
                                     <p class="warning_content">
                                         ·
-                                        탈퇴 시 OneID를 통해 등록한 서비스의 모든 정보가 영구적으로 삭제되며, 다시는 복구할 수 없습니다.
+                                        탈퇴 시 BugjeogID를 통해 등록한 서비스의 모든 정보가 영구적으로 삭제되며, 다시는 복구할 수 없습니다.
                                     </p>
                                 </div>
                                 <div class="content_top">
@@ -46,7 +46,7 @@
                                     </p>
                                     <p class="warning_content">
                                         ·
-                                        OneID로 등록한 서비스에서 정보 백업을 원하실 경우, 탈퇴 이전에 해당 서비스에서 백업을 진행해 주세요.
+                                        BugjeogID로 등록한 서비스에서 정보 백업을 원하실 경우, 탈퇴 이전에 해당 서비스에서 백업을 진행해 주세요.
                                     </p>
                                 </div>
                                 <div class="content_top">
@@ -55,7 +55,7 @@
                                     </p>
                                     <p class="warning_content">
                                         ·
-                                        서비스 이용 중 본인의 OneID 계정에 귀속되지 않은 정보는 자동으로 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다. OneID
+                                        서비스 이용 중 본인의 BugjeogID 계정에 귀속되지 않은 정보는 자동으로 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다. BugjeogID
                                         계정에
                                         귀속되지 않은 정보를 수정하거나 삭제하려는 경우, 회원 탈퇴 이전에 해당 서비스에서 수정 또는 삭제를 진행해 주세요.
                                     </p>
@@ -65,9 +65,14 @@
                                     <p class="exit_account">탈퇴하려는 계정</p>
                                     <div class="profile_wrapper">
                                         <div class="profile_img">
-                                            <img src="/image/mypage/member_no_image.png" alt="">
+                                            <th:block th:if="${memberVO.memberImgUuid == null}">
+                                                <img class="img_profile-normal" src="/image/boardList/self_employ_icon.png">
+                                            </th:block>
+                                            <th:block th:if="${memberVO.memberImgUuid != null}">
+                                                <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                                            </th:block>
                                         </div>
-                                        <p class="profile_email">miraclelee0613@gmail.com</p>
+                                        <p class="profile_email" th:text="${memberVO.memberEmail}"></p>
                                     </div>
                                 </div>
                                 <div class="content_bottom">
@@ -125,12 +130,12 @@
                                         </span>
                                         <input class="accept_checkbox" type="text">
                                         <div class="accept_text_wrapper">
-                                            <p class="accept_text">회원 탈퇴를 진행하여 해당 OneID 계정에 귀속된 모든 정보를 삭제하는 데 동의합니다.</p>
+                                            <p class="accept_text">회원 탈퇴를 진행하여 해당 BugjeogID 계정에 귀속된 모든 정보를 삭제하는 데 동의합니다.</p>
                                         </div>
                                     </label>
                                 </div>
                             </article>
-                            <form action="">
+                            <form action="/mypage/profile/withdraw" method="post">
                                 <button class="exit_button button_confirm" id="button_confirm">
                                     <span>회원 탈퇴</span>
                                 </button>
@@ -148,6 +153,11 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+
+</script>
 <script>
     const $checkboxs = $('label.accept_wrapper');
     const $checkboxAceept = $('span.btn_accept');

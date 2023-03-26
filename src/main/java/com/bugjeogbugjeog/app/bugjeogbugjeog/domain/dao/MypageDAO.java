@@ -25,6 +25,16 @@ public class MypageDAO {
         myPageMapper.update(memberVO);
     };
 
+    // 회원탈퇴
+    public void deleteById(Long memberId){
+        myPageMapper.deleteMember(memberId);
+    };
+
+    // 핸드폰 전체 조회
+    public List<String> findAllToMemberPhoneNumber(){
+        return myPageMapper.selectAllPhoneNumber();
+    }
+
     //    유통업체 회원정보 조회
     public BusinessVO findByIdToBusiness(Long businessId){
         return myPageMapper.selectBuisness(businessId);

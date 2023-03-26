@@ -48,6 +48,57 @@
         </div>
     </div>
 
+    <!-- 비밀번호 변경 모달-->
+    <div class="password-modal-display">
+        <div class="password-modal">
+            <div class="password-modal-box">
+                <div class="password-modal-title-layout">
+                    <div class="file-modal-cell"></div>
+                    <div class="password-modal-title-box">
+                        <p class="file-modal-title">
+                            비밀번호 변경
+                        </p>
+                    </div>
+                    <div class="file-modal-exit-box">
+                        <button class="password-modal-exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="password-modal-input-box-layout">
+                    <div style="margin: 30px 0px;">
+                        <div>
+                            <div class="password-title-box">
+                                <span>변경 비밀번호</span>
+                            </div>
+                            <div class="password-modal-input-box">
+                                <input type="password" id="new-password" class="password-input" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                            <p class="password-error error-msg"></p>
+                            <div class="password-title-box">
+                                <span>비밀번호 재확인</span>
+                            </div>
+                            <div class="password-modal-input-box">
+                                <input type="password" id="new-password-check" class="password-input" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                            <p class="password-check-error error-msg"></p>
+                        </div>
+                    </div>
+                    <div class="password-modal-button-box-layout">
+                        <button class="password-cancel">
+                            <span>취소</span>
+                        </button>
+                        <button class="password-save">
+                            <span>저장</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
             <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
@@ -116,7 +167,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">비밀번호 변경</p>
                             <p class="changeText"></p>
-                            <a class="changeButton">
+                            <a class="changeButton password-change-modal">
                                 <img src="/image/mypage/arrow-right-64.png" alt="">
                             </a>
                         </li>
@@ -311,7 +362,7 @@
         member.memberId = 1;
         $.ajax({
             url: "/mypage/profile/file-memeber-save",
-            type: "post",
+            type: "patch",
             data: JSON.stringify(member),
             contentType: "application/json; charset=utf-8",
             success: function(){

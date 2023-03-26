@@ -36,6 +36,17 @@ public class MypageDAOTest {
         mypageDAO.updateById(memberVO);
     }
 
+    @Test
+    public void deleteByIdTest(){
+        mypageDAO.deleteById(3L);
+    }
+
+    // 핸드폰 전체 조회
+    @Test
+    public void findAllToMemberPhoneNumber(){
+        mypageDAO.findAllToMemberPhoneNumber();
+    }
+
     //    유통업체 회원정보 조회
     @Test
     public void selectBusinessTest(){
