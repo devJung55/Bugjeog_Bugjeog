@@ -19,11 +19,22 @@ public class BusinessBoardService {
     private final BusinessBoardImgDAO businessBoardImgDAO;
 
     //    추가
-//    public void insert(OrderVO orderVO);
+    public void registerBoard(BoardBusinessDTO boardBusinessDTO) {
+        businessBoardDAO.save(boardBusinessDTO);
+    }
+
     //    삭제
-//    public void delete(Long orderId);
+    public void remove(Long businessId) {
+        businessBoardDAO.deleteById(businessId);
+    }
+
     //    조회(총 결제 금액까지)
-//    public OrderDTO select(Long orderId);
+    public BoardBusinessDTO getBoard(Long businessId) {
+        return businessBoardDAO.findById(businessId);
+    }
+
     //    목록(총 결제 금액까지)
-    public List<BoardBusinessDTO> getList(){ return businessBoardDAO.findAll(); }
+    public List<BoardBusinessDTO> getList() {
+        return businessBoardDAO.findAll();
+    }
 }
