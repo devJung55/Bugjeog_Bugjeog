@@ -27,6 +27,9 @@ public class MyPageService {
         mypageDAO.updateById(memberVO);
     }
 
+    //    회원 탈퇴
+    public void memberWithdraw(Long memberId) { mypageDAO.deleteById(memberId);}
+
     //    파일 저장
     public void fileSave(MemberVO member){
         MemberVO memberVO = mypageDAO.findById(member.getMemberId());
