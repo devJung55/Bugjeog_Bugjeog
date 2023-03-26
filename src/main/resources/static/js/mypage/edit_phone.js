@@ -163,6 +163,9 @@
 
     $passwordModalButton.click(function(e){
         e.preventDefault();
+        $("input[type=password]").val("");
+        $(".password-error").text("");
+        $(".password-check-error").text("");
         $passwordModal.show();
     });
 
@@ -215,3 +218,24 @@
              passwordCheck[1] = true;
          }
      });
+
+//     비밀번호 변경
+    const $passwordSave = $(".password-save");
+
+    $passwordSave.click(function(e){
+        e.preventDefault();
+        if(passwordCheck.filter(check => check == true ).length != 2){
+            alert("잘못 입력된 정보가 있습니다.");
+            return false;
+        }
+
+        $.ajax({
+            url : "/mypage/profile/updatePassword",
+            type : "patch",
+            data : { "memberPassword" :btoa($newpassword.val())},
+            success : function(){
+                alert("비밀번호 변경 완료");
+                $passwordModal.hide();
+            }
+        });
+    });

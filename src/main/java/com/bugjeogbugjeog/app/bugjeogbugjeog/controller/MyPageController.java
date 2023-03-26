@@ -64,14 +64,14 @@ public class MyPageController {
     }
 
     //    파일 저장
-    @PostMapping("file-memeber-save")
+    @PatchMapping("file-memeber-save")
     @ResponseBody
     public void fileSave(@RequestBody MemberVO member){
         myPageService.fileSave(member);
     }
 
     //    이름 변경
-    @PostMapping("updateName")
+    @PatchMapping("updateName")
     @ResponseBody
     public String updateName(HttpServletRequest req, @RequestParam("memberName") String memberName) {
         HttpSession session = req.getSession();
@@ -97,7 +97,7 @@ public class MyPageController {
     };
 
     //    핸드폰 번호 변경
-    @PostMapping("phoneNumberUpdate")
+    @PatchMapping("phoneNumberUpdate")
     @ResponseBody
     public String phoneNumberUpdate(HttpServletRequest req, @RequestParam("memberPhoneNumber") String memberPhoneNumber){
         HttpSession session = req.getSession();
