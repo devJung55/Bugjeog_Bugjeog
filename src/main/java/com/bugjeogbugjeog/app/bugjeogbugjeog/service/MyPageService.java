@@ -96,4 +96,11 @@ public class MyPageService {
         return check;
     }
 
+    // 비밀번호 변경
+    public void updatePassword(Long memberId, String memberPassword){
+        MemberVO memberVO = mypageDAO.findById(memberId);
+        memberVO.setMemberPassword(memberPassword);
+        mypageDAO.updateById(memberVO);
+    }
+
 }

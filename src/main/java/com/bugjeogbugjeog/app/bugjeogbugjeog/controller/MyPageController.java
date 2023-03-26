@@ -107,6 +107,16 @@ public class MyPageController {
         return memberPhoneNumber;
     }
 
+//    비밀번호 변경
+    @PatchMapping("updatePassword")
+    @ResponseBody
+    public void updatePassword(HttpServletRequest req, @RequestParam("memberPassword") String memberPassword){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
+        myPageService.updatePassword(memberId, memberPassword);
+    }
+
     //    현재 날짜 경로 구하기
     private String getPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
