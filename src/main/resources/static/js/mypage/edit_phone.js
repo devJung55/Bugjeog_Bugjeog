@@ -1,4 +1,5 @@
     globalThis.code;
+    globalThis.PhoneNumberCheck;
     let codeCheck = false;
 
     // 휴대폰 검사
@@ -9,6 +10,7 @@
     $phone.blur(function(){
         let memberPhoneNumber = memberVO.memberPhoneNumber.replaceAll("-","").trim();
         let phoneVal = $phone.val();
+        console.log(phoneNumberCheck(phoneVal));
 
         if(!regPhone.test(phoneVal)||!phoneVal){
             $Checkbutton.css("cursor", "inherit");
@@ -21,7 +23,13 @@
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("현재 핸드폰 번호와 다른 번호를 입력해주세요.");
-        }else {
+
+        }else if(phoneNumberCheck(phoneVal)){
+            $Checkbutton.css("cursor", "inherit");
+            $Checkbutton.removeClass("phone-active");
+            $phoneError.show();
+            $phoneError.text("중복된 핸드폰 번호입니다.");
+        } else {
             $Checkbutton.css("cursor", "pointer");
             $Checkbutton.addClass("phone-active");
             $phoneError.hide();
@@ -66,6 +74,25 @@
            codeCheck = true;
        }
    });
+
+   // 핸드폰 중복검사
+    function phoneNumberCheck(phoneNumber){
+        var check = false;
+        $.ajax({
+            url : "/mypage/profile/memberPhoneCheck",
+            type: "get",
+            data : {"memberPhoneNumber" : phoneNumber},
+            async : false,
+            success : function(phoneNumberCheck){
+                check = phoneNumberCheck;
+            }
+        });
+        return check;
+    }
+
+    function check (phoneNumberCheck){
+        return phoneNumberCheck
+    }
 
    // 휴대폰 번호 변경
    const $phoneUpdateButton = $(".phone-save");
