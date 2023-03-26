@@ -35,4 +35,26 @@ public class AdminServiceTests {
     public void deleteMember(){
         adminService.removeMember(0L);
     }
+
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 유통 회원 */
+
+/*
+    @Test
+    public void showListBusiness(){}
+
+    @Test
+    public void showBusiness(){}
+
+    @Test
+    public void updateBusiness(){}
+
+    @Test
+    public void deleteBusiness(){}
+*/
+
+
+    /* ------------------------------------------------------------------------------------------------------------- */
 }
