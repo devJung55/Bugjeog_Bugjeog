@@ -57,5 +57,18 @@ public class MyPageService {
             }
             return code;
     }
+
+//    핸드폰 중복검사
+    public Boolean PhoneNumberCheck(String memberPhoneNumber){
+        List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
+        boolean check = false;
+
+        for (int i = 0; i < phoneNumbers.size(); i++){
+            if(phoneNumbers.get(i).equals(memberPhoneNumber)){
+                check = true;
+            }
+        }
+        return check;
+    }
     
 }
