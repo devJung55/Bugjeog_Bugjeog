@@ -116,6 +116,16 @@ public class MyPageController {
         Long memberId = 1L;
         myPageService.updatePassword(memberId, memberPassword);
     }
+    
+//    회원정보 가져오기
+    @GetMapping("memberVO")
+    @ResponseBody
+    public MemberVO memberVO(HttpServletRequest req){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
+        return myPageService.memberInfo(memberId);
+    }
 
     //    현재 날짜 경로 구하기
     private String getPath(){
