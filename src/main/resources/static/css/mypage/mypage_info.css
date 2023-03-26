@@ -595,6 +595,17 @@ span.edit_phone_number {
     border: 1px solid #f2f4f7;
 }
 
+.code-button:disabled>span {
+    color: #ccc;
+}
+
+.code-button:disabled {
+    color: #ccc;
+    background-color: #f2f4f7;
+    cursor: default;
+    border: 1px solid #f2f4f7;
+}
+
 p.auth_done {
     color: #08ba9c;
     font-weight: 400;
@@ -845,4 +856,8 @@ a {
 
 .font-bold {
     font-weight: 900;
+}
+
+.code-button {
+    display: none;
 }

@@ -4,6 +4,7 @@ const $inputPhone = $('input.modal_input.column');
 const editPhoneBtnText = $('span.edit_phone_number')[0];
 const $editPhoneBtnText = $(editPhoneBtnText);
 const $modalCloseBtns = $('button.modal_cancel');
+const $phone = $("input[name=mobile]");
 
 const $authSendMsg = $($(".auth_msg_done")[0]);
 const authNumSededText = "인증번호가 요청되었습니다.";
@@ -16,14 +17,17 @@ const plzEnterAuth = "인증번호 입력";
 const editPhoneText = "번호 변경";
 
 $btnAuthNums.on('click', (e) => {
-    console.log($editPhoneBtnText.text().trim() == "번호 변경");
+    e.preventDefault();
+
     if($btnAuthNums.hasClass('btn_active')){
         switch($editPhoneBtnText.text().trim()){
             case "번호 변경":
-                $btnAuthNums.removeClass('btn_active');
-                $btnAuthNums.attr('disabled', 'disabled');
-                $editPhoneBtnText.text(sendAuthText);
+                $(".code-button").removeClass('btn_active');
+                $(".code-button").attr('disabled', 'disabled');
                 $phone.removeAttr('readonly');
+                $phone.val("");
+                $(".code-button").show();
+                $btnAuthNums.hide();
                 addHidden($authSendMsg);
                 break;
             case sendAuthText:
@@ -34,13 +38,6 @@ $btnAuthNums.on('click', (e) => {
                 $phone.attr('readonly', 'readonly');
                 removeHidden($authSendMsg);
                 $authSendMsg.text(authNumSededText);//  인증번호가 요청되었습니다.
-                // $.ajax({
-                //     success:{
-                //         $authRemainTimeMsg.text(authTimeMsg + "");// 유효시간 4:00
-                //     }
-                // });
-                break;
-            
         }
     }
     // if ($btnAuthNums.hasClass('btn_active') & $editPhoneBtnText.text().trim() == "번호 변경") {
@@ -68,10 +65,6 @@ $btnAuthNums.on('click', (e) => {
 });
 
 $($modalCloseBtns).on('click', (e) => {
-    // var thisBtn = e.currentTarget;
-    // console.log($(e.currentTarget));
-    // console.log($(this));
-    console.log($('button.modal-close')[0]);
     $('div>button.modal-close.is-large').click();
 });
 

@@ -69,8 +69,7 @@
                             </span>
                         </label>
                     </div>
-                    <p class="welcome_msg">
-                        <th:block  th:text="${memberVO.memberName}"></th:block>님, 환영해요.
+                    <p class="welcome_msg change-name"th:text="|${memberVO.memberName}님, 환영해요.|">
                     </p>
                 </header>
                 <section class="info_content member_info_container">
@@ -87,7 +86,7 @@
                         </li>
                         <li class="changeDefault">
                             <p class="changeTitle">이름</p>
-                            <p class="changeText" th:text="*{memberName}"></p>
+                            <p class="changeText memberName" th:text="*{memberName}"></p>
                             <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_name">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
@@ -96,7 +95,7 @@
                         </li>
                         <li class="changeDefault">
                             <p class="changeTitle">휴대폰 번호</p>
-                            <p class="changeText" th:text="*{memberPhoneNumber}"></p>
+                            <p class="changeText phoneNumber"></p>
                             <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
@@ -152,7 +151,6 @@
             <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
                 <div class="modal_content_wrapper is-relative">
                     <div class="modal_content_top">
-                        <div class="modal_content_top_left"></div>
                         <div class="modal_content_top_center">
                             <p class="modal_content_name">이름</p>
                         </div>
@@ -162,12 +160,13 @@
                             <div class="modal_edit_input_wrapper">
                                 <input type="text" placeholder="이름을 입력해주세요." name="username" class="edit_input_name"
                                     th:value="${memberVO.memberName}">
+                                <span class="error-msg name-error"></span>
                             </div>
                             <div class="modal_edit_btn_wrapper">
                                 <button type="button" class="modal_cancel">
                                     <span class="modal_btn_span">취소</span>
                                 </button>
-                                <button type="submit" class="modal_save">
+                                <button type="button" class="modal_save name-save">
                                     <span class="modal_btn_span">저장</span>
                                 </button>
                             </div>
@@ -206,18 +205,21 @@
                                 <div class="columns is-multiline m-0">
                                     <div class="modal_input_number column columns is-full m-0 p-0">
                                         <div class="columns column is-multiline m-0 p-0">
-                                            <input name="mobile" value="01077287518" class="modal_input column is-full"
+                                            <input name="mobile" class="modal_input column is-full" th:value="${memberVO.memberPhoneNumber}"
                                                 placeholder="(예시) 01013245768" type="text" readonly>
-                                            <span class="phone-error error-msg column is-full p-0"></span>
                                         </div>
-                                        <label for="" class="">
+                                        <label class="">
                                             <button type="button" class="auth_number find-take-btn btn_active">
                                                 <span class="edit_phone_number">번호 변경</span>
                                             </button>
+                                            <button type="button" class="auth_number find-take-btn btn_active code-button">
+                                                <span class="edit_phone_number">인증번호 받기</span>
+                                            </button>
                                         </label>
                                     </div>
+                                    <span class="phone-error error-msg column is-full p-0"></span>
                                     <div class="modal_input_number column is-full p-0">
-                                        <input type="text" class="modal_input" placeholder="인증번호를 입력해주세요.">
+                                        <input type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
                                     </div>
                                     <p class="auth_msg auth_msg_done"></p>
                                     <p class="auth_msg auth_remain_time"></p>
@@ -227,7 +229,7 @@
                                 <button type="button" class="modal_cancel">
                                     <span class="modal_btn_span">취소</span>
                                 </button>
-                                <button type="submit" class="modal_save">
+                                <button type="button" class="modal_save phone-save">
                                     <span class="modal_btn_span">저장</span>
                                 </button>
                             </div>
@@ -244,6 +246,16 @@
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
     $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+
+    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
+
+    function phoneNumber(phoneNumber){
+        var phone1 = phoneNumber.substring(0,3);
+        var phone2 = phoneNumber.substring(3,7);
+        var phone3 = phoneNumber.substring(7);
+        let phone = phone1 + "-" + phone2 + "-" + phone3;
+        return phone;
+    }
 </script>
 <script>
     /* 파일 모달창 닫기*/
@@ -326,8 +338,8 @@
 
         return [year, month, day].join(delimiter);
     }
-// ========================================================
 
+    // ========================================================
 </script>
 <!-- 인증 번호 등 모달 관련 js -->
 <script src="/js/mypage/myinfo_modal.js"></script>
