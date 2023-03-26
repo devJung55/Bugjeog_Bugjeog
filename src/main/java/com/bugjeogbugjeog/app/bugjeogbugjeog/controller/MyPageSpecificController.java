@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/mypage/*")
 /*@RequestMapping("/main/*")*/
-public class TestController {
+public class MyPageSpecificController {
 
 
     @GetMapping("/profile/favorite")

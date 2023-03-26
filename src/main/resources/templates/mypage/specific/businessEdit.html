@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile_business.css">
-    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/header-signin.css">
     <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <style>
@@ -22,13 +22,65 @@
         width: 100vw;
         height: 100vh;
     }
+    .cate-button {
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        min-width: 64px;
+        box-sizing: border-box;
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #e1e2e4;
+        outline: none;
+        scroll-snap-align: start;
+        height: 40px;
+        position: relative;
+        display: flex;
+        padding: 9px 22px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 146.7%;
+        color: #8a8a8a;
+    }
+    .cate-button-active{
+        color: #36f;
+        border: 1px solid #36f;
+    }
+    .loca-button {
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        min-width: 64px;
+        box-sizing: border-box;
+        cursor: pointer;
+        background-color: #fff;
+        border: 1px solid #e1e2e4;
+        outline: none;
+        scroll-snap-align: start;
+        height: 40px;
+        position: relative;
+        display: flex;
+        padding: 9px 22px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 146.7%;
+        color: #8a8a8a;
+    }
+    .loca-button-active{
+        color: #36f;
+        border: 1px solid #36f;
+    }
+    .category_span{
+        width: 100%;
+        cursor: pointer;
+    }
 </style>
 <header th:insert="~{main/header-signin :: header_signin}"></header>
 <body class="profile_body is-relative">
-    <div id="modal-edit_business" class="modal">
+<!--    <div id="modal-edit_business" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+            <div class="box modal_box">&lt;!&ndash; 이 안에만 넣어야 됨 &ndash;&gt;
                 <div class="modal_content_wrapper">
                     <section class="info_content">
                         <p class="manageAccount">
@@ -72,7 +124,7 @@
             </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
-    </div>
+    </div>-->
     <!--  -->
     <div class="Container_Profile">
         <header id="header"></header>
@@ -101,29 +153,72 @@
                                 <div class="FormBlock">
                                     <div class="FormBlock-content">
                                         <div class="MainResume-fieldset">
-                                            <div class="fieldset-Static_content-first">
-                                                <div class="Static-label is-flex">지역선택</div>
-                                                <div class="Static-body">
-                                                    <input type="text" placeholder="지역을 입력해 주세요.">
-                                                </div>
-                                            </div>
-                                            <div class="fieldset-Static_content-others">
-                                                <div class="Static-label is-flex">카테고리</div>
-                                                <div class="Static-body">
-                                                    <input type="text" placeholder="카테고리를 입력해 주세요.">
-                                                </div>
-                                            </div>
-                                            <div class="apply_wrapper_upper is-hidden">
-                                                <label for="">
-                                                    <div class="apply_wrapper">
-                                                        <span>
-                                                            <a href="">
-                                                                적용하기
-                                                            </a>
-                                                        </span>
+                                            <form action="" method="post">
+                                                <div class="fieldset-Static_content-first">
+                                                    <div class="Static-label is-flex">지역선택</div>
+                                                    <div class="Static-body">
+                                                        <div style="display: flex; margin-bottom: 15px;">
+                                                            <button type="button" class="loca-button loca-button-active" id="seoul" name="category" value="seoul">
+                                                                <span class="category_span">서울</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="gyeong-gi" name="category" value="gyeong-gi">
+                                                                <span class="category_span">경기</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Gangwon-do" name="category" value="Gangwon-do">
+                                                                <span class="category_span">강원</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Chungcheong-bukdo" name="category" value="Chungcheong-bukdo">
+                                                                <span class="category_span">충북</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Chungcheong-namdo" name="category" value="Chungcheong-namdo">
+                                                                <span class="category_span">충남</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Jeolla-bukdo" name="category" value="Jeolla-bukdo">
+                                                                <span class="category_span">전북</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Jeolla-namdo" name="category" value="Jeolla-namdo">
+                                                                <span class="category_span">전남</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Gyeongsang-bukdo" name="category" value="Gyeongsang-bukdo">
+                                                                <span class="category_span">경북</span>
+                                                            </button>
+                                                            <button type="button" class="loca-button" id="Gyeongsang-namdo" name="category" value="Gyeongsang-namdo">
+                                                                <span class="category_span">경남</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </label>
-                                            </div>
+                                                </div>
+                                                <div class="fieldset-Static_content-others">
+                                                    <div class="Static-label is-flex">카테고리</div>
+                                                    <div class="Static-body">
+                                                        <div style="display: flex; margin-bottom: 15px;">
+                                                            <button type="button" class="cate-button cate-button-active" id="gogi" name="category" value="gogi">
+                                                                <span class="category_span">육류</span>
+                                                            </button>
+                                                            <button type="button" class="cate-button" id="seafood" name="category" value="seafood">
+                                                                <span class="category_span">해산물</span>
+                                                            </button>
+                                                            <button type="button" class="cate-button" id="vegetable" name="category" value="vegetable">
+                                                                <span class="category_span">채소</span>
+                                                            </button>
+                                                            <button type="button" class="cate-button" id="spice" name="category" value="spice">
+                                                                <span class="category_span">향신료</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="apply_wrapper_upper is-hidden">
+                                                    <label for="">
+                                                        <div class="apply_wrapper">
+                                                            <span>
+                                                                <button type="submit">
+                                                                    적용하기
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </form>
                                             <!-- 모달 트리거 버튼 -->
 <!--                                            <a class="MainResume-edit js-modal-trigger" data-target="modal-edit_business">
                                                 <span class="img_span is-flex">
@@ -176,9 +271,31 @@
     </div>
 </body>
 <script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
-<!--<script>$('.Aside_include').load('fragment/aside_business.html');</script>-->
-<script src="/js/mypage/include_fixed.js"></script>
 <script src="/js/mypage/mypage_profile_business.js"></script>
 <script src="/js/mypage/mypage_profile_business_select.js"></script>
+<script>
+    /* 카테고리 버튼 이벤트 */
+    const $cateButton = $(".cate-button");
+
+    $cateButton.each((i, e) => {
+
+        $(e).click(function(){
+            $cateButton.removeClass("cate-button-active");
+            $(e).addClass("cate-button-active");
+        });
+    });
+
+
+    /* 카테고리 버튼 이벤트 */
+    const $locaButton = $(".loca-button");
+
+    $locaButton.each((i, e) => {
+
+        $(e).click(function(){
+            $locaButton.removeClass("loca-button-active");
+            $(e).addClass("loca-button-active");
+        });
+    });
+</script>
 
 </html>

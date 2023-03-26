@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_personal_favorite.css"><!-- 마이페이지 프로필 중 관심업체리스트 -->
     <link rel="stylesheet" href="/css/mypage/mypage_paging.css">
-    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/header-signin.css">
     <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
@@ -33,7 +33,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
+                <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
 <!--                <aside class="Aside_include"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
@@ -109,9 +109,7 @@
                                                         <header class="card_header">가구 납품 담당자</header>
                                                         <div class="card_business_name">디옴</div>
                                                         <div class="category_wrapper">
-                                                            <span class="card_category_L">대분류</span>
-                                                            <span> / </span>
-                                                            <span class="card_category_S">소분류</span>
+                                                            <span class="card_category_L">카테고리</span>
                                                         </div>
                                                         <div class="card_location">경기</div>
                                                         <div class="card_content">게시글 내용</div>
@@ -397,9 +395,8 @@
                 </section>
             </section>
         </main>
-        <footer id="footer"></footer>
+        <footer id="footer" th:insert="~{main/footer :: footer}"></footer>
     </div>
-<block th:insert="~{main/footer :: footer}"></block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
