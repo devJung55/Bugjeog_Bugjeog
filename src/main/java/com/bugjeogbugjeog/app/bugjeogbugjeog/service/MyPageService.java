@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import net.nurigo.java_sdk.api.Message;
@@ -106,4 +107,8 @@ public class MyPageService {
         mypageDAO.updateById(memberVO);
     }
 
+    // 문의 게시판 목록
+    public List<MemberInquireDTO> inquireList(Long memberId){
+        return mypageDAO.findAllByIdToInquire(memberId);
+    }
 }
