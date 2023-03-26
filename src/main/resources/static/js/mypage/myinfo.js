@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
     // Functions to open and close a modal
     function openModal($el) {
         $el.classList.add('is-active');
+        $(".error-msg").text("");
+        $(".code-button").removeClass('btn_active');
+        $(".code-button").attr('disabled', 'disabled');
+        $("input[name=mobile]").removeAttr('readonly');
+        $("input[name=mobile]").val(memberVO.memberPhoneNumber);
+        $(".code-button").hide();
+        $btnAuthNums.show();
+        addHidden($authSendMsg);
     }
 
     function closeModal($el) {

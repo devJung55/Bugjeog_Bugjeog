@@ -18,6 +18,11 @@
         WHERE member_id = #{memberId}
     </update>
 
+    <!--이용자 회원 탈퇴-->
+    <delete id="deleteMember">
+        delete from tbl_member where member_id = #{memberId}
+    </delete>
+
     <!--이용자 좋아요 한 게시물 수-->
     <select id="likeCount" resultType="int">
         select count(free_like_id) from tbl_free_like where member_id = #{memberId}
