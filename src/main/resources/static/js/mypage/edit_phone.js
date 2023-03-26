@@ -8,17 +8,21 @@
     const $Checkbutton = $(".code-button");
     $phoneError.hide();
     $phone.blur(function(){
-        let memberPhoneNumber = memberVO.memberPhoneNumber.replaceAll("-","").trim();
         let phoneVal = $phone.val();
-        console.log(phoneNumberCheck(phoneVal));
 
-        if(!regPhone.test(phoneVal)||!phoneVal){
+        if(!phoneVal){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
-            $phoneError.text(!phoneVal ? "핸드폰 번호를 입력해주세요." : "올바른 형식이 아닙니다.")
+            $phoneError.text("핸드폰 번호를 입력해주세요.");
 
-        }else if(phoneVal == memberPhoneNumber){
+        }else if(!regPhone.test(phoneVal)){
+            $Checkbutton.css("cursor", "inherit");
+            $Checkbutton.removeClass("phone-active");
+            $phoneError.show();
+            $phoneError.text("올바른 형식이 아닙니다.");
+
+        } else if(memberPhoneCheck(phoneVal)){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
@@ -29,6 +33,7 @@
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("중복된 핸드폰 번호입니다.");
+
         } else {
             $Checkbutton.css("cursor", "pointer");
             $Checkbutton.addClass("phone-active");
@@ -42,6 +47,7 @@
 
     // 인증번호 보내기 클릭 시
     $(".code-button").click(function(){
+
         $(".authcode-input").addClass("authcode-input-active");
         $(".auth-msg").show();
         $.ajax({
@@ -104,7 +110,7 @@
        let memberPhoneNumber = $("input[name=mobile]").val();
        $.ajax({
            url : "/mypage/profile/phoneNumberUpdate",
-           type: "post",
+           type: "patch",
            data: {"memberPhoneNumber" : memberPhoneNumber},
            success : function (memberPhoneNumber) {
                 alert("핸드폰 번호 변경 완료");
@@ -124,7 +130,7 @@
         }else if($(this).val().length < 2){
             $(".name-error").text("이름은 2자리 이상 입력해주세요.");
             nameCheck = false;
-        }else if($(this).val() == memberVO.memberName){
+        }else if(memberNameCheck($(this).val())){
             $(".name-error").text("현재 이름과 동일합니다.");
             nameCheck = false;
         }else {
@@ -144,12 +150,13 @@
         let memberName = $("input[name=username]").val();
         $.ajax({
             url : "/mypage/profile/updateName",
-            type: "post",
+            type: "patch",
             data: {"memberName" : memberName},
             success : function (memberName) {
                 alert("이름 변경 완료");
                 $(".change-name").text(memberName + "님, 환영해요.");
                 $(".memberName").text(memberName);
+                $("input[name=username]").val(memberName);
                 $("#modal-edit_name").removeClass('is-active');
             }
         });
@@ -239,3 +246,31 @@
             }
         });
     });
+
+    // 회원 이름 비교
+    function memberNameCheck(memberName){
+        let check = false;
+        $.ajax({
+            url : "/mypage/profile/memberVO",
+            type: "get",
+            async : false,
+            success : function (memberVO) {
+                check = memberVO.memberName == memberName;
+            }
+        });
+        return check;
+    }
+
+    // 회원 이름 비교
+    function memberPhoneCheck(memberPhoneNumber){
+        let check = false;
+        $.ajax({
+            url : "/mypage/profile/memberVO",
+            type: "get",
+            async : false,
+            success : function (memberVO) {
+                check = memberVO.memberPhoneNumber == memberPhoneNumber;
+            }
+        });
+        return check;
+    }
