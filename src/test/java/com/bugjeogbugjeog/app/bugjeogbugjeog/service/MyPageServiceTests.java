@@ -58,7 +58,7 @@ public class MyPageServiceTests {
     }
 
     // sms 발송 서비스
-    public String memberSMSTest(String memberPhoneNumber){
+    public void memberSMSTest(String memberPhoneNumber){
         log.info(myPageService.memberSMS("01036758324"));
     }
 
