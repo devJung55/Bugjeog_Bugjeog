@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,10 @@ public class MemberDAO {
 //    자영업자 로그인
     public Long findByMemberEmailAndMemberPassword(String memberEmail, String memberPassword) {
         return memberMapper.selectByMemberIdAndMemberPassword(memberEmail, memberPassword);
+    }
+
+//    유통업체 회원가입
+    public void registerBusiness(BusinessVO businessVO) {
+        memberMapper.insertBusiness(businessVO);
     }
 }

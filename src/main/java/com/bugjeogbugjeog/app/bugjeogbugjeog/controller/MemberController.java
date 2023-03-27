@@ -66,4 +66,12 @@ public class MemberController {
     public void businessJoin(Model model) {
         model.addAttribute(new BusinessVO());
     }
+
+//    유통업체 회원가입 완료
+    @PostMapping("business-join")
+    public RedirectView businessJoin(BusinessVO businessVO) {
+        businessVO.setBusinessPassword(new String(Base64.getEncoder().encode(businessVO.getBusinessPassword().getBytes())));
+        memberService.joinBusiness(businessVO);
+        return new RedirectView("/member/login");
+    }
 }
