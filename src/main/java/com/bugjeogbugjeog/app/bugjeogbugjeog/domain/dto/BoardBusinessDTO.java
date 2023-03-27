@@ -19,7 +19,7 @@ public class BoardBusinessDTO {
     private Long boardBusinessReviewCount;
     private Long boardBusinessGradeAverage;
 
-    /* 추가 예정 */
+    /* businessVO */
     private String boardBusinessLocation;
     private String boardBusinessCategory;
 

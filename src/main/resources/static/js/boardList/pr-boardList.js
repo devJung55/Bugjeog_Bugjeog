@@ -26,14 +26,18 @@
 
     /* 카테고리 버튼 이벤트 */
     const $cateButton = $(".cate-button");
-    
+
     $cateButton.each((i, e) => {
 
         $(e).click(function(){
             $cateButton.removeClass("cate-button-active");
             $(e).addClass("cate-button-active");
+            console.log($(e).attr('name'));
             $.ajax({
-                url: ""
+                url: "/board/business/list",
+                method: "POST",
+                data: "category=".concat($(e).attr('name')),
+                success: showList([[${boards}]])
             });
         });
     });
