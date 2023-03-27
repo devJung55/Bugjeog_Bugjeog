@@ -70,7 +70,6 @@ public class AdminController {
     public void notice(Long noticeId, Model model){
         model.addAttribute(noticeService.showNotice(noticeId));
     }
-
     /* 공지사항 작성 */
     @PostMapping("admin-noticeWrite")
     public RedirectView AddNotice(NoticeVO noticeVO){
