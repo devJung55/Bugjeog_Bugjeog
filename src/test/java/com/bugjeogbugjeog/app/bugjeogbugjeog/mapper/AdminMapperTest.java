@@ -65,7 +65,7 @@ public class AdminMapperTest {
 
     @Test
     public void deleteBusiness(){
-        adminMapper.deleteBusiness(1L);
+        adminMapper.deleteBusiness(2L);
     }
 
 
