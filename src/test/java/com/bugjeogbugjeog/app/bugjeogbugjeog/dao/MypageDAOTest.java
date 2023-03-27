@@ -63,21 +63,7 @@ public class MypageDAOTest {
         log.info(String.valueOf(mypageDAO.getCountToLike(1L)));
     }
 
-    //    좋아요 한 게시물 번호들
-    @Test
-    public void likeListNumberTest(){
-        mypageDAO.findAllToLikeNumber(1L);
-    }
-
     //    좋아요 한 게시물 리스트
-    @Test
-    public void likeListTest(){
-        List<Long> memberIds = mypageDAO.findAllToLikeNumber(1L);
-        List<MemberLikeDTO> datas = new ArrayList<>();
-
-        memberIds.stream().forEach(data -> datas.add(mypageDAO.findAllToLike(data)));
-        datas.stream().forEach(data -> log.info(data.toString()));
-    }
 
     //    문의 작성 목록
 

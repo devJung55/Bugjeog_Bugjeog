@@ -2,10 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -47,14 +44,9 @@ public class MypageDAO {
         return myPageMapper.likeCount(memberId);
     };
 
-    //    좋아요 한 게시물 번호들
-    public List<Long> findAllToLikeNumber(Long memberId){
-        return myPageMapper.likeListNumber(memberId);
-    };
-
     //    좋아요 한 게시물 리스트
-    public MemberLikeDTO findAllToLike(Long boardFreeId){
-        return myPageMapper.likeList(boardFreeId);
+    public List<BoardFreeVO> findAllToLike(Long boardFreeId, Criteria criteria){
+        return myPageMapper.likeList(boardFreeId, criteria);
     };
 
     //    문의 작성 목록
