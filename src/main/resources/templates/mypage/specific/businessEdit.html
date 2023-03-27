@@ -158,31 +158,31 @@
                                                     <div class="Static-label is-flex">지역선택</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="loca-button loca-button-active" id="seoul" name="category" value="seoul">
+                                                            <button type="button" class="loca-button loca-button-active" id="서울" name="category" value="서울">
                                                                 <span class="category_span">서울</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="gyeong-gi" name="category" value="gyeong-gi">
+                                                            <button type="button" class="loca-button" id="경기" name="category" value="경기">
                                                                 <span class="category_span">경기</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gangwon" name="category" value="Gangwon">
+                                                            <button type="button" class="loca-button" id="강원" name="category" value="강원">
                                                                 <span class="category_span">강원</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Chung-buk" name="category" value="Chung-buk">
+                                                            <button type="button" class="loca-button" id="충북" name="category" value="충북">
                                                                 <span class="category_span">충북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Chung-nam" name="category" value="Chung-nam">
+                                                            <button type="button" class="loca-button" id="충남" name="category" value="충남">
                                                                 <span class="category_span">충남</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Jeol-buk" name="category" value="Jeol-buk">
+                                                            <button type="button" class="loca-button" id="전북" name="category" value="전북">
                                                                 <span class="category_span">전북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Jeol-nam" name="category" value="Jeol-nam">
+                                                            <button type="button" class="loca-button" id="전남" name="category" value="전남">
                                                                 <span class="category_span">전남</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gyeong-buk" name="category" value="Gyeong-buk">
+                                                            <button type="button" class="loca-button" id="경북" name="category" value="경북">
                                                                 <span class="category_span">경북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gyeong-nam" name="category" value="Gyeong-nam">
+                                                            <button type="button" class="loca-button" id="경남" name="category" value="경남">
                                                                 <span class="category_span">경남</span>
                                                             </button>
                                                         </div>
@@ -192,16 +192,16 @@
                                                     <div class="Static-label is-flex">카테고리</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="cate-button cate-button-active" id="gogi" name="category" value="gogi">
+                                                            <button type="button" class="cate-button cate-button-active" id="육류" name="category" value="육류">
                                                                 <span class="category_span">육류</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="seafood" name="category" value="seafood">
+                                                            <button type="button" class="cate-button" id="해산물" name="category" value="해산물">
                                                                 <span class="category_span">해산물</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="vegetable" name="category" value="vegetable">
+                                                            <button type="button" class="cate-button" id="채소" name="category" value="채소">
                                                                 <span class="category_span">채소</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="spice" name="category" value="spice">
+                                                            <button type="button" class="cate-button" id="향신료" name="category" value="향신료">
                                                                 <span class="category_span">향신료</span>
                                                             </button>
                                                             <input type="hidden" name="categorys" id="catergorys">
@@ -275,11 +275,11 @@
 
 
     $('.cate-button').on('click', function () {
-        $('#foods').val($(this).val());
+        $('#catergorys').val($(this).val());
     });
 
     $('.loca-button').on('click', function () {
-        $('#catergorys').val($(this).val());
+        $('#foods').val($(this).val());
     });
 
 
