@@ -11,7 +11,7 @@ public class BusinessVO {
     private String businessEmail;
     private String businessPassword;
     private String businessCeoName;
-    private Long businessNumber;
+    private String  businessNumber;
     private String businessCompanyName;
     private String businessPhoneNumber;
     private String businessEstablishmentDate;
@@ -20,4 +20,6 @@ public class BusinessVO {
     private String businessImgOriginalName;
     private String businessImgUuid;
     private String businessImgPath;
+    private String businessLocation;
+    private String businessCategory;
 }

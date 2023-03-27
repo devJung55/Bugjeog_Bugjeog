@@ -33,7 +33,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
+                <aside th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
 <!--                <aside class="Aside_include"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
@@ -401,7 +401,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script>4
+<script src="/js/mypage/include_fixed.js"></script>
 <script>
     const $pagingLabel = $('label.num_label');
 
@@ -410,13 +410,22 @@
         // console.log($target); // span.paging_num
         $pagingLabel.removeClass('current_page');
         $target.parent().addClass('current_page');
-    })
+    }
 
 
+</script>
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
 
+    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
 
-
-
-
+    function phoneNumber(phoneNumber){
+        var phone1 = phoneNumber.substring(0,3);
+        var phone2 = phoneNumber.substring(3,7);
+        var phone3 = phoneNumber.substring(7);
+        let phone = phone1 + "-" + phone2 + "-" + phone3;
+        return phone;
+    }
 </script>
 </html>

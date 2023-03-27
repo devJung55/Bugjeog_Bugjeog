@@ -73,7 +73,7 @@ function passwordCheck(){
 
 
 
-const $loginButton = $(".form-button-cuntinueEmail-ment");
+const $loginButton = $(".form-button-countinueEmail");
 // const urlParams = new URL(location.href).searchParams;
 // const login = urlParams.get('login');
 
@@ -163,3 +163,14 @@ $pw.change(function(){
 
 // $loginBt.removeAttr("disabled");
 
+
+/*-------------------------- 로그인 form submit 이벤트 --------------------------*/
+
+console.log($loginBt);
+
+
+$loginBt.on("click", function(e) {
+    console.log("들어옴111");
+   $(document.loginForm).attr("action", "/member/login");
+   $(document.loginForm).submit();
+});

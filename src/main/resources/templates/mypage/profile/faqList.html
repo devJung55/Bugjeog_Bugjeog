@@ -34,7 +34,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include"></aside>
+                <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
                         <picture>
@@ -66,7 +66,7 @@
                                 </li>
                                 <li class="summary_content" style="border: none;">
                                     <a href="">
-                                        <em>0</em>
+                                        <em th:text="${inquireCount}"></em>
                                         <span>문의글</span>
                                     </a>
                                 </li>
@@ -93,9 +93,9 @@
                         </div>
                         <div>
                             <!-- 첫번째 글 -->
+                            <th:block th:each="inquire, i : ${inquireDTO.inquire}">
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
                                         <div class="AuthorBox_Wrapper">
                                             <div class="AuthorBox_horizontalBox">
                                                 <div class="AuthorBox_avatarWrapper">
@@ -104,72 +104,55 @@
                                                             alt="">
                                                     </div>
                                                 </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                <span class="AuthorBox_username"th:text = "${memberVO.memberName}"></span>
                                             </div>
-                                            <span class="AuthorBox_createAt">2023.03.13</span>
+                                            <span class="AuthorBox_createAt" th:text="${inquire.boardInquiryRegisterDate}"></span>
                                         </div>
-                                    </a>
                                 </div>
                                 <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
+                                    <h3 class="PostItem_title" th:text="${inquire.boardInquiryTitle}"></h3>
+                                    <p class="PostItem_content" th:text="${inquire.boardInquiryContent}">
                                     </p>
                                     <div class="PostItem_bottom">
-                                        <div class=" is_answer answer_no">
-                                            <span>미답변</span>
-                                        </div>
-                                        <div class="is_answer answer_yes">
-                                            <span>답변 완료</span>
-                                        </div>
+
                                     </div>
                                 </a>
                             </article>
-
-
-                            <!-- 두번째 글 -->
-                            <!--    글 폼
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href="">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                            </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                        합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                    </h3>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class=" is_answer answer_no">
-                                            <span>미답변</span>
-                                        </div>
-                                        <div class="is_answer answer_yes">
-                                            <span>답변 완료</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
--->
+                            </th:block>
                         </div>
+                        <div style="text-align: center; margin-top: 40px;font-size: 23px;margin-bottom: 20px;">
+                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><code>&lt;</code></a>
+                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                <code th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></code>
+                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="@{/mypage/profile/faqList}"><code th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></code></a>
+                            </th:block>
+                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><code>&gt;</code></a>
+                        </div>
+                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                            <input type="hidden" th:field="*{pageNum}">
+                            <input type="hidden" th:field="*{amount}">
+                        </form>
+                        <!--<div class="paging_wrapper">
+                            <label class="btn_paging_before" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                <button class="is-hidden" type="button"></button>
+                                <span style="margin-right: 3px;">
+                                    <
+                                </span>
+                            </label>
+                            <ul class="num_wrapper">
+                                <li th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                    <label class="num_label current_page">
+                                        <button class="is-hidden btn_paging" type="button"></button>
+                                        <span class="paging_num" th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}">
+                                        </span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <label for=""  th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                <button class="btn_paging_after is-hidden"></button>
+                                <span> > </span>
+                            </label>
+                        </div>-->
                     </div>
                 </section>
             </section>
@@ -178,8 +161,51 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('../fragment/aside_personal.html');</script><!-- th:삽입후 제거 -->
-<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script><!-- th:삽입후 제거 -->
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    let inquireDTO =[[${inquireDTO}]];
 
+    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+
+    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
+
+    function phoneNumber(phoneNumber){
+        var phone1 = phoneNumber.substring(0,3);
+        var phone2 = phoneNumber.substring(3,7);
+        var phone3 = phoneNumber.substring(7);
+        let phone = phone1 + "-" + phone2 + "-" + phone3;
+        return phone;
+    }
+
+    function date(date){
+        date = new Date();
+        return date.getFullYear() +"."+date.getMonth() + "." + date.getDay();
+    }
+
+    let $date = $(".AuthorBox_createAt");
+    $(document).ready(function(){
+        $date.each((i, e) => {
+            $(e).text(date($(e).text()));
+        });
+    });
+
+    $(inquireDTO.answerStatus).each((i, e) =>{
+        let $bottom = $($(".PostItem_bottom")[i]);
+        let text = "";
+        if(e == null){
+            text += `
+                    <div class=" is_answer">
+                         <span>미답변</span>
+                    </div>
+                   `;
+        }else {
+               text+=     `
+                         <div class="is_answer answer_yes">
+                             <span>답변 완료</span>
+                        </div>
+            `;
+        }
+        $bottom.append(text);
+    });
+</script>
 </html>
