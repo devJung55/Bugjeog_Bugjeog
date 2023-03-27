@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequiredArgsConstructor
 @RequestMapping("/admin/*")
 public class AdminController {
+
     private final NoticeService noticeService;
 
     /* 회원 목록 조회 */
