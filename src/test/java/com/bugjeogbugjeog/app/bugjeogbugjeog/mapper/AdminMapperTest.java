@@ -47,13 +47,13 @@ public class AdminMapperTest {
 
     /* 유통 회원 */
 
-   /* @Test
+   @Test
     public void selectAllBusiness(){List<BusinessVO> businessVO = adminMapper.selectAllBusiness();}
 
     @Test
     public void selectBusiness(){
         BusinessVO businessVO = new BusinessVO();
-        adminMapper.selectBusiness(1L).toString();
+        adminMapper.selectBusiness(2L).toString();
     }
 
     @Test
@@ -61,11 +61,11 @@ public class AdminMapperTest {
         BusinessVO businessVO = adminMapper.selectBusiness(2L);
         businessVO.setBusinessCompanyName("최강 유통");
         adminMapper.updateBusiness(businessVO);
-    }*/
+    }
 
     @Test
     public void deleteBusiness(){
-        adminMapper.deleteBusiness(1L);
+        adminMapper.deleteBusiness(2L);
     }
 
 
