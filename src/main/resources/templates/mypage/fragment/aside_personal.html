@@ -26,19 +26,19 @@
                 <div class="Aside-avatar">
                     <div class="Aside-avatar_image">
                         <th:block th:if="${memberVO.memberImgUuid == null}">
-                            <img class="img_profile-normal" src="/image/boardList/self_employ_icon.png">
+                            <img class="img_profile-normal" style="border-radius: 50%" src="/image/boardList/self_employ_icon.png">
                         </th:block>
                         <th:block th:if="${memberVO.memberImgUuid != null}">
-                            <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                            <img class="img_profile" style="border-radius: 50%"  src="/image/boardList/self_employ_icon.png">
                         </th:block>
                     </div>
                 </div>
                 <div class="Aside-me"  th:object="${memberVO}">
                     <div class="Aside-me_name" th:text="*{memberName}"></div>
                     <div class="Aside-me_email" th:text="*{memberEmail}"></div>
-                    <div class="Aside-me_tel" th:text="*{memberPhoneNumber}"></div>
+                    <div class="Aside-me_tel phoneNumber" th:text="*{memberPhoneNumber}"></div>
                 </div>
-                <a href="" class="Aside-edit is-flex">기본정보 수정</a>
+                <a th:href="@{/mypage/profile/myinfo}" class="Aside-edit is-flex">기본정보 수정</a>
             </header>
 
             <div class="MatchUpStatus-container Aside-content list_container">
@@ -61,5 +61,4 @@
     <!-- </section> -->
     <!-- </div> -->
 </body>
-
 </html>

@@ -2,7 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
@@ -56,8 +58,8 @@ public class MypageDAO {
     };
 
     //    문의 작성 목록
-    public List<MemberInquireDTO> findAllByIdToInquire(Long memberId){
-        return myPageMapper.inquireList(memberId);
+    public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
+        return myPageMapper.inquireList(memberId,criteria);
     };
 
     //    문의 게시글 작성 갯수
@@ -65,9 +67,12 @@ public class MypageDAO {
         return myPageMapper.inquireCount(memberId);
     };
 
-    //    문의 게시글 답변 유무 체크
-    public Long findByIdToBoardInquiryAnswerCheck(Long boardInquiryId){
-        return myPageMapper.answerCheck(boardInquiryId);
-    };
+    // 문의 답변 여부
+    public Long inquireAnswer(Long boardInquireId){
+        return myPageMapper.inquireAnswer(boardInquireId);
+    }
 
+    //유통 분야 설정 수정
+    public void updateLocation(BusinessVO businessVO) {myPageMapper.updateLocation(businessVO);};
 }
+

@@ -3,6 +3,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -77,10 +80,6 @@ public class MypageDAOTest {
     }
 
     //    문의 작성 목록
-    @Test
-    public void inquireListTest(){
-        mypageDAO.findAllByIdToInquire(1L);
-    }
 
     //    문의 게시글 작성 갯수
     @Test
@@ -88,9 +87,15 @@ public class MypageDAOTest {
         mypageDAO.getCountToInquire(1L);
     }
 
-    //    문의 게시글 답변 유무 체크
+    //유통 분야 설정 수정
     @Test
-    public void answerCheckTest(){
-        log.info(String.valueOf(mypageDAO.findByIdToBoardInquiryAnswerCheck(1L) == null));
+    public void updateByLocationTest(){
+        BusinessVO businessVO = mypageDAO.findByIdToBusiness(1L);
+
+        businessVO.setBusinessLocation("전북");
+        businessVO.setBusinessCategory("육류");
+
+        mypageDAO.updateLocation(businessVO);
     }
+
 }

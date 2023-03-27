@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -43,27 +44,47 @@ public class MyPageServiceTests {
     }
 
     //    회원 탈퇴
+    @Test
     public void memberWithdrawTest(Long memberId) {
         myPageService.memberWithdraw(memberId);
     }
 
     //    이름 변경
+    @Test
     public void updateNameTest(){
         myPageService.updateName(1L,"로이");
     }
 
     //    핸드폰 번호 변경
+    @Test
     public void updatePhoneNumberTest(){
         myPageService.updatePhoneNumber(1L,"01066666666");
     }
 
     // sms 발송 서비스
+    @Test
     public void memberSMSTest(String memberPhoneNumber){
         log.info(myPageService.memberSMS("01036758324"));
     }
 
     // 비밀번호 변경
+    @Test
     public void updatePasswordTest(){
         myPageService.updatePassword(1L,"1234");
+    }
+
+    // 문의 리스트
+
+
+
+    //    유통 분야 설정 수정
+    @Test
+    public void updateLocationTest(){
+        BusinessVO businessVO = myPageService.businessInfo(1L);
+
+
+        businessVO.setBusinessLocation("경남");
+        businessVO.setBusinessCategory("채소");
+        myPageService.updateLocation(businessVO);
     }
 }

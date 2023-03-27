@@ -2,6 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -80,10 +83,6 @@ public class MypageMapperTest {
     }
 
     //    문의 작성 목록
-    @Test
-    public void inquireListTest(){
-        myPageMapper.inquireList(1L);
-    }
 
     //    문의 게시글 작성 갯수
     @Test
@@ -91,10 +90,13 @@ public class MypageMapperTest {
         myPageMapper.inquireCount(1L);
     }
 
-    //    문의 게시글 답변 유무 체크
+    //유통 분야 설정 추가 select로 먼저 가져와서 추가후 insert
     @Test
-    public void answerCheckTest(){
-        log.info(String.valueOf(myPageMapper.answerCheck(1L) == null));
+    public void updateLocationTest(){
+        BusinessVO businessVO = myPageMapper.selectBuisness(1L);
+        businessVO.setBusinessLocation("서울");
+        businessVO.setBusinessCategory("향신료");
+        myPageMapper.updateLocation(businessVO);
     }
 
 }
