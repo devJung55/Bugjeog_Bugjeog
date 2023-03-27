@@ -32,6 +32,9 @@
         $(e).click(function(){
             $cateButton.removeClass("cate-button-active");
             $(e).addClass("cate-button-active");
+            $.ajax({
+                url: ""
+            });
         });
     });
 

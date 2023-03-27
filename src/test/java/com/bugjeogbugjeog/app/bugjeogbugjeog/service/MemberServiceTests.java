@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -42,5 +43,20 @@ public class MemberServiceTests {
     @Test
     public void loginTest() {
         log.info("memberId : " + memberService.login("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+    }
+
+//    유통업체 회원가입
+    @Test
+    public void insertBusinessTest() {
+        BusinessVO businessVO = new BusinessVO();
+
+        businessVO.setBusinessEmail("jjy2222@naver.com");
+        businessVO.setBusinessCeoName("정지영");
+        businessVO.setBusinessCompanyName("주식");
+        businessVO.setBusinessEstablishmentDate("2019/05/25");
+        businessVO.setBusinessNumber("112-11-11111");
+        businessVO.setBusinessPhoneNumber("01012341111");
+        businessVO.setBusinessPassword("wjdwldud1!");
+        memberService.joinBusiness(businessVO);
     }
 }

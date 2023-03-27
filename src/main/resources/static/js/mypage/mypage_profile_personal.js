@@ -9,6 +9,6 @@ $likeButtons.on('click', (e) => {
         $($img).attr('src', '/image/mypage/like_before.png');
     } else {
         $img.classList.add('liked');
-        $($img).attr('src', '/static/image/mypage/like_after.png');
+        $($img).attr('src', '/image/mypage/like_after.png');
     }
 });

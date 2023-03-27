@@ -1,31 +1,21 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -39,31 +29,75 @@ public class BusinessBoardController {
         return new RedirectView("/board/business/list");
     }
 
-//    리스트
+    //    리스트
     @GetMapping("/board/business/list")
-    public void showList(Model model) { model.addAttribute(businessBoardService.getList()); }
+    public void showList(Model model) {
+        Map<String, Map> categoryMap = new HashMap<>();
 
-//    @PostMapping("/board/business/list")
-//    public void searchList(){
-//
+        Map<String, String> mapAll = new HashMap<>();
+        mapAll.put("categoryKor", "전체");
+        mapAll.put("categoryEng", "all");
+        categoryMap.put("all", mapAll);
+
+        Map<String, String> mapMeat = new HashMap<>();
+        mapMeat.put("categoryKor", "육류");
+        mapMeat.put("categoryEng", "meat");
+        categoryMap.put("meat", mapMeat);
+
+        Map<String, String> mapSeafood = new HashMap<>();
+        mapSeafood.put("categoryKor", "해산물");
+        mapSeafood.put("categoryEng", "seafood");
+        categoryMap.put("seafood", mapSeafood);
+
+        Map<String, String> mapVegetable = new HashMap<>();
+        mapVegetable.put("categoryKor", "채소");
+        mapVegetable.put("categoryEng", "vegetable");
+        categoryMap.put("vegetable", mapVegetable);
+
+        Map<String, String> mapSpice = new HashMap<>();
+        mapSpice.put("categoryKor", "향신료");
+        mapSpice.put("categoryEng", "spice");
+        categoryMap.put("spice", mapSpice);
+
+        model.addAttribute("categorys", categoryMap);
+        model.addAttribute("boards", businessBoardService.getList());
+    }
+
+    @PostMapping("/board/business/list")
+    public void searchList(Model model, HttpServletRequest req) {
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put("boardBusinessCategory", req.getParameter("boardBusinessCategory"));
+
+//        log.info(businessBoardService.getList().toString());
+        model.addAttribute("boards", businessBoardService.getList(searchMap));
+    }
+//    @GetMapping("/board/business/detail")
+//    public  detail(){
 //    }
 
-    @GetMapping("/board/business/detail")
+    @PostMapping("/board/business/detail")
     public void detail(Long boardBusinessId, Model model) {
-        model.addAttribute(businessBoardService);
+        model.addAttribute(businessBoardService.getBoard(boardBusinessId));
     }
 
     @GetMapping("/board/business/write")
-    public void write() {;}
+    public void write(Model model) {
+        model.addAttribute(new BoardBusinessVO());
+        model.addAttribute(new BoardBusinessImgVO());
+    }
 
     @PostMapping("/board/business/write")
-    public RedirectView register(BoardBusinessDTO boardBusinessDTO) {
-        businessBoardService.registerBoard(boardBusinessDTO);
+    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
+        boardBusinessVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+        businessBoardService.registerBoard(boardBusinessVO);
+//        log.info(boardBusinessVO.toString());
         return new RedirectView("/board/business/list");
     }
 
     @PostMapping("/board/business/delete")
-    public void delete(Long boardBusinessId) { businessBoardService.remove(boardBusinessId);}
+    public void delete(Long boardBusinessId) {
+        businessBoardService.remove(boardBusinessId);
+    }
 
 //    @GetMapping("upload")
 //    public String goUploadForm(){

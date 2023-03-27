@@ -26,33 +26,33 @@
                     </div>
                     <!-- 회원가입 작성 시작 -->
                     <div class="join-write-start">
-                        <form class="join-inside-box">
+                        <form class="join-inside-box" name="businessForm" th:action="@{/member/business-join}" method="post" th:object="${businessVO}">
                             <div class="join-infor-write-border">
                                 <label for="email" class="join-infor-ment">이메일</label>
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
-                                <input type="email" placeholder="이메일을 입력해주세요." name="email" class="join-info-input" value>
+                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{businessEmail}">
                                 <span class="email-error error-msg"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
                                 <label for="companyname" class="join-infor-ment">대표자명</label>
                             </div>
-                                <input type="text" placeholder="이름을 입력해주세요." class="join-info-input representative-name">
+                                <input type="text" placeholder="이름을 입력해주세요." class="join-info-input representative-name" th:field="*{businessCeoName}">
                                 <span class="name-error error-msg"></span>
                             <div class="infor-write-border">
                                 <label for="companyname" class="join-infor-ment">회사명</label>
                             </div>
-                                <input type="text" placeholder="회사명을 입력해주세요."class="join-info-input company-name">
+                                <input type="text" placeholder="회사명을 입력해주세요."class="join-info-input company-name" th:field="*{businessCompanyName}">
                                 <span class="company-name-error error-msg"></span>
                             <div class="infor-write-border">
                                 <label for="companyname" class="join-infor-ment">설립일</label>
                             </div>
-                                <input type="text" placeholder="ex) 2019/05/23"class="join-info-input open-company-date">
+                                <input type="text" placeholder="ex) 2019/05/23"class="join-info-input open-company-date" th:field="*{businessEstablishmentDate}">
                                 <span class="open-company-date-error error-msg"></span>
                             <div class="infor-write-border">
                                 <label  class="join-infor-ment">사업자 번호</label>
                             </div>
-                                <input type="text" placeholder="(예시) 110-11-11111" class="join-info-input business-number">
+                                <input type="text" placeholder="(예시) 110-11-11111" class="join-info-input business-number business-number-check" th:field="*{businessNumber}">
                                 <span class="business-number-error error-msg"></span>
                             <!-- 휴대폰 번호 입력 -->
                             <div class="join-infor-write-border">
@@ -60,14 +60,14 @@
                             </div> 
                             <div>
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="(예시) 01013245768" name="memberPhoneNumeber" class="join-info-input">
+                                    <input type="text" placeholder="(예시) 01013245768" name="memberPhoneNumeber" class="join-info-input business-phone-number-check" th:field="*{businessPhoneNumber}">
                                     <button type="button" class="join-num-check-button">
                                         <span class="join-code-num">인증번호 받기</span>
                                     </button>
                                 </div>
                                 <p class="phone-error error-msg"></p>
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input">
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input autocode-check">
                                     <button class="authcode-check-button" type="button">
                                         <span>인증하기</span>
                                     </button>
@@ -78,7 +78,7 @@
                             <div class="infor-write-border">
                             <label for="password" class="join-infor-ment">비밀번호</label>
                             </div>
-                            <input type="password" placeholder="비밀번호를 입력해주세요." name="memberPassword" class="join-pw-input" value>
+                            <input type="password" placeholder="비밀번호를 입력해주세요." name="memberPassword" class="join-pw-input" th:field="*{businessPassword}">
                             <p class="password-error error-msg"></p>
                             <input type="password" placeholder="비밀번호를 다시 한번 입력해주세요." name="passwordConfirm" class="join-info-input" value>
                             <p class="password-check-error error-msg"></p>    
