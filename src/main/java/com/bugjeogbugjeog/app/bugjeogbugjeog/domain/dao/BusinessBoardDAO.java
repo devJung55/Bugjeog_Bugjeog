@@ -30,4 +30,5 @@ public class BusinessBoardDAO {
 
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> findAll(Map<String, Object> searchMap){ return businessBoardMapper.selectAllListBySearch(searchMap); }
+
 }
