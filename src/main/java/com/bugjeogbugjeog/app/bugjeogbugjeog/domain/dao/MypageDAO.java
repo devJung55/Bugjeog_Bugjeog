@@ -2,9 +2,11 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -62,6 +64,26 @@ public class MypageDAO {
     // 문의 답변 여부
     public Long inquireAnswer(Long boardInquireId){
         return myPageMapper.inquireAnswer(boardInquireId);
+    }
+
+    //  댓글 단 게시물 목록
+    public List<MyPageReplyDTO> findAllMyPageReplyDTO(Long memberId,Criteria criteria){
+        return myPageMapper.replyList(memberId, criteria);
+    };
+
+    // 댓글 갯수
+    public Integer getReplyTotal(Long memberId){
+        return myPageMapper.replyCount(memberId);
+    };
+
+    // 자유게시판 글 목록
+    public List<BoardFreeVO> findByIdBoardFreeVO(Long memberId, Criteria criteria) {
+        return myPageMapper.freeList(memberId, criteria);
+    }
+
+    // 자유게시판 갯수
+    public Integer getFreeBoardTotal(Long memberId){
+        return myPageMapper.freeCount(memberId);
     }
 
     //유통 분야 설정 수정

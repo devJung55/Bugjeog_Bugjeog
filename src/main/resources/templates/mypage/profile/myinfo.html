@@ -107,12 +107,7 @@
             <main class="mypage_info_container">
                 <header class="member_img_container">
                     <div class="img_wrapper">
-                        <th:block th:if="${memberVO.memberImgUuid == null}">
-                            <img class="img_profile-normal" src="/image/boardList/self_employ_icon.png">
-                        </th:block>
-                        <th:block th:if="${memberVO.memberImgUuid != null}">
                             <img class="img_profile" src="/image/boardList/self_employ_icon.png">
-                        </th:block>
                         <label class="edit_wrapper">
                             <input style="display: none;" type="file" name="file">
                             <span class="edit_span">
@@ -296,7 +291,10 @@
 <script src="/js/mypage/myinfo.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
-    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+
+    if(memberVO.memberImgUuid){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    }
 
     $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
 

@@ -89,4 +89,9 @@ public class MypageMapperTest {
         myPageMapper.updateLocation(businessVO);
     }
 
+    @Test
+    public void replyListTest(){
+        myPageMapper.replyList(1L,new Criteria(1,4));
+    }
+
 }

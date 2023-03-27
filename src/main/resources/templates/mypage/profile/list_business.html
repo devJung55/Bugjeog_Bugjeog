@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/css/mypage/font.css">
     <link rel="stylesheet" href="/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
-    <!-- <link rel="stylesheet" href="/css/mypage/mypage_personal.css"> -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal_comment_list.css">
     <link rel="stylesheet" href="/css/main/header.css">
@@ -34,7 +33,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include"></aside>
+                <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
                         <picture>
@@ -47,26 +46,26 @@
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/postList}">
+                                        <em class="freeCount">0</em>
                                         <span>작성글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/commentList}">
+                                        <em class="replyCount">0</em>
                                         <span>작성댓글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a  th:href="@{/likedList}">
+                                        <em class="likeCount">0</em>
                                         <span>좋아요</span>
                                     </a>
                                 </li>
                                 <li class="summary_content" style="border: none;">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/faqList}">
+                                        <em  class="inquireCount"></em>
                                         <span>문의글</span>
                                     </a>
                                 </li>
@@ -121,77 +120,6 @@
                                     </p>
                                 </a>
                             </article>
-
-
-                            <!-- 두번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                                <span class="AuthorBox_createAt">2023.03.13</span>
-                                            </div>
-                                            <h3 class="Author_title">
-                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                            </h3>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <div><img src="/image/mypage/reply-64.png" alt=""></div>
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                </a>
-                            </article>
-
-                            <!--    글 폼
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href="">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                            </div>
-                                            <span class="AuthorBox_createAt">2023.03.13</span>
-                                            <h3 class="Author_title">
-                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                            </h3>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <p class="PostItem_content">
-                                        합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                        뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <img src="/image/mypage/like_before.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
--->
                         </div>
                     </div>
                 </section>
@@ -201,14 +129,10 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('../fragment/aside_personal.html');</script><!-- th:삽입후 제거 -->
-<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script><!-- th:삽입후 제거 -->
 <script>
     const $tabLis = $('ul.CommunityProfile_tabs').children('li');
     const $boardListWrapper = $($('div.CommunityProfile_list')[0]);
 </script>
-<!-- <script src="/js/mypage/switch_tab.js"></script> -->
 <script src="/js/mypage/showList.js"></script>
 <script>
     $tabLis.on('click', (e) => {

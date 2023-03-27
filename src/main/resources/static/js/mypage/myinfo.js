@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         $(".code-button").removeClass('btn_active');
         $(".code-button").attr('disabled', 'disabled');
         $("input[name=mobile]").removeAttr('readonly');
-        $("input[name=mobile]").val(memberVO.memberPhoneNumber);
         $(".code-button").hide();
         $btnAuthNums.show();
         addHidden($authSendMsg);

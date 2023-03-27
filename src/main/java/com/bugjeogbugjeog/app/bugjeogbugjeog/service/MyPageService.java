@@ -2,9 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
@@ -87,12 +87,12 @@ public class MyPageService {
     }
 
     //    핸드폰 중복 검사
-    public Boolean PhoneNumberCheck(String memberPhoneNumber){
+    public Boolean PhoneNumberCheck(String PhoneNumber){
         List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
         boolean check = false;
 
         for (int i = 0; i < phoneNumbers.size(); i++){
-            if(phoneNumbers.get(i).equals(memberPhoneNumber)){
+            if(phoneNumbers.get(i).equals(PhoneNumber)){
                 check = true;
             }
         }
@@ -136,6 +136,64 @@ public class MyPageService {
     // 좋아요 게시물 갯수
     public Integer likeCount(Long memberId){
         return mypageDAO.getCountToLike(memberId);
+    }
+
+    //  댓글 단 게시물 목록
+    public List<MyPageReplyDTO> replyList(Long memberId, Criteria criteria){
+        return mypageDAO.findAllMyPageReplyDTO(memberId, criteria);
+    };
+
+    // 댓글 갯수
+    public Integer replyCount(Long memberId){
+        return mypageDAO.getReplyTotal(memberId);
+    };
+
+    // 자유게시판 목록 가져오기
+    public List<BoardFreeVO> freeList(Long memberId, Criteria criteria){
+        return mypageDAO.findByIdBoardFreeVO(memberId, criteria);
+    }
+
+    // 자유게시판 개수
+    public Integer freeCount(Long memberId){
+        return mypageDAO.getFreeBoardTotal(memberId);
+    }
+
+    // 게시판 각각의 개수
+    public Map<String, Integer> allcount(Long memberId){
+        Map<String, Integer> allCount = new HashMap<>();
+
+        allCount.put("freeBoardCount",mypageDAO.getFreeBoardTotal(memberId));
+        allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
+        allCount.put("likeBoardCount", mypageDAO.getCountToLike(memberId));
+        allCount.put("inquireCount", mypageDAO.getCountToInquire(memberId));
+
+        return allCount;
+    }
+
+
+    //    유통업체 파일 저장
+    public void businessFileSave(BusinessVO business){
+        BusinessVO businessVO = mypageDAO.findByIdToBusiness(business.getBusinessId());
+
+        businessVO.setBusinessImgOriginalName(business.getBusinessImgOriginalName());
+        businessVO.setBusinessImgPath(business.getBusinessImgPath());
+        businessVO.setBusinessImgUuid(business.getBusinessImgUuid());
+
+        mypageDAO.updateLocation(businessVO);
+    }
+
+    //    유통업체 이름 변경
+    public void updateBusinessCeoName(Long businessId, String businessCeoName){
+        BusinessVO businessVO = mypageDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessCeoName(businessCeoName);
+        mypageDAO.updateLocation(businessVO);
+    }
+
+    //    유통업자 핸드폰 번호 변경
+    public void updateBusinessPhoneNumber(Long businessId , String businessPhoneNumber){
+        BusinessVO businessVO =mypageDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessPhoneNumber(businessPhoneNumber);
+        mypageDAO.updateLocation(businessVO);
     }
 
     // 유통 조회
