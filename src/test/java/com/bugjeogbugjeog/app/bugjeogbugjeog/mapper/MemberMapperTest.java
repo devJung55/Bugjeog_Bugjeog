@@ -53,7 +53,9 @@ public class MemberMapperTest {
         businessVO.setBusinessCeoName("정지영");
         businessVO.setBusinessCompanyName("주식");
         businessVO.setBusinessEstablishmentDate("2019/05/25");
-//        businessVO.setBusinessNumber("110-11-11111");
-//        memberMapper.insertBusiness();
+        businessVO.setBusinessNumber("110-11-11111");
+        businessVO.setBusinessPhoneNumber("01012341234");
+        businessVO.setBusinessPassword("wjdwldud1!");
+        memberMapper.insertBusiness(businessVO);
     }
 }
