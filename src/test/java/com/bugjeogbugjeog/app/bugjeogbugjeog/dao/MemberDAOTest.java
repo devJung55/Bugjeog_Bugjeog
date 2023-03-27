@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,20 @@ public class MemberDAOTest {
     @Test
     public void loginTest() {
         log.info("memberId : " + memberDAO.findByMemberEmailAndMemberPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+    }
+
+//    유통업체 회원가입
+    @Test
+    public void insertBusinessTest() {
+        BusinessVO businessVO = new BusinessVO();
+
+        businessVO.setBusinessEmail("jjy1111@naver.com");
+        businessVO.setBusinessCeoName("정지영");
+        businessVO.setBusinessCompanyName("주식");
+        businessVO.setBusinessEstablishmentDate("2019/05/25");
+        businessVO.setBusinessNumber("111-11-11111");
+        businessVO.setBusinessPhoneNumber("01012341111");
+        businessVO.setBusinessPassword("wjdwldud1!");
+        memberDAO.registerBusiness(businessVO);
     }
 }

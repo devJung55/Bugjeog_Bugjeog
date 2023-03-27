@@ -1,6 +1,6 @@
     // 이메일 검사
     const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    const $email = $("input[name='email']");
+    const $email = $("input[type='email']");
     const $emailError = $(".email-error");
 
     $email.blur(function(){
@@ -60,7 +60,7 @@
 
     // 사업자 번호 검사
     const regBusinessNumber = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
-    const $businessNumber = $(".business-number");
+    const $businessNumber = $(".business-number-check");
     const $businessNumberError = $(".business-number-error");
 
     $businessNumber.blur(function(){
@@ -80,7 +80,7 @@
 
     // 휴대폰 검사
     const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-    const $phone = $("input[name='memberPhoneNumeber']");
+    const $phone = $(".business-phone-number-check");
     const $phoneError = $(".phone-error");
     const $Checkbutton = $(".join-num-check-button");
 
@@ -109,7 +109,7 @@
         $(".auth-msg").show();
     });
 
-    const $authcode = $(".authcode-input");
+    const $authcode = $(".autocode-check");
     const $authCheckButton = $(".authcode-check-button");
     $authcode.keyup(function(){
         if($authcode.val().length == 4){
@@ -121,10 +121,10 @@
 
     // 비밀번호 검사
     const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    const $password = $("input[name='memberPassword']");
+    const $password = $(".join-pw-input");
     const $passwordError = $(".password-error");
     const $passwordCheckError = $(".password-check-error");
-    const $passwordCheck = $("input[name='passwordConfirm']");
+    const $passwordCheck = $(".join-info-input");
 
     $password.blur(function(){
         $passwordError.show();

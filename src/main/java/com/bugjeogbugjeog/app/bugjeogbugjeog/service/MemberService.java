@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import net.nurigo.java_sdk.api.Message;
@@ -65,5 +66,10 @@ public class MemberService {
 //    자영업자 로그인
     public Long login(String memberEmail, String memberPassword) {
         return memberDAO.findByMemberEmailAndMemberPassword(memberEmail, memberPassword);
+    }
+
+//    유통업체 회원가입
+    public void joinBusiness(BusinessVO businessVO) {
+        memberDAO.registerBusiness(businessVO);
     }
 }
