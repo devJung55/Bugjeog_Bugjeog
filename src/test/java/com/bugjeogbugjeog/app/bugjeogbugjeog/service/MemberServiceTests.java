@@ -31,4 +31,16 @@ public class MemberServiceTests {
     public void selectEmail() {
         log.info(memberService.checkEmail("jjy1234@naver.com").toString());
     }
+
+//    휴대폰번호 중복검사
+    @Test
+    public void selectPhoneNumber() {
+        log.info(memberService.checkPhoneNumber("01012341234").toString());
+    }
+
+//    자영업자 로그인
+    @Test
+    public void loginTest() {
+        log.info("memberId : " + memberService.login("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+    }
 }

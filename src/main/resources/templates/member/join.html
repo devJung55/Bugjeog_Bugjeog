@@ -31,7 +31,7 @@
                                 <label for="memberEmail" class="join-infor-ment">이메일</label>
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
-                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}" oninput="joinService.checkEmail()">
+                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}">
                                 <span class="email-error error-msg check-email"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
@@ -50,14 +50,14 @@
                                     </select>
                                 </div> -->
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="(예시) 01013245768" class="join-info-input join-phone-number" th:field="*{memberPhoneNumber}">
+                                    <input type="text" placeholder="(예시) 01012345678" class="join-info-input join-phone-number phoneCheck" th:field="*{memberPhoneNumber}">
                                     <button type="button" class="join-num-check-button">
                                         <span class="join-code-num">인증번호 받기</span>
                                     </button>
                                 </div>
-                                <p class="phone-error error-msg"></p>
+                                <p class="phone-error error-msg phone-check"></p>
                                 <div class="join-write-num-part">
-                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input">
+                                    <input type="text" placeholder="인증번호를 입력해주세요" name="authCode" class="join-info-input authcode-input authcode-check">
                                     <button class="authcode-check-button" type="button">
                                         <span>인증하기</span>
                                     </button>
