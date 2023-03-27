@@ -2,28 +2,29 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class MyPageService {
     private final MypageDAO mypageDAO;
 
-    //    회원정보 조회
+    //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
         return mypageDAO.findById(memberId);
     };
 
-    //    회원정보 수정
+    //    회원 정보 수정
     public void memberUpdate(MemberVO memberVO) {
         mypageDAO.updateById(memberVO);
     }
@@ -87,7 +88,7 @@ public class MyPageService {
         return code;
     }
 
-    //    핸드폰 중복검사
+    //    핸드폰 중복 검사
     public Boolean PhoneNumberCheck(String memberPhoneNumber){
         List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
         boolean check = false;
@@ -100,7 +101,7 @@ public class MyPageService {
         return check;
     }
 
-    // 비밀번호 변경
+    // 비밀 번호 변경
     public void updatePassword(Long memberId, String memberPassword){
         MemberVO memberVO = mypageDAO.findById(memberId);
         memberVO.setMemberPassword(memberPassword);
@@ -108,7 +109,25 @@ public class MyPageService {
     }
 
     // 문의 게시판 목록
-    public List<MemberInquireDTO> inquireList(Long memberId){
-        return mypageDAO.findAllByIdToInquire(memberId);
+    public MemberInquireDTO inquireList(Long memberId, Criteria criteria){
+        List<BoardInquiryVO> inquires = mypageDAO.findAllByIdToInquire(memberId,criteria);
+        List<Long> status = new ArrayList<>();
+        MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
+
+        for(int i =0; i < inquires.size(); i++){
+            Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
+            status.add(mypageDAO.inquireAnswer(inquiryBoardId));
+        }
+
+        memberInquireDTO.setAnswerStatus(status);
+        memberInquireDTO.setInquire(inquires);
+
+        return memberInquireDTO;
     }
+
+    // 문의 게시판 개수
+    public Integer inquireCount(Long memberId){
+        return mypageDAO.getCountToInquire(memberId);
+    };
+
 }
