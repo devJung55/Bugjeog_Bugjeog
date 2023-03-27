@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal_faq_list.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/mypage/page.css">
 </head>
 
 <body class="profile_body">
@@ -120,39 +121,20 @@
                             </article>
                             </th:block>
                         </div>
-                        <div style="text-align: center; margin-top: 40px;font-size: 23px;margin-bottom: 20px;">
-                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><code>&lt;</code></a>
+                        <div class="page-box">
+                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
                             <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                <code th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></code>
-                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="@{/mypage/profile/faqList}"><code th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></code></a>
+                                <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                    <span th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                </a>
                             </th:block>
-                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><code>&gt;</code></a>
+                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
                         </div>
                         <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
                             <input type="hidden" th:field="*{pageNum}">
                             <input type="hidden" th:field="*{amount}">
                         </form>
-                        <!--<div class="paging_wrapper">
-                            <label class="btn_paging_before" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
-                                <button class="is-hidden" type="button"></button>
-                                <span style="margin-right: 3px;">
-                                    <
-                                </span>
-                            </label>
-                            <ul class="num_wrapper">
-                                <li th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                    <label class="num_label current_page">
-                                        <button class="is-hidden btn_paging" type="button"></button>
-                                        <span class="paging_num" th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}">
-                                        </span>
-                                    </label>
-                                </li>
-                            </ul>
-                            <label for=""  th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
-                                <button class="btn_paging_after is-hidden"></button>
-                                <span> > </span>
-                            </label>
-                        </div>-->
                     </div>
                 </section>
             </section>
@@ -164,6 +146,14 @@
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
     let inquireDTO =[[${inquireDTO}]];
+
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
 
     $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
 
