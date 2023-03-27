@@ -2,10 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -130,6 +127,16 @@ public class MyPageService {
     public Integer inquireCount(Long memberId){
         return mypageDAO.getCountToInquire(memberId);
     };
+
+    // 좋아요 한 게시물 목록
+    public List<BoardFreeVO> likeList(Long memberId, Criteria criteria){
+        return mypageDAO.findAllToLike(memberId,criteria);
+    }
+
+    // 좋아요 게시물 갯수
+    public Integer likeCount(Long memberId){
+        return mypageDAO.getCountToLike(memberId);
+    }
 
     // 유통 조회
     public BusinessVO businessInfo(Long businessId){

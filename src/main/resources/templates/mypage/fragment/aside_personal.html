@@ -25,12 +25,7 @@
             <header class="Aside-profile Aside-content">
                 <div class="Aside-avatar">
                     <div class="Aside-avatar_image">
-                        <th:block th:if="${memberVO.memberImgUuid == null}">
-                            <img class="img_profile-normal" style="border-radius: 50%" src="/image/boardList/self_employ_icon.png">
-                        </th:block>
-                        <th:block th:if="${memberVO.memberImgUuid != null}">
-                            <img class="img_profile" style="border-radius: 50%"  src="/image/boardList/self_employ_icon.png">
-                        </th:block>
+                        <img class="img_profile" style="border-radius: 50%"  src="/image/boardList/self_employ_icon.png">
                     </div>
                 </div>
                 <div class="Aside-me"  th:object="${memberVO}">
@@ -61,4 +56,30 @@
     <!-- </section> -->
     <!-- </div> -->
 </body>
+<script>
+    let memberVO = [[${memberVO}]];
+    let inquireDTO =[[${inquireDTO}]];
+
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    if(memberVO.memberImgUuid != null){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    }
+
+    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
+
+    function phoneNumber(phoneNumber){
+        var phone1 = phoneNumber.substring(0,3);
+        var phone2 = phoneNumber.substring(3,7);
+        var phone3 = phoneNumber.substring(7);
+        let phone = phone1 + "-" + phone2 + "-" + phone3;
+        return phone;
+    }
+</script>
 </html>

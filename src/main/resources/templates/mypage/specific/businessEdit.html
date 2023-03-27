@@ -149,40 +149,40 @@
                     </aside>
                     <div>
                         <div class="MatchUpForm EnterInterestArea-Wrapper">
-                            <form action="">
+<!--                            <form action="">-->
                                 <div class="FormBlock">
                                     <div class="FormBlock-content">
                                         <div class="MainResume-fieldset">
-                                            <form action="mypage/specific/businessEdit" method="post">
+                                            <form action="/mypage/edit" method="post" name="regionForm">
                                                 <div class="fieldset-Static_content-first">
                                                     <div class="Static-label is-flex">지역선택</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="loca-button loca-button-active" id="seoul" name="category" value="seoul">
+                                                            <button type="button" class="loca-button loca-button-active" id="서울" name="category" value="서울">
                                                                 <span class="category_span">서울</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="gyeong-gi" name="category" value="gyeong-gi">
+                                                            <button type="button" class="loca-button" id="경기" name="category" value="경기">
                                                                 <span class="category_span">경기</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gangwon" name="category" value="Gangwon">
+                                                            <button type="button" class="loca-button" id="강원" name="category" value="강원">
                                                                 <span class="category_span">강원</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Chung-buk" name="category" value="Chung-buk">
+                                                            <button type="button" class="loca-button" id="충북" name="category" value="충북">
                                                                 <span class="category_span">충북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Chung-nam" name="category" value="Chung-nam">
+                                                            <button type="button" class="loca-button" id="충남" name="category" value="충남">
                                                                 <span class="category_span">충남</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Jeol-buk" name="category" value="Jeol-buk">
+                                                            <button type="button" class="loca-button" id="전북" name="category" value="전북">
                                                                 <span class="category_span">전북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Jeol-nam" name="category" value="Jeol-nam">
+                                                            <button type="button" class="loca-button" id="전남" name="category" value="전남">
                                                                 <span class="category_span">전남</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gyeong-buk" name="category" value="Gyeong-buk">
+                                                            <button type="button" class="loca-button" id="경북" name="category" value="경북">
                                                                 <span class="category_span">경북</span>
                                                             </button>
-                                                            <button type="button" class="loca-button" id="Gyeong-nam" name="category" value="Gyeong-nam">
+                                                            <button type="button" class="loca-button" id="경남" name="category" value="경남">
                                                                 <span class="category_span">경남</span>
                                                             </button>
                                                         </div>
@@ -192,26 +192,28 @@
                                                     <div class="Static-label is-flex">카테고리</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="cate-button cate-button-active" id="gogi" name="category" value="gogi">
+                                                            <button type="button" class="cate-button cate-button-active" id="육류" name="category" value="육류">
                                                                 <span class="category_span">육류</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="seafood" name="category" value="seafood">
+                                                            <button type="button" class="cate-button" id="해산물" name="category" value="해산물">
                                                                 <span class="category_span">해산물</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="vegetable" name="category" value="vegetable">
+                                                            <button type="button" class="cate-button" id="채소" name="category" value="채소">
                                                                 <span class="category_span">채소</span>
                                                             </button>
-                                                            <button type="button" class="cate-button" id="spice" name="category" value="spice">
+                                                            <button type="button" class="cate-button" id="향신료" name="category" value="향신료">
                                                                 <span class="category_span">향신료</span>
                                                             </button>
+                                                            <input type="hidden" name="categorys" id="catergorys">
+                                                            <input type="hidden" name="foods" id="foods">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="apply_wrapper_upper is-hidden">
-                                                    <label for="">
+                                                <div class="apply_wrapper_upper">
+                                                    <label>
                                                         <div class="apply_wrapper">
                                                             <span>
-                                                                <button type="submit">
+                                                                <button id="submit-button" type="submit" style="color: white; background-color: #36f; cursor: pointer" >
                                                                     적용하기
                                                                 </button>
                                                             </span>
@@ -228,35 +230,21 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+<!--                            </form>-->
                             <form action="">
                                 <div class="FormBlock Recommendation-Wrapper">
                                     <div class="FormBlock content">
                                         <div class="AdditionalForm">
-                                            <!-- <div class="FormButton">
-                                                <h6 class="FormButton-label">추천인 선택</h6>
-                                                <button class="FormButton-button">
-                                                    선택하기
-                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
-                                                </button>
-                                            </div>
-                                            <div class="FormButton">
-                                                <h6 class="FormButton-label">제외기업설정</h6>
-                                                <button class="FormButton-button">
-                                                    선택하기
-                                                    <img src="/image/mypage/arrow-right-64.png" alt="">
-                                                </button>
-                                            </div> -->
                                             <div class="apply_wrapper_upper">
-                                                <label for="">
+<!--                                                <label>
                                                     <div class="apply_wrapper">
                                                         <span>
-                                                            <a href="">
+                                                            <button type="submit" style="color: white; background-color: #36f; cursor: pointer" >
                                                                 적용하기
-                                                            </a>
+                                                            </button>
                                                         </span>
                                                     </div>
-                                                </label>
+                                                </label>-->
                                             </div>
                                         </div>
                                     </div>
@@ -284,6 +272,16 @@
             $(e).addClass("cate-button-active");
         });
     });
+
+
+    $('.cate-button').on('click', function () {
+        $('#catergorys').val($(this).val());
+    });
+
+    $('.loca-button').on('click', function () {
+        $('#foods').val($(this).val());
+    });
+
 
 
     /* 카테고리 버튼 이벤트 */

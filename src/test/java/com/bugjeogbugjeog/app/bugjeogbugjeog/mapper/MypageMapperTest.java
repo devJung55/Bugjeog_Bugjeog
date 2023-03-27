@@ -66,20 +66,10 @@ public class MypageMapperTest {
         log.info(String.valueOf(myPageMapper.likeCount(1L)));
     }
 
-    //    좋아요 한 게시물 번호들
-    @Test
-    public void likeListNumberTest(){
-        myPageMapper.likeListNumber(1L);
-    }
-
     //    좋아요 한 게시물 리스트
     @Test
     public void likeListTest(){
-        List<Long> memberIds = myPageMapper.likeListNumber(1L);
-        List<MemberLikeDTO> datas = new ArrayList<>();
-
-        memberIds.stream().forEach(data -> datas.add(myPageMapper.likeList(data)));
-       datas.stream().forEach(data -> log.info(data.toString()));
+        myPageMapper.likeList(1L,new Criteria(1,4));
     }
 
     //    문의 작성 목록
