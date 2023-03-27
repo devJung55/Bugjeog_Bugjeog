@@ -1,4 +1,4 @@
-div.is_answer {
+.is_answer {
     width: 60px;
     height: 30px;
     border: 1px solid #f4f4f4;
@@ -8,9 +8,6 @@ div.is_answer {
     flex-wrap: wrap;
     justify-content: center;
     font-size: 12px;
-}
-
-div.answer_no {
     color: #ccc;
     background-color: #f2f4f7;
 }
