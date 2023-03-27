@@ -48,7 +48,7 @@
                         </div>
                         
                         <!-- 내용 섹션 -->
-                        <section class="board-info-box-layout">
+                        <section class="board-info-box-layout" th:object="${noticeVO}">
                             
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
@@ -59,19 +59,17 @@
                                     <div class="info-member">
                                             <span class="span-bold">제목 :</span> 
                                             <!-- 제목  -->
-                                            <span>공지사항 테스트</span>
+                                            <span th:text="*{noticeTitle}"></span>
                                     </div>
                                     <div class="info-member">
                                         <span class="span-bold">작성 날짜 :</span>
                                         <!-- 작성 날짜  -->
-                                        <span>2023.01.01</span>
+                                        <span th:text="*{noticeRegisterDate}"></span>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <div><!-- 게시판 내용 -->
-                                        오늘 전체적인 레이아웃을 바꾸다보니 시간이 이래 됫네요
-                                        여러분은 한번에 하도록 디자인을 잘 짜도록 하세욧
+                                    <div th:text="*{noticeContent}"><!-- 게시판 내용 -->
                                     </div>
                                 </div>	
                             </div>
