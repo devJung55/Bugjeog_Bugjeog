@@ -378,6 +378,7 @@ div.PostItem_like img, div.PostItem_comments img {
     overflow: hidden;
     box-sizing: border-box;
     width: 16px;
+    padding-bottom: 3px;
 }
 
 div.PostItem_like span, div.PostItem_comments span {

@@ -170,8 +170,14 @@ public class MyPageController {
     }
 
     @GetMapping("likedList")
-    public void test2(){
+    public void likeList(HttpServletRequest req, Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
 
+        model.addAttribute("memberVO",myPageService.memberInfo(memberId));
+        model.addAttribute("freeVO",myPageService.likeList(memberId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.likeCount(memberId)));
     }
 
 
