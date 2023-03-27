@@ -38,7 +38,7 @@ public class AdminDAO {
     public void updateBusiness(BusinessVO businessVO){adminMapper.updateBusiness(businessVO);}
 
     /* 유통 회원 삭제 */
-    public void deleteBusiness(Long businessId){adminMapper.deleteMember(businessId);}
+    public void removeBusiness(Long businessId){adminMapper.deleteBusiness(businessId);}
 
 
     /* ------------------------------------------------------------------------------------------------------------- */

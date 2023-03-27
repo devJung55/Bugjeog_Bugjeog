@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -41,19 +42,28 @@ public class AdminServiceTests {
 
     /* 유통 회원 */
 
-/*
-    @Test
-    public void showListBusiness(){}
 
     @Test
-    public void showBusiness(){}
+    public void showListBusiness(){List<BusinessVO> businessVO = adminService.showBusinessList();}
 
     @Test
-    public void updateBusiness(){}
+    public void showBusiness(){
+        BusinessVO businessVO = new BusinessVO();
+        adminService.showMember(2L);
+    }
 
     @Test
-    public void deleteBusiness(){}
-*/
+    public void updateBusiness(){
+        BusinessVO businessVO = adminService.showBusiness(2L);
+        businessVO.setBusinessCompanyName("용준유통");
+        adminService.updateBusiness(businessVO);
+    }
+
+    @Test
+    public void deleteBusiness(){
+        adminService.deleteBusiness(2L);
+    }
+
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
