@@ -1,5 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -146,14 +148,32 @@ public class MyPageController {
     }
 
     @GetMapping("faqList")
-    public void faqList(HttpServletRequest req, Model model){
+    public void faqList(HttpServletRequest req, Model model, Criteria criteria){
         HttpSession session = req.getSession();
 //        Long memberId = (Long) session.getAttribute("memberId");
         Long memberId = 1L;
+
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
-        model.addAttribute("inquireDTO",myPageService.inquireList(memberId));
+        model.addAttribute("inquireDTO",myPageService.inquireList(memberId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.inquireCount(memberId)));
         model.addAttribute("inquireCount", myPageService.inquireCount(memberId));
     }
+
+    @GetMapping("list_business")
+    public void test(){
+
+    }
+
+    @GetMapping("postList")
+    public void test1(){
+
+    }
+
+    @GetMapping("likedList")
+    public void test2(){
+
+    }
+
 
     //    현재 날짜 경로 구하기
     private String getPath(){

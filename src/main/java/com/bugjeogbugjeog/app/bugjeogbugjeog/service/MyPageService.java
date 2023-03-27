@@ -3,17 +3,16 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -110,8 +109,8 @@ public class MyPageService {
     }
 
     // 문의 게시판 목록
-    public MemberInquireDTO inquireList(Long memberId){
-        List<BoardInquiryVO> inquires = mypageDAO.findAllByIdToInquire(memberId);
+    public MemberInquireDTO inquireList(Long memberId, Criteria criteria){
+        List<BoardInquiryVO> inquires = mypageDAO.findAllByIdToInquire(memberId,criteria);
         List<Long> status = new ArrayList<>();
         MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
 

@@ -16,3 +16,26 @@ div.answer_yes {
     color: #fff;
     background-color: #36f;
 }
+
+div.paging_wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+ul.num_wrapper li {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+div.paging_wrapper>label, ul.num_wrapper>li>label {
+    cursor: pointer;
+}
+
+.is-hidden {
+    display: none!important;
+}
+
+ul.num_wrapper>li>label.num_label.current_page>span.paging_num {
+    font-weight: 600;
+}

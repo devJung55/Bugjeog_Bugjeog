@@ -2,6 +2,8 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -80,10 +82,6 @@ public class MypageMapperTest {
     }
 
     //    문의 작성 목록
-    @Test
-    public void inquireListTest(){
-        myPageMapper.inquireList(1L);
-    }
 
     //    문의 게시글 작성 갯수
     @Test

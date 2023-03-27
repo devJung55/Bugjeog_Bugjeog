@@ -4,6 +4,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
@@ -57,8 +58,8 @@ public class MypageDAO {
     };
 
     //    문의 작성 목록
-    public List<BoardInquiryVO> findAllByIdToInquire(Long memberId){
-        return myPageMapper.inquireList(memberId);
+    public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
+        return myPageMapper.inquireList(memberId,criteria);
     };
 
     //    문의 게시글 작성 갯수

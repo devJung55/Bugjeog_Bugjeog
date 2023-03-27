@@ -44,7 +44,8 @@
     <!-- 이용자의 문의게시판 목록 -->
     <select id="inquireList" resultType="boardInquiryVO">
         select member_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry
-        where member_id = #{memberId};
+        where member_id = #{memberId}
+		limit #{criteria.startNum}, #{criteria.amount}
     </select>
 
     <!-- 이용자의 문의글 작성 수-->

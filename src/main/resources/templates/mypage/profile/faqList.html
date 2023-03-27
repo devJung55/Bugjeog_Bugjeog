@@ -115,17 +115,44 @@
                                     </p>
                                     <div class="PostItem_bottom">
 
-                                        <div class=" is_answer" th:if="${inquire.answerStatus == null}">
-                                            <span>미답변</span>
-                                        </div>
-                                        <div class="is_answer answer_yes"  th:if="${inquire.answerStatus != null}">
-                                            <span>답변 완료</span>
-                                        </div>
                                     </div>
                                 </a>
                             </article>
                             </th:block>
                         </div>
+                        <div style="text-align: center; margin-top: 40px;font-size: 23px;margin-bottom: 20px;">
+                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><code>&lt;</code></a>
+                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                <code th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></code>
+                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="@{/mypage/profile/faqList}"><code th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></code></a>
+                            </th:block>
+                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><code>&gt;</code></a>
+                        </div>
+                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                            <input type="hidden" th:field="*{pageNum}">
+                            <input type="hidden" th:field="*{amount}">
+                        </form>
+                        <!--<div class="paging_wrapper">
+                            <label class="btn_paging_before" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                <button class="is-hidden" type="button"></button>
+                                <span style="margin-right: 3px;">
+                                    <
+                                </span>
+                            </label>
+                            <ul class="num_wrapper">
+                                <li th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                    <label class="num_label current_page">
+                                        <button class="is-hidden btn_paging" type="button"></button>
+                                        <span class="paging_num" th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}">
+                                        </span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <label for=""  th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                <button class="btn_paging_after is-hidden"></button>
+                                <span> > </span>
+                            </label>
+                        </div>-->
                     </div>
                 </section>
             </section>
@@ -136,6 +163,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
+    let inquireDTO =[[${inquireDTO}]];
+
     $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
 
     $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
@@ -158,6 +187,25 @@
         $date.each((i, e) => {
             $(e).text(date($(e).text()));
         });
+    });
+
+    $(inquireDTO.answerStatus).each((i, e) =>{
+        let $bottom = $($(".PostItem_bottom")[i]);
+        let text = "";
+        if(e == null){
+            text += `
+                    <div class=" is_answer">
+                         <span>미답변</span>
+                    </div>
+                   `;
+        }else {
+               text+=     `
+                         <div class="is_answer answer_yes">
+                             <span>답변 완료</span>
+                        </div>
+            `;
+        }
+        $bottom.append(text);
     });
 </script>
 </html>
