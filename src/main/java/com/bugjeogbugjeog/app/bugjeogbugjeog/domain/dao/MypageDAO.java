@@ -72,4 +72,7 @@ public class MypageDAO {
         return myPageMapper.inquireAnswer(boardInquireId);
     }
 
+    //유통 분야 설정 수정
+    public void updateLocation(BusinessVO businessVO) {myPageMapper.updateLocation(businessVO);};
 }
+

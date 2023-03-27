@@ -4,6 +4,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -84,6 +85,17 @@ public class MypageDAOTest {
     @Test
     public void inquireCountTest(){
         mypageDAO.getCountToInquire(1L);
+    }
+
+    //유통 분야 설정 수정
+    @Test
+    public void updateByLocationTest(){
+        BusinessVO businessVO = mypageDAO.findByIdToBusiness(1L);
+
+        businessVO.setBusinessLocation("전북");
+        businessVO.setBusinessCategory("육류");
+
+        mypageDAO.updateLocation(businessVO);
     }
 
 }
