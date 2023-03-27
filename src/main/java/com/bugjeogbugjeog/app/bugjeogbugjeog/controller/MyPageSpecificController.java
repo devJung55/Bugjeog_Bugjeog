@@ -24,11 +24,11 @@ public class MyPageSpecificController {
 
     private final MyPageService myPageService;
 
-    @GetMapping("/edit")
+    @GetMapping("edit")
     public String main(){
         return "mypage/specific/businessEdit";
     }
-    @GetMapping("/favorite")
+    @GetMapping("favorite")
     public String main2(Model model){
         model.addAttribute("memberVO",myPageService.memberInfo(1L));
         return "mypage/specific/personalFavoriteList";
@@ -46,10 +46,12 @@ public class MyPageSpecificController {
         businessVO = myPageService.businessInfo(businessId);
 
 
-        String categorys = (String)req.getAttribute("categorys");
-        String foods = (String)req.getAttribute("foods");
+        String categorys = req.getParameter("categorys");
+
+        String foods = req.getParameter("foods");
 
         log.info(categorys);
+        log.info("====================================================");
         log.info(foods);
         businessVO.setBusinessCategory(categorys);
         businessVO.setBusinessLocation(foods);
