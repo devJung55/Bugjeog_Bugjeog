@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/mypage/*")
 @RequiredArgsConstructor
 public class MyPageSpecificController {
 
     @GetMapping("/test")
     public String main(){
-        return "board/business/pr-boardList-test";
+        return "mypage/specific/businessEdit";
     }
     @GetMapping("/test2")
     public String main2(){
-        return "board/business/write";
+        return "mypage/specific/personalFavoriteList";
     }
 
 //    지역선택과 카테고리 선택 후 적용하기 눌렀을때 여기로 날아옴
