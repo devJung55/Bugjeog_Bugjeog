@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class BusinessBoardMapperTest {
 //    게시글 등록
     @Test
     public void insertTest(){
-        BoardBusinessDTO dto = new BoardBusinessDTO();
-        dto.setBusinessId(1L);
-        dto.setBoardBusinessContent("내용3");
-        dto.setBoardBusinessTitle("제목3");
+        BoardBusinessVO vo = new BoardBusinessVO();
+        vo.setBusinessId(1L);
+        vo.setBoardBusinessContent("내용3");
+        vo.setBoardBusinessTitle("제목3");
 
-        businessBoardMapper.insert(dto);
+        businessBoardMapper.insert(vo);
     }
 
 //    게시글 삭제
@@ -33,7 +34,7 @@ public class BusinessBoardMapperTest {
 
 //  게시글 목록
     @Test
-    public void selectAllTest(){ log.info(businessBoardMapper.selectAll().toString()); }
+    public void selectAllTest(){ businessBoardMapper.selectAll(); }
 
 
 }

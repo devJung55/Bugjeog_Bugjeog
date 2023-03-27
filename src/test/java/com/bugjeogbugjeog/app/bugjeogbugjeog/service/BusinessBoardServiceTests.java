@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ public class BusinessBoardServiceTests {
 
     @Test
     public void registerTest(){
-        BoardBusinessDTO dto = new BoardBusinessDTO();
-        dto.setBusinessId(1L);
-        dto.setBoardBusinessContent("내용 1459");
-        dto.setBoardBusinessTitle("제목 1459");
-        businessBoardService.registerBoard(dto);
+        BoardBusinessVO vo = new BoardBusinessVO();
+        vo.setBusinessId(1L);
+        vo.setBoardBusinessContent("내용 1459");
+        vo.setBoardBusinessTitle("제목 1459");
+        businessBoardService.registerBoard(vo);
     }
 
 
