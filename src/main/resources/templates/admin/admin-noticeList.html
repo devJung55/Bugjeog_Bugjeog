@@ -69,27 +69,27 @@
 											<th>No</th>
 											<th>제목</th>
 											<th>작성 날짜</th>
-											<th>수정 날짜</th>
+											<!--<th>수정 날짜</th>-->
 										</tr>
 									</thead>
-									<tr>
+									<tr th:each="notice : ${notices}">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
-										<td>1</td>
-										<td><a href="javascript:void(0)">공지사항 테스트1</a></td>
-										<td>2023.01.01</td>
-										<td>2023.02.02</td>
+										<td th:text="${notice.noticeId}"></td>
+										<td ><a href="javascript:void(0)" th:text="${notice.noticeTitle}"></a></td>
+										<td th:text="${notice.noticeRegisterDate}"></td>
+										<!--<td>2023.02.02</td>-->
 									</tr>
-									<tr>
+									<!--<tr>
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>2</td>
 										<td><a href="javascript:void(0)">공지사항 테스트2</a></td>
 										<td>2023.01.01</td>
-										<td>2023.02.02</td>
-									</tr>
+										&lt;!&ndash;<td>2023.02.02</td>&ndash;&gt;
+									</tr>-->
 								</table>
 							</div>
 						</div>
