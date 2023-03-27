@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
@@ -73,4 +74,17 @@ public class MyPageServiceTests {
     }
 
     // 문의 리스트
+
+
+
+    //    유통 분야 설정 수정
+    @Test
+    public void updateLocationTest(){
+        BusinessVO businessVO = myPageService.businessInfo(1L);
+
+
+        businessVO.setBusinessLocation("경남");
+        businessVO.setBusinessCategory("채소");
+        myPageService.updateLocation(businessVO);
+    }
 }

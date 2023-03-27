@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
@@ -130,4 +131,9 @@ public class MyPageService {
         return mypageDAO.getCountToInquire(memberId);
     };
 
+
+    //    유통 분야 설정 수정
+    public void updateLocation(BusinessVO businessVO) {
+        mypageDAO.updateLocation(businessVO);
+    }
 }

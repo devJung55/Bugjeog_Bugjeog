@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -89,5 +90,13 @@ public class MypageMapperTest {
         myPageMapper.inquireCount(1L);
     }
 
+    //유통 분야 설정 추가 select로 먼저 가져와서 추가후 insert
+    @Test
+    public void updateLocationTest(){
+        BusinessVO businessVO = myPageMapper.selectBuisness(1L);
+        businessVO.setBusinessLocation("서울");
+        businessVO.setBusinessCategory("향신료");
+        myPageMapper.updateLocation(businessVO);
+    }
 
 }

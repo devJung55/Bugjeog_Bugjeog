@@ -46,4 +46,7 @@ public interface MyPageMapper {
 
 //    문의 답변 여부
     public Long inquireAnswer(Long boardInquireId);
+
+    //유통 분야 설정 추가
+    public void updateLocation(BusinessVO businessVO);
 }
