@@ -58,28 +58,38 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
 
-   /*
+    /* 공지사항 리스트 */
    @GetMapping("admin-noticeList")
     public void noticeList(Model model){
         model.addAttribute("notices",noticeService.showList());
     }
 
+    /* 공지사항 조회 */
     @GetMapping("admin-notice")
     public void notice(Long noticeId, Model model){
         model.addAttribute(noticeService.showNotice(noticeId));
     }
 
-    @GetMapping("admin-noticeWrite")
-    public void noticeWrite(NoticeVO noticeVO){
+    /* 공지사항 작성 */
+    @PostMapping("admin-noticeWrite")
+    public RedirectView AddNotice(NoticeVO noticeVO){
         noticeService.add(noticeVO);
-    }
-
-    @PostMapping("admin-noticeList")
-    @ResponseBody
-    public RedirectView removeNotice(){
         return new RedirectView("admin-noticeList");
     }
-*/
+
+    /* 공지사항 작성 완료 */
+    @GetMapping("admin-noticeWrite")
+    public void AddNotice(Model model){
+        model.addAttribute(new NoticeVO());
+    }
+
+    /* 공지사항 삭제 */
+    @PostMapping("admin-noticeList")
+    public RedirectView removeNotice(Long noticeId){
+        noticeService.remove(noticeId);
+        return new RedirectView("admin-noticeList");
+    }
+
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
