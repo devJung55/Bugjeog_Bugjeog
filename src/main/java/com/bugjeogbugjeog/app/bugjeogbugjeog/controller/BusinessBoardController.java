@@ -61,19 +61,17 @@ public class BusinessBoardController {
 
         model.addAttribute("categorys", categoryMap);
         model.addAttribute("boards", businessBoardService.getList());
+
     }
 
     @PostMapping("/board/business/list")
     public void searchList(Model model, HttpServletRequest req) {
         Map<String, Object> searchMap = new HashMap<>();
-        searchMap.put("boardBusinessCategory", req.getParameter("boardBusinessCategory"));
 
-//        log.info(businessBoardService.getList().toString());
+        searchMap.put("category", req.getParameter("category"));
+
         model.addAttribute("boards", businessBoardService.getList(searchMap));
     }
-//    @GetMapping("/board/business/detail")
-//    public  detail(){
-//    }
 
     @PostMapping("/board/business/detail")
     public void detail(Long boardBusinessId, Model model) {
