@@ -155,7 +155,9 @@
         $pageForm.submit();
     });
 
-    $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    if(memberVO.memberImgUuid != null){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    }
 
     $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
 
