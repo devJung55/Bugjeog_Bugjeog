@@ -39,7 +39,7 @@ public class AdminService {
     public void updateBusiness(BusinessVO businessVO){adminDAO.updateBusiness(businessVO);}
 
     /* 유통 회원 삭제 */
-    public void deleteBusiness(Long businessId){adminDAO.deleteBusiness(businessId);}
+    public void deleteBusiness(Long businessId){adminDAO.removeBusiness(businessId);}
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
