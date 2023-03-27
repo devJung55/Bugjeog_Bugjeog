@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,13 +37,15 @@ public class MyPageSpecificController {
 
 
     @PostMapping("/edit")
-    public BusinessVO updateLocation(HttpServletRequest req, BusinessVO businessVO){
+    public RedirectView updateLocation(HttpServletRequest req, RedirectAttributes attributes, BusinessVO businessVO){
         HttpSession session = req.getSession();
 //        Long businessId = (Long) session.getAttribute("businessId");
         Long businessId = 1L;
-        myPageService.updateLocation(businessVO);
-        log.info(String.valueOf(businessVO));
-        return businessVO;
+        attributes.addAttribute("businessLocation", businessVO.getBusinessLocation());
+        log.info(businessVO.getBusinessLocation());
+        attributes.addAttribute("businessCategory", businessVO.getBusinessCategory());
+        log.info(businessVO.getBusinessCategory());
+        return new RedirectView("/mypage/edit");
     }
 
 
