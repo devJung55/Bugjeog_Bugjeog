@@ -1,11 +1,9 @@
+/* 작성글 목록 */
+const $ul = $($('ul.boardList-info-box')[0]);
 function showList(category) {
-    /* 작성글 목록 */
     // const boards = JSON.parse($boards); /* boards 정의해야 함 */
-    console.log("들2");
-    const $ul = $($('ul.boardList-info-box')[0]);
-    console.log($ul);
     $ul.empty();
-    let text = ``;
+    let text = ''
     ${board}.forEach(board => {
         // src = contextPath + "/static/img/board/noImage.png";
         text += `
