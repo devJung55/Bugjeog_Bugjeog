@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardMapper">
 
-    <insert id="insert" parameterType="boardBusinessDTO">
+    <insert id="insert" parameterType="boardBusinessVO">
         insert into tbl_board_business
         (
             business_id, board_business_title
@@ -31,8 +31,64 @@
     <select id="selectAll" resultType="boardBusinessDTO">
         select board_business_id, business_id, board_business_title
         , board_business_content, board_business_register_date, board_business_update_date
+        , board
         from tbl_board_business
     </select>
 
+    <select id="selectAllList" resultType="boardBusinessDTO">
+        select b.board_business_id, b.business_id, b.board_business_title
+        , b.board_business_content, b.board_business_register_date, b.board_business_update_date
+        , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
+        , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
+        , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        from tbl_board_business b
+        left outer join (
+            select
+            i.board_business_img_id
+            , i.board_business_id , i.board_business_img_original_name
+            , i.board_business_img_uuid , i.board_business_img_path
+            from tbl_board_business_img i
+            group by i.board_business_id
+            order by i.board_business_img_id
+        ) i
+        on b.board_business_id = i.board_business_id
+        left outer join (
+            select r.review_id, r.member_id , b.board_business_id, count(r.review_id) board_business_review_count
+            , ifnull(avg(r.review_grade), 0) board_business_grade_average
+            from tbl_business_review r
+            right outer join tbl_board_business b
+            on r.board_business_id = b.board_business_id
+            group by r.board_business_id
+        ) r
+        on r.board_business_id = b.board_business_id
+    </select>
+
+    <select id="selectAllListBySearch" resultType="boardBusinessDTO">
+        select b.board_business_id, b.business_id, b.board_business_title
+        , b.board_business_content, b.board_business_register_date, b.board_business_update_date
+        , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
+        , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
+        , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        from tbl_board_business b
+        left outer join (
+            select
+            i.board_business_img_id
+            , i.board_business_id , i.board_business_img_original_name
+            , i.board_business_img_uuid , i.board_business_img_path
+            from tbl_board_business_img i
+            group by i.board_business_id
+            order by i.board_business_img_id
+        ) i
+        on b.board_business_id = i.board_business_id
+        left outer join (
+            select r.review_id, r.member_id , b.board_business_id, count(r.review_id) board_business_review_count
+            , ifnull(avg(r.review_grade), 0) board_business_grade_average
+            from tbl_business_review r
+            right outer join tbl_board_business b
+            on r.board_business_id = b.board_business_id
+            group by r.board_business_id
+        ) r
+        on r.board_business_id = b.board_business_id
+    </select>
 
 </mapper>

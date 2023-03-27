@@ -5,872 +5,186 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유통업체 PR 사이트</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
     <link rel="stylesheet" href="/css/boardList/pr-boardList.css">
+    <link rel="stylesheet" href="/css/main/header.css">
 </head>
 <body>
-    <div class="all-wrap">
-        <div th:insert="~{main/header :: header}" id="header"></div>
-        <div class="header-padding"></div>
-        <div>
-            <header class="boardList-header">
-                <a href="#">
-                    <section class="banner-box"></section>
-                </a>
-            </header>
-        </div>
-        <div class="boardList-section">
-            <h2 class="boardList-title">다양한 유통업체들을 만나보세요!</h2>
-            <div class="edge-div"></div>
-            <div class="select-button-box">
-                <div class="select-button-box-layout">
-                    <div class="cate-button-box">
-                        <div class="cate-button-box-layout">
-                            <button type="button" class="cate-button cate-button-active">
-                                <span>육류</span>
+<div class="all-wrap">
+    <div th:insert="~{main/header :: header}" id="header"></div>
+    <div class="header-padding"></div>
+    <div>
+        <header class="boardList-header">
+            <a href="#">
+                <section class="banner-box"></section>
+            </a>
+        </header>
+    </div>
+    <div class="boardList-section">
+        <h2 class="boardList-title">다양한 유통업체들을 만나보세요!</h2>
+        <div class="edge-div"></div>
+        <div class="select-button-box">
+            <div class="select-button-box-layout">
+                <div class="cate-button-box">
+<!--                    <div class="cate-button-box-layout" th:object="${categorys}">-->
+<!--                        <ul>-->
+<!--                            <li th:each="category : ${categorys}">-->
+<!--                                <a class="cate-button" href="/board/business/list?boardBusinessCategory=${category.categoryEng}" th:method="post">-->
+<!--                                    <span th:text="${category.categoryKor}"></span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <!--                        <button type="button" class="cate-button cate-button-active" href="/board/business/list?boardBusinessCategory=meat" th:method="post">-->
+                    <!--                            <span>육류</span>-->
+                    <!--                        </button>-->
+                    <div class="cate-button-box-layout">
+                        <a type="button" class="cate-button" href="/board/business/list?boardBusinessCategory=all" th:method="post">
+                            <span>전체</span>
+                        </a>
+                        <a type="button" class="cate-button" href="/board/business/list?boardBusinessCategory=meat" th:method="post">
+                            <span>육류</span>
+                        </a>
+                        <a type="button" class="cate-button" href="/board/business/list?boardBusinessCategory=seafood" th:method="post">
+                            <span>해산물</span>
+                        </a>
+                        <a type="button" class="cate-button" href="/board/business/list?boardBusinessCategory=vegetable" th:method="post">
+                            <span>채소</span>
+                        </a>
+                        <a type="button" class="cate-button" href="/board/business/list?boardBusinessCategory=spice" th:method="post">
+                            <span>향신료</span>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <div class="recent-popluar-box">
+                    <div class="recent-popluar-box-layout">
+                        <div class="recent-box">
+                            <button type="button" class="recent-button sort-button sort-button-active">
+                                <span>최신순</span>
                             </button>
-                            <button type="button" class="cate-button">
-                                <span>육류</span>
-                            </button>
-                            <button type="button" class="cate-button">
-                                <span>육류</span>
-                            </button>
-                            <button type="button" class="cate-button">
-                                <span>육류</span>
-                            </button>
-                            <button type="button" class="cate-button">
-                                <span>육류</span>
+                        </div>
+                        <div class="popluar-box">
+                            <button type="button" class="popluar-button sort-button">
+                                <span>인기순</span>
                             </button>
                         </div>
                     </div>
-                    <hr>
-                    <div class="recent-popluar-box">
-                        <div class="recent-popluar-box-layout">
-                            <div class="recent-box">
-                                <button type="button" class="recent-button sort-button sort-button-active">
-                                    <span>최신순</span>
-                                </button>
-                            </div>
-                            <div class="popluar-box">
-                                <button type="button" class="popluar-button sort-button">
-                                    <span>인기순</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="pr-register-button">등록하기</button>
-                        </div>
+                    <div>
+                        <button class="pr-register-button">
+                            <a href="/board/business/write">
+                                등록하기
+                            </a>
+                        </button>
                     </div>
                 </div>
             </div>
-            <ul class="boardList-info-box">
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-                <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
-                <li class="info-box-layout">
-                    <a href="#"><!-- 상세보기 모달 버튼 -->
-                        <div class="image-box">
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2766%2F9204ca9c.jpg&w=1200&q=90" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title">육류</span>
-                                </span>
-                            </div>
-                            <p class="circulation-title">오늘부터 팀장ㅣ팀장이 해야 할 말 vs 하지 말아야 할 말</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">
-                                서울
-                            </div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
-                                </div>
-                                <div>
-                                    <span class="review-count">0</span>
-                                </div>
-                            </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">1.0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- 여기까지 -->
-            </ul>
         </div>
-        <button  type="button" class="scroll-top-button">
-            <img src="/image/boardList/arrow_icon.png" class="top-button">
-        </button>
+        <ul class="boardList-info-box" th:object="${boards}">
+            <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
+            <li class="info-box-layout" th:each="board : ${boards}">
+                <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}"><!-- 상세보기 모달 버튼 -->
+                    <div class="image-box">
+                        <img src="${board.boardBusinessImgPath}/${board.boardBusinessImgUuid}_${board.boardBusinessOriginalName}"
+                             class="info-image">
+                    </div>
+                    <div class="info-section-box">
+                        <div class="cate-title-box">
+                                <span class="cate-title-style">
+                                    <span class="cate-title" th:text="${board.boardBusinessCategory}"></span>
+                                </span>
+                        </div>
+                        <p class="circulation-title" th:text="${board.boardBusinessTitle}"></p>
+                    </div>
+                    <div class="location-box">
+                        <div class="location-box-layout" th:text="${board.boardBusinessLocation}">
+                            서울
+                        </div>
+                    </div>
+                    <div class="review-count-box">
+                        <div class="icon-box">
+                            <div class="review-icon-box">
+                                <img src="/image/boardList/review_icon.png" class="review-icon">
+                            </div>
+                            <div>
+                                <span class="review-count" th:text="${board.boardBusinessReviewCount}">0</span>
+                            </div>
+                        </div>
+                        <div class="icon-box">
+                            <div class="review-icon-box">
+                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                            </div>
+                            <div>
+                                <span class="review-grade-count" th:text="${board.boardBusinessGradeAverage}">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
     </div>
+    <button type="button" class="scroll-top-button">
+        <img src="/image/boardList/arrow_icon.png" class="top-button">
+    </button>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/boardList/pr-boardList.js"></script>
+<!--<script>-->
+<!--    let board = `${boardBusinessDTO}`;-->
+<!--    console.log("들1");-->
+<!--</script>-->
+<!--<script>-->
+<!--    /* 작성글 목록 */-->
+<!--    // const boards = JSON.parse($boards); /* boards 정의해야 함 */-->
+<!--    console.log("들2");-->
+<!--    const $ul = $($('ul.boardList-info-box')[0]);-->
+<!--    console.log($ul);-->
+<!--    $ul.empty();-->
+<!--    let text = ``;-->
+<!--    ${board}.forEach(board => {-->
+<!--        // src = contextPath + "/static/img/board/noImage.png";-->
+<!--        text += `-->
+<!--                <li class="info-box-layout"  th:object="${boardBusinessDTO}">-->
+<!--                    <a href="/board/business/detail?boardId=${board.boardBusinessId}">-->
+<!--                        <div class="image-box">-->
+<!--                            <img src="${board.boardBusinessImgPath}/${boardBusinessImgUuid}_${board.boardBusinessImgOriginalName}" class="info-image">-->
+<!--                        </div>-->
+<!--                        <div class="info-section-box">-->
+<!--                            <div class="cate-title-box">-->
+<!--                                <span class="cate-title-style">-->
+<!--                                    <span class="cate-title"> ${board.boardBusinessCategory}</span>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                            <p class="circulation-title"> ${board.boardBusinessTitle}</p>-->
+<!--                        </div>-->
+<!--                        <div class="location-box">-->
+<!--                            <div class="location-box-layout">${board.boardBusinessLocation}</div>-->
+<!--                        </div>-->
+<!--                        <div class="review-count-box">-->
+<!--                            <div class="icon-box">-->
+<!--                                <div class="review-icon-box">-->
+<!--                                    <img src="/image/boardList/review_icon.png" class="review-icon">-->
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    <span class="review-count">${board.boardBusinessReviewCount}</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="icon-box">-->
+<!--                                <div class="review-icon-box">-->
+<!--                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">-->
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--			`;-->
+<!--    });-->
+<!--    $ul.append(text);-->
+<!--</script>-->
+<!--<script src="/js/board_business/getList.js"></script>-->
 </html>

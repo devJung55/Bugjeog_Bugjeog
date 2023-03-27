@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
-    <form action="">
+    <form th:action="@{/board/business/write}" th:method="post" th:object="${boardBusinessVO}" name="form">
         <div id="header">
             <div id="header_div">
                 <div id="header_btn">
@@ -40,19 +40,21 @@
                         <span class="category_span">향신료</span>
                     </button>
                 </div>-->
-                <div id="title">
-                    <textarea id="title_textarea" placeholder="제목을 입력해 주세요."></textarea>
-                    <!-- <textarea></textarea> -->
-                </div>
-<!--                <input id="location" type="text" placeholder="지역을 적어주세요." style="margin-top: 20px;">-->
-                <input id="location" type="text" placeholder="소재지를 적어주세요.">
-                <input id="location" type="text" placeholder="슬로건을 적어주세요.">
-                <div id="content">
-                    <div>
-                        <textarea id="content_textarea" placeholder="내용을 작성해 주세요."></textarea>
+<!--                <form th:action="@{/board/business/write}" th:method="post">-->
+                    <div id="title">
+                        <textarea id="title_textarea" placeholder="제목을 입력해 주세요." th:field="*{boardBusinessTitle}"></textarea>
                         <!-- <textarea></textarea> -->
                     </div>
-                </div>
+    <!--                <input id="location" type="text" placeholder="지역을 적어주세요." style="margin-top: 20px;">-->
+<!--                    <input id="location" type="text" placeholder="소재지를 적어주세요.">-->
+<!--                    <input id="location" type="text" placeholder="슬로건을 적어주세요.">-->
+                    <div id="content">
+                        <div>
+                            <textarea id="content_textarea" placeholder="내용을 작성해 주세요." th:field="*{boardBusinessContent}"></textarea>
+                            <!-- <textarea></textarea> -->
+                        </div>
+                    </div>
+<!--                </form>-->
                 <div id="thumbnail-list" style="display: flex;">
 <!--                     <div style="width: 200px; height: 200px;">
                         <label for="attach">
