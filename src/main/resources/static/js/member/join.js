@@ -19,12 +19,23 @@ $email.blur(function(){
     if(!emailVal){
         $(".check-email").css("color", "red");
         $emailError.text("이메일을 입력해주세요.");
+        emailCheck = false;
+
     }else if(!regEmail.test(emailVal)){
         $(".check-email").css("color", "red");
         $emailError.text("이메일 형식에 맞춰서 작성해주세요.");
-    }else {
-        $emailError.text("");
+        emailCheck = false;
+
+    }else if(!joinService.checkEmail()) {
+        $(".check-email").css("color", "red");
+        $(".check-email").html("이미 사용중인 이메일입니다.");
+        emailCheck = false;
+
+    } else {
+        $(".check-email").css("color", "blue");
+        $(".check-email").html("사용가능한 이메일입니다.");
         emailCheck = true;
+        joinButtonActive();
     }
 });
 
@@ -36,9 +47,11 @@ $name.blur(function(){
     let nameVal = $name.val();
     if(!nameVal){
         $nameError.text("이름을 입력해주세요.");
+        nameCheck = false;
     }else {
         $nameError.text("");
         nameCheck = true;
+        joinButtonActive();
     }
 });
 
@@ -55,23 +68,35 @@ $phone.blur(function(){
         $Checkbutton.removeClass("phone-active");
         $Checkbutton.css("cursor", "inherit");
         $phoneError.text("핸드폰 번호를 입력해주세요.");
+        phoneNumberCheck = false;
+
     }else if(!regPhone.test(phoneVal)){
         $Checkbutton.css("cursor", "inherit");
         $Checkbutton.removeClass("phone-active");
         $phoneError.text("올바른 형식이 아닙니다.");
-    }else {
+        phoneNumberCheck = false;
+
+    } else if(!joinService.checkPhoneNumber()) {
+        $(".phone-check").css("color", "red");
+        $(".phone-check").html("이미 사용중인 휴대폰번호입니다.");
+        phoneNumberCheck = false;
+    } else {
         $Checkbutton.css("cursor", "pointer");
         $Checkbutton.addClass("phone-active");
-        $phoneError.hide();
-        $phoneError.text("");
+        $(".phone-check").css("color", "blue");
+        $(".phone-check").html("사용가능한 휴대폰번호입니다.");
         phoneNumberCheck = true;
+        joinButtonActive();
     }
 });
 
 // 인증번호 보내기 클릭 시
 $Checkbutton.click(function(){
-    $(".authcode-input").addClass("authcode-input-active");
-    $(".auth-msg").show();
+    if(phoneNumberCheck) {
+        joinService.sendSMS();
+        $(".authcode-input").addClass("authcode-input-active");
+        $(".auth-msg").show();
+    }
 });
 
 const $authcode = $(".authcode-input");
@@ -80,9 +105,9 @@ $authcode.keyup(function(){
     if($authcode.val().length == 4){
         $(".auth-msg").hide();
         $authCheckButton.show();
-        authCodeCheck = true;
     }
 });
+
 // 비밀번호 검사
 const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 const $password = $("input[name='memberPassword']");
@@ -96,12 +121,15 @@ $password.blur(function(){
     if(!passwordVal){
         $passwordError.text("비밀번호를 입력해주세요.");
         $passwordError.removeClass("font-size");
+        passwordCheck1 = false;
     }else if(!regPassword.test(passwordVal)){
         $passwordError.addClass("font-size");
+        passwordCheck1 = false;
     }else {
         $passwordError.hide();
         $passwordError.text("");
         passwordCheck1 = true;
+        joinButtonActive();
     }
 });
 
@@ -109,9 +137,11 @@ $passwordCheck.blur(function(){
     $passwordCheckError.show();
     if($password.val() != $passwordCheck.val()){
         $passwordCheckError.text("비밀번호를 확인해주세요.");
+        passwordCheck2 = false;
     }else {
         $passwordCheckError.hide();
         passwordCheck2 = true;
+        joinButtonActive();
     }
 });
 
@@ -122,10 +152,12 @@ $("#allSelect").click(function() {
         $(".join-terms-agree").addClass("checkbox-active-box");
         $(".checkbox-display").show();
         allCheckBox = true;
+        joinButtonActive();
     }else {
         $(".checkbox-display").hide();
         $(".join-terms-agree").removeClass("checkbox-active-box");
         $("input[name=check]").prop("checked", false);
+        allCheckBox = false;
     }
 });
 
@@ -141,15 +173,16 @@ $("input[name=check]").click(function() {
         $($(".join-terms-agree")[0]).addClass("checkbox-active-box");
         $($(".checkbox-display")[0]).show();
         $("#allSelect").prop("checked", true);
+        joinButtonActive();
     }
 });
 
 $("input[name=check]").each((i, e) => {
-
     $(e).click(function(){
         if($(e).is(":checked")){
             $($(".checkbox-display")[i+1]).show();
             $($(".check-state")[i]).addClass("checkbox-active-box");
+            joinButtonActive();
         }else {
             $($(".check-state")[i]).removeClass("checkbox-active-box");
             $($(".checkbox-display")[i+1]).hide();
@@ -175,37 +208,117 @@ $joinButton.on("click", function(e) {
 $must1.on("click", function(e) {
     if($must1.is(":checked")) {
         must1CheckBox = true;
+        joinButtonActive();
+    } else {
+        must1CheckBox = false;
     }
 });
 
 $must2.on("click", function(e) {
     if($must2.is(":checked")) {
         must2CheckBox = true;
+        joinButtonActive();
+    } else {
+        must2CheckBox = false;
     }
 });
 
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
+const $joinText = $(".join-final-btn-ment");
+
+let joinButtonActive = function() {
+    if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
+        $joinButton.css("background", "#3366FF");
+        $joinText.css("color", "#fff");
+        $joinText.css("opacity", "unset");
+
+    } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
+        $joinButton.css("background", "#3366FF");
+        $joinText.css("color", "#fff");
+        $joinText.css("opacity", "unset");
+
+    } else {
+        $joinButton.css("background", "#F0F0F0");
+        $joinText.css("color", "#000000");
+        $joinText.css("opacity", "0.5");
+    }
+};
+
+
+$(".authcode-check-button").on("click", function(e) {
+    if($(".authcode-check").val() == code) {
+        alert("인증성공");
+        authCodeCheck = true;
+        joinButtonActive();
+    } else {
+        authCodeCheck = false;
+        alert("인증실패");
+    }
+});
+
+
+/*--------------------- join ajax 모듈화 ---------------------*/
+
+
+globalThis.code = "";
 
 let joinService = (function() {
     function checkEmail() {
-        let email = $("input[type=email]").val();
+        let memberEmail = $("input[type=email]").val();
+        let check = true;
 
         $.ajax({
             url: "/members/emailsCheck",
             type: "post",
-            data: email,
+            async : false,
+            data: {"memberEmail": memberEmail},
             success: function(result) {
                 if(result == 1) {
-                    $(".check-email").css("color", "red");
-                    $(".check-email").html("이미 사용중인 이메일입니다.");
+                    check = false;
                 } else {
-                    $(".check-email").css("color", "blue");
-                    $(".check-email").html("사용가능한 이메일입니다.");
+                    check = true;
                 }
             }
         });
+        return check;
     }
-    return {checkEmail: checkEmail}
+
+    function checkPhoneNumber() {
+        let memberPhoneNumber = $(".phoneCheck").val();
+        let check = true;
+
+        $.ajax({
+            url: "/members/phoneNumbersCheck",
+            type: "post",
+            async : false,
+            data: {"memberPhoneNumber": memberPhoneNumber},
+            success: function(result) {
+                if(result == 1) {
+                    check = false;
+                } else {
+                    check = true;
+                }
+            }
+        });
+        return check;
+    }
+
+    function sendSMS() {
+        let memberPhoneNumber = $(".phoneCheck").val();
+
+        $.ajax({
+            url: "/members/code",
+            type: "post",
+            data: {"memberPhoneNumber": memberPhoneNumber},
+            success: function(result) {
+                code = result;
+                console.log(code);
+                alert("인증번호 발송완료");
+            }
+        });
+        return code;
+    }
+    return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS}
 })();

@@ -20,8 +20,22 @@ public class MemberRESTController {
 
 //    이메일 중복검사
     @PostMapping("emailsCheck")
-    public Long checkEmail(/*@RequestParam("memberEmail")*/ String memberEmail) {
-        log.info(memberEmail);
+    public Long checkEmail(@RequestParam("memberEmail") String memberEmail) {
         return memberService.checkEmail(memberEmail);
     }
+
+//    휴대폰 번호 중복검사
+    @PostMapping("phoneNumbersCheck")
+    public Long checkPhoneNumber(@RequestParam("memberPhoneNumber") String memberPhoneNumber) {
+        log.info(memberPhoneNumber);
+        return memberService.checkPhoneNumber(memberPhoneNumber);
+    }
+
+//    자영업자 인증번호 발송
+    @PostMapping("code")
+    @ResponseBody
+    public String smsCode(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
+        String code = memberService.sendSMS(memberPhoneNumber);
+        return code;
+    };
 }
