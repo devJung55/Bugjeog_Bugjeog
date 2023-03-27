@@ -153,7 +153,7 @@
                                 <div class="FormBlock">
                                     <div class="FormBlock-content">
                                         <div class="MainResume-fieldset">
-                                            <form action="/mypage/edit" method="post">
+                                            <form action="/mypage/edit" method="post" name="regionForm">
                                                 <div class="fieldset-Static_content-first">
                                                     <div class="Static-label is-flex">지역선택</div>
                                                     <div class="Static-body">
@@ -204,17 +204,19 @@
                                                             <button type="button" class="cate-button" id="spice" name="category" value="spice">
                                                                 <span class="category_span">향신료</span>
                                                             </button>
+                                                            <input type="hidden" name="categorys" id="catergorys">
+                                                            <input type="hidden" name="foods" id="foods">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="apply_wrapper_upper">
                                                     <label>
                                                         <div class="apply_wrapper">
-                                                        <span>
-                                                            <button type="submit" style="color: white; background-color: #36f; cursor: pointer" >
-                                                                적용하기
-                                                            </button>
-                                                        </span>
+                                                            <span>
+                                                                <button id="submit-button" type="submit" style="color: white; background-color: #36f; cursor: pointer" >
+                                                                    적용하기
+                                                                </button>
+                                                            </span>
                                                         </div>
                                                     </label>
                                                 </div>
@@ -269,6 +271,17 @@
             $cateButton.removeClass("cate-button-active");
             $(e).addClass("cate-button-active");
         });
+    });
+
+
+    $('.cate-button').on('click', function () {
+        console.log($(this).val());
+        $('#foods').val($(this).val());
+    });
+
+    $('.loca-button').on('click', function () {
+        console.log($(this).val());
+        $('#catergorys').val($(this).val());
     });
 
 
