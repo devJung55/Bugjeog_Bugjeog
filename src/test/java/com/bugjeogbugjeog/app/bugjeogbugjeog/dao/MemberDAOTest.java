@@ -32,4 +32,16 @@ public class MemberDAOTest {
     public void selectEmail() {
         log.info(memberDAO.findByEmail("jjy1234@naver.com").toString());
     }
+
+//    휴대폰번호 중복검사
+    @Test
+    public void selectPhoneNumber() {
+        log.info(memberDAO.findByPhoneNumber("01012341234").toString());
+    }
+
+//    자영업자 로그인
+    @Test
+    public void loginTest() {
+        log.info("memberId : " + memberDAO.findByMemberEmailAndMemberPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+    }
 }

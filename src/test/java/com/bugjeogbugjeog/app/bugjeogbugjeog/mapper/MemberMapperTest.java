@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,30 @@ public class MemberMapperTest {
     @Test
     public void checkEmail() {
         log.info(memberMapper.selectByEmail("jjy1234@naver.com").toString());
+    }
+
+//    휴대폰번호 중복검사
+    @Test
+    public void checkPhoneNumber() {
+        log.info(memberMapper.selectByPhoneNumber("01012341234").toString());
+    }
+
+//    자영업자 로그인
+    @Test
+    public void loginTest() {
+        log.info("memberId : " + memberMapper.selectByMemberIdAndMemberPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+    }
+
+//    유통업체 회원가입
+    @Test
+    public void insertBusinessTest() {
+        BusinessVO businessVO = new BusinessVO();
+
+        businessVO.setBusinessEmail("jjy1234@naver.com");
+        businessVO.setBusinessCeoName("정지영");
+        businessVO.setBusinessCompanyName("주식");
+        businessVO.setBusinessEstablishmentDate("2019/05/25");
+//        businessVO.setBusinessNumber("110-11-11111");
+//        memberMapper.insertBusiness();
     }
 }

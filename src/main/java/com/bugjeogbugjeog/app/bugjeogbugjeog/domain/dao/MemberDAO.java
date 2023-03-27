@@ -19,4 +19,14 @@ public class MemberDAO {
     public Long findByEmail(String memberEmail) {
         return memberMapper.selectByEmail(memberEmail);
     }
+
+//    휴대폰번호 중복검사
+    public Long findByPhoneNumber(String memberPhoneNumber) {
+        return memberMapper.selectByPhoneNumber(memberPhoneNumber);
+    }
+
+//    자영업자 로그인
+    public Long findByMemberEmailAndMemberPassword(String memberEmail, String memberPassword) {
+        return memberMapper.selectByMemberIdAndMemberPassword(memberEmail, memberPassword);
+    }
 }
