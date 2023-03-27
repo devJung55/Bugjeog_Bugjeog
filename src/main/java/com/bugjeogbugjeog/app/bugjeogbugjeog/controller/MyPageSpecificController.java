@@ -50,9 +50,6 @@ public class MyPageSpecificController {
 
         String foods = req.getParameter("foods");
 
-        log.info(categorys);
-        log.info("====================================================");
-        log.info(foods);
         businessVO.setBusinessCategory(categorys);
         businessVO.setBusinessLocation(foods);
         myPageService.updateLocation(businessVO);
