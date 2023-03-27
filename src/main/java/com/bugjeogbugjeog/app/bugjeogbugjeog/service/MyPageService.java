@@ -131,6 +131,10 @@ public class MyPageService {
         return mypageDAO.getCountToInquire(memberId);
     };
 
+    // 유통 조회
+    public BusinessVO businessInfo(Long businessId){
+        return mypageDAO.findByIdToBusiness(businessId);
+    }
 
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
