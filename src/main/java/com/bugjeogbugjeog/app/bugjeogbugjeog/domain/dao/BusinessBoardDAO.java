@@ -26,5 +26,4 @@ public class BusinessBoardDAO {
     //    목록
     public List<BoardBusinessDTO> findAll(){ return businessBoardMapper.selectAll(); }
 
-
 }

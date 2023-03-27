@@ -34,7 +34,7 @@ import java.util.UUID;
 public class BusinessBoardController {
     private final BusinessBoardService businessBoardService;
 
-    @GetMapping(value = {"/board/business", "/board/business/"})
+    @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
         return new RedirectView("/board/business/list");
     }
