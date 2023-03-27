@@ -16,15 +16,21 @@ public class AdminController {
 
     /* 회원 목록 조회 */
     @GetMapping("admin-memberList")
-    public void adminMemberList(){}
+    public void adminMemberList(){
+
+    }
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member")
-    public void adminMember(){}
+    public void adminMember(){
+
+    }
 
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
-    public void adminMemberModify(){}
+    public void adminMemberModify(){
+
+    }
 
     /* 회원 삭제 */
 
@@ -48,6 +54,13 @@ public class AdminController {
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
+    @GetMapping("admin-noticeList")
+    public void noticeList(){}
 
+    @GetMapping("admin-notice")
+    public void notice(){}
+
+    @GetMapping("admin-noticeWrite")
+    public void noticeWrite(){}
 
 }
