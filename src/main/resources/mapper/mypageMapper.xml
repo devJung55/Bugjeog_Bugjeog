@@ -42,11 +42,9 @@
     </select>
 
     <!-- 이용자의 문의게시판 목록 -->
-    <select id="inquireList" resultType="memberInquireDTO">
-        select m.member_id, member_email, member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path,
-        board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status
-        from tbl_board_inquiry i join tbl_member m
-        on i.member_id = m.member_id and i.member_id = #{memberId}
+    <select id="inquireList" resultType="boardInquiryVO">
+        select member_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry
+        where member_id = #{memberId};
     </select>
 
     <!-- 이용자의 문의글 작성 수-->
@@ -54,9 +52,9 @@
         select count(member_id) from tbl_board_inquiry where member_id = #{memberId}
     </select>
 
-    <!-- 문의 게시판 답변했는지 안했는지 유무 확인 -->
-    <select id="answerCheck" resultType="long">
-        select board_inquiry_id from tbl_board_inquiry_answer where board_inquiry_id = #{boardInquiryId};
+    <!--문의글 답변 여부-->
+    <select id="inquireAnswer" resultType="long">
+        select board_inquiry_id from tbl_board_inquiry_answer where board_inquiry_id = #{boardInquiryId}
     </select>
 
     <!--유통 업체 정보 조회-->

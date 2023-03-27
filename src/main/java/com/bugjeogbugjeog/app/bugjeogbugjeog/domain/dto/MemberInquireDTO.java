@@ -1,21 +1,14 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Data
 public class MemberInquireDTO {
-    private Long memberId;
-    private String memberEmail;
-    private String memberPhoneNumber;
-    private String memberName;
-    private String memberImgOriginalName;
-    private String memberImgUuid;
-    private String memberImgPath;
-    private Long boardInquiryId;
-    private String boardInquiryTitle;
-    private String boardInquiryContent;
-    private String boardInquiryRegisterDate;
-    private Boolean boardInquiryStatus;
+    private List<Long> answerStatus;
+    private List<BoardInquiryVO> inquire;
 }

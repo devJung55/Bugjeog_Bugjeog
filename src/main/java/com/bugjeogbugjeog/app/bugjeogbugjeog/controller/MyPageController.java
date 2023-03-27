@@ -145,6 +145,16 @@ public class MyPageController {
         return myPageService.memberInfo(memberId);
     }
 
+    @GetMapping("faqList")
+    public void faqList(HttpServletRequest req, Model model){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
+        model.addAttribute("memberVO",myPageService.memberInfo(memberId));
+        model.addAttribute("inquireDTO",myPageService.inquireList(memberId));
+        model.addAttribute("inquireCount", myPageService.inquireCount(memberId));
+    }
+
     //    현재 날짜 경로 구하기
     private String getPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

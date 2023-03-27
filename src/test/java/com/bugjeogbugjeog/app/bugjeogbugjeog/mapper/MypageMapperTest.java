@@ -91,10 +91,5 @@ public class MypageMapperTest {
         myPageMapper.inquireCount(1L);
     }
 
-    //    문의 게시글 답변 유무 체크
-    @Test
-    public void answerCheckTest(){
-        log.info(String.valueOf(myPageMapper.answerCheck(1L) == null));
-    }
 
 }
