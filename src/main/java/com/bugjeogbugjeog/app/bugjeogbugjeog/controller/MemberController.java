@@ -57,7 +57,7 @@ public class MemberController {
             return new RedirectView("/member/login?check=false");
         } else {
             httpSession.setAttribute("memberId", memberId);
-            return new RedirectView("/main/?login=ok");
+            return new RedirectView("/main/");
         }
     }
 
