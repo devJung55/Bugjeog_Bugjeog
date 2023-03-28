@@ -22,7 +22,7 @@ public interface BusinessBoardMapper {
     //    목록
     public List<BoardBusinessDTO> selectAll();
 
-    public List<BoardBusinessDTO> selectAllByBusinessId(Long boardBusinessId);
+    public List<BoardBusinessDTO> selectAllByBusinessId(Long businessId);
 
     //    썸네일 포함 목록
     public List<BoardBusinessDTO> selectAllList();

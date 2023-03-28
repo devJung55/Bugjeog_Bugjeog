@@ -1,13 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface BusinessReviewMapper {
@@ -19,6 +15,9 @@ public interface BusinessReviewMapper {
 
     //    조회(이미지까지)
     public List<BusinessReviewDTO> select(Long boardBusinessId);
+
+    //    로그인 정보 조회
+    public BusinessReviewDTO selectByMemberId(Long memberId);
 
     //    목록
 //    public List<BoardBusinessDTO> selectAll();

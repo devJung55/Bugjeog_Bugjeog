@@ -3,7 +3,6 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -19,6 +18,10 @@ public class BusinessReviewDAO {
     //    추가
     public void save(BoardBusinessVO boardBusinessVO) {
 //    businessBoardMapper.insert(boardBusinessVO);
+    }
+
+    public BusinessReviewDTO findByMemberId(Long memberId){
+        return businessReviewMapper.selectByMemberId(memberId);
     }
 
     //    삭제

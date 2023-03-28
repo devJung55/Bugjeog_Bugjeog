@@ -21,6 +21,10 @@ public class BusinessReviewService {
         return businessReviewDAO.findById(boardBusinessId);
     }
 
+    public BusinessReviewDTO getMember(Long memberId){
+        return businessReviewDAO.findByMemberId(memberId);
+    }
+
     //    추가
 //    public void registerBoard(BoardBusinessVO boardBusinessVO) {
 //        businessBoardDAO.save(boardBusinessVO);
