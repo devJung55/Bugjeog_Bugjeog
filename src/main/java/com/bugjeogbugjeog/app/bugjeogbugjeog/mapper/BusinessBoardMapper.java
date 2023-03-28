@@ -17,7 +17,7 @@ public interface BusinessBoardMapper {
     public void delete(Long orderId);
 
     //    조회(이미지까지)
-    public BoardBusinessDTO select(Long businessId);
+    public BoardBusinessDTO select(Long boardBusinessId);
 
     //    목록
     public List<BoardBusinessDTO> selectAll();
