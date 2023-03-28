@@ -40,7 +40,7 @@ public class MyPageServiceTests {
 //    핸드폰 중복검사
     @Test
     public void phoneNumberCheck(){
-        log.info(String.valueOf(myPageService.PhoneNumberCheck("01012341234")));
+        log.info(String.valueOf(myPageService.phoneNumberCheck("01012341234")));
     }
 
     //    회원 탈퇴
