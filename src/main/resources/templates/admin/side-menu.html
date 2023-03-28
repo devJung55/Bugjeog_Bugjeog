@@ -41,17 +41,17 @@
                         </div>
                         <ul class="menus1 menus" style="display: none;">
                             <li class="select-menu">
-                                <a href="adminPage-boardList.jsp">
+                                <a th:href="@{/admin/admin-distributionList}">
                                     <span>유통업체 게시판</span>
                                 </a>
                             </li>
                             <li class="select-menu">
-                                <a href="adminPage-freeBoardList.jsp">
+                                <a th:href="@{/admin/admin-freeBoardList}">
                                     <span>자유 게시판</span>
                                 </a>
                             </li>
                             <li class="select-menu">
-                                <a href="adminPage-bankList.jsp">
+                                <a th:href="@{/admin/admin-inquiryList}">
                                     <span>문의 게시판</span>
                                 </a>
                             </li>
@@ -72,15 +72,15 @@
                         </div>
                         <ul class="menus2 menus" style="display:none;">
                             <li class="select-menu">
-                                <a href="adminPage-noticeList.jsp">
+                                <a th:href="@{/admin/admin-noticeList}">
                                     <span>공지사항 목록</span>
                                 </a>
                             </li>
-                            <!-- <li class="select-menu">
-                                <a href="adminPage-noticeWrite.jsp">
+                            <li class="select-menu">
+                                <a th:href="@{/admin/admin-noticeWrite}">
                                     <span>공지사항 작성</span>
                                 </a>
-                            </li> -->
+                            </li>
                         </ul>
                     </li>
                     <li class="menu">
@@ -97,12 +97,12 @@
                         </div>
                         <ul class="menus2 menus" style="display:none;">
                             <li class="select-menu">
-                                <a href="">
+                                <a th:href="@{/admin/admin-memberList}">
                                     <span>회원정보 목록</span>
                                 </a>
                             </li>
                             <li class="select-menu">
-                                <a href="">
+                                <a th:href="@{/admin/admin-member-companyList}">
                                     <span>유통업체정보 목록</span>
                                 </a>
                             </li>

@@ -15,11 +15,12 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class MyPageService {
-    private final MypageDAO mypageDAO;
     private final MemberDAO memberDAO;
     private final FreeLikeDAO freeLikeDAO;
     private final InquiryBoardDAO inquiryBoardDAO;
     private final FreeBoardDAO freeBoardDAO;
+    private final ReplyDAO replyDAO;
+    private final BusinessDAO businessDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
@@ -144,12 +145,12 @@ public class MyPageService {
 
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> replyList(Long memberId, Criteria criteria){
-        return mypageDAO.findAllMyPageReplyDTO(memberId, criteria);
+        return replyDAO.findAllMyPageReplyDTO(memberId, criteria);
     };
 
     // 댓글 갯수
     public Integer replyCount(Long memberId){
-        return mypageDAO.getReplyTotal(memberId);
+        return replyDAO.getReplyTotal(memberId);
     };
 
     // 자유게시판 목록 가져오기
@@ -167,7 +168,7 @@ public class MyPageService {
         Map<String, Integer> allCount = new HashMap<>();
 
         allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardTotal(memberId));
-        allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
+        allCount.put("replyCount", replyDAO.getReplyTotal(memberId));
         allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
         allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));
 
@@ -177,36 +178,74 @@ public class MyPageService {
 
     //    유통업체 파일 저장
     public void businessFileSave(BusinessVO business){
-        BusinessVO businessVO = mypageDAO.findByIdToBusiness(business.getBusinessId());
+        BusinessVO businessVO = businessDAO.findByIdToBusiness(business.getBusinessId());
 
         businessVO.setBusinessImgOriginalName(business.getBusinessImgOriginalName());
         businessVO.setBusinessImgPath(business.getBusinessImgPath());
         businessVO.setBusinessImgUuid(business.getBusinessImgUuid());
 
-        mypageDAO.updateLocation(businessVO);
+        businessDAO.updateLocation(businessVO);
     }
 
     //    유통업체 이름 변경
     public void updateBusinessCeoName(Long businessId, String businessCeoName){
-        BusinessVO businessVO = mypageDAO.findByIdToBusiness(businessId);
+        BusinessVO businessVO = businessDAO.findByIdToBusiness(businessId);
         businessVO.setBusinessCeoName(businessCeoName);
-        mypageDAO.updateLocation(businessVO);
+        businessDAO.updateLocation(businessVO);
     }
 
     //    유통업자 핸드폰 번호 변경
     public void updateBusinessPhoneNumber(Long businessId , String businessPhoneNumber){
-        BusinessVO businessVO =mypageDAO.findByIdToBusiness(businessId);
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
         businessVO.setBusinessPhoneNumber(businessPhoneNumber);
-        mypageDAO.updateLocation(businessVO);
+        businessDAO.updateLocation(businessVO);
+    }
+
+    // 유통업자 회사명 변경
+    public void updateBusinessCompanyName(Long businessId , String businessCompanyName){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessCompanyName(businessCompanyName);
+        businessDAO.updateLocation(businessVO);
+    }
+
+    // 사업자 번호 중복검사
+    public Boolean businessNumberCheck(String businessNumber){
+        List<String> businessNumbers = businessDAO.findAllToBusinessNumber();
+        boolean check = false;
+        for (int i = 0; i < businessNumbers.size(); i++) {
+            if(businessNumbers.get(i).equals(businessNumber)){
+                check = true;
+            }
+        }
+        return check;
+    }
+
+    // 사업자 번호 변경
+    public void businessNumberUpdate(Long businessId , String businessNumber){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessNumber(businessNumber);
+        businessDAO.updateLocation(businessVO);
+    }
+
+    // 유통업자 비밀번호 변경
+    public void businessPasswordUpdate(Long businessId , String businessPassword){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessPassword(businessPassword);
+        businessDAO.updateLocation(businessVO);
     }
 
     // 유통 조회
     public BusinessVO businessInfo(Long businessId){
-        return mypageDAO.findByIdToBusiness(businessId);
+        return businessDAO.findByIdToBusiness(businessId);
+    }
+
+    // 유통업자 회원 탈퇴
+    public void businessWithdraw(Long businessId){
+        businessDAO.removeById(businessId);
     }
 
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
-        mypageDAO.updateLocation(businessVO);
+        businessDAO.updateLocation(businessVO);
     }
 }

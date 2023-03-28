@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessMapper">
+    <!--유통 분야 설정 추가-->
+    <update id="updateLocation">
+        UPDATE tbl_business
+        SET business_email=#{businessEmail}, business_password=#{businessPassword}, business_ceo_name=#{businessCeoName}, business_number=#{businessNumber}, business_company_name=#{businessCompanyName}, business_phone_number=#{businessPhoneNumber}, business_establishment_date= #{businessEstablishmentDate}, business_register_date= #{businessRegisterDate}, business_status= #{businessStatus}, business_img_original_name=#{businessImgOriginalName}, business_img_uuid=#{businessImgUuid}, business_img_path=#{businessImgPath}, business_img_original_name=#{businessImgOriginalName}, business_location=#{businessLocation}, business_category=#{businessCategory}
+        WHERE business_id = #{businessId}
+    </update>
+
+    <!--유통 업체 정보 조회-->
+    <select id="selectBusiness" resultType="businessVO">
+        select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category
+        from tbl_business where business_id = #{businessId}
+    </select>
+
+    <!--전체 사업자 번호 가져오기-->
+    <select id="selectListToBusinessNumber" resultType="string">
+        select business_number from tbl_business
+    </select>
+
+    <!-- 회원 탈퇴 -->
+    <delete id="withdraw">
+        delete from tbl_business where business_id = #{businessId}
+    </delete>
+
+</mapper>
+

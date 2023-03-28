@@ -1,19 +1,23 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin/*")
+@Slf4j
 public class AdminController {
 
     private final NoticeService noticeService;
@@ -61,33 +65,42 @@ public class AdminController {
 
     /* 공지사항 리스트 */
    @GetMapping("admin-noticeList")
-    public void noticeList(Model model){
-        model.addAttribute("notices",noticeService.showList());
-    }
+    public String noticeList(Criteria criteria, Model model){
+
+       model.addAttribute("noticeVO", noticeService.showList(criteria));
+       model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
+       return "/admin/admin-noticeList";
+
+   }
 
     /* 공지사항 조회 */
-    @GetMapping("admin-notice")
-    public void notice(Long noticeId, Model model){
+    @GetMapping("admin-notice/{noticeId}")
+    public String notice(@PathVariable Long noticeId, Model model ){
         model.addAttribute(noticeService.showNotice(noticeId));
-    }
-    /* 공지사항 작성 */
-    @PostMapping("admin-noticeWrite")
-    public RedirectView AddNotice(NoticeVO noticeVO){
-        noticeService.add(noticeVO);
-        return new RedirectView("admin-noticeList");
+        return "admin/admin-notice";
     }
 
-    /* 공지사항 작성 완료 */
+       /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());
     }
 
-    /* 공지사항 삭제 */
-    @PostMapping("admin-noticeList")
-    public RedirectView removeNotice(Long noticeId){
-        noticeService.remove(noticeId);
+    /* 공지사항 작성 완료 */
+    @PostMapping("admin-noticeWrite")
+    public RedirectView AddNotice(NoticeVO noticeVO, RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
+        redirectAttributes.addAttribute("noticeContent", noticeVO.getNoticeContent());
+        noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
+    }
+
+
+    /* 공지사항 삭제 */
+    @DeleteMapping("admin-delete")
+    @ResponseBody
+    public void removeNotice(@RequestParam("checkedIds[]") List<String> noticeIds){
+        noticeService.remove(noticeIds);
     }
 
 

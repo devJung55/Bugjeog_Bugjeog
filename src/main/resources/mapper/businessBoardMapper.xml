@@ -22,10 +22,15 @@
     </delete>
 
     <select id="select" parameterType="long" resultType="boardBusinessDTO">
-        select board_business_id, business_id, board_business_title
-        , board_business_content, board_business_register_date, board_business_update_date
-        from tbl_board_business
-        where business_id = #{businessId}
+        select bs.board_business_id, bs.business_id, bs.board_business_title
+        , bs.board_business_content, bs.board_business_register_date, bs.board_business_update_date
+        , b.business_ceo_name, b.business_number, b.business_company_name, b.business_phone_number
+        , b.business_establishment_date, b.business_register_date, b.business_img_original_name
+        , b.business_img_uuid, b.business_img_path, b.business_location, b.business_category
+        from tbl_board_business bs
+        join tbl_business b
+        on b.business_id = bs.business_id
+        where board_business_id = #{boardBusinessId}
     </select>
 
     <select id="selectAll" resultType="boardBusinessDTO">
@@ -41,6 +46,7 @@
         , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
         , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
         , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        , bs.business_category, bs.business_location
         from tbl_board_business b
         left outer join (
             select
@@ -61,6 +67,9 @@
             group by r.board_business_id
         ) r
         on r.board_business_id = b.board_business_id
+        join tbl_business bs
+        on b.business_id = bs.business_id
+        order by b.board_business_id desc
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
@@ -69,6 +78,7 @@
         , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
         , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
         , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        , bs.business_category, bs.business_location
         from tbl_board_business b
         left outer join (
             select
@@ -89,6 +99,17 @@
             group by r.board_business_id
         ) r
         on r.board_business_id = b.board_business_id
+        join tbl_business bs
+        on b.business_id = bs.business_id
+        <if test="category != null">
+            where bs.business_category = #{category}
+        </if>
+        <if test="sort == 'recent'">
+            order by b.board_business_id desc
+        </if>
+        <if test="sort == 'popular'">
+            order by board_business_grade_average desc
+        </if>
     </select>
 
 </mapper>

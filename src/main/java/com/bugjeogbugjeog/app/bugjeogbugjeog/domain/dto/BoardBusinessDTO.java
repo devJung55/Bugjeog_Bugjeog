@@ -18,9 +18,23 @@ public class BoardBusinessDTO {
     private String boardBusinessImgPath;/* 썸네일 이미지 경로 */
     private Long boardBusinessReviewCount;
     private Long boardBusinessGradeAverage;
+    private String boardBusinessImgFullPath;
 
-    /* 추가 예정 */
-    private String boardBusinessLocation;
-    private String boardBusinessCategory;
+    /* businessVO */
+    private String businessEmail;
+    private String businessPassword;
+    private String businessCeoName;
+    private String  businessNumber;
+    private String businessCompanyName;
+    private String businessPhoneNumber;
+    private String businessEstablishmentDate;
+    private String businessRegisterDate;
+    private Long businessStatus;
+    private String businessImgOriginalName;
+    private String businessImgUuid;
+    private String businessImgPath;
+    private String businessLocation;
+    private String businessCategory;
+
 
 }

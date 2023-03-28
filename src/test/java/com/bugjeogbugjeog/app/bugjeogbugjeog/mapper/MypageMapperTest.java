@@ -19,79 +19,93 @@ import java.util.List;
 public class MypageMapperTest {
 
     @Autowired
-    MyPageMapper myPageMapper;
+    ReplyMapper replyMapper;
 
-    //    회원정보 조회
-    @Test
-    public void selectTest(){
-        log.info(myPageMapper.select(1L).toString());
-    }
+    @Autowired
+    MemberMapper memberMapper;
 
-    //    회원정보 수정
-    @Test
-    public void updateTest(){
-        MemberVO memberVO = myPageMapper.select(1L);
+    @Autowired
+    BusinessMapper businessMapper;
 
-        memberVO.setMemberEmail("ljw@naver.com");
-        memberVO.setMemberImgOriginalName("1234");
-        memberVO.setMemberImgPath("1234");
-        memberVO.setMemberImgUuid("1234");
+    @Autowired
+    FreeLikeMapper freeLikeMapper;
 
-        myPageMapper.update(memberVO);
-    }
-    
-//    휴대폰 정보 조회
-    @Test
-    public void selectAllPhoneNumberTest(){
-        myPageMapper.selectAllPhoneNumber();
-    }
-
-//     회원탈퇴
-    @Test
-    public void deleteMemberTest(){
-        myPageMapper.deleteMember(2L);
-    }
+    @Autowired
+    InquiryBoardMapper inquiryBoardMapper;
 
 
-    //    유통업체 회원정보 조회
-    @Test
-    public void selectBuisnessTest(){
-        myPageMapper.selectBuisness(1L);
-    }
 
-
-    //    좋아요 한 게시물 수
-    @Test
-    public void likeCountTest(){
-        log.info(String.valueOf(myPageMapper.likeCount(1L)));
-    }
-
-    //    좋아요 한 게시물 리스트
-    @Test
-    public void likeListTest(){
-        myPageMapper.likeList(1L,new Criteria(1,4));
-    }
-
-    //    문의 작성 목록
-
-    //    문의 게시글 작성 갯수
-    @Test
-    public void inquireCountTest(){
-        myPageMapper.inquireCount(1L);
-    }
-
-    //유통 분야 설정 추가 select로 먼저 가져와서 추가후 insert
-    @Test
-    public void updateLocationTest(){
-        BusinessVO businessVO = myPageMapper.selectBuisness(1L);
-        businessVO.setBusinessLocation("서울");
-        businessVO.setBusinessCategory("향신료");
-        myPageMapper.updateLocation(businessVO);
-    }
-
-    @Test
-    public void replyListTest(){
-        myPageMapper.replyList(1L,new Criteria(1,4));
-    }
+//    //    회원정보 조회
+//    @Test
+//    public void selectTest(){
+//        log.info(memberMapper.select(1L).toString());
+//    }
+//
+//    //    회원정보 수정
+//    @Test
+//    public void updateTest(){
+//        MemberVO memberVO = memberMapper.select(1L);
+//
+//        memberVO.setMemberEmail("ljw@naver.com");
+//        memberVO.setMemberImgOriginalName("1234");
+//        memberVO.setMemberImgPath("1234");
+//        memberVO.setMemberImgUuid("1234");
+//
+//        memberMapper.update(memberVO);
+//    }
+//
+////    휴대폰 정보 조회
+//    @Test
+//    public void selectAllPhoneNumberTest(){
+//        memberMapper.selectAllPhoneNumber();
+//    }
+//
+////     회원탈퇴
+//    @Test
+//    public void deleteMemberTest(){
+//        memberMapper.deleteMember(2L);
+//    }
+//
+//
+//    //    유통업체 회원정보 조회
+//    @Test
+//    public void selectBuisnessTest(){
+//        businessMapper.selectBuisness(1L);
+//    }
+//
+//
+//    //    좋아요 한 게시물 수
+//    @Test
+//    public void likeCountTest(){
+//        log.info(String.valueOf(freeLikeMapper.likeCount(1L)));
+//    }
+//
+//    //    좋아요 한 게시물 리스트
+//    @Test
+//    public void likeListTest(){
+//        freeLikeMapper.likeList(1L,new Criteria(1,4));
+//    }
+//
+//    //    문의 작성 목록
+//
+//    //    문의 게시글 작성 갯수
+//    @Test
+//    public void inquireCountTest(){
+//        inquiryBoardMapper.inquireCount(1L);
+//    }
+//
+//    //유통 분야 설정 추가 select로 먼저 가져와서 추가후 insert
+//    @Test
+//    public void updateLocationTest(){
+//        BusinessVO businessVO = businessMapper.selectBusisness(1L);
+//        businessVO.setBusinessLocation("서울");
+//        businessVO.setBusinessCategory("향신료");
+//        businessMapper.updateLocation(businessVO);
+//    }
+//
+//    @Test
+//    public void replyListTest(){
+//        replyMapper.replyList(1L,new Criteria(1,4));
+//    }
 
 }
