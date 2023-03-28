@@ -22,11 +22,11 @@ public interface FreeBoardMapper {
     public void delete(Long boardFreeId);
 
     //    게시글 전체 조회
-    public List<BoardFreeVO> selectAll();
+//    public List<BoardFreeVO> selectAll();
 
-//    비즈니츠 참고하여 축가
+//    비즈니스 참고하여 추가
 
-    //    썸네일 포함 목록
+    //    썸네일 포함 목록 = 전체 조회
     public List<BoardFreeVO> selectAllList();
 
     //    썸네일 포함 목록
