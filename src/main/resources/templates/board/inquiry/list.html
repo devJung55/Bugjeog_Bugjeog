@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문의사항 게시판</title>
     <link rel="stylesheet" href="/css/boardList/notice-list.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+
 </head>
 <body>
-    <div>
-            <!-- 헤더 -->
+<div th:insert="~{main/header :: header}"></div>
+<div>
         <header class="header">
             <div class="header-inner container">
                 <div class="row">
                     <div class="left_top">
                         <div class="header_logo">
                             <a href="">
-                                <img src="../../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
+                                <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
                             </a>
                             <a href="">
-                                <img src="../../../static/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
+                                <img src="/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
                             </a>
                         </div>
                     </div>
@@ -136,10 +138,13 @@
                      <div class="inquire_">
                         <div style="margin: 0 auto;">
                             <a href="" class="inquire_write">
-                                <img src="../../../static/image/notice/questionmark.png"class="questionmark">
+                                <img src="/image/notice/questionmark.png"class="questionmark">
                             </a>
                         </div>
                     </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js">
+</script>
 </html>
