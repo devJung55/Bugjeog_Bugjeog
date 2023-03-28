@@ -44,4 +44,29 @@
         select count(business_phone_number) from tbl_business
         where business_phone_number = #{businessPhoneNumber}
     </select>
+
+    <!--hello 제가 왓어요~~~-->
+    <!--유저 정보 조회-->
+    <select id="select" resultType="memberVO">
+        select member_id, member_email, member_password ,member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path
+        from tbl_member where member_id = #{member_id}
+    </select>
+
+    <!-- 모든 유저 핸드폰 번호 조회-->
+    <select id="selectAllPhoneNumber" resultType="String">
+       select member_phone_number from tbl_member
+       union
+       select business_phone_number from tbl_business
+    </select>
+    <!--이용자  정보 업데이트-->
+    <update id="update">
+        UPDATE tbl_member
+        SET member_email=#{memberEmail}, member_password=#{memberPassword}, member_name=#{memberName}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}, member_phone_number= #{memberPhoneNumber}
+        WHERE member_id = #{memberId}
+    </update>
+
+    <!--이용자 회원 탈퇴-->
+    <delete id="deleteMember">
+        delete from tbl_member where member_id = #{memberId}
+    </delete>
 </mapper>

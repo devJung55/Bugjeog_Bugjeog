@@ -16,25 +16,6 @@ import java.util.List;
 public class MypageDAO {
     private final MyPageMapper myPageMapper;
 
-    //    회원정보 조회
-    public MemberVO findById(Long memberId){
-        return myPageMapper.select(memberId);
-    };
-    
-    // 회원정보 수정
-    public void updateById(MemberVO memberVO){
-        myPageMapper.update(memberVO);
-    };
-
-    // 회원탈퇴
-    public void deleteById(Long memberId){
-        myPageMapper.deleteMember(memberId);
-    };
-
-    // 핸드폰 전체 조회
-    public List<String> findAllToMemberPhoneNumber(){
-        return myPageMapper.selectAllPhoneNumber();
-    }
 
     //    유통업체 회원정보 조회
     public BusinessVO findByIdToBusiness(Long businessId){
