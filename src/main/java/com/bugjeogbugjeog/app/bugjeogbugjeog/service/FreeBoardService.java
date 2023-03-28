@@ -23,7 +23,7 @@ public class FreeBoardService{
     public void registerBoard(BoardFreeVO boardFreeVO) { freeBoardDAO.save(boardFreeVO); }
 
     //    삭제
-    public void remove(Long boardFreeId) { freeBoardDAO.delete(boardFreeId); }
+    public void remove(Long boardFreeId){ freeBoardDAO.delete(boardFreeId);}
 
     //    조회(이미지들까지)
     public BoardFreeVO getBoard(Long boardFreeId) { return freeBoardDAO.findById(boardFreeId); }
