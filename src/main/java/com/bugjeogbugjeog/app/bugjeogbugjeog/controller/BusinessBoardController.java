@@ -87,8 +87,19 @@ public class BusinessBoardController {
 
     @PostMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) {
-        log.info(businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId"))).toString());
-        model.addAttribute("board", businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId"))));
+        System.out.println("컨 들어옴");
+        BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId")));
+        String name = dto.getBoardBusinessImgOriginalName();
+        String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
+        dto.setBoardBusinessImgFullPath(fullPath);
+        System.out.println("========================");
+        try {
+            System.out.println(dto.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("========================");
+        model.addAttribute("board", dto);
     }
 
     @GetMapping("/board/business/write")
