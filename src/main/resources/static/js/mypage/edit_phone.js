@@ -173,30 +173,6 @@
         });
     });
 
-    // 비밀번호 변경 모달
-    const $passwordModalButton = $(".password-change-modal");
-    const $passwordModal = $(".password-modal-display");
-    const $passwordModalExit = $(".password-modal-exit");
-    const $passwordCancel = $(".password-cancel");
-
-    $passwordModalButton.click(function(e){
-        e.preventDefault();
-        $("input[type=password]").val("");
-        $(".password-error").text("");
-        $(".password-check-error").text("");
-        $passwordModal.show();
-    });
-
-    $passwordModalExit.click(function(e){
-        e.preventDefault();
-        $passwordModal.hide();
-    });
-
-    $passwordCancel.click(function(e){
-        e.preventDefault();
-        $passwordModal.hide();
-    });
-
     // 비밀번호 검사
     let passwordCheck = [false, false];
     const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
