@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeLikeDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
@@ -18,6 +19,7 @@ import java.util.*;
 public class MyPageService {
     private final MypageDAO mypageDAO;
     private final MemberDAO memberDAO;
+    private final FreeLikeDAO freeLikeDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
@@ -132,12 +134,12 @@ public class MyPageService {
 
     // 좋아요 한 게시물 목록
     public List<BoardFreeVO> likeList(Long memberId, Criteria criteria){
-        return mypageDAO.findAllToLike(memberId,criteria);
+        return freeLikeDAO.findAllToLike(memberId,criteria);
     }
 
     // 좋아요 게시물 갯수
     public Integer likeCount(Long memberId){
-        return mypageDAO.getCountToLike(memberId);
+        return freeLikeDAO.getCountToLike(memberId);
     }
 
     //  댓글 단 게시물 목록
@@ -166,7 +168,7 @@ public class MyPageService {
 
         allCount.put("freeBoardCount",mypageDAO.getFreeBoardTotal(memberId));
         allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
-        allCount.put("likeBoardCount", mypageDAO.getCountToLike(memberId));
+        allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
         allCount.put("inquireCount", mypageDAO.getCountToInquire(memberId));
 
         return allCount;

@@ -15,12 +15,6 @@ public interface MyPageMapper {
 //    유통업체 회원정보 조회
     public BusinessVO selectBuisness(Long businessId);
 
-//    좋아요 한 게시물 수
-    public Integer likeCount(Long memberId);
-
-//    좋아요 한 게시물 리스트
-    public List<BoardFreeVO> likeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
-
 //    문의 작성 목록
     public List<BoardInquiryVO> inquireList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
 

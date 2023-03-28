@@ -22,16 +22,6 @@ public class MypageDAO {
         return myPageMapper.selectBuisness(businessId);
     };
 
-    //    좋아요 한 게시물 수
-    public Integer getCountToLike(Long memberId){
-        return myPageMapper.likeCount(memberId);
-    };
-
-    //    좋아요 한 게시물 리스트
-    public List<BoardFreeVO> findAllToLike(Long boardFreeId, Criteria criteria){
-        return myPageMapper.likeList(boardFreeId, criteria);
-    };
-
     //    문의 작성 목록
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
         return myPageMapper.inquireList(memberId,criteria);
