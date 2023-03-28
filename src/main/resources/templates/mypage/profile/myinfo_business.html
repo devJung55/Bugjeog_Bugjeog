@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
-
 <body>
     <!-- 파일 넣으면 뜰 모달-->
     <div class="file-modal-display">
@@ -25,7 +24,7 @@
                         </p>
                     </div>
                     <div class="file-modal-exit-box">
-                        <button class="file-modal-exit" type="button">
+                        <button class="file-modal-exit exit" type="button">
                                 <span class="file-modal-exit-icon-box">
                                     <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
                                 </span>
@@ -37,10 +36,10 @@
                         <img src="/image/boardList/distributor_icon.png" class="file-modal-image">
                     </div>
                     <div class="file-modal-button-box">
-                        <button class="image-cancel-button">
+                        <button class="file-modal-exit cancel">
                             <span>취소</span>
                         </button>
-                        <button class="image-save-button">
+                        <button class="image-save-button save">
                             <span>저장</span>
                         </button>
                     </div>
@@ -61,7 +60,7 @@
                         </p>
                     </div>
                     <div class="file-modal-exit-box">
-                        <button class="password-modal-exit" type="button">
+                        <button class="password-modal-exit exit" type="button">
                             <span class="file-modal-exit-icon-box">
                                 <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
                             </span>
@@ -88,7 +87,7 @@
                         </div>
                     </div>
                     <div class="password-modal-button-box-layout">
-                        <button class="password-cancel">
+                        <button class="password-modal-exit cancel">
                             <span>취소</span>
                         </button>
                         <button class="password-save">
@@ -112,7 +111,7 @@
                             </p>
                         </div>
                         <div class="file-modal-exit-box">
-                            <button class="company-modal-exit" type="button">
+                            <button class="company-modal-exit exit" type="button">
                             <span class="file-modal-exit-icon-box">
                                 <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
                             </span>
@@ -129,10 +128,51 @@
                             </div>
                         </div>
                         <div class="password-modal-button-box-layout">
-                            <button class="company-cancel">
+                            <button class="company-modal-exit cancel">
                                 <span>취소</span>
                             </button>
-                            <button class="company-save">
+                            <button class="company-save save">
+                                <span>저장</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!--사업자 번호 변경 모달-->
+    <div class="business-number-modal-display">
+            <div class="password-modal">
+                <div class="password-modal-box">
+                    <div class="password-modal-title-layout">
+                        <div class="file-modal-cell"></div>
+                        <div class="password-modal-title-box">
+                            <p class="file-modal-title">
+                                사업자 번호 변경
+                            </p>
+                        </div>
+                        <div class="file-modal-exit-box">
+                            <button class="business-number-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="password-modal-input-box-layout">
+                        <div style="margin: 30px 0px;">
+                            <div>
+                                <div class="password-modal-input-box">
+                                    <input type="text" id="business-number" class="password-input" placeholder="사업자 번호를 입력해주세요." th:value="${businessVO.businessCompanyName}">
+                                </div>
+                                <p class="company-error error-msg"></p>
+                            </div>
+                        </div>
+                        <div class="password-modal-button-box-layout">
+                            <button class="business-number-modal-exit cancel">
+                                <span>취소</span>
+                            </button>
+                            <button class="business-number-save save">
                                 <span>저장</span>
                             </button>
                         </div>
@@ -176,7 +216,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">대표자명</p>
                             <p class="changeText businessCeoName" th:text="*{businessCeoName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_ceo_name">
+                            <a class="changeButton MainResume-edit js-modal-trigger ceoName-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
@@ -185,7 +225,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">대표 전화번호</p>
                             <p class="changeText phoneNumber" th:text="*{businessPhoneNumber}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone_number">
+                            <a class="changeButton MainResume-edit js-modal-trigger business-phone-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -203,7 +243,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">사업자 번호</p>
                             <p class="changeText" th:text="*{businessNumber}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_business_number">
+                            <a class="changeButton MainResume-edit js-modal-trigger business-number-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -223,7 +263,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">비밀번호 변경</p>
                             <p class="changeText"></p>
-                            <a class="changeButton">
+                            <a class="changeButton password-change-modal">
                                 <img src="/image/mypage/arrow-right-64.png" alt="">
                             </a>
                         </li>
@@ -244,68 +284,72 @@
     </div>
 
     <!-- 사업자 이름 변경 모달창 -->
-    <div id="modal-edit_ceo_name" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper is-relative">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">대표자명</p>
+    <div class="ceoName-modal">
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper is-relative">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">대표자명</p>
+                            </div>
                         </div>
+                        <div class="modal_content_bottom">
+                                <div class="modal_edit_input_wrapper">
+                                    <input type="text" placeholder="대표자명을 입력해주세요." name="businessCeoName" class="edit_input_name"
+                                        th:value="${businessVO.businessCeoName}">
+                                    <span class="error-msg name-error"></span>
+                                </div>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel ceoName-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save name-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                        </div>
+                        <button class="modal-close is-large ceoName-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <div class="modal_content_bottom">
-                            <div class="modal_edit_input_wrapper">
-                                <input type="text" placeholder="대표자명을 입력해주세요." name="businessCeoName" class="edit_input_name"
-                                    th:value="${businessVO.businessCeoName}">
-                                <span class="error-msg name-error"></span>
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="button" class="modal_save name-save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
-                    </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
+                    <button class="modal-close is-large" aria-label="close"></button>
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
     </div>
 
     <!-- 휴대폰 번호 변경 모달창 -->
-    <div id="modal-edit_phone_number" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">대표 전화번호</p>
+    <div class="business-phone-modal">
+        <div id="modal-edit_phone_number" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">대표 전화번호</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal_content_bottom">
-                            <div class="modal_content_main_wrapper">
-                                <div class="columns is-multiline m-0">
-                                    <div class="modal_input_number column is-full p-0">
-                                        <input type="text" name="phoneNumber" class="modal_input" placeholder="(-)하이폰 빼고 입력해주세요." th:value="${businessVO.businessPhoneNumber}">
+                        <div class="modal_content_bottom">
+                                <div class="modal_content_main_wrapper">
+                                    <div class="columns is-multiline m-0">
+                                        <div class="modal_input_number column is-full p-0">
+                                            <input type="text" name="phoneNumber" class="modal_input" placeholder="(-)하이폰 빼고 입력해주세요." th:value="${businessVO.businessPhoneNumber}">
+                                        </div>
+                                        <p class="error-msg phone-error"></p>
                                     </div>
-                                    <p class="error-msg phone-error"></p>
                                 </div>
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="button" class="modal_save phone-save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel business-phone-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save phone-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                        </div>
+                        <button class="modal-close is-large business-phone-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
             </div>
         </div>
@@ -313,6 +357,7 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/mypage/modal-business.js"></script>
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
     if(businessVO.businessImgUuid){
@@ -332,23 +377,8 @@
         }
         return phoneNumber;
     }
-
 </script>
 <script>
-    /* 파일 모달창 닫기*/
-    const $fileModal = $(".file-modal-display");
-    const $fileExitButton = $(".file-modal-exit");
-    const $fileCancelButton = $(".image-cancel-button");
-
-    $fileExitButton.click(function(){
-        $fileModal.hide();
-    });
-
-    $fileCancelButton.click(function(e){
-        e.preventDefault();
-        $fileModal.hide();
-    });
-
     globalThis.uuid;
     FileList.prototype.forEach = Array.prototype.forEach;
 
@@ -564,19 +594,6 @@
 
         return {businessPhoneNumberCheck : businessPhoneNumberCheck, businessCeoNameCheck: businessCeoNameCheck, phoneNumberCheck : phoneNumberCheck}
     })();
-
-    // 회사명 변경 모달
-    const $companyModalButton = $(".company-modal-open");
-    const $companyModal = $(".company-modal-display");
-    $companyModalButton.click(function(){
-        $companyModal.show();
-    });
-
-
-
-
 </script>
-<script src="/js/mypage/myinfo.js"></script>
-<script src="/js/mypage/myinfo_modal.js"></script>
 <script src="/js/mypage/edit_business.js"></script>
 </html>

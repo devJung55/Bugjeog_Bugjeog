@@ -60,4 +60,16 @@ public class MemberDAOTest {
         businessVO.setBusinessPassword("wjdwldud1!");
         memberDAO.registerBusiness(businessVO);
     }
+
+//    유통업체 이메일 중복검사
+    @Test
+    public void businessSelectByEmail() {
+        log.info("businessId : " + memberDAO.businessFindByEmail("jjy1234@naver.com"));
+    }
+
+//    유통업체 휴대폰 중복검사
+    @Test
+    public void businessSelectByPhoneNumber() {
+        log.info("businessPhoneNumber : " + memberDAO.businessFindByPhoneNumber("01012341234"));
+    }
 }
