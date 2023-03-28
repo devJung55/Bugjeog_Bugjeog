@@ -1,5 +1,6 @@
-package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo;
+package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ public class BusinessDAO {
 
     //    유통업체 회원정보 조회
     public BusinessVO findByIdToBusiness(Long businessId){
-        return businessMapper.selectBusisness(businessId);
+        return businessMapper.selectBusiness(businessId);
     };
 
     //유통 분야 설정 수정
