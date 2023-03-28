@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
@@ -134,8 +135,20 @@ public class MyPageService {
     };
 
     // 좋아요 한 게시물 목록
-    public List<BoardFreeVO> likeList(Long memberId, Criteria criteria){
-        return freeLikeDAO.findAllToLike(memberId,criteria);
+    public BoardFreeLikeDTO likeList(Long memberId, Criteria criteria){
+        BoardFreeLikeDTO boardFreeLikeDTO = new BoardFreeLikeDTO();
+        List<MemberVO> memberVOs = new ArrayList<>();
+        List<BusinessVO> businessVOS = new ArrayList<>();
+        List<BoardFreeVO> boardFreeVOS = freeLikeDAO.findAllToLike(memberId,criteria);
+
+        boardFreeVOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        boardFreeVOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+
+        boardFreeLikeDTO.setBusinessVOS(businessVOS);
+        boardFreeLikeDTO.setMemberVOs(memberVOs);
+        boardFreeLikeDTO.setBoardFreeVOs(boardFreeVOS);
+
+        return boardFreeLikeDTO;
     }
 
     // 좋아요 게시물 갯수

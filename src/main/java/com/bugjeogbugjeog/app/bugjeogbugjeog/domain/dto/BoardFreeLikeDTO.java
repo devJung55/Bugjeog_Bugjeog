@@ -1,0 +1,17 @@
+package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto;
+
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@Data
+public class BoardFreeLikeDTO {
+    List<MemberVO> memberVOs;
+    List<BusinessVO> businessVOS;
+    List<BoardFreeVO> boardFreeVOs;
+}

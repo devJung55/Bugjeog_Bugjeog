@@ -1,6 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,8 +11,8 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
-    /* 회원 목록 조회 */
-    public List<MemberVO> selectAllMember();
+    //  관리자 회원 정보 조회
+    public List<MemberDTO> selectAllMember();
 
     /* 회원 상세 보기 */
     public MemberVO selectMember(Long MemberId);
