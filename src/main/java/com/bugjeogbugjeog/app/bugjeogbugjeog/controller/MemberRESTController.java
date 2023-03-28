@@ -37,5 +37,17 @@ public class MemberRESTController {
     public String smsCode(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
         String code = memberService.sendSMS(memberPhoneNumber);
         return code;
-    };
+    }
+
+//    유통업체 이메일 중복 검사
+    @PostMapping("businessEmailsCheck")
+    public Long checkBusinessEmail(@RequestParam("businessEmail") String businessEmail) {
+        return null;
+    }
+
+//    유통업체 휴대폰번호 중복 검사
+    @PostMapping("businessPhoneNumbersCheck")
+    public Long checkBusinessPhoneNumber(@RequestParam("businessPhoneNumber") String businessPhoneNumber) {
+        return null;
+    }
 }

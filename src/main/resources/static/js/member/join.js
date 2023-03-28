@@ -194,8 +194,8 @@ $("input[name=check]").each((i, e) => {
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
 const $joinButton = $(".join-jjoin-btn-border");
-let $must1 = $(".must1");
-let $must2 = $(".must2");
+const $must1 = $(".must1");
+const $must2 = $(".must2");
 
 $joinButton.on("click", function(e) {
     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
