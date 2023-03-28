@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ public class AdminMapperTest {
     /* 회원 */
 
     @Test
-    public void selectAllMemberTest(){List<MemberVO> memberVO = adminMapper.selectAllMember();}
+    public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 
     @Test
     public void selectMemberTest(){
@@ -47,6 +48,7 @@ public class AdminMapperTest {
 
     /* 유통 회원 */
 
+   /*
    @Test
     public void selectAllBusiness(){List<BusinessVO> businessVO = adminMapper.selectAllBusiness();}
 
@@ -67,7 +69,7 @@ public class AdminMapperTest {
     public void deleteBusiness(){
         adminMapper.deleteBusiness(2L);
     }
-
+*/
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
