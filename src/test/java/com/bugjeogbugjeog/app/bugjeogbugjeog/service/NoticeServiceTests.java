@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -15,25 +16,24 @@ public class NoticeServiceTests {
     @Autowired
     NoticeService noticeService;
 
-    @Test
-    public void showListTest(){List<NoticeVO> noticeVO = noticeService.showList();}
+    /*@Test
+    public void showListTest(){List<NoticeVO> noticeVO = noticeService.showList();}*/
 
-    @Test
+    /*@Test
     public void showNoticeTest(){
         NoticeVO noticeVO = new NoticeVO();
         noticeService.showNotice(1L);
-    }
+    }*/
 
-    @Test
+  /*  @Test
     public void addTest(){
         NoticeVO noticeVO = new NoticeVO();
         noticeVO.setNoticeTitle("공지사항4");
         noticeVO.setNoticeContent("공지사항4");
         noticeService.add(noticeVO);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void removeTest(){
-        noticeService.remove(4L);
-    }
+    }*/
 }

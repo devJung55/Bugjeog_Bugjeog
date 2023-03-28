@@ -78,7 +78,7 @@ public class BusinessMyPageRestController {
     //    핸드폰 중복검사
     @GetMapping("businessPhoneCheck")
     public Boolean businessPhoneCheck(@RequestParam("businessPhoneNumber") String businessPhoneNumber){
-        return myPageService.PhoneNumberCheck(businessPhoneNumber);
+        return myPageService.phoneNumberCheck(businessPhoneNumber);
     }
 
     //    핸드폰 번호 변경
@@ -89,6 +89,37 @@ public class BusinessMyPageRestController {
         Long businessId = 4L;
         myPageService.updateBusinessPhoneNumber(businessId, businessPhoneNumber);
         return businessPhoneNumber;
+    }
+
+    @PatchMapping("companyName-update")
+    public String updateBusinessCompanyName(HttpServletRequest req, @RequestParam("businessCompanyName") String businessCompanyName){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.updateBusinessCompanyName(businessId, businessCompanyName);
+        return businessCompanyName;
+    }
+
+    @GetMapping("businessNumber-check")
+    public Boolean businessNumberCheck(@RequestParam("businessNumber") String businessNumber){
+        return myPageService.businessNumberCheck(businessNumber);
+    }
+
+    @PatchMapping("businessNumber-update")
+    public String businessNumberUpdate(HttpServletRequest req, @RequestParam("businessNumber") String businessNumber){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.businessNumberUpdate(businessId, businessNumber);
+        return businessNumber;
+    }
+
+    @PatchMapping("businessPassword-update")
+    public void businessPasswordUpdate(HttpServletRequest req, @RequestParam("businessPassword") String businessPassword){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.businessPasswordUpdate(businessId, businessPassword);
     }
 
     //    현재 날짜 경로 구하기

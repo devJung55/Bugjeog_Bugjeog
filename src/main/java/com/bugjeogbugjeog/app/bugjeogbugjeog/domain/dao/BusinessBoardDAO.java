@@ -23,7 +23,7 @@ public class BusinessBoardDAO {
     public void deleteById(Long boardBusinessId){ businessBoardMapper.delete(boardBusinessId);}
 
     //    조회(이미지 정보까지)
-    public BoardBusinessDTO findById(Long businessId){ return businessBoardMapper.select(businessId);}
+    public BoardBusinessDTO findById(Long boardBusinessId){ return businessBoardMapper.select(boardBusinessId);}
 
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> findAll(){ return businessBoardMapper.selectAllList(); }

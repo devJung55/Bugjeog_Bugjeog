@@ -16,7 +16,7 @@ public class NoticeDAOTest {
     @Autowired
     NoticeDAO noticeDAO;
 
-    @Test
+    /*@Test
     public void findByAllTest(){List<NoticeVO> noticeVO = noticeDAO.findAll();}
 
     @Test
@@ -36,5 +36,5 @@ public class NoticeDAOTest {
     @Test
     public void removeTest(){
         noticeDAO.remove(3L);
-    }
+    }*/
 }

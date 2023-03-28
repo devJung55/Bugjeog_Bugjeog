@@ -39,16 +39,22 @@ public class MemberRESTController {
         return code;
     }
 
-//    유통업체 이메일 중복 검사
+//    유통업체 이메일 중복검사
     @PostMapping("businessEmailsCheck")
     public Long checkBusinessEmail(@RequestParam("businessEmail") String businessEmail) {
         log.info(businessEmail);
         return memberService.businessCheckEmail(businessEmail);
     }
 
-//    유통업체 휴대폰번호 중복 검사
+//    유통업체 휴대폰번호 중복검사
     @PostMapping("businessPhoneNumbersCheck")
     public Long checkBusinessPhoneNumber(@RequestParam("businessPhoneNumber") String businessPhoneNumber) {
         return memberService.businessCheckPhoneNumber(businessPhoneNumber);
+    }
+
+//    유통업체 사업자번호 중복검사
+    @PostMapping("businessNumbersCheck")
+    public Long checkBusinessNumber(@RequestParam("businessNumber") String businessNumber) {
+        return memberService.businessCheckBusinessNumber(businessNumber);
     }
 }

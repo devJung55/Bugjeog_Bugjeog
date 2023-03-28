@@ -106,7 +106,7 @@ public class MyPageController {
     @GetMapping("memberPhoneCheck")
     @ResponseBody
     public Boolean memberPhoneCheck(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
-        return myPageService.PhoneNumberCheck(memberPhoneNumber);
+        return myPageService.phoneNumberCheck(memberPhoneNumber);
     }
 
     // 핸드폰 인증 번호
@@ -212,6 +212,20 @@ public class MyPageController {
     public void myInfoBusiness(Model model){
         model.addAttribute("businessVO",myPageService.businessInfo(4L));
     }
+
+    @GetMapping("exit-business")
+    public void exitBusiness(Model model){
+        model.addAttribute("businessVO",myPageService.businessInfo(4L));
+    }
+
+    @PostMapping("businessWithdraw")
+    public RedirectView businessWithdraw(HttpServletRequest req){
+        HttpSession session = req.getSession();
+//        Long businessId = (Long) session.getAttribute("businessId");
+        Long businessId = 1L;
+        return new RedirectView("/main/main");
+    }
+
 
     //    현재 날짜 경로 구하기
     private String getPath(){

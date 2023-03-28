@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper">
+    <select id="select" resultType="businessReviewVO">
+        select review_id, member_id, board_business_id, review_content, review_register_date, review_update_date, review_grade
+        from tbl_business_review
+        where board_business_id = #{boardBusinessId}
+    </select>
+</mapper>

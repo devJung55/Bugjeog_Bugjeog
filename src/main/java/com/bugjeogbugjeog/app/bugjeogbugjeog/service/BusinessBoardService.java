@@ -29,8 +29,8 @@ public class BusinessBoardService {
     public void remove(Long businessId) { businessBoardDAO.deleteById(businessId); }
 
     //    조회(이미지들까지)
-    public BoardBusinessDTO getBoard(Long businessId) {
-        return businessBoardDAO.findById(businessId);
+    public BoardBusinessDTO getBoard(Long boardBusinessId) {
+        return businessBoardDAO.findById(boardBusinessId);
     }
 
     //    목록(대표 이미지 하나)

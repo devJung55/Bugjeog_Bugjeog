@@ -92,7 +92,7 @@ public class MyPageService {
     }
 
     //    핸드폰 중복 검사
-    public Boolean PhoneNumberCheck(String PhoneNumber){
+    public Boolean phoneNumberCheck(String PhoneNumber){
         List<String> phoneNumbers = memberDAO.findAllToMemberPhoneNumber();
         boolean check = false;
 
@@ -201,9 +201,47 @@ public class MyPageService {
         businessDAO.updateLocation(businessVO);
     }
 
+    // 유통업자 회사명 변경
+    public void updateBusinessCompanyName(Long businessId , String businessCompanyName){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessCompanyName(businessCompanyName);
+        businessDAO.updateLocation(businessVO);
+    }
+
+    // 사업자 번호 중복검사
+    public Boolean businessNumberCheck(String businessNumber){
+        List<String> businessNumbers = businessDAO.findAllToBusinessNumber();
+        boolean check = false;
+        for (int i = 0; i < businessNumbers.size(); i++) {
+            if(businessNumbers.get(i).equals(businessNumber)){
+                check = true;
+            }
+        }
+        return check;
+    }
+
+    // 사업자 번호 변경
+    public void businessNumberUpdate(Long businessId , String businessNumber){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessNumber(businessNumber);
+        businessDAO.updateLocation(businessVO);
+    }
+
+    // 유통업자 비밀번호 변경
+    public void businessPasswordUpdate(Long businessId , String businessPassword){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessPassword(businessPassword);
+        businessDAO.updateLocation(businessVO);
+    }
+
     // 유통 조회
     public BusinessVO businessInfo(Long businessId){
         return businessDAO.findByIdToBusiness(businessId);
+    }
+
+    // 유통업자 회원 탈퇴
+    public void businessWithdraw(Long businessId){
+        businessDAO.removeById(businessId);
     }
 
     //    유통 분야 설정 수정
