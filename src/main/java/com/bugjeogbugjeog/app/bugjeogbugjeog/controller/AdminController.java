@@ -25,27 +25,24 @@ public class AdminController {
     private final NoticeService noticeService;
 
     private final AdminService adminService;
-/*
 
 
-/*  관리자 회원 목록 조회 */
-
+    /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
     public String memberList(Criteria criteria, Model model){
-        model.addAttribute("MemberDTO",adminService.showMemberList(criteria));
+        model.addAttribute("memberDTO",adminService.showMemberList(criteria));
         model.addAttribute("PageDTO", new PageDTO(criteria, adminService.count()));
         return "/admin/admin-memberList";
     }
 
 
-/* 회원 상세 보기 *//*
-
+    /* 회원 상세 보기 */
     @GetMapping("admin-member")
     public void adminMember(){
 
     }
 
-    */
+
 /* 회원 수정 *//*
 
     @GetMapping("admin-memberModify")
