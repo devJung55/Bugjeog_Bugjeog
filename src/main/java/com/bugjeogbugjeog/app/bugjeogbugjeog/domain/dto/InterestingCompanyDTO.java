@@ -17,4 +17,5 @@ public class InterestingCompanyDTO {
     private String boardBusinessImgOriginalName;
     private String boardBusinessImgUuid;
     private String boardBusinessImgPath;
+    private String businessCompanyName;
 }
