@@ -6,6 +6,7 @@
     <select id="selectAll" resultType="noticeVO">
         select notice_id, notice_title, notice_content, notice_register_date
         from tbl_notice
+        limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
 <!--    /* 공지사항  상세 보기 */-->

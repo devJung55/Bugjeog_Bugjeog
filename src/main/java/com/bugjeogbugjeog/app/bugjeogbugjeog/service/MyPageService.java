@@ -208,6 +208,10 @@ public class MyPageService {
         businessDAO.updateLocation(businessVO);
     }
 
+//    // 사업자 번호 중복검사
+//    public Boolean businessNumberCheck(String businessNumber){
+//    }
+
     // 유통 조회
     public BusinessVO businessInfo(Long businessId){
         return businessDAO.findByIdToBusiness(businessId);

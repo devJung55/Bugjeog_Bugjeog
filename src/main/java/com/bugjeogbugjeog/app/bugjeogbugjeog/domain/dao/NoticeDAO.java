@@ -21,6 +21,7 @@ public class NoticeDAO {
     /* 공지사항  추가 */
     public void add(NoticeVO noticeVO){ noticeMapper.insert(noticeVO);}
 
-    /* 공지사항  삭제 */
+    /* 공지사항  선택 삭제 */
     public void remove(Long noticeId){ noticeMapper.delete(noticeId);}
+
 }
