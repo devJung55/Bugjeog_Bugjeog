@@ -44,26 +44,26 @@
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/mypage/profile/postList}">
+                                        <em class="freeCount">0</em>
                                         <span>작성글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/mypage/profile/commentList}">
+                                        <em class="replyCount">0</em>
                                         <span>작성댓글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
                                     <a  th:href="@{/mypage/profile/likedList}">
-                                        <em>0</em>
+                                        <em class="likeCount">0</em>
                                         <span>좋아요</span>
                                     </a>
                                 </li>
                                 <li class="summary_content" style="border: none;">
                                     <a th:href="@{/mypage/profile/faqList}">
-                                        <em>0</em>
+                                        <em  class="inquireCount"></em>
                                         <span>문의글</span>
                                     </a>
                                 </li>
@@ -75,10 +75,10 @@
                             <h2>내 활동</h2>
                             <ul class="CommunityProfile_tabs">
                                 <li class="">
-                                    <a href="/my/posts">작성글</a>
+                                    <a th:href="@{/mypage/profile/postList}">작성글</a>
                                 </li>
                                 <li class="">
-                                    <a href="/my/comments">작성댓글</a>
+                                    <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
                                 </li>
                                 <li class="CommunityProfile_current">
                                     <a th:href="@{/mypage/profile/likedList}">좋아요</a>
@@ -116,7 +116,7 @@
                                         <div class="PostItem_like">
                                             <label for="">
                                                 <button style="display: none;"></button>
-                                                <img src="/image/mypage/like_before.png" alt="">
+                                                <img src="/image/mypage/like_after.png" class="liked" alt="">
                                             </label>
                                             <span class="button_count" th:text="${freeVO.boardFreeLike}"></span>
                                         </div>
@@ -128,6 +128,11 @@
                                 </div>
                             </article>
                             </th:block>
+                            <article class="PostItem_wrapper no-content">
+                                <div style="text-align: center;">
+                                    <h2>좋아요한 게시글이 없습니다.</h2>
+                                </div>
+                            </article>
                         </div>
                         <div class="page-box">
                             <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
@@ -153,6 +158,16 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
+    let freeVO = [[${freeVO}]];
+    console.log(freeVO);
+
+    if(freeVO.length == 0){
+        $(".page-box").hide();
+        $(".no-content").show();
+    }else {
+        $(".no-content").hide();
+        $(".page-box").show();
+    }
 
     if(memberVO.memberImgUuid){
         $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
@@ -189,6 +204,7 @@
     });
 
 </script>
+<script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/mypage_profile_personal.js"></script>
 <script src="/js/mypage/mypage_profile_paging.js"></script>
 </html>

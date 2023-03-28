@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -41,6 +42,20 @@ public interface MyPageMapper {
 //    문의 답변 여부
     public Long inquireAnswer(Long boardInquireId);
 
+//  댓글 단 게시물 목록
+    public List<MyPageReplyDTO> replyList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
+
+//    댓글 단 갯수
+    public Integer replyCount(Long memberId);
+
+//  자유 게시판 목록
+    public List<BoardFreeVO> freeList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
+
+//    자유 게시판 개수
+    public Integer freeCount(Long memberId);
+
     //유통 분야 설정 추가
     public void updateLocation(BusinessVO businessVO);
+
+
 }
