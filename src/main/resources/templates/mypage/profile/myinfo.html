@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="password-modal-button-box-layout">
-                        <button class="password-cancel">
+                        <button class="password-modal-exit cancel">
                             <span>취소</span>
                         </button>
                         <button class="password-save">
@@ -258,8 +258,9 @@
                                         </div>
                                         <span class="phone-error error-msg column is-full p-0"></span>
                                         <div class="modal_input_number column is-full p-0">
-                                            <input type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
+                                            <input readonly type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
                                         </div>
+                                        <p class="error-msg auth-msg"></p>
                                     </div>
                                 </div>
                                 <div class="modal_edit_btn_wrapper">
@@ -410,7 +411,7 @@
     });
 
     // 휴대폰 번호 검사
-    const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
+    const regPhone = /^010([0|1|6|7|8|9])?([0-9]{4})?([0-9]{4})$/;
     const $memberPhone = $("input[name=memberPhoneNumber]");
     const $phoneError = $(".phone-error");
     const $codeButton = $(".code-button");
@@ -422,40 +423,152 @@
 
         if(!memberPhoneNumber){
             $codeButton.removeClass("button-active");
-            $codeButton.attr("disabled");
+            $codeButton.attr("disabled", true);
             $phoneError.text("핸드폰 번호를 입력해주세요.");
             memberPhoneCheck = false;
 
 
-        }else if(!regPhone.test(memberPhoneNumber)){
+        }else if(memberPhoneNumber.length > 11){
             $codeButton.removeClass("button-active");
-            $codeButton.attr("disabled");
+            $codeButton.attr("disabled", true);
+            $phoneError.text("올바른 형식이 아닙니다.");
+            memberPhoneCheck = false;
+
+        } else if(!regPhone.test(memberPhoneNumber)){
+            $codeButton.removeClass("button-active");
+            $codeButton.attr("disabled", true);
             $phoneError.text("올바른 형식이 아닙니다.");
             memberPhoneCheck = false;
 
         }else if(memberServiceCheck.memberPhoneCheck(memberPhoneNumber)){
             $codeButton.removeClass("button-active");
-            $codeButton.attr("disabled");
+            $codeButton.attr("disabled", true);
             $phoneError.text("현재 핸드폰 번호와 다른 번호를 입력해주세요.");
             memberPhoneCheck = false;
 
+
         }else if(memberServiceCheck.phoneNumberCheck(memberPhoneNumber)){
             $codeButton.removeClass("button-active");
-            $codeButton.attr("disabled");
+            $codeButton.attr("disabled", true);
             $phoneError.text("중복된 핸드폰 번호입니다.");
             memberPhoneCheck = false;
 
         }  else {
             $codeButton.addClass("button-active");
-            $codeButton.removeAttr("disabled");
+            $codeButton.attr("disabled", false);
             $phoneError.text("");
             memberPhoneCheck = true;
 
         }
     });
 
+    // 인증번호 보내기 클릭 시
+    $(".code-button").click(function(){
+        let memberPhoneNumber = $("input[name=memberPhoneNumber]").val();
+        if(!memberPhoneCheck){
+            alert("핸드폰 번호를 확인해주세요.");
+            return false;
+        }
+        $(".code-check-input").removeAttr("readonly");
+        $codeButton.removeClass("button-active");
+        $codeButton.attr("disabled", true);
+        memberServiceCheck.authSend(memberPhoneNumber);
+    });
+
+    // 인증번호 검사
+    const $codeInput = $(".code-check-input");
+    let codeCheck = false;
+
+    $codeInput.keyup(function(){
+        if(!$codeInput.val()){
+            $(".auth-msg").css("color","red");
+            $(".auth-msg").text("인증번호를 입력해주세요.")
+            codeCheck = false;
+
+        }else if($codeInput.val() != globalThis.code){
+            $(".auth-msg").css("color","red");
+            $(".auth-msg").text("인증번호가 일치하지 않습니다.");
+            codeCheck = false;
+
+        }else {
+            $(".auth-msg").css("color","#36f");
+            $(".auth-msg").text("인증번호가 일치합니다.");
+            codeCheck = true;
+
+        }
+    });
+
+    // 휴대폰 번호 변경
+    const $phoneUpdateButton = $(".phone-save");
+    $phoneUpdateButton.click(function(){
+        if(!codeCheck){
+            alert("인증번호를 확인해주세요.");
+            return false;
+        }
+        let memberPhoneNumber = $("input[name=memberPhoneNumber]").val();
+
+        memberUpdate.memberPhoneNumberUpdate(memberPhoneNumber);
+    });
+
+    // 비밀번호 검사
+    let passwordCheck = [false, false];
+    const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    const $newpassword = $("#new-password");
+    const $newPasswordError = $(".password-error");
+
+    $newpassword.blur(function(){
+        let memberPassword = $(this).val();
+
+        if(!memberPassword){
+            $newPasswordError.text("비밀번호를 입력해주세요.");
+            passwordCheck[0] = false;
+
+        }else if(!regPassword.test(memberPassword)){
+            $newPasswordError.text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.");
+            passwordCheck[0] = false;
+
+        }else {
+            passwordCheck[0] = true;
+            $newPasswordError.text("");
+
+        }
+    });
+
+    // 비밀번호 재검사
+    const $passwordCheck = $("#new-password-check");
+    const $passwordCheckError = $(".password-check-error");
+
+    $passwordCheck.blur(function () {
+        let password = $(this).val();
+        if(!password){
+            $passwordCheckError.text("비밀번호를 입력해주세요.");
+            passwordCheck[1] = false;
+
+        }else if(password != $newpassword.val()){
+            $passwordCheckError.text("비밀번호가 일치하지 않습니다.");
+            passwordCheck[1] = false;
+
+        }else {
+            $passwordCheckError.text("");
+            passwordCheck[1] = true;
+
+        }
+    });
+
+    //     비밀번호 변경
+    const $passwordSave = $(".password-save");
+
+    $passwordSave.click(function(){
+        let memberPassword = $("#new-password").val();
+        if(passwordCheck.filter(check => check == true ).length != 2){
+            alert("잘못 입력된 정보가 있습니다.");
+            return false;
+        }
+        memberUpdate.memberPasswordUpdate(memberPassword);
+    });
 
     /*=================================================================*/
+    globalThis.code;
 
     let memberServiceCheck = (function(){
         // 회원 현재 이름 비교
@@ -480,7 +593,6 @@
                 type: "get",
                 async : false,
                 success : function (memberVO) {
-                    console.log(memberVO.memberPhoneNumber);
                     check = memberVO.memberPhoneNumber == memberPhoneNumber;
                 }
             });
@@ -502,7 +614,22 @@
             return check;
         }
 
-        return { memberNameCheck : memberNameCheck, memberPhoneCheck : memberPhoneCheck, phoneNumberCheck : phoneNumberCheck }
+        // 인증번호 발송
+        function authSend (memberPhoneNumber) {
+            $.ajax({
+                url: "/mypage/profile/code",
+                type : "post",
+                data : {"memberPhoneNumber" : memberPhoneNumber},
+                success : function(code){
+                    console.log(code);
+                    $(".auth-msg").css("color", "#36f");
+                    $(".auth-msg").text("인증번호를 발송했습니다.");
+                    globalThis.code = code;
+                }
+            });
+        }
+
+        return { memberNameCheck : memberNameCheck, memberPhoneCheck : memberPhoneCheck, phoneNumberCheck : phoneNumberCheck, authSend : authSend }
     })();
 
     let memberUpdate = (function(){
@@ -521,7 +648,39 @@
             });
         }
 
-        return {memberNameUpdate : memberNameUpdate, }
+        function memberPhoneNumberUpdate (memberPhoneNumber) {
+            $.ajax({
+                url : "/mypage/profile/phoneNumberUpdate",
+                type: "patch",
+                data: {"memberPhoneNumber" : memberPhoneNumber},
+                success : function (memberPhoneNumber) {
+                    $(".phoneNumber").text(phoneNumber(memberPhoneNumber));
+                    $("input[name=memberPhoneNumber]").val(memberPhoneNumber);
+                    $("input[name=memberPhoneNumber]").attr("readonly", true);
+                    $("input[name=memberPhoneNumber]").attr("disabled", true);
+                    $(".code-check-input").attr("readonly", true);
+                    $(".code-check-input").val("");
+                    $(".auth-msg").text("");
+                    $(".change-phoneNumber").show();
+                    $codeButton.hide();
+                    $memberPhoneModal.hide();
+                }
+            });
+        }
+
+        function memberPasswordUpdate(memberPassword){
+            $.ajax({
+                url : "/mypage/profile/updatePassword",
+                type : "patch",
+                data : { "memberPassword" :btoa(memberPassword)},
+                success : function(){
+                    $("input[type=password]").val("");
+                    $passwordModal.hide();
+                }
+            });
+        }
+
+        return {memberNameUpdate : memberNameUpdate,memberPhoneNumberUpdate : memberPhoneNumberUpdate, memberPasswordUpdate :memberPasswordUpdate }
     })();
 
 </script>

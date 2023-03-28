@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
@@ -191,8 +192,12 @@ public class MyPageController {
 //        Long memberId = (Long) session.getAttribute("memberId");
         Long memberId = 1L;
 
+        BoardFreeLikeDTO boardFreeLikeDTO = myPageService.likeList(memberId, criteria);
+
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
-        model.addAttribute("freeVO",myPageService.likeList(memberId,criteria));
+        model.addAttribute("memberVOs", boardFreeLikeDTO.getMemberVOs());
+        model.addAttribute("businessVOs", boardFreeLikeDTO.getBusinessVOS());
+        model.addAttribute("freeVOs", boardFreeLikeDTO.getBoardFreeVOs());
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.likeCount(memberId)));
     }
 
