@@ -33,6 +33,10 @@ public class BusinessBoardService {
         return businessBoardDAO.findById(boardBusinessId);
     }
 
+    public List<BoardBusinessDTO> getBoardByBusinessId(Long businessId) {
+        return businessBoardDAO.findByBusinessId(businessId);
+    }
+
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> getList() {
         return businessBoardDAO.findAll();

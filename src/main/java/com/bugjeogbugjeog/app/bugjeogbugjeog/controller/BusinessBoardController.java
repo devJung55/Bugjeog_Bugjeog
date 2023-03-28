@@ -82,23 +82,23 @@ public class BusinessBoardController {
         return businessBoardService.getList(searchMap);
     }
 
-    @GetMapping("/board/business/detail")
-    public String detail(HttpServletRequest request) {
-        String boardBusinessId = request.getParameter("boardBusinessId");
-        return "post:/board/business/detail?boardBusinessId=" + boardBusinessId;
-    }
+//    @GetMapping("/board/business/detail")
+//    public String detail(HttpServletRequest request) {
+//        String boardBusinessId = request.getParameter("boardBusinessId");
+//        return "post:/board/business/detail?boardBusinessId=" + boardBusinessId;
+//    }
 
+    @GetMapping("/board/business/detail")
     @PostMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) {
         System.out.println("컨 들어옴");
         log.info(req.getParameter("boardBusinessId"));
+
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
         String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
         dto.setBoardBusinessImgFullPath(fullPath);
-        System.out.println("========================");
-        System.out.println(dto.toString());
-        System.out.println("========================");
+
         List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
         businessReviewDTOs.stream().map(reviewDTO -> {
             String orginName = reviewDTO.getMemberImgOriginalName();
@@ -111,6 +111,7 @@ public class BusinessBoardController {
         System.out.println(businessReviewDTOs.toString());
         model.addAttribute("board", dto);
         model.addAttribute("reviews", businessReviewDTOs);
+        model.addAttribute("boardList", businessBoardService.getBoardByBusinessId(dto.getBusinessId()));
     }
 
     @GetMapping("/board/business/write")

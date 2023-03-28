@@ -25,6 +25,8 @@ public class BusinessBoardDAO {
     //    조회(이미지 정보까지)
     public BoardBusinessDTO findById(Long boardBusinessId){ return businessBoardMapper.select(boardBusinessId);}
 
+    public List<BoardBusinessDTO> findByBusinessId(Long businessId){ return businessBoardMapper.selectAllByBusinessId(businessId);}
+
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> findAll(){ return businessBoardMapper.selectAllList(); }
 
