@@ -1,7 +1,7 @@
     globalThis.code;
     globalThis.PhoneNumberCheck;
     let codeCheck = false;
-
+    let phoneCheck= false;
     // 휴대폰 검사
     const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
     const $phoneError = $(".phone-error");
@@ -15,30 +15,35 @@
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("핸드폰 번호를 입력해주세요.");
+            phoneCheck= false;
 
         }else if(!regPhone.test(phoneVal)){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("올바른 형식이 아닙니다.");
+            phoneCheck= false;
 
         } else if(memberPhoneCheck(phoneVal)){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("현재 핸드폰 번호와 다른 번호를 입력해주세요.");
+            phoneCheck= false;
 
         }else if(phoneNumberCheck(phoneVal)){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
             $phoneError.show();
             $phoneError.text("중복된 핸드폰 번호입니다.");
+            phoneCheck= false;
 
         } else {
             $Checkbutton.css("cursor", "pointer");
             $Checkbutton.addClass("phone-active");
             $phoneError.hide();
             $phoneError.text("");
+            phoneCheck= true;
             $(".code-button").removeAttr('disabled');
             $(".code-button").addClass('btn_active');
             $editPhoneBtnText.text(sendAuthText);
@@ -47,6 +52,11 @@
 
     // 인증번호 보내기 클릭 시
     $(".code-button").click(function(){
+
+        if(!phoneCheck){
+            alert("핸드폰 번호를 확인해주세요.");
+            return false;
+        }
 
         $(".authcode-input").addClass("authcode-input-active");
         $(".auth-msg").show();
@@ -64,6 +74,7 @@
 
    // 인증번호 검사
    const $codeInput = $(".code-check-input");
+
 
    $codeInput.keyup(function(){
        if(!$codeInput.val()){

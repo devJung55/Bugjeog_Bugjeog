@@ -339,7 +339,6 @@
             processData: false,
             success: function(uuid) {
                 globalThis.uuid = uuid;
-                console.log($file.type);
                     if($file.type.startsWith("image")){
                         $fileModal.show();
                         $(".file-modal-image").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
