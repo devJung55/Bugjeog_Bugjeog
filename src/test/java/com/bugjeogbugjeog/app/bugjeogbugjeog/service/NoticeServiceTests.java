@@ -33,10 +33,16 @@ public class NoticeServiceTests {
         noticeService.add(noticeVO);
     }
 
+<<<<<<< HEAD
 //    @Test
 //    public void removeTest(){
 //        List<Long> noticeSample = new ArrayList<>();
 //        noticeSample.add(1L);
 //        noticeService.remove(noticeSample);
 //    }
+=======
+    @Test
+    public void removeTest(){
+    }
+>>>>>>> admin
 }

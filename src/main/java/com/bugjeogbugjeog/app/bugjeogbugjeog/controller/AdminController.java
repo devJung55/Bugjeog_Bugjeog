@@ -1,8 +1,11 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin/*")
+@Slf4j
 public class AdminController {
 
     private final NoticeService noticeService;
@@ -61,9 +65,13 @@ public class AdminController {
 
     /* 공지사항 리스트 */
    @GetMapping("admin-noticeList")
-    public void noticeList(Model model){
-        model.addAttribute("notices",noticeService.showList());
-    }
+    public String noticeList(Criteria criteria, Model model){
+
+       model.addAttribute("noticeVO", noticeService.showList(criteria));
+       model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
+       return "/admin/admin-noticeList";
+
+   }
 
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
