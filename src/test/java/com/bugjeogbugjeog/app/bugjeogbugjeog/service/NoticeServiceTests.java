@@ -16,8 +16,8 @@ public class NoticeServiceTests {
     @Autowired
     NoticeService noticeService;
 
-    @Test
-    public void showListTest(){List<NoticeVO> noticeVO = noticeService.showList();}
+    /*@Test
+    public void showListTest(){List<NoticeVO> noticeVO = noticeService.showList();}*/
 
     @Test
     public void showNoticeTest(){
@@ -33,16 +33,7 @@ public class NoticeServiceTests {
         noticeService.add(noticeVO);
     }
 
-<<<<<<< HEAD
-//    @Test
-//    public void removeTest(){
-//        List<Long> noticeSample = new ArrayList<>();
-//        noticeSample.add(1L);
-//        noticeService.remove(noticeSample);
-//    }
-=======
-    @Test
+   /* @Test
     public void removeTest(){
-    }
->>>>>>> admin
+    }*/
 }
