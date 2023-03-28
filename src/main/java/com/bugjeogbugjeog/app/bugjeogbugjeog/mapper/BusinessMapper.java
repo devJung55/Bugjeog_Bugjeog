@@ -3,6 +3,8 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface BusinessMapper {
 
@@ -11,4 +13,7 @@ public interface BusinessMapper {
 
     //유통 분야 설정 추가
     public void updateLocation(BusinessVO businessVO);
+
+    // 사업자번호 전부 가져옴
+    public List<String> selectListToBusinessNumber();
 }
