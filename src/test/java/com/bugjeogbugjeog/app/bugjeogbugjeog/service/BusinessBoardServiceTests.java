@@ -24,5 +24,10 @@ public class BusinessBoardServiceTests {
         businessBoardService.registerBoard(vo);
     }
 
+    @Test
+    public void selectTest(){
+        log.info(businessBoardService.getBoard(1L).toString());
+    }
+
 
 }
