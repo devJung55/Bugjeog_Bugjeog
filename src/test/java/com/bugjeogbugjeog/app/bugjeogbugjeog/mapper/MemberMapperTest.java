@@ -58,4 +58,16 @@ public class MemberMapperTest {
         businessVO.setBusinessPassword("wjdwldud1!");
         memberMapper.insertBusiness(businessVO);
     }
+
+//    유통업체 이메일 중복검사
+    @Test
+    public void businessSelectByEmail() {
+        log.info("businessId : " + memberMapper.businessSelectByEmail("jjy1234@naver.com"));
+    }
+
+//    유통업체 휴대폰 중복검사
+    @Test
+    public void businessSelectByPhoneNumber() {
+        log.info("businessPhoneNumber : " + memberMapper.businessSelectByPhoneNumber("01012341234"));
+    }
 }
