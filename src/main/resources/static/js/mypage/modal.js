@@ -1,7 +1,6 @@
 const errorMsg = $(".error-msg");
 const ceoNameVal = $("input[name=businessCeoName]").val();
 const basicPhoneNumber = $("input[name=phoneNumber]").val();
-const basicCompanyName = $("#company-name").val();
 
 // 파일 모달창 닫기
 const $fileModal = $(".file-modal-display");
@@ -23,9 +22,6 @@ $companyModalButton.click(function(){
 
 $companyModalExit.each((i, e) => {
     $(e).click(function(){
-        companyNameCheck = false;
-        errorMsg.text("");
-        $("#company-name").val(basicCompanyName);
         $companyModal.hide();
     });
 });
