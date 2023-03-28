@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -28,12 +29,12 @@ import java.util.UUID;
 @RequestMapping("/mypage/profile/*")
 @Slf4j
 public class MyPageController {
-
+    private final HttpServletRequest req;
     private final MyPageService myPageService;
 
     //  --------------------- 일반 회원 조회
     @GetMapping("myinfo")
-    public void memberInfo(HttpServletRequest req, Model model) {
+    public void memberInfo(Model model) {
         HttpSession session = req.getSession();
 //        Long memberId = (Long) session.getAttribute("memberId");
         Long memberId = 1L;
@@ -147,6 +148,7 @@ public class MyPageController {
         return myPageService.memberInfo(memberId);
     }
 
+    // faq 리스트
     @GetMapping("faqList")
     public void faqList(HttpServletRequest req, Model model, Criteria criteria){
         HttpSession session = req.getSession();
@@ -159,14 +161,28 @@ public class MyPageController {
         model.addAttribute("inquireCount", myPageService.inquireCount(memberId));
     }
 
-    @GetMapping("list_business")
-    public void test(){
+    // 댓글 단 리스트
+    @GetMapping("commentList")
+    public void replyList(HttpServletRequest req, Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
 
+        model.addAttribute("memberVO",myPageService.memberInfo(memberId));
+        model.addAttribute("MyPagereplyDTO", myPageService.replyList(memberId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.replyCount(memberId)));
     }
 
+    // 자유게시판 작성 목록
     @GetMapping("postList")
-    public void test1(){
+    public void freeBoardList(HttpServletRequest req, Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
 
+        model.addAttribute("memberVO",myPageService.memberInfo(memberId));
+        model.addAttribute("boardFreeVO", myPageService.freeList(memberId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.freeCount(memberId)));
     }
 
     @GetMapping("likedList")
@@ -180,6 +196,22 @@ public class MyPageController {
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.likeCount(memberId)));
     }
 
+    // 각 게시물 작성 갯수
+    @GetMapping("count")
+    @ResponseBody
+    public Map<String, Integer> allCount(HttpServletRequest req){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = 1L;
+
+        return myPageService.allcount(memberId);
+    }
+
+    // 유통업체 정보
+    @GetMapping("myinfo_business")
+    public void myInfoBusiness(Model model){
+        model.addAttribute("businessVO",myPageService.businessInfo(4L));
+    }
 
     //    현재 날짜 경로 구하기
     private String getPath(){

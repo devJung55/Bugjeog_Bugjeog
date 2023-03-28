@@ -61,18 +61,20 @@ const $phone = $(".join-phone-number");
 const $phoneError = $(".phone-error");
 const $Checkbutton = $(".join-num-check-button");
 
-$phone.blur(function(){
+$phone.keyup(function(){
     let phoneVal = $phone.val();
     $phoneError.show();
-    if(!phoneVal){
+    if(!phoneVal && phoneVal.length != 11){
         $Checkbutton.removeClass("phone-active");
         $Checkbutton.css("cursor", "inherit");
+        $(".phone-check").css("color", "red");
         $phoneError.text("핸드폰 번호를 입력해주세요.");
         phoneNumberCheck = false;
 
     }else if(!regPhone.test(phoneVal)){
         $Checkbutton.css("cursor", "inherit");
         $Checkbutton.removeClass("phone-active");
+        $(".phone-check").css("color", "red");
         $phoneError.text("올바른 형식이 아닙니다.");
         phoneNumberCheck = false;
 
@@ -87,6 +89,14 @@ $phone.blur(function(){
         $(".phone-check").html("사용가능한 휴대폰번호입니다.");
         phoneNumberCheck = true;
         joinButtonActive();
+    }
+});
+
+$phone.on("change", function(e) {
+    if(phoneNumberCheck) {
+        joinService.sendSMS();
+        $(".authcode-input").addClass("authcode-input-active");
+        $(".auth-msg").show();
     }
 });
 
@@ -158,6 +168,7 @@ $("#allSelect").click(function() {
         $(".join-terms-agree").removeClass("checkbox-active-box");
         $("input[name=check]").prop("checked", false);
         allCheckBox = false;
+        console.log(allCheckBox);
     }
 });
 
@@ -194,8 +205,8 @@ $("input[name=check]").each((i, e) => {
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
 const $joinButton = $(".join-jjoin-btn-border");
-let $must1 = $(".must1");
-let $must2 = $(".must2");
+const $must1 = $(".must1");
+const $must2 = $(".must2");
 
 $joinButton.on("click", function(e) {
     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
@@ -226,7 +237,8 @@ $must2.on("click", function(e) {
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
-const $joinText = $(".join-final-btn-ment");
+
+/*const $joinText = $(".join-final-btn-ment");
 
 let joinButtonActive = function() {
     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
@@ -244,15 +256,18 @@ let joinButtonActive = function() {
         $joinText.css("color", "#000000");
         $joinText.css("opacity", "0.5");
     }
-};
+};*/
 
 
 $(".authcode-check-button").on("click", function(e) {
     if($(".authcode-check").val() == code) {
-        alert("인증성공");
+        $(".auto-mag").css("color", "blue");
+        $(".auth-msg").html("인증에 성공했습니다.");
         authCodeCheck = true;
         joinButtonActive();
     } else {
+        $(".auto-mag").css("color", "red");
+        $(".auth-msg").html("인증에 실패했습니다.");
         authCodeCheck = false;
         alert("인증실패");
     }
@@ -322,3 +337,6 @@ let joinService = (function() {
     }
     return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS}
 })();
+
+
+console.log($("input"));

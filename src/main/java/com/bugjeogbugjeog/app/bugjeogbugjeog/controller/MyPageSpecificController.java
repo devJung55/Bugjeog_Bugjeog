@@ -2,7 +2,6 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -57,10 +54,5 @@ public class MyPageSpecificController {
         return new RedirectView("/mypage/edit");
     }
 
-
-//    @GetMapping("/specific/businessEdit")
-//    public String main2(){
-//        return "mypage/specific/businessEdit";
-//    }
 
 }

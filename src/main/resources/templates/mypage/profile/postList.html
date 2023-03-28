@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="/css/mypage/font.css">
     <link rel="stylesheet" href="/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
-    <!-- <link rel="stylesheet" href="/css/mypage/mypage_personal.css"> -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile_personal.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/mypage/page.css">
 </head>
 
 <body class="profile_body">
@@ -32,7 +32,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include"></aside>
+                <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
                         <picture>
@@ -45,26 +45,26 @@
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/mypage/profile/postList}">
+                                        <em class="freeCount">0</em>
                                         <span>작성글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/mypage/profile/commentList}">
+                                        <em class="replyCount">0</em>
                                         <span>작성댓글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a  th:href="@{/mypage/profile/likedList}">
+                                        <em class="likeCount">0</em>
                                         <span>좋아요</span>
                                     </a>
                                 </li>
                                 <li class="summary_content" style="border: none;">
-                                    <a href="">
-                                        <em>0</em>
+                                    <a th:href="@{/mypage/profile/faqList}">
+                                        <em  class="inquireCount"></em>
                                         <span>문의글</span>
                                     </a>
                                 </li>
@@ -76,154 +76,68 @@
                             <h2>내 활동</h2>
                             <ul class="CommunityProfile_tabs">
                                 <li class="CommunityProfile_current">
-                                    <a href="/my/posts">작성글</a>
+                                    <a th:href="@{/mypage/profile/postList}">작성글</a>
                                 </li>
                                 <li class="">
-                                    <a href="/my/comments">작성댓글</a>
+                                    <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
                                 </li>
                                 <li class="">
-                                    <a href="/my/likes">좋아요</a>
+                                    <a th:href="@{/mypage/profile/likedList}">좋아요</a>
                                 </li>
                                 <li>
-                                    <a href="/my/qna">문의글</a>
+                                    <a th:href="@{/mypage/profile/faqList}">문의글</a>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <!-- 첫번째 글 -->
+                            <th:block th:each="boardFreeVO, i : ${boardFreeVO}" th:if="${not #strings.isEmpty(boardFreeVO)}">
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
                                         <div class="AuthorBox_Wrapper">
                                             <div class="AuthorBox_horizontalBox">
                                                 <div class="AuthorBox_avatarWrapper">
                                                     <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
+                                                        <img class="img_profile" src="/image/boardList/self_employ_icon.png">
                                                     </div>
                                                 </div>
-                                                <span class="AuthorBox_username">what0</span>
+                                                <span class="AuthorBox_username" th:text="${memberVO.memberName}"></span>
                                             </div>
                                             <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
+                                                class="AuthorBox_createAt" th:text="${boardFreeVO.boardFreeRegisterDate}"></span>
                                         </div>
-                                    </a>
                                 </div>
                                 <div class="PostItem_body">
                                     <div class="PostItem_header">
                                         <a href="">
-                                            <h3 class="PostItem_title">
-                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                            </h3>
-                                            <p class="PostItem_content">
-                                                합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                                뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
+                                            <h3 class="PostItem_title" th:text="${boardFreeVO.boardFreeTitle}"></h3>
+                                            <p class="PostItem_content" th:text="${boardFreeVO.boardFreeContent}">
                                             </p>
                                         </a>
                                     </div>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <label for="">
-                                                <button style="display: none;"></button>
-                                                <img src="/image/mypage/like_before.png" alt="">
-                                            </label>
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="/image/mypage/comment-dots-64.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </article>
-
-
-                            <!-- 두번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href=""><!-- 글쓴이 프로필 페이지 링크 -->
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                            </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="PostItem_body">
-                                    <div class="PostItem_header">
-                                        <a href="">
-                                            <h3 class="PostItem_title">
-                                                합격통보 받고 한달안에 안간다고 연락드려도 되나요..?
-                                            </h3>
-                                            <p class="PostItem_content">
-                                                합격 통보받고 한달동안 기간있는데 그 기간안에 원하던곳에 합격하면 보통
-                                                뭐라고 연락드리나요..?그냥 날렸다 생각하고 진행하시나요..?
-                                            </p>
-                                        </a>
-                                    </div>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <label for="">
-                                                <button style="display: none;"></button>
-                                                <img src="/image/mypage/like_before.png" alt="">
-                                            </label>
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="/image/mypage/comment-dots-64.png" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
+                            </th:block>
+                            <article class="PostItem_wrapper no-content">
+                                <div style="text-align: center;">
+                                    <h2>작성한 게시글이 없습니다.</h2>
                                 </div>
                             </article>
-
-<!--                        글 폼
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <a href="">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img src="https://static.wanted.co.kr/open_profile/avatar/bb7fc620aaa234ed5da383ee06d9b6c2a4d331dd6b105f70b80c20113b6e9f00"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username">what0</span>
-                                            </div>
-                                            <span
-                                                class="AuthorBox_createAt">2023.03.13</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <a class="PostItem_body" href="">
-                                    <h3 class="PostItem_title">
-                                    </h3>
-                                    <p class="PostItem_content">
-                                    </p>
-                                    <div class="PostItem_bottom">
-                                        
-                                        <div class="PostItem_like">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="" alt="">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
--->
                         </div>
+                        <div class="page-box">
+                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
+                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                    <span th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                </a>
+                            </th:block>
+                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
+                        </div>
+                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                            <input type="hidden" th:field="*{pageNum}">
+                            <input type="hidden" th:field="*{amount}">
+                        </form>
                     </div>
                 </section>
             </section>
@@ -232,8 +146,52 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('../fragment/aside_personal.html');</script><!-- th:삽입후 제거 -->
-<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script><!-- th:삽입후 제거 -->
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    let boardFreeVO =[[${boardFreeVO}]];
+
+    if(boardFreeVO.length == 0){
+        $(".page-box").hide();
+        $(".no-content").show();
+    }else {
+        $(".no-content").hide();
+        $(".page-box").show();
+    }
+
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    if(memberVO.memberImgUuid){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    }
+
+    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
+
+    function phoneNumber(phoneNumber){
+        var phone1 = phoneNumber.substring(0,3);
+        var phone2 = phoneNumber.substring(3,7);
+        var phone3 = phoneNumber.substring(7);
+        let phone = phone1 + "-" + phone2 + "-" + phone3;
+        return phone;
+    }
+
+    function date(date){
+        let registerDate = new Date(date);
+        return registerDate.getFullYear() +"."+(registerDate.getMonth() + 1) + "." + registerDate.getDate();
+    }
+
+    let $date = $(".AuthorBox_createAt");
+    $(document).ready(function(){
+        $date.each((i, e) => {
+            $(e).text(date($(e).text()));
+        });
+    });
+</script>
 <script src="/js/mypage/mypage_profile_personal.js"></script>
+<script src="/js/mypage/count.js"></script>
 </html>

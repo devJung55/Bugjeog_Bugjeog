@@ -5,14 +5,182 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
-
 <body>
+    <!-- 파일 넣으면 뜰 모달-->
+    <div class="file-modal-display">
+        <div class="file-modal">
+            <div class="file-modal-box">
+                <div class="file-modal-title-box-layout">
+                    <div class="file-modal-cell"></div>
+                    <div class="file-modal-title-box">
+                        <p class="file-modal-title">
+                            프로필 사진
+                        </p>
+                    </div>
+                    <div class="file-modal-exit-box">
+                        <button class="file-modal-exit exit" type="button">
+                                <span class="file-modal-exit-icon-box">
+                                    <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                                </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="file-modal-image-box-layout">
+                    <div class="file-modal-image-box">
+                        <img src="/image/boardList/distributor_icon.png" class="file-modal-image">
+                    </div>
+                    <div class="file-modal-button-box">
+                        <button class="file-modal-exit cancel">
+                            <span>취소</span>
+                        </button>
+                        <button class="image-save-button save">
+                            <span>저장</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비밀번호 변경 모달-->
+    <div class="password-modal-display">
+        <div class="password-modal">
+            <div class="password-modal-box">
+                <div class="password-modal-title-layout">
+                    <div class="file-modal-cell"></div>
+                    <div class="password-modal-title-box">
+                        <p class="file-modal-title">
+                            비밀번호 변경
+                        </p>
+                    </div>
+                    <div class="file-modal-exit-box">
+                        <button class="password-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="password-modal-input-box-layout">
+                    <div style="margin: 30px 0px;">
+                        <div>
+                            <div class="password-title-box">
+                                <span>변경 비밀번호</span>
+                            </div>
+                            <div class="password-modal-input-box">
+                                <input type="password" id="new-password" class="password-input" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                            <p class="password-error error-msg"></p>
+                            <div class="password-title-box">
+                                <span>비밀번호 재확인</span>
+                            </div>
+                            <div class="password-modal-input-box">
+                                <input type="password" id="new-password-check" class="password-input" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                            <p class="password-check-error error-msg"></p>
+                        </div>
+                    </div>
+                    <div class="password-modal-button-box-layout">
+                        <button class="password-modal-exit cancel">
+                            <span>취소</span>
+                        </button>
+                        <button class="password-save">
+                            <span>저장</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--회사명 변경 모달-->
+    <div class="company-modal-display">
+            <div class="password-modal">
+                <div class="password-modal-box">
+                    <div class="password-modal-title-layout">
+                        <div class="file-modal-cell"></div>
+                        <div class="password-modal-title-box">
+                            <p class="file-modal-title">
+                                회사명 변경
+                            </p>
+                        </div>
+                        <div class="file-modal-exit-box">
+                            <button class="company-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="password-modal-input-box-layout">
+                        <div style="margin: 30px 0px;">
+                            <div>
+                                <div class="password-modal-input-box">
+                                    <input type="text" id="company-name" class="password-input" placeholder="회사명을 입력해주세요." th:value="${businessVO.businessCompanyName}">
+                                </div>
+                                <p class="company-error error-msg"></p>
+                            </div>
+                        </div>
+                        <div class="password-modal-button-box-layout">
+                            <button class="company-modal-exit cancel">
+                                <span>취소</span>
+                            </button>
+                            <button class="company-save save">
+                                <span>저장</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!--사업자 번호 변경 모달-->
+    <div class="business-number-modal-display">
+            <div class="password-modal">
+                <div class="password-modal-box">
+                    <div class="password-modal-title-layout">
+                        <div class="file-modal-cell"></div>
+                        <div class="password-modal-title-box">
+                            <p class="file-modal-title">
+                                사업자 번호 변경
+                            </p>
+                        </div>
+                        <div class="file-modal-exit-box">
+                            <button class="business-number-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="password-modal-input-box-layout">
+                        <div style="margin: 30px 0px;">
+                            <div>
+                                <div class="password-modal-input-box">
+                                    <input type="text" id="business-number" class="password-input" placeholder="사업자 번호를 입력해주세요." th:value="${businessVO.businessCompanyName}">
+                                </div>
+                                <p class="company-error error-msg"></p>
+                            </div>
+                        </div>
+                        <div class="password-modal-button-box-layout">
+                            <button class="business-number-modal-exit cancel">
+                                <span>취소</span>
+                            </button>
+                            <button class="business-number-save save">
+                                <span>저장</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
     <div class="whole_wrapper">
         <div class="mypage_wrapper">
             <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
@@ -21,16 +189,15 @@
             <main class="mypage_info_container">
                 <header class="member_img_container">
                     <div class="img_wrapper">
-                        <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                        <img class="img_profile" src="/image/boardList/distributor_icon.png">
                         <label class="edit_wrapper">
-                            <input style="display: none;" type="file">
+                            <input style="display: none;" type="file" name="file">
                             <span class="edit_span">
                                 <img src="/image/mypage/ink-pen-64.png">
                             </span>
                         </label>
                     </div>
-                    <p class="welcome_msg">
-                        <th:block  th:text="${businessVO.businessCeoName}"></th:block>님, 환영해요.
+                    <p class="welcome_msg change-name"th:text="|${businessVO.businessCeoName}님, 환영해요.|">
                     </p>
                 </header>
                 <section class="info_content member_info_container">
@@ -48,17 +215,17 @@
 
                         <li class="changeDefault">
                             <p class="changeTitle">대표자명</p>
-                            <p class="changeText" th:text="*{businessCeoName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_ceo_name">
+                            <p class="changeText businessCeoName" th:text="*{businessCeoName}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger ceoName-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
                             </a>
                         </li>
                         <li class="changeDefault">
-                            <p class="changeTitle">휴대폰 번호</p>
-                            <p class="changeText" th:text="*{businessPhoneNumber}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone_number">
+                            <p class="changeTitle">대표 전화번호</p>
+                            <p class="changeText phoneNumber" th:text="*{businessPhoneNumber}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger business-phone-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -66,8 +233,8 @@
                         </li>
                         <li class="changeDefault">
                             <p class="changeTitle">회사명</p>
-                            <p class="changeText" th:text="*{businessComponyName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_business_compony_name">
+                            <p class="changeText" th:text="*{businessCompanyName}"></p>
+                            <a class="changeButton MainResume-edit js-modal-trigger company-modal-open" data-target="modal-edit_business_compony_name">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
@@ -76,7 +243,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">사업자 번호</p>
                             <p class="changeText" th:text="*{businessNumber}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_business_number">
+                            <a class="changeButton MainResume-edit js-modal-trigger business-number-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -96,7 +263,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">비밀번호 변경</p>
                             <p class="changeText"></p>
-                            <a class="changeButton">
+                            <a class="changeButton password-change-modal">
                                 <img src="/image/mypage/arrow-right-64.png" alt="">
                             </a>
                         </li>
@@ -117,94 +284,72 @@
     </div>
 
     <!-- 사업자 이름 변경 모달창 -->
-    <div id="modal-edit_ceo_name" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper is-relative">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_left"></div>
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">이름</p>
+    <div class="ceoName-modal">
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper is-relative">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">대표자명</p>
+                            </div>
                         </div>
+                        <div class="modal_content_bottom">
+                                <div class="modal_edit_input_wrapper">
+                                    <input type="text" placeholder="대표자명을 입력해주세요." name="businessCeoName" class="edit_input_name"
+                                        th:value="${businessVO.businessCeoName}">
+                                    <span class="error-msg name-error"></span>
+                                </div>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel ceoName-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save name-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                        </div>
+                        <button class="modal-close is-large ceoName-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <div class="modal_content_bottom">
-                        <form>
-                            <div class="modal_edit_input_wrapper">
-                                <input type="text" placeholder="이름을 입력해주세요." name="username" class="edit_input_name"
-                                    th:value="${businessVO.businessCeoName}">
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="submit" class="modal_save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
+                    <button class="modal-close is-large" aria-label="close"></button>
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
     </div>
 
     <!-- 휴대폰 번호 변경 모달창 -->
-    <div id="modal-edit_phone_number" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_left"></div>
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">휴대폰 번호</p>
+    <div class="business-phone-modal">
+        <div id="modal-edit_phone_number" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">대표 전화번호</p>
+                            </div>
                         </div>
-                        <div class="modal_content_top_right is-relative">
-                            <!-- <button type="button" class="modal_exit_button" aria-label="close">
-                                <span class="modal_exit_span">
-                                    <img src="/image/mypage/x-64.png" alt="">
-                                </span>
-                            </button> -->
-                            
-                        </div>
-                    </div>
-                    <div class="modal_content_bottom">
-                        <form>
-                            <div class="modal_content_main_wrapper">
-                                <div class="columns is-multiline m-0">
-                                    <div class="modal_input_number column columns is-full m-0 p-0">
-                                        <div class="columns column is-multiline m-0 p-0">
-                                            <input name="mobile" value="01077287518" class="modal_input column is-full"
-                                                placeholder="(예시) 01013245768" type="text" readonly>
-                                            <span class="phone-error error-msg column is-full p-0"></span>
+                        <div class="modal_content_bottom">
+                                <div class="modal_content_main_wrapper">
+                                    <div class="columns is-multiline m-0">
+                                        <div class="modal_input_number column is-full p-0">
+                                            <input type="text" name="phoneNumber" class="modal_input" placeholder="(-)하이폰 빼고 입력해주세요." th:value="${businessVO.businessPhoneNumber}">
                                         </div>
-                                        <label for="" class="">
-                                            <button type="button" class="auth_number find-take-btn btn_active">
-                                                <span class="edit_phone_number">번호 변경</span>
-                                            </button>
-                                        </label>
+                                        <p class="error-msg phone-error"></p>
                                     </div>
-                                    <div class="modal_input_number column is-full p-0">
-                                        <input type="text" class="modal_input" placeholder="인증번호를 입력해주세요.">
-                                    </div>
-                                    <p class="auth_msg auth_msg_done"></p>
-                                    <p class="auth_msg auth_remain_time"></p>
                                 </div>
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="submit" class="modal_save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
-                        </form>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel business-phone-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save phone-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                        </div>
+                        <button class="modal-close is-large business-phone-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
             </div>
         </div>
@@ -212,18 +357,243 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>$('.Aside_include').load('fragment/aside_personal.html');</script>
-<!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<!-- <script src="/js/mypage/include_fixed.js"></script> -->
-<script src="/js/mypage/myinfo.js"></script>
-<script>
-    const $phone = $("input[name='mobile']");
+<script src="/js/mypage/modal-business.js"></script>
+<script th:inline="javascript">
+    let businessVO = [[${businessVO}]];
+    if(businessVO.businessImgUuid){
+        $(".img_profile").attr("src",`/mypages/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
+    }
+
+    $(".phoneNumber").text(phoneNumber(businessVO.businessPhoneNumber));
+
+    function phoneNumber(phone){
+        let phoneNumber;
+        if(phone.startsWith("02")){
+            phoneNumber = phone.substring(0,2) + "-" +phone.substring(2,6) + "-" + phone.substring(6);
+        }else if(phone.startsWith("031")){
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,6) + "-" + phone.substring(6);
+        }else {
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,7) + "-" + phone.substring(7);
+        }
+        return phoneNumber;
+    }
 </script>
+<script>
+    globalThis.uuid;
+    FileList.prototype.forEach = Array.prototype.forEach;
 
-<!-- 인증 번호 등 모달 관련 js -->
-<script src="/js/mypage/myinfo_modal.js"></script>
+    // 썸네일
+    $("input[name='file']").on("change", function(e){
+        e.preventDefault();
+        const $file = $("input[name=file]")[0].files[0];
+        let formData = new FormData();
+        formData.append("file", $file);
 
-<!-- 아이디 찾기 js 가져옴 -->
-<script src="/js/mypage/edit_phone.js"></script>
+        $.ajax({
+            url: "/mypages/upload-file",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(uuid) {
+                globalThis.uuid = uuid;
+                console.log($file.type);
+                if($file.type.startsWith("image")){
+                    $fileModal.show();
+                    $(".file-modal-image").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
+                }else{
+                    alert("이미지 파일만 넣어주세요.");
+                }
+            }
+        });
+    });
 
+    $(".image-save-button").on("click", function(){
+        const $file = $("input[name=file]")[0].files[0];
+        let business = new Object();
+
+        business.businessImgOriginalName = $file.name;
+        business.businessImgUuid = globalThis.uuid;
+        business.businessImgPath = toStringByFormatting(new Date());
+        business.businessId = 4;
+
+        $.ajax({
+            url: "/mypages/file-business-save",
+            type: "patch",
+            data: JSON.stringify(business),
+            contentType: "application/json; charset=utf-8",
+            success: function(){
+                $fileModal.hide();
+                $(".img_profile").attr("src",`/mypages/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
+            }
+        });
+    });
+
+
+    // ========================================================
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function toStringByFormatting(source, delimiter = '/') {
+        const year = source.getFullYear();
+        const month = leftPad(source.getMonth() + 1);
+        const day = leftPad(source.getDate());
+
+        return [year, month, day].join(delimiter);
+    }
+
+    // ========================================================
+
+    // 이름 변경 검사
+    const $nameInput = $("input[name=businessCeoName]");
+    let nameCheck = false;
+    $nameInput.blur(function(){
+        if(!$(this).val()){
+            $(".name-error").text("이름을 입력해주세요.");
+            nameCheck = false;
+        }else if($(this).val().length < 2){
+            $(".name-error").text("이름은 2자리 이상 입력해주세요.");
+            nameCheck = false;
+        }else if(businessService.businessCeoNameCheck($(this).val())){
+            $(".name-error").text("현재 이름과 동일합니다.");
+            nameCheck = false;
+        }else {
+            $(".name-error").text("");
+            nameCheck = true;
+        }
+    });
+
+    // 이름 저장
+    const $nameSaveButton = $(".name-save");
+
+    $nameSaveButton.click(function(){
+        if(!nameCheck){
+            alert("이름을 확인해주세요.");
+            return false;
+        }
+        let businessCeoName = $("input[name=businessCeoName]").val();
+        $.ajax({
+            url : "/mypages/updateBusinessCeoName",
+            type: "patch",
+            data: {"businessCeoName" : businessCeoName},
+            success : function (businessCeoName) {
+                alert("이름 변경 완료");
+                $(".change-name").text(businessCeoName + "님, 환영해요.");
+                $(".businessCeoName").text(businessCeoName);
+                $("input[name=businessCeoName]").val(businessCeoName);
+                $("#modal-edit_ceo_name").removeClass('is-active');
+            }
+        });
+    });
+
+    // 전화번호 검사
+    const regPhone =  /^\d{2,3}-?\d{3,4}-?\d{4}$/;
+    const $phoneError = $(".phone-error");
+    const $phoneNumber = $("input[name=phoneNumber]");
+    let phoneCheck = false;
+    $phoneNumber.blur(function(){
+        let phoneVal = $phoneNumber.val().replaceAll("-","");
+        $phoneNumber.val(phoneVal);
+        if(!phoneVal){
+            $phoneNumber.css("background-color","#f2f4f7");
+            $phoneError.text("전화 번호를 입력해주세요.");
+            phoneCheck = false;
+        }else if(!regPhone.test(phoneVal)){
+            $phoneNumber.css("background-color","#f2f4f7");
+            $phoneError.text("올바른 형식이 아닙니다.");
+            phoneCheck = false;
+
+        } else if (businessService.businessPhoneNumberCheck(phoneVal)) {
+            $phoneNumber.css("background-color","#f2f4f7");
+            $phoneError.text("현재 전화 번호와 다른 번호를 입력해주세요.");
+            phoneCheck = false;
+
+        } else if (businessService.phoneNumberCheck(phoneVal)) {
+            $phoneNumber.css("background-color","#f2f4f7");
+            $phoneError.text("중복된 전화 번호입니다.");
+            phoneCheck = false;
+
+        } else {
+            $phoneError.text("");
+            phoneCheck = true;
+            $phoneNumber.css("background-color", "#fff");
+
+        }
+    });
+
+    // 전화번호 변경완료
+    const $phoneUpdateButton = $(".phone-save");
+    $phoneUpdateButton.click(function(){
+        let businessPhoneNumber = $("input[name=phoneNumber]").val();
+        if(!phoneCheck){
+            alert("전화번호를 확인해주세요.");
+            return false;
+        }
+
+        $.ajax({
+            url : "/mypages/phoneNumberUpdate",
+            type: "patch",
+            data: {"businessPhoneNumber" : businessPhoneNumber},
+            success : function (memberPhoneNumber) {
+                alert("핸드폰 번호 변경 완료");
+                $(".phoneNumber").text(phoneNumber(businessPhoneNumber));
+                $("input[name=phoneNumber]").val(businessPhoneNumber);
+                $("#modal-edit_phone_number").removeClass('is-active');
+            }
+        });
+    });
+
+    let businessService = (function(){
+        // 회원 전화번호 비교
+        function businessPhoneNumberCheck(businessPhoneNumber){
+            let check = false;
+            $.ajax({
+                url : "/mypages/businessVO",
+                type: "get",
+                async : false,
+                success : function (businessVO) {
+                    check = businessVO.businessPhoneNumber == businessPhoneNumber;
+                }
+            });
+            return check;
+        }
+
+        // 회원 이름 비교
+        function businessCeoNameCheck(businessCeoName){
+            let check = false;
+            $.ajax({
+                url : "/mypages/businessVO",
+                type: "get",
+                async : false,
+                success : function (businessVO) {
+                    check = businessVO.businessCeoName == businessCeoName;
+                }
+            });
+            return check;
+        }
+
+        // 전화번호 중복 검사
+        function phoneNumberCheck(phoneNumber){
+            let check = false;
+            $.ajax({
+                url : "/mypages/businessPhoneCheck",
+                type: "get",
+                data : {"businessPhoneNumber" : phoneNumber},
+                async : false,
+                success : function(phoneNumberCheck){
+                    check = phoneNumberCheck;
+                }
+            });
+            return check;
+        }
+
+        return {businessPhoneNumberCheck : businessPhoneNumberCheck, businessCeoNameCheck: businessCeoNameCheck, phoneNumberCheck : phoneNumberCheck}
+    })();
+</script>
+<script src="/js/mypage/edit_business.js"></script>
 </html>
