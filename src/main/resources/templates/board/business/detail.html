@@ -22,14 +22,14 @@
             </span>
         </button>
     </div>
-    <div id="all_wrap">
+    <div id="all_wrap" th:object="${board}">
         <div id="all_wrap_div">
             <div style="overflow-y: auto; flex: 1 1;">
                 <div id="third_div">
                     <div id="title">
                         <div id="title_div">
                             <div>
-                                <h2 id="title_h2">뉴통 주식회사(Newtong Corp.)</h2>
+                                <h2 id="title_h2" th:text="${boardBusinessTitle}"></h2>
                             </div>
                         </div>
                     </div>

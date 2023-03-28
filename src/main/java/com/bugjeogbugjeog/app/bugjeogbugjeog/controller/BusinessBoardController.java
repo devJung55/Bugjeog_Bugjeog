@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,32 +36,6 @@ public class BusinessBoardController {
     //    리스트
     @GetMapping("/board/business/list")
     public void showList(Model model, HttpServletRequest req) {
-//        Map<String, Map> categoryMap = new HashMap<>();
-
-//        Map<String, String> mapAll = new HashMap<>();
-//        mapAll.put("categoryKor", "전체");
-//        mapAll.put("categoryEng", "all");
-//        categoryMap.put("all", mapAll);
-//
-//        Map<String, String> mapMeat = new HashMap<>();
-//        mapMeat.put("categoryKor", "육류");
-//        mapMeat.put("categoryEng", "meat");
-//        categoryMap.put("meat", mapMeat);
-//
-//        Map<String, String> mapSeafood = new HashMap<>();
-//        mapSeafood.put("categoryKor", "해산물");
-//        mapSeafood.put("categoryEng", "seafood");
-//        categoryMap.put("seafood", mapSeafood);
-//
-//        Map<String, String> mapVegetable = new HashMap<>();
-//        mapVegetable.put("categoryKor", "채소");
-//        mapVegetable.put("categoryEng", "vegetable");
-//        categoryMap.put("vegetable", mapVegetable);
-//
-//        Map<String, String> mapSpice = new HashMap<>();
-//        mapSpice.put("categoryKor", "향신료");
-//        mapSpice.put("categoryEng", "spice");
-//        categoryMap.put("spice", mapSpice);
 
         businessBoardService.getList().stream().map(dto -> {
             String name = dto.getBoardBusinessImgOriginalName();
@@ -70,9 +45,6 @@ public class BusinessBoardController {
         });
         model.addAttribute("boards", businessBoardService.getList());
     }
-
-//        model.addAttribute("categorys", categoryMap);
-
 
     @ResponseBody
     @PostMapping("/board/business/list")
@@ -103,19 +75,20 @@ public class BusinessBoardController {
             return dto;
         });
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
-        if(category != null){
             searchMap.put("category", category);
             searchMap.put("sort", req.getParameter("sort"));
 //            return businessBoardService.getList(searchMap);
             return businessBoardService.getList(searchMap);
-        }else {
-            return businessBoardService.getList();
-        }
+    }
+
+    @GetMapping("/board/business/detail")
+    public void detail(){
     }
 
     @PostMapping("/board/business/detail")
-    public void detail(Long boardBusinessId, Model model) {
-        model.addAttribute(businessBoardService.getBoard(boardBusinessId));
+    public void detail(Model model, HttpServletRequest req) {
+        log.info(businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId"))).toString());
+        model.addAttribute("board", businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId"))));
     }
 
     @GetMapping("/board/business/write")
