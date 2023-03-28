@@ -17,7 +17,6 @@ public class MemberDTO {
     private String memberImgUuid;
     private String memberImgPath;
 
-    private Integer boardCount;
 
     private Long boardFreeId;
     private Long businessId;
@@ -27,7 +26,6 @@ public class MemberDTO {
     private String boardFreeUpdateDate;
     private Long boardFreeLike;
 
-    private Integer replyCount;
 
     private Long replyId;
     private String replyContent;

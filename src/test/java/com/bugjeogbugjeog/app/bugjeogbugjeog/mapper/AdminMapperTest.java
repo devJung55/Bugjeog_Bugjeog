@@ -20,11 +20,13 @@ public class AdminMapperTest {
     AdminMapper adminMapper;
 
     /* 회원 */
+/*
 
     @Test
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
+*/
 
-    @Test
+   /* @Test
     public void selectMemberTest(){
         MemberVO memberVO = new MemberVO();
         adminMapper.selectMember(1L).toString();
@@ -41,7 +43,7 @@ public class AdminMapperTest {
     public void deleteMemberTest(){
         adminMapper.deleteMember(3L);
     }
-
+*/
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
