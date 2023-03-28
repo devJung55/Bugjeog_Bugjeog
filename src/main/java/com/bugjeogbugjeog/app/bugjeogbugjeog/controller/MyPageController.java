@@ -106,7 +106,7 @@ public class MyPageController {
     @GetMapping("memberPhoneCheck")
     @ResponseBody
     public Boolean memberPhoneCheck(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
-        return myPageService.PhoneNumberCheck(memberPhoneNumber);
+        return myPageService.phoneNumberCheck(memberPhoneNumber);
     }
 
     // 핸드폰 인증 번호

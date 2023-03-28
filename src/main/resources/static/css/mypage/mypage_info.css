@@ -571,6 +571,21 @@ button.auth_number {
     border: 1px solid #e1e2e3;
 }
 
+input.auth_number {
+    height: 50px;
+    min-height: 50px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    margin-left: 10px;
+    padding: 0px 15px;
+    width: auto;
+    flex: 0 0 auto;
+    border-radius: 5px;
+    border: 1px solid #e1e2e3;
+}
+
 span.edit_phone_number {
     color: #000;
     font-weight: 600;
@@ -587,6 +602,8 @@ span.edit_phone_number {
 .auth_number:disabled>span {
     color: #ccc;
 }
+
+
 
 .auth_number:disabled {
     color: #ccc;
@@ -1022,4 +1039,20 @@ div.modal {
 
 div.modal-background {
     background: rgba(0, 0, 0, 0.4);
+}
+
+.member-phone-modal {
+    display: none;
+}
+
+.member-name-modal {
+    display: none;
+}
+
+button.button-active {
+    background: #fff;
+}
+
+button.button-active span {
+    color: #36f;
 }

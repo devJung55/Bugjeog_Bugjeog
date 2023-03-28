@@ -129,6 +129,11 @@ $phoneNumber.blur(function(){
         $phoneError.text("중복된 전화 번호입니다.");
         phoneCheck = false;
 
+    } else if(phoneVal.length < 12){
+        $phoneNumber.css("background-color","#f2f4f7");
+        $phoneError.text("전화번호는 11자리 이내로 입력해주세요.");
+        phoneCheck = false;
+
     } else {
         $phoneError.text("");
         phoneCheck = true;
