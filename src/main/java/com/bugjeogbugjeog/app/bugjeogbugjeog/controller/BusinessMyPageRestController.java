@@ -91,6 +91,15 @@ public class BusinessMyPageRestController {
         return businessPhoneNumber;
     }
 
+    @PatchMapping("companyName-update")
+    public String updateBusinessCompanyName(HttpServletRequest req, @RequestParam("businessCompanyName") String businessCompanyName){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.updateBusinessCompanyName(businessId, businessCompanyName);
+        return businessCompanyName;
+    }
+
     //    현재 날짜 경로 구하기
     private String getPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

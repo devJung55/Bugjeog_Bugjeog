@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BusinessMapper {
 
     //    유통업체 회원정보 조회
-    public BusinessVO selectBusisness(Long businessId);
+    public BusinessVO selectBusiness(Long businessId);
 
     //유통 분야 설정 추가
     public void updateLocation(BusinessVO businessVO);
