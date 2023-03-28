@@ -5,12 +5,11 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -67,9 +66,10 @@ public class AdminController {
     }
 
     /* 공지사항 조회 */
-    @GetMapping("admin-notice")
-    public void notice(Long noticeId, Model model){
+    @GetMapping("admin-notice/{noticeId}")
+    public String notice(@PathVariable Long noticeId, Model model ){
         model.addAttribute(noticeService.showNotice(noticeId));
+        return "admin/admin-notice";
     }
 
        /* 공지사항 작성 페이지 이동 */
@@ -89,10 +89,10 @@ public class AdminController {
 
 
     /* 공지사항 삭제 */
-    @PostMapping("admin-noticeList")
-    public RedirectView removeNotice(Long noticeId){
-        noticeService.remove(noticeId);
-        return new RedirectView("admin-noticeList");
+    @DeleteMapping("admin-delete")
+    @ResponseBody
+    public void removeNotice(@RequestParam("checkedIds[]") List<String> noticeIds){
+        noticeService.remove(noticeIds);
     }
 
 
