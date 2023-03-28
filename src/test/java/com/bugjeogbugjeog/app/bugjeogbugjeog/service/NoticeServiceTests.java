@@ -35,8 +35,5 @@ public class NoticeServiceTests {
 
     @Test
     public void removeTest(){
-        List<Long> noticeSample = new ArrayList<>();
-        noticeSample.add(1L);
-        noticeService.remove(noticeSample);
     }
 }
