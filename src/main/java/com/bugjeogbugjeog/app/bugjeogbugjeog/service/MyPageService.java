@@ -201,6 +201,13 @@ public class MyPageService {
         businessDAO.updateLocation(businessVO);
     }
 
+    // 유통업자 회사명 변경
+    public void updateBusinessCompanyName(Long businessId , String businessCompanyName){
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessCompanyName(businessCompanyName);
+        businessDAO.updateLocation(businessVO);
+    }
+
     // 유통 조회
     public BusinessVO businessInfo(Long businessId){
         return businessDAO.findByIdToBusiness(businessId);
