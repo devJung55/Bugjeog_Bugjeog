@@ -88,7 +88,7 @@ public class MypageDAOTest {
     // 사업자 번호 중복검사
     @Test
     public void businessNumberCheckTest(){
-//        businessDAO.findAllToBusinessNumber().stream().filter(data -> data.equals("12-1111-123")).forEach(log::info);
-        businessDAO.findAllToBusinessNumber().stream().forEach(log::info);
+        businessDAO.findAllToBusinessNumber().stream().filter(data -> data.equals("12-1111-123")).forEach(log::info);
+//        businessDAO.findAllToBusinessNumber().stream().forEach(log::info);
     }
 }

@@ -100,6 +100,28 @@ public class BusinessMyPageRestController {
         return businessCompanyName;
     }
 
+    @GetMapping("businessNumber-check")
+    public Boolean businessNumberCheck(@RequestParam("businessNumber") String businessNumber){
+        return myPageService.businessNumberCheck(businessNumber);
+    }
+
+    @PatchMapping("businessNumber-update")
+    public String businessNumberUpdate(HttpServletRequest req, @RequestParam("businessNumber") String businessNumber){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.businessNumberUpdate(businessId, businessNumber);
+        return businessNumber;
+    }
+
+    @PatchMapping("businessPassword-update")
+    public void businessPasswordUpdate(HttpServletRequest req, @RequestParam("businessPassword") String businessPassword){
+        HttpSession session = req.getSession();
+//        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = 4L;
+        myPageService.businessPasswordUpdate(businessId, businessPassword);
+    }
+
     //    현재 날짜 경로 구하기
     private String getPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

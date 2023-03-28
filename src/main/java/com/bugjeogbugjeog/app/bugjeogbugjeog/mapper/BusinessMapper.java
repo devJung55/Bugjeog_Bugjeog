@@ -16,4 +16,7 @@ public interface BusinessMapper {
 
     // 사업자번호 전부 가져옴
     public List<String> selectListToBusinessNumber();
+
+    // 회원 탈퇴
+    public void withdraw(Long businessId);
 }
