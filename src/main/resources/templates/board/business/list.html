@@ -7,8 +7,8 @@
     <title>유통업체 PR 사이트</title>
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
-    <link rel="stylesheet" href="/css/boardList/pr-boardList.css">
     <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/boardList/pr-boardList.css">
 </head>
 <body>
 <div class="all-wrap">
@@ -61,12 +61,12 @@
                 <div class="recent-popluar-box">
                     <div class="recent-popluar-box-layout">
                         <div class="recent-box">
-                            <button type="button" class="recent-button sort-button sort-button-active">
+                            <button type="button" name="recent" class="recent-button sort-button sort-button-active">
                                 <span>최신순</span>
                             </button>
                         </div>
                         <div class="popluar-box">
-                            <button type="button" class="popluar-button sort-button">
+                            <button type="button" name="popular" class="popluar-button sort-button">
                                 <span>인기순</span>
                             </button>
                         </div>
@@ -196,31 +196,44 @@
     $cateButton.each((i, e) => {
 
         $(e).click(function () {
-            console.log("카테 클릭")
             $cateButton.removeClass("cate-button-active");
             $(e).addClass("cate-button-active");
-            console.log($(e).attr('name'));
-            const categoryName = $(e).attr('name');
-            $.ajax({
-                url: "/board/business/list",
-                method: "POST",
-                data: {category: categoryName},
-                dataType: "json",
-                success: function (result) {
-                    let newBoards = `${result}`;
-                    console.log(result);
-                    console.log("JSON");
-                    console.log("성공");
-                    $ul.empty();
-                    showList(result);
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-            });
+            ajax();
         });
     });
 
+    function ajax() {
+        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+        const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+        console.log(sortType);
+        $.ajax({
+            url: "/board/business/list",
+            method: "POST",
+            data: {
+                category: categoryName
+                ,sort: sortType
+            },
+            dataType: "json",
+            success: function (result) {
+                let newBoards = `${result}`;
+                $ul.empty();
+                showList(result);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+    /* sort 버튼 이벤트 */
+    const $sortButton = $(".sort-button");
+
+    $sortButton.each((i, e) => {
+        $(e).click(function () {
+            $sortButton.removeClass("sort-button-active");
+            $(e).addClass("sort-button-active");
+            ajax();
+        });
+    });
 </script>
 
 <!--<script src="/js/board_business/getList.js"></script>-->

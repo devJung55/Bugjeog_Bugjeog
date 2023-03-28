@@ -105,6 +105,7 @@ public class BusinessBoardController {
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         if(category != null){
             searchMap.put("category", category);
+            searchMap.put("sort", req.getParameter("sort"));
 //            return businessBoardService.getList(searchMap);
             return businessBoardService.getList(searchMap);
         }else {

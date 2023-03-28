@@ -64,6 +64,7 @@
         on r.board_business_id = b.board_business_id
         join tbl_business bs
         on b.business_id = bs.business_id
+        order by b.board_business_id asc
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
@@ -96,6 +97,12 @@
         join tbl_business bs
         on b.business_id = bs.business_id
         where bs.business_category = #{category}
+        <if test="sort == 'recent'">
+            order by b.board_business_id asc
+        </if>
+        <if test="sort == 'popular'">
+            order by board_business_grade_average desc
+        </if>
     </select>
 
 </mapper>
