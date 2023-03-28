@@ -78,7 +78,7 @@ public class BusinessMyPageRestController {
     //    핸드폰 중복검사
     @GetMapping("businessPhoneCheck")
     public Boolean businessPhoneCheck(@RequestParam("businessPhoneNumber") String businessPhoneNumber){
-        return myPageService.PhoneNumberCheck(businessPhoneNumber);
+        return myPageService.phoneNumberCheck(businessPhoneNumber);
     }
 
     //    핸드폰 번호 변경

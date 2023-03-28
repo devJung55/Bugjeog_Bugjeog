@@ -92,7 +92,7 @@ public class MyPageService {
     }
 
     //    핸드폰 중복 검사
-    public Boolean PhoneNumberCheck(String PhoneNumber){
+    public Boolean phoneNumberCheck(String PhoneNumber){
         List<String> phoneNumbers = memberDAO.findAllToMemberPhoneNumber();
         boolean check = false;
 

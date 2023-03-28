@@ -41,7 +41,11 @@ public class MemberMapperTest {
 //    자영업자 로그인
     @Test
     public void loginTest() {
-        log.info("memberId : " + memberMapper.selectByMemberIdAndMemberPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+        MemberVO memberVO = new MemberVO();
+
+        memberVO.setMemberEmail("jjy1234@naver.com");
+        memberVO.setMemberPassword("d2pkd2xkdWQxIQ==");
+        log.info("memberId : " + memberMapper.selectByMemberIdAndMemberPassword(memberVO));
     }
 
 //    유통업체 회원가입
@@ -69,5 +73,17 @@ public class MemberMapperTest {
     @Test
     public void businessSelectByPhoneNumber() {
         log.info("businessPhoneNumber : " + memberMapper.businessSelectByPhoneNumber("01012341234"));
+    }
+
+//    유통업체 사업자 번호 중복검사
+    @Test
+    public void selectByBusinessNumber() {
+        log.info("businessNumber : " + memberMapper.selectByBusinessNumber("110-11-11111"));
+    }
+
+//    유통업체 로그인
+    @Test
+    public void selectByBusinessIdAndBusinessPassword() {
+        log.info("businessId : " + memberMapper.selectByBusinessIdAndBusinessPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
     }
 }

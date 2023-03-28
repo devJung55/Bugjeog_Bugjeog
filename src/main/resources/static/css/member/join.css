@@ -713,6 +713,6 @@ hr {
 
 .auth-msg {
     font-size: 14px;
-    color: #36f;
+    /*color: #36f;*/
     display: none;
 }

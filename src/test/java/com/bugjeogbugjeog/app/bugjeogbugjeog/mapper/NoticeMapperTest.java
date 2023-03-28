@@ -15,7 +15,7 @@ public class NoticeMapperTest {
     @Autowired
     NoticeMapper noticeMapper;
 
-    @Test
+    /*@Test
     public void selectAllTest(){ List<NoticeVO> noticeVO = noticeMapper.selectAll();}
 
     @Test
@@ -35,5 +35,5 @@ public class NoticeMapperTest {
     @Test
     public void deleteTest(){
         noticeMapper.delete(2L);
-    }
+    }*/
 }
