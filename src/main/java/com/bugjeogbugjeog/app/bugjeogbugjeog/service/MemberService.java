@@ -72,4 +72,14 @@ public class MemberService {
     public void joinBusiness(BusinessVO businessVO) {
         memberDAO.registerBusiness(businessVO);
     }
+
+//    유통업체 이메일 중복검사
+    public Long businessCheckEmail(String businessEmail) {
+        return memberDAO.businessFindByEmail(businessEmail);
+    }
+
+//    유통업체 휴대폰 중복검사
+    public Long businessCheckPhoneNumber(String businessPhoneNumber) {
+        return memberDAO.businessFindByPhoneNumber(businessPhoneNumber);
+    }
 }

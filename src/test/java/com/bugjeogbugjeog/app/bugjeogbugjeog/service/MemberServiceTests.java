@@ -59,4 +59,16 @@ public class MemberServiceTests {
         businessVO.setBusinessPassword("wjdwldud1!");
         memberService.joinBusiness(businessVO);
     }
+
+//    유통업체 이메일 중복검사
+    @Test
+    public void businessSelectByEmail() {
+        log.info("businessId : " + memberService.businessCheckEmail("jjy1234@naver.com"));
+    }
+
+//    유통업체 휴대폰 중복검사
+    @Test
+    public void businessSelectByPhoneNumber() {
+        log.info("businessPhoneNumber : " + memberService.businessCheckPhoneNumber("01012341234"));
+    }
 }
