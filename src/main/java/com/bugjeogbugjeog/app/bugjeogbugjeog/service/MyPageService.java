@@ -1,9 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeLikeDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryBoardDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
@@ -22,6 +19,7 @@ public class MyPageService {
     private final MemberDAO memberDAO;
     private final FreeLikeDAO freeLikeDAO;
     private final InquiryBoardDAO inquiryBoardDAO;
+    private final FreeBoardDAO freeBoardDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
@@ -156,19 +154,19 @@ public class MyPageService {
 
     // 자유게시판 목록 가져오기
     public List<BoardFreeVO> freeList(Long memberId, Criteria criteria){
-        return mypageDAO.findByIdBoardFreeVO(memberId, criteria);
+        return freeBoardDAO.findByIdBoardFreeVO(memberId, criteria);
     }
 
     // 자유게시판 개수
     public Integer freeCount(Long memberId){
-        return mypageDAO.getFreeBoardTotal(memberId);
+        return freeBoardDAO.getFreeBoardTotal(memberId);
     }
 
     // 게시판 각각의 개수
     public Map<String, Integer> allcount(Long memberId){
         Map<String, Integer> allCount = new HashMap<>();
 
-        allCount.put("freeBoardCount",mypageDAO.getFreeBoardTotal(memberId));
+        allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardTotal(memberId));
         allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
         allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
         allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));

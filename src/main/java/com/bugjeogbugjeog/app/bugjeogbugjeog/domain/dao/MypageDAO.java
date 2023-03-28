@@ -32,16 +32,6 @@ public class MypageDAO {
         return myPageMapper.replyCount(memberId);
     };
 
-    // 자유게시판 글 목록
-    public List<BoardFreeVO> findByIdBoardFreeVO(Long memberId, Criteria criteria) {
-        return myPageMapper.freeList(memberId, criteria);
-    }
-
-    // 자유게시판 갯수
-    public Integer getFreeBoardTotal(Long memberId){
-        return myPageMapper.freeCount(memberId);
-    }
-
     //유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {myPageMapper.updateLocation(businessVO);};
 }

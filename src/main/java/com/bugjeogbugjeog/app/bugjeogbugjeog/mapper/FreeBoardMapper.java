@@ -2,7 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -31,5 +33,12 @@ public interface FreeBoardMapper {
 
     //    썸네일 포함 목록
     public List<BoardFreeVO> selectAllListBySearch(Map<String, Object> searchMap);
+
+    /*------------------------------------------------------------------------*/
+    //  자유 게시판 목록
+    public List<BoardFreeVO> freeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
+
+    //    자유 게시판 개수
+    public Integer freeCount(Long memberId);
 }
 
