@@ -1,29 +1,26 @@
-function showList(category) {
-    /* 작성글 목록 */
-    // const boards = JSON.parse($boards); /* boards 정의해야 함 */
-    console.log("들2");
-    const $ul = $($('ul.boardList-info-box')[0]);
-    console.log($ul);
+/* 작성글 목록 */
+const $ul = $($('ul.boardList-info-box')[0]);
+function showList(boards) {
     $ul.empty();
     let text = ``;
-    ${board}.forEach(board => {
-        // src = contextPath + "/static/img/board/noImage.png";
+    boards.forEach(board => {
+        console.log(`${board.boardBusinessImgFullPath}`);
         text += `
-                <li class="info-box-layout"  th:object="${boardBusinessDTO}">
+                <li class="info-box-layout"  th:object="${board}">
                     <a href="/board/business/detail?boardId=${board.boardBusinessId}">
                         <div class="image-box">
-                            <img src="${board.boardBusinessImgPath}/${boardBusinessImgUuid}_${board.boardBusinessImgOriginalName}" class="info-image">
+                                <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
                         </div>
                         <div class="info-section-box">
                             <div class="cate-title-box">
                                 <span class="cate-title-style">
-                                    <span class="cate-title"> ${board.boardBusinessCategory}</span>
+                                    <span class="cate-title"> ${board.businessCategory}</span>
                                 </span>
                             </div>
                             <p class="circulation-title"> ${board.boardBusinessTitle}</p>
                         </div>
                         <div class="location-box">
-                            <div class="location-box-layout">${board.boardBusinessLocation}</div>
+                            <div class="location-box-layout">${board.businessLocation}</div>
                         </div>
                         <div class="review-count-box">
                             <div class="icon-box">

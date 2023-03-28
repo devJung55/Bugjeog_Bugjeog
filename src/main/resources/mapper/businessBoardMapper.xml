@@ -41,6 +41,7 @@
         , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
         , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
         , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        , bs.business_category, bs.business_location
         from tbl_board_business b
         left outer join (
             select
@@ -61,6 +62,8 @@
             group by r.board_business_id
         ) r
         on r.board_business_id = b.board_business_id
+        join tbl_business bs
+        on b.business_id = bs.business_id
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
@@ -69,6 +72,7 @@
         , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
         , i.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
         , ifnull(r.board_business_grade_average, 0) board_business_grade_average
+        , bs.business_category, bs.business_location
         from tbl_board_business b
         left outer join (
             select
@@ -89,6 +93,9 @@
             group by r.board_business_id
         ) r
         on r.board_business_id = b.board_business_id
+        join tbl_business bs
+        on b.business_id = bs.business_id
+        where bs.business_category = #{category}
     </select>
 
 </mapper>
