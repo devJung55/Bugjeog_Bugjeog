@@ -15,15 +15,6 @@ public interface MyPageMapper {
 //    유통업체 회원정보 조회
     public BusinessVO selectBuisness(Long businessId);
 
-//    문의 작성 목록
-    public List<BoardInquiryVO> inquireList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
-
-//    문의 게시글 작성 갯수
-    public Integer inquireCount(Long memberId);
-
-//    문의 답변 여부
-    public Long inquireAnswer(Long boardInquireId);
-
 //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> replyList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
 
