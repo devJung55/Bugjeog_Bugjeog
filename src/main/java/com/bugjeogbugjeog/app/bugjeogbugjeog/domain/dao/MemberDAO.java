@@ -29,7 +29,7 @@ public class MemberDAO {
     }
 
 //    자영업자 로그인
-    public Long findByMemberEmailAndMemberPassword(MemberVO memberVO) {
+    public Long findByMemberId(MemberVO memberVO) {
         return memberMapper.selectByMemberIdAndMemberPassword(memberVO);
     }
 
@@ -46,6 +46,16 @@ public class MemberDAO {
 //    유통업체 휴대폰 중복검사
     public Long businessFindByPhoneNumber(String businessPhoneNumber) {
         return memberMapper.businessSelectByPhoneNumber(businessPhoneNumber);
+    }
+
+//    유통업체 사업자 번호 중복검사
+    public Long findByBusinessNumber(String businessNumber) {
+        return memberMapper.selectByBusinessNumber(businessNumber);
+    }
+
+//    유통업체 로그인
+    public Long findByBusinessId(String businessEmail, String businessPassword) {
+        return memberMapper.selectByBusinessIdAndBusinessPassword(businessEmail, businessPassword);
     }
 
     /*-----------------------------------------------------------------------------*/

@@ -96,8 +96,13 @@
         }else if(!regBusinessNumber.test($businessNumber.val())){
             $businessNumberError.text("형식에 맞춰서 작성해주세요.");
             businessNumberCheck = false;
-        }else {
-            $businessNumberError.text("");
+        } else if(!businessService.checkBusinessNumber()) {
+            $businessNumberError.css("color", "red");
+            $businessNumberError.text("이미 사용중인 사업자번호입니다.");
+            businessNumberCheck = false;
+        } else {
+            $businessNumberError.css("color", "blue");
+            $businessNumberError.text("사용가능한 사업자번호입니다.");
             businessNumberCheck = true;
         }
     });
@@ -148,11 +153,11 @@
         }
     });
 
-    const $authcode = $(".autocode-check");
+    const $authcode = $(".authcode-check");
     const $authCheckButton = $(".authcode-check-button");
     $authcode.keyup(function(){
         if($authcode.val().length == 4){
-            $(".auth-msg").hide();
+            /*$(".auth-msg").hide();*/
             $authCheckButton.show();
         }
     });
@@ -163,7 +168,8 @@
     const $password = $(".join-pw-input");
     const $passwordError = $(".password-error");
     const $passwordCheckError = $(".password-check-error");
-    const $passwordCheck = $(".join-info-input");
+    /*const $passwordCheck = $(".join-info-input");*/
+    const $passwordCheck = $("input[name='passwordConfirm']");
 
     $password.blur(function(){
         $passwordError.show();
@@ -171,21 +177,31 @@
         if(!passwordVal){
             $passwordError.text("비밀번호를 입력해주세요.");
             $passwordError.removeClass("font-size");
+            passwordCheck1 = false;
         }else if(!regPassword.test(passwordVal)){
             $passwordError.addClass("font-size");
             $passwordError.text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.");
+            passwordCheck1 = false;
         }else {
             $passwordError.hide();
             $passwordError.text("");
+            passwordCheck1 = true;
         }
     });
 
     $passwordCheck.blur(function(){
         $passwordCheckError.show();
+        console.log($password.val())
+        console.log($passwordCheck.val())
+
+        console.log("" + $password.val() != $passwordCheck.val());
+
         if($password.val() != $passwordCheck.val()){
             $passwordCheckError.text("비밀번호를 확인해주세요.");
+            passwordCheck2 = false;
         }else {
             $passwordCheckError.hide();
+            passwordCheck2 = true;
         }
     });
     
@@ -236,36 +252,35 @@
 
     /*---------------------------- 회원가입 활성화 이벤트 ----------------------------*/
 
-    // const $joinButton = $(".join-jjoin-btn-border");
-    // const $must1 = $(".must1");
-    // const $must2 = $(".must2");
-    //
-    // $joinButton.on("click", function(e) {
-    //     console.log("클릭");
-    //     if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
-    //         $(document.joinForm).submit();
-    //     } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck) {
-    //         $(document.joinForm).submit();
-    //     }
-    // });
-    //
-    // $must1.on("click", function(e) {
-    //     if($must1.is(":checked")) {
-    //         mustSelectCheck1 = true;
-    //         joinButtonActive();
-    //     } else {
-    //         mustSelectCheck1 = false;
-    //     }
-    // });
-    //
-    // $must2.on("click", function(e) {
-    //     if($must2.is(":checked")) {
-    //         mustSelectCheck2 = true;
-    //         joinButtonActive();
-    //     } else {
-    //         mustSelectCheck2 = false;
-    //     }
-    // });
+    const $joinButton = $(".join-jjoin-btn-border");
+    const $must1 = $(".must1");
+    const $must2 = $(".must2");
+
+    $joinButton.on("click", function(e) {
+        if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
+            $(document.businessForm).submit();
+        } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & mustSelectCheck1 & mustSelectCheck2) {
+            $(document.businessForm).submit();
+        }
+    });
+
+    $must1.on("click", function(e) {
+        if($must1.is(":checked")) {
+            mustSelectCheck1 = true;
+            /*joinButtonActive();*/
+        } else {
+            mustSelectCheck1 = false;
+        }
+    });
+
+    $must2.on("click", function(e) {
+        if($must2.is(":checked")) {
+            mustSelectCheck2 = true;
+            /*joinButtonActive();*/
+        } else {
+            mustSelectCheck2 = false;
+        }
+    });
 
 
     /*---------------------------- 사업자 회원가입 인증번호 ----------------------------*/
@@ -331,6 +346,25 @@
             return check;
         }
 
+        function checkBusinessNumber() {
+            let check = true;
+            let businessNumber = $(".business-number-check").val();
+
+            $.ajax({
+                url: "/members/businessNumbersCheck",
+                type: "post",
+                async : false,
+                data: {"businessNumber": businessNumber},
+                success: function(result) {
+                    if(result == 1) {
+                        check = false;
+                    } else {
+                        check = true;
+                    }
+                }
+            });
+            return check;
+        }
         function sendSMS() {
             let memberPhoneNumber = $(".phone-number-check").val();
 
@@ -346,5 +380,6 @@
             });
             return code;
         }
-        return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS}
+
+        return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS, checkBusinessNumber: checkBusinessNumber}
     })();

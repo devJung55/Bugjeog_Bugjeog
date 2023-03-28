@@ -65,7 +65,7 @@ public class MemberService {
 
 //    자영업자 로그인
     public Long login(MemberVO memberVO) {
-        return memberDAO.findByMemberEmailAndMemberPassword(memberVO);
+        return memberDAO.findByMemberId(memberVO);
     }
 
 //    유통업체 회원가입
@@ -81,5 +81,15 @@ public class MemberService {
 //    유통업체 휴대폰 중복검사
     public Long businessCheckPhoneNumber(String businessPhoneNumber) {
         return memberDAO.businessFindByPhoneNumber(businessPhoneNumber);
+    }
+
+//    유통업체 사업자번호 중복검사
+    public Long businessCheckBusinessNumber(String businessNumber) {
+        return memberDAO.findByBusinessNumber(businessNumber);
+    }
+
+//    유통업체 로그인
+    public Long businessLongin(String businessEmail, String businessPassword) {
+        return memberDAO.findByBusinessId(businessEmail, businessPassword);
     }
 }

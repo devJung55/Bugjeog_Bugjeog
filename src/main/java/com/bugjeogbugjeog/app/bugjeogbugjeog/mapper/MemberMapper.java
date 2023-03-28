@@ -30,6 +30,12 @@ public interface MemberMapper {
 //    유통업체 휴대폰 중복검사
     public Long businessSelectByPhoneNumber(String businessPhoneNumber);
 
+//    유통업체 사업자 번호 중복검사
+    public Long selectByBusinessNumber(String businessNumber);
+
+//    유통업체 로그인
+    public Long selectByBusinessIdAndBusinessPassword(String businessEmail, String businessPassword);
+
 /*------------------------------------------------------------------------------------------------*/
 
     //    회원정보 조회

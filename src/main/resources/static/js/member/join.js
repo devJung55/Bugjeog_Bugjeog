@@ -193,7 +193,7 @@ $("input[name=check]").each((i, e) => {
         if($(e).is(":checked")){
             $($(".checkbox-display")[i+1]).show();
             $($(".check-state")[i]).addClass("checkbox-active-box");
-            joinButtonActive();
+            /*joinButtonActive();*/
         }else {
             $($(".check-state")[i]).removeClass("checkbox-active-box");
             $($(".checkbox-display")[i+1]).hide();
@@ -203,6 +203,7 @@ $("input[name=check]").each((i, e) => {
 
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
+
 
 const $joinButton = $(".join-jjoin-btn-border");
 const $must1 = $(".must1");
@@ -259,15 +260,18 @@ let joinButtonActive = function() {
 };*/
 
 
+/*----------------- 인증 성공 여부 ------------------*/
+
+
 $(".authcode-check-button").on("click", function(e) {
     if($(".authcode-check").val() == code) {
-        $(".auth-msg").html("인증에 성공했습니다.");
         $(".auth-mag").css("color", "blue");
+        $(".auth-msg").html("인증에 성공했습니다.");
         authCodeCheck = true;
         /*joinButtonActive();*/
     } else {
-        $(".auth-msg").html("인증에 실패했습니다.");
         $(".auth-mag").css("color", "red");
+        $(".auth-msg").html("인증에 실패했습니다.");
         authCodeCheck = false;
     }
 });
@@ -336,6 +340,3 @@ let joinService = (function() {
     }
     return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS}
 })();
-
-
-console.log($("input"));

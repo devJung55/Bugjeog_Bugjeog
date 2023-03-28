@@ -43,7 +43,11 @@ public class MemberDAOTest {
 //    자영업자 로그인
     @Test
     public void loginTest() {
-        log.info("memberId : " + memberDAO.findByMemberEmailAndMemberPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+        MemberVO memberVO = new MemberVO();
+
+        memberVO.setMemberEmail("jjy1234@naver.com");
+        memberVO.setMemberPassword("d2pkd2xkdWQxIQ==");
+        log.info("memberId : " + memberDAO.findByMemberId(memberVO));
     }
 
 //    유통업체 회원가입
@@ -71,5 +75,11 @@ public class MemberDAOTest {
     @Test
     public void businessSelectByPhoneNumber() {
         log.info("businessPhoneNumber : " + memberDAO.businessFindByPhoneNumber("01012341234"));
+    }
+
+//    유통업체 로그인
+    @Test
+    public void selectByBusinessIdAndBusinessPassword() {
+        log.info("businessId : " + memberDAO.findByBusinessId("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
     }
 }
