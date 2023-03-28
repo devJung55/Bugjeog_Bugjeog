@@ -1,5 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeLikeDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryBoardDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
@@ -16,43 +19,46 @@ import java.util.*;
 @RequiredArgsConstructor
 public class MyPageService {
     private final MypageDAO mypageDAO;
+    private final MemberDAO memberDAO;
+    private final FreeLikeDAO freeLikeDAO;
+    private final InquiryBoardDAO inquiryBoardDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
-        return mypageDAO.findById(memberId);
+        return memberDAO.findById(memberId);
     };
 
     //    회원 정보 수정
     public void memberUpdate(MemberVO memberVO) {
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    회원 탈퇴
-    public void memberWithdraw(Long memberId) { mypageDAO.deleteById(memberId);}
+    public void memberWithdraw(Long memberId) { memberDAO.deleteById(memberId);}
 
     //    파일 저장
     public void fileSave(MemberVO member){
-        MemberVO memberVO = mypageDAO.findById(member.getMemberId());
+        MemberVO memberVO = memberDAO.findById(member.getMemberId());
 
         memberVO.setMemberImgOriginalName(member.getMemberImgOriginalName());
         memberVO.setMemberImgPath(member.getMemberImgPath());
         memberVO.setMemberImgUuid(member.getMemberImgUuid());
 
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    이름 변경
     public void updateName(Long memberId, String memberName){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberName(memberName);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    핸드폰 번호 변경
     public void updatePhoneNumber(Long memberId , String memberPhoneNumber){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberPhoneNumber(memberPhoneNumber);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     // sms 발송 서비스
@@ -88,7 +94,7 @@ public class MyPageService {
 
     //    핸드폰 중복 검사
     public Boolean PhoneNumberCheck(String PhoneNumber){
-        List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
+        List<String> phoneNumbers = memberDAO.findAllToMemberPhoneNumber();
         boolean check = false;
 
         for (int i = 0; i < phoneNumbers.size(); i++){
@@ -101,20 +107,20 @@ public class MyPageService {
 
     // 비밀 번호 변경
     public void updatePassword(Long memberId, String memberPassword){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberPassword(memberPassword);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     // 문의 게시판 목록
     public MemberInquireDTO inquireList(Long memberId, Criteria criteria){
-        List<BoardInquiryVO> inquires = mypageDAO.findAllByIdToInquire(memberId,criteria);
+        List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllByIdToInquire(memberId,criteria);
         List<Long> status = new ArrayList<>();
         MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
 
         for(int i =0; i < inquires.size(); i++){
             Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
-            status.add(mypageDAO.inquireAnswer(inquiryBoardId));
+            status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
         }
 
         memberInquireDTO.setAnswerStatus(status);
@@ -125,17 +131,17 @@ public class MyPageService {
 
     // 문의 게시판 개수
     public Integer inquireCount(Long memberId){
-        return mypageDAO.getCountToInquire(memberId);
+        return inquiryBoardDAO.getCountToInquire(memberId);
     };
 
     // 좋아요 한 게시물 목록
     public List<BoardFreeVO> likeList(Long memberId, Criteria criteria){
-        return mypageDAO.findAllToLike(memberId,criteria);
+        return freeLikeDAO.findAllToLike(memberId,criteria);
     }
 
     // 좋아요 게시물 갯수
     public Integer likeCount(Long memberId){
-        return mypageDAO.getCountToLike(memberId);
+        return freeLikeDAO.getCountToLike(memberId);
     }
 
     //  댓글 단 게시물 목록
@@ -164,8 +170,8 @@ public class MyPageService {
 
         allCount.put("freeBoardCount",mypageDAO.getFreeBoardTotal(memberId));
         allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
-        allCount.put("likeBoardCount", mypageDAO.getCountToLike(memberId));
-        allCount.put("inquireCount", mypageDAO.getCountToInquire(memberId));
+        allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
+        allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));
 
         return allCount;
     }

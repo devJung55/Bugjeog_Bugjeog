@@ -1,60 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MyPageMapper">
-    <!--유저 정보 조회-->
-    <select id="select" resultType="memberVO">
-        select member_id, member_email, member_password ,member_phone_number, member_name, member_img_original_name, member_img_uuid, member_img_path
-        from tbl_member where member_id = #{member_id}
-    </select>
-
-    <!-- 모든 유저 핸드폰 번호 조회-->
-    <select id="selectAllPhoneNumber" resultType="String">
-       select member_phone_number from tbl_member
-       union
-       select business_phone_number from tbl_business
-    </select>
-    <!--이용자  정보 업데이트-->
-    <update id="update">
-        UPDATE tbl_member
-        SET member_email=#{memberEmail}, member_password=#{memberPassword}, member_name=#{memberName}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}, member_phone_number= #{memberPhoneNumber}
-        WHERE member_id = #{memberId}
-    </update>
-
-    <!--이용자 회원 탈퇴-->
-    <delete id="deleteMember">
-        delete from tbl_member where member_id = #{memberId}
-    </delete>
-
-    <!--이용자 좋아요 한 게시물 수-->
-    <select id="likeCount" resultType="int">
-        select count(free_like_id) from tbl_free_like where member_id = #{memberId}
-    </select>
-
-    <!--이용자 좋아요 한 게시물 리스트-->
-    <select id="likeList" resultType="boardFreeVO">
-        select f.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, k.member_id
-        from tbl_board_free f join tbl_free_like k
-        on f.board_free_id = k.board_free_id and k.member_id = #{memberId}
-        limit #{criteria.startRow}, #{criteria.amount}
-    </select>
-
-    <!-- 이용자의 문의게시판 목록 -->
-    <select id="inquireList" resultType="boardInquiryVO">
-        select member_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry
-        where member_id = #{memberId}
-		limit #{criteria.startRow}, #{criteria.amount}
-    </select>
-
-    <!-- 이용자의 문의글 작성 수-->
-    <select id="inquireCount" resultType="int">
-        select count(member_id) from tbl_board_inquiry where member_id = #{memberId}
-    </select>
-
-    <!--문의글 답변 여부-->
-    <select id="inquireAnswer" resultType="long">
-        select board_inquiry_id from tbl_board_inquiry_answer where board_inquiry_id = #{boardInquiryId}
-    </select>
-
     <!-- 이용자가 댓글 단 목록-->
     <select id="replyList" resultType="myPageReplyDTO">
         select  r.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like,reply_content, reply_register_date, reply_update_date
