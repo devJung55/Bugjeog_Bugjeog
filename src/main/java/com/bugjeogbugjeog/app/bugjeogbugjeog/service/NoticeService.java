@@ -5,6 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,5 +23,8 @@ public class NoticeService {
     public void add(NoticeVO noticeVO){ noticeDAO.add(noticeVO);}
 
     /* 공지사항  삭제 */
-    public void remove(Long noticeId){ noticeDAO.remove(noticeId);}
+    public void remove(List<String> noticeIds) {
+        noticeIds.stream().map(noticeId -> Long.parseLong(noticeId)).forEach(noticeDAO::remove);
+//        noticeIds.forEach(noticeDAO::remove);
+    }
 }
