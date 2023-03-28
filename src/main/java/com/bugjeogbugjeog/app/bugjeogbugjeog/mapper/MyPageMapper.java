@@ -21,11 +21,6 @@ public interface MyPageMapper {
 //    댓글 단 갯수
     public Integer replyCount(Long memberId);
 
-//  자유 게시판 목록
-    public List<BoardFreeVO> freeList(@Param("memberId") Long memberId,@Param("criteria") Criteria criteria);
-
-//    자유 게시판 개수
-    public Integer freeCount(Long memberId);
 
     //유통 분야 설정 추가
     public void updateLocation(BusinessVO businessVO);
