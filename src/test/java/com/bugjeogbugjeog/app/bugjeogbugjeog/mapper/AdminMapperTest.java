@@ -20,9 +20,8 @@ public class AdminMapperTest {
     AdminMapper adminMapper;
 
     /* 회원 */
-/*
-
-    @Test
+  /*
+  @Test
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 */
 

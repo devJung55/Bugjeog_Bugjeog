@@ -23,15 +23,15 @@ public class AdminController {
     private final NoticeService noticeService;
 /*
 
-    */
-/* 회원 목록 조회 *//*
+
+/* 회원 목록 조회 */
 
     @GetMapping("admin-memberList")
     public void adminMemberList(){
 
     }
 
-    */
+
 /* 회원 상세 보기 *//*
 
     @GetMapping("admin-member")
@@ -110,7 +110,6 @@ public class AdminController {
         noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
     }
-
 
     /* 공지사항 삭제 */
     @DeleteMapping("admin-delete")

@@ -4,10 +4,10 @@
 
 
    <!--  회원 전체 목록 -->
-   <!-- <select id="selectAllMember" resultType="memberDTO">
-        select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path, count(board_free_id) board_count, count(reply_id) reply_count
-        from tbl_member m join tbl_board_free join tbl_free_reply
-    </select>-->
+  <select id="selectAllMember" resultType="memberDTO">
+        select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
+        from tbl_member
+    </select>
     <!--
         &lt;!&ndash; 회원 조회 &ndash;&gt;
         <select id="selectMember" resultType="memberVO">

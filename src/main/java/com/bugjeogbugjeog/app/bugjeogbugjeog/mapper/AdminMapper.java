@@ -11,8 +11,8 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
-    //  관리자 회원 정보 조회
-    public List<MemberDTO> selectAllMember();
+    //  관리자 회원 목록
+    public List<MemberDTO> selectAllMember(Criteria criteria);
 
     /* 회원 상세 보기 */
     public MemberVO selectMember(Long MemberId);
