@@ -21,6 +21,6 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO" alias="memberInquireDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO" alias="noticeVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO" alias="myPageReplyDTO"/>
-        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InterestingCompanyDTO" alias="interestingCompanyDTO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO" alias="memberDTO"/>
     </typeAliases>
 </configuration>

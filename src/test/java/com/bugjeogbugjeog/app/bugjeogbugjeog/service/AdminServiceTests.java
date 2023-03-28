@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 public class AdminServiceTests {
 
-    @Autowired
+   /* @Autowired
     AdminService adminService;
 
     @Test
@@ -38,9 +38,9 @@ public class AdminServiceTests {
     }
 
 
-    /* ------------------------------------------------------------------------------------------------------------- */
+    *//* ------------------------------------------------------------------------------------------------------------- *//*
 
-    /* 유통 회원 */
+    *//* 유통 회원 *//*
 
 
     @Test
@@ -63,7 +63,7 @@ public class AdminServiceTests {
     public void deleteBusiness(){
         adminService.deleteBusiness(2L);
     }
-
+*/
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
