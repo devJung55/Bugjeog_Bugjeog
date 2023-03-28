@@ -21,4 +21,10 @@ public interface MemberMapper {
 
 //    유통업체 회원가입
     public void insertBusiness(BusinessVO businessVO);
+
+//    유통업체 이메일 중복검사
+    public Long businessSelectByEmail(String businessEmail);
+
+//    유통업체 휴대폰 중복검사
+    public Long businessSelectByPhoneNumber(String businessPhoneNumber);
 }

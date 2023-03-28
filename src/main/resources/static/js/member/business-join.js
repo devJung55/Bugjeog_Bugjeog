@@ -9,28 +9,29 @@
     let allSelectCheck = false;
     let mustSelectCheck1 = false;
     let mustSelectCheck2 = false;
+    let authCodeCheck = false;
 
     // 이메일 검사
     const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     const $email = $("input[type='email']");
     const $emailError = $(".email-error");
 
-    $email.blur(function(){
+    $email.keyup(function(){
         let emailVal = $email.val();
         if(!emailVal){
             $emailError.text("이메일을 입력해주세요.");
-            let emailCheck = false;
+            emailCheck = false;
         }else if(!regEmail.test(emailVal)){
             $emailError.text("이메일 형식에 맞춰서 작성해주세요.");
-            let emailCheck = false;
+            emailCheck = false;
         } else if(!businessService.checkEmail()) {
             $emailError.text("이미 사용중인 이메일입니다.");
             $emailError.css("color", "red");
-            let emailCheck = false;
+            emailCheck = false;
         } else {
             $emailError.text("사용 가능한 이메일입니다.");
             $emailError.css("color", "blue");
-            let emailCheck = true;
+            emailCheck = true;
         }
     });
 
@@ -42,10 +43,10 @@
         let nameVal = $name.val();
         if(!nameVal){
             $nameError.text("대표자명을 입력해주세요.");
-            let ceoNameCheck = false;
+            ceoNameCheck = false;
         }else {
             $nameError.text("");
-            let ceoNameCheck = true;
+            ceoNameCheck = true;
         }
     });
 
@@ -57,10 +58,10 @@
         let companyNameVal = $companyName.val();
         if(!companyNameVal){
             $companyNameError.text("회사명을 입력해주세요.");
-            let businessNameCheck = false;
+            businessNameCheck = false;
         }else {
             $companyNameError.text("");
-            let businessNameCheck = true;
+            businessNameCheck = true;
         }
     });
 
@@ -73,13 +74,13 @@
             let openCompanyDateVal = $openCompanyDate.val();
             if(!openCompanyDateVal){
                 $openCompanyDateError.text("설립일을 입력해주세요.");
-                let registerCheck = false;
+                registerCheck = false;
             }else if(!$regCompanyDate.test(openCompanyDateVal)){
                 $openCompanyDateError.text("형식에 맞게 입력해주세요.");
-                let registerCheck = false;
+                registerCheck = false;
             }else {
                 $openCompanyDateError.text("");
-                let registerCheck = true;
+                registerCheck = true;
             }
         });
 
@@ -91,13 +92,13 @@
     $businessNumber.blur(function(){
         if(!$businessNumber.val()){
             $businessNumberError.text("사업자번호를 입력해주세요.");
-            let businessNumberCheck = false;
+            businessNumberCheck = false;
         }else if(!regBusinessNumber.test($businessNumber.val())){
             $businessNumberError.text("형식에 맞춰서 작성해주세요.");
-            let businessNumberCheck = false;
+            businessNumberCheck = false;
         }else {
             $businessNumberError.text("");
-            let businessNumberCheck = true;
+            businessNumberCheck = true;
         }
     });
 
@@ -109,19 +110,22 @@
     const $phoneError = $(".phone-error");
     const $Checkbutton = $(".join-num-check-button");
 
-    $phone.blur(function(){
+    $phone.keyup(function(){
         let phoneVal = $phone.val();
         $phoneError.show();
-        if(!phoneVal){
+
+        if(!phoneVal && phoneVal.length != 11){
             $Checkbutton.removeClass("phone-active");
             $Checkbutton.css("cursor", "inherit");
+            $phoneError.css("color", "red");
             $phoneError.text("핸드폰 번호를 입력해주세요.");
-            let phoneNumberCheck = false;
+            phoneNumberCheck = false;
         }else if(!regPhone.test(phoneVal)){
             $Checkbutton.css("cursor", "inherit");
             $Checkbutton.removeClass("phone-active");
+            $phoneError.css("color", "red");
             $phoneError.text("올바른 형식이 아닙니다.");
-            let phoneNumberCheck = false;
+            phoneNumberCheck = false;
         } else if(!businessService.checkPhoneNumber()) {
             $phoneError.css("color", "red");
             $phoneError.html("이미 사용중인 휴대폰번호입니다.");
@@ -137,8 +141,11 @@
 
     // 인증번호 보내기 클릭 시 
     $Checkbutton.click(function(){
-        $(".authcode-input").addClass("authcode-input-active");
-        $(".auth-msg").show();
+        if(phoneNumberCheck) {
+            businessService.sendSMS();
+            $(".authcode-input").addClass("authcode-input-active");
+            $(".auth-msg").show();
+        }
     });
 
     const $authcode = $(".autocode-check");
@@ -229,40 +236,57 @@
 
     /*---------------------------- 회원가입 활성화 이벤트 ----------------------------*/
 
-    const $joinButton = $(".join-jjoin-btn-border");
-    const $must1 = $(".must1");
-    const $must2 = $(".must2");
+    // const $joinButton = $(".join-jjoin-btn-border");
+    // const $must1 = $(".must1");
+    // const $must2 = $(".must2");
+    //
+    // $joinButton.on("click", function(e) {
+    //     console.log("클릭");
+    //     if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
+    //         $(document.joinForm).submit();
+    //     } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck) {
+    //         $(document.joinForm).submit();
+    //     }
+    // });
+    //
+    // $must1.on("click", function(e) {
+    //     if($must1.is(":checked")) {
+    //         mustSelectCheck1 = true;
+    //         joinButtonActive();
+    //     } else {
+    //         mustSelectCheck1 = false;
+    //     }
+    // });
+    //
+    // $must2.on("click", function(e) {
+    //     if($must2.is(":checked")) {
+    //         mustSelectCheck2 = true;
+    //         joinButtonActive();
+    //     } else {
+    //         mustSelectCheck2 = false;
+    //     }
+    // });
 
-    $joinButton.on("click", function(e) {
-        console.log("클릭");
-        if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
-            $(document.joinForm).submit();
-        } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck) {
-            $(document.joinForm).submit();
-        }
-    });
 
-    $must1.on("click", function(e) {
-        if($must1.is(":checked")) {
-            mustSelectCheck1 = true;
+    /*---------------------------- 사업자 회원가입 인증번호 ----------------------------*/
+
+
+    $(".authcode-check-button").on("click", function(e) {
+        if($(".authcode-check").val() == code) {
+            alert("인증성공");
+            authCodeCheck = true;
             joinButtonActive();
         } else {
-            mustSelectCheck1 = false;
-        }
-    });
-
-    $must2.on("click", function(e) {
-        if($must2.is(":checked")) {
-            mustSelectCheck2 = true;
-            joinButtonActive();
-        } else {
-            mustSelectCheck2 = false;
+            authCodeCheck = false;
+            alert("인증실패");
         }
     });
 
 
-    /*---------------------------- 사업자 회원가입 ajax ----------------------------*/
+    /*---------------------------- 사업자 회원가입 ajax 모듈화 ----------------------------*/
 
+
+    globalThis.code = "";
 
     let businessService = (function() {
         function checkEmail() {
@@ -272,6 +296,7 @@
             $.ajax({
                 url: "/members/businessEmailsCheck",
                 type: "post",
+                async : false,
                 data: {"businessEmail": businessEmail},
                 success: function(result) {
                     if(result == 1) {
@@ -286,11 +311,12 @@
 
         function checkPhoneNumber() {
             let check = true;
-            let businessPhoneNumber = $(".phone-number-check");
+            let businessPhoneNumber = $(".phone-number-check").val();
 
             $.ajax({
                 url: "/members/businessPhoneNumbersCheck",
                 type: "post",
+                async : false,
                 data: {"businessPhoneNumber": businessPhoneNumber},
                 success: function(result) {
                     if(result == 1) {
@@ -302,4 +328,21 @@
             });
             return check;
         }
-    });
+
+        function sendSMS() {
+            let memberPhoneNumber = $(".phone-number-check").val();
+
+            $.ajax({
+                url: "/members/code",
+                type: "post",
+                data: {"memberPhoneNumber": memberPhoneNumber},
+                success: function(result) {
+                    code = result;
+                    console.log(code);
+                    alert("인증번호 발송완료");
+                }
+            });
+            return code;
+        }
+        return {checkEmail: checkEmail, checkPhoneNumber: checkPhoneNumber, sendSMS: sendSMS}
+    })();
