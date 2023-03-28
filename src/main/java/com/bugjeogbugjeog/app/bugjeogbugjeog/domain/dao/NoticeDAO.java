@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ public class NoticeDAO {
     private final NoticeMapper noticeMapper;
 
     /* 공지사항 목록 조회 */
-    public List<NoticeVO> findAll(){ return noticeMapper.selectAll();}
+    public List<NoticeVO> findAll(Criteria criteria){ return noticeMapper.selectAll(criteria);}
 
     /* 공지사항  상세 보기 */
     public NoticeVO findById(Long noticeId){ return noticeMapper.select(noticeId);}
@@ -23,5 +24,8 @@ public class NoticeDAO {
 
     /* 공지사항  선택 삭제 */
     public void remove(Long noticeId){ noticeMapper.delete(noticeId);}
+
+    /* 카운트 */
+    public int count(){return noticeMapper.count();}
 
 }
