@@ -88,37 +88,36 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="board-list">
                             <!-- 첫번째 글 -->
-                            <th:block th:each="freeVO, i : ${freeVO}">
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img class="img_profile" src="/image/boardList/self_employ_icon.png">
-                                                    </div>
+                                    <div class="AuthorBox_Wrapper">
+                                        <div class="AuthorBox_horizontalBox">
+                                            <div class="AuthorBox_avatarWrapper">
+                                                <div class="AuthorBox_avatar">
+                                                    <img class="writer-image" src="/image/boardList/self_employ_icon.png">
                                                 </div>
-                                                <span class="AuthorBox_username"th:text = "${memberVO.memberName}"></span>
                                             </div>
-                                            <span class="AuthorBox_createAt" th:text="${freeVO.boardFreeRegisterDate}"></span>
+                                            <span class="AuthorBox_username"></span>
                                         </div>
+                                        <span class="AuthorBox_createAt"></span>
+                                    </div>
                                 </div>
                                 <div class="PostItem_body">
                                     <div class="PostItem_header">
                                         <a href="">
-                                            <h3 class="PostItem_title" th:text="${freeVO.boardFreeTitle}"></h3>
-                                            <p class="PostItem_content" th:text="${freeVO.boardFreeContent}"></p>
+                                            <h3 class="PostItem_title">제목</h3>
+                                            <p class="PostItem_content">내용</p>
                                         </a>
                                     </div>
                                     <div class="PostItem_bottom">
                                         <div class="PostItem_like">
-                                            <label for="">
+                                            <label>
                                                 <button style="display: none;"></button>
                                                 <img src="/image/mypage/like_after.png" class="liked" alt="">
                                             </label>
-                                            <span class="button_count" th:text="${freeVO.boardFreeLike}"></span>
+                                            <span class="button_count"></span>
                                         </div>
                                         <div class="PostItem_comments">
                                             <img src="/image/mypage/comment-dots-64.png">
@@ -127,7 +126,6 @@
                                     </div>
                                 </div>
                             </article>
-                            </th:block>
                             <article class="PostItem_wrapper no-content">
                                 <div style="text-align: center;">
                                     <h2>좋아요한 게시글이 없습니다.</h2>
@@ -158,10 +156,11 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
-    let freeVO = [[${freeVO}]];
-    console.log(freeVO);
+    let freeVOs = [[${freeVOs}]];
+    let memberVOs = [[${memberVOs}]];
+    let businessVOs = [[${businessVOs}]];
 
-    if(freeVO.length == 0){
+    if(freeVOs.length == 0){
         $(".page-box").hide();
         $(".no-content").show();
     }else {
@@ -207,4 +206,72 @@
 <script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/mypage_profile_personal.js"></script>
 <script src="/js/mypage/mypage_profile_paging.js"></script>
+<script>
+    const $boardList = $(".board-list");
+
+   function likedList() {
+       let text = "";
+       if(freeVOs.length != 0) {
+           for (var i = 0; i < freeVOs.length; i++) {
+               let memberIdCheck = freeVOs[i].memberId == memberVOs[i].memberId;
+               let memberImgCheck = memberVOs[i].memberImgUuid == null;
+               text += `<article class="PostItem_wrapper">
+                   <div class="PostItem_top">
+                       <div class="AuthorBox_Wrapper">
+                           <div class="AuthorBox_horizontalBox">
+                               <div class="AuthorBox_avatarWrapper">
+                                   <div class="AuthorBox_avatar">
+                       `;
+               if (memberIdCheck && memberImgCheck) {
+                   text += `<img class="writer-image" src="/image/boardList/self_employ_icon.png">`;
+               } else if (memberIdCheck && !memberImgCheck) {
+                   text += `<img src="${'/mypage/profile/display?fileName=' + memberVOs[i].memberImgPath + '/' + memberVOs[i].memberImgUuid + '_' + memberVOs[i].memberImgOriginalName}">`;
+               }
+
+               text += `            </div>
+                               </div>
+                               <span class="AuthorBox_username"></span>
+                           </div>
+                           <span class="AuthorBox_createAt"></span>
+                       </div>
+                   </div>
+                   <div class="PostItem_body">
+                       <div class="PostItem_header">
+                           <a href="">
+                               <h3 class="PostItem_title">제목</h3>
+                               <p class="PostItem_content">내용</p>
+                           </a>
+                       </div>
+                       <div class="PostItem_bottom">
+                           <div class="PostItem_like">
+                               <label>
+                                   <button style="display: none;"></button>
+                                   <img src="/image/mypage/like_after.png" class="liked" alt="">
+                               </label>
+                                   <span class="button_count"></span>
+                           </div>
+                           <div class="PostItem_comments">
+                               <img src="/image/mypage/comment-dots-64.png">
+                               <span class="button_count">2</span>
+                           </div>
+                       </div>
+                   </div>
+               </article>
+               `;
+           }
+       }else {
+               text += `
+                <article class="PostItem_wrapper no-content">
+                     <div style="text-align: center;">
+                         <h2>좋아요한 게시글이 없습니다.</h2>
+                    </div>
+                </article>
+               `;
+       }
+       $boardList.append(text);
+   }
+
+   likedList();
+
+</script>
 </html>
