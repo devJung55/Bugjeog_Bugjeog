@@ -1,7 +1,4 @@
 const errorMsg = $(".error-msg");
-const ceoNameVal = $("input[name=businessCeoName]").val();
-const basicPhoneNumber = $("input[name=phoneNumber]").val();
-const basicCompanyName = $("#company-name").val();
 
 // 파일 모달창 닫기
 const $fileModal = $(".file-modal-display");
@@ -25,7 +22,7 @@ $companyModalExit.each((i, e) => {
     $(e).click(function(){
         companyNameCheck = false;
         errorMsg.text("");
-        $("#company-name").val(basicCompanyName);
+        $("#company-name").val(businessVO.businessCompanyName);
         $companyModal.hide();
     });
 });
@@ -40,7 +37,7 @@ $ceoNameModalButton.click(function(){
 
 $ceoNameModalExit.each((i , e) => {
     $(e).click(function(e){
-        $("input[name=businessCeoName]").val(ceoNameVal);
+        $("input[name=businessCeoName]").val(businessVO.businessCeoName);
         errorMsg.text("");
         nameCheck = false;
         $ceoNameModal.hide();
@@ -58,7 +55,7 @@ $businessModalButton.click(() => {
 
 $businessModalExit.each((i, e) => {
     $(e).click(() => {
-        $("input[name=phoneNumber]").val(basicPhoneNumber);
+        $("input[name=phoneNumber]").val(businessVO.businessPhoneNumber);
         errorMsg.text("");
         phoneCheck = false;
         $businessModal.hide();
@@ -76,6 +73,8 @@ $businessNumberModalButton.click(() => {
 
 $businessNumberModalExit.each((i, e) => {
     $(e).click(() => {
+
+
         $businessNumberModal.hide();
     });
 });

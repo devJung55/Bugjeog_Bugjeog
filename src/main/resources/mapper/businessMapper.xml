@@ -14,5 +14,10 @@
         from tbl_business where business_id = #{businessId}
     </select>
 
+    <!--전체 사업자 번호 가져오기-->
+    <select id="selectListToBusinessNumber" resultType="string">
+        select business_number from tbl_business
+    </select>
+
 </mapper>
 
