@@ -1,9 +1,11 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface FreeBoardMapper {
@@ -20,6 +22,14 @@ public interface FreeBoardMapper {
     public void delete(Long boardFreeId);
 
     //    게시글 전체 조회
-    public List<BoardFreeVO> selectAll();
+//    public List<BoardFreeVO> selectAll();
+
+//    비즈니스 참고하여 추가
+
+    //    썸네일 포함 목록 = 전체 조회
+    public List<BoardFreeVO> selectAllList();
+
+    //    썸네일 포함 목록
+    public List<BoardFreeVO> selectAllListBySearch(Map<String, Object> searchMap);
 }
 
