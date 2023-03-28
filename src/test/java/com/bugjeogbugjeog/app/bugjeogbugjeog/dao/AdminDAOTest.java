@@ -16,9 +16,10 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminDAOTest {
-
+/*
     @Autowired
     AdminDAO adminDAO;
+    */
 /*
     @Test
     public void findAllMemberTest(){List<MemberDTO> memberDTO = adminDAO.findAllMember();}

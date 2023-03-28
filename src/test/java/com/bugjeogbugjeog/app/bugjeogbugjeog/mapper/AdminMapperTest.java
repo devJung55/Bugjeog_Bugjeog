@@ -15,9 +15,10 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminMapperTest {
-
+/*
     @Autowired
     AdminMapper adminMapper;
+*/
 
     /* 회원 */
   /*

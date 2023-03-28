@@ -13,9 +13,11 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminServiceTests {
-
+/*
   @Autowired
     AdminService adminService;
+  */
+
 /*
     @Test
     public void showMemberList(){ List<MemberDTO> memberDTO = adminService.showMemberList();}

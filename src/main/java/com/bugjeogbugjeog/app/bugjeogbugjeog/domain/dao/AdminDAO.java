@@ -19,6 +19,8 @@ public class AdminDAO {
     /* 회원 목록 조회 */
     public List<MemberDTO> findAllMember(Criteria criteria){ return adminMapper.selectAllMember(criteria); }
 
+    /* 회원 카운트 */
+    public int count(){return adminMapper.count();}
 
 /* 회원 조회 *//*
 

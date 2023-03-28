@@ -14,6 +14,9 @@ public interface AdminMapper {
     //  관리자 회원 목록
     public List<MemberDTO> selectAllMember(Criteria criteria);
 
+    // 멤버 카운트
+    public int count();
+
     /* 회원 상세 보기 */
     public MemberVO selectMember(Long MemberId);
 
@@ -25,18 +28,28 @@ public interface AdminMapper {
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
+/*
 
-    /* 유통 회원 목록 조회 */
+    */
+/* 유통 회원 목록 조회 *//*
+
     public List<BusinessVO> selectAllBusiness();
 
-    /* 유통 회원 상세 보기 */
+    */
+/* 유통 회원 상세 보기 *//*
+
     public BusinessVO selectBusiness(Long businessId);
 
-    /* 유통 회원 수정 */
+    */
+/* 유통 회원 수정 *//*
+
     public void updateBusiness(BusinessVO businessVO);
 
-    /* 유통 회원 삭제  */
+    */
+/* 유통 회원 삭제  *//*
+
     public void deleteBusiness(Long businessId);
+*/
 
     /* ------------------------------------------------------------------------------------------------------------- */
 

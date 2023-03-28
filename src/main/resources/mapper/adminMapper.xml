@@ -8,6 +8,12 @@
         select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member
     </select>
+
+    <!-- 회원 수 카운트 -->
+    <select id="count" resultType="int">
+        select count(member_id) from tbl_member
+    </select>
+
     <!--
         &lt;!&ndash; 회원 조회 &ndash;&gt;
         <select id="selectMember" resultType="memberVO">
