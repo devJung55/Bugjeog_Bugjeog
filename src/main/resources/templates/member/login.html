@@ -38,7 +38,7 @@
                                               <input type="email" placeholder="이메일을 입력해 주세요." name="email" class="form-input-writeEmail id-input" th:field="${memberVO.memberEmail}"> <!-- value 값 있음 -->
                                               <p class="error-message-email"></p>
                                               <!-- 비밀번호 입력 -->
-                                              <input type="password" placeholder="비밀번호를 입력해 주세요." name="email" class="form-input-writeEmail password-input" id="inputPW" th:field="${memberVO.memberPassword}"> <!-- value 값 있음 -->
+                                              <input type="password" placeholder="비밀번호를 입력해 주세요." name="password" class="form-input-writeEmail password-input" id="inputPW" th:field="${memberVO.memberPassword}"> <!-- value 값 있음 -->
                                               <p class="error-message-password"></p>
                                               <button type="button" class="form-button-countinueEmail" disabled>
                                                        <span class="form-button-cuntinueEmail-ment">
@@ -67,7 +67,7 @@
                                                        <!-- 계정을 잊으셨나요? 버튼 --> 
                                                     <button type="button" class="form-forgetPlace">
                                                         <p class="form-btn-forget">
-                                                            계정을 잊으셨나요?
+                                                            <a th:href="@{/member/findAccount}">계정을 잊으셨나요?</a>
                                                         </p>
                                                     </button> 
 
@@ -130,6 +130,5 @@
             }
         });
     });
-
 </script>
 </html>

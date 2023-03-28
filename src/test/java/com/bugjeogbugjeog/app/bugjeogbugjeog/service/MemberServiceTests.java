@@ -42,7 +42,11 @@ public class MemberServiceTests {
 //    자영업자 로그인
     @Test
     public void loginTest() {
-        log.info("memberId : " + memberService.login("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
+        MemberVO memberVO = new MemberVO();
+
+        memberVO.setMemberEmail("jjy1234@naver.com");
+        memberVO.setMemberPassword("d2pkd2xkdWQxIQ==");
+        log.info("memberId : " + memberService.login(memberVO));
     }
 
 //    유통업체 회원가입
@@ -70,5 +74,11 @@ public class MemberServiceTests {
     @Test
     public void businessSelectByPhoneNumber() {
         log.info("businessPhoneNumber : " + memberService.businessCheckPhoneNumber("01012341234"));
+    }
+
+//    유통업체 로그인
+    @Test
+    public void selectByBusinessIdAndBusinessPassword() {
+        log.info("businessId : " + memberService);
     }
 }

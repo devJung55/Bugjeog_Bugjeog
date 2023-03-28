@@ -14,11 +14,9 @@ function emailCheck(){
             $errorMessageEmail.css("color", "red");
             $errorMessageEmail.text("이메일을 입력해주세요.");
             return false;
-            
-        } else if(rgbEmail.test(emailValue)){  
+        } else if(rgbEmail.test(emailValue)){
             $errorMessageEmail.css("display", "none");
             return true;
-
         } else {
             $errorMessageEmail.css("display", "block");
             $errorMessageEmail.css("color", "red"); // 올바른 이메일 형식이 아닐 때
@@ -42,12 +40,8 @@ function passwordCheck(){
             $errorMessagePassword.css("display", "block");
             $errorMessagePassword.css("color", "red");
             $errorMessagePassword.text("비밀번호를 입력해주세요.");
-            
-
         } else {
             $errorMessagePassword.css("display", "none");
-            
-
         }
     });
 }
@@ -166,11 +160,25 @@ $pw.change(function(){
 
 /*-------------------------- 로그인 form submit 이벤트 --------------------------*/
 
-console.log($loginBt);
-
 
 $loginBt.on("click", function(e) {
-    console.log("들어옴111");
-   $(document.loginForm).attr("action", "/member/login");
+   $(document.loginForm).attr("action", flag == "개인" ? "/member/login" : "/member/business-login");
    $(document.loginForm).submit();
+});
+
+
+/*-------------------------- 로그인 form 분기 처리  --------------------------*/
+
+
+const $whichForm = $(".private-business");
+globalThis.flag = "개인";
+
+$whichForm.each((i, v) => {
+    $(v).on("click", function(e) {
+        if($(v).text() == "개인") {
+            flag = "개인";
+        } else {
+            flag = "사업자";
+        }
+    })
 });
