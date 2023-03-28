@@ -76,29 +76,41 @@ public class BusinessBoardController {
             return dto;
         });
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
-            searchMap.put("category", category);
-            searchMap.put("sort", req.getParameter("sort"));
+        searchMap.put("category", category);
+        searchMap.put("sort", req.getParameter("sort"));
 //            return businessBoardService.getList(searchMap);
-            return businessBoardService.getList(searchMap);
+        return businessBoardService.getList(searchMap);
     }
 
     @GetMapping("/board/business/detail")
-    public void detail(){
+    public String detail(HttpServletRequest request) {
+        String boardBusinessId = request.getParameter("boardBusinessId");
+        return "post:/board/business/detail?boardBusinessId=" + boardBusinessId;
     }
 
     @PostMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) {
         System.out.println("컨 들어옴");
-        BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId")));
+        log.info(req.getParameter("boardBusinessId"));
+        BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
         String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
         dto.setBoardBusinessImgFullPath(fullPath);
         System.out.println("========================");
         System.out.println(dto.toString());
         System.out.println("========================");
-        List<BusinessReviewDTO> BusinessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
+        businessReviewDTOs.stream().map(reviewDTO -> {
+            String orginName = reviewDTO.getMemberImgOriginalName();
+            String memberFullPath = (orginName == null || orginName == "null" || orginName == "") ? "/image/mypage/member_no_image.png" : (reviewDTO.getMemberImgPath() + "/" + reviewDTO.getMemberImgUuid() + "_" + reviewDTO.getMemberImgOriginalName());
+            reviewDTO.setMemberImgFullPath(memberFullPath);
+            return reviewDTO;
+        });
+
+        System.out.println(dto.toString());
+        System.out.println(businessReviewDTOs.toString());
         model.addAttribute("board", dto);
-        model.addAttribute("reviews", BusinessReviewDTOs);
+        model.addAttribute("reviews", businessReviewDTOs);
     }
 
     @GetMapping("/board/business/write")

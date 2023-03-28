@@ -261,7 +261,7 @@
     let board = [[${board}]];
     let reviews = [[${reviews}]];
     console.log(board);
-    showList(board);
+    showList(board, reviews);
     $(document).ready(function () {
         // 등록 버튼 초기 색상 설정
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
@@ -284,18 +284,17 @@
         return false;
     });
 
-    function showList(board, replies) {
-
+    function showList(board, reviews) {
         $('#all_wrap').empty();
-        let text = ``;
+        let text = ``
         text = `
-        <div id="all_wrap_div" th:object="${boardBusinessDTO}">
+        <div id="all_wrap_div" th:object="${board}">
             <div style="overflow-y: auto; flex: 1 1;">
                 <div id="third_div">
                     <div id="title">
                         <div id="title_div">
                             <div>
-                                <h2 id="title_h2" th:text="${boardBusinessDTO.boardBusinessTitle}"></h2>
+                                <h2 id="title_h2"></h2>
                             </div>
                         </div>
                     </div>
@@ -303,18 +302,18 @@
                         <header style="display: flex;">
                             <section id="main_img">
                                 <div style="width: 700px; height: 400px;">
-                                    <img style="width: 100%; height: 100%;" th:src="${boardBusinessDTO.boardBusinessImgFullPath}" alt="">
+                                    <img style="width: 100%; height: 100%;" src="${boardBusinessImgFullPath}" alt="">
                                 </div>
                                 <button class="main_img_btn" id="main_img_btn_left"><</button>
                                 <button class="main_img_btn" id="main_img_btn_right">></button>
                             </section>
                             <section id="right_section">
-                                <h2 class="title_h2" th:text="${boardBusinessDTO.boardBusinessTitle}">뉴통 주식회사</h2>
+                                <h2 class="title_h2">${board.businessCompanyName}</h2>
                                 <h4 class="h4">설립일</h4>
-                                <h5 class="h5" th:text="${boardBusinessDTO.businessEstablishmentDate}">2019년 05월 24일</h5>
-                                <h4 class="h5">대표자: <span th:text="${boardBusinessDTO.businessCeoName}"></span></h4>
+                                <h5 class="h5">${board.businessEstablishmentDate}</h5>
+                                <h4 class="h5">대표자: ${board.businessCeoName}</h4>
                                 <h5 class="h4">유통물류센터</h5>
-                                <h4 class="h5" th:text="${boardBusinessDTO.businessLocation}">북부센터(경기 파주 소재)/ 남부센터(경기 동탄 소재)</h4>
+                                <h4 class="h5"${board.businessLocation}</h4>
 <!--                                <h4 class="h4">슬로건</h4>-->
 <!--                                <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>-->
                             </section>
@@ -327,7 +326,7 @@
                         <div style="width: calc(100% - 360px); color: #333;">
                             <div id="content">
                                 <div>
-                                    <blockquote id="blockquote" th:text="${boardBusinessDTO.boardBusinessContent}">
+                                    <blockquote id="blockquote">${board.boardBusinessContent}
                                         <b>원티드 단독 포지션이란?</b>
                                         <br>
                                         <b>타 채용 사이트(자사 포함)에 등록 없이 원티드에만 게재한 포지션 &nbsp;</b>
@@ -451,7 +450,7 @@
                             </a>
                         </div>
                     </div>`;
-        replies.forEach(reply => {
+        reviews.forEach(review => {
             text += `
                     <div id="reply_wrap">
                         <div id="reply_wrap_div">
@@ -461,7 +460,7 @@
                                         <div style="text-align: left; display: flex; align-items: center;">
                                             <div style="position: relative; margin-right: 7px;">
                                                 <div id="reply_my">
-                                                    <img id="reply_my_img" src="https://static.wanted.co.kr/oneid-user/ffNcGwxKt4ar38bNTAWNx4/A99F9jPw4kvEHiFUXHjYJL.jpg" alt="">
+                                                    <img id="reply_my_img" src="${review.memberImgFullPath}" alt="">
                                                 </div>
                                             </div>
                                             <div style="display: flex; flex-direction: column;">
