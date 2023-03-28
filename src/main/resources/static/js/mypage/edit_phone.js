@@ -92,20 +92,6 @@
        }
    });
 
-   // 핸드폰 중복검사
-    function phoneNumberCheck(phoneNumber){
-        var check = false;
-        $.ajax({
-            url : "/mypage/profile/memberPhoneCheck",
-            type: "get",
-            data : {"memberPhoneNumber" : phoneNumber},
-            async : false,
-            success : function(phoneNumberCheck){
-                check = phoneNumberCheck;
-            }
-        });
-        return check;
-    }
 
     function check (phoneNumberCheck){
         return phoneNumberCheck
@@ -130,48 +116,6 @@
            }
        });
    });
-
-   // 이름 변경 검사
-    const $nameInput = $("input[name=username]");
-    let nameCheck = false;
-    $nameInput.blur(function(){
-        if(!$(this).val()){
-            $(".name-error").text("이름을 입력해주세요.");
-            nameCheck = false;
-        }else if($(this).val().length < 2){
-            $(".name-error").text("이름은 2자리 이상 입력해주세요.");
-            nameCheck = false;
-        }else if(memberNameCheck($(this).val())){
-            $(".name-error").text("현재 이름과 동일합니다.");
-            nameCheck = false;
-        }else {
-            $(".name-error").text("");
-            nameCheck = true;
-        }
-    });
-
-    // 이름 저장
-    const $nameSaveButton = $(".name-save");
-
-    $nameSaveButton.click(function(){
-        if(!nameCheck){
-            alert("이름을 확인해주세요.");
-            return false;
-        }
-        let memberName = $("input[name=username]").val();
-        $.ajax({
-            url : "/mypage/profile/updateName",
-            type: "patch",
-            data: {"memberName" : memberName},
-            success : function (memberName) {
-                alert("이름 변경 완료");
-                $(".change-name").text(memberName + "님, 환영해요.");
-                $(".memberName").text(memberName);
-                $("input[name=username]").val(memberName);
-                $("#modal-edit_name").removeClass('is-active');
-            }
-        });
-    });
 
     // 비밀번호 검사
     let passwordCheck = [false, false];
@@ -233,31 +177,3 @@
             }
         });
     });
-
-    // 회원 이름 비교
-    function memberNameCheck(memberName){
-        let check = false;
-        $.ajax({
-            url : "/mypage/profile/memberVO",
-            type: "get",
-            async : false,
-            success : function (memberVO) {
-                check = memberVO.memberName == memberName;
-            }
-        });
-        return check;
-    }
-
-    // 회원 이름 비교
-    function memberPhoneCheck(memberPhoneNumber){
-        let check = false;
-        $.ajax({
-            url : "/mypage/profile/memberVO",
-            type: "get",
-            async : false,
-            success : function (memberVO) {
-                check = memberVO.memberPhoneNumber == memberPhoneNumber;
-            }
-        });
-        return check;
-    }

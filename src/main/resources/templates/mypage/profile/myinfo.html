@@ -133,7 +133,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">이름</p>
                             <p class="changeText memberName" th:text="*{memberName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_name">
+                            <a class="changeButton MainResume-edit js-modal-trigger member-name-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
@@ -142,7 +142,7 @@
                         <li class="changeDefault">
                             <p class="changeTitle">휴대폰 번호</p>
                             <p class="changeText phoneNumber"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger" data-target="modal-edit_phone">
+                            <a class="changeButton MainResume-edit js-modal-trigger phone-modal-button" data-target="modal-edit_phone">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
@@ -191,89 +191,89 @@
     </div>
 
     <!-- 이름 변경 모달창 -->
-    <div id="modal-edit_name" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper is-relative">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">이름</p>
+    <div class="member-name-modal">
+        <div id="modal-edit_name" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper is-relative">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">이름</p>
+                            </div>
                         </div>
+                        <div class="modal_content_bottom">
+                            <form>
+                                <div class="modal_edit_input_wrapper">
+                                    <input type="text" placeholder="이름을 입력해주세요." name="membername" class="edit_input_name"
+                                           th:value="${memberVO.memberName}">
+                                    <span class="error-msg name-error"></span>
+                                </div>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel name-modal-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save name-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="modal-close is-large name-modal-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <div class="modal_content_bottom">
-                        <form>
-                            <div class="modal_edit_input_wrapper">
-                                <input type="text" placeholder="이름을 입력해주세요." name="username" class="edit_input_name"
-                                    th:value="${memberVO.memberName}">
-                                <span class="error-msg name-error"></span>
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="button" class="modal_save name-save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
-                <button class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
     </div>
 
     <!-- 휴대폰 번호 변경 모달창 -->
-    <div id="modal-edit_phone" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                <div class="modal_content_wrapper">
-                    <div class="modal_content_top">
-                        <div class="modal_content_top_left"></div>
-                        <div class="modal_content_top_center">
-                            <p class="modal_content_name">휴대폰 번호</p>
+    <div class="member-phone-modal">
+        <div id="modal-edit_phone" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                    <div class="modal_content_wrapper">
+                        <div class="modal_content_top">
+                            <div class="modal_content_top_center">
+                                <p class="modal_content_name">휴대폰 번호</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal_content_bottom">
-                        <form>
-                            <div class="modal_content_main_wrapper">
-                                <div class="columns is-multiline m-0">
-                                    <div class="modal_input_number column columns is-full m-0 p-0">
-                                        <div class="columns column is-multiline m-0 p-0">
-                                            <input name="mobile" class="modal_input column is-full" th:value="${memberVO.memberPhoneNumber}"
-                                                placeholder="(예시) 01013245768" type="text" readonly maxlength="11">
+                        <div class="modal_content_bottom">
+                            <form>
+                                <div class="modal_content_main_wrapper">
+                                    <div class="columns is-multiline m-0">
+                                        <div class="modal_input_number column columns is-full m-0 p-0">
+                                            <div class="columns column is-multiline m-0 p-0">
+                                                <input name="memberPhoneNumber" class="modal_input column is-full" th:value="${memberVO.memberPhoneNumber}"
+                                                    placeholder="(예시) 01013245768" type="text" readonly disabled>
+                                            </div>
+                                            <label class="">
+                                                <button type="button" class="auth_number find-take-btn btn_active change-phoneNumber">
+                                                    <span class="edit_phone_number">번호 변경</span>
+                                                </button>
+                                                <button type="button" class="auth_number find-take-btn btn_active code-button">
+                                                    <span class="edit_phone_number">인증번호 받기</span>
+                                                </button>
+                                            </label>
                                         </div>
-                                        <label class="">
-                                            <button type="button" class="auth_number find-take-btn btn_active">
-                                                <span class="edit_phone_number">번호 변경</span>
-                                            </button>
-                                            <button type="button" class="auth_number find-take-btn btn_active code-button">
-                                                <span class="edit_phone_number">인증번호 받기</span>
-                                            </button>
-                                        </label>
+                                        <span class="phone-error error-msg column is-full p-0"></span>
+                                        <div class="modal_input_number column is-full p-0">
+                                            <input type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
+                                        </div>
                                     </div>
-                                    <span class="phone-error error-msg column is-full p-0"></span>
-                                    <div class="modal_input_number column is-full p-0">
-                                        <input type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
-                                    </div>
-                                    <p class="auth_msg auth_msg_done"></p>
-                                    <p class="auth_msg auth_remain_time"></p>
                                 </div>
-                            </div>
-                            <div class="modal_edit_btn_wrapper">
-                                <button type="button" class="modal_cancel">
-                                    <span class="modal_btn_span">취소</span>
-                                </button>
-                                <button type="button" class="modal_save phone-save">
-                                    <span class="modal_btn_span">저장</span>
-                                </button>
-                            </div>
-                        </form>
+                                <div class="modal_edit_btn_wrapper">
+                                    <button type="button" class="modal_cancel phone-modal-exit">
+                                        <span class="modal_btn_span">취소</span>
+                                    </button>
+                                    <button type="button" class="modal_save phone-save">
+                                        <span class="modal_btn_span">저장</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="modal-close is-large phone-modal-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
-                    <button class="modal-close is-large" style="position: absolute;" aria-label="close"></button>
                 </div>
             </div>
         </div>
@@ -298,20 +298,6 @@
     }
 </script>
 <script>
-    /* 파일 모달창 닫기*/
-    const $fileModal = $(".file-modal-display");
-    const $fileExitButton = $(".file-modal-exit");
-    const $fileCancelButton = $(".image-cancel-button");
-
-    $fileExitButton.click(function(){
-        $fileModal.hide();
-    });
-
-    $fileCancelButton.click(function(e){
-        e.preventDefault();
-        $fileModal.hide();
-    });
-
     globalThis.uuid;
     FileList.prototype.forEach = Array.prototype.forEach;
 
@@ -379,7 +365,166 @@
     }
 
     // ========================================================
+
+    // 이름 변경 검사
+    const $nameInput = $("input[name=membername]");
+    let memberNameCheck = false;
+    $nameInput.blur(function(){
+        if(!$(this).val()){
+            $(".name-error").text("이름을 입력해주세요.");
+            memberNameCheck = false;
+
+        }else if($(this).val().length < 2 || $(this).val().length > 4){
+            $(".name-error").text("이름은 2자리 이상 4자리 이하로 입력해주세요.");
+            memberNameCheck = false;
+
+        }else if(memberServiceCheck.memberNameCheck($(this).val())){
+            $(".name-error").text("현재 이름과 동일합니다.");
+            memberNameCheck = false;
+
+        }else {
+            $(".name-error").text("");
+            memberNameCheck = true;
+        }
+    });
+
+    // 이름 저장
+    const $nameSaveButton = $(".name-save");
+
+    $nameSaveButton.click(function(){
+        if(!memberNameCheck){
+            alert("이름을 확인해주세요.");
+            return false;
+        }
+        let memberName = $("input[name=membername]").val();
+
+        memberUpdate.memberNameUpdate(memberName);
+    });
+
+    // 번호 변경 클릭시 input태그 활성화
+    const $changeButton = $(".change-phoneNumber");
+    $changeButton.click(() => {
+        $("input[name=memberPhoneNumber]").removeAttr("disabled");
+        $("input[name=memberPhoneNumber]").removeAttr("readonly");
+        $("input[name=memberPhoneNumber]").val("");
+    });
+
+    // 휴대폰 번호 검사
+    const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
+    const $memberPhone = $("input[name=memberPhoneNumber]");
+    const $phoneError = $(".phone-error");
+    const $codeButton = $(".code-button");
+    let memberPhoneCheck = false;
+
+    $memberPhone.blur(function(){
+        let memberPhoneNumber = $memberPhone.val().replaceAll("-","");
+        $memberPhone.val(memberPhoneNumber);
+
+        if(!memberPhoneNumber){
+            $codeButton.removeClass("button-active");
+            $codeButton.attr("disabled");
+            $phoneError.text("핸드폰 번호를 입력해주세요.");
+            memberPhoneCheck = false;
+
+
+        }else if(!regPhone.test(memberPhoneNumber)){
+            $codeButton.removeClass("button-active");
+            $codeButton.attr("disabled");
+            $phoneError.text("올바른 형식이 아닙니다.");
+            memberPhoneCheck = false;
+
+        }else if(memberServiceCheck.memberPhoneCheck(memberPhoneNumber)){
+            $codeButton.removeClass("button-active");
+            $codeButton.attr("disabled");
+            $phoneError.text("현재 핸드폰 번호와 다른 번호를 입력해주세요.");
+            memberPhoneCheck = false;
+
+        }else if(memberServiceCheck.phoneNumberCheck(memberPhoneNumber)){
+            $codeButton.removeClass("button-active");
+            $codeButton.attr("disabled");
+            $phoneError.text("중복된 핸드폰 번호입니다.");
+            memberPhoneCheck = false;
+
+        }  else {
+            $codeButton.addClass("button-active");
+            $codeButton.removeAttr("disabled");
+            $phoneError.text("");
+            memberPhoneCheck = true;
+
+        }
+    });
+
+
+    /*=================================================================*/
+
+    let memberServiceCheck = (function(){
+        // 회원 현재 이름 비교
+        function memberNameCheck(memberName){
+            let check = false;
+            $.ajax({
+                url : "/mypage/profile/memberVO",
+                type: "get",
+                async : false,
+                success : function (memberVO) {
+                    check = memberVO.memberName == memberName;
+                }
+            });
+            return check;
+        }
+
+        // 회원 현재 전화번호 비교
+        function memberPhoneCheck(memberPhoneNumber){
+            let check = false;
+            $.ajax({
+                url : "/mypage/profile/memberVO",
+                type: "get",
+                async : false,
+                success : function (memberVO) {
+                    console.log(memberVO.memberPhoneNumber);
+                    check = memberVO.memberPhoneNumber == memberPhoneNumber;
+                }
+            });
+            return check;
+        }
+
+        // 핸드폰 중복검사
+        function phoneNumberCheck(memberPhoneNumber){
+            let check = false;
+            $.ajax({
+                url : "/mypage/profile/memberPhoneCheck",
+                type: "get",
+                data : {"memberPhoneNumber" : memberPhoneNumber},
+                async : false,
+                success : function(phoneNumberCheck){
+                    check = phoneNumberCheck;
+                }
+            });
+            return check;
+        }
+
+        return { memberNameCheck : memberNameCheck, memberPhoneCheck : memberPhoneCheck, phoneNumberCheck : phoneNumberCheck }
+    })();
+
+    let memberUpdate = (function(){
+
+        function memberNameUpdate(memberName){
+            $.ajax({
+                url : "/mypage/profile/updateName",
+                type: "patch",
+                data: {"memberName" : memberName},
+                success : function (memberName) {
+                    $(".change-name").text(memberName + "님, 환영해요.");
+                    $(".memberName").text(memberName);
+                    $("input[name=username]").val(memberName);
+                    $memberNameModal.hide();
+                }
+            });
+        }
+
+        return {memberNameUpdate : memberNameUpdate, }
+    })();
+
 </script>
+<script src="/js/mypage/modal.js"></script>
 <script src="/js/mypage/myinfo_modal.js"></script>
-<script src="/js/mypage/edit_phone.js"></script>
 </html>
