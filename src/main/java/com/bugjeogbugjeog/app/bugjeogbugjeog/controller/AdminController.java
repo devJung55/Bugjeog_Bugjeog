@@ -1,8 +1,10 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.AdminService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,17 +23,21 @@ import java.util.List;
 public class AdminController {
 
     private final NoticeService noticeService;
+
+    private final AdminService adminService;
 /*
 
-    */
-/* 회원 목록 조회 *//*
+
+/*  관리자 회원 목록 조회 */
 
     @GetMapping("admin-memberList")
-    public void adminMemberList(){
-
+    public String memberList(Criteria criteria, Model model){
+        model.addAttribute("MemberDTO",adminService.showMemberList(criteria));
+        model.addAttribute("PageDTO", new PageDTO(criteria, adminService.count()));
+        return "/admin/admin-memberList";
     }
 
-    */
+
 /* 회원 상세 보기 *//*
 
     @GetMapping("admin-member")
@@ -82,11 +88,9 @@ public class AdminController {
     /* 공지사항 리스트 */
    @GetMapping("admin-noticeList")
     public String noticeList(Criteria criteria, Model model){
-
        model.addAttribute("noticeVO", noticeService.showList(criteria));
        model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
        return "/admin/admin-noticeList";
-
    }
 
     /* 공지사항 조회 */
@@ -110,7 +114,6 @@ public class AdminController {
         noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
     }
-
 
     /* 공지사항 삭제 */
     @DeleteMapping("admin-delete")

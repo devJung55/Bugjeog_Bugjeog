@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.AdminDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,14 +15,13 @@ import java.util.List;
 public class AdminService {
 
     private final AdminDAO adminDAO;
-/*
 
-    */
-/* 회원 목록 조회 *//*
+    /* 회원 목록 조회 */
+    public List<MemberDTO> showMemberList(Criteria criteria){ return adminDAO.findAllMember(criteria);}
 
-    public List<MemberVO> showMemberList(){ return adminDAO.findAllMember();}
+    /* 회원 카운트 */
+    public int count(){return adminDAO.count();}
 
-    */
 /* 회원 상세 보기 *//*
 
     public MemberVO showMember(Long memberId) { return adminDAO.findByIdMember(memberId);}

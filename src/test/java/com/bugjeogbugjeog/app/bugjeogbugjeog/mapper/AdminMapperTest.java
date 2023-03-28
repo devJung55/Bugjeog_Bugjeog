@@ -15,14 +15,14 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminMapperTest {
-
+/*
     @Autowired
     AdminMapper adminMapper;
+*/
 
     /* 회원 */
-/*
-
-    @Test
+  /*
+  @Test
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 */
 

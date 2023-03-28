@@ -1,6 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +15,13 @@ import java.util.List;
 public class AdminDAO {
 
     private final AdminMapper adminMapper;
-/*
 
-    */
-/* 회원 목록 조회 *//*
+    /* 회원 목록 조회 */
+    public List<MemberDTO> findAllMember(Criteria criteria){ return adminMapper.selectAllMember(criteria); }
 
-    public List<MemberVO> findAllMember(){ return adminMapper.selectAllMember();}
+    /* 회원 카운트 */
+    public int count(){return adminMapper.count();}
 
-    */
 /* 회원 조회 *//*
 
     public MemberVO findByIdMember(Long memberId){ return adminMapper.selectMember(memberId);}

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InterestingCompanyMapper">
 <!--     관심업체 리스트-->
-    <select id="selectInterestingCompany" resultType="InterestingCompanyDTO">
+<!--    <select id="selectInterestingCompany" resultType="InterestingCompanyDTO">
         select ic.interesting_company_id, ic.member_id, ic.business_id, b.business_location, b.business_category,
         b.business_company_name, bb.board_business_id, bb.board_business_title, bbi.board_business_img_original_name, bbi.board_business_img_uuid, bbi.board_business_img_path
         from tbl_interesting_company ic left join tbl_business b
@@ -11,5 +11,5 @@
         on ic.business_id = bb.business_id
         left join tbl_board_business_img bbi
         on bb.board_business_id = bbi.board_business_id;
-    </select>
+    </select>-->
 </mapper>
