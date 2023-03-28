@@ -42,12 +42,13 @@ public class MemberRESTController {
 //    유통업체 이메일 중복 검사
     @PostMapping("businessEmailsCheck")
     public Long checkBusinessEmail(@RequestParam("businessEmail") String businessEmail) {
-        return null;
+        log.info(businessEmail);
+        return memberService.businessCheckEmail(businessEmail);
     }
 
 //    유통업체 휴대폰번호 중복 검사
     @PostMapping("businessPhoneNumbersCheck")
     public Long checkBusinessPhoneNumber(@RequestParam("businessPhoneNumber") String businessPhoneNumber) {
-        return null;
+        return memberService.businessCheckPhoneNumber(businessPhoneNumber);
     }
 }

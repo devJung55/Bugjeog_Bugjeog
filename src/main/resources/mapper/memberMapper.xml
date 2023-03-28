@@ -32,4 +32,16 @@
         (business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date)
         values(#{businessEmail}, #{businessPassword}, #{businessCeoName}, #{businessNumber}, #{businessCompanyName}, #{businessPhoneNumber}, #{businessEstablishmentDate})
     </insert>
+
+    <!-- 유통업체 이메일 중복검사 -->
+    <select id="businessSelectByEmail" parameterType="String" resultType="Long">
+        select count(business_email) from tbl_business
+        where business_email = #{businessEmail}
+    </select>
+
+    <!-- 유통업체 휴대폰 중복검사 -->
+    <select id="businessSelectByPhoneNumber" parameterType="String" resultType="Long">
+        select count(business_phone_number) from tbl_business
+        where business_phone_number = #{businessPhoneNumber}
+    </select>
 </mapper>

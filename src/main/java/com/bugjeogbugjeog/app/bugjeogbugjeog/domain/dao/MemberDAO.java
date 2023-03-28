@@ -35,4 +35,14 @@ public class MemberDAO {
     public void registerBusiness(BusinessVO businessVO) {
         memberMapper.insertBusiness(businessVO);
     }
+
+//    유통업체 이메일 중복검사
+    public Long businessFindByEmail(String businessEmail) {
+        return memberMapper.businessSelectByEmail(businessEmail);
+    }
+
+//    유통업체 휴대폰 중복검사
+    public Long businessFindByPhoneNumber(String businessPhoneNumber) {
+        return memberMapper.businessSelectByPhoneNumber(businessPhoneNumber);
+    }
 }

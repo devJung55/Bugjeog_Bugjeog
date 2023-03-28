@@ -183,7 +183,7 @@ form {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 8px;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }
 
 .error-message-email{
@@ -197,8 +197,9 @@ form {
 }
 
 .form-button-countinueEmail:disabled {
-    color: #ccc;
-    background-color:#f2f4f7;
+    color: #fff;
+    /*background-color:#f2f4f7;*/
+    background-color: #36f;
     border: none;
     cursor: default;
 }
@@ -230,7 +231,8 @@ form {
 }
 
 .form-button-countinueEmail:disabled span {
-    color: #ccc;
+    /*color: #ccc;*/
+    color: #fff;
 }
 
 .form-or {
