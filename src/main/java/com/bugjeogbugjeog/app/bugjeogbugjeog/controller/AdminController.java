@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -70,18 +71,22 @@ public class AdminController {
     public void notice(Long noticeId, Model model){
         model.addAttribute(noticeService.showNotice(noticeId));
     }
-    /* 공지사항 작성 */
-    @PostMapping("admin-noticeWrite")
-    public RedirectView AddNotice(NoticeVO noticeVO){
-        noticeService.add(noticeVO);
-        return new RedirectView("admin-noticeList");
-    }
 
-    /* 공지사항 작성 완료 */
+       /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());
     }
+
+    /* 공지사항 작성 완료 */
+    @PostMapping("admin-noticeWrite")
+    public RedirectView AddNotice(NoticeVO noticeVO, RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
+        redirectAttributes.addAttribute("noticeContent", noticeVO.getNoticeContent());
+        noticeService.add(noticeVO);
+        return new RedirectView("admin-noticeList");
+    }
+
 
     /* 공지사항 삭제 */
     @PostMapping("admin-noticeList")

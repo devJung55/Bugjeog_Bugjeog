@@ -48,7 +48,7 @@
                         </div>
                         
                         <!-- 내용 섹션 -->
-                        <section class="board-info-box-layout">
+                        <section class="board-info-box-layout" >
                             
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
@@ -56,13 +56,13 @@
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                <form action="">
+                                <form th:action="@{/admin/admin-noticeWrite}" method="post" th:object="${noticeVO}">
                                     <div>
-                                        <input type="text" class="notice-title" name="noticeTitle" placeholder="제목을 입력해주세요.">
+                                        <input type="text" class="notice-title" name="noticeTitle" placeholder="제목을 입력해주세요." th:field="*{noticeTitle}">
                                     </div>
                                     <hr>
                                     <div>
-                                        <textarea class="notice-content" name="noticeContent" placeholder="내용을 입력해주세요."></textarea>
+                                        <textarea class="notice-content" name="noticeContent" placeholder="내용을 입력해주세요." th:field="*{noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <div>
