@@ -273,12 +273,14 @@
 
     $(".authcode-check-button").on("click", function(e) {
         if($(".authcode-check").val() == code) {
-            alert("인증성공");
+            $(".auth-msg").html("인증에 성공했습니다.");
+            $(".auth-mag").css("color", "blue");
             authCodeCheck = true;
-            joinButtonActive();
+            /*joinButtonActive();*/
         } else {
+            $(".auth-msg").html("인증에 실패했습니다.");
+            $(".auth-mag").css("color", "red");
             authCodeCheck = false;
-            alert("인증실패");
         }
     });
 

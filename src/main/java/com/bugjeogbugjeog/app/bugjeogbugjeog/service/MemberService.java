@@ -64,8 +64,8 @@ public class MemberService {
     }
 
 //    자영업자 로그인
-    public Long login(String memberEmail, String memberPassword) {
-        return memberDAO.findByMemberEmailAndMemberPassword(memberEmail, memberPassword);
+    public Long login(MemberVO memberVO) {
+        return memberDAO.findByMemberEmailAndMemberPassword(memberVO);
     }
 
 //    유통업체 회원가입

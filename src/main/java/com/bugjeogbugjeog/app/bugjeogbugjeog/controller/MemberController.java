@@ -48,10 +48,9 @@ public class MemberController {
     @PostMapping("login")
     public RedirectView login(MemberVO memberVO, HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
+        memberVO.setMemberPassword(new String(Base64.getEncoder().encode(memberVO.getMemberPassword().getBytes())));
 
-        String memberEmail = memberVO.getMemberEmail();
-        String memberPassword = new String(Base64.getEncoder().encode(memberVO.getMemberPassword().getBytes()));
-        Long memberId = memberService.login(memberEmail, memberPassword);
+        Long memberId = memberService.login(memberVO);
 
         if(memberId == null) {
             return new RedirectView("/member/login?check=false");
