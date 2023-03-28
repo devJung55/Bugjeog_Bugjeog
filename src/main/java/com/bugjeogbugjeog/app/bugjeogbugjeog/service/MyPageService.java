@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
@@ -16,43 +17,44 @@ import java.util.*;
 @RequiredArgsConstructor
 public class MyPageService {
     private final MypageDAO mypageDAO;
+    private final MemberDAO memberDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
-        return mypageDAO.findById(memberId);
+        return memberDAO.findById(memberId);
     };
 
     //    회원 정보 수정
     public void memberUpdate(MemberVO memberVO) {
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    회원 탈퇴
-    public void memberWithdraw(Long memberId) { mypageDAO.deleteById(memberId);}
+    public void memberWithdraw(Long memberId) { memberDAO.deleteById(memberId);}
 
     //    파일 저장
     public void fileSave(MemberVO member){
-        MemberVO memberVO = mypageDAO.findById(member.getMemberId());
+        MemberVO memberVO = memberDAO.findById(member.getMemberId());
 
         memberVO.setMemberImgOriginalName(member.getMemberImgOriginalName());
         memberVO.setMemberImgPath(member.getMemberImgPath());
         memberVO.setMemberImgUuid(member.getMemberImgUuid());
 
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    이름 변경
     public void updateName(Long memberId, String memberName){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberName(memberName);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     //    핸드폰 번호 변경
     public void updatePhoneNumber(Long memberId , String memberPhoneNumber){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberPhoneNumber(memberPhoneNumber);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     // sms 발송 서비스
@@ -88,7 +90,7 @@ public class MyPageService {
 
     //    핸드폰 중복 검사
     public Boolean PhoneNumberCheck(String PhoneNumber){
-        List<String> phoneNumbers = mypageDAO.findAllToMemberPhoneNumber();
+        List<String> phoneNumbers = memberDAO.findAllToMemberPhoneNumber();
         boolean check = false;
 
         for (int i = 0; i < phoneNumbers.size(); i++){
@@ -101,9 +103,9 @@ public class MyPageService {
 
     // 비밀 번호 변경
     public void updatePassword(Long memberId, String memberPassword){
-        MemberVO memberVO = mypageDAO.findById(memberId);
+        MemberVO memberVO = memberDAO.findById(memberId);
         memberVO.setMemberPassword(memberPassword);
-        mypageDAO.updateById(memberVO);
+        memberDAO.updateById(memberVO);
     }
 
     // 문의 게시판 목록
