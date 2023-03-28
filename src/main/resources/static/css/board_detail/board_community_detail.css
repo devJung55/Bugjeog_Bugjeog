@@ -310,7 +310,7 @@ form button{
     font-weight: 700;
     padding: 0;
     position: absolute;
-    top: 0px;
+    top: 10px;
 }
 .declaration_button{
     color: #fe415c;
@@ -416,9 +416,6 @@ form button{
     width: 100%;
     height: 100%;
 }
-.profile-member-status {
-    padding: 1px 8px 5px;
-}
 .content-member-image-size {
     width: 28px;
     height: 28px;
@@ -432,9 +429,6 @@ form button{
     clip-path: circle(50% at 50% 50%);
 }
 
-.content-member-status {
-    padding: 4px 6px 5px;
-}
 
 .content-member-status span {
     font-size: 17px;

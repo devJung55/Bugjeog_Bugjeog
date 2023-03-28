@@ -61,7 +61,7 @@ div.EnterInterestArea-Wrapper {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    padding: 41px 0 30px;
+    padding: 41px 0 0px;
     border: 1px solid #e1e2e3;
     border-radius: 3px;
     background-color: #fff;
@@ -112,7 +112,6 @@ div.Recommendation-Wrapper {
     font-size: inherit;
     line-height: inherit;
     margin-top: 43px;
-    border-top: 5px solid #f8f8fa;
 }
 
 div.Recommendation-Wrapper div.FormBlock.content {
