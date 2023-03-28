@@ -98,7 +98,7 @@ public class BusinessBoardController {
         System.out.println("========================");
         List<BusinessReviewDTO> BusinessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
         model.addAttribute("board", dto);
-        model.addAttribute("replies", BusinessReviewDTOs);
+        model.addAttribute("reviews", BusinessReviewDTOs);
     }
 
     @GetMapping("/board/business/write")
