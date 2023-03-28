@@ -58,9 +58,4 @@ public class MyPageSpecificController {
     }
 
 
-//    @GetMapping("/specific/businessEdit")
-//    public String main2(){
-//        return "mypage/specific/businessEdit";
-//    }
-
 }
