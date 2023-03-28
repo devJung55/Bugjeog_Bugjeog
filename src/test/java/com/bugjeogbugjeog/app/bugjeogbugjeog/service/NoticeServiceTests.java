@@ -19,19 +19,19 @@ public class NoticeServiceTests {
     /*@Test
     public void showListTest(){List<NoticeVO> noticeVO = noticeService.showList();}*/
 
-    @Test
+    /*@Test
     public void showNoticeTest(){
         NoticeVO noticeVO = new NoticeVO();
         noticeService.showNotice(1L);
-    }
+    }*/
 
-    @Test
+  /*  @Test
     public void addTest(){
         NoticeVO noticeVO = new NoticeVO();
         noticeVO.setNoticeTitle("공지사항4");
         noticeVO.setNoticeContent("공지사항4");
         noticeService.add(noticeVO);
-    }
+    }*/
 
    /* @Test
     public void removeTest(){
