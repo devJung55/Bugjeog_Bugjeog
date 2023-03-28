@@ -1,19 +1,19 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +27,7 @@ import java.util.Map;
 @Slf4j
 public class BusinessBoardController {
     private final BusinessBoardService businessBoardService;
+    private final BusinessReviewService businessReviewService;
 
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
@@ -93,13 +94,11 @@ public class BusinessBoardController {
         String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
         dto.setBoardBusinessImgFullPath(fullPath);
         System.out.println("========================");
-        try {
-            System.out.println(dto.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(dto.toString());
         System.out.println("========================");
+        List<BusinessReviewDTO> BusinessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
         model.addAttribute("board", dto);
+        model.addAttribute("replies", BusinessReviewDTOs);
     }
 
     @GetMapping("/board/business/write")

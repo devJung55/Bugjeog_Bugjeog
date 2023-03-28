@@ -21,7 +21,20 @@ public class BoardBusinessDTO {
     private String boardBusinessImgFullPath;
 
     /* businessVO */
+    private String businessEmail;
+    private String businessPassword;
+    private String businessCeoName;
+    private String  businessNumber;
+    private String businessCompanyName;
+    private String businessPhoneNumber;
+    private String businessEstablishmentDate;
+    private String businessRegisterDate;
+    private Long businessStatus;
+    private String businessImgOriginalName;
+    private String businessImgUuid;
+    private String businessImgPath;
     private String businessLocation;
     private String businessCategory;
+
 
 }

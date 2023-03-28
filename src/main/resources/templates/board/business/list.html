@@ -151,7 +151,7 @@
             console.log(`${board.boardBusinessImgFullPath}`);
             text += `
                 <li class="info-box-layout"  th:object="${board}">
-                    <a href="/board/business/detail?boardId=${board.boardBusinessId}" th:method="POST">
+                    <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}" th:method="POST">
                         <div class="image-box">
                                 <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
                         </div>
