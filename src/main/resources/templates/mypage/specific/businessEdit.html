@@ -158,7 +158,7 @@
                                                     <div class="Static-label is-flex">지역선택</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="loca-button loca-button-active" id="서울" name="category" value="서울">
+                                                            <button type="button" class="loca-button" id="서울" name="category" value="서울">
                                                                 <span class="category_span">서울</span>
                                                             </button>
                                                             <button type="button" class="loca-button" id="경기" name="category" value="경기">
@@ -188,11 +188,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="fieldset-Static_content-others">
                                                     <div class="Static-label is-flex">카테고리</div>
                                                     <div class="Static-body">
                                                         <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="cate-button cate-button-active" id="육류" name="category" value="육류">
+                                                            <button type="button" class="cate-button" id="육류" name="category" value="육류">
                                                                 <span class="category_span">육류</span>
                                                             </button>
                                                             <button type="button" class="cate-button" id="해산물" name="category" value="해산물">
@@ -267,14 +268,31 @@
         });
     });
 
-
+    // 버튼을 클릭하면 그 버튼의 value를 val에 담아줌
     $('.cate-button').on('click', function () {
+        console.log($(this).val());
         $('#catergorys').val($(this).val());
     });
 
     $('.loca-button').on('click', function () {
+        console.log($(this).val());
         $('#foods').val($(this).val());
     });
+    // 적용하기 버튼 클릭시 categoryValue 와 foodValue 둘중 하나라도 없다면 alert
+    $('#submit-button').on('click', function() {
+        var categoryValue = $('#catergorys').val();
+        var foodValue = $('#foods').val();
+
+        console.log(categoryValue);
+        console.log(foodValue);
+        if (!categoryValue || !foodValue) {
+            alert('지역선택 또는 카테고리를 입력해 주세요.');
+            return false; // form submit 막기
+        }
+    });
+
+
+
 
 
 

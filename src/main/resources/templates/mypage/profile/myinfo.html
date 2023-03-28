@@ -236,14 +236,6 @@
                         <div class="modal_content_top_center">
                             <p class="modal_content_name">휴대폰 번호</p>
                         </div>
-                        <div class="modal_content_top_right is-relative">
-                            <!-- <button type="button" class="modal_exit_button" aria-label="close">
-                                <span class="modal_exit_span">
-                                    <img src="/image/mypage/x-64.png" alt="">
-                                </span>
-                            </button> -->
-                            
-                        </div>
                     </div>
                     <div class="modal_content_bottom">
                         <form>
@@ -252,7 +244,7 @@
                                     <div class="modal_input_number column columns is-full m-0 p-0">
                                         <div class="columns column is-multiline m-0 p-0">
                                             <input name="mobile" class="modal_input column is-full" th:value="${memberVO.memberPhoneNumber}"
-                                                placeholder="(예시) 01013245768" type="text" readonly>
+                                                placeholder="(예시) 01013245768" type="text" readonly maxlength="11">
                                         </div>
                                         <label class="">
                                             <button type="button" class="auth_number find-take-btn btn_active">
@@ -288,7 +280,6 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="/js/mypage/myinfo.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
 
@@ -389,9 +380,6 @@
 
     // ========================================================
 </script>
-<!-- 인증 번호 등 모달 관련 js -->
 <script src="/js/mypage/myinfo_modal.js"></script>
-<!-- 아이디 찾기 js 가져옴 -->
 <script src="/js/mypage/edit_phone.js"></script>
-
 </html>
