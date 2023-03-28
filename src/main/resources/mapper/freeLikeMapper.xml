@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.FreeLikeMapper">
+    <!--이용자 좋아요 한 게시물 수-->
+    <select id="likeCount" resultType="int">
+        select count(free_like_id) from tbl_free_like where member_id = #{memberId}
+    </select>
+
+    <!--이용자 좋아요 한 게시물 리스트-->
+    <select id="likeList" resultType="boardFreeVO">
+        select f.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, k.member_id
+        from tbl_board_free f join tbl_free_like k
+        on f.board_free_id = k.board_free_id and k.member_id = #{memberId}
+        limit #{criteria.startRow}, #{criteria.amount}
+    </select>
 </mapper>

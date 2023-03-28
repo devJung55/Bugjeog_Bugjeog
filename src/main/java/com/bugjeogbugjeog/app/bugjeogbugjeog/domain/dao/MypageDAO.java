@@ -16,55 +16,11 @@ import java.util.List;
 public class MypageDAO {
     private final MyPageMapper myPageMapper;
 
-    //    회원정보 조회
-    public MemberVO findById(Long memberId){
-        return myPageMapper.select(memberId);
-    };
-    
-    // 회원정보 수정
-    public void updateById(MemberVO memberVO){
-        myPageMapper.update(memberVO);
-    };
-
-    // 회원탈퇴
-    public void deleteById(Long memberId){
-        myPageMapper.deleteMember(memberId);
-    };
-
-    // 핸드폰 전체 조회
-    public List<String> findAllToMemberPhoneNumber(){
-        return myPageMapper.selectAllPhoneNumber();
-    }
 
     //    유통업체 회원정보 조회
     public BusinessVO findByIdToBusiness(Long businessId){
         return myPageMapper.selectBuisness(businessId);
     };
-
-    //    좋아요 한 게시물 수
-    public Integer getCountToLike(Long memberId){
-        return myPageMapper.likeCount(memberId);
-    };
-
-    //    좋아요 한 게시물 리스트
-    public List<BoardFreeVO> findAllToLike(Long boardFreeId, Criteria criteria){
-        return myPageMapper.likeList(boardFreeId, criteria);
-    };
-
-    //    문의 작성 목록
-    public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
-        return myPageMapper.inquireList(memberId,criteria);
-    };
-
-    //    문의 게시글 작성 갯수
-    public Integer getCountToInquire(Long memberId){
-        return myPageMapper.inquireCount(memberId);
-    };
-
-    // 문의 답변 여부
-    public Long inquireAnswer(Long boardInquireId){
-        return myPageMapper.inquireAnswer(boardInquireId);
-    }
 
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> findAllMyPageReplyDTO(Long memberId,Criteria criteria){
