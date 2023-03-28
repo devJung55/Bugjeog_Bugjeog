@@ -40,6 +40,14 @@
         from tbl_board_business
     </select>
 
+    <select id="selectAllByBusinessId" resultType="boardBusinessDTO">
+        select board_business_id, business_id, board_business_title
+        , board_business_content, board_business_register_date, board_business_update_date
+        , board
+        from tbl_board_business
+        where business_id = #{businessId}
+    </select>
+
     <select id="selectAllList" resultType="boardBusinessDTO">
         select b.board_business_id, b.business_id, b.board_business_title
         , b.board_business_content, b.board_business_register_date, b.board_business_update_date
