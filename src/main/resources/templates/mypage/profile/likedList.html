@@ -89,48 +89,6 @@
                             </ul>
                         </div>
                         <div class="board-list">
-                            <!-- 첫번째 글 -->
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                    <div class="AuthorBox_Wrapper">
-                                        <div class="AuthorBox_horizontalBox">
-                                            <div class="AuthorBox_avatarWrapper">
-                                                <div class="AuthorBox_avatar">
-                                                    <img class="writer-image" src="/image/boardList/self_employ_icon.png">
-                                                </div>
-                                            </div>
-                                            <span class="AuthorBox_username"></span>
-                                        </div>
-                                        <span class="AuthorBox_createAt"></span>
-                                    </div>
-                                </div>
-                                <div class="PostItem_body">
-                                    <div class="PostItem_header">
-                                        <a href="">
-                                            <h3 class="PostItem_title">제목</h3>
-                                            <p class="PostItem_content">내용</p>
-                                        </a>
-                                    </div>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <label>
-                                                <button style="display: none;"></button>
-                                                <img src="/image/mypage/like_after.png" class="liked" alt="">
-                                            </label>
-                                            <span class="button_count"></span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="/image/mypage/comment-dots-64.png">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="PostItem_wrapper no-content">
-                                <div style="text-align: center;">
-                                    <h2>좋아요한 게시글이 없습니다.</h2>
-                                </div>
-                            </article>
                         </div>
                         <div class="page-box">
                             <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
@@ -187,13 +145,6 @@
         return registerDate.getFullYear() +"."+(registerDate.getMonth() + 1) + "." + registerDate.getDate();
     }
 
-    let $date = $(".AuthorBox_createAt");
-    $(document).ready(function(){
-        $date.each((i, e) => {
-            $(e).text(date($(e).text()));
-        });
-    });
-
     let $pageForm = $(pageForm);
 
     $("a.changePage").on("click", function(e){
@@ -201,77 +152,9 @@
         $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
         $pageForm.submit();
     });
-
 </script>
 <script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/mypage_profile_personal.js"></script>
 <script src="/js/mypage/mypage_profile_paging.js"></script>
-<script>
-    const $boardList = $(".board-list");
-
-   function likedList() {
-       let text = "";
-       if(freeVOs.length != 0) {
-           for (var i = 0; i < freeVOs.length; i++) {
-               let memberIdCheck = freeVOs[i].memberId == memberVOs[i].memberId;
-               let memberImgCheck = memberVOs[i].memberImgUuid == null;
-               text += `<article class="PostItem_wrapper">
-                   <div class="PostItem_top">
-                       <div class="AuthorBox_Wrapper">
-                           <div class="AuthorBox_horizontalBox">
-                               <div class="AuthorBox_avatarWrapper">
-                                   <div class="AuthorBox_avatar">
-                       `;
-               if (memberIdCheck && memberImgCheck) {
-                   text += `<img class="writer-image" src="/image/boardList/self_employ_icon.png">`;
-               } else if (memberIdCheck && !memberImgCheck) {
-                   text += `<img src="${'/mypage/profile/display?fileName=' + memberVOs[i].memberImgPath + '/' + memberVOs[i].memberImgUuid + '_' + memberVOs[i].memberImgOriginalName}">`;
-               }
-
-               text += `            </div>
-                               </div>
-                               <span class="AuthorBox_username"></span>
-                           </div>
-                           <span class="AuthorBox_createAt"></span>
-                       </div>
-                   </div>
-                   <div class="PostItem_body">
-                       <div class="PostItem_header">
-                           <a href="">
-                               <h3 class="PostItem_title">제목</h3>
-                               <p class="PostItem_content">내용</p>
-                           </a>
-                       </div>
-                       <div class="PostItem_bottom">
-                           <div class="PostItem_like">
-                               <label>
-                                   <button style="display: none;"></button>
-                                   <img src="/image/mypage/like_after.png" class="liked" alt="">
-                               </label>
-                                   <span class="button_count"></span>
-                           </div>
-                           <div class="PostItem_comments">
-                               <img src="/image/mypage/comment-dots-64.png">
-                               <span class="button_count">2</span>
-                           </div>
-                       </div>
-                   </div>
-               </article>
-               `;
-           }
-       }else {
-               text += `
-                <article class="PostItem_wrapper no-content">
-                     <div style="text-align: center;">
-                         <h2>좋아요한 게시글이 없습니다.</h2>
-                    </div>
-                </article>
-               `;
-       }
-       $boardList.append(text);
-   }
-
-   likedList();
-
-</script>
+<script src="/js/mypage/likedList.js"></script>
 </html>
