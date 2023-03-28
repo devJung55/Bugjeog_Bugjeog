@@ -22,21 +22,6 @@ public class MypageDAO {
         return myPageMapper.selectBuisness(businessId);
     };
 
-    //    문의 작성 목록
-    public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
-        return myPageMapper.inquireList(memberId,criteria);
-    };
-
-    //    문의 게시글 작성 갯수
-    public Integer getCountToInquire(Long memberId){
-        return myPageMapper.inquireCount(memberId);
-    };
-
-    // 문의 답변 여부
-    public Long inquireAnswer(Long boardInquireId){
-        return myPageMapper.inquireAnswer(boardInquireId);
-    }
-
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> findAllMyPageReplyDTO(Long memberId,Criteria criteria){
         return myPageMapper.replyList(memberId, criteria);
@@ -46,16 +31,6 @@ public class MypageDAO {
     public Integer getReplyTotal(Long memberId){
         return myPageMapper.replyCount(memberId);
     };
-
-    // 자유게시판 글 목록
-    public List<BoardFreeVO> findByIdBoardFreeVO(Long memberId, Criteria criteria) {
-        return myPageMapper.freeList(memberId, criteria);
-    }
-
-    // 자유게시판 갯수
-    public Integer getFreeBoardTotal(Long memberId){
-        return myPageMapper.freeCount(memberId);
-    }
 
     //유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {myPageMapper.updateLocation(businessVO);};

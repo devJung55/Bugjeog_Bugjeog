@@ -1,8 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeLikeDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MypageDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
@@ -20,6 +18,8 @@ public class MyPageService {
     private final MypageDAO mypageDAO;
     private final MemberDAO memberDAO;
     private final FreeLikeDAO freeLikeDAO;
+    private final InquiryBoardDAO inquiryBoardDAO;
+    private final FreeBoardDAO freeBoardDAO;
 
     //    회원 정보 조회
     public MemberVO memberInfo(Long memberId){
@@ -112,13 +112,13 @@ public class MyPageService {
 
     // 문의 게시판 목록
     public MemberInquireDTO inquireList(Long memberId, Criteria criteria){
-        List<BoardInquiryVO> inquires = mypageDAO.findAllByIdToInquire(memberId,criteria);
+        List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllByIdToInquire(memberId,criteria);
         List<Long> status = new ArrayList<>();
         MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
 
         for(int i =0; i < inquires.size(); i++){
             Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
-            status.add(mypageDAO.inquireAnswer(inquiryBoardId));
+            status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
         }
 
         memberInquireDTO.setAnswerStatus(status);
@@ -129,7 +129,7 @@ public class MyPageService {
 
     // 문의 게시판 개수
     public Integer inquireCount(Long memberId){
-        return mypageDAO.getCountToInquire(memberId);
+        return inquiryBoardDAO.getCountToInquire(memberId);
     };
 
     // 좋아요 한 게시물 목록
@@ -154,22 +154,22 @@ public class MyPageService {
 
     // 자유게시판 목록 가져오기
     public List<BoardFreeVO> freeList(Long memberId, Criteria criteria){
-        return mypageDAO.findByIdBoardFreeVO(memberId, criteria);
+        return freeBoardDAO.findByIdBoardFreeVO(memberId, criteria);
     }
 
     // 자유게시판 개수
     public Integer freeCount(Long memberId){
-        return mypageDAO.getFreeBoardTotal(memberId);
+        return freeBoardDAO.getFreeBoardTotal(memberId);
     }
 
     // 게시판 각각의 개수
     public Map<String, Integer> allcount(Long memberId){
         Map<String, Integer> allCount = new HashMap<>();
 
-        allCount.put("freeBoardCount",mypageDAO.getFreeBoardTotal(memberId));
+        allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardTotal(memberId));
         allCount.put("replyCount", mypageDAO.getReplyTotal(memberId));
         allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
-        allCount.put("inquireCount", mypageDAO.getCountToInquire(memberId));
+        allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));
 
         return allCount;
     }
