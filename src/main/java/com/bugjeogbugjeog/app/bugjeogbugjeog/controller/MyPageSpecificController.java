@@ -22,7 +22,8 @@ public class MyPageSpecificController {
     private final MyPageService myPageService;
 
     @GetMapping("edit")
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("businessVO", myPageService.businessInfo(1L));
         return "mypage/specific/businessEdit";
     }
     @GetMapping("favorite")
