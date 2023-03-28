@@ -19,5 +19,10 @@
         select business_number from tbl_business
     </select>
 
+    <!-- 회원 탈퇴 -->
+    <delete id="withdraw">
+        delete from tbl_business where business_id = #{businessId}
+    </delete>
+
 </mapper>
 

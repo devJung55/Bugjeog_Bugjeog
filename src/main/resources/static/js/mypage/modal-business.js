@@ -73,8 +73,9 @@ $businessNumberModalButton.click(() => {
 
 $businessNumberModalExit.each((i, e) => {
     $(e).click(() => {
-
-
+        $("#business-number").val(businessVO.businessNumber);
+        businessNumberCheck =false;
+        errorMsg.text("");
         $businessNumberModal.hide();
     });
 });

@@ -139,10 +139,10 @@
                                 <button class="exit_button button_confirm" id="button_confirm">
                                     <span>회원 탈퇴</span>
                                 </button>
-                                <button class="exit_button button_cancel">
-                                    <span>회원 탈퇴 취소</span>
-                                </button>
                             </form>
+                            <button class="exit_button button_cancel" type="button">
+                                <span>회원 탈퇴 취소</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -176,6 +176,11 @@
         } else if($btnConfirm.hasClass('button_active')){
             $btnConfirm.removeClass('button_active');
         }
+    });
+
+    const $exitButton = $(".exit_button");
+    $exitButton.click(() => {
+        location.href = "/mypage/profile/myinfo"
     });
 </script>
 
