@@ -27,8 +27,8 @@ public class MemberDAO {
     }
 
 //    자영업자 로그인
-    public Long findByMemberEmailAndMemberPassword(String memberEmail, String memberPassword) {
-        return memberMapper.selectByMemberIdAndMemberPassword(memberEmail, memberPassword);
+    public Long findByMemberEmailAndMemberPassword(MemberVO memberVO) {
+        return memberMapper.selectByMemberIdAndMemberPassword(memberVO);
     }
 
 //    유통업체 회원가입

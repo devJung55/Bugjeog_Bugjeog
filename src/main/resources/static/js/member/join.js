@@ -35,7 +35,7 @@ $email.blur(function(){
         $(".check-email").css("color", "blue");
         $(".check-email").html("사용가능한 이메일입니다.");
         emailCheck = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -51,7 +51,7 @@ $name.blur(function(){
     }else {
         $nameError.text("");
         nameCheck = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -88,7 +88,7 @@ $phone.keyup(function(){
         $(".phone-check").css("color", "blue");
         $(".phone-check").html("사용가능한 휴대폰번호입니다.");
         phoneNumberCheck = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -113,7 +113,7 @@ const $authcode = $(".authcode-input");
 const $authCheckButton = $(".authcode-check-button");
 $authcode.keyup(function(){
     if($authcode.val().length == 4){
-        $(".auth-msg").hide();
+        /*$(".auth-msg").hide();*/
         $authCheckButton.show();
     }
 });
@@ -139,7 +139,7 @@ $password.blur(function(){
         $passwordError.hide();
         $passwordError.text("");
         passwordCheck1 = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -151,7 +151,7 @@ $passwordCheck.blur(function(){
     }else {
         $passwordCheckError.hide();
         passwordCheck2 = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -162,7 +162,7 @@ $("#allSelect").click(function() {
         $(".join-terms-agree").addClass("checkbox-active-box");
         $(".checkbox-display").show();
         allCheckBox = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     }else {
         $(".checkbox-display").hide();
         $(".join-terms-agree").removeClass("checkbox-active-box");
@@ -184,7 +184,7 @@ $("input[name=check]").click(function() {
         $($(".join-terms-agree")[0]).addClass("checkbox-active-box");
         $($(".checkbox-display")[0]).show();
         $("#allSelect").prop("checked", true);
-        joinButtonActive();
+        /*joinButtonActive();*/
     }
 });
 
@@ -219,7 +219,7 @@ $joinButton.on("click", function(e) {
 $must1.on("click", function(e) {
     if($must1.is(":checked")) {
         must1CheckBox = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     } else {
         must1CheckBox = false;
     }
@@ -228,7 +228,7 @@ $must1.on("click", function(e) {
 $must2.on("click", function(e) {
     if($must2.is(":checked")) {
         must2CheckBox = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     } else {
         must2CheckBox = false;
     }
@@ -261,15 +261,14 @@ let joinButtonActive = function() {
 
 $(".authcode-check-button").on("click", function(e) {
     if($(".authcode-check").val() == code) {
-        $(".auto-mag").css("color", "blue");
         $(".auth-msg").html("인증에 성공했습니다.");
+        $(".auth-mag").css("color", "blue");
         authCodeCheck = true;
-        joinButtonActive();
+        /*joinButtonActive();*/
     } else {
-        $(".auto-mag").css("color", "red");
         $(".auth-msg").html("인증에 실패했습니다.");
+        $(".auth-mag").css("color", "red");
         authCodeCheck = false;
-        alert("인증실패");
     }
 });
 

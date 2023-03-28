@@ -17,7 +17,7 @@ public interface MemberMapper {
     public Long selectByPhoneNumber(String memberPhoneNumber);
 
 //    자영업자 로그인
-    public Long selectByMemberIdAndMemberPassword(String memberEmail, String memberPassword);
+    public Long selectByMemberIdAndMemberPassword(MemberVO memberVO);
 
 //    유통업체 회원가입
     public void insertBusiness(BusinessVO businessVO);
