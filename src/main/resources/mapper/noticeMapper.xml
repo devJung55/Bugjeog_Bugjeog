@@ -6,6 +6,7 @@
     <select id="selectAll" resultType="noticeVO">
         select notice_id, notice_title, notice_content, notice_register_date
         from tbl_notice
+        limit #{startRow}, #{amount}
     </select>
 
 <!--    /* 공지사항  상세 보기 */-->
@@ -26,5 +27,9 @@
         delete from tbl_notice
         where notice_id = #{noticeId};
     </delete>
+
+    <select id="count" resultType="int">
+        select count(notice_id) from tbl_notice
+    </select>
 
 </mapper>

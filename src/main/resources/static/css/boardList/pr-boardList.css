@@ -421,3 +421,7 @@ hr {
     color: #fff;
     border : none;
 }
+
+.pr-register-button>a {
+    color: white;
+}

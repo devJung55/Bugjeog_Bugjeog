@@ -1,18 +1,22 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +27,7 @@ import java.util.Map;
 @Slf4j
 public class BusinessBoardController {
     private final BusinessBoardService businessBoardService;
+    private final BusinessReviewService businessReviewService;
 
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
@@ -31,53 +36,69 @@ public class BusinessBoardController {
 
     //    리스트
     @GetMapping("/board/business/list")
-    public void showList(Model model) {
-        Map<String, Map> categoryMap = new HashMap<>();
+    public void showList(Model model, HttpServletRequest req) {
 
-        Map<String, String> mapAll = new HashMap<>();
-        mapAll.put("categoryKor", "전체");
-        mapAll.put("categoryEng", "all");
-        categoryMap.put("all", mapAll);
-
-        Map<String, String> mapMeat = new HashMap<>();
-        mapMeat.put("categoryKor", "육류");
-        mapMeat.put("categoryEng", "meat");
-        categoryMap.put("meat", mapMeat);
-
-        Map<String, String> mapSeafood = new HashMap<>();
-        mapSeafood.put("categoryKor", "해산물");
-        mapSeafood.put("categoryEng", "seafood");
-        categoryMap.put("seafood", mapSeafood);
-
-        Map<String, String> mapVegetable = new HashMap<>();
-        mapVegetable.put("categoryKor", "채소");
-        mapVegetable.put("categoryEng", "vegetable");
-        categoryMap.put("vegetable", mapVegetable);
-
-        Map<String, String> mapSpice = new HashMap<>();
-        mapSpice.put("categoryKor", "향신료");
-        mapSpice.put("categoryEng", "spice");
-        categoryMap.put("spice", mapSpice);
-
-        model.addAttribute("categorys", categoryMap);
+        businessBoardService.getList().stream().map(dto -> {
+            String name = dto.getBoardBusinessImgOriginalName();
+            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
+            dto.setBoardBusinessImgFullPath(fullPath);
+            return dto;
+        });
         model.addAttribute("boards", businessBoardService.getList());
     }
 
+    @ResponseBody
     @PostMapping("/board/business/list")
-    public void searchList(Model model, HttpServletRequest req) {
+    public List<BoardBusinessDTO> searchList(Model model, HttpServletRequest req) {
         Map<String, Object> searchMap = new HashMap<>();
-        searchMap.put("boardBusinessCategory", req.getParameter("boardBusinessCategory"));
-
-//        log.info(businessBoardService.getList().toString());
-        model.addAttribute("boards", businessBoardService.getList(searchMap));
+        String category = null;
+        switch (req.getParameter("category")) {
+            case "meat":
+                category = "육류";
+                break;
+            case "seafood":
+                category = "해산물";
+                break;
+            case "spice":
+                category = "향신료";
+                break;
+            case "vegetable":
+                category = "채소";
+                break;
+            default:
+                category = null;
+                break;
+        }
+        businessBoardService.getList().stream().map(dto -> {
+            String name = dto.getBoardBusinessImgOriginalName();
+            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
+            dto.setBoardBusinessImgFullPath(fullPath);
+            return dto;
+        });
+//        model.addAttribute("boards", businessBoardService.getList(searchMap));
+            searchMap.put("category", category);
+            searchMap.put("sort", req.getParameter("sort"));
+//            return businessBoardService.getList(searchMap);
+            return businessBoardService.getList(searchMap);
     }
-//    @GetMapping("/board/business/detail")
-//    public  detail(){
-//    }
+
+    @GetMapping("/board/business/detail")
+    public void detail(){
+    }
 
     @PostMapping("/board/business/detail")
-    public void detail(Long boardBusinessId, Model model) {
-        model.addAttribute(businessBoardService.getBoard(boardBusinessId));
+    public void detail(Model model, HttpServletRequest req) {
+        System.out.println("컨 들어옴");
+        BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardId")));
+        String name = dto.getBoardBusinessImgOriginalName();
+        String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
+        dto.setBoardBusinessImgFullPath(fullPath);
+        System.out.println("========================");
+        System.out.println(dto.toString());
+        System.out.println("========================");
+        List<BusinessReviewDTO> BusinessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
+        model.addAttribute("board", dto);
+        model.addAttribute("reviews", BusinessReviewDTOs);
     }
 
     @GetMapping("/board/business/write")

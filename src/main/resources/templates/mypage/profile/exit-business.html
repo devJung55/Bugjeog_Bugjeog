@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/mypage/font_mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_info.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_exit.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
+</head>
+<style>
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
+
+<body>
+<div class="wrapper_wrapper">
+    <div class="whole_wrapper">
+        <div id="header" style="width: 100%; position: fixed;" th:insert="~{mypage/fragment/header :: logout_header}"></div>
+        <main class="mainbody_wrapper">
+            <div class="main_wrapper_first">
+                <div class="main_wrapper is-flex">
+                    <div class="padding_wrap">
+                        <article class="main_content is-flex">
+                            <h1 class="warning_title">회원 탈퇴 시 주의사항</h1>
+                            <div class="content_top">
+                                <p class="warning_topic">
+                                    탈퇴하기 전에
+                                </p>
+                                <p class="warning_content">
+                                    ·
+                                    탈퇴 시 BugjeogID를 통해 등록한 서비스의 모든 정보가 영구적으로 삭제되며, 다시는 복구할 수 없습니다.
+                                </p>
+                            </div>
+                            <div class="content_top">
+                                <p class="warning_topic">
+                                    미리 백업하기
+                                </p>
+                                <p class="warning_content">
+                                    ·
+                                    BugjeogID로 등록한 서비스에서 정보 백업을 원하실 경우, 탈퇴 이전에 해당 서비스에서 백업을 진행해 주세요.
+                                </p>
+                            </div>
+                            <div class="content_top">
+                                <p class="warning_topic">
+                                    미리 관리하기
+                                </p>
+                                <p class="warning_content">
+                                    ·
+                                    서비스 이용 중 본인의 BugjeogID 계정에 귀속되지 않은 정보는 자동으로 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다. BugjeogID
+                                    계정에
+                                    귀속되지 않은 정보를 수정하거나 삭제하려는 경우, 회원 탈퇴 이전에 해당 서비스에서 수정 또는 삭제를 진행해 주세요.
+                                </p>
+                            </div>
+                            <hr class="partition_line">
+                            <div class="content_bottom">
+                                <p class="exit_account">탈퇴하려는 계정</p>
+                                <div class="profile_wrapper">
+                                    <div class="profile_img">
+                                        <img class="img_profile" src="/image/boardList/distributor_icon.png">
+                                    </div>
+                                    <p class="profile_email" th:text="${businessVO.businessEmail}"></p>
+                                </div>
+                            </div>
+                            <div class="content_bottom">
+                                <p class="exit_info">삭제되는 정보</p>
+                                <div class="info_wrapper">
+                                    <div class="info_logo">
+                                        <div class="logo_wrapper">
+                                            <img src="/image/main/logo1-removebg-preview.png" alt="">
+                                            <!-- <img src="/image/boardList/logo_title.png" alt=""> -->
+                                        </div>
+                                    </div>
+                                    <div class="list_wrapper">
+                                        <p class="list_content">
+                                            · 활동 데이터
+                                        </p>
+                                        <p class="list_content">
+                                            · 미지급된 채용 보상금 및 포인트 데이터
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr class="exit_partition_line">
+                            </div>
+
+
+                            <div>
+                                <!-- first -->
+                                <label class="accept_wrapper">
+                                    <!-- 빈 체크박스 -->
+                                    <span class="is-flex is-show">
+                                            <img src="/image/mypage/checkbox-64.png" alt=""
+                                                 style="width: 24px;">
+                                        </span>
+
+                                    <!-- 체크된 체크박스 -->
+                                    <span class="is-flex is-hidden btn_accept">
+                                            <img src="/image/mypage/checkbox-checked-64.png" alt=""
+                                                 style="width: 24px;">
+                                        </span>
+                                    <input class="accept_checkbox" type="text">
+                                    <div class="accept_text_wrapper">
+                                        <p class="accept_text">회원 탈퇴 이후 미결된 금액을 받을 수 없음을 이해했으며 동의합니다.</p>
+                                    </div>
+                                </label>
+
+                                <!-- second -->
+                                <label class="accept_wrapper">
+                                    <!-- 빈 체크박스 -->
+                                    <span class="is-flex is-show">
+                                            <img src="/image/mypage/checkbox-64.png" alt="">
+                                        </span>
+
+                                    <!-- 체크된 체크박스 -->
+                                    <span class="is-flex btn_accept is-hidden">
+                                            <img src="/image/mypage/checkbox-checked-64.png" alt="">
+                                        </span>
+                                    <input class="accept_checkbox" type="text">
+                                    <div class="accept_text_wrapper">
+                                        <p class="accept_text">회원 탈퇴를 진행하여 해당 BugjeogID 계정에 귀속된 모든 정보를 삭제하는 데 동의합니다.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </article>
+                        <form action="/mypage/profile/businessWithdraw" method="post">
+                            <button class="exit_button button_confirm" id="button_confirm">
+                                <span>회원 탈퇴</span>
+                            </button>
+                        </form>
+                        <button class="exit_button button_cancel" type="button">
+                            <span>회원 탈퇴 취소</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- <footer id="footer"/> -->
+
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let businessVO = [[${businessVO}]];
+    if(businessVO.businessImgUuid != null){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
+    }
+
+</script>
+<script>
+    const $checkboxs = $('label.accept_wrapper');
+    const $checkboxAceept = $('span.btn_accept');
+    const $btnConfirm = $('#button_confirm');
+
+    $($checkboxs).on('click', (e)=>{
+        var $hidden = $(e.currentTarget).children('span.is-hidden');
+        var $show = $(e.currentTarget).children('span.is-show');
+
+        $hidden.removeClass('is-hidden').addClass('is-show');
+        $show.removeClass('is-show').addClass('is-hidden');
+        var isAcceptAll = $checkboxs.children('span.is-flex.btn_accept.is-show').length == 2;
+
+        if(isAcceptAll){
+            $btnConfirm.addClass('button_active');
+        } else if($btnConfirm.hasClass('button_active')){
+            $btnConfirm.removeClass('button_active');
+        }
+    });
+
+    const $exitButton = $(".exit_button");
+    $exitButton.click(() => {
+        location.href = "/mypage/profile/myinfo_business"
+    });
+</script>
+</html>
