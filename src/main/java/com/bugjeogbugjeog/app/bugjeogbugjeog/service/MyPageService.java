@@ -134,6 +134,23 @@ public class MyPageService {
         return inquiryBoardDAO.getCountToInquire(memberId);
     };
 
+    // 유통업체 문의 게시판 목록
+    public MemberInquireDTO businessInquireList(Long businessId, Criteria criteria){
+        List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllToBusiness(businessId,criteria);
+        List<Long> status = new ArrayList<>();
+        MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
+
+        for(int i =0; i < inquires.size(); i++){
+            Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
+            status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
+        }
+
+        memberInquireDTO.setAnswerStatus(status);
+        memberInquireDTO.setInquire(inquires);
+
+        return memberInquireDTO;
+    }
+
     // 좋아요 한 게시물 목록
     public BoardFreeLikeDTO likeList(Long memberId, Criteria criteria){
         BoardFreeLikeDTO boardFreeLikeDTO = new BoardFreeLikeDTO();

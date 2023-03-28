@@ -4,6 +4,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,4 +29,14 @@ public class InquiryBoardDAO {
     public Long inquireAnswer(Long boardInquireId){
         return inquiryBoardMapper.inquireAnswer(boardInquireId);
     }
+
+    // 유통업체 문의 작성 목록
+    public List<BoardInquiryVO> findAllToBusiness(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria){
+        return inquiryBoardMapper.businessInquireList(businessId, criteria);
+    };
+
+    //    문의 게시글 작성 갯수
+    public Integer getBusinessInquireCount(Long businessId){
+        return inquiryBoardMapper.businessInquireCount(businessId);
+    };
 }
