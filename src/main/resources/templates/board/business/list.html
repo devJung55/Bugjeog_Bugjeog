@@ -84,43 +84,47 @@
         <ul class="boardList-info-box" th:object="${boards}">
             <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
             <li class="info-box-layout" th:each="board : ${boards}">
-                <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}"><!-- 상세보기 모달 버튼 -->
-                    <div class="image-box">
-                        <img src="${board.boardBusinessImgPath}/${board.boardBusinessImgUuid}_${board.boardBusinessOriginalName}"
-                             class="info-image">
-                    </div>
-                    <div class="info-section-box">
-                        <div class="cate-title-box">
+                <form action="/board/business/detail" method="post">
+                    <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}" methods="">
+                        <!-- 상세보기 모달 버튼 -->
+                        <div class="image-box">
+                            <img src="${board.boardBusinessImgPath}/${board.boardBusinessImgUuid}_${board.boardBusinessOriginalName}"
+                                 class="info-image">
+                        </div>
+                        <div class="info-section-box">
+                            <div class="cate-title-box">
                                 <span class="cate-title-style">
                                     <span class="cate-title" th:text="${board.businessCategory}"></span>
                                 </span>
-                        </div>
-                        <p class="circulation-title" th:text="${board.boardBusinessTitle}"></p>
-                    </div>
-                    <div class="location-box">
-                        <div class="location-box-layout" th:text="${board.businessLocation}">
-                            서울
-                        </div>
-                    </div>
-                    <div class="review-count-box">
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/review_icon.png" class="review-icon">
                             </div>
-                            <div>
-                                <span class="review-count" th:text="${board.boardBusinessReviewCount}">0</span>
+                            <p class="circulation-title" th:text="${board.boardBusinessTitle}"></p>
+                        </div>
+                        <div class="location-box">
+                            <div class="location-box-layout" th:text="${board.businessLocation}">
+                                서울
                             </div>
                         </div>
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                        <div class="review-count-box">
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/review_icon.png" class="review-icon">
+                                </div>
+                                <div>
+                                    <span class="review-count" th:text="${board.boardBusinessReviewCount}">0</span>
+                                </div>
                             </div>
-                            <div>
-                                <span class="review-grade-count" th:text="${board.boardBusinessGradeAverage}">1.0</span>
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                                </div>
+                                <div>
+                                    <span class="review-grade-count"
+                                          th:text="${board.boardBusinessGradeAverage}">1.0</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </form>
             </li>
         </ul>
     </div>
@@ -151,45 +155,48 @@
             console.log(`${board.boardBusinessImgFullPath}`);
             text += `
                 <li class="info-box-layout"  th:object="${board}">
-                    <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}" th:method="POST">
-                        <div class="image-box">
-                                <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
-                        </div>
-                        <div class="info-section-box">
-                            <div class="cate-title-box">
-                                <span class="cate-title-style">
-                                    <span class="cate-title"> ${board.businessCategory}</span>
-                                </span>
+                    <form action="/board/business/detail?boardBusinessId=${board.boardBusinessId}" method="post">
+                        <a href="#" methods="POST">
+                            <div class="image-box">
+                                    <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
                             </div>
-                            <p class="circulation-title"> ${board.boardBusinessTitle}</p>
-                        </div>
-                        <div class="location-box">
-                            <div class="location-box-layout">${board.businessLocation}</div>
-                        </div>
-                        <div class="review-count-box">
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/review_icon.png" class="review-icon">
+                            <div class="info-section-box">
+                                <div class="cate-title-box">
+                                    <span class="cate-title-style">
+                                        <span class="cate-title"> ${board.businessCategory}</span>
+                                    </span>
                                 </div>
-                                <div>
-                                    <span class="review-count">${board.boardBusinessReviewCount}</span>
+                                <p class="circulation-title"> ${board.boardBusinessTitle}</p>
+                            </div>
+                            <div class="location-box">
+                                <div class="location-box-layout">${board.businessLocation}</div>
+                            </div>
+                            <div class="review-count-box">
+                                <div class="icon-box">
+                                    <div class="review-icon-box">
+                                        <img src="/image/boardList/review_icon.png" class="review-icon">
+                                    </div>
+                                    <div>
+                                        <span class="review-count">${board.boardBusinessReviewCount}</span>
+                                    </div>
+                                </div>
+                                <div class="icon-box">
+                                    <div class="review-icon-box">
+                                        <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                                    </div>
+                                    <div>
+                                        <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="icon-box">
-                                <div class="review-icon-box">
-                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                                </div>
-                                <div>
-                                    <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    </form>
                 </li>
 			`;
         });
         $ul.append(text);
     }
+
     /* 카테고리 버튼 이벤트 */
     const $cateButton = $(".cate-button");
 
@@ -211,7 +218,7 @@
             method: "POST",
             data: {
                 category: categoryName
-                ,sort: sortType
+                , sort: sortType
             },
             dataType: "json",
             success: function (result) {
@@ -224,6 +231,7 @@
             }
         });
     }
+
     /* sort 버튼 이벤트 */
     const $sortButton = $(".sort-button");
 
