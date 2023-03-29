@@ -14,4 +14,10 @@ public interface FreeLikeMapper {
 
     //    좋아요 한 게시물 리스트
     public List<BoardFreeVO> likeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
+
+    //    좋아요 한 게시물 수
+    public Integer businessLikeCount(Long businessId);
+
+    //    좋아요 한 게시물 리스트
+    public List<BoardFreeVO> businessLikeList(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
 }

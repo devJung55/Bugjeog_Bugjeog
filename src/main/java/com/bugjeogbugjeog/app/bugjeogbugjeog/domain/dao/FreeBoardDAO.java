@@ -53,6 +53,16 @@ public class FreeBoardDAO {
         return freeBoardMapper.freeCount(memberId);
     }
 
+    // 유통업자 자유게시판 글 목록
+    public List<BoardFreeVO> findByIdBusinessBoardFreeVO(Long businessId, Criteria criteria) {
+        return freeBoardMapper.businessFreeList(businessId, criteria);
+    }
+
+    // 유통업자 자유게시판 갯수
+    public Integer getFreeBoardBusinessTotal(Long businessId){
+        return freeBoardMapper.businessFreeCount(businessId);
+    }
+
 
 
 

@@ -17,4 +17,16 @@
     <select id="inquireAnswer" resultType="long">
         select board_inquiry_id from tbl_board_inquiry_answer where board_inquiry_id = #{boardInquiryId}
     </select>
+
+    <!-- 유통업체 문의게시판 목록 -->
+    <select id="businessInquireList" resultType="boardInquiryVO">
+        select business_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry
+        where business_id = #{businessId}
+		limit #{criteria.startRow}, #{criteria.amount}
+    </select>
+
+    <!-- 유통업체 문의글 작성 수-->
+    <select id="businessInquireCount" resultType="int">
+        select count(business_id) from tbl_board_inquiry where business_id = #{businessId}
+    </select>
 </mapper>

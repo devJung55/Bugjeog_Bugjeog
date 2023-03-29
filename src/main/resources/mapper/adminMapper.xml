@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.AdminMapper">
-<!--
 
-    &lt;!&ndash; 회원 전체 목록 &ndash;&gt;
-    <select id="selectAllMember" resultType="memberVO">
+
+   <!--  회원 전체 목록 -->
+  <select id="selectAllMember" resultType="memberDTO">
         select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member
     </select>
 
-    &lt;!&ndash; 회원 조회 &ndash;&gt;
-    <select id="selectMember" resultType="memberVO">
-        select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
-        from tbl_member where member_id = #{memberId}
+    <!-- 회원 수 카운트 -->
+    <select id="count" resultType="int">
+        select count(member_id) from tbl_member
     </select>
 
-    &lt;!&ndash; 회원 수정 &ndash;&gt;
-    <update id="updateMember">
-        update tbl_member
-        set  member_email= #{memberEmail}, member_password=#{memberPassword}, member_phone_number=#{memberPhoneNumber}, member_name=#{memberName}, member_status=#{memberStatus}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}
-        where member_id = #{memberId}
-    </update>
+    <!--
+        &lt;!&ndash; 회원 조회 &ndash;&gt;
+        <select id="selectMember" resultType="memberVO">
+            select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
+            from tbl_member where member_id = #{memberId}
+        </select>
 
-    &lt;!&ndash; 회원 삭제&ndash;&gt;
-    <delete id="deleteMember">
-        delete from tbl_member
-        where member_id = #{memberId}
-    </delete>
+        &lt;!&ndash; 회원 수정 &ndash;&gt;
+        <update id="updateMember">
+            update tbl_member
+            set  member_email= #{memberEmail}, member_password=#{memberPassword}, member_phone_number=#{memberPhoneNumber}, member_name=#{memberName}, member_status=#{memberStatus}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}
+            where member_id = #{memberId}
+        </update>
 
-    &lt;!&ndash; **************************************************************************** &ndash;&gt;
+        &lt;!&ndash; 회원 삭제&ndash;&gt;
+        <delete id="deleteMember">
+            delete from tbl_member
+            where member_id = #{memberId}
+        </delete>
 
-    &lt;!&ndash; 유통 회원 전체 목록 &ndash;&gt;
-    <select id="selectAllBusiness" resultType="businessVO">
-        select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path
-        from tbl_business
-    </select>
+        &lt;!&ndash; **************************************************************************** &ndash;&gt;
 
-    &lt;!&ndash; 유통 회원 조회  &ndash;&gt;
-    <select id="selectBusiness" resultType="businessVO">
-        select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path
-        from tbl_business where business_id = #{businessId}
-    </select>
+        &lt;!&ndash; 유통 회원 전체 목록 &ndash;&gt;
+        <select id="selectAllBusiness" resultType="businessVO">
+            select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path
+            from tbl_business
+        </select>
 
-    &lt;!&ndash; 유통 회원 수정 &ndash;&gt;
-    <update id="updateBusiness">
-        update tbl_business
-        set business_email= #{businessEmail}, business_password= #{businessPassword}, business_ceo_name= #{businessCeoName}, business_number= #{businessNumber}, business_company_name= #{businessCompanyName}, business_phone_number= #{businessPhoneNumber}, business_establishment_date= #{BusinessEstablishmentDate}, business_status= #{businessStatus}, business_img_original_name= #{businessImgOriginalName}, business_img_uuid= #{businessImgUuid}, business_img_path= #{businessImgPath}
-        where business_id = #{businessId}
-    </update>
+        &lt;!&ndash; 유통 회원 조회  &ndash;&gt;
+        <select id="selectBusiness" resultType="businessVO">
+            select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path
+            from tbl_business where business_id = #{businessId}
+        </select>
 
-    &lt;!&ndash; 유통 회원 삭제 &ndash;&gt;
-    <delete id="deleteBusiness">
-        delete from tbl_business
-        where business_id = #{businessId}
-    </delete>
--->
+        &lt;!&ndash; 유통 회원 수정 &ndash;&gt;
+        <update id="updateBusiness">
+            update tbl_business
+            set business_email= #{businessEmail}, business_password= #{businessPassword}, business_ceo_name= #{businessCeoName}, business_number= #{businessNumber}, business_company_name= #{businessCompanyName}, business_phone_number= #{businessPhoneNumber}, business_establishment_date= #{BusinessEstablishmentDate}, business_status= #{businessStatus}, business_img_original_name= #{businessImgOriginalName}, business_img_uuid= #{businessImgUuid}, business_img_path= #{businessImgPath}
+            where business_id = #{businessId}
+        </update>
+
+        &lt;!&ndash; 유통 회원 삭제 &ndash;&gt;
+        <delete id="deleteBusiness">
+            delete from tbl_business
+            where business_id = #{businessId}
+        </delete>
+    -->
 
     <!-- **************************************************************************** -->
 

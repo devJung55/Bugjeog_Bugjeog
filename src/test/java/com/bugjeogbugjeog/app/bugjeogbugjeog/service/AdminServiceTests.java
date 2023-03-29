@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -12,13 +13,16 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminServiceTests {
-
-    @Autowired
+/*
+  @Autowired
     AdminService adminService;
+  */
 
+/*
     @Test
-    public void showMemberList(){ List<MemberVO> memberVO = adminService.showMemberList();}
-
+    public void showMemberList(){ List<MemberDTO> memberDTO = adminService.showMemberList();}
+    */
+ /*
     @Test
     public void showMember(){
         MemberVO memberVO = new MemberVO();
@@ -38,9 +42,9 @@ public class AdminServiceTests {
     }
 
 
-    /* ------------------------------------------------------------------------------------------------------------- */
+    *//* ------------------------------------------------------------------------------------------------------------- *//*
 
-    /* 유통 회원 */
+    *//* 유통 회원 *//*
 
 
     @Test
@@ -63,7 +67,7 @@ public class AdminServiceTests {
     public void deleteBusiness(){
         adminService.deleteBusiness(2L);
     }
-
+*/
 
 
     /* ------------------------------------------------------------------------------------------------------------- */

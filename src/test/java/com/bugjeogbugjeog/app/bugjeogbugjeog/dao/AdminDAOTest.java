@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.AdminDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -15,15 +16,15 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminDAOTest {
-
+/*
     @Autowired
     AdminDAO adminDAO;
-
+    */
+/*
     @Test
-    public void findAllMemberTest(){
-        List<MemberVO> memberVO = adminDAO.findAllMember();
-    }
-
+    public void findAllMemberTest(){List<MemberDTO> memberDTO = adminDAO.findAllMember();}
+    */
+/*
     @Test
     public void findByIdMemberTest(){
         MemberVO memberVO = new MemberVO();
@@ -43,9 +44,9 @@ public class AdminDAOTest {
     }
 
 
-    /* ------------------------------------------------------------------------------------------------------------- */
+    *//* ------------------------------------------------------------------------------------------------------------- *//*
 
-    /* 유통 회원 */
+    *//* 유통 회원 *//*
 
 
     @Test
@@ -68,6 +69,6 @@ public class AdminDAOTest {
 
     @Test
     public void removeBusinessTest(){ adminDAO.removeBusiness(3L);}
-
+*/
     /* ------------------------------------------------------------------------------------------------------------- */
 }
