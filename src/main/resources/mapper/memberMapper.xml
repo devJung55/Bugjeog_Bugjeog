@@ -96,12 +96,13 @@
 
     <!-- 회원 조회 -->
     <select id="adminSelectMember" resultType="memberDTO">
-        select m.member_id, count(distinct tbf.board_free_id) as boardCount, count(distinct tfr.reply_id) as replyCount,
+        select m.member_id, count(distinct tbf.board_free_id) as boardCount , count(distinct tfr.reply_id ) as replyCount ,
         member_email, member_password, member_phone_number, member_name,
         member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member m
-        join tbl_board_free tbf on m.member_id  = tbf.member_id
-        join tbl_free_reply tfr on tbf.member_id  = tfr.member_id  and m.member_id =1 group by m.member_id;
+        left join tbl_board_free tbf on m.member_id  = tbf.member_id
+        left join tbl_free_reply tfr on tbf.member_id  = tfr.member_id and m.member_id = #{memberId}
+        group by m.member_id;
     </select>
 
 </mapper>

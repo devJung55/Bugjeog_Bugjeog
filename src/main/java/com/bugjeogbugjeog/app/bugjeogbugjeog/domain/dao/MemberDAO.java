@@ -62,9 +62,7 @@ public class MemberDAO {
 
     /*-----------------------------------------------------------------------------*/
     //    회원정보 조회
-    public MemberVO findById(Long memberId){
-        return memberMapper.select(memberId);
-    };
+    public MemberVO findById(Long memberId){return memberMapper.select(memberId);};
 
     // 회원정보 수정
     public void updateById(MemberVO memberVO){
