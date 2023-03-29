@@ -15,4 +15,7 @@ public interface ReplyMapper {
 
     //    댓글 단 갯수
     public Integer replyCount(Long memberId);
+
+    // 게시물의 댓글 개수
+    public Integer boardReplyCount(Long boardFreeId);
 }

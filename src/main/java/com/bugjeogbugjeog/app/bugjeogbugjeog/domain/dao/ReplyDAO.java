@@ -17,11 +17,15 @@ public class ReplyDAO {
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> findAllMyPageReplyDTO(Long memberId, Criteria criteria){
         return replyMapper.replyList(memberId, criteria);
-    };
+    }
 
     // 댓글 갯수
     public Integer getReplyTotal(Long memberId){
         return replyMapper.replyCount(memberId);
-    };
+    }
+
+    // 게시물의 댓글 개수
+    public Integer getReplyCount(Long boardFreeId){ return replyMapper.boardReplyCount(boardFreeId);}
+
 
 }

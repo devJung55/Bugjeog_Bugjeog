@@ -42,7 +42,7 @@ public interface FreeBoardMapper {
     public Integer freeCount(Long memberId);
 
     //  자유 게시판 목록
-    public List<BoardFreeVO> businessFreeList(@Param("memberId") Long businessId, @Param("criteria") Criteria criteria);
+    public List<BoardFreeVO> businessFreeList(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
 
     //    자유 게시판 개수
     public Integer businessFreeCount(Long businessId);

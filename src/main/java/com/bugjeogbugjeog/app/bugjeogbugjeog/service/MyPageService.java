@@ -157,11 +157,14 @@ public class MyPageService {
         BoardFreeLikeDTO boardFreeLikeDTO = new BoardFreeLikeDTO();
         List<MemberVO> memberVOs = new ArrayList<>();
         List<BusinessVO> businessVOS = new ArrayList<>();
+        List<Integer> boardReplyCounts = new ArrayList<>();
         List<BoardFreeVO> boardFreeVOS = freeLikeDAO.findAllToLike(memberId,criteria);
 
+        boardFreeVOS.stream().map(data -> data.getBoardFreeId()).forEach(data -> boardReplyCounts.add(replyDAO.getReplyCount(data)));
         boardFreeVOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
         boardFreeVOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
 
+        boardFreeLikeDTO.setBoardReplyCounts(boardReplyCounts);
         boardFreeLikeDTO.setBusinessVOS(businessVOS);
         boardFreeLikeDTO.setMemberVOs(memberVOs);
         boardFreeLikeDTO.setBoardFreeVOs(boardFreeVOS);
@@ -218,6 +221,7 @@ public class MyPageService {
         return allCount;
     }
 
+//-----------------------------------------------------------------------------------------------------------------
 
     //    유통업체 파일 저장
     public void businessFileSave(BusinessVO business){
@@ -285,6 +289,16 @@ public class MyPageService {
     // 유통업자 회원 탈퇴
     public void businessWithdraw(Long businessId){
         businessDAO.removeById(businessId);
+    }
+
+    // 유통업자 자유게시판 목록 가져오기
+    public List<BoardFreeVO> businessFreeBoardList(Long businessId, Criteria criteria){
+        return freeBoardDAO.findByIdBusinessBoardFreeVO(businessId, criteria);
+    }
+
+    // 유통업자 자유게시판 개수
+    public Integer businessFreeCount(Long businessId){
+        return freeBoardDAO.getFreeBoardBusinessTotal(businessId);
     }
 
     //    유통 분야 설정 수정
