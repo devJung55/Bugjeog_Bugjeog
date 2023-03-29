@@ -120,9 +120,16 @@ public class MemberService {
 
     /*-----------------------------------------------------------------------------*/
 
-    /* 회원정보 수정 */
+    /* 회원 정보 수정 */
     public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
 
-    /* 회원정보 조회*/
+    /* 회원 정보 조회*/
     public void showMember(Long memberId){memberDAO.findById(memberId);}
+
+    /* 회원 정보 삭제*/
+    public void removeMember(List<String> memberIds){
+        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::deleteById);
+    }
+
+
 }
