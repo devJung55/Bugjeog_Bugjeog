@@ -48,25 +48,25 @@
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
                                 <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/postList}">
+                                    <a th:href="@{/mypage/profile/business/postList}">
                                         <em class="freeCount">0</em>
                                         <span>작성글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/commentList}">
+                                    <a th:href="@{/mypage/profile/business/commentList}">
                                         <em class="replyCount">0</em>
                                         <span>작성댓글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a  th:href="@{/mypage/profile/likedList}">
+                                    <a  th:href="@{/mypage/profile/business/likedList}">
                                         <em class="likeCount">0</em>
                                         <span>좋아요</span>
                                     </a>
                                 </li>
                                 <li class="summary_content" style="border: none;">
-                                    <a th:href="@{/mypage/profile/faqList}">
+                                    <a th:href="@{/mypage/profile/business/faqList}">
                                         <em  class="inquireCount"></em>
                                         <span>문의글</span>
                                     </a>
@@ -79,16 +79,16 @@
                             <h2>내 활동</h2>
                             <ul class="CommunityProfile_tabs">
                                 <li class="">
-                                    <a th:href="@{/mypage/profile/postList}">작성글</a>
+                                    <a th:href="@{/mypage/profile/business/postList}">작성글</a>
                                 </li>
                                 <li class="">
-                                    <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
+                                    <a th:href="@{/mypage/profile/business/commentList}">작성댓글</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/mypage/profile/likedList}">좋아요</a>
+                                    <a th:href="@{/mypage/profile/business/likedList}">좋아요</a>
                                 </li>
                                 <li class="CommunityProfile_current">
-                                    <a th:href="@{/mypage/profile/faqList}">문의글</a>
+                                    <a th:href="@{/mypage/profile/business/faqList}">문의글</a>
                                 </li>
                             </ul>
                         </div>
@@ -135,7 +135,7 @@
                             </th:block>
                             <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
                         </div>
-                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                        <form action="/mypage/profile/business/faqList" th:object="${criteria}" name="pageForm">
                             <input type="hidden" th:field="*{pageNum}">
                             <input type="hidden" th:field="*{amount}">
                         </form>

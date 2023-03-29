@@ -108,4 +108,23 @@ public class MypageMapperTest {
 //        replyMapper.replyList(1L,new Criteria(1,4));
 //    }
 
+    
+    // 좋아요 갯수 테스트
+    @Test
+    public void likeCount() {
+        freeLikeMapper.businessLikeCount(4L);
+    }
+
+    // 좋아요 한 게시물 목록
+    @Test
+    public void likeListTest(){
+        freeLikeMapper.businessLikeList(4L,new Criteria(1,4)).stream().forEach(data -> log.info(data.toString()));
+    }
+
+    // 댓글 단 갯수
+    @Test
+    public void replyCountTest(){
+        replyMapper.businessReplyCount(4L);
+    }
+
 }

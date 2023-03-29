@@ -100,7 +100,7 @@
                             </th:block>
                             <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
                         </div>
-                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                        <form action="/mypage/profile/likedList" th:object="${criteria}" name="pageForm">
                             <input type="hidden" th:field="*{pageNum}">
                             <input type="hidden" th:field="*{amount}">
                         </form>
