@@ -21,8 +21,9 @@ public class OverallController {
     public String moveInquiry(){ return "/board/inquiry/boardList";}
 
     //     헤더쪽 공지사항 notice의 list
+    //      일단 보류
     @GetMapping("notice")
-    public String moveNotice(){ return "/board/notice/list";}
+    public String moveNotice(){ return "/notice/notice_list";}
 
     //      헤더쪽 FAQ
     @GetMapping("faq")
