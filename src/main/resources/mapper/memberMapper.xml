@@ -64,7 +64,7 @@
     </select>
 
     <!-- Business 계정 찾기 -->
-    <select id="businessSelectByPhoneNumberForEmail">
+    <select id="businessSelectByPhoneNumberForEmail" parameterType="String" resultType="String">
         select business_email from tbl_business
         where business_phone_number = #{businessPhoneNumber}
     </select>
