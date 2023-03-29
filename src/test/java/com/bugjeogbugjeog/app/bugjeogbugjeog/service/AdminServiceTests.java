@@ -17,47 +17,39 @@ public class AdminServiceTests {
      @Autowired
     MemberService memberService;
 
-   /* @Test
-    public void adminMemberShowListTest(){
-
-         Criteria criteria;
-        List<MemberDTO> memberDTO = memberService.adminMemberShowList(criteria);
-         log.info("------------------" + memberDTO);
-     }*/
-
-    @Test
-    public void adminCountTest(){
-        log.info("--------------------------------" +  memberService.count());
-    }
-
-
+     /* 회원 목록 */
 /*
     @Test
     public void showMemberList(){ List<MemberDTO> memberDTO = adminService.showMemberList();}
     */
- /*
+/*
+
+    */
+/* 회원 조회 *//*
+
     @Test
     public void showMember(){
-        MemberVO memberVO = new MemberVO();
-        adminService.showMember(1L).toString();
+        MemberDTO memberDTO = new MemberDTO();
+        memberService.adminMemberShow(1L);
     }
+    */
+/* 회원 수정 *//*
 
     @Test
     public void updateMember(){
-        MemberVO memberVO = adminService.showMember(1L);
-        memberVO.setMemberEmail("lsc00@gmail.com");
-        adminService.updateMember(memberVO);
+        MemberDTO memberDTO = memberService.adminMemberShow(1L);
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberPhoneNumber("01089151820");
+        memberService.updateMember(memberVO);
     }
-
-    @Test
-    public void deleteMember(){
-        adminService.removeMember(0L);
-    }
+*/
 
 
-    *//* ------------------------------------------------------------------------------------------------------------- *//*
+    /* ------------------------------------------------------------------------------------------------------------- */
 
-    *//* 유통 회원 *//*
+    /* 유통 회원 */
+
+    /*
 
 
     @Test

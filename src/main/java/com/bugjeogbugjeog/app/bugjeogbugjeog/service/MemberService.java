@@ -120,6 +120,9 @@ public class MemberService {
 
     /*-----------------------------------------------------------------------------*/
 
-    // 회원정보 수정
+    /* 회원정보 수정 */
     public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
+
+    /* 회원정보 조회*/
+    public void showMember(Long memberId){memberDAO.findById(memberId);}
 }

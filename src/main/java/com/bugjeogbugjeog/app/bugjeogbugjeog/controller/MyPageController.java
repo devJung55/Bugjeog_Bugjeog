@@ -189,6 +189,7 @@ public class MyPageController {
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.freeCount(memberId)));
     }
 
+    // 좋아요한 게시물
     @GetMapping("likedList")
     public void likeList(Model model, Criteria criteria){
         HttpSession session = req.getSession();

@@ -6,7 +6,7 @@ aside.Title_wrapper {
     display: block;
     position: relative;
     width: 100%;
-    height: 103px;
+    height: 72px;
     border-radius: 10px;
     margin-bottom: 20px;
     background: #2b4bc8;
@@ -50,7 +50,7 @@ aside.Title_wrapper>picture>span {
     z-index: 1;
     font-size: 20px;
     color: white;
-    margin-top: 62px;
+    margin-top: 20px;
     display: inline-block;
     margin-left: 16px;
 }
