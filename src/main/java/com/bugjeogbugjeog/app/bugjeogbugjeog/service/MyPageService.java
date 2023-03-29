@@ -301,8 +301,58 @@ public class MyPageService {
         return freeBoardDAO.getFreeBoardBusinessTotal(businessId);
     }
 
+    //  유통업자 댓글 단 게시물 목록
+    public BoardReplyDTO businessReplyList(Long businessId, Criteria criteria){
+        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
+        List<MemberVO> memberVOs = new ArrayList<>();
+        List<BusinessVO> businessVOS = new ArrayList<>();
+        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllBusinessMyPageReplyDTO(businessId, criteria);
+
+        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+
+        boardReplyDTO.setBusinessVOS(businessVOS);
+        boardReplyDTO.setMemberVOs(memberVOs);
+        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
+
+        return boardReplyDTO;
+    };
+
+    // 유통업자가 쓴 댓글 갯수
+    public Integer businessReplyCount(Long businessId){
+        return replyDAO.getBusinessReplyTotal(businessId);
+    };
+
+    // 좋아요 한 게시물 목록
+    public BoardFreeLikeDTO businessLikeList(Long businessId, Criteria criteria){
+        BoardFreeLikeDTO boardFreeLikeDTO = new BoardFreeLikeDTO();
+        List<MemberVO> memberVOs = new ArrayList<>();
+        List<BusinessVO> businessVOS = new ArrayList<>();
+        List<Integer> boardReplyCounts = new ArrayList<>();
+        List<BoardFreeVO> boardFreeVOS = freeLikeDAO.findAllToBusinessLike(businessId,criteria);
+
+        boardFreeVOS.stream().map(data -> data.getBoardFreeId()).forEach(data -> boardReplyCounts.add(replyDAO.getReplyCount(data)));
+        boardFreeVOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        boardFreeVOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+
+        boardFreeLikeDTO.setBoardReplyCounts(boardReplyCounts);
+        boardFreeLikeDTO.setBusinessVOS(businessVOS);
+        boardFreeLikeDTO.setMemberVOs(memberVOs);
+        boardFreeLikeDTO.setBoardFreeVOs(boardFreeVOS);
+
+        return boardFreeLikeDTO;
+    }
+
+    // 좋아요 게시물 갯수
+    public Integer businessLikeCount(Long businessId){
+        return freeLikeDAO.getBusinessCountToLike(businessId);
+    }
+
+
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
         businessDAO.updateLocation(businessVO);
     }
+
+
 }

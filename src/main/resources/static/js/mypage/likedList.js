@@ -4,7 +4,6 @@ function likedList() {
     let text = "";
     if(freeVOs.length != 0) {
         for (var i = 0; i < freeVOs.length; i++) {
-            let memberIdCheck = memberVOs[i] == null;
 
             text += `<article class="PostItem_wrapper">
                         <div class="PostItem_top">
@@ -13,7 +12,7 @@ function likedList() {
                         <div class="AuthorBox_avatarWrapper">
                         <div class="AuthorBox_avatar">
                        `;
-            if (!memberIdCheck) {
+            if (freeVOs[i].memberId != null) {
                 if(memberVOs[i].memberImgUuid == null){
                     text += `<img class="writer-image" src="/image/boardList/self_employ_icon.png">`;
                 }else {
@@ -30,7 +29,7 @@ function likedList() {
             text += `  </div>
                           </div>
                        `;
-            if(!memberIdCheck){
+            if(freeVOs[i].memberId != null){
                 text += `<span class="AuthorBox_username">${memberVOs[i].memberName}</span>`;
             }else{
                 text += `<span class="AuthorBox_username">${businessVOs[i].businessCompanyName}</span>`;
