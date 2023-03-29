@@ -101,8 +101,14 @@
                                                 <div class="list_card">
                                                     <a href="" class="card_wrapper">
                                                         <header class="card_thumbnail_wrapper is-relative">
+                                                            <div style="width: 250px; height: 200px">
+                                                                <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
+                                                            </div>
                                                             <button type="button" class="card_favorite_marker is-absolute">
-                                                                <img th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
+                                                                <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.58065 1C3.25997 1 3 1.26206 3 1.58533V16.4138C3 16.8632 3.48164 17.145 3.86873 16.922L9.00004 13.9662L14.1313 16.922C14.5184 17.145 15 16.8632 15 16.4138V1.58533C15 1.26206 14.74 1 14.4194 1H9.00004H3.58065ZM8.71195 12.7838C8.89046 12.681 9.10961 12.681 9.28812 12.7838L13.8387 15.4052V2.17067H9.00004H4.1613V15.4052L8.71195 12.7838Z" fill="white"></path>
+                                                                    <path class="book-mark" d="M9.28812 12.7838C9.10961 12.681 8.89046 12.681 8.71195 12.7838L4.1613 15.4052V2.17067H9.00004H13.8387V15.4052L9.28812 12.7838Z" fill="black" fill-opacity="0.25"></path>
+                                                                </svg>
                                                             </button>
                                                         </header>
                                                         <div class="card_body">
@@ -118,92 +124,123 @@
                                             </li>
                                         </th:block>
                                     </ul>
-                                    <div class="paging_wrapper">
-                                        <label class="btn_paging_before">
-                                            <button class="is-hidden"></button>
-                                            <span style="margin-right: 3px;">
-                                                < 
-                                            </span>
-                                        </label>
-                                        <ul class="num_wrapper">
-                                            <li>
-                                                <label class="num_label current_page">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        1
+                                    <!-- 페이지 버튼 -->
+                                    <div class="page-button-box-layout">
+                                        <div class="page-button-box">
+                                            <!-- 페이지 번호 --><!-- 페이지 버튼 -->
+                                            <div class="page-box page-button-margin">
+                                                <a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                                    <span>
+                                                        <img src="/image/admin/left_icon.png" class="left-button">
                                                     </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        2
+                                                </a>
+                                                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                                    <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>
+                                                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                                        <span th:text="${num}" class="page-button"></span>
+                                                    </a>
+                                                </th:block>
+                                                <a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                                    <span>
+                                                        <img src="/image/admin/right_icon.png" class="right-button">
                                                     </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        3
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        4
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        5
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        6
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        7
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        8
-                                                    </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="num_label">
-                                                    <button class="is-hidden btn_paging"></button>
-                                                    <span class="paging_num">
-                                                        9
-                                                    </span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                        <label>
-                                            <button class="btn_paging_after is-hidden"></button>
-                                            <span> > </span>
-                                        </label>
+                                                </a>
+                                            </div>
+                                            <form action="/mypage/specific/personalFavoriteList" th:object="${criteria}" name="pageForm">
+                                                <input type="hidden" th:field="*{pageNum}">
+                                                <input type="hidden" th:field="*{amount}">
+                                            </form>
+                                        </div>
                                     </div>
+
+
+<!--                                    <div class="paging_wrapper">-->
+<!--                                        <label class="btn_paging_before">-->
+<!--                                            <button class="is-hidden"></button>-->
+<!--                                            <span style="margin-right: 3px;">-->
+<!--                                                < -->
+<!--                                            </span>-->
+<!--                                        </label>-->
+<!--
+<!--                                        <ul class="num_wrapper">-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label current_page">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        1-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        2-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        3-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        4-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        5-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        6-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        7-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        8-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <label class="num_label">-->
+<!--                                                    <button class="is-hidden btn_paging"></button>-->
+<!--                                                    <span class="paging_num">-->
+<!--                                                        9-->
+<!--                                                    </span>-->
+<!--                                                </label>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                        <label>-->
+<!--                                            <button class="btn_paging_after is-hidden"></button>-->
+<!--                                            <span> > </span>-->
+<!--                                        </label>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -217,7 +254,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script>
 <script>
     const $pagingLabel = $('label.num_label');
 
@@ -247,5 +283,27 @@
         let phone = phone1 + "-" + phone2 + "-" + phone3;
         return phone;
     }
+
+    // 즐겨찾기 버튼
+    const $bookMarks = $(".book-mark");
+
+    $bookMarks.each((i, bookMark) => {
+        $(bookMark).on("click", function() {
+            if($(this).attr("fill") == "rgb(51, 102, 255)") {
+                $(this).attr("fill", "black");
+            } else {
+                $(this).attr("fill", "rgb(51, 102, 255)");
+            }
+        });
+    });
+
+    //페이징 처리
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
 </script>
 </html>

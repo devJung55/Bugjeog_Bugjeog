@@ -200,6 +200,7 @@ public class MyPageService {
         allCount.put("replyCount", replyDAO.getReplyTotal(memberId));
         allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
         allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));
+        allCount.put("interestingCount",memberDAO.getInterestingCountById(memberId));
 
         return allCount;
     }
@@ -354,16 +355,19 @@ public class MyPageService {
     }
 
     // 게시판 각각의 개수
-    public Map<String, Integer> businessAllCount(Long businessId){
-        Map<String, Integer> allCount = new HashMap<>();
+    public Map<String, Object> businessAllCount(Long businessId){
+        Map<String, Object> allCount = new HashMap<>();
 
         allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardBusinessTotal(businessId));
         allCount.put("replyCount", replyDAO.getBusinessReplyTotal(businessId));
         allCount.put("likeBoardCount", freeLikeDAO.getBusinessCountToLike(businessId));
         allCount.put("inquireCount", inquiryBoardDAO.getBusinessInquireCount(businessId));
+        allCount.put("reviewGrade", businessDAO.getReviewGrade(businessId));
+        allCount.put("reviewCount", businessDAO.getReviewCount(businessId));
 
         return allCount;
     }
+
 
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
