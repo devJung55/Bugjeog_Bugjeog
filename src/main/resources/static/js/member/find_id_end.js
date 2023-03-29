@@ -13,10 +13,12 @@ $goToMain.on("click", function(e) {
 
 
 const $emailBox = $(".no-css-wt");
+const $pText = $(".find-end-emailWrite");
 
 $emailBox.each((i, v) => {
     $(v).hover(function(e) {
-        console.log(v);
+        $($(v).children().children().children()[0]).remove();
+        console.log($($(v).children().children().children()[1]));
         console.log("들어옴");
     });
 });
