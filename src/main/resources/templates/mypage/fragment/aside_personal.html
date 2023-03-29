@@ -58,15 +58,6 @@
 </body>
 <script>
     let memberVO = [[${memberVO}]];
-    let inquireDTO =[[${inquireDTO}]];
-
-    let $pageForm = $(pageForm);
-
-    $("a.changePage").on("click", function(e){
-        e.preventDefault();
-        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-        $pageForm.submit();
-    });
 
     if(memberVO.memberImgUuid != null){
         $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);

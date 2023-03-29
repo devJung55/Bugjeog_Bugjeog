@@ -1,5 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
@@ -59,4 +61,36 @@ public class BusinessMyPageController {
         model.addAttribute("boardFreeVO", myPageService.businessFreeBoardList(businessId,criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessFreeCount(businessId)));
     }
+
+    // 댓글 단 리스트
+    @GetMapping("commentList")
+    public void replyList(Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        BoardReplyDTO boardReplyDTO = myPageService.businessReplyList(businessId,criteria);
+
+        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
+        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
+        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessReplyCount(businessId)));
+    }
+
+    // 좋아요 한 게시물목록
+    @GetMapping("likedList")
+    public void likeList(Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        BoardFreeLikeDTO boardFreeLikeDTO = myPageService.businessLikeList(businessId, criteria);
+
+        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+        model.addAttribute("memberVOs", boardFreeLikeDTO.getMemberVOs());
+        model.addAttribute("replyCounts", boardFreeLikeDTO.getBoardReplyCounts());
+        model.addAttribute("businessVOs", boardFreeLikeDTO.getBusinessVOS());
+        model.addAttribute("freeVOs", boardFreeLikeDTO.getBoardFreeVOs());
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessLikeCount(businessId)));
+    }
+
 }
