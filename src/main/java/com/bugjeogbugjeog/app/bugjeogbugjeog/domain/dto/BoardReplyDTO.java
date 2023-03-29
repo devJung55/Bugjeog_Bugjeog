@@ -10,8 +10,8 @@ import java.util.List;
 
 @Component
 @Data
-public class BoardFreeLikeDTO {
+public class BoardReplyDTO {
     private List<MemberVO> memberVOs;
     private List<BusinessVO> businessVOS;
-    private List<BoardFreeVO> boardFreeVOs;
+    private List<MyPageReplyDTO> myPageReplyDTOS;
 }
