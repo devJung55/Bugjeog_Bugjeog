@@ -25,7 +25,7 @@ public class InterestingCompanyController {
     @GetMapping("company")
     public String company(Model model){
         model.addAttribute("memberVO",myPageService.memberInfo(1L));
-        model.addAttribute("interestingCompanyDTO", interestingCompanyService);
+        model.addAttribute("interestingCompanyDTO", interestingCompanyService.findAllToInterestingCompany());
         return "mypage/specific/personalFavoriteList";
     }
 
