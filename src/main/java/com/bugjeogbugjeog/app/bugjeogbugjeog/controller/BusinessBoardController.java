@@ -5,8 +5,10 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -89,7 +91,6 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/detail")
-    @PostMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) {
         System.out.println("컨 들어옴");
         log.info(req.getParameter("boardBusinessId"));
@@ -109,9 +110,26 @@ public class BusinessBoardController {
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
+        List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(dto.getBusinessId());
+        dtos.stream().map(eventDTO -> {
+            String eventName = eventDTO.getBoardBusinessImgOriginalName();
+            String eventFullPath = (eventName == null || eventName == "null" || eventName == "") ? "/image/boardList/no-image-64.png" : (eventDTO.getBoardBusinessImgPath() + "/" + eventDTO.getBoardBusinessImgUuid() + "_" + eventDTO.getBoardBusinessImgOriginalName());
+            eventDTO.setBoardBusinessImgFullPath(eventFullPath);
+            return eventDTO;
+        });
+
+//        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+        MemberVO memberVO = businessReviewService.getMember(5L);
+        log.info("==============");
+        log.info(memberVO.getMemberName());
+        log.info("==============");
+        String orginalName = memberVO.getMemberImgOriginalName();
+        String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
         model.addAttribute("board", dto);
         model.addAttribute("reviews", businessReviewDTOs);
-        model.addAttribute("boardList", businessBoardService.getBoardByBusinessId(dto.getBusinessId()));
+        model.addAttribute("boardList", dtos);
+        model.addAttribute("member", memberVO);
+        model.addAttribute("memberFullPath", memberFullPath);
     }
 
     @GetMapping("/board/business/write")

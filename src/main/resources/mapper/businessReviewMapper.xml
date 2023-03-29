@@ -12,4 +12,10 @@
         on r.member_id = m.member_id
         where board_business_id = #{boardBusinessId}
     </select>
+
+    <select id="selectByMemberId" resultType="memberVO">
+        select memeber_name, member_id, member_email, member_password, member_phone_number, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
+        from tbl_member
+        where member_id = #{memberId}
+    </select>
 </mapper>
