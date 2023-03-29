@@ -18,24 +18,19 @@ public interface AdminMapper {
     public int count();
 
     /* 회원 상세 보기 */
-    public MemberVO selectMember(Long MemberId);
+    public MemberDTO selectMember(Long MemberId);
 
     /* 회원 수정 */
     public void updateMember(MemberVO memberVO);
 
-    /* 회원 삭제 */
-    public void deleteMember(Long memberId);
-
 
     /* ------------------------------------------------------------------------------------------------------------- */
-/*
 
-    */
-/* 유통 회원 목록 조회 *//*
+/* 유통 회원 목록 조회 */
 
     public List<BusinessVO> selectAllBusiness();
 
-    */
+
 /* 유통 회원 상세 보기 *//*
 
     public BusinessVO selectBusiness(Long businessId);
