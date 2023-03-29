@@ -11,6 +11,7 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO" alias="businessReviewVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO" alias="businessReviewDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCompanyVO" alias="interestingCompanyVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCompanyDTO" alias="interestingCompanyDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO" alias="boardFreeVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeImgVO" alias="boardFreeImgVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeLikeVO" alias="freeLikeVO"/>
