@@ -99,6 +99,9 @@ public class MemberDAO {
         return memberMapper.selectAllPhoneNumber();
     }
 
+    // 관심업체 갯수
+    public Integer getInterestingCountById(Long memberId){ return memberMapper.interestingBusinessCount(memberId);}
+
 
     /*-----------------------------------------------------------------------------*/
 
