@@ -81,4 +81,16 @@ public class MemberServiceTests {
     public void selectByBusinessIdAndBusinessPassword() {
         log.info("businessId : " + memberService);
     }
+
+//    자영업자 계정 찾기
+    @Test
+    public void findByEmail() {
+        log.info(memberService.findMemberAccount("01012341234"));
+    }
+
+//    자영업자 계정 찾기
+    @Test
+    public void businessFindByEmail() {
+        log.info(memberService.FindBusinessAccount("01012341234"));
+    }
 }

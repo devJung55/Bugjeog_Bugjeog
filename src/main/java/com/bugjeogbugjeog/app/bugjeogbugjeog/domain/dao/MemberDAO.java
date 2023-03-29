@@ -60,6 +60,16 @@ public class MemberDAO {
         return memberMapper.selectByBusinessIdAndBusinessPassword(businessEmail, businessPassword);
     }
 
+//    자영업자 계정 찾기
+    public String findByPhoneNumberForEmail(String memberPhoneNumber) {
+        return memberMapper.selectByPhoneNumberForEmail(memberPhoneNumber);
+    }
+
+//    유통업체 계정 찾기
+    public String businessFindByPhoneNumberForEmail(String businessPhoneNumber) {
+        return memberMapper.businessSelectByPhoneNumberForEmail(businessPhoneNumber);
+    }
+
     /*-----------------------------------------------------------------------------*/
     //    회원정보 조회
     public MemberVO findById(Long memberId){return memberMapper.select(memberId);};

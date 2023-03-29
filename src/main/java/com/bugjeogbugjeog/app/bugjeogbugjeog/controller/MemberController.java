@@ -79,7 +79,7 @@ public class MemberController {
         if(businessId == null) {
             return new RedirectView("/member/login?check=false");
         } else {
-            httpSession.setAttribute("memberId", businessId);
+            httpSession.setAttribute("businessId", businessId);
             return new RedirectView("/main/");
         }
     }

@@ -96,9 +96,16 @@ public class MemberService {
         return memberDAO.findByBusinessId(businessEmail, businessPassword);
     }
 
+//    자영업자 계정 찾기
+    public String findMemberAccount(String memberPhoneNumber) {
+        return memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber);
+    }
 
-    // 회원정보 수정
-    public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
+//    유통업체 계정 찾기
+    public String FindBusinessAccount(String businessPhoneNumber) {
+        return memberDAO.findByPhoneNumberForEmail(businessPhoneNumber);
+    }
+
 
     /*-----------------------------------------------------------------------------*/
 
@@ -111,4 +118,8 @@ public class MemberService {
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminMemberShow(Long memberId){return memberDAO.adminFindById(memberId);}
 
+    /*-----------------------------------------------------------------------------*/
+
+    // 회원정보 수정
+    public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
 }
