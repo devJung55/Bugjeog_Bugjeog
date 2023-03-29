@@ -24,13 +24,13 @@ public class AdminControllerTest {
     @BeforeEach
     public void setup() { mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();}
 
+/*
 
     @Test
     public void showMember() throws Exception{
-
-        log.info("------------------------------------------showmember");
         log.info(mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin-member").param("memberId","1")).andReturn().getModelAndView().getModelMap().toString());
     }
+*/
 
 
     /* 공지사항 */

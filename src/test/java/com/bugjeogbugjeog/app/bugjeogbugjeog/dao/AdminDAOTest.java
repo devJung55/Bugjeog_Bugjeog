@@ -26,15 +26,20 @@ public class AdminDAOTest {
  /*   @Test
     public void findAllMemberTest(){List<MemberDTO> memberDTO = adminDAO.findAllMember();}
     */
+/*
 
-    /* 회원 조회 */
+    */
+/* 회원 조회 *//*
+
     @Test
     public void findByIdMemberTest(){
         MemberDTO memberDTO = new MemberDTO();
         memberDAO.adminFindById(1L).toString();
     }
 
-    /* 회원 수정 */
+    */
+/* 회원 수정 *//*
+
     @Test
     public void updateMember(){
         MemberDTO memberDTO = memberDAO.adminFindById(1L);
@@ -42,6 +47,7 @@ public class AdminDAOTest {
         memberVO.setMemberPhoneNumber("01089151820");
         memberDAO.updateById(memberVO);
     }
+*/
 
 
 

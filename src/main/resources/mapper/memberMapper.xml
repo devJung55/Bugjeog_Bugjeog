@@ -115,8 +115,8 @@
         member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member m
         left join tbl_board_free tbf on m.member_id  = tbf.member_id
-        left join tbl_free_reply tfr on tbf.member_id  = tfr.member_id and m.member_id = #{memberId}
-        group by m.member_id;
+        left join tbl_free_reply tfr on tbf.member_id  = tfr.member_id where m.member_id = #{memberId}
+        group by m.member_id
     </select>
 
 </mapper>

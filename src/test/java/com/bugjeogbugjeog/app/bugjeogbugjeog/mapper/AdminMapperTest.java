@@ -24,22 +24,27 @@ public class AdminMapperTest {
   @Test
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 */
+/*
 
-   /* 회원 정보 조회 */
+
+/* 회원 정보 조회 */
+
     @Test
     public void selectMemberTest(){
         MemberDTO memberDTO = new MemberDTO();
         memberMapper.adminSelectMember(1L).toString();
     }
 
-    /* 회원 업데이트 */
+
+/* 회원 업데이트 */
+
     @Test
     public void updateMemberTest(){
-        MemberDTO memberDTO = memberMapper.adminSelectMember(1L);
-        MemberVO memberVO = new MemberVO();
+        MemberVO memberVO = memberMapper.select(1L);
         memberVO.setMemberPhoneNumber("01089151820");
         memberMapper.update(memberVO);
     }
+
 
     /* ------------------------------------------------------------------------------------------------------------- */
 

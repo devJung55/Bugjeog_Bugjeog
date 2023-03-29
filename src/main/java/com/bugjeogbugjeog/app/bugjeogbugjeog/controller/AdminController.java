@@ -46,7 +46,8 @@ public class AdminController {
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public void adminMemberModify(Model model){
-        model.addAttribute(new MemberDTO());
+        memberService.
+        model.addAttribute(new MemberVO());
     }
 
     /* 회원 수정 완료 */
