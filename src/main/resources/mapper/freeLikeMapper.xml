@@ -13,4 +13,17 @@
         on f.board_free_id = k.board_free_id and k.member_id = #{memberId}
         limit #{criteria.startRow}, #{criteria.amount}
     </select>
+
+    <!--유통업자 좋아요 한 게시물 수-->
+    <select id="businessLikeCount" resultType="int">
+        select count(free_like_id) from tbl_free_like where business_id = #{businessId}
+    </select>
+
+    <!--유통업자 좋아요 한 게시물 리스트-->
+    <select id="businessLikeList" resultType="boardFreeVO">
+        select f.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, f.member_id, f.business_id
+        from tbl_board_free f join tbl_free_like k
+        on f.board_free_id = k.board_free_id and k.business_id = #{businessId}
+        limit #{criteria.startRow}, #{criteria.amount}
+    </select>
 </mapper>

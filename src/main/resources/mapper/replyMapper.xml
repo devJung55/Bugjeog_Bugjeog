@@ -3,7 +3,7 @@
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.ReplyMapper">
     <!-- 이용자가 댓글 단 목록-->
     <select id="replyList" resultType="myPageReplyDTO">
-        select  r.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like,reply_content, reply_register_date, reply_update_date
+        select  r.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like,reply_content, reply_register_date, reply_update_date, f.member_id, f.business_id
         from tbl_free_reply r join tbl_board_free f
         on r.board_free_id = f.board_free_id and r.member_id = #{memberId}
         limit #{criteria.startRow}, #{criteria.amount}

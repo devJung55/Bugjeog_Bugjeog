@@ -20,8 +20,18 @@ public class FreeLikeDAO {
     };
 
     //    좋아요 한 게시물 리스트
-    public List<BoardFreeVO> findAllToLike(Long boardFreeId, Criteria criteria){
-        return freeLikeMapper.likeList(boardFreeId, criteria);
+    public List<BoardFreeVO> findAllToLike(Long memberId, Criteria criteria){
+        return freeLikeMapper.likeList(memberId, criteria);
+    };
+
+    //    좋아요 한 게시물 수
+    public Integer getBusinessCountToLike(Long businessId){
+        return freeLikeMapper.businessLikeCount(businessId);
+    };
+
+    //    좋아요 한 게시물 리스트
+    public List<BoardFreeVO> findAllToBusinessLike(Long businessId, Criteria criteria){
+        return freeLikeMapper.businessLikeList(businessId, criteria);
     };
 
 }
