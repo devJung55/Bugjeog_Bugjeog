@@ -4,6 +4,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeLikeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +60,7 @@ public class MyPageController {
         myPageService.memberWithdraw(memberId);
         session.removeAttribute("memberId");
 
-        return new RedirectView("/main/main.html");// 수정해야하는 부분
+        return new RedirectView("/main");
     }
 
     @PostMapping("upload-file")
@@ -213,6 +214,24 @@ public class MyPageController {
         Long memberId = (Long) session.getAttribute("memberId");
 
         return myPageService.allcount(memberId);
+    }
+
+    @PostMapping("like/likeUp")
+    @ResponseBody
+    public void likeInsert(@RequestBody FreeLikeVO freeLikeVO) {
+        myPageService.likeInsert(freeLikeVO);
+    }
+
+    @DeleteMapping("like/likeDown")
+    @ResponseBody
+    public void likeDown(@RequestBody FreeLikeVO freeLikeVO){
+        myPageService.likeDown(freeLikeVO);
+    }
+
+    @PatchMapping("like/likeCount")
+    @ResponseBody
+    public void businessLikeCountUpdate(@RequestParam("boardFreeId") Long boardFreeId){
+        myPageService.countUp(boardFreeId);
     }
 
     //    현재 날짜 경로 구하기
