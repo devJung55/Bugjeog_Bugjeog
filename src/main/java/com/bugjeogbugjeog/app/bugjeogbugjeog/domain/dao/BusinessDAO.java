@@ -31,4 +31,14 @@ public class BusinessDAO {
         businessMapper.withdraw(businessId);
     }
 
+    // 해당 업체의 평점
+    public Double getReviewGrade(Long businessId){
+        return businessMapper.reviewGrade(businessId);
+    }
+
+    // 해당 업체의 리뷰 개수
+    public Integer getReviewCount(Long businessId){
+        return businessMapper.reviewCount(businessId);
+    }
+
 }

@@ -43,20 +43,20 @@
                 </a> -->
             <a href="" class="MatchUpStatus-item">
                 <span>리뷰갯수</span>
-                <strong>0</strong>
+                <strong class="review-count">0</strong>
             </a>
             <a href="" class="MatchUpStatus-item">
                 <span>평점</span>
-                <strong>0</strong>
+                <strong class="review-grade">0</strong>
             </a>
         </div>
         <div class="Aside-pageList Aside-content list_container">
 
             <!-- 프로필 페이지가 아닐 경우 활성화 -->
-            <a href="" class="Aside-profile">프로필</a>
+            <a class="Aside-profile" th:href="@{/mypage/profile/business/postList}">프로필</a>
 
             <!-- My원티드 페이지가 아닐 경우 활성화 -->
-            <a href="" class="Aside-other">유통 분야 설정</a>
+            <a class="Aside-other" th:href="@{/mypage/edit}">유통 분야 설정</a>
         </div>
     </aside>
     <!-- </main> -->
