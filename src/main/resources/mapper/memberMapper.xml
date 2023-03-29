@@ -57,6 +57,18 @@
         where business_email = #{businessEmail} and business_password = #{businessPassword}
     </select>
 
+    <!-- Member 계정 찾기 -->
+    <select id="selectByPhoneNumberForEmail" parameterType="String" resultType="String">
+        select member_email from tbl_member
+        where member_phone_number = #{memberPhoneNumber}
+    </select>
+
+    <!-- Business 계정 찾기 -->
+    <select id="businessSelectByPhoneNumberForEmail">
+        select business_email from tbl_business
+        where business_phone_number = #{businessPhoneNumber}
+    </select>
+
     <!--hello 제가 왓어요~~~-->
     <!--유저 정보 조회-->
     <select id="select" resultType="memberVO">
@@ -87,6 +99,8 @@
     <select id="adminSelectAllMember" resultType="memberDTO">
         select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member
+        order by member_id desc
+        limit #{startRow}, #{amount}
     </select>
 
     <!-- 회원 수 카운트 -->

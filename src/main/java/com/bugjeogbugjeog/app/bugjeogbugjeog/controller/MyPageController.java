@@ -198,6 +198,7 @@ public class MyPageController {
 
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
         model.addAttribute("memberVOs", boardFreeLikeDTO.getMemberVOs());
+        model.addAttribute("replyCounts", boardFreeLikeDTO.getBoardReplyCounts());
         model.addAttribute("businessVOs", boardFreeLikeDTO.getBusinessVOS());
         model.addAttribute("freeVOs", boardFreeLikeDTO.getBoardFreeVOs());
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.likeCount(memberId)));
@@ -212,33 +213,6 @@ public class MyPageController {
 
         return myPageService.allcount(memberId);
     }
-
-    // 유통업체 정보
-    @GetMapping("myinfo_business")
-    public void myInfoBusiness(Model model){
-        HttpSession session = req.getSession();
-        Long businessId = (Long) session.getAttribute("businessId");
-
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
-    }
-
-    @GetMapping("exit-business")
-    public void exitBusiness(Model model){
-        HttpSession session = req.getSession();
-        Long businessId = (Long) session.getAttribute("businessId");
-
-        model.addAttribute("businessVO",myPageService.businessInfo(4L));
-    }
-
-    @PostMapping("businessWithdraw")
-    public RedirectView businessWithdraw(HttpServletRequest req){
-        HttpSession session = req.getSession();
-        Long businessId = (Long) session.getAttribute("businessId");
-
-        myPageService.businessWithdraw(businessId);
-        return new RedirectView("/main/main");
-    }
-
 
     //    현재 날짜 경로 구하기
     private String getPath(){

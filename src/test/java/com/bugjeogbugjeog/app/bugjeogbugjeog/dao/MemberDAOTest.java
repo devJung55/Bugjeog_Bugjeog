@@ -82,4 +82,16 @@ public class MemberDAOTest {
     public void selectByBusinessIdAndBusinessPassword() {
         log.info("businessId : " + memberDAO.findByBusinessId("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
     }
+
+//    자영업자 계정 찾기
+    @Test
+    public void findEmail() {
+        log.info("memberEmail : " + memberDAO.findByPhoneNumberForEmail("01012341234"));
+    }
+
+    //    자영업자 계정 찾기
+    @Test
+    public void businessFindEmail() {
+        log.info("memberEmail : " + memberDAO.businessFindByPhoneNumberForEmail("01012341234"));
+    }
 }
