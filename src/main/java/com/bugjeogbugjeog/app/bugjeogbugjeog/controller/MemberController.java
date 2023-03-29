@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,14 +94,15 @@ public class MemberController {
 
 //    계정 찾기 완료
     @PostMapping("findAccount")
-    public RedirectView findAccount(@RequestParam String mobile) {
-
-        return null;
+    public RedirectView findAccount(@RequestParam String phoneNumber, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("phoneNumber", phoneNumber);
+        return new RedirectView("/member/findResultAccount");
     }
 
 //    계정 찾기 결과 페이지
-    @PostMapping("findResultAccount")
-    public void findResultAccount() {
-
+    @GetMapping("findResultAccount")
+    public String findResultAccount(@RequestParam String phoneNumber, Model model) {
+        model.addAttribute("findEmailDTO", memberService.findAccount(phoneNumber));
+        return "/member/find_id_end";
     }
 }

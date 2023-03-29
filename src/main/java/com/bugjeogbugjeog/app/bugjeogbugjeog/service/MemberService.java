@@ -101,7 +101,7 @@ public class MemberService {
     public FindEmailDTO findAccount(String memberPhoneNumber) {
         FindEmailDTO findEmailDTO = new FindEmailDTO();
 
-        findEmailDTO.setMemberEmail(memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber));
+        findEmailDTO.setMemberEmail(memberDAO.findByPhoneNumberForEmail(memberPhoneNumber));
         findEmailDTO.setBusinessEmail(memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber));
 
         return findEmailDTO;

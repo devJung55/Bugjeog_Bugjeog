@@ -89,9 +89,21 @@ public class MemberDAOTest {
         log.info("memberEmail : " + memberDAO.findByPhoneNumberForEmail("01012341234"));
     }
 
-    //    자영업자 계정 찾기
+//    사업자 계정 찾기
     @Test
     public void businessFindEmail() {
         log.info("memberEmail : " + memberDAO.businessFindByPhoneNumberForEmail("01012341234"));
+    }
+
+//   자영업자 비밀번호 변경
+    @Test
+    public void updatePassword() {
+        memberDAO.setPassword("jjy1234@naver.com", "wjdwldud1!!");
+    }
+
+//   사업자 비밀번호 변경
+    @Test
+    public void businessUpdatePassword() {
+        memberDAO.businessSetPassword("jjy1234@naver.com", "wjdwldud1!!");
     }
 }
