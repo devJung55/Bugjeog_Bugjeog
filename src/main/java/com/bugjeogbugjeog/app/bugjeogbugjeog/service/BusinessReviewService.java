@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessReviewDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -21,7 +22,7 @@ public class BusinessReviewService {
         return businessReviewDAO.findById(boardBusinessId);
     }
 
-    public BusinessReviewDTO getMember(Long memberId){
+    public MemberVO getMember(Long memberId){
         return businessReviewDAO.findByMemberId(memberId);
     }
 

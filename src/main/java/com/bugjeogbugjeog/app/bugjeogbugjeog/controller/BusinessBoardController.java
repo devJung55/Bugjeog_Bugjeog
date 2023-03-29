@@ -91,7 +91,6 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/detail")
-    @PostMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) {
         System.out.println("컨 들어옴");
         log.info(req.getParameter("boardBusinessId"));
@@ -119,15 +118,18 @@ public class BusinessBoardController {
             return eventDTO;
         });
 
-//        BusinessReviewDTO businessReviewDTO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
-        BusinessReviewDTO businessReviewDTO = businessReviewService.getMember(Long.parseLong(String.valueOf(3L)));
-        String orginalName = businessReviewDTO.getMemberImgOriginalName();
-        String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (businessReviewDTO.getMemberImgPath() + "/" + businessReviewDTO.getMemberImgUuid() + "_" + businessReviewDTO.getMemberImgOriginalName());
-        businessReviewDTO.setMemberImgFullPath(memberFullPath);
+//        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+        MemberVO memberVO = businessReviewService.getMember(5L);
+        log.info("==============");
+        log.info(memberVO.getMemberName());
+        log.info("==============");
+        String orginalName = memberVO.getMemberImgOriginalName();
+        String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
         model.addAttribute("board", dto);
         model.addAttribute("reviews", businessReviewDTOs);
         model.addAttribute("boardList", dtos);
-        model.addAttribute("member", businessReviewDTO);
+        model.addAttribute("member", memberVO);
+        model.addAttribute("memberFullPath", memberFullPath);
     }
 
     @GetMapping("/board/business/write")

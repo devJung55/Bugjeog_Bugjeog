@@ -23,7 +23,7 @@
             </span>
         </button>
     </div>
-    <div id="all_wrap" th:object="${board}">
+    <div id="all_wrap">
         <!--        <div id="all_wrap_div">-->
         <!--            <div style="overflow-y: auto; flex: 1 1;">-->
         <!--                <div id="third_div">-->
@@ -149,42 +149,6 @@
         <!--                                    </div>-->
         <!--                                </a>-->
         <!--                            </li>-->
-        <!--                            <li class="footer_li">-->
-        <!--                                <a style="&#45;&#45;base-font-size: 10;">-->
-        <!--                                    <div class="footer_li_div">-->
-        <!--                                        <img class="footer_img"-->
-        <!--                                             src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90"-->
-        <!--                                             alt="">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="event_content">-->
-        <!--                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>-->
-        <!--                                    </div>-->
-        <!--                                </a>-->
-        <!--                            </li>-->
-        <!--                            <li class="footer_li">-->
-        <!--                                <a style="&#45;&#45;base-font-size: 10;">-->
-        <!--                                    <div class="footer_li_div">-->
-        <!--                                        <img class="footer_img"-->
-        <!--                                             src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90"-->
-        <!--                                             alt="">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="event_content">-->
-        <!--                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>-->
-        <!--                                    </div>-->
-        <!--                                </a>-->
-        <!--                            </li>-->
-        <!--                            <li class="footer_li">-->
-        <!--                                <a style="&#45;&#45;base-font-size: 10;">-->
-        <!--                                    <div class="footer_li_div">-->
-        <!--                                        <img class="footer_img"-->
-        <!--                                             src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fevents%2F2778%2Ff064e404.jpg&w=1200&q=90"-->
-        <!--                                             alt="">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="event_content">-->
-        <!--                                        <p class="event_content_p">인사담당자가 직접 말하는, 서류 통과가 잘 되는 이력서</p>-->
-        <!--                                    </div>-->
-        <!--                                </a>-->
-        <!--                            </li>-->
         <!--                        </ul>-->
         <!--                        <div style="display: flex; justify-content: center;">-->
         <!--                            <a id="event_all">-->
@@ -196,6 +160,7 @@
         <!--                            </a>-->
         <!--                        </div>-->
         <!--                    </div>-->
+
         <!--                    <div id="reply_wrap">-->
         <!--                        <div id="reply_wrap_div">-->
         <!--                            <div style="display: flex; justify-content: space-between;">-->
@@ -262,6 +227,7 @@
     let reviews = [[${reviews}]];
     let boards = [[${boardList}]];
     let member = [[${member}]];
+    let memberImgFullPath = [[${memberImgFullPath}]];
     console.log(board);
     showList(board, reviews, boards, member);
     $(document).ready(function () {
@@ -318,6 +284,7 @@
                                 <h4 class="h5">${board.businessLocation}</h4>
 <!--                                <h4 class="h4">슬로건</h4>-->
 <!--                                <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>-->
+
                             </section>
                             <div style="display: flex; justify-content: space-between;">
                                 <div style="margin-left: 10px; flex: 1 1 auto;">
@@ -401,17 +368,17 @@
                         </div>
                     </section>
                     <div id="footer">
-                        <h2 id="footer_title">이 회사의 다른 글</h2>
+                        <h2 id="footer_title">이 회사의 모든 글</h2>
                         <ul id="footer_ul">`;
-                        boards.forEach(board => {
+                        boards.forEach(other => {
                             text += `
-                            <li class="footer_li" th:object="${board}">
-                                <a style="--base-font-size: 10;">
+                            <li class="footer_li" th:object="${other}">
+                                <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
                                     <div class="footer_li_div">
-                                        <img class="footer_img" src="${board.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
+                                        <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
                                     </div>
                                     <div class="event_content">
-                                        <p class="event_content_p">${board.boardBusinessContent}</p>
+                                        <p class="event_content_p">${other.boardBusinessContent}</p>
                                     </div>
                                 </a>
                             </li>`});
@@ -430,17 +397,17 @@
         reviews.forEach(review => {
             text += `
                     <div id="reply_wrap">
-                        <div id="reply_wrap_div" th:object="${review}">
+                        <div id="reply_wrap_div">
                             <div style="display: flex; justify-content: space-between;">
                                 <a style="display: flex; width: 0;">
                                     <div style="display: inline-flex; align-items: center; margin-right: auto;">
                                         <div style="text-align: left; display: flex; align-items: center;">
                                             <div style="position: relative; margin-right: 7px;">
                                                 <div id="reply_my">
-                                                    <img id="reply_my_img" src="${review.memberImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
+                                                    <img id="reply_my_img" src="${memberImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
                                                 </div>
                                             </div>
-                                            <div style="display: flex; flex-direction: column;">
+                                            <div style="display: flex; flex-direction: column;" th:object="${review}"  >
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
                                                     <div id="reply_nickname">${review.memberName}</div>
                                                 </div>

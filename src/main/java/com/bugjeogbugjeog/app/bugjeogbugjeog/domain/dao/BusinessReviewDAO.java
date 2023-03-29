@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public class BusinessReviewDAO {
 //    businessBoardMapper.insert(boardBusinessVO);
     }
 
-    public BusinessReviewDTO findByMemberId(Long memberId){
+    public MemberVO findByMemberId(Long memberId){
         return businessReviewMapper.selectByMemberId(memberId);
     }
 
