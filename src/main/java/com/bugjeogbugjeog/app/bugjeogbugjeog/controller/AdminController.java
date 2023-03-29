@@ -67,22 +67,31 @@ public class AdminController {
         return new RedirectView("admin-member");
     }
 
+    /* 회원 삭제 */
+    @DeleteMapping("admin-deleteMember")
+    @ResponseBody
+    public void removeMember(@RequestParam("checkedIds[]") List<String> memberIds){
+        memberService.removeMember(memberIds);
+    }
+
+
+
     /* ------------------------------------------------------------------------------------------------------------- */
 
 
-/* 유통 회원 목록 조회*//*
+    /* 유통 회원 목록 조회*//*
 
     @GetMapping("admin-member-companyList")
     public void adminMemberCompanyList(){}
 
     */
-/* 유통 회원 상세 보기 *//*
+    /* 유통 회원 상세 보기 *//*
 
     @GetMapping("admin-member-company")
     public void adminMemberCompany(){}
 
     */
-/* 유통 회원 수정 *//*
+    /* 유통 회원 수정 *//*
 
     @GetMapping("admin-member-companyModify")
     public void adminMemberCompanyModify(){}
@@ -124,7 +133,7 @@ public class AdminController {
     }
 
     /* 공지사항 삭제 */
-    @DeleteMapping("admin-delete")
+    @DeleteMapping("admin-deleteNotice")
     @ResponseBody
     public void removeNotice(@RequestParam("checkedIds[]") List<String> noticeIds){
         noticeService.remove(noticeIds);

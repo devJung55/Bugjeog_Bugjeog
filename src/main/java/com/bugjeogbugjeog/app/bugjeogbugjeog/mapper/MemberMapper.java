@@ -80,4 +80,5 @@ public interface MemberMapper {
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminSelectMember(Long memberId);
 
+
 }
