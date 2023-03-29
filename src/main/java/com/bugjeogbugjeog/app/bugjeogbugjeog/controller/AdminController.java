@@ -51,8 +51,9 @@ public class AdminController {
     }*/
     
     /* 회원 수정 */
-    @GetMapping("admin-memberModify")
-    public void adminMemberModify(Model model){
+    @GetMapping("admin-memberModify{memberId}")
+    public void adminMemberModify(@PathVariable Long memberId,Model model){
+       /* MemberVO memberVO = memberService.showMember(memberId);*/
         model.addAttribute(new MemberVO());
     }
 
@@ -63,7 +64,7 @@ public class AdminController {
         redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
         redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
         memberService.updateMember(memberVO);
-        return new RedirectView("admin-memberList");
+        return new RedirectView("admin-member");
     }
 
     /* ------------------------------------------------------------------------------------------------------------- */
