@@ -170,7 +170,7 @@
             justify-content: center;
             flex-direction: column;
             border-radius: 6px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background-color: #f8f8f8;
         }
 
@@ -178,12 +178,13 @@
             display: flex;
             flex-direction: row;
             width: 100%;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             position: relative;
         }
         
         .find-end-draw{
+            margin-left: 10px;
             border-radius: 50%;
             width: 28px;
             height: 28px;

@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -13,38 +14,42 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminServiceTests {
-/*
-  @Autowired
-    AdminService adminService;
-  */
+     @Autowired
+    MemberService memberService;
 
+     /* 회원 목록 */
 /*
     @Test
     public void showMemberList(){ List<MemberDTO> memberDTO = adminService.showMemberList();}
     */
- /*
+/*
+
+    */
+/* 회원 조회 *//*
+
     @Test
     public void showMember(){
-        MemberVO memberVO = new MemberVO();
-        adminService.showMember(1L).toString();
+        MemberDTO memberDTO = new MemberDTO();
+        memberService.adminMemberShow(1L);
     }
+    */
+/* 회원 수정 *//*
 
     @Test
     public void updateMember(){
-        MemberVO memberVO = adminService.showMember(1L);
-        memberVO.setMemberEmail("lsc00@gmail.com");
-        adminService.updateMember(memberVO);
+        MemberDTO memberDTO = memberService.adminMemberShow(1L);
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberPhoneNumber("01089151820");
+        memberService.updateMember(memberVO);
     }
-
-    @Test
-    public void deleteMember(){
-        adminService.removeMember(0L);
-    }
+*/
 
 
-    *//* ------------------------------------------------------------------------------------------------------------- *//*
+    /* ------------------------------------------------------------------------------------------------------------- */
 
-    *//* 유통 회원 *//*
+    /* 유통 회원 */
+
+    /*
 
 
     @Test

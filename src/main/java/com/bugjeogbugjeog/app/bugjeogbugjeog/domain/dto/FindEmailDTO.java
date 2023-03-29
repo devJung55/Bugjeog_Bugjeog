@@ -1,0 +1,11 @@
+package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto;
+
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+@Component
+@Data
+public class FindEmailDTO {
+    String memberEmail;
+    String businessEmail;
+}

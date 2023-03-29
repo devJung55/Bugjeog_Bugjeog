@@ -11,6 +11,7 @@ import java.util.List;
 @Component
 @Data
 public class BoardFreeLikeDTO {
+    private List<Integer> boardReplyCounts;
     private List<MemberVO> memberVOs;
     private List<BusinessVO> businessVOS;
     private List<BoardFreeVO> boardFreeVOs;

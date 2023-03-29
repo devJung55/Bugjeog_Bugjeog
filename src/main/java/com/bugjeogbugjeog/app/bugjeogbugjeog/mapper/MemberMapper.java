@@ -44,6 +44,13 @@ public interface MemberMapper {
 //    유통업체 계정 찾기
     public String businessSelectByPhoneNumberForEmail(String businessEmail);
 
+//    자영업자 비밀번호 변경
+    public void updatePassword(String memberEmail, String memberPassword);
+
+//    사업자 비밀번호 변경
+    public void businessUpdatePassword(String businessEmail, String businessPassword);
+
+
     /*------------------------------------------------------------------------------------------------*/
 
     //    회원정보 조회
@@ -57,6 +64,9 @@ public interface MemberMapper {
 
     //    휴대폰 모든 정보 조회
     public List<String> selectAllPhoneNumber();
+
+    // 관심업체 갯수
+    public Integer interestingBusinessCount(Long memberId);
 
 
     /* 관리자는 맨 밑으로 내려주세요------------------------------------------------------------------------------------------------*/

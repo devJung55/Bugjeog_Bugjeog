@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.AdminDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
@@ -16,37 +17,43 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminDAOTest {
-/*
+
     @Autowired
-    AdminDAO adminDAO;
-    */
-/*
-    @Test
+    MemberDAO memberDAO;
+
+    /* 회원 목록 */
+
+ /*   @Test
     public void findAllMemberTest(){List<MemberDTO> memberDTO = adminDAO.findAllMember();}
     */
 /*
+
+    */
+/* 회원 조회 *//*
+
     @Test
     public void findByIdMemberTest(){
-        MemberVO memberVO = new MemberVO();
-        adminDAO.findByIdMember(1L).toString();
+        MemberDTO memberDTO = new MemberDTO();
+        memberDAO.adminFindById(1L).toString();
     }
+
+    */
+/* 회원 수정 *//*
 
     @Test
     public void updateMember(){
-        MemberVO memberVO = adminDAO.findByIdMember(1L);
-        memberVO.setMemberEmail("monday123@gamil.com");
-        adminDAO.updateMember(memberVO);
+        MemberDTO memberDTO = memberDAO.adminFindById(1L);
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberPhoneNumber("01089151820");
+        memberDAO.updateById(memberVO);
     }
-
-    @Test
-    public void deleteMember(){
-        adminDAO.removeMember(6L);
-    }
+*/
 
 
-    *//* ------------------------------------------------------------------------------------------------------------- *//*
 
-    *//* 유통 회원 *//*
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 유통 회원 *//*
 
 
     @Test

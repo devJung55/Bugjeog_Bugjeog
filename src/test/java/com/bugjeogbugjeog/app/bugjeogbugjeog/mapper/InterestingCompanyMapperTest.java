@@ -15,5 +15,6 @@ public class InterestingCompanyMapperTest {
 
     @Test
     public void selectInterestingCompanyTest(){
+        log.info(interestingCompanyMapper.selectInterestingCompany().toString());
     }
 }

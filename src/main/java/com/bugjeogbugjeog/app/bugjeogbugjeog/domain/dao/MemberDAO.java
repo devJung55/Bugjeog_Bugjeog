@@ -70,6 +70,16 @@ public class MemberDAO {
         return memberMapper.businessSelectByPhoneNumberForEmail(businessPhoneNumber);
     }
 
+//    자영업자 비밀번호 변경
+    public void setPassword(String memberEmail, String memberPassword) {
+        memberMapper.updatePassword(memberEmail, memberPassword);
+    }
+
+//    사업자 비밀번호 변경
+    public void businessSetPassword(String businessEmail, String businessPassword) {
+        memberMapper.businessUpdatePassword(businessEmail, businessPassword);
+    }
+
     /*-----------------------------------------------------------------------------*/
     //    회원정보 조회
     public MemberVO findById(Long memberId){return memberMapper.select(memberId);};
@@ -88,6 +98,9 @@ public class MemberDAO {
     public List<String> findAllToMemberPhoneNumber(){
         return memberMapper.selectAllPhoneNumber();
     }
+
+    // 관심업체 갯수
+    public Integer getInterestingCountById(Long memberId){ return memberMapper.interestingBusinessCount(memberId);}
 
 
     /*-----------------------------------------------------------------------------*/

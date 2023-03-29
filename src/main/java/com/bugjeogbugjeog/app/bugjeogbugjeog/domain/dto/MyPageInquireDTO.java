@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 @Data
-public class MemberInquireDTO {
+public class MyPageInquireDTO {
     private List<Long> answerStatus;
     private List<BoardInquiryVO> inquire;
 }

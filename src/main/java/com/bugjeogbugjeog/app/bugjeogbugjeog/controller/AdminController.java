@@ -43,11 +43,10 @@ public class AdminController {
         return "admin/admin-member";
     }
 
-    /* 회원 수정 */
+/*    *//* 회원 수정 *//*
     @GetMapping("admin-memberModify")
     public void adminMemberModify(Model model){
-        model.addAttribute(new MemberDTO());
-    }
+    }*/
 
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")

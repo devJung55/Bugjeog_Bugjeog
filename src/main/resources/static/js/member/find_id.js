@@ -1,6 +1,6 @@
 // 휴대폰 검사
 const regPhone = /^010([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
-const $phone = $("input[name='mobile']");
+const $phone = $("input[name='phoneNumber']");
 const $phoneError = $(".phone-error");
 const $checkButton = $(".find-take-btn");
 const $inputs = $("input.find-enter-pn");
@@ -41,7 +41,6 @@ $checkButton.on("click", function() {
     $(".authcode-input").addClass("authcode-input-active");
     $(".send-authcode").css("background", "#fff");
     findIdService.sendSMS();
-    console.log(code);
     $(".auth-msg").show();
 });
 
@@ -63,7 +62,8 @@ const $submitButton = $(".find-countinue");
 
 $submitButton.on("click", function(e) {
     if(phoneCheck && authCodeCheck) {
-
+        $(document.findIdForm).attr("action", "/member/findAccount");
+        $(document.findIdForm).submit();
     }
 });
 

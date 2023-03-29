@@ -15,4 +15,13 @@ public interface ReplyMapper {
 
     //    댓글 단 갯수
     public Integer replyCount(Long memberId);
+
+    // 게시물의 댓글 개수
+    public Integer boardReplyCount(Long boardFreeId);
+
+    //  유통업자 댓글 단 게시물 목록
+    public List<MyPageReplyDTO> businessReplyList(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
+
+    //  유통업자 댓글 단 갯수
+    public Integer businessReplyCount(Long businessId);
 }

@@ -82,15 +82,9 @@ public class MemberServiceTests {
         log.info("businessId : " + memberService);
     }
 
-//    자영업자 계정 찾기
+//    계정 찾기
     @Test
-    public void findByEmail() {
-        log.info(memberService.findMemberAccount("01012341234"));
-    }
-
-//    자영업자 계정 찾기
-    @Test
-    public void businessFindByEmail() {
-        log.info(memberService.FindBusinessAccount("01012341234"));
+    public void findAccount() {
+        log.info(memberService.findAccount("01012341234").toString());
     }
 }
