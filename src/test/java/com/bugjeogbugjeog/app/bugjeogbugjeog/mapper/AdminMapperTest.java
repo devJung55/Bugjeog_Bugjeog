@@ -15,10 +15,9 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminMapperTest {
-/*
+
     @Autowired
-    AdminMapper adminMapper;
-*/
+    MemberMapper memberMapper;
 
     /* 회원 */
   /*
@@ -26,19 +25,23 @@ public class AdminMapperTest {
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 */
 
-   /* @Test
+//   멤버 셀렉터 -> 멤버 테스트 매퍼에 추가해야 함
+    @Test
     public void selectMemberTest(){
-        MemberVO memberVO = new MemberVO();
-        adminMapper.selectMember(1L).toString();
+        MemberDTO memberDTO = new MemberDTO();
+        memberMapper.adminSelectMember(1L).toString();
     }
+
 
     @Test
     public void updateMemberTest(){
-        MemberVO memberVO = adminMapper.selectMember(1L);
-        memberVO.setMemberEmail("monday12@gmail.com");
-        adminMapper.updateMember(memberVO);
+        MemberDTO memberDTO = memberMapper.adminSelectMember(1L);
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberPhoneNumber("01089151820");
+        memberMapper.update(memberVO);
     }
 
+/*
     @Test
     public void deleteMemberTest(){
         adminMapper.deleteMember(3L);
