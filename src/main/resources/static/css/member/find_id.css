@@ -191,7 +191,7 @@ html, body, #__next {
         font-size: 16px;
         margin-bottom: 10px;
         cursor: pointer;
-        background-color: #fff;
+        background-color: inherit;
         position: absolute;
         right: 15px;
         top: 7px;
@@ -207,7 +207,7 @@ html, body, #__next {
 
     .certification-ment {
         /* color: #000; */
-        font-weight: #600;
+        font-weight: 600;
         text-align: left;
         letter-spacing: 0.0145em;
         font-size: 14px;
@@ -286,6 +286,8 @@ html, body, #__next {
         letter-spacing: 0.0056em;
         font-size: 16px;
         line-height: 24px;
+        color: #333;
+        opacity: 0.5;
     }
 
     .find-countinue {
