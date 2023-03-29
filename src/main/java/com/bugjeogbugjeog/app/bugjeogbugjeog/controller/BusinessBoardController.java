@@ -4,11 +4,10 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardImgService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +29,7 @@ import java.util.Map;
 @Slf4j
 public class BusinessBoardController {
     private final BusinessBoardService businessBoardService;
+    private final BusinessBoardImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
     @GetMapping(value = {"/board/business", " "})
@@ -135,13 +136,14 @@ public class BusinessBoardController {
     @GetMapping("/board/business/write")
     public void write(Model model) {
         model.addAttribute(new BoardBusinessVO());
-        model.addAttribute(new BoardBusinessImgVO());
+        model.addAttribute(new BoardBusinessImgVO[3]);
     }
 
     @PostMapping("/board/business/write")
-    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
-        boardBusinessVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+    public RedirectView register(BoardBusinessVO boardBusinessVO, BoardBusinessImgVO[] boardBusinessImgVOs, HttpServletRequest req) {
+        log.info(req.getParameter("category"));
         businessBoardService.registerBoard(boardBusinessVO);
+        Arrays.stream(boardBusinessImgVOs).filter(vo -> vo.getBoardBusinessImgOriginalName()!=null).forEach(vo -> businessBoardImgService.registerImg(vo));
 //        log.info(boardBusinessVO.toString());
         return new RedirectView("/board/business/list");
     }

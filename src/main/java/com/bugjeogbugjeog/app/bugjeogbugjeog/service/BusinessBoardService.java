@@ -20,7 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BusinessBoardService {
     private final BusinessBoardDAO businessBoardDAO;
-    private final BusinessBoardImgDAO businessBoardImgDAO;
+
 
     //    추가
     public void registerBoard(BoardBusinessVO boardBusinessVO) {
