@@ -88,51 +88,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <!-- 첫번째 글 -->
-                            <th:block th:each="freeVO, i : ${freeVO}">
-                            <article class="PostItem_wrapper">
-                                <div class="PostItem_top">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img class="img_profile" src="/image/boardList/self_employ_icon.png">
-                                                    </div>
-                                                </div>
-                                                <span class="AuthorBox_username"th:text = "${memberVO.memberName}"></span>
-                                            </div>
-                                            <span class="AuthorBox_createAt" th:text="${freeVO.boardFreeRegisterDate}"></span>
-                                        </div>
-                                </div>
-                                <div class="PostItem_body">
-                                    <div class="PostItem_header">
-                                        <a href="">
-                                            <h3 class="PostItem_title" th:text="${freeVO.boardFreeTitle}"></h3>
-                                            <p class="PostItem_content" th:text="${freeVO.boardFreeContent}"></p>
-                                        </a>
-                                    </div>
-                                    <div class="PostItem_bottom">
-                                        <div class="PostItem_like">
-                                            <label for="">
-                                                <button style="display: none;"></button>
-                                                <img src="/image/mypage/like_after.png" class="liked" alt="">
-                                            </label>
-                                            <span class="button_count" th:text="${freeVO.boardFreeLike}"></span>
-                                        </div>
-                                        <div class="PostItem_comments">
-                                            <img src="/image/mypage/comment-dots-64.png">
-                                            <span class="button_count">2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            </th:block>
-                            <article class="PostItem_wrapper no-content">
-                                <div style="text-align: center;">
-                                    <h2>좋아요한 게시글이 없습니다.</h2>
-                                </div>
-                            </article>
+                        <div class="board-list">
                         </div>
                         <div class="page-box">
                             <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
@@ -158,10 +114,11 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
-    let freeVO = [[${freeVO}]];
-    console.log(freeVO);
+    let freeVOs = [[${freeVOs}]];
+    let memberVOs = [[${memberVOs}]];
+    let businessVOs = [[${businessVOs}]];
 
-    if(freeVO.length == 0){
+    if(freeVOs.length == 0){
         $(".page-box").hide();
         $(".no-content").show();
     }else {
@@ -188,13 +145,6 @@
         return registerDate.getFullYear() +"."+(registerDate.getMonth() + 1) + "." + registerDate.getDate();
     }
 
-    let $date = $(".AuthorBox_createAt");
-    $(document).ready(function(){
-        $date.each((i, e) => {
-            $(e).text(date($(e).text()));
-        });
-    });
-
     let $pageForm = $(pageForm);
 
     $("a.changePage").on("click", function(e){
@@ -202,9 +152,9 @@
         $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
         $pageForm.submit();
     });
-
 </script>
 <script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/mypage_profile_personal.js"></script>
 <script src="/js/mypage/mypage_profile_paging.js"></script>
+<script src="/js/mypage/likedList.js"></script>
 </html>

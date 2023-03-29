@@ -18,4 +18,10 @@ public interface InquiryBoardMapper {
 
     //    문의 답변 여부
     public Long inquireAnswer(Long boardInquireId);
+
+    // 유통업체 문의 작성 목록
+    public List<BoardInquiryVO> businessInquireList(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
+
+    //    문의 게시글 작성 갯수
+    public Integer businessInquireCount(Long businessId);
 }

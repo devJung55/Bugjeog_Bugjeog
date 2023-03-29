@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.AdminDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,32 +17,51 @@ public class AdminService {
     private final AdminDAO adminDAO;
 
     /* 회원 목록 조회 */
-    public List<MemberVO> showMemberList(){ return adminDAO.findAllMember();}
+    public List<MemberDTO> showMemberList(Criteria criteria){ return adminDAO.findAllMember(criteria);}
 
-    /* 회원 상세 보기 */
+    /* 회원 카운트 */
+    public int count(){return adminDAO.count();}
+
+/* 회원 상세 보기 *//*
+
     public MemberVO showMember(Long memberId) { return adminDAO.findByIdMember(memberId);}
 
-    /* 회원 수정 */
+    */
+/* 회원 수정 *//*
+
     public void updateMember(MemberVO memberVO){ adminDAO.updateMember(memberVO);}
 
-    /* 회원 삭제 */
+    */
+/* 회원 삭제 *//*
+
     public void removeMember(Long memberId){ adminDAO.removeMember(memberId);}
 
 
-    /* ------------------------------------------------------------------------------------------------------------- */
+    */
+/* ------------------------------------------------------------------------------------------------------------- *//*
 
-    /* 유통 회원 목록 조회 */
+
+    */
+/* 유통 회원 목록 조회 *//*
+
     public List<BusinessVO> showBusinessList(){ return adminDAO.findAllBusiness();}
 
-    /* 유통 회원 조회 */
+    */
+/* 유통 회원 조회 *//*
+
     public BusinessVO showBusiness(Long businessId){ return adminDAO.findByIdBusiness(businessId);}
 
-    /* 유통 회원 수정 */
+    */
+/* 유통 회원 수정 *//*
+
     public void updateBusiness(BusinessVO businessVO){adminDAO.updateBusiness(businessVO);}
 
-    /* 유통 회원 삭제 */
+    */
+/* 유통 회원 삭제 *//*
+
     public void deleteBusiness(Long businessId){adminDAO.removeBusiness(businessId);}
 
+*/
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
