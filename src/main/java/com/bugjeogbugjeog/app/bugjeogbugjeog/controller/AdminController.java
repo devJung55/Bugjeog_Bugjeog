@@ -51,8 +51,8 @@ public class AdminController {
     }*/
     
     /* 회원 수정 */
-    @GetMapping("admin-memberModify{memberId}")
-    public void adminMemberModify(@PathVariable Long memberId,Model model){
+    @GetMapping("admin-memberModify")
+    public void adminMemberModify(Model model){
        /* MemberVO memberVO = memberService.showMember(memberId);*/
         model.addAttribute(new MemberVO());
     }
@@ -79,23 +79,22 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
 
 
-    /* 유통 회원 목록 조회*//*
+    /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
     public void adminMemberCompanyList(){}
 
-    */
-    /* 유통 회원 상세 보기 *//*
+    /* 유통 회원 상세 보기 */
 
     @GetMapping("admin-member-company")
     public void adminMemberCompany(){}
 
-    */
-    /* 유통 회원 수정 *//*
+
+    /* 유통 회원 수정 */
 
     @GetMapping("admin-member-companyModify")
     public void adminMemberCompanyModify(){}
-*/
+
 
     /* 유통 회원 삭제 */
 

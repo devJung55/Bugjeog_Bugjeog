@@ -29,7 +29,7 @@ public class AdminDAOTest {
 /*
 
     */
-/* 회원 조회 *//*
+/* 회원 조회 */
 
     @Test
     public void findByIdMemberTest(){
@@ -37,7 +37,7 @@ public class AdminDAOTest {
         memberDAO.adminFindById(1L).toString();
     }
 
-    */
+
 /* 회원 수정 *//*
 
     @Test
