@@ -333,7 +333,6 @@ let joinService = (function() {
             success: function(result) {
                 code = result;
                 console.log(code);
-                alert("인증번호 발송완료");
             }
         });
         return code;

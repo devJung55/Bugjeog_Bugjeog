@@ -36,7 +36,7 @@ public interface MemberMapper {
 //    유통업체 로그인
     public Long selectByBusinessIdAndBusinessPassword(String businessEmail, String businessPassword);
 
-/*------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------*/
 
     //    회원정보 조회
     public MemberVO select(Long memberId);
