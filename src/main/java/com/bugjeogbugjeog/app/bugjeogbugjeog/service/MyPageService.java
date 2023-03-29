@@ -368,11 +368,29 @@ public class MyPageService {
         return allCount;
     }
 
-
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
         businessDAO.updateLocation(businessVO);
     }
 
+    // 좋아요 추가
+    public void likeInsert(FreeLikeVO freeLikeVO) {
+        freeLikeDAO.saveFreeLike(freeLikeVO);
+    }
+
+    // 좋아요 제거
+    public void likeDown(FreeLikeVO freeLikeVO) {
+        freeLikeDAO.removeFreeLike(freeLikeVO);
+    }
+    
+    // 좋아요 갯수 업데이트
+    public void countUp(Long boardFreeId){
+        freeLikeDAO.updateCount(boardFreeId);
+    }
+
+    // 좋아요 눌럿는지 확인
+    public Boolean likeCheck(FreeLikeVO freeLikeVO){
+        return freeLikeDAO.findByIdBoardFreeId(freeLikeVO) == 0;
+    }
 
 }

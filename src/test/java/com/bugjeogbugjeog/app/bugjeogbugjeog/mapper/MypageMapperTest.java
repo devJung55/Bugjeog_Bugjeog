@@ -2,10 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,14 +124,58 @@ public class MypageMapperTest {
         replyMapper.businessReplyCount(4L);
     }
 
+    // 관심 등록한 갯수
     @Test
     public void interestingCountTest() {
         memberMapper.interestingBusinessCount(1L);
     }
 
+    // 리뷰 평점
     @Test
     public void reviewGradeTest(){
         businessMapper.reviewGrade(4L);
     }
 
+    // 좋아요 게시물 여부 확인
+    @Test
+    public void searchLikeTest(){
+        FreeLikeVO freeLikeVO = new FreeLikeVO();
+        Long a = null;
+        freeLikeVO.setBusinessId(a);
+        freeLikeVO.setMemberId(1L);
+
+        freeLikeMapper.searchLike(freeLikeVO);
+    }
+
+    // 좋아요 업
+    public void insertLike(){
+        FreeLikeVO freeLikeVO = new FreeLikeVO();
+        Long a = null;
+        freeLikeVO.setBusinessId(a);
+        freeLikeVO.setMemberId(1L);
+
+        freeLikeMapper.likeInsert(freeLikeVO);
+    }
+
+    // 좋아요 다운
+    @Test
+    public void removeLike(){
+        FreeLikeVO freeLikeVO = new FreeLikeVO();
+        Long a = null;
+        freeLikeVO.setBusinessId(a);
+        freeLikeVO.setMemberId(1L);
+
+        freeLikeMapper.likeDown(freeLikeVO);
+    }
+
+    // 좋아요 갯수 업데이트
+    @Test
+    public void updateFreeCount(){
+        FreeLikeVO freeLikeVO = new FreeLikeVO();
+        Long a = null;
+        freeLikeVO.setBusinessId(a);
+        freeLikeVO.setMemberId(1L);
+
+        freeLikeMapper.likeCountUp(freeLikeVO);
+    }
 }
