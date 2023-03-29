@@ -102,8 +102,7 @@ public class MemberController {
 //    계정 찾기 결과 페이지
     @GetMapping("findResultAccount")
     public String findResultAccount(@RequestParam String phoneNumber, Model model) {
-        model.addAttribute("findEmailDTO", memberService.findAccount(phoneNumber).toString());
-        log.info("findEmailDTO : " + model.getAttribute("findEmailDTO"));
+        model.addAttribute("findEmailDTO", memberService.findAccount(phoneNumber));
         return "/member/find_id_end";
     }
 }

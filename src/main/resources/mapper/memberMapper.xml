@@ -57,17 +57,31 @@
         where business_email = #{businessEmail} and business_password = #{businessPassword}
     </select>
 
-    <!-- Member 계정 찾기 -->
+    <!-- 자영업자 계정 찾기 -->
     <select id="selectByPhoneNumberForEmail" parameterType="String" resultType="String">
         select member_email from tbl_member
         where member_phone_number = #{memberPhoneNumber}
     </select>
 
-    <!-- Business 계정 찾기 -->
+    <!-- 사업자 계정 찾기 -->
     <select id="businessSelectByPhoneNumberForEmail" parameterType="String" resultType="String">
         select business_email from tbl_business
         where business_phone_number = #{businessPhoneNumber}
     </select>
+
+    <!-- 자영업자 비밀번호 변경 -->
+    <update id="updatePassword" parameterType="String">
+        update tbl_member
+        set member_password = #{memberPassword}
+        where member_email = #{memberEmail}
+    </update>
+
+    <!-- 사업자 비밀번호 변경 -->
+    <update id="businessUpdatePassword" parameterType="String">
+        update tbl_business
+        set business_password = #{businessPassword}
+        where business_email = #{businessEmail}
+    </update>
 
     <!--hello 제가 왓어요~~~-->
     <!--유저 정보 조회-->
