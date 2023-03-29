@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -121,6 +122,15 @@ public class BusinessMyPageRestController {
         Long businessId = (Long) session.getAttribute("businessId");
 
         myPageService.businessPasswordUpdate(businessId, businessPassword);
+    }
+
+    // 각 게시물 작성 갯수
+    @GetMapping("count")
+    public Map<String, Integer> businessAllCount(){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        return myPageService.businessAllCount(businessId);
     }
 
     //    현재 날짜 경로 구하기

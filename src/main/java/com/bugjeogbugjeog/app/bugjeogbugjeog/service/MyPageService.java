@@ -3,7 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import lombok.RequiredArgsConstructor;
@@ -114,43 +114,26 @@ public class MyPageService {
     }
 
     // 문의 게시판 목록
-    public MemberInquireDTO inquireList(Long memberId, Criteria criteria){
+    public MyPageInquireDTO inquireList(Long memberId, Criteria criteria){
         List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllByIdToInquire(memberId,criteria);
         List<Long> status = new ArrayList<>();
-        MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
+        MyPageInquireDTO myPageInquireDTO = new MyPageInquireDTO();
 
         for(int i =0; i < inquires.size(); i++){
             Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
             status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
         }
 
-        memberInquireDTO.setAnswerStatus(status);
-        memberInquireDTO.setInquire(inquires);
+        myPageInquireDTO.setAnswerStatus(status);
+        myPageInquireDTO.setInquire(inquires);
 
-        return memberInquireDTO;
+        return myPageInquireDTO;
     }
 
     // 문의 게시판 개수
     public Integer inquireCount(Long memberId){
         return inquiryBoardDAO.getCountToInquire(memberId);
     };
-
-    // 유통업체 문의 게시판 목록
-    public MemberInquireDTO businessInquireList(Long businessId, Criteria criteria){
-        List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllToBusiness(businessId,criteria);
-        List<Long> status = new ArrayList<>();
-        MemberInquireDTO memberInquireDTO = new MemberInquireDTO();
-
-        for(int i =0; i < inquires.size(); i++){
-            Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
-            status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
-        }
-
-        memberInquireDTO.setAnswerStatus(status);
-        memberInquireDTO.setInquire(inquires);
-
-        return memberInquireDTO;
-    }
 
     // 좋아요 한 게시물 목록
     public BoardFreeLikeDTO likeList(Long memberId, Criteria criteria){
@@ -348,6 +331,39 @@ public class MyPageService {
         return freeLikeDAO.getBusinessCountToLike(businessId);
     }
 
+    // 유통업체 문의 게시판 개수
+    public Integer businessInquireCount(Long businessId){
+        return inquiryBoardDAO.getBusinessInquireCount(businessId);
+    };
+
+    // 유통업체 문의 게시판 목록
+    public MyPageInquireDTO businessInquireList(Long businessId, Criteria criteria){
+        List<BoardInquiryVO> inquires = inquiryBoardDAO.findAllToBusiness(businessId,criteria);
+        List<Long> status = new ArrayList<>();
+        MyPageInquireDTO myPageInquireDTO = new MyPageInquireDTO();
+
+        for(int i =0; i < inquires.size(); i++){
+            Long inquiryBoardId = inquires.get(i).getBoardInquiryId();
+            status.add(inquiryBoardDAO.inquireAnswer(inquiryBoardId));
+        }
+
+        myPageInquireDTO.setAnswerStatus(status);
+        myPageInquireDTO.setInquire(inquires);
+
+        return myPageInquireDTO;
+    }
+
+    // 게시판 각각의 개수
+    public Map<String, Integer> businessAllCount(Long businessId){
+        Map<String, Integer> allCount = new HashMap<>();
+
+        allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardBusinessTotal(businessId));
+        allCount.put("replyCount", replyDAO.getBusinessReplyTotal(businessId));
+        allCount.put("likeBoardCount", freeLikeDAO.getBusinessCountToLike(businessId));
+        allCount.put("inquireCount", inquiryBoardDAO.getBusinessInquireCount(businessId));
+
+        return allCount;
+    }
 
     //    유통 분야 설정 수정
     public void updateLocation(BusinessVO businessVO) {
