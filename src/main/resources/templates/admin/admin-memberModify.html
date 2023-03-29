@@ -81,7 +81,7 @@
                                                     <!-- 이메일 -->
                                                     <div class="info">
                                                         <input type="text" class="member-email input-style" name="memberEmail" th:field="*{memberEmail}">
-                                                    </div><!--
+                                                    </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">휴대폰 번호</span>
@@ -91,21 +91,21 @@
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">계정 상태</span>
-                                                    &lt;!&ndash; 핸드폰 번호 &ndash;&gt;
-                                                    <div class="radio" >
-                                                        &lt;!&ndash; <input type="text" class="member-phone member_status" name="memberStatus"> &ndash;&gt;
-                                                        <input type="radio" name="memberStatus" id="nomal" th:field="*{memberStats}">
-                                                        <label for="nomal">일반 계정</label>
-                                                        <input type="radio" name="memberStatus" id="yellow" th:field="*{memberStats}">
+                                                    <!--&lt;!&ndash; 핸드폰 번호 &ndash;&gt;-->
+                                                    <div class="radio">
+                                                        <!--&lt;!&ndash;--><!-- <input type="text" class="member-phone member_status" name="memberStatus"> --><!--&ndash;&gt;-->
+                                                        <input type="radio" name="memberStatus" id="nomal" >
+                                                        <label for="nomal" >일반 계정</label>
+                                                        <input type="radio" name="memberStatus" id="yellow" >
                                                         <label for="yellow">휴면 계정</label>
-                                                        <input type="radio" name="memberStatus" id="black" th:field="*{memberStats}">
+                                                        <input type="radio" name="memberStatus" id="black" >
                                                         <label for="black">탈퇴 계정</label>
                                                     </div>
                                                 </div>
                                                 <div class="button-box">
                                                     <button id ="modify-button">변경</button>
                                                 </div>
-                                            </form>-->
+                                            </form>
                                         </div>	
                                     </div>
                                 </section>

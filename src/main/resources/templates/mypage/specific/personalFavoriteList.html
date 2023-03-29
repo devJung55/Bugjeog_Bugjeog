@@ -101,8 +101,11 @@
                                                 <div class="list_card">
                                                     <a href="" class="card_wrapper">
                                                         <header class="card_thumbnail_wrapper is-relative">
+                                                            <div style="width: 250px; height: 200px">
+                                                                <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
+                                                            </div>
                                                             <button type="button" class="card_favorite_marker is-absolute">
-                                                                <img th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
+<!--                                                                <img th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>-->
                                                             </button>
                                                         </header>
                                                         <div class="card_body">
@@ -217,7 +220,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>$('.Aside_include').load('fragment/aside_personal.html');</script>
 <!-- <script>$('.Aside_include').load('fragment/aside_business.html');</script> -->
-<script src="/js/mypage/include_fixed.js"></script>
 <script>
     const $pagingLabel = $('label.num_label');
 

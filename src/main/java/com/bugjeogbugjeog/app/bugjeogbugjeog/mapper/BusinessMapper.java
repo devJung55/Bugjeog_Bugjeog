@@ -19,4 +19,10 @@ public interface BusinessMapper {
 
     // 회원 탈퇴
     public void withdraw(Long businessId);
+
+    // 해당 업체의 평점
+    public Double reviewGrade(Long businessId);
+
+    // 해당 업체 리뷰 개수
+    public Integer reviewCount(Long businessId);
 }
