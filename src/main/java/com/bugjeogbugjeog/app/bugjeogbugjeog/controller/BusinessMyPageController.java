@@ -12,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -91,6 +93,18 @@ public class BusinessMyPageController {
         model.addAttribute("businessVOs", boardFreeLikeDTO.getBusinessVOS());
         model.addAttribute("freeVOs", boardFreeLikeDTO.getBoardFreeVOs());
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessLikeCount(businessId)));
+    }
+
+    // faq 리스트
+    @GetMapping("faqList")
+    public void faqList(Model model, Criteria criteria){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+        model.addAttribute("inquireDTO",myPageService.businessInquireList(businessId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessInquireCount(businessId)));
+        model.addAttribute("inquireCount", myPageService.inquireCount(businessId));
     }
 
 }

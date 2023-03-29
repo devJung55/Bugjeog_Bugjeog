@@ -127,4 +127,9 @@ public class MypageMapperTest {
         replyMapper.businessReplyCount(4L);
     }
 
+    @Test
+    public void interestingCountTest() {
+        memberMapper.interestingBusinessCount(1L);
+    }
+
 }
