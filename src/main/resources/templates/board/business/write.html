@@ -18,28 +18,28 @@
         <div id="header">
             <div id="header_div">
                 <div id="header_btn">
-                    <button id="regist_btn">
+                    <a id="regist_btn" href="/board/business/write" th:method="post">
                         <span id="btn_span">등록하기</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
         <div id="wrap">
             <div id="wrap_div">
-<!--                <div style="display: flex; margin-bottom: 15px;">
-                    <button type="button" class="cate-button cate-button-active" id="gogi">
+                <div style="display: flex; margin-bottom: 15px;">
+                    <button type="button" name="category" class="cate-button cate-button-active" value="gogi">
                         <span class="category_span">육류</span>
                     </button>
-                    <button type="button" class="cate-button" id="seafood">
+                    <button type="button" name="category" class="cate-button" value="seafood">
                         <span class="category_span">해산물</span>
                     </button>
-                    <button type="button" class="cate-button" id="vegetable">
+                    <button type="button" name="category" class="cate-button" value="vegetable">
                         <span class="category_span">채소</span>
                     </button>
-                    <button type="button" class="cate-button" id="spice">
+                    <button type="button" name="category" class="cate-button" value="spice">
                         <span class="category_span">향신료</span>
                     </button>
-                </div>-->
+                </div>
 <!--                <form th:action="@{/board/business/write}" th:method="post">-->
                     <div id="title">
                         <textarea id="title_textarea" placeholder="제목을 입력해 주세요." th:field="*{boardBusinessTitle}"></textarea>
