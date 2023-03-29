@@ -5,7 +5,6 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.AdminService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +31,8 @@ public class AdminController {
     @GetMapping("admin-memberList")
     public String memberList(Criteria criteria, Model model){
         model.addAttribute("memberDTO",memberService.adminMemberShowList(criteria));
-        model.addAttribute("PageDTO", new PageDTO(criteria, memberService.count()));
-        log.info(" ----------------------------------------------" +memberService.adminMemberShowList(criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, memberService.count()));
+        log.info(" ----------------------------------------------" + memberService.adminMemberShowList(criteria));
         return "/admin/admin-memberList";
     }
 
