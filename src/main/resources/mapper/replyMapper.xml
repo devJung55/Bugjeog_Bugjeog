@@ -13,4 +13,9 @@
     <select id="replyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where member_id = #{memberId}
     </select>
+
+    <!-- 게시물의 댓글 개수-->
+    <select id="boardReplyCount" resultType="int">
+        select count(reply_id) from tbl_free_reply where board_free_id = #{boardFreeId}
+    </select>
 </mapper>
