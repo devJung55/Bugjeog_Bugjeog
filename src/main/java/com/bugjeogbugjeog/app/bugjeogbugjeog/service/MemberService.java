@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.FindEmailDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
@@ -96,16 +97,15 @@ public class MemberService {
         return memberDAO.findByBusinessId(businessEmail, businessPassword);
     }
 
-//    자영업자 계정 찾기
-    public String findMemberAccount(String memberPhoneNumber) {
-        return memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber);
-    }
+//    계정 찾기
+    public FindEmailDTO findAccount(String memberPhoneNumber) {
+        FindEmailDTO findEmailDTO = new FindEmailDTO();
 
-//    유통업체 계정 찾기
-    public String FindBusinessAccount(String businessPhoneNumber) {
-        return memberDAO.findByPhoneNumberForEmail(businessPhoneNumber);
-    }
+        findEmailDTO.setMemberEmail(memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber));
+        findEmailDTO.setBusinessEmail(memberDAO.businessFindByPhoneNumberForEmail(memberPhoneNumber));
 
+        return findEmailDTO;
+    }
 
     /*-----------------------------------------------------------------------------*/
 

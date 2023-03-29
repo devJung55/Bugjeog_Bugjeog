@@ -57,7 +57,7 @@ function likedList() {
                            </div>
                            <div class="PostItem_comments">
                                <img src="/image/mypage/comment-dots-64.png">
-                               <span class="button_count">2</span>
+                               <span class="button_count">${replyCounts[i]}</span>
                            </div>
                        </div>
                    </div>
