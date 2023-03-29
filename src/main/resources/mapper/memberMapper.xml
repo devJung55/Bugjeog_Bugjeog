@@ -133,4 +133,8 @@
         group by m.member_id
     </select>
 
+    <select id="interestingBusinessCount" resultType="int">
+        select count(interesting_company_id) from tbl_interesting_company where member_id = #{memberId}
+    </select>
+
 </mapper>

@@ -65,6 +65,9 @@ public interface MemberMapper {
     //    휴대폰 모든 정보 조회
     public List<String> selectAllPhoneNumber();
 
+    // 관심업체 갯수
+    public Integer interestingBusinessCount(Long memberId);
+
 
     /* 관리자는 맨 밑으로 내려주세요------------------------------------------------------------------------------------------------*/
 
