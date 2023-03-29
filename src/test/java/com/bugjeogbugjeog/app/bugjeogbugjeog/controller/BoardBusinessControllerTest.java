@@ -53,5 +53,15 @@ public class BoardBusinessControllerTest {
         ).andReturn().getModelAndView().getModelMap().toString());
     }
 
+    @Test
+    public void writeTest() throws Exception {
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/business/write")).andReturn().getModelAndView().getModelMap().toString());
+        log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/business/write")
+                .param("boardBusinessTitle", "title1")
+                .param("boardBusinessContent", "content1")
+                .param("businessId", "3")
+        ).andReturn().getModelAndView().getModelMap().toString());
+    }
+
 
 }

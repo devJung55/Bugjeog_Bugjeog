@@ -14,7 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BusinessBoardDAO {
     private final BusinessBoardMapper businessBoardMapper;
-    private final BusinessBoardImgMapper businessBoardImgMapper;
+
 
     //    추가
     public void save(BoardBusinessVO boardBusinessVO){ businessBoardMapper.insert(boardBusinessVO); }
