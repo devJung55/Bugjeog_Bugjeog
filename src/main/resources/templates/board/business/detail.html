@@ -404,7 +404,7 @@
                                         <div style="text-align: left; display: flex; align-items: center;">
                                             <div style="position: relative; margin-right: 7px;">
                                                 <div id="reply_my">
-                                                    <img id="reply_my_img" src="${memberImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
+                                                    <img id="reply_my_img" src="${memberImgFullPath || ''}" alt="">
                                                 </div>
                                             </div>
                                             <div style="display: flex; flex-direction: column;" th:object="${review}"  >
@@ -424,7 +424,7 @@
                     <div style="margin-bottom: 85px; margin-top: 20px;" th:object="${member}">
                         <div id="profile_img_nickname">
                             <div class="profile_img" id="profile_my_img">
-                                <img src="${member.memberImgFullPath  || '/image/boardList/no-image-64.png'}" alt="" class="wid_hei">
+                                <img src="${member.memberImgFullPath  || ''}" alt="" class="wid_hei">
                             </div>
                             <span id="my_nickname">${member.memberName}</span>
                         </div>
