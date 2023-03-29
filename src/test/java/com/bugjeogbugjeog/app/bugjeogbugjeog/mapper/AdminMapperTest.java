@@ -19,20 +19,20 @@ public class AdminMapperTest {
     @Autowired
     MemberMapper memberMapper;
 
-    /* 회원 */
+    /* 회원 목록  */
   /*
   @Test
     public void selectAllMemberTest(){List<MemberDTO> memberDTO = adminMapper.selectAllMember();}
 */
 
-//   멤버 셀렉터 -> 멤버 테스트 매퍼에 추가해야 함
+   /* 회원 정보 조회 */
     @Test
     public void selectMemberTest(){
         MemberDTO memberDTO = new MemberDTO();
         memberMapper.adminSelectMember(1L).toString();
     }
 
-
+    /* 회원 업데이트 */
     @Test
     public void updateMemberTest(){
         MemberDTO memberDTO = memberMapper.adminSelectMember(1L);
@@ -41,19 +41,10 @@ public class AdminMapperTest {
         memberMapper.update(memberVO);
     }
 
-/*
-    @Test
-    public void deleteMemberTest(){
-        adminMapper.deleteMember(3L);
-    }
-*/
-
-
     /* ------------------------------------------------------------------------------------------------------------- */
 
     /* 유통 회원 */
-
-   /*
+/*
    @Test
     public void selectAllBusiness(){List<BusinessVO> businessVO = adminMapper.selectAllBusiness();}
 
@@ -73,8 +64,7 @@ public class AdminMapperTest {
     @Test
     public void deleteBusiness(){
         adminMapper.deleteBusiness(2L);
-    }
-*/
+    }*/
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
