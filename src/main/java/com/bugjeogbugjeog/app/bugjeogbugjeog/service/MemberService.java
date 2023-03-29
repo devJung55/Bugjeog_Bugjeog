@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import net.nurigo.java_sdk.api.Message;
@@ -10,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -92,4 +95,20 @@ public class MemberService {
     public Long businessLongin(String businessEmail, String businessPassword) {
         return memberDAO.findByBusinessId(businessEmail, businessPassword);
     }
+
+
+    // 회원정보 수정
+    public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
+
+    /*-----------------------------------------------------------------------------*/
+
+    //  관리자 회원 목록
+    public List<MemberDTO> adminMemberShowList(Criteria criteria){return memberDAO.adminFindAll(criteria);}
+
+    // 관리자 멤버 카운트
+    public int count(){return memberDAO.count();}
+
+    /* 관리자 회원 상세 보기 */
+    public MemberDTO adminMemberShow(Long memberId){return memberDAO.adminFindById(memberId);}
+
 }

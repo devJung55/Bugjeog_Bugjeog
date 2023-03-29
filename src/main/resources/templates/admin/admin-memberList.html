@@ -72,21 +72,11 @@
 										<td>
 											<input type="checkbox" name="check">
 										</td>
-										<td th:text="${member.memberId}">1</td>
+										<td th:text="${member.memberId}"></td>
 										<td><a th:href="@{admin-member/{memberId}(memberId=${member.memberId})}" th:text="${member.memberName}"></a></td>
 										<td th:text="${member.memberEmail}"></td>
 										<td th:text="${member.memberRegisterDate}"></td>
-										<td>휴면 계정</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td>2</td>
-										<td><a href="<!-- 상세보기 페이지 -->">정지영</a></td>
-										<td>jjy1234@naver.com</td>
-										<td>2023.02.11</td>
-										<td>일반 계정</td>
+										<td th:text="${member.memberStatus}"></td>
 									</tr>
 								</table>
 							</div>
