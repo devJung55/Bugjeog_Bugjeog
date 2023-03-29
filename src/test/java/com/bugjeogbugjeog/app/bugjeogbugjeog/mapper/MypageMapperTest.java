@@ -132,4 +132,9 @@ public class MypageMapperTest {
         memberMapper.interestingBusinessCount(1L);
     }
 
+    @Test
+    public void reviewGradeTest(){
+        businessMapper.reviewGrade(4L);
+    }
+
 }
