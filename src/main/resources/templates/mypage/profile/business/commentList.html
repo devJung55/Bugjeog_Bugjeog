@@ -34,7 +34,7 @@
             </nav>
             <section class="main_container is-relative">
                 <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
+                <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
                 <section>
                     <aside class="CareerConnectBanner is-hidden">
                         <picture>
@@ -47,25 +47,25 @@
                             <h2 class="summary_title">나의 활동</h2>
                             <ul class="summary_status">
                                 <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/postList}">
+                                    <a th:href="@{/mypage/profile/business/postList}">
                                         <em class="freeCount">0</em>
                                         <span>작성글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/commentList}">
+                                    <a th:href="@{/mypage/profile/business/commentList}">
                                         <em class="replyCount">0</em>
                                         <span>작성댓글</span>
                                     </a>
                                 </li>
                                 <li class="summary_content">
-                                    <a  th:href="@{/mypage/profile/likedList}">
+                                    <a  th:href="@{/mypage/profile/business/likedList}">
                                         <em class="likeCount">0</em>
                                         <span>좋아요</span>
                                     </a>
                                 </li>
                                 <li class="summary_content" style="border: none;">
-                                    <a th:href="@{/mypage/profile/faqList}">
+                                    <a th:href="@{/mypage/profile/business/faqList}">
                                         <em  class="inquireCount"></em>
                                         <span>문의글</span>
                                     </a>
@@ -78,16 +78,16 @@
                             <h2>내 활동</h2>
                             <ul class="CommunityProfile_tabs">
                                 <li class="">
-                                    <a th:href="@{/mypage/profile/postList}">작성글</a>
+                                    <a th:href="@{/mypage/profile/business/postList}">작성글</a>
                                 </li>
                                 <li class="CommunityProfile_current">
-                                    <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
+                                    <a th:href="@{/mypage/profile/business/commentList}">작성댓글</a>
                                 </li>
                                 <li class="">
-                                    <a th:href="@{/mypage/profile/likedList}">좋아요</a>
+                                    <a th:href="@{/mypage/profile/business/likedList}">좋아요</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/mypage/profile/faqList}">문의글</a>
+                                    <a th:href="@{/mypage/profile/business/faqList}">문의글</a>
                                 </li>
                             </ul>
                         </div>
@@ -103,7 +103,7 @@
                             </th:block>
                             <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
                         </div>
-                        <form action="/mypage/profile/faqList" th:object="${criteria}" name="pageForm">
+                        <form action="/mypage/profile/business/commentList" th:object="${criteria}" name="pageForm">
                             <input type="hidden" th:field="*{pageNum}">
                             <input type="hidden" th:field="*{amount}">
                         </form>
@@ -116,7 +116,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
-    let memberVO = [[${memberVO}]];
+    let businessVO = [[${businessVO}]];
     let replyDTOs = [[${replyDTOs}]];
     let memberVOs = [[${memberVOs}]];
     let businessVOs = [[${businessVOs}]];
@@ -137,18 +137,23 @@
         $pageForm.submit();
     });
 
-    if(memberVO.memberImgUuid){
-        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    if(businessVO.businessImgUuid){
+        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
     }
 
-    $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
+    $(".phoneNumber").text(phoneNumber(businessVO.businessPhoneNumber));
 
-    function phoneNumber(phoneNumber){
-        var phone1 = phoneNumber.substring(0,3);
-        var phone2 = phoneNumber.substring(3,7);
-        var phone3 = phoneNumber.substring(7);
-        let phone = phone1 + "-" + phone2 + "-" + phone3;
-        return phone;
+    function phoneNumber(phone){
+
+        let phoneNumber;
+        if(phone.startsWith("02")){
+            phoneNumber = phone.substring(0,2) + "-" +phone.substring(2,6) + "-" + phone.substring(6);
+        }else if(phone.startsWith("031")){
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,6) + "-" + phone.substring(6);
+        }else {
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,7) + "-" + phone.substring(7);
+        }
+        return phoneNumber;
     }
 
     function date(date){

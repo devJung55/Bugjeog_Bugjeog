@@ -25,15 +25,15 @@
         <header class="Aside-profile Aside-content">
             <div class="Aside-avatar">
                 <div class="Aside-avatar_image">
-                    <img src="/image/boardList/distributor_icon.png" alt="">
+                    <img class="img_profile" src="/image/boardList/distributor_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
                 </div>
             </div>
             <div class="Aside-me" th:object="${businessVO}">
-                <div class="Aside-me_name" th:text="*{businessCeoName}"></div>
+                <div class="Aside-me_name" th:text="*{businessCompanyName}"></div>
                 <div class="Aside-me_email" th:text="*{businessEmail}"></div>
                 <div class="Aside-me_tel phoneNumber" th:text="*{businessPhoneNumber}"></div>
             </div>
-            <a th:href="@{/mypage/profile/myinfo_business}"     class="Aside-edit is-flex">기본정보 수정</a>
+            <a th:href="@{/mypage/profile/business/myinfo}"     class="Aside-edit is-flex">기본정보 수정</a>
         </header>
 
         <div class="MatchUpStatus-container Aside-content list_container">
@@ -81,12 +81,16 @@
 
     $(".phoneNumber").text(phoneNumber(businessVO.businesPhoneNumber));
 
-    function phoneNumber(phoneNumber){
-        var phone1 = phoneNumber.substring(0,3);
-        var phone2 = phoneNumber.substring(3,7);
-        var phone3 = phoneNumber.substring(7);
-        let phone = phone1 + "-" + phone2 + "-" + phone3;
-        return phone;
+    function phoneNumber(phone){
+        let phoneNumber;
+        if(phone.startsWith("02")){
+            phoneNumber = phone.substring(0,2) + "-" +phone.substring(2,6) + "-" + phone.substring(6);
+        }else if(phone.startsWith("031")){
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,6) + "-" + phone.substring(6);
+        }else {
+            phoneNumber = phone.substring(0,3) + "-" +phone.substring(3,7) + "-" + phone.substring(7);
+        }
+        return phoneNumber;
     }
 </script>
 </html>
