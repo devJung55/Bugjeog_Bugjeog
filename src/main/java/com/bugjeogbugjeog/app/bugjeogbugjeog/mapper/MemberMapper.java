@@ -38,6 +38,12 @@ public interface MemberMapper {
 //    유통업체 로그인
     public Long selectByBusinessIdAndBusinessPassword(String businessEmail, String businessPassword);
 
+//    자영업자 계정 찾기
+    public String selectByPhoneNumberForEmail(String memberEmail);
+
+//    유통업체 계정 찾기
+    public String businessSelectByPhoneNumberForEmail(String businessEmail);
+
     /*------------------------------------------------------------------------------------------------*/
 
     //    회원정보 조회

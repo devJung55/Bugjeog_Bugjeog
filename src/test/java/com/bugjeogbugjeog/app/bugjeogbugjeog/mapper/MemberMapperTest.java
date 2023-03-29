@@ -86,4 +86,16 @@ public class MemberMapperTest {
     public void selectByBusinessIdAndBusinessPassword() {
         log.info("businessId : " + memberMapper.selectByBusinessIdAndBusinessPassword("jjy1234@naver.com", "d2pkd2xkdWQxIQ=="));
     }
+
+//    자영업자 계정 찾기
+    @Test
+    public void findEmail() {
+        log.info("memberEmail : " + memberMapper.selectByPhoneNumberForEmail("01012341234"));
+    }
+
+//    자영업자 계정 찾기
+    @Test
+    public void businessFindEmail() {
+        log.info("memberEmail : " + memberMapper.businessSelectByPhoneNumberForEmail("01012341234"));
+    }
 }
