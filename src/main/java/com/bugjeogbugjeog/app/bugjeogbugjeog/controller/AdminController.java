@@ -3,8 +3,10 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.AdminService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,45 +25,44 @@ import java.util.List;
 public class AdminController {
 
     private final NoticeService noticeService;
-
-    private final AdminService adminService;
-/*
+    private final MemberService memberService;
 
 
-/*  관리자 회원 목록 조회 */
-
+    /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
     public String memberList(Criteria criteria, Model model){
-        model.addAttribute("MemberDTO",adminService.showMemberList(criteria));
-        model.addAttribute("PageDTO", new PageDTO(criteria, adminService.count()));
+        model.addAttribute("memberDTO",memberService.adminMemberShowList(criteria));
+        model.addAttribute("PageDTO", new PageDTO(criteria, memberService.count()));
+        log.info(" ----------------------------------------------" +memberService.adminMemberShowList(criteria));
         return "/admin/admin-memberList";
     }
 
-
-/* 회원 상세 보기 *//*
-
-    @GetMapping("admin-member")
-    public void adminMember(){
-
+    /* 회원 상세 보기 */
+    @GetMapping("admin-member/{memberId}")
+    public String adminMember(@PathVariable Long memberId, Model model){
+        model.addAttribute(memberService.adminMemberShow(memberId));
+        return "admin/admin-member";
     }
 
-    */
-/* 회원 수정 *//*
-
+    /* 회원 수정 */
     @GetMapping("admin-memberModify")
-    public void adminMemberModify(){
-
+    public void adminMemberModify(Model model){
+        model.addAttribute(new MemberDTO());
     }
-*/
 
-    /* 회원 삭제 */
-
+    /* 회원 수정 완료 */
+    @PostMapping("admin-memberModify")
+    public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("memberEmail", memberVO.getMemberEmail());
+        redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
+        redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
+        memberService.updateMember(memberVO);
+        return new RedirectView("admin-memberList");
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
-/*
 
-    */
 /* 유통 회원 목록 조회*//*
 
     @GetMapping("admin-member-companyList")
@@ -100,7 +101,7 @@ public class AdminController {
         return "admin/admin-notice";
     }
 
-       /* 공지사항 작성 페이지 이동 */
+   /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());

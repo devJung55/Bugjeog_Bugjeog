@@ -43,7 +43,7 @@
                         <div style="margin: 0 auto;width: 70%;">
                             <div class="prev-button-layout">
                                 <div>
-                                    <a>
+                                    <a th:href="@{/admin/admin-member}">
                                         <img src="/image/admin/prev_icon.png" class="prev-icon">
                                         <span class="prev-title">회원정보로 돌아가기</span>
                                     </a>
@@ -72,33 +72,33 @@
                                                 <span class="info-tag">이름</span>
                                                 <!-- 이름 -->
                                                 <div class="info info-name">
-                                                    <span>임순철</span>
+                                                    <span th:text="${memberName}"></span>
                                                 </div>
                                             </div>	
-                                            <form action="">
+                                            <form th:action="@{/admin/admin-memberModify}" method="post" th:object="${memberVO}">
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">이메일</span>
                                                     <!-- 이메일 -->
                                                     <div class="info">
-                                                        <input type="text" class="member-email input-style" name="memberEmail">
+                                                        <input type="text" class="member-email input-style" name="memberEmail" th:field="*{memberEmail}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">휴대폰 번호</span>
                                                     <div class="info">
-                                                        <input type="text" class="member-birth input-style member_phone_number" name="memberPhoneNumber">
+                                                        <input type="text" class="member-birth input-style member_phone_number" name="memberPhoneNumber" th:field="*{memberPhoneNumber}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">계정 상태</span>
                                                     <!-- 핸드폰 번호 -->
-                                                    <div class="radio">
+                                                    <div class="radio" >
                                                         <!-- <input type="text" class="member-phone member_status" name="memberStatus"> -->
-                                                        <input type="radio" name="memberStatus" id="nomal">
+                                                        <input type="radio" name="memberStatus" id="nomal" th:field="*{memberStats}">
                                                         <label for="nomal">일반 계정</label>
-                                                        <input type="radio" name="memberStatus" id="yellow">
+                                                        <input type="radio" name="memberStatus" id="yellow" th:field="*{memberStats}">
                                                         <label for="yellow">휴면 계정</label>
-                                                        <input type="radio" name="memberStatus" id="black">
+                                                        <input type="radio" name="memberStatus" id="black" th:field="*{memberStats}">
                                                         <label for="black">탈퇴 계정</label>
                                                     </div>
                                                 </div>
