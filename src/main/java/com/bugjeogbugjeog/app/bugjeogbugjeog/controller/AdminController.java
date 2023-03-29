@@ -43,10 +43,17 @@ public class AdminController {
         return "admin/admin-member";
     }
 
+  /*  *//* 회원 수정 *//*
+    @GetMapping("admin-memberModify/{memberId}")
+    public void adminMemberModify(@PathVariable Long memberId, Model model){
+        MemberVO memberVO = memberService.showMember(memberId);
+        model.addAttribute(new MemberVO());
+    }*/
+    
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public void adminMemberModify(Model model){
-        memberService.showMember(memberId);
+        model.addAttribute(new MemberVO());
     }
 
     /* 회원 수정 완료 */
