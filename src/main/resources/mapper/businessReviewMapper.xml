@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper">
-    <select id="select" resultType="businessReviewVO">
-        select review_id, member_id, board_business_id, review_content, review_register_date, review_update_date, review_grade
-        from tbl_business_review
+    <select id="select" resultType="businessReviewDTO">
+        select r.review_id, r.member_id, r.board_business_id
+        , r.review_content, r.review_register_date, r.review_update_date
+        , r.review_grade
+        , m.memeber_name, m.member_img_original_name, m.member_img_uuid
+        , m.member_img_path
+        from tbl_business_review r
+        join tbl_member m
+        on r.member_id = m.member_id
         where board_business_id = #{boardBusinessId}
+    </select>
+
+    <select id="selectByMemberId" resultType="memberVO">
+        select memeber_name, member_id, member_email, member_password, member_phone_number, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
+        from tbl_member
+        where member_id = #{memberId}
     </select>
 </mapper>
