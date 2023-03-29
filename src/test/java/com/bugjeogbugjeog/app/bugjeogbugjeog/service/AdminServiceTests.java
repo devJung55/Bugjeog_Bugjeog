@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -13,10 +14,22 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AdminServiceTests {
-/*
-  @Autowired
-    AdminService adminService;
-  */
+     @Autowired
+    MemberService memberService;
+
+   /* @Test
+    public void adminMemberShowListTest(){
+
+         Criteria criteria;
+        List<MemberDTO> memberDTO = memberService.adminMemberShowList(criteria);
+         log.info("------------------" + memberDTO);
+     }*/
+
+    @Test
+    public void adminCountTest(){
+        log.info("--------------------------------" +  memberService.count());
+    }
+
 
 /*
     @Test
