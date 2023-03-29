@@ -25,6 +25,7 @@ import java.util.UUID;
 @RequestMapping("/mypages/*")
 public class BusinessMyPageRestController {
 
+    private final HttpServletRequest req;
     private final MyPageService myPageService;
 
     @PostMapping("upload-file")
@@ -58,20 +59,20 @@ public class BusinessMyPageRestController {
 
     //    이름 변경
     @PatchMapping("updateBusinessCeoName")
-    public String updateName(HttpServletRequest req, @RequestParam("businessCeoName") String businessCeoName) {
+    public String updateName(@RequestParam("businessCeoName") String businessCeoName) {
         HttpSession session = req.getSession();
-//        Long businessId = (Long) session.getAttribute("businessId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         myPageService.updateBusinessCeoName(businessId, businessCeoName);
         return businessCeoName;
     }
 
     //    회원정보 가져오기
     @GetMapping("businessVO")
-    public BusinessVO memberVO(HttpServletRequest req){
+    public BusinessVO memberVO(){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         return myPageService.businessInfo(businessId);
     }
 
@@ -83,19 +84,19 @@ public class BusinessMyPageRestController {
 
     //    핸드폰 번호 변경
     @PatchMapping("phoneNumberUpdate")
-    public String phoneNumberUpdate(HttpServletRequest req, @RequestParam("businessPhoneNumber") String businessPhoneNumber){
+    public String phoneNumberUpdate(@RequestParam("businessPhoneNumber") String businessPhoneNumber){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         myPageService.updateBusinessPhoneNumber(businessId, businessPhoneNumber);
         return businessPhoneNumber;
     }
 
     @PatchMapping("companyName-update")
-    public String updateBusinessCompanyName(HttpServletRequest req, @RequestParam("businessCompanyName") String businessCompanyName){
+    public String updateBusinessCompanyName(@RequestParam("businessCompanyName") String businessCompanyName){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         myPageService.updateBusinessCompanyName(businessId, businessCompanyName);
         return businessCompanyName;
     }
@@ -106,19 +107,19 @@ public class BusinessMyPageRestController {
     }
 
     @PatchMapping("businessNumber-update")
-    public String businessNumberUpdate(HttpServletRequest req, @RequestParam("businessNumber") String businessNumber){
+    public String businessNumberUpdate(@RequestParam("businessNumber") String businessNumber){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         myPageService.businessNumberUpdate(businessId, businessNumber);
         return businessNumber;
     }
 
     @PatchMapping("businessPassword-update")
-    public void businessPasswordUpdate(HttpServletRequest req, @RequestParam("businessPassword") String businessPassword){
+    public void businessPasswordUpdate(@RequestParam("businessPassword") String businessPassword){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long businessId = 4L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
         myPageService.businessPasswordUpdate(businessId, businessPassword);
     }
 

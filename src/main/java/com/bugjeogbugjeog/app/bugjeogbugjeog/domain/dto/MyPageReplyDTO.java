@@ -6,13 +6,15 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class MyPageReplyDTO {
-    Long boardFreeId;
-    String boardFreeTitle;
-    String boardFreeContent;
-    String boardFreeRegisterDate;
-    String boardFreeUpdateDate;
-    Long boardFreeLike;
-    String replyContent;
-    String replyRegisterDate;
-    String replyUpdateDate;
+    private Long boardFreeId;
+    private String boardFreeTitle;
+    private String boardFreeContent;
+    private String boardFreeRegisterDate;
+    private String boardFreeUpdateDate;
+    private Long boardFreeLike;
+    private String replyContent;
+    private String replyRegisterDate;
+    private String replyUpdateDate;
+    private Long memberId;
+    private Long businessId;
 }

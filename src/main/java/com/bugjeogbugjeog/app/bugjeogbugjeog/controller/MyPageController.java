@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
@@ -37,26 +38,27 @@ public class MyPageController {
     @GetMapping("myinfo")
     public void memberInfo(Model model) {
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
 
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
     }
 
     @GetMapping("exit")
-    public void exit(HttpServletRequest req,Model model){
+    public void exit(Model model){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
     }
 
     @PostMapping("withdraw")
-    public RedirectView withdraw(HttpServletRequest req){
+    public RedirectView withdraw(){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 3L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         myPageService.memberWithdraw(memberId);
+        session.removeAttribute("memberId");
+
         return new RedirectView("/main/main.html");// 수정해야하는 부분
     }
 
@@ -95,10 +97,10 @@ public class MyPageController {
     //    이름 변경
     @PatchMapping("updateName")
     @ResponseBody
-    public String updateName(HttpServletRequest req, @RequestParam("memberName") String memberName) {
+    public String updateName(@RequestParam("memberName") String memberName) {
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         myPageService.updateName(memberId, memberName);
         return memberName;
     }
@@ -121,10 +123,10 @@ public class MyPageController {
     //    핸드폰 번호 변경
     @PatchMapping("phoneNumberUpdate")
     @ResponseBody
-    public String phoneNumberUpdate(HttpServletRequest req, @RequestParam("memberPhoneNumber") String memberPhoneNumber){
+    public String phoneNumberUpdate(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         myPageService.updatePhoneNumber(memberId, memberPhoneNumber);
         return memberPhoneNumber;
     }
@@ -132,29 +134,28 @@ public class MyPageController {
 //    비밀번호 변경
     @PatchMapping("updatePassword")
     @ResponseBody
-    public void updatePassword(HttpServletRequest req, @RequestParam("memberPassword") String memberPassword){
+    public void updatePassword(@RequestParam("memberPassword") String memberPassword){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         myPageService.updatePassword(memberId, memberPassword);
     }
     
 //    회원정보 가져오기
     @GetMapping("memberVO")
     @ResponseBody
-    public MemberVO memberVO(HttpServletRequest req){
+    public MemberVO memberVO(){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
         return myPageService.memberInfo(memberId);
     }
 
     // faq 리스트
     @GetMapping("faqList")
-    public void faqList(HttpServletRequest req, Model model, Criteria criteria){
+    public void faqList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
 
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
         model.addAttribute("inquireDTO",myPageService.inquireList(memberId,criteria));
@@ -164,22 +165,24 @@ public class MyPageController {
 
     // 댓글 단 리스트
     @GetMapping("commentList")
-    public void replyList(HttpServletRequest req, Model model, Criteria criteria){
+    public void replyList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
+
+        BoardReplyDTO boardReplyDTO = myPageService.replyList(memberId,criteria);
 
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
-        model.addAttribute("MyPagereplyDTO", myPageService.replyList(memberId,criteria));
+        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
+        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
+        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.replyCount(memberId)));
     }
 
     // 자유게시판 작성 목록
     @GetMapping("postList")
-    public void freeBoardList(HttpServletRequest req, Model model, Criteria criteria){
+    public void freeBoardList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
 
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
         model.addAttribute("boardFreeVO", myPageService.freeList(memberId,criteria));
@@ -187,10 +190,9 @@ public class MyPageController {
     }
 
     @GetMapping("likedList")
-    public void likeList(HttpServletRequest req, Model model, Criteria criteria){
+    public void likeList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
 
         BoardFreeLikeDTO boardFreeLikeDTO = myPageService.likeList(memberId, criteria);
 
@@ -204,10 +206,9 @@ public class MyPageController {
     // 각 게시물 작성 갯수
     @GetMapping("count")
     @ResponseBody
-    public Map<String, Integer> allCount(HttpServletRequest req){
+    public Map<String, Integer> allCount(){
         HttpSession session = req.getSession();
-//        Long memberId = (Long) session.getAttribute("memberId");
-        Long memberId = 1L;
+        Long memberId = (Long) session.getAttribute("memberId");
 
         return myPageService.allcount(memberId);
     }
@@ -215,19 +216,26 @@ public class MyPageController {
     // 유통업체 정보
     @GetMapping("myinfo_business")
     public void myInfoBusiness(Model model){
-        model.addAttribute("businessVO",myPageService.businessInfo(4L));
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
     }
 
     @GetMapping("exit-business")
     public void exitBusiness(Model model){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+
         model.addAttribute("businessVO",myPageService.businessInfo(4L));
     }
 
     @PostMapping("businessWithdraw")
     public RedirectView businessWithdraw(HttpServletRequest req){
         HttpSession session = req.getSession();
-//        Long businessId = (Long) session.getAttribute("businessId");
-        Long businessId = 1L;
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        myPageService.businessWithdraw(businessId);
         return new RedirectView("/main/main");
     }
 

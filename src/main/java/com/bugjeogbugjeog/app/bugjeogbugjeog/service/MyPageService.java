@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberInquireDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
@@ -174,8 +175,20 @@ public class MyPageService {
     }
 
     //  댓글 단 게시물 목록
-    public List<MyPageReplyDTO> replyList(Long memberId, Criteria criteria){
-        return replyDAO.findAllMyPageReplyDTO(memberId, criteria);
+    public BoardReplyDTO replyList(Long memberId, Criteria criteria){
+        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
+        List<MemberVO> memberVOs = new ArrayList<>();
+        List<BusinessVO> businessVOS = new ArrayList<>();
+        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllMyPageReplyDTO(memberId, criteria);
+
+        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+
+        boardReplyDTO.setBusinessVOS(businessVOS);
+        boardReplyDTO.setMemberVOs(memberVOs);
+        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
+
+        return boardReplyDTO;
     };
 
     // 댓글 갯수
