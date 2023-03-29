@@ -250,4 +250,87 @@ div.card_location {
 ul>span {
     margin-right: 3px;
 }
+.board-info-box-layout {
+    margin-top: 30px;
+}
 
+.page-button-box-layout {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.page-button-box {
+    display: flex;
+    justify-content:center;
+}
+
+.page-button-active {
+    width: 20px;
+    height: 20px;
+    background-color: #818298;
+    color : #fff;
+    border-radius: 2px;
+}
+
+.page-button {
+    width: 20px;
+    cursor: pointer;
+}
+
+.page-button-box {
+    font-size: 18px;
+}
+
+.page-button-margin {
+    margin:0 auto;
+}
+
+.modify-button {
+    padding-right: 20px;
+}
+
+.info-table .modify-button {
+    width: 10%;
+    font-weight: 500;
+}
+
+.modify-button button {
+    border: none;
+    background: none;
+    font-size: inherit;
+    font-family: 'GmarketSansMedium';
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.update-button-flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.register-button {
+    margin-right: 10px;
+    box-shadow: 2px 2px 7px -2px grey;
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 120px;
+    height: 50px;
+    background-color: #fff ;
+    font-weight: bold;
+}
+
+.page-button-margin div {
+    margin-top: 3px;
+}
+
+.right-button {
+    margin-left: 10px;
+    cursor : pointer;
+    width: 15px;
+}
+
+.left-button {
+    margin-right: 10px;
+    width: 15px;
+    cursor: pointer;
+}
