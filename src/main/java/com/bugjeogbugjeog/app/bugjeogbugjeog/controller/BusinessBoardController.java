@@ -178,12 +178,17 @@ public class BusinessBoardController {
     }
 
     @PostMapping("/board/business/write")
-    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req, RedirectAttributes redirectAttributes, @RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
+    @ResponseBody
+    public Long register(@RequestBody BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
         log.info(req.getParameter("category"));
         boardBusinessVO.setBusinessId(3L);
-        Long businessBoardId = businessBoardService.registerBoard(boardBusinessVO);
-        redirectAttributes.addAttribute(businessBoardId);
-        redirectAttributes.addAttribute(boardBusinessImgVOs);
+        businessBoardService.registerBoard(boardBusinessVO);
+        log.info("==============");
+        log.info(String.valueOf(boardBusinessVO.getBoardBusinessId()));
+        log.info("==============");
+        return boardBusinessVO.getBoardBusinessId();
+//        return null;
+//        businessBoardImgService.write();
 //        List<String> uuids = new ArrayList<>();
 //        String reqBoardBusinessId = req.getParameter("boardBusinessId");
 //        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
@@ -210,7 +215,6 @@ public class BusinessBoardController {
 //            businessBoardImgService.registerImg(vo);
 //        }
 
-        return new RedirectView("/img/business/save");
     }
 
     @PostMapping("/board/business/delete")

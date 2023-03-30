@@ -36,8 +36,9 @@ public class BoardImgController {
     //    파일 저장
     @PostMapping("/imgs/business/save")
     @ResponseBody
-    public void businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
+    public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
         businessBoardImgService.write(boardBusinessImgVOs);
+        return new RedirectView("/board/business/list");
     }
 
     //    파일 업로드
