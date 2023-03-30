@@ -10,20 +10,17 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -134,37 +131,51 @@ public class BusinessBoardController {
         model.addAttribute("memberFullPath", memberFullPath);
     }
 
-    //    파일 저장
-    @PostMapping("/board/business/save")
-    @ResponseBody
-    public void save(@RequestBody List<BoardBusinessImgVO> images){
-        businessBoardImgService.write(images);
-    }
-
-    //    현재 날짜 경로 구하기
-    private String getPath(){
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-    }
+//    //    파일 저장
+//    @PostMapping("/board/business/save")
+//    @ResponseBody
+//    public void save(@RequestBody List<BoardBusinessImgVO> images) {
+//        businessBoardImgService.write(images);
+//    }
+//
+//    //    현재 날짜 경로 구하기
+//    private String getPath() {
+//        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+//    }
 
     //    파일 업로드
-    @PostMapping("/board/business/upload")
-    @ResponseBody
-    public List<String> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
-        List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
-        File file = new File(path);
-        if(!file.exists()) {file.mkdirs();}
+//    @PostMapping("/board/business/upload")
+//    @ResponseBody
+//    public RedirectView upload(@RequestParam("file") List<MultipartFile> multipartFiles, HttpServletRequest req) throws IOException {
+//        List<String> uuids = new ArrayList<>();
+//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
+//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
+//                ? 3L
+//                : Long.parseLong(reqBoardBusinessId);
+//        String path = "C:/upload/" + getPath();
+//        File file = new File(path);
+//        if (!file.exists()) { file.mkdirs(); }
+//
+//        for (int i = 0; i < multipartFiles.size(); i++) {
+//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
+//            String uuid = UUID.randomUUID().toString();
+//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
+//            String fileFullPath = uuid + "_" + originalFileName;
+//            vo.setBoardBusinessId(boardBusinessId);
+//            vo.setBoardBusinessImgOriginalName(originalFileName);
+//            vo.setBoardBusinessImgUuid(uuid);
+//            vo.setBoardBusinessImgPath(path);
+////            uuids.add(UUID.randomUUID().toString());
+//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
+//
+//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
+//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
+//            out.close();
+//            businessBoardImgService.registerImg(vo);
+//        }
 
-        for(int i=0; i<multipartFiles.size(); i++){
-            uuids.add(UUID.randomUUID().toString());
-            multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-
-            FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
-            out.close();
-        }
-        return uuids;
-    }
+//        return new RedirectView("/board/business/list");
+//    }
 
     @GetMapping("/board/business/write")
     public void write(Model model) {
@@ -176,9 +187,34 @@ public class BusinessBoardController {
     public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
         log.info(req.getParameter("category"));
         businessBoardService.registerBoard(boardBusinessVO);
-//        Arrays.stream(boardBusinessImgVOs).filter(vo -> vo.getBoardBusinessImgOriginalName()!=null).map(vo -> vo.)
-//                .forEach(vo -> businessBoardImgService.registerImg(vo));
-//        log.info(boardBusinessVO.toString());
+
+//        List<String> uuids = new ArrayList<>();
+//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
+//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
+//                ? 3L
+//                : Long.parseLong(reqBoardBusinessId);
+//        String path = "C:/upload/" + getPath();
+//        File file = new File(path);
+//        if (!file.exists()) { file.mkdirs(); }
+//
+//        for (int i = 0; i < multipartFiles.size(); i++) {
+//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
+//            String uuid = UUID.randomUUID().toString();
+//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
+//            String fileFullPath = uuid + "_" + originalFileName;
+//            vo.setBoardBusinessId(boardBusinessId);
+//            vo.setBoardBusinessImgOriginalName(originalFileName);
+//            vo.setBoardBusinessImgUuid(uuid);
+//            vo.setBoardBusinessImgPath(path);
+////            uuids.add(UUID.randomUUID().toString());
+//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
+//
+//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
+//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
+//            out.close();
+//            businessBoardImgService.registerImg(vo);
+//        }
+
         return new RedirectView("/board/business/list");
     }
 
