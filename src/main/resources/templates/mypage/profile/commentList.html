@@ -151,15 +151,26 @@
         return { replyContent : replyContent }
     })();
 
-    let $replyContent = $(".reply-content");
+    let $replyContentBox = $(".reply-content-box");
 
 
-    $replyContent.each((i, e) => {
+    $replyContentBox.each((i, e) => {
         let boardFreeId = $(e).attr("id");
         replyService.replyContent({
             boardFreeId : boardFreeId
         }, function(result){
-            console.log(result[i]);
+            let text = "";
+            let length = result.length;
+            for(var i =0; i < length; i++){
+                text+= `
+                            <a class="PostItem_body" href="">
+                                 <div><img src="/image/mypage/reply-64.png" alt=""></div>
+                                 <p class="PostItem_content reply-content">${result[i].replyContent}</p>
+                            </a>
+                    `;
+            }
+
+            $(e).append(text);
         })
     });
 </script>
