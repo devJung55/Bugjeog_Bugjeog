@@ -14,10 +14,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BusinessBoardDAO {
     private final BusinessBoardMapper businessBoardMapper;
+    private final BusinessBoardImgMapper businessBoardImgMapper;
 
 
     //    추가
-    public void save(BoardBusinessVO boardBusinessVO){ businessBoardMapper.insert(boardBusinessVO); }
+    public void save(BoardBusinessVO boardBusinessVO){
+        businessBoardMapper.insert(boardBusinessVO);
+    }
+
 
     //    삭제
     public void deleteById(Long boardBusinessId){ businessBoardMapper.delete(boardBusinessId);}

@@ -14,120 +14,128 @@
     <link rel="stylesheet" href="/css/board_detail/board_write.css">
 </head>
 <body>
+<a href="/board/business/list" style="display: none" id="submit_done"></a>
 <div th:insert="~{main/header :: header}"></div>
-<form th:action="@{/board/business/write}" th:method="post" th:object="${boardBusinessVO}" name="form">
-    <div id="header">
-        <div id="header_div">
-            <div id="header_btn">
-                <label for="regist_btn" class="register_btn" id="regist_label">
-                    <span id="btn_span">등록하기</span>
-                    <button type="button" id="regist_btn" style="display: none"></button>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div id="wrap">
-        <div id="wrap_div">
-            <!--                <div style="display: flex; margin-bottom: 15px;">-->
-            <!--                    <button type="button" name="category" class="cate-button cate-button-active" value="gogi">-->
-            <!--                        <span class="category_span">육류</span>-->
-            <!--                    </button>-->
-            <!--                    <button type="button" name="category" class="cate-button" value="seafood">-->
-            <!--                        <span class="category_span">해산물</span>-->
-            <!--                    </button>-->
-            <!--                    <button type="button" name="category" class="cate-button" value="vegetable">-->
-            <!--                        <span class="category_span">채소</span>-->
-            <!--                    </button>-->
-            <!--                    <button type="button" name="category" class="cate-button" value="spice">-->
-            <!--                        <span class="category_span">향신료</span>-->
-            <!--                    </button>-->
-            <!--                </div>-->
-            <!--                <form th:action="@{/board/business/write}" th:method="post">-->
-            <div id="title">
-                <textarea id="title_textarea" placeholder="제목을 입력해 주세요." th:field="*{boardBusinessTitle}"></textarea>
-                <!-- <textarea></textarea> -->
-            </div>
-            <!--                <input id="location" type="text" placeholder="지역을 적어주세요." style="margin-top: 20px;">-->
-            <!--                    <input id="location" type="text" placeholder="소재지를 적어주세요.">-->
-            <!--                    <input id="location" type="text" placeholder="슬로건을 적어주세요.">-->
-            <div id="content">
-                <div>
-                    <textarea id="content_textarea" placeholder="내용을 작성해 주세요."
-                              th:field="*{boardBusinessContent}"></textarea>
-                    <!-- <textarea></textarea> -->
+<form th:action="@{/board/business/list}" th:method="get"  name="form">
+    <div>
+        <div id="header">
+            <div id="header_div">
+                <div id="header_btn">
+                    <label for="regist_btn" class="register_btn" id="regist_label">
+                        <span id="btn_span">등록하기</span>
+                        <button type="button" id="regist_btn" style="display: none"></button>
+                    </label>
                 </div>
             </div>
-            <!--                </form>-->
-            <ul id="thumbnail-list" style="display: flex;">
-                <!--                     <div style="width: 200px; height: 200px;">
-                                        <label for="attach">
-                                            <div class="image">
-                                                <span style="display: none;">X</span>
-                                            </div>
-                                            <div class="file-name" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div id="wrap">
+            <div id="wrap_div">
+                <!--                <div style="display: flex; margin-bottom: 15px;">-->
+                <!--                    <button type="button" name="category" class="cate-button cate-button-active" value="gogi">-->
+                <!--                        <span class="category_span">육류</span>-->
+                <!--                    </button>-->
+                <!--                    <button type="button" name="category" class="cate-button" value="seafood">-->
+                <!--                        <span class="category_span">해산물</span>-->
+                <!--                    </button>-->
+                <!--                    <button type="button" name="category" class="cate-button" value="vegetable">-->
+                <!--                        <span class="category_span">채소</span>-->
+                <!--                    </button>-->
+                <!--                    <button type="button" name="category" class="cate-button" value="spice">-->
+                <!--                        <span class="category_span">향신료</span>-->
+                <!--                    </button>-->
+                <!--                </div>-->
+                <!--                <form th:action="@{/board/business/write}" th:method="post">-->
+                <div id="title">
+                    <textarea id="title_textarea" placeholder="제목을 입력해 주세요."
+                    ></textarea>
+<!--                              th:field="*{boardBusinessTitle}"></textarea>-->
+                    <!-- <textarea></textarea> -->
+                </div>
+                <!--                <input id="location" type="text" placeholder="지역을 적어주세요." style="margin-top: 20px;">-->
+                <!--                    <input id="location" type="text" placeholder="소재지를 적어주세요.">-->
+                <!--                    <input id="location" type="text" placeholder="슬로건을 적어주세요.">-->
+                <div id="content">
+                    <div>
+                    <textarea id="content_textarea" placeholder="내용을 작성해 주세요."
+                    ></textarea>
+<!--                              th:field="*{boardBusinessContent}"></textarea>-->
+                        <!-- <textarea></textarea> -->
+                    </div>
+                </div>
+                <!--                </form>-->
+                <ul id="thumbnail-list" style="display: flex;">
+                    <!--                     <div style="width: 200px; height: 200px;">
+                                            <label for="attach">
+                                                <div class="image">
+                                                    <span style="display: none;">X</span>
+                                                </div>
+                                                <div class="file-name" style="width: 100%; height: 100%;"></div>
+                                            </label>
+                                        <input type="file" id="attach" style="display: none">
+                                        </div>
+                                        <div style="width: 200px; height: 200px;">
+                                            <label for="attach">
+                                                <div class="image">
+                                                    <span style="display: none;">X</span>
+                                                </div>
+                                            <div class="file-name"></div>
                                         </label>
-                                    <input type="file" id="attach" style="display: none">
-                                    </div>
-                                    <div style="width: 200px; height: 200px;">
-                                        <label for="attach">
-                                            <div class="image">
-                                                <span style="display: none;">X</span>
-                                            </div>
-                                        <div class="file-name"></div>
-                                    </label>
-                                    <input type="file" id="attach" style="display: none">
-                                    </div>
-                                    <div style="width: 200px; height: 200px;">
-                                        <label for="attach">
-                                            <div class="image">
-                                                <span style="display: none;">X</span>
-                                            </div>
-                                        <div class="file-name"></div>
-                                    </label>
-                                    <input type="file" id="attach" style="display: none">
-                                    </div> -->
-            </ul>
+                                        <input type="file" id="attach" style="display: none">
+                                        </div>
+                                        <div style="width: 200px; height: 200px;">
+                                            <label for="attach">
+                                                <div class="image">
+                                                    <span style="display: none;">X</span>
+                                                </div>
+                                            <div class="file-name"></div>
+                                        </label>
+                                        <input type="file" id="attach" style="display: none">
+                                        </div> -->
+                </ul>
+            </div>
         </div>
     </div>
-</form>
-<div id="plus_picture">
-    <div id="plus_picture_div">
+
+    <div id="plus_picture">
+        <div id="plus_picture_div">
             <span>사진을 추가해 보세요!
                 최대 3개까지 할수 있습니다.
             </span>
-        <div></div>
-    </div>
-    <label for="photo-picker">
-        <div id="plus_button">
-            <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z"
-                      fill="currentColor"></path>
-                <mask id="mask0_150_2361" maskUnits="userSpaceOnUse" x="1" y="4" width="22" height="16">
+            <div></div>
+        </div>
+        <label for="photo-picker">
+            <div id="plus_button">
+                <svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z"
-                          fill="white"></path>
-                </mask>
-                <g mask="url(#mask0_150_2361)">
-                    <rect width="24" height="24" fill="currentColor"></rect>
-                </g>
-            </svg>
-        </div>
-        <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"
-               style="display: none;">
-    </label>
-</div>
+                          fill="currentColor"></path>
+                    <mask id="mask0_150_2361" maskUnits="userSpaceOnUse" x="1" y="4" width="22" height="16">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M7.52489 11.47L9.9908 13.9387L15.4533 8.46998C15.7462 8.17668 16.2216 8.17668 16.5145 8.46998L22.5076 14.47C22.6481 14.6106 22.727 14.8012 22.727 15V19.0395C22.727 19.4539 22.3909 19.7897 21.9765 19.7895L1.99951 19.7763C1.58501 19.776 1.24932 19.4396 1.25 19.0251L1.273 4.99877C1.27368 4.58465 1.60987 4.24946 2.02399 4.25L22.001 4.27632C22.4163 4.27686 22.7521 4.61486 22.75 5.0302L22.727 9.4677C22.7248 9.88191 22.3873 10.216 21.9731 10.2138C21.5589 10.2117 21.2249 9.87414 21.227 9.45993L21.2461 5.77532L2.77177 5.75099L2.75123 18.2768L21.227 18.289V15.3104L15.9839 10.0613L10.5214 15.53C10.2285 15.8233 9.75313 15.8233 9.46017 15.53L6.99425 13.0613L5.52718 14.53C5.23446 14.8231 4.75959 14.8234 4.46653 14.5306C4.17346 14.2379 4.17319 13.763 4.46591 13.47L6.46361 11.47C6.75658 11.1767 7.23192 11.1767 7.52489 11.47ZM9 9.75H5C4.58579 9.75 4.25 9.41421 4.25 9C4.25 8.58579 4.58579 8.25 5 8.25H9C9.41421 8.25 9.75 8.58579 9.75 9C9.75 9.41421 9.41421 9.75 9 9.75Z"
+                              fill="white"></path>
+                    </mask>
+                    <g mask="url(#mask0_150_2361)">
+                        <rect width="24" height="24" fill="currentColor"></rect>
+                    </g>
+                </svg>
+            </div>
+            <input class="imageFileInput" id="photo-picker" type="file"
+                   accept="image/jpg, image/jpeg, image/png, image/bmp"
+                   style="display: none;">
+        </label>
+    </div>
+</form>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let boardBusinessId = [[${boardBusinessId}]];
+    let businessId = [[${businessId}]];
 </script>
 <script src="/js/boardDetail/boardBusinessWriteBasic.js"></script>
-<script>
+<script th:inline="javascript">
     globalThis.uuids;
     FileList.prototype.forEach = Array.prototype.forEach;
 
-    $('input[type=file]').on("change", function(){
+    $('input[type=file]').on("change", function () {
         const $files = $('input[type=file]')[0].files;
         let formData = new FormData();
         $files.forEach(file => {
@@ -139,52 +147,74 @@
             data: formData,
             contentType: false,
             processData: false,
-            success: function(uuids) {
+            success: function (uuids) {
                 console.log("change 이벤트 ajax 성공")
                 globalThis.uuids = uuids;
                 $files.forEach((file, i) => {
-                    if(file.type.startsWith("image")){
+                    if (file.type.startsWith("image")) {
                         $("#thumbnail-list").append(`<li><a href="/imgs/business/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/imgs/business/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"></a></li>`);
-                    }else{
+                    } else {
                         $("#thumbnail-list").append(`<li><a href="/imgs/business/download?fileName=${toStringByFormatting(new Date())}/${uuids[i]}_${file.name}"><img src="/attach.png" width="100"></a></li>`);
                     }
                 })
             },
-            error : function () {
+            error: function () {
                 console.log("change 이벤트 ajax 실패")
             }
         });
     });
 
-    $("#regist_btn").on("click", function(){
+    $("#regist_btn").on("click", function () {
         const $files = $("input[type=file]")[0].files;
         console.log($files);
-        let boardBusinessImgVO = new Array();
 
-        $files.forEach((file, i) => {
-            let boardBusinessImgVOObj = new Object();
-            boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
-            boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
-            boardBusinessImgVOObj.boardBusinessImgPath = toStringByFormatting(new Date());
-            // boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
-            // boardBusinessImgVO.fileSize = file.size;
-            // boardBusinessImgVO.fileType = file.type.startsWith("image");
-            boardBusinessImgVO.push(boardBusinessImgVOObj);
-        });
+        let boardBusinessVO = new Object();
+        boardBusinessVO.boardBusinessTitle = $('#title_textarea').val();
+        console.log(boardBusinessVO.boardBusinessTitle);
+        boardBusinessVO.boardBusinessContent = $('#content_textarea').val();
+        boardBusinessVO.businessId = businessId;
+
 
         $.ajax({
-            url: "/imgs/business/save",
+            url: "/board/business/write",
             type: "post",
-            data: JSON.stringify(boardBusinessImgVO),
+            data: JSON.stringify(boardBusinessVO),
             contentType: "application/json; charset=utf-8",
-            success: function(result){
-                alert("전송 성공");
-                form.submit();
+            success: function (boardBusinessId) {
+                let boardBusinessImgVO = new Array();
+                alert("boardBusinessVO 전송 성공" + boardBusinessId);
+
+                $files.forEach((file, i) => {
+                    let boardBusinessImgVOObj = new Object();
+                    boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
+                    boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
+                    boardBusinessImgVOObj.boardBusinessImgPath = toStringByFormatting(new Date());
+                    boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
+                    // boardBusinessImgVO.fileSize = file.size;
+                    // boardBusinessImgVO.fileType = file.type.startsWith("image");
+                    boardBusinessImgVO.push(boardBusinessImgVOObj);
+                });
+
+                $.ajax({
+                    url: "/imgs/business/save",
+                    type: "post",
+                    data: JSON.stringify(boardBusinessImgVO),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        alert("boardBusinessImgVO 전송 성공");
+                        form.submit();
+                    },
+                    error: function () {
+                        alert("img 전송 실패")
+                    }
+                });
             },
             error: function () {
-                alert("전송 실패")
+                alert("vo 전송 실패")
             }
-        });
+        })
+
+
 
     });
 
