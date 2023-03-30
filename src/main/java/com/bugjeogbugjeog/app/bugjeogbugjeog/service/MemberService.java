@@ -134,7 +134,7 @@ public class MemberService {
     public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
 
     /* 회원 정보 조회*/
-    public void showMember(Long memberId){memberDAO.findById(memberId);}
+    public MemberVO showMember(Long memberId){return memberDAO.findById(memberId);}
 
     /* 회원 정보 삭제*/
     public void removeMember(List<String> memberIds){

@@ -33,12 +33,24 @@ public class AdminController {
 
     /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
-    public String memberList(Criteria criteria, Model model){
-        model.addAttribute("memberDTO",memberService.adminMemberShowList(criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, memberService.count()));
-        log.info(" ----------------------------------------------" + memberService.adminMemberShowList(criteria));
+    public String memberListShow(){
         return "/admin/admin-memberList";
     }
+
+    @PostMapping("admin-memberList")
+    @ResponseBody
+    public List<MemberDTO> memberListShow(Criteria criteria){
+
+        if (criteria.getPageNum() == 0) {
+            criteria.setPageNum(1);
+            criteria.setAmount(6);
+        } else {
+            criteria.setPageNum(criteria.getPageNum());
+            criteria.setAmount(6);
+        }
+        return memberService.adminMemberShowList(criteria);
+    }
+
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -47,28 +59,23 @@ public class AdminController {
         return "admin/admin-member";
     }
 
-  /*  *//* 회원 수정 *//*
-    @GetMapping("admin-memberModify/{memberId}")
-    public void adminMemberModify(@PathVariable Long memberId, Model model){
-        MemberVO memberVO = memberService.showMember(memberId);
-        model.addAttribute(new MemberVO());
-    }*/
+
     
     /* 회원 수정 */
-    @GetMapping("admin-memberModify")
-    public void adminMemberModify(Model model){
-       /* MemberVO memberVO = memberService.showMember(memberId);*/
-        model.addAttribute(new MemberVO());
+    @GetMapping("admin-memberModify/{memberId}")
+    public String adminMemberModify(@PathVariable Long memberId, Model model){
+        model.addAttribute(memberService.showMember(memberId));
+        return "admin/admin-memberModify";
     }
 
     /* 회원 수정 완료 */
-    @PatchMapping("admin-memberModify")
+    @PostMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("memberEmail", memberVO.getMemberEmail());
         redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
         redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
         memberService.updateMember(memberVO);
-        return new RedirectView("admin-member");
+        return new RedirectView("/admin/admin-member/{memberId}");
     }
 
     /* 회원 삭제 */
@@ -86,32 +93,50 @@ public class AdminController {
     /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
+    public String memberCompanyList(){
+        return "admin/admin-member-companyList";
+    }
+
+    @PostMapping("admin-member-companyList")
     @ResponseBody
-    public void adminMemberCompanyList(){}
+    public List<BusinessDTO> memberCompanyListShow(Criteria criteria){
+
+
+        if (criteria.getPageNum() == 0) {
+            criteria.setPageNum(1);
+            criteria.setAmount(6);
+        } else {
+            criteria.setPageNum(criteria.getPageNum());
+            criteria.setAmount(6);
+        }
+
+        return businessService.adminShowListBusiness(criteria);
+    }
+
 
     /* 유통 회원 상세 보기 */
-
     @GetMapping("admin-member-company/{businessId}")
     public String adminMemberCompany(@PathVariable Long businessId, Model model){
-        model.addAttribute(businessService.showBusiness(businessId));
+        model.addAttribute(businessService.adminShowBusiness(businessId));
         return "admin/admin-member-company";
     }
 
 
     /* 유통 회원 수정 */
-    @GetMapping("admin-member-companyModify")
-    public void adminMemberCompanyModify(/*Model model*/){
-        /*model.addAttribute(new BusinessVO());*/
+    @GetMapping("admin-member-companyModify/{businessId}")
+    public String adminMemberCompanyModify(@PathVariable Long businessId, Model model){
+        model.addAttribute(businessService.showBusiness(businessId));
+        return "/admin/admin-member-companyModify";
     }
-/*
+
     /* 유통 회원 수정 완료*/
-    @PatchMapping("admin-member-companyModify")
+    @PostMapping("admin-member-companyModify")
     public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("businessCompanyName", businessVO.getBusinessCompanyName());
         redirectAttributes.addAttribute("businessNumber",businessVO.getBusinessNumber());
         redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
         businessService.setBusiness(businessVO);
-        return new RedirectView("admin-member-companyList");
+        return new RedirectView("/admin/admin-member-company/{businessId}");
     }
 
 
@@ -125,14 +150,35 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
 
-    /* 공지사항 리스트 */
+   /* *//* 공지사항 리스트 *//*
    @GetMapping("admin-noticeList")
     public String noticeList(Criteria criteria, Model model){
        model.addAttribute("noticeVO", noticeService.showList(criteria));
        model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
        return "/admin/admin-noticeList";
+   }*/
+
+    /* 공지사항 리스트 */
+   @GetMapping("admin-noticeList")
+    public String noticeListShow(){
+       return "/admin/admin-noticeList";
    }
 
+   @PostMapping("admin-noticeList")
+   public List<NoticeVO> noticeListShow(Criteria criteria){
+       if (criteria.getPageNum() == 0) {
+           criteria.setPageNum(1);
+           criteria.setAmount(6);
+       } else {
+           criteria.setPageNum(criteria.getPageNum());
+           criteria.setAmount(6);
+       }
+
+       return noticeService.showList(criteria);
+   }
+
+
+   
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
     public String notice(@PathVariable Long noticeId, Model model ){

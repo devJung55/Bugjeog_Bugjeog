@@ -1,4 +1,4 @@
-package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
+package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -9,10 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class ReplyMapperTest {
+public class ReplyServiceTest {
 
     @Autowired
-    ReplyMapper replyMapper;
+    ReplyService replyService;
 
     @Autowired
     FreeReplyVO freeReplyVO;
@@ -27,7 +27,6 @@ public class ReplyMapperTest {
         freeReplyVO.setReplyId(1L);
         freeReplyVO.setReplyRegisterDate("2023-03-30");
         freeReplyVO.setReplyUpdateDate("2023-03-30");
-        replyMapper.replyAdd(freeReplyVO);
+        replyService.save(freeReplyVO);
     }
-
 }

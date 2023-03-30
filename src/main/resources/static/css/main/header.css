@@ -54,7 +54,7 @@ nav.nav_main_bar {
 
 .main_bar_logo_a img {
     width: 74px;
-    height: 23px;
+    /*height: 23px;*/
 }
 
 button.main_bar_hamberger {
