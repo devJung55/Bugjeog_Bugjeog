@@ -9,8 +9,9 @@ import java.util.List;
 @Mapper
 public interface InterestingCompanyMapper {
     //         관심업체 리스트
-    public List<InterestingCompanyDTO> selectInterestingCompany();
+    public List<InterestingCompanyDTO> selectInterestingCompany(Criteria criteria);
+    
 //    갯수 가져오기
-//    public int count();
+    public int count();
 
 }

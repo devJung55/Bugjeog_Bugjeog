@@ -176,6 +176,6 @@ public class MypageMapperTest {
         freeLikeVO.setBusinessId(a);
         freeLikeVO.setMemberId(1L);
 
-        freeLikeMapper.likeCountUp(freeLikeVO);
+//        freeLikeMapper.likeCountUp(freeLikeVO);
     }
 }

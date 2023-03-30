@@ -50,6 +50,11 @@ public interface MemberMapper {
 //    사업자 비밀번호 변경
     public void businessUpdatePassword(String businessEmail, String businessPassword);
 
+//    자영업자 계정 상태 조회
+    public Integer selectForStatus(String memberEmail);
+
+//    사업자 계정 상태 조회
+    public Integer businessSelectForStatus(String businessEmail);
 
     /*------------------------------------------------------------------------------------------------*/
 

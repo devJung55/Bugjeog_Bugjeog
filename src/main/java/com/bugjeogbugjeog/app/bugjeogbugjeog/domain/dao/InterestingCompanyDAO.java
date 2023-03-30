@@ -15,10 +15,10 @@ public class InterestingCompanyDAO {
     private final InterestingCompanyMapper interestingCompanyMapper;
 
     //         관심업체 리스트
-    public List<InterestingCompanyDTO> findAllToInterestingCompany(){ return interestingCompanyMapper.selectInterestingCompany();}
+    public List<InterestingCompanyDTO> findAllToInterestingCompany(Criteria criteria){ return interestingCompanyMapper.selectInterestingCompany(criteria);}
 
     //    갯수 가져오기
-//    public int count(){
-//        return interestingCompanyMapper.count();
-//    }
+    public int count(){
+        return interestingCompanyMapper.count();
+    }
 }
