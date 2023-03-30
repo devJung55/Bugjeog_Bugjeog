@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,6 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface ReplyMapper {
+
+    // 댓글 등록
+    public void replyAdd(FreeReplyVO freeReplyVO);
 
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> replyList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
