@@ -1,6 +1,5 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;

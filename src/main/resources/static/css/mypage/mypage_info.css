@@ -919,15 +919,6 @@ a {
     align-items: center;
 }
 
-.password-modal-exit {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 8px;
-    margin: -8px;
-    fill: #000;
-}
-
 .password-modal-input-box-layout {
     padding: 0px 20px 20px;
 }

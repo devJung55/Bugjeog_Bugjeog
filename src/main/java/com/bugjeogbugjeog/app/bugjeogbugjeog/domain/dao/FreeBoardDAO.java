@@ -31,12 +31,12 @@ public class FreeBoardDAO {
     public BoardFreeVO findById(Long memberId){ return freeBoardMapper.select(memberId);}
 
 //    //    게시글 전체 조회
-//    public List<BoardFreeVO> findAll(){
-//        return freeBoardMapper.selectAll();
-//    }
+    public List<BoardFreeVO> findAll(){
+        return freeBoardMapper.selectAll();
+    }
 
     //    목록(대표 이미지 하나) 기본 = 게시글 전체 조회
-    public List<BoardFreeVO> findAll(){ return freeBoardMapper.selectAllList(); }
+//    public List<BoardFreeVO> findAll(){ return freeBoardMapper.selectAllList(); }
 
     //    목록(대표 이미지 하나) 특정 카테고리로 검색
     public List<BoardFreeVO> findAll(Map<String, Object> searchMap){ return freeBoardMapper.selectAllListBySearch(searchMap); }

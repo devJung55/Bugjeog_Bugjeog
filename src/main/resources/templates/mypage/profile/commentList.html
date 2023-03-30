@@ -8,8 +8,7 @@
     <title>나의 활동</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
     <link rel="stylesheet" href="/css/mypage/font.css">
     <link rel="stylesheet" href="/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
@@ -21,98 +20,100 @@
 </head>
 
 <body class="profile_body">
-    <div class="Container_Profile">
-        <header th:insert="~{main/header-signin :: header_signin}"></header>
-        <!-- <header id="header"></header> -->
-        <div class="padding_for_header"></div>
-        <main class="MatchUp-Container">
-            <nav class="NavBar_presentation mypage">
-                <h2 class="Nav_title mypage">
-                    <p>프로필</p>
-                    <button class="Nav_button">프로필</button>
-                </h2>
-            </nav>
-            <section class="main_container is-relative">
-                <!-- 사이드 메뉴 인클루드 -->
-                <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
-                <section>
-                    <aside class="CareerConnectBanner is-hidden">
-                        <picture>
-                            <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
-                            <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
-                        </picture>
-                    </aside>
-                    <div>
-                        <header class="summary_wrapper">
-                            <h2 class="summary_title">나의 활동</h2>
-                            <ul class="summary_status">
-                                <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/postList}">
-                                        <em class="freeCount">0</em>
-                                        <span>작성글</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/commentList}">
-                                        <em class="replyCount">0</em>
-                                        <span>작성댓글</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content">
-                                    <a  th:href="@{/mypage/profile/likedList}">
-                                        <em class="likeCount">0</em>
-                                        <span>좋아요</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content" style="border: none;">
-                                    <a th:href="@{/mypage/profile/faqList}">
-                                        <em  class="inquireCount"></em>
-                                        <span>문의글</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </header>
-                    </div>
-                    <div class="CommunityProfile_body">
-                        <div class="CommunityProfile_header">
-                            <h2>내 활동</h2>
-                            <ul class="CommunityProfile_tabs">
-                                <li class="">
-                                    <a th:href="@{/mypage/profile/postList}">작성글</a>
-                                </li>
-                                <li class="CommunityProfile_current">
-                                    <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
-                                </li>
-                                <li class="">
-                                    <a th:href="@{/mypage/profile/likedList}">좋아요</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/mypage/profile/faqList}">문의글</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="reply-list">
-                        </div>
-                        <div class="page-box">
-                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
-                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
-                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
-                                    <span th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></span>
+<div class="Container_Profile">
+    <header th:insert="~{main/header-signin :: header_signin}"></header>
+    <!-- <header id="header"></header> -->
+    <div class="padding_for_header"></div>
+    <main class="MatchUp-Container">
+        <nav class="NavBar_presentation mypage">
+            <h2 class="Nav_title mypage">
+                <p>프로필</p>
+                <button class="Nav_button">프로필</button>
+            </h2>
+        </nav>
+        <section class="main_container is-relative">
+            <!-- 사이드 메뉴 인클루드 -->
+            <aside class="Aside_include" th:insert="~{mypage/fragment/aside_personal :: aside_personal}"></aside>
+            <section>
+                <aside class="CareerConnectBanner is-hidden">
+                    <picture>
+                        <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
+                        <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
+                    </picture>
+                </aside>
+                <div>
+                    <header class="summary_wrapper">
+                        <h2 class="summary_title">나의 활동</h2>
+                        <ul class="summary_status">
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/postList}">
+                                    <em class="freeCount">0</em>
+                                    <span>작성글</span>
                                 </a>
-                            </th:block>
-                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
-                        </div>
-                        <form action="/mypage/profile/commentList" th:object="${criteria}" name="pageForm">
-                            <input type="hidden" th:field="*{pageNum}">
-                            <input type="hidden" th:field="*{amount}">
-                        </form>
+                            </li>
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/commentList}">
+                                    <em class="replyCount">0</em>
+                                    <span>작성댓글</span>
+                                </a>
+                            </li>
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/likedList}">
+                                    <em class="likeCount">0</em>
+                                    <span>좋아요</span>
+                                </a>
+                            </li>
+                            <li class="summary_content" style="border: none;">
+                                <a th:href="@{/mypage/profile/faqList}">
+                                    <em class="inquireCount"></em>
+                                    <span>문의글</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+                </div>
+                <div class="CommunityProfile_body">
+                    <div class="CommunityProfile_header">
+                        <h2>내 활동</h2>
+                        <ul class="CommunityProfile_tabs">
+                            <li class="">
+                                <a th:href="@{/mypage/profile/postList}">작성글</a>
+                            </li>
+                            <li class="CommunityProfile_current">
+                                <a th:href="@{/mypage/profile/commentList}">작성댓글</a>
+                            </li>
+                            <li class="">
+                                <a th:href="@{/mypage/profile/likedList}">좋아요</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/mypage/profile/faqList}">문의글</a>
+                            </li>
+                        </ul>
                     </div>
-                </section>
+                    <div class="reply-list">
+                    </div>
+                    <div class="page-box">
+                        <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
+                        <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                            <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
+                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                            <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                            </a>
+                        </th:block>
+                        <a class="changePage" th:if="${pageDTO.next}"
+                           th:href="${pageDTO.endPage + 1}"><span>></span></a>
+                    </div>
+                    <form action="/mypage/profile/commentList" th:object="${criteria}" name="pageForm">
+                        <input type="hidden" th:field="*{pageNum}">
+                        <input type="hidden" th:field="*{amount}">
+                    </form>
+                </div>
             </section>
-        </main>
-        <block th:insert="~{main/footer :: footer}"></block>
-    </div>
+        </section>
+    </main>
+    <block th:insert="~{main/footer :: footer}"></block>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
@@ -121,10 +122,10 @@
     let memberVOs = [[${memberVOs}]];
     let businessVOs = [[${businessVOs}]];
 
-    if(boardFreeVOS.length == 0){
+    if (boardFreeVOS.length == 0) {
         $(".page-box").hide();
         $(".no-content").show();
-    }else {
+    } else {
         $(".no-content").hide();
         $(".page-box").show();
     }
@@ -133,22 +134,22 @@
 <script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/replyList.js"></script>
 <script>
-    let replyService = (function(){
+    let replyService = (function () {
 
-        function replyContent(data, callback){
+        function replyContent(data, callback) {
             $.ajax({
-                url: "/mypage/profile/replyList",
+                url: "/myPages/replyList",
                 type: "get",
                 data: data,
-                success : function(result){
-                    if(callback){
+                success: function (result) {
+                    if (callback) {
                         callback(result);
                     }
                 }
             })
         }
 
-        return { replyContent : replyContent }
+        return {replyContent: replyContent}
     })();
 
     let $replyContentBox = $(".reply-content-box");
@@ -157,12 +158,12 @@
     $replyContentBox.each((i, e) => {
         let boardFreeId = $(e).attr("id");
         replyService.replyContent({
-            boardFreeId : boardFreeId
-        }, function(result){
+            boardFreeId: boardFreeId
+        }, function (result) {
             let text = "";
             let length = result.length;
-            for(var i =0; i < length; i++){
-                text+= `
+            for (var i = 0; i < length; i++) {
+                text += `
                             <a class="PostItem_body" href="">
                                  <div><img src="/image/mypage/reply-64.png" alt=""></div>
                                  <p class="PostItem_content reply-content">${result[i].replyContent}</p>
