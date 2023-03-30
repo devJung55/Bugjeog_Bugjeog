@@ -106,4 +106,16 @@ public class MemberDAOTest {
     public void businessUpdatePassword() {
         memberDAO.businessSetPassword("jjy1234@naver.com", "wjdwldud1!!");
     }
+
+//    자영업자 계정 상태 조회
+    @Test
+    public void selectForStatus() {
+        log.info("memberStatus : " + memberDAO.findForStatus("jjy1234@naver.com"));
+    }
+
+//    사업자 계정 상태 조회
+    @Test
+    public void businessSelectForStatus() {
+        log.info("businessStatus : " + memberDAO.businessFindForStatus("jjy1234@naver.com"));
+    }
 }

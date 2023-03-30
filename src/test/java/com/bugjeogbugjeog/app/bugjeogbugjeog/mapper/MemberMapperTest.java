@@ -110,4 +110,16 @@ public class MemberMapperTest {
     public void businessUpdatePassword() {
         memberMapper.businessUpdatePassword("jjy1234@naver.com", "wjdwldud1!!");
     }
+
+//    자영업자 계정 상태 조회
+    @Test
+    public void selectForStatus() {
+        log.info("memberStatus : " + memberMapper.selectForStatus("jjy1234@naver.com"));
+    }
+
+//    사업자 계정 상태 조회
+    @Test
+    public void businessSelectForStatus() {
+        log.info("businessStatus : " + memberMapper.businessSelectForStatus("jjy1234@naver.com"));
+    }
 }
