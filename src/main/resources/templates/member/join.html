@@ -31,7 +31,8 @@
                                 <label for="memberEmail" class="join-infor-ment">이메일</label>
                             </div>
                             <!-- 이메일 입력 value값 있음 -->
-                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:field="*{memberEmail}">
+                                <input type="email" placeholder="이메일을 입력해주세요." class="join-info-input" th:if="${session.memberVO == null}" th:field="*{memberEmail}">
+                                <input type="email" id="memberEmail" name="memberEmail" class="join-info-input" th:if="${session.memberVO != null}" th:value="${session.memberVO.memberEmail}" readonly>
                                 <span class="email-error error-msg check-email"></span>
                             <!-- 이름 입력 -->
                             <div class="infor-write-border">
@@ -143,7 +144,7 @@
                             <div class="join-start-all-border">
                                 <div class="join-start-bottom-border"></div>
                                 <div class="join-start-top-blank"></div>
-                              <button type="button" class="join-jjoin-btn-border">
+                              <button type="button" class="join-jjoin-btn-border" onclick="send()">
                                 <span class="join-final-btn-ment" >가입하기</span>
                               </button>  
                            </div>  
