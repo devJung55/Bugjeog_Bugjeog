@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,10 @@ import java.util.List;
 public class ReplyDAO {
 
     private final ReplyMapper replyMapper;
+
+    // 댓글 등록
+    public void addReply(FreeReplyVO freeReplyVO){ replyMapper.replyAdd(freeReplyVO);}
+
 
     //  댓글 단 게시물 목록
     public List<MyPageReplyDTO> findAllMyPageReplyDTO(Long memberId, Criteria criteria){
