@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -66,17 +67,17 @@ public class BusinessBoardController {
                 category = null;
                 break;
         }
-        businessBoardService.getList().stream().map(dto -> {
-            String name = dto.getBoardBusinessImgOriginalName();
-            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-            dto.setBoardBusinessImgFullPath(fullPath);
-            return dto;
-        });
+        ;
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));
 //            return businessBoardService.getList(searchMap);
-        return businessBoardService.getList(searchMap);
+        return businessBoardService.getList(searchMap).stream().map(dto -> {
+            String fullPath = dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName();
+            log.info(dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
+            dto.setBoardBusinessImgFullPath(fullPath);
+            return dto;
+        }).collect(Collectors.toList());
     }
 
 //    @GetMapping("/board/business/detail")
@@ -91,14 +92,10 @@ public class BusinessBoardController {
 
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
-        String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-        dto.setBoardBusinessImgFullPath(fullPath);
 
         List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
         businessReviewDTOs.stream().map(reviewDTO -> {
             String orginName = reviewDTO.getMemberImgOriginalName();
-            String memberFullPath = (orginName == null || orginName == "null" || orginName == "") ? "/image/mypage/member_no_image.png" : (reviewDTO.getMemberImgPath() + "/" + reviewDTO.getMemberImgUuid() + "_" + reviewDTO.getMemberImgOriginalName());
-            reviewDTO.setMemberImgFullPath(memberFullPath);
             return reviewDTO;
         });
 
@@ -107,8 +104,6 @@ public class BusinessBoardController {
         List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(dto.getBusinessId());
         dtos.stream().map(eventDTO -> {
             String eventName = eventDTO.getBoardBusinessImgOriginalName();
-            String eventFullPath = (eventName == null || eventName == "null" || eventName == "") ? "/image/boardList/no-image-64.png" : (eventDTO.getBoardBusinessImgPath() + "/" + eventDTO.getBoardBusinessImgUuid() + "_" + eventDTO.getBoardBusinessImgOriginalName());
-            eventDTO.setBoardBusinessImgFullPath(eventFullPath);
             return eventDTO;
         });
 

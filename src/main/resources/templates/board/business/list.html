@@ -157,7 +157,7 @@
                 <li class="info-box-layout" th:object="${board}">
                     <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}">
                         <div class="image-box">
-                                <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
+                                <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
                         </div>
                         <div class="info-section-box">
                             <div class="cate-title-box">
