@@ -117,6 +117,8 @@ button {
 	font-size: 20px;
 	margin-top: 6px;
 	font-weight: bold;
+	margin: 6px;
+	margin-left: 10px;
 }
 
 .info-margin-bottom {
