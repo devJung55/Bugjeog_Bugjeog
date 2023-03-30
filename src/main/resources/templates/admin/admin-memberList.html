@@ -68,7 +68,19 @@
 											<th>계정 상태</th>
 										</tr>
 									</thead>
-									<tr th:each="member : ${memberDTO}">
+
+									<tr>
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td></td>		 <!-- 회원 아이디 -->
+										<td><a></a></td>		<!-- 이름 -->
+										<td></td>		 <!-- 이메일 -->
+										<td></td> 	 <!-- 가입 날짜 -->
+										<td></td>	<!-- 계정 상태 -->
+									</tr>
+
+									<!--<tr th:each="member : ${memberDTO}">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -77,16 +89,16 @@
 										<td th:text="${member.memberEmail}"></td>
 										<td th:text="${member.memberRegisterDate}"></td>
 										<td th:text="${member.memberStatus}"></td>
-									</tr>
+									</tr>-->
 								</table>
 							</div>
 						</div>
 					</section>
 
 					<!-- 페이지 버튼 -->
-					<div class="page-button-box-layout">
+					<!--<div class="page-button-box-layout">
 						<div class="page-button-box">
-							<!-- 페이지 번호 --><!-- 페이지 버튼 -->
+							&lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;
 							<div class="page-box page-button-margin">
 								<a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
 							<span>
@@ -110,7 +122,7 @@
 								<input type="hidden" th:field="*{amount}">
 							</form>
 						</div>
-					</div>
+					</div>-->
 					<!-- 페이지 버튼 끝 -->
 				</div>
 			</div>
@@ -121,7 +133,8 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
+<script th:inline="javascript">
+	let $members = [[${memberDTO}]];
 	let $pageForm = $(pageForm);
 
 	$("a.changePage").on("click", function(e){
@@ -147,9 +160,44 @@
 			type: "delete",
 			data: {"checkedIds": checkedIds},
 			success: function(){
-				location.reload();
+				reload();
 			}
 		});
 	});
+
+	function showList(members){
+		const $result = $('.info-table table');
+		var text = "";
+		members.forEach(member => {
+			text += `
+				<tr th:each="member : ${memberDTO}">
+					<td>
+						<input type="checkbox" name="check">
+					</td>
+					<td >${member.memberId}</td>
+					<td><a href="{admin-member/{memberId}(memberId=${member.memberId})}">${member.memberName}</a></td>
+						<td>${member.memberEmail}</td>
+					<td>${member.memberRegisterDate}</td>
+					<td>${member.memberStatus}</td>
+				</tr>
+			`
+		})
+		$result.html(text);
+	}
+
+	function reload() {
+		$.ajax({
+			url:"admin-memberList",
+			type: "post",
+			success: function(result){
+				showList(result);
+			}
+
+		});
+	}
+
+	window.onload = reload();
+
+
 </script>
 </html>

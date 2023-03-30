@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 유저 수정</title>
+    <title>관리자 페이지- 유통업체 회원 수정</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@
                             </div>
                             <!-- 내용 섹션 -->
                             <div class="info-flex">
-                                <section class="board-info-box-layout" style="width: 100%;">
+                                <section class="board-info-box-layout" style="width: 100%;" th:object="${businessVO}">
                                     <div class="board-info-box">
                                         <div class="board-info-title-box">
                                             <span>회원 정보</span>
@@ -61,6 +61,7 @@
                                     <div class="board-info-box">
                                         <div class="member-img-box">
                                             <div class="member-img">
+                                                <img th:if="${businessVO.businessImgPath}" th:src="@{/mypage/profile/display(fileName=${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName})}" class="gear-icon">
                                                 <span>x</span>
                                             </div>
                                             <!-- <div class="member-nickname-box">
@@ -72,28 +73,28 @@
                                                 <span class="info-tag">대표자명</span>
                                                 <!-- 대표자명 -->
                                                 <div class="info info-name">
-                                                    <span>임순철</span>
+                                                    <span th:text="${businessVO.businessCeoName}"></span>
                                                 </div>
                                             </div>
-                                            <form action="">
+                                            <form th:action="@{/admin/admin-member-companyModify}" method="post">
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">회사명</span>
                                                     <!-- 회사명 -->
                                                     <div class="info">
-                                                        <input type="text" class="member-email input-style" name="companyName">
+                                                        <input type="text" class="member-email input-style" name="companyName" th:field="*{businessCeoName}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">사업자 번호</span>
                                                     <!-- 사업자 호 -->
                                                     <div class="info">
-                                                        <input type="text" class="member-email input-style" name="companyNumber">
+                                                        <input type="text" class="member-email input-style" name="companyNumber" th:field="*{businessNumber}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">휴대폰 번호</span>
                                                     <div class="info">
-                                                        <input type="text" class="member-birth input-style member_phone_number" name="companyPhoneNumber">
+                                                        <input type="text" class="member-birth input-style member_phone_number" name="companyPhoneNumber" th:field="*{businessPhoneNumber}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">

@@ -17,13 +17,13 @@ public class BusinessService {
 
     /* ------------------------------------------------------------ */
     /* 관리자 유통 목록 */
-    public List<BusinessDTO> showListBusiness(Criteria criteria){ return businessDAO.adminFindAll(criteria);}
+    public List<BusinessDTO> adminShowListBusiness(Criteria criteria){ return businessDAO.adminFindAll(criteria);}
 
     /* 관리자 카운트 */
     public int count(){return businessDAO.count();}
 
     /* 관리자 유통 상세 보기 */
-    public MemberDTO showBusiness(Long memberId){return businessDAO.adminFindById(memberId);}
+    public BusinessDTO adminShowBusiness(Long businessId){return businessDAO.adminFindById(businessId);}
 
     /* 관리자 유통 회원 수정 */
     public void setBusiness(BusinessVO businessVO){ businessDAO.updateById(businessVO);}
@@ -32,6 +32,11 @@ public class BusinessService {
     public void removeBusiness( List<String> businessIds) {
 //        noticeIds.stream().map(noticeId -> Long.parseLong(noticeId)).forEach(noticeDAO::remove);
         businessIds.stream().map(businessId -> Long.parseLong(businessId)).forEach(businessDAO::removeById);
+    }
+
+    /* 유통 회원 조회 */
+    public BusinessVO showBusiness(Long businessId) {
+      return businessDAO.findByIdToBusiness(businessId);
     }
 
 }

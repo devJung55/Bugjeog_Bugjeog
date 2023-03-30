@@ -62,7 +62,7 @@ a.main_bar_logo_a {
 
 .logo-box-layout {
 	display: flex;
-	width: 250px;	
+	width: 250px;
 }
 
 .logo-title {
@@ -82,7 +82,7 @@ a.main_bar_logo_a {
 }
 
 .board-info-box-layout {
-	margin-top: 30px;	
+	margin-top: 30px;
 }
 
 .prev-button-layout {
@@ -91,13 +91,13 @@ a.main_bar_logo_a {
 
 .prev-icon {
 	position: absolute;
-	width: 20px;	
-    top: 3px;	
+	width: 20px;
+    top: 3px;
 }
 
 .prev-title {
 	font-weight: 500;
-	padding-left: 28px;	
+	padding-left: 28px;
 }
 
 hr {
@@ -111,7 +111,7 @@ hr {
 }
 
 .info-member {
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 }
 
 .member-img-box {
@@ -128,6 +128,11 @@ hr {
 	margin: 0 auto;
 }
 
+.member-img img {
+	width: 210px;
+	margin-left: -26px;
+}
+
 .member-img span {
 	font-size: 28px;
     display: flex;
@@ -136,11 +141,12 @@ hr {
 	font-variant: all-small-caps;
 	color: #C1C1C1;
 	cursor: pointer;
+	margin-left: 215px;
 }
 
 .member-nickname-box {
 	margin-top : 10px;
-	text-align: center;	
+	text-align: center;
 }
 
 .member-nickname-box span {
@@ -169,7 +175,7 @@ div.info-name {
 }
 
 .member-info {
-	margin : 20px;	
+	margin : 20px;
 }
 
 .input-style {
@@ -190,7 +196,7 @@ button {
 	font-size: 15px;
 	font-weight: bold;
 	color: #fff;
-	border: none; 
+	border: none;
 }
 
 .button-box {
