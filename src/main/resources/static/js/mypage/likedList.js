@@ -2,7 +2,7 @@ const $boardList = $(".board-list");
 
 function likedList() {
     let text = "";
-    if(freeVOs.length != 0) {
+    if (freeVOs.length != 0) {
         for (var i = 0; i < freeVOs.length; i++) {
 
             text += `<article class="PostItem_wrapper">
@@ -13,15 +13,15 @@ function likedList() {
                         <div class="AuthorBox_avatar">
                        `;
             if (freeVOs[i].memberId != null) {
-                if(memberVOs[i].memberImgUuid == null){
+                if (memberVOs[i].memberImgUuid == null) {
                     text += `<img class="writer-image" src="/image/boardList/self_employ_icon.png">`;
-                }else {
+                } else {
                     text += `<img src="${'/mypage/profile/display?fileName=' + memberVOs[i].memberImgPath + '/' + memberVOs[i].memberImgUuid + '_' + memberVOs[i].memberImgOriginalName}">`;
                 }
             } else {
-                if(businessVOs[i].businessImgUuid == null){
+                if (businessVOs[i].businessImgUuid == null) {
                     text += `<img class="writer-image" src="/image/boardList/distributor_icon.png">`;
-                }else {
+                } else {
                     text += `<img src="${'/mypage/profile/display?fileName=' + businessVOs[i].businessImgPath + '/' + businessVOs[i].businessImgUuid + '_' + businessVOs[i].businessImgOriginalName}">`;
                 }
             }
@@ -29,13 +29,13 @@ function likedList() {
             text += `  </div>
                           </div>
                        `;
-            if(freeVOs[i].memberId != null){
+            if (freeVOs[i].memberId != null) {
                 text += `<span class="AuthorBox_username">${memberVOs[i].memberName}</span>`;
-            }else{
+            } else {
                 text += `<span class="AuthorBox_username">${businessVOs[i].businessCompanyName}</span>`;
             }
 
-            text+=   `  </div>
+            text += `  </div>
                            <span class="AuthorBox_createAt">${date(freeVOs[i].boardFreeRegisterDate)}</span>
                        </div>
                    </div>
@@ -63,7 +63,7 @@ function likedList() {
                </article>
                `;
         }
-    }else {
+    } else {
         text += `
                 <article class="PostItem_wrapper no-content">
                      <div style="text-align: center;">

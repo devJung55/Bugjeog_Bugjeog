@@ -2,31 +2,31 @@ globalThis.uuid;
 FileList.prototype.forEach = Array.prototype.forEach;
 
 // 썸네일
-$("input[name='file']").on("change", function(e){
+$("input[name='file']").on("change", function (e) {
     e.preventDefault();
     const $file = $("input[name=file]")[0].files[0];
     let formData = new FormData();
     formData.append("file", $file);
 
     $.ajax({
-        url: "/mypage/profile/upload-file",
+        url: "/myPages/upload-file",
         type: "post",
         data: formData,
         contentType: false,
         processData: false,
-        success: function(uuid) {
+        success: function (uuid) {
             globalThis.uuid = uuid;
-            if($file.type.startsWith("image")){
+            if ($file.type.startsWith("image")) {
                 $fileModal.show();
                 $(".file-modal-image").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
-            }else{
+            } else {
                 alert("이미지 파일만 넣어주세요.");
             }
         }
     });
 });
 
-$(".image-save-button").on("click", function(){
+$(".image-save-button").on("click", function () {
     const $file = $("input[name=file]")[0].files[0];
     let member = new Object();
 
@@ -35,13 +35,13 @@ $(".image-save-button").on("click", function(){
     member.memberImgPath = toStringByFormatting(new Date());
     member.memberId = 1;
     $.ajax({
-        url: "/mypage/profile/file-memeber-save",
+        url: "/myPages/file-memeber-save",
         type: "patch",
         data: JSON.stringify(member),
         contentType: "application/json; charset=utf-8",
-        success: function(){
+        success: function () {
             $fileModal.hide();
-            $(".img_profile").attr("src",`/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
+            $(".img_profile").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
         }
     });
 });
@@ -69,20 +69,20 @@ function toStringByFormatting(source, delimiter = '/') {
 // 이름 변경 검사
 const $nameInput = $("input[name=membername]");
 let memberNameCheck = false;
-$nameInput.blur(function(){
-    if(!$(this).val()){
+$nameInput.blur(function () {
+    if (!$(this).val()) {
         $(".name-error").text("이름을 입력해주세요.");
         memberNameCheck = false;
 
-    }else if($(this).val().length < 2 || $(this).val().length > 4){
+    } else if ($(this).val().length < 2 || $(this).val().length > 4) {
         $(".name-error").text("이름은 2자리 이상 4자리 이하로 입력해주세요.");
         memberNameCheck = false;
 
-    }else if(memberServiceCheck.memberNameCheck($(this).val())){
+    } else if (memberServiceCheck.memberNameCheck($(this).val())) {
         $(".name-error").text("현재 이름과 동일합니다.");
         memberNameCheck = false;
 
-    }else {
+    } else {
         $(".name-error").text("");
         memberNameCheck = true;
     }
@@ -91,8 +91,8 @@ $nameInput.blur(function(){
 // 이름 저장
 const $nameSaveButton = $(".name-save");
 
-$nameSaveButton.click(function(){
-    if(!memberNameCheck){
+$nameSaveButton.click(function () {
+    if (!memberNameCheck) {
         alert("이름을 확인해주세요.");
         return false;
     }
@@ -118,43 +118,43 @@ const $phoneError = $(".phone-error");
 const $codeButton = $(".code-button");
 let memberPhoneCheck = false;
 
-$memberPhone.blur(function(){
-    let memberPhoneNumber = $memberPhone.val().replaceAll("-","");
+$memberPhone.blur(function () {
+    let memberPhoneNumber = $memberPhone.val().replaceAll("-", "");
     $memberPhone.val(memberPhoneNumber);
 
-    if(!memberPhoneNumber){
+    if (!memberPhoneNumber) {
         $codeButton.removeClass("button-active");
         $codeButton.attr("disabled", true);
         $phoneError.text("핸드폰 번호를 입력해주세요.");
         memberPhoneCheck = false;
 
 
-    }else if(memberPhoneNumber.length > 11){
+    } else if (memberPhoneNumber.length > 11) {
         $codeButton.removeClass("button-active");
         $codeButton.attr("disabled", true);
         $phoneError.text("올바른 형식이 아닙니다.");
         memberPhoneCheck = false;
 
-    } else if(!regPhone.test(memberPhoneNumber)){
+    } else if (!regPhone.test(memberPhoneNumber)) {
         $codeButton.removeClass("button-active");
         $codeButton.attr("disabled", true);
         $phoneError.text("올바른 형식이 아닙니다.");
         memberPhoneCheck = false;
 
-    }else if(memberServiceCheck.memberPhoneCheck(memberPhoneNumber)){
+    } else if (memberServiceCheck.memberPhoneCheck(memberPhoneNumber)) {
         $codeButton.removeClass("button-active");
         $codeButton.attr("disabled", true);
         $phoneError.text("현재 핸드폰 번호와 다른 번호를 입력해주세요.");
         memberPhoneCheck = false;
 
 
-    }else if(memberServiceCheck.phoneNumberCheck(memberPhoneNumber)){
+    } else if (memberServiceCheck.phoneNumberCheck(memberPhoneNumber)) {
         $codeButton.removeClass("button-active");
         $codeButton.attr("disabled", true);
         $phoneError.text("중복된 핸드폰 번호입니다.");
         memberPhoneCheck = false;
 
-    }  else {
+    } else {
         $codeButton.addClass("button-active");
         $codeButton.attr("disabled", false);
         $phoneError.text("");
@@ -164,9 +164,9 @@ $memberPhone.blur(function(){
 });
 
 // 인증번호 보내기 클릭 시
-$(".code-button").click(function(){
+$(".code-button").click(function () {
     let memberPhoneNumber = $("input[name=memberPhoneNumber]").val();
-    if(!memberPhoneCheck){
+    if (!memberPhoneCheck) {
         alert("핸드폰 번호를 확인해주세요.");
         return false;
     }
@@ -180,19 +180,19 @@ $(".code-button").click(function(){
 const $codeInput = $(".code-check-input");
 let codeCheck = false;
 
-$codeInput.keyup(function(){
-    if(!$codeInput.val()){
-        $(".auth-msg").css("color","red");
+$codeInput.keyup(function () {
+    if (!$codeInput.val()) {
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").text("인증번호를 입력해주세요.")
         codeCheck = false;
 
-    }else if($codeInput.val() != globalThis.code){
-        $(".auth-msg").css("color","red");
+    } else if ($codeInput.val() != globalThis.code) {
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").text("인증번호가 일치하지 않습니다.");
         codeCheck = false;
 
-    }else {
-        $(".auth-msg").css("color","#36f");
+    } else {
+        $(".auth-msg").css("color", "#36f");
         $(".auth-msg").text("인증번호가 일치합니다.");
         codeCheck = true;
 
@@ -201,8 +201,8 @@ $codeInput.keyup(function(){
 
 // 휴대폰 번호 변경
 const $phoneUpdateButton = $(".phone-save");
-$phoneUpdateButton.click(function(){
-    if(!codeCheck){
+$phoneUpdateButton.click(function () {
+    if (!codeCheck) {
         alert("인증번호를 확인해주세요.");
         return false;
     }
@@ -217,18 +217,18 @@ const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]
 const $newpassword = $("#new-password");
 const $newPasswordError = $(".password-error");
 
-$newpassword.blur(function(){
+$newpassword.blur(function () {
     let memberPassword = $(this).val();
 
-    if(!memberPassword){
+    if (!memberPassword) {
         $newPasswordError.text("비밀번호를 입력해주세요.");
         passwordCheck[0] = false;
 
-    }else if(!regPassword.test(memberPassword)){
+    } else if (!regPassword.test(memberPassword)) {
         $newPasswordError.text("최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자를 입력해주세요.");
         passwordCheck[0] = false;
 
-    }else {
+    } else {
         passwordCheck[0] = true;
         $newPasswordError.text("");
 
@@ -241,15 +241,15 @@ const $passwordCheckError = $(".password-check-error");
 
 $passwordCheck.blur(function () {
     let password = $(this).val();
-    if(!password){
+    if (!password) {
         $passwordCheckError.text("비밀번호를 입력해주세요.");
         passwordCheck[1] = false;
 
-    }else if(password != $newpassword.val()){
+    } else if (password != $newpassword.val()) {
         $passwordCheckError.text("비밀번호가 일치하지 않습니다.");
         passwordCheck[1] = false;
 
-    }else {
+    } else {
         $passwordCheckError.text("");
         passwordCheck[1] = true;
 
@@ -259,9 +259,9 @@ $passwordCheck.blur(function () {
 //     비밀번호 변경
 const $passwordSave = $(".password-save");
 
-$passwordSave.click(function(){
+$passwordSave.click(function () {
     let memberPassword = $("#new-password").val();
-    if(passwordCheck.filter(check => check == true ).length != 2){
+    if (passwordCheck.filter(check => check == true).length != 2) {
         alert("잘못 입력된 정보가 있습니다.");
         return false;
     }
@@ -271,15 +271,15 @@ $passwordSave.click(function(){
 /*=================================================================*/
 globalThis.code;
 
-let memberServiceCheck = (function(){
+let memberServiceCheck = (function () {
     // 회원 현재 이름 비교
-    function memberNameCheck(memberName){
+    function memberNameCheck(memberName) {
         let check = false;
         $.ajax({
-            url : "/mypage/profile/memberVO",
+            url: "/myPages/memberVO",
             type: "get",
-            async : false,
-            success : function (memberVO) {
+            async: false,
+            success: function (memberVO) {
                 check = memberVO.memberName == memberName;
             }
         });
@@ -287,13 +287,13 @@ let memberServiceCheck = (function(){
     }
 
     // 회원 현재 전화번호 비교
-    function memberPhoneCheck(memberPhoneNumber){
+    function memberPhoneCheck(memberPhoneNumber) {
         let check = false;
         $.ajax({
-            url : "/mypage/profile/memberVO",
+            url: "/myPages/memberVO",
             type: "get",
-            async : false,
-            success : function (memberVO) {
+            async: false,
+            success: function (memberVO) {
                 check = memberVO.memberPhoneNumber == memberPhoneNumber;
             }
         });
@@ -301,14 +301,14 @@ let memberServiceCheck = (function(){
     }
 
     // 핸드폰 중복검사
-    function phoneNumberCheck(memberPhoneNumber){
+    function phoneNumberCheck(memberPhoneNumber) {
         let check = false;
         $.ajax({
-            url : "/mypage/profile/memberPhoneCheck",
+            url: "/myPages/memberPhoneCheck",
             type: "get",
-            data : {"memberPhoneNumber" : memberPhoneNumber},
-            async : false,
-            success : function(phoneNumberCheck){
+            data: {"memberPhoneNumber": memberPhoneNumber},
+            async: false,
+            success: function (phoneNumberCheck) {
                 check = phoneNumberCheck;
             }
         });
@@ -316,12 +316,12 @@ let memberServiceCheck = (function(){
     }
 
     // 인증번호 발송
-    function authSend (memberPhoneNumber) {
+    function authSend(memberPhoneNumber) {
         $.ajax({
-            url: "/mypage/profile/code",
-            type : "post",
-            data : {"memberPhoneNumber" : memberPhoneNumber},
-            success : function(code){
+            url: "/myPages/code",
+            type: "post",
+            data: {"memberPhoneNumber": memberPhoneNumber},
+            success: function (code) {
                 console.log(code);
                 $(".auth-msg").css("color", "#36f");
                 $(".auth-msg").text("인증번호를 발송했습니다.");
@@ -330,17 +330,22 @@ let memberServiceCheck = (function(){
         });
     }
 
-    return { memberNameCheck : memberNameCheck, memberPhoneCheck : memberPhoneCheck, phoneNumberCheck : phoneNumberCheck, authSend : authSend }
+    return {
+        memberNameCheck: memberNameCheck,
+        memberPhoneCheck: memberPhoneCheck,
+        phoneNumberCheck: phoneNumberCheck,
+        authSend: authSend
+    }
 })();
 
-let memberUpdate = (function(){
+let memberUpdate = (function () {
 
-    function memberNameUpdate(memberName){
+    function memberNameUpdate(memberName) {
         $.ajax({
-            url : "/mypage/profile/updateName",
+            url: "/myPages/updateName",
             type: "patch",
-            data: {"memberName" : memberName},
-            success : function (memberName) {
+            data: {"memberName": memberName},
+            success: function (memberName) {
                 $(".change-name").text(memberName + "님, 환영해요.");
                 $(".memberName").text(memberName);
                 $("input[name=username]").val(memberName);
@@ -349,12 +354,12 @@ let memberUpdate = (function(){
         });
     }
 
-    function memberPhoneNumberUpdate (memberPhoneNumber) {
+    function memberPhoneNumberUpdate(memberPhoneNumber) {
         $.ajax({
-            url : "/mypage/profile/phoneNumberUpdate",
+            url: "/myPages/phoneNumberUpdate",
             type: "patch",
-            data: {"memberPhoneNumber" : memberPhoneNumber},
-            success : function (memberPhoneNumber) {
+            data: {"memberPhoneNumber": memberPhoneNumber},
+            success: function (memberPhoneNumber) {
                 $(".phoneNumber").text(phoneNumber(memberPhoneNumber));
                 $("input[name=memberPhoneNumber]").val(memberPhoneNumber);
                 $("input[name=memberPhoneNumber]").attr("readonly", true);
@@ -369,17 +374,21 @@ let memberUpdate = (function(){
         });
     }
 
-    function memberPasswordUpdate(memberPassword){
+    function memberPasswordUpdate(memberPassword) {
         $.ajax({
-            url : "/mypage/profile/updatePassword",
-            type : "patch",
-            data : { "memberPassword" :btoa(memberPassword)},
-            success : function(){
+            url: "/myPages/updatePassword",
+            type: "patch",
+            data: {"memberPassword": btoa(memberPassword)},
+            success: function () {
                 $("input[type=password]").val("");
                 $passwordModal.hide();
             }
         });
     }
 
-    return {memberNameUpdate : memberNameUpdate,memberPhoneNumberUpdate : memberPhoneNumberUpdate, memberPasswordUpdate :memberPasswordUpdate }
+    return {
+        memberNameUpdate: memberNameUpdate,
+        memberPhoneNumberUpdate: memberPhoneNumberUpdate,
+        memberPasswordUpdate: memberPasswordUpdate
+    }
 })();

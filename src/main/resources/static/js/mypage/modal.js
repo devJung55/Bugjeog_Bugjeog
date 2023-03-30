@@ -47,11 +47,11 @@ const $fileModal = $(".file-modal-display");
 const $fileExitButton = $(".file-modal-exit");
 const $fileCancelButton = $(".image-cancel-button");
 
-$fileExitButton.click(function(){
+$fileExitButton.click(function () {
     $fileModal.hide();
 });
 
-$fileCancelButton.click(function(e){
+$fileCancelButton.click(function (e) {
     e.preventDefault();
     $fileModal.hide();
 });
@@ -62,12 +62,12 @@ const $passwordModal = $(".password-modal-display");
 const $passwordModalExit = $(".password-modal-exit");
 const $passwordCancel = $(".password-cancel");
 
-$passwordModalButton.click(function(){
+$passwordModalButton.click(function () {
     $passwordModal.show();
 });
 
 $passwordModalExit.each((i, e) => {
-    $(e).click(function() {
+    $(e).click(function () {
         $("input[type=password]").val("");
         $errorMsg.text("");
         $passwordModal.hide();

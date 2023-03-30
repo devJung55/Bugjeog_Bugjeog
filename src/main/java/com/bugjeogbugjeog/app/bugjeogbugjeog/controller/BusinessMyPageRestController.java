@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/mypages/*")
+@RequestMapping("/myPages/business/*")
 public class BusinessMyPageRestController {
 
     private final HttpServletRequest req;
