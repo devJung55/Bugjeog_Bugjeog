@@ -23,4 +23,8 @@ public class BoardBusinessImgService {
     public void registerImg(BoardBusinessImgVO boardBusinessImgVO) {
         businessBoardImgDAO.save(boardBusinessImgVO);
     }
+
+    public List<BoardBusinessImgVO> getList(Long boardBusinessId){
+        return businessBoardImgDAO.findAllByBoardBusinessId(boardBusinessId);
+    }
 }

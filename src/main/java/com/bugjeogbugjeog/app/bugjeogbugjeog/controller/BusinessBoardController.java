@@ -2,7 +2,6 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,13 +69,7 @@ public class BusinessBoardController {
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));
-//            return businessBoardService.getList(searchMap);
-        return businessBoardService.getList(searchMap).stream().map(dto -> {
-            String fullPath = dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName();
-            log.info(dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-            dto.setBoardBusinessImgFullPath(fullPath);
-            return dto;
-        }).collect(Collectors.toList());
+        return businessBoardService.getList(searchMap);
     }
 
 //    @GetMapping("/board/business/detail")
@@ -94,24 +86,13 @@ public class BusinessBoardController {
         String name = dto.getBoardBusinessImgOriginalName();
 
         List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
-        businessReviewDTOs.stream().map(reviewDTO -> {
-            String orginName = reviewDTO.getMemberImgOriginalName();
-            return reviewDTO;
-        });
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
         List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(dto.getBusinessId());
-        dtos.stream().map(eventDTO -> {
-            String eventName = eventDTO.getBoardBusinessImgOriginalName();
-            return eventDTO;
-        });
 
 //        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
         MemberVO memberVO = businessReviewService.getMember(5L);
-        log.info("==============");
-        log.info(memberVO.getMemberName());
-        log.info("==============");
         String orginalName = memberVO.getMemberImgOriginalName();
         String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
         model.addAttribute("board", dto);
@@ -119,6 +100,8 @@ public class BusinessBoardController {
         model.addAttribute("boardList", dtos);
         model.addAttribute("member", memberVO);
         model.addAttribute("memberFullPath", memberFullPath);
+        businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
+        model.addAttribute("boardImgs", businessBoardImgService.getList(dto.getBoardBusinessId()));
     }
 
 //    //    파일 저장

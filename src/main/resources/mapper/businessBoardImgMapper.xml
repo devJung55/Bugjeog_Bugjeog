@@ -9,4 +9,10 @@
         , #{boardBusinessImgUuid}
         , #{boardBusinessImgPath})
     </insert>
+
+    <select id="selectAllByBoardBusinessId" resultType="boardBusinessImgVO" parameterType="long">
+        select board_business_img_id, board_business_id, board_business_img_original_name, board_business_img_uuid, board_business_img_path
+        from tbl_board_business_img
+        where board_business_id = #{boardBusinessId};
+    </select>
 </mapper>
