@@ -30,13 +30,12 @@
         from tbl_board_business bs
         join tbl_business b
         on b.business_id = bs.business_id
-        where board_business_id = #{boardBusinessId}
+        where board_business_id = #{boardBusinessId} and b.business_status = 1
     </select>
 
     <select id="selectAll" resultType="boardBusinessDTO">
         select board_business_id, business_id, board_business_title
         , board_business_content, board_business_register_date, board_business_update_date
-        , board
         from tbl_board_business
     </select>
 
@@ -76,6 +75,7 @@
         on r.board_business_id = b.board_business_id
         join tbl_business bs
         on b.business_id = bs.business_id
+        where bs.business_status = 1
         order by b.board_business_id desc
     </select>
 
@@ -108,8 +108,11 @@
         on r.board_business_id = b.board_business_id
         join tbl_business bs
         on b.business_id = bs.business_id
+        <if test="category == null">
+            where b.business_status = 1
+        </if>
         <if test="category != null">
-            where bs.business_category = #{category}
+            where bs.business_category = #{category} and bs.business_status = 1
         </if>
         <if test="sort == 'recent'">
             order by b.board_business_id desc
@@ -117,6 +120,7 @@
         <if test="sort == 'popular'">
             order by board_business_grade_average desc
         </if>
+
     </select>
 
 </mapper>

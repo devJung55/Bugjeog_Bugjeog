@@ -1,7 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BusinessBoardServiceTests {
 
     @Autowired
-    BusinessBoardService businessBoardService;
+    BoardBusinessService businessBoardService;
 
     @Test
     public void registerTest(){
