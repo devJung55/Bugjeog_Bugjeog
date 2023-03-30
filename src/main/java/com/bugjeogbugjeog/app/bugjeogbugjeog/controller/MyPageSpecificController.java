@@ -23,14 +23,15 @@ public class MyPageSpecificController {
 
     @GetMapping("edit")
     public String main(Model model){
+
         model.addAttribute("businessVO", myPageService.businessInfo(1L));
         return "mypage/specific/businessEdit";
     }
-    @GetMapping("favorite")
-    public String main2(Model model){
-        model.addAttribute("memberVO",myPageService.memberInfo(1L));
-        return "mypage/specific/personalFavoriteList";
-    }
+//    @GetMapping("favorite")
+//    public String main2(Model model){
+//        model.addAttribute("memberVO",myPageService.memberInfo(1L));
+//        return "mypage/specific/personalFavoriteList";
+//    }
 
 
 

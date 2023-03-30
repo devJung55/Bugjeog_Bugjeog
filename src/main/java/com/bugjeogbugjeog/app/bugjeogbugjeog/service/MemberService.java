@@ -125,6 +125,16 @@ public class MemberService {
         memberDAO.businessSetPassword(businessEmail, businessPassword);
     }
 
+//    자영업자 계정 상태 조회
+    public Integer findForStatus(String memberEmail) {
+        return memberDAO.findForStatus(memberEmail);
+    }
+
+//    자영업자 계정 상태 조회
+    public Integer businessFindForStatus(String businessEmail) {
+        return memberDAO.businessFindForStatus(businessEmail);
+    }
+
     //  관리자 회원 목록
     public List<MemberDTO> adminMemberShowList(Criteria criteria){return memberDAO.adminFindAll(criteria);}
 

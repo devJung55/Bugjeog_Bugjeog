@@ -99,4 +99,16 @@ public class MemberServiceTests {
     public void businessChangePassword() {
         memberService.businessChangePassword("jjy1234@naver.com", "wjdwldud1!!");
      }
+
+//    자영업자 계정 조회
+    @Test
+    public void selectForStatus() {
+        log.info("memberStatus : " + memberService.findForStatus("jjy1234@naver.com"));
+    }
+
+//    사업자 계정 조회
+    @Test
+    public void businessSelectForStatus() {
+        log.info("businessStatus : " + memberService.businessFindForStatus("jjy1234@naver.com"));
+    }
 }
