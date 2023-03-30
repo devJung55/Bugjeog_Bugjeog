@@ -99,10 +99,10 @@
                                         <th:block th:each="interestingCompanyDTO : ${interestingCompanyDTOs}">
                                             <li class="column is-one-third">
                                                 <div class="list_card">
-                                                    <a href="" class="card_wrapper">
+                                                    <a class="card_wrapper" th:href="@{/board/business/detail}">
                                                         <header class="card_thumbnail_wrapper is-relative">
                                                             <div style="width: 250px; height: 200px">
-                                                                <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:if="${interestingCompanyDTO.boardBusinessImgPath}" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
+                                                                <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
                                                             </div>
                                                             <button type="button" class="card_favorite_marker is-absolute">
                                                                 <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
@@ -125,27 +125,27 @@
                                         </th:block>
                                     </ul>
                                     <!-- 페이지 버튼 -->
-<!--                                    <div class="page-button-box-layout">-->
-<!--                                        <div class="page-button-box">-->
-<!--                                            &lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;-->
-<!--                                            <div class="page-box page-button-margin">-->
-<!--                                                <a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">-->
-<!--                                                </a>-->
-<!--                                                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">-->
-<!--                                                    <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>-->
-<!--                                                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">-->
-<!--                                                        <span th:text="${num}" class="page-button"></span>-->
-<!--                                                    </a>-->
-<!--                                                </th:block>-->
-<!--                                                <a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">-->
-<!--                                                </a>-->
-<!--                                            </div>-->
-<!--                                            <form action="/mypage/specific/personalFavoriteList" th:object="${criteria}" name="pageForm">-->
-<!--                                                <input type="hidden" th:field="*{pageNum}">-->
-<!--                                                <input type="hidden" th:field="*{amount}">-->
-<!--                                            </form>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="page-button-box-layout">
+                                        <div class="page-button-box">
+                                            <!-- 페이지 번호 --><!-- 페이지 버튼 -->
+                                            <div class="page-box page-button-margin" style="display: flex">
+                                                <a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                                </a>
+                                                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                                                    <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>
+                                                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                                        <span th:text="${num}" class="page-button"></span>
+                                                    </a>
+                                                </th:block>
+                                                <a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                                </a>
+                                            </div>
+                                            <form action="/mypage/specific/personalFavoriteList" th:object="${criteria}" name="pageForm">
+                                                <input type="hidden" th:field="*{pageNum}">
+                                                <input type="hidden" th:field="*{amount}">
+                                            </form>
+                                        </div>
+                                    </div>
 
 
 <!--                                    <div class="paging_wrapper">-->
