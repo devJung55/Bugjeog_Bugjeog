@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -177,11 +179,12 @@ public class BusinessBoardController {
     }
 
     @PostMapping("/board/business/write")
-    public String register(BoardBusinessVO boardBusinessVO, HttpServletRequest req, Model model) {
+    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req, RedirectAttributes redirectAttributes, @RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
         log.info(req.getParameter("category"));
         boardBusinessVO.setBusinessId(3L);
         Long businessBoardId = businessBoardService.registerBoard(boardBusinessVO);
-        model.addAttribute(businessBoardId);
+        redirectAttributes.addAttribute(businessBoardId);
+        redirectAttributes.addAttribute(boardBusinessImgVOs);
 //        List<String> uuids = new ArrayList<>();
 //        String reqBoardBusinessId = req.getParameter("boardBusinessId");
 //        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
@@ -208,7 +211,7 @@ public class BusinessBoardController {
 //            businessBoardImgService.registerImg(vo);
 //        }
 
-        return "/img/business/save";
+        return new RedirectView("/img/business/save");
     }
 
     @PostMapping("/board/business/delete")
