@@ -14,9 +14,9 @@ public class InterestingCompanyService {
 
     private final InterestingCompanyDAO interestingCompanyDAO;
     //         관심업체 리스트
-    public List<InterestingCompanyDTO> findAllToInterestingCompany(Criteria criteria){ return interestingCompanyDAO.findAllToInterestingCompany(criteria);}
+    public List<InterestingCompanyDTO> findAllToInterestingCompany(){ return interestingCompanyDAO.findAllToInterestingCompany();}
     //    갯수 가져오기
-    public int count(){
-        return interestingCompanyDAO.count();
-    }
+//    public int count(){
+//        return interestingCompanyDAO.count();
+//    }
 }
