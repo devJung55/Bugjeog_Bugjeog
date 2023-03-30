@@ -30,6 +30,7 @@ public class BusinessMyPageRestController {
     private final BusinessMyPageService businessMyPageService;
     private final MyPageService myPageService;
 
+    // 파일 업로드
     @PostMapping("upload-file")
     public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         String path = "C:/upload/" + getPath();
@@ -94,6 +95,7 @@ public class BusinessMyPageRestController {
         return businessPhoneNumber;
     }
 
+    // 회사명 변경
     @PatchMapping("companyName-update")
     public String updateBusinessCompanyName(@RequestParam("businessCompanyName") String businessCompanyName){
         HttpSession session = req.getSession();
@@ -103,11 +105,13 @@ public class BusinessMyPageRestController {
         return businessCompanyName;
     }
 
+    // 사업자 번호 중복 검사
     @GetMapping("businessNumber-check")
     public Boolean businessNumberCheck(@RequestParam("businessNumber") String businessNumber){
         return businessMyPageService.businessNumberCheck(businessNumber);
     }
 
+    // 사업자 번호 변경
     @PatchMapping("businessNumber-update")
     public String businessNumberUpdate(@RequestParam("businessNumber") String businessNumber){
         HttpSession session = req.getSession();
@@ -117,6 +121,7 @@ public class BusinessMyPageRestController {
         return businessNumber;
     }
 
+    // 비밀번호 변경
     @PatchMapping("businessPassword-update")
     public void businessPasswordUpdate(@RequestParam("businessPassword") String businessPassword){
         HttpSession session = req.getSession();
@@ -134,6 +139,7 @@ public class BusinessMyPageRestController {
         return businessMyPageService.businessAllCount(businessId);
     }
 
+    // 유통업자가 작성한  댓글 목록
     @GetMapping("replyList")
     public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
         HttpSession session = req.getSession();

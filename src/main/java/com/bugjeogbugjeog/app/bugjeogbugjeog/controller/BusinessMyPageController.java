@@ -31,9 +31,12 @@ public class BusinessMyPageController {
     public void myInfoBusiness(Model model){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
+        businessId = 4L;
+
         model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
+    // 회원탈퇴 페이지
     @GetMapping("exit")
     public void exitBusiness(Model model){
         HttpSession session = req.getSession();
@@ -42,6 +45,7 @@ public class BusinessMyPageController {
         model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
+    // 회원 탈퇴
     @PostMapping("businessWithdraw")
     public RedirectView businessWithdraw(HttpServletRequest req){
         HttpSession session = req.getSession();
@@ -73,7 +77,6 @@ public class BusinessMyPageController {
         model.addAttribute("memberVOs", boardReplyDTO.getMemberVOS());
         model.addAttribute("businessVOs", boardReplyDTO.getBusinessVOS());
         model.addAttribute("boardFreeVOS",boardReplyDTO.getBoardFreeVOS());
-        log.info("사이즈: :::::::::::::::::::::::" + businessMyPageService.businessReplyBoardFreeCount(businessId, criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessReplyBoardFreeCount(businessId, criteria)));
     }
 

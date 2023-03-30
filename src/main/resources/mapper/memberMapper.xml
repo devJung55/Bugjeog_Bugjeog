@@ -111,11 +111,11 @@
     <!--이용자  정보 업데이트-->
     <update id="update">
         UPDATE tbl_member
-        SET member_email=#{memberEmail}, member_password=#{memberPassword}, member_name=#{memberName}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}, member_phone_number= #{memberPhoneNumber}
+        SET member_email=#{memberEmail}, member_password=#{memberPassword}, member_name=#{memberName}, member_status = #{memberStatus}, member_img_original_name=#{memberImgOriginalName}, member_img_uuid=#{memberImgUuid}, member_img_path=#{memberImgPath}, member_phone_number= #{memberPhoneNumber}
         WHERE member_id = #{memberId}
     </update>
 
-    <!--이용자 회원 탈퇴-->
+    <!--이용자 회원 삭제-->
     <delete id="deleteMember">
         delete from tbl_member where member_id = #{memberId}
     </delete>
