@@ -118,6 +118,8 @@
     let memberVOs = [[${memberVOs}]];
     let businessVOs = [[${businessVOs}]];
     let replyCounts = [[${replyCounts}]];
+    let memberId = [[${session.memberId}]];
+    let businessId = [[${session.businessId}]];
 
     if(freeVOs.length == 0){
         $(".page-box").hide();
@@ -132,4 +134,102 @@
 <script src="/js/mypage/mypage_profile_personal.js"></script>
 <script src="/js/mypage/mypage_profile_paging.js"></script>
 <script src="/js/mypage/likedList.js"></script>
+<script>
+    let likeService = (function(){
+
+        // function likeCheck(like, callback){
+        //     $.ajax({
+        //         url:"/mypage/profile/like/like-check",
+        //         type: "get",
+        //         data: {"like" : like},
+        //         success: function(result){
+        //             console.log("체크");
+        //             if(callback){
+        //                 callback(result);
+        //             }
+        //         }
+        //     });
+        // }
+
+        function likeUp(like,callback) {
+            $.ajax({
+                url:"/mypage/profile/like/like-check",
+                type: "get",
+                data: JSON.stringify(like),
+                contentType: "application/json; charset=utf-8",
+                success: function(result){
+                    console.log("추가");
+                    if(callback){
+                        callback(result);
+                    }
+
+                }
+            });
+        }
+
+        function likeDown(like, callback) {
+            $.ajax({
+                url: "/mypage/profile/like/likeDown",
+                type: "delete",
+                data: JSON.stringify(like),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    console.log("지워짐");
+                    if (callback) {
+                        callback(result);
+                    }
+                }
+            });
+        }
+
+        function countUp(like,callback) {
+            $.ajax({
+                url:"/mypage/profile/like/likeCount",
+                type :"patch",
+                data: like,
+                success : function (result) {
+                    if (callback){
+                        callback(result);
+                    }
+                }
+            });
+        }
+
+        return{
+            likeUp : likeUp,
+            likeDown : likeDown,
+            countUp : countUp
+        }
+    })();
+
+    let likeCheck = false;
+    $(".liked").each((i, e) => {
+        let boardFreeId = $(e).attr("id");
+        let freeLikeVO = new Object();
+        $(e).click(() =>{
+            freeLikeVO.memberId = memberId;
+            freeLikeVO.businessId = businessId;
+            freeLikeVO.boardFreeId = boardFreeId;
+
+                if(!likeCheck){
+                    likeService.likeDown(freeLikeVO,function() {
+                        $(e).attr("src", "/image/mypage/like_before.png");
+                        likeService.countUp({boardFreeId: boardFreeId}, function () {
+                            $($(".like-count")[i]).text(freeVOs[i].boardFreeLike);
+                        });
+                        likeCheck = true;
+                    });
+                }else if(likeCheck){
+                        likeService.likeUp(freeLikeVO,function(){
+                            $(e).attr("src", "/image/mypage/like_after.png");
+                            likeService.countUp({boardFreeId : boardFreeId},function () {
+                                $($(".like-count")[i]).text(freeVOs[i].boardFreeLike);
+                            });
+                        });
+                        likeCheck = false;
+                }
+        });
+    });
+
+</script>
 </html>

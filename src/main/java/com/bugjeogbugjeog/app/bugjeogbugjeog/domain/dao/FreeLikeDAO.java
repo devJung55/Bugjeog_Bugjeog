@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeLikeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.FreeLikeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -33,5 +34,25 @@ public class FreeLikeDAO {
     public List<BoardFreeVO> findAllToBusinessLike(Long businessId, Criteria criteria){
         return freeLikeMapper.businessLikeList(businessId, criteria);
     };
+
+
+    // 좋아요한 게시물 번호 리스트
+    public Integer findByIdBoardFreeId(FreeLikeVO freeLikeVO){
+        return freeLikeMapper.searchLike(freeLikeVO);
+    }
+
+    //좋아요 누르면 insert 좋아요 +1
+    public void saveFreeLike(FreeLikeVO freeLikeVO){
+        freeLikeMapper.likeInsert(freeLikeVO);
+    }
+
+    //좋아요 누르면 delete 좋아요 취소 -1
+    public void removeFreeLike(FreeLikeVO freeLikeVO){
+        freeLikeMapper.likeDown(freeLikeVO);
+    }
+    //해당 좋아요 게시판 글 번호(boardFreeId) 조회
+    public void updateCount(Long boardFreeId){
+        freeLikeMapper.likeCountUp(boardFreeId);
+    }
 
 }

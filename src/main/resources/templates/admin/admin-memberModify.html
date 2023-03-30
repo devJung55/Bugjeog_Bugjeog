@@ -70,11 +70,11 @@
                                         <div class="member-info-box">
                                             <div class="member-info-tag-box">
                                                 <span class="info-tag">이름</span>
-                                                <!-- 이름 -->
+                                                <!--&lt;!&ndash; 이름 &ndash;&gt;-->
                                                 <div class="info info-name">
-                                                    <span th:text="${memberName}"></span>
+                                                    <span th:text="${memverVO.memberName}"></span>
                                                 </div>
-                                            </div>	
+                                            </div>
                                             <form th:action="@{/admin/admin-memberModify}" method="post" th:object="${memberVO}">
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">이메일</span>

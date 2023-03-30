@@ -10,7 +10,12 @@ import org.springframework.stereotype.Repository;
 public class BusinessBoardImgDAO {
     private final BusinessBoardImgMapper businessBoardImgMapper;
 
+    //    이미지 추가
     public void save(BoardBusinessImgVO boardBusinessImgVO) {
         businessBoardImgMapper.insert(boardBusinessImgVO);
     }
+
+
+
+
 }
