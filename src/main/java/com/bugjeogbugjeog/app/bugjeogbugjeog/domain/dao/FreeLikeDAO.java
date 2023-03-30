@@ -36,7 +36,7 @@ public class FreeLikeDAO {
     };
 
 
-    // 좋아요한 게시물 번호 리스트
+    // 좋아요 한 게시물 번호 리스트
     public Integer findByIdBoardFreeId(FreeLikeVO freeLikeVO){
         return freeLikeMapper.searchLike(freeLikeVO);
     }

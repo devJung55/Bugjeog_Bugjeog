@@ -1,8 +1,9 @@
 let likeService = (function(){
 
+    // 좋아요 했는지 여부 확인
     function likeCheck(like, callback){
         $.ajax({
-            url:"/mypage/profile/like/like-check",
+            url:"/likes/like-check",
             type: "post",
             data: JSON.stringify(like),
             contentType: "application/json;charset=utf-8",
@@ -14,9 +15,10 @@ let likeService = (function(){
         });
     }
 
+    // 좋아요 카운트 ++
     function likeUp(like,callback) {
         $.ajax({
-            url:"/mypage/profile/like/likeUp",
+            url:"/likes/likeUp",
             type: "post",
             data: JSON.stringify(like),
             contentType: "application/json; charset=utf-8",
@@ -29,9 +31,10 @@ let likeService = (function(){
         });
     }
 
+    // 좋아요 카운트 --
     function likeDown(like, callback) {
         $.ajax({
-            url: "/mypage/profile/like/likeDown",
+            url: "/likes/likeDown",
             type: "delete",
             data: JSON.stringify(like),
             contentType: "application/json; charset=utf-8",
@@ -43,9 +46,10 @@ let likeService = (function(){
         });
     }
 
+    // 좋아요 갯수 업데이트
     function countUp(like,callback) {
         $.ajax({
-            url:"/mypage/profile/like/likeCountUpdate",
+            url:"/likes/likeCountUpdate",
             type :"patch",
             data: like,
             success : function (result) {
@@ -56,12 +60,12 @@ let likeService = (function(){
         });
     }
 
+    // 게시판의 좋아요 갯수
     function count(like, callback){
         $.ajax({
-            url:"/mypage/profile/like/likeCount",
-            type :"post",
-            data: JSON.stringify(like),
-            contentType: "application/json; charset=utf-8",
+            url:"/likes/likeCount",
+            type :"get",
+            data: like,
             success : function(result){
                 if(callback){
                     callback(result);
@@ -91,22 +95,21 @@ $(".liked").each((i, e) => {
             if(result){
                 likeService.likeUp(freeLikeVO,function(){
                     $(e).attr("src", "/image/mypage/like_after.png");
-                    likeService.countUp({boardFreeId : boardFreeId});
-                    likeService.count({boardFreeId : boardFreeId},function(result){
-                        console.log(result);
-                        $($(".like-count")[i]).text(result);
-                    })
+                    likeUpdateAndCount(boardFreeId, i);
                 });
             }else {
                 likeService.likeDown(freeLikeVO,function() {
                     $(e).attr("src", "/image/mypage/like_before.png");
-                    likeService.countUp({boardFreeId: boardFreeId});
-                    likeService.count({boardFreeId : boardFreeId},function(result){
-                        console.log(result);
-                        $($(".like-count")[i]).text(result);
-                    })
+                    likeUpdateAndCount(boardFreeId, i);
                 });
             }
         })
     });
 });
+
+function likeUpdateAndCount(boardFreeId, i){
+    likeService.countUp({boardFreeId: boardFreeId});
+    likeService.count({boardFreeId : boardFreeId},function(result){
+        $($(".like-count")[i]).text(result);
+    })
+}

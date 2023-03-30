@@ -223,36 +223,6 @@ public class MyPageController {
         return myPageService.allcount(memberId);
     }
 
-    @PostMapping("like/likeUp")
-    @ResponseBody
-    public void likeInsert(@RequestBody FreeLikeVO freeLikeVO) {
-        myPageService.likeInsert(freeLikeVO);
-    }
-
-    @DeleteMapping("like/likeDown")
-    @ResponseBody
-    public void likeDown(@RequestBody FreeLikeVO freeLikeVO){
-        myPageService.likeDown(freeLikeVO);
-    }
-
-    @PatchMapping("like/likeCountUpdate")
-    @ResponseBody
-    public void businessLikeCountUpdate(@RequestParam("boardFreeId") Long boardFreeId){
-        myPageService.countUp(boardFreeId);
-    }
-
-    @PostMapping("like/like-check")
-    @ResponseBody
-    public Boolean likeCheck(@RequestBody FreeLikeVO freeLikeVO){
-        return myPageService.likeCheck(freeLikeVO);
-    }
-
-    @PostMapping("like/likeCount")
-    @ResponseBody
-    public Integer getLikeCount(@RequestBody Long boardFreeId){
-        return myPageService.getlikeCount(boardFreeId);
-    }
-
     //    현재 날짜 경로 구하기
     private String getPath(){
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
