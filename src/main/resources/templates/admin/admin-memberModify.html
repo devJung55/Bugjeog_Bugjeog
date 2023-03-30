@@ -43,7 +43,7 @@
                         <div style="margin: 0 auto;width: 70%;">
                             <div class="prev-button-layout">
                                 <div>
-                                    <a th:href="@{/admin/admin-member}">
+                                    <a>
                                         <img src="/image/admin/prev_icon.png" class="prev-icon">
                                         <span class="prev-title">회원정보로 돌아가기</span>
                                     </a>
@@ -51,7 +51,7 @@
                             </div>
                             <!-- 내용 섹션 -->
                             <div class="info-flex">
-                                <section class="board-info-box-layout" style="width: 100%;">
+                                <section class="board-info-box-layout" style="width: 100%;" th:object="${memberVO}">
                                     <div class="board-info-box">
                                         <div class="board-info-title-box">
                                             <span>회원 정보</span>
@@ -61,6 +61,7 @@
                                     <div class="board-info-box">
                                         <div class="member-img-box">
                                             <div class="member-img">
+                                                <img th:if="${memberVO.memberImgPath}" th:src="@{/mypage/profile/display(fileName=${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName})}" class="gear-icon">
                                                 <span>x</span>
                                             </div>
                                             <!-- <div class="member-nickname-box">
@@ -72,10 +73,10 @@
                                                 <span class="info-tag">이름</span>
                                                 <!--&lt;!&ndash; 이름 &ndash;&gt;-->
                                                 <div class="info info-name">
-                                                    <span th:text="${memverVO.memberName}"></span>
+                                                    <span th:text="${memberVO.memberName}"></span>
                                                 </div>
                                             </div>
-                                            <form th:action="@{/admin/admin-memberModify}" method="post" th:object="${memberVO}">
+                                            <form th:action="@{/admin/admin-memberModify}" method="post">
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">이메일</span>
                                                     <!-- 이메일 -->

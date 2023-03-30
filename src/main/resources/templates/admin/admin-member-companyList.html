@@ -73,24 +73,24 @@
 											<td>
 												<input type="checkbox" name="check">
 											</td>
-											<td>1</td>
-											<td><a href="<!-- 상세보기 페이지 -->">정지영</a></td>
-											<td><a href="<!-- 상세보기 페이지 -->">쿠팡</a></td>
-											<td>jjy1234@naver.com</td>
-											<td>2023.02.11</td>
-											<td>휴면 계정</td>
+											<td></td>
+											<td><a></a></td>
+											<td><a></a></td>
+											<td></td>
+											<td></td>
+											<td></td>
 										</tr>
-										<tr>
+										<!--<tr>
 											<td>
 												<input type="checkbox" name="check">
 											</td>
 											<td>2</td>
-											<td><a href="<!-- 상세보기 페이지 -->">정지영</a></td>
-											<td><a href="<!-- 상세보기 페이지 -->">쿠팡</a></td>
+											<td><a href="&lt;!&ndash; 상세보기 페이지 &ndash;&gt;">정지영</a></td>
+											<td><a href="&lt;!&ndash; 상세보기 페이지 &ndash;&gt;">쿠팡</a></td>
 											<td>jjy1234@naver.com</td>
 											<td>2023.02.11</td>
 											<td>휴면 계정</td>
-										</tr>
+										</tr>-->
 									</table>
 								</div>
 							</div>
@@ -114,20 +114,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>2</span>
-										</div>
-									</div>
-								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>3</span>
-										</div>
-									</div>
-								</div>
 								<div class="">
 									<div class="page-button-margin">
 										<div>
@@ -147,7 +133,8 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
+<script th:inline="javascript">
+	let $busiensss = [[${businessDTO}]];
 	let $pageForm = $(pageForm);
 
 	$("a.changePage").on("click", function(e){
@@ -173,9 +160,45 @@
 			type: "delete",
 			data: {"checkedIds": checkedIds},
 			success: function(){
-				location.reload();
+				reload();
 			}
 		});
 	});
+
+	function showList(businesss){
+		const $result = $('.info-table table');
+		var text = "";
+		businesss.forEach(business => {
+			text += `
+				<tr th:each="business : ${businessDTO}">
+					<td>
+						<input type="checkbox" name="check">
+					</td>
+					<td>${business.businessId}</td>
+					<td><a>${business.businessCeoName}</a></td>
+					<td><a>${business.businessCompanyName}</a></td>
+					<td>${business.businessEmail}</td>
+					<td>${business.businessRegisterDate}</td>
+					<td>${business.businessStatus}</td>
+				</tr>
+			`
+		})
+		$result.html(text);
+	}
+
+	function reload() {
+		$.ajax({
+			url:"admin-member-companyList",
+			type: "post",
+			success: function(result){
+				showList(result);
+			}
+
+		});
+	}
+
+	window.onload = reload();
+
+
 </script>
 </html>

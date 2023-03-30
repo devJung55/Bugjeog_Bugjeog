@@ -132,6 +132,11 @@ hr {
 	margin: 0 auto;
 }
 
+.member-img img {
+	width: 210px;
+	margin-left: -26px;
+}
+
 .board-img {
 	width: 500px;
     height: 400px;

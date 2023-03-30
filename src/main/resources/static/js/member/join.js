@@ -14,6 +14,8 @@ let allCheckBox = false;
 let must1CheckBox = false;
 let must2CheckBox = false;
 
+let joinCheckAll = [emailCheck, nameCheck, phoneNumberCheck, authCodeCheck, passwordCheck1, passwordCheck2, allCheckBox, must1CheckBox, must2CheckBox];
+
 $email.blur(function(){
     let emailVal = $email.val();
     if(!emailVal){
@@ -238,26 +240,14 @@ $must2.on("click", function(e) {
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
-
-/*const $joinText = $(".join-final-btn-ment");
-
-let joinButtonActive = function() {
-    if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
-        $joinButton.css("background", "#3366FF");
-        $joinText.css("color", "#fff");
-        $joinText.css("opacity", "unset");
-
-    } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
-        $joinButton.css("background", "#3366FF");
-        $joinText.css("color", "#fff");
-        $joinText.css("opacity", "unset");
-
-    } else {
-        $joinButton.css("background", "#F0F0F0");
-        $joinText.css("color", "#000000");
-        $joinText.css("opacity", "0.5");
+const $joinInputs = $('.must1', '.must2', '.join-all-agree-ment', "input[type=text], input[type=email], input[type=password]");
+function send() {
+    $joinInputs.trigger("blur");
+    if (joinCheckAll.filter(check => check).length != $joinInputs.length) {
+        return;
     }
-};*/
+    $(document.joinForm).submit();
+}
 
 
 /*----------------- 인증 성공 여부 ------------------*/
