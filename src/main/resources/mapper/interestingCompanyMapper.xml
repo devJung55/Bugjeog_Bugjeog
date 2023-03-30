@@ -3,17 +3,19 @@
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InterestingCompanyMapper">
 <!--     관심업체 리스트-->
     <select id="selectInterestingCompany" resultType="InterestingCompanyDTO">
-        select ic.interesting_company_id, ic.member_id, ic.business_id, b.business_location, b.business_category,
-        b.business_company_name, bb.board_business_id, bb.board_business_title, bbi.board_business_img_original_name, bbi.board_business_img_uuid, bbi.board_business_img_path
-        from tbl_interesting_company ic left join tbl_business b
+        select ic.interesting_company_id, ic.member_id, ic.business_id, b.business_location, b.business_category, b.business_company_name,
+        bb.board_business_id, bb.board_business_title, bb.board_business_register_date, bb.board_business_update_date, bb.board_business_status,
+        bbi.board_business_img_original_name, bbi.board_business_img_uuid, bbi.board_business_img_path
+        from tbl_interesting_company ic
+        left join tbl_business b
         on ic.business_id = b.business_id
         left join tbl_board_business bb
         on ic.business_id = bb.business_id
         left join tbl_board_business_img bbi
-        on bb.board_business_id = bbi.board_business_id
-        limit #{startRow}, #{amount}
+        on bb.board_business_id = bbi.board_business_id;
+--         limit #{startRow}, #{amount}
     </select>
-    <select id="count" resultType="int">
-        select count(interesting_company_id) from tbl_interesting_company where interesting_company_id = #{interestingCompanyId}
-    </select>
+<!--    <select id="count" resultType="int">-->
+<!--        select count(interesting_company_id) from tbl_interesting_company-->
+<!--    </select>-->
 </mapper>
