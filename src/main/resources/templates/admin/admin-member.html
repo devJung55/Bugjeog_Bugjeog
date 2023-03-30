@@ -42,7 +42,7 @@
                         <!-- 헤더 -->
                         <div class="prev-button-layout">
                             <div>
-                                <a  th:href="@{/admin/admin-memberList}">
+                                <a th:href="@{/admin/admin-memberList}">
                                     <img src="/image/admin/prev_icon.png" class="prev-icon">
                                     <span class="prev-title">리스트로 돌아가기</span>
                                 </a>
@@ -56,7 +56,8 @@
                                         <span>회원 정보</span>
                                     </div>
                                     <div class="modify-button-box">
-                                        <a th:href="@{/admin/admin-memberModify}">
+                                        <a href="">
+                                       <!-- <a th:href="{admin-member/{memberId}(memberId=${member.memberId})}">-->
                                             <img src="/image/admin/gear_icon.png" class="gear-icon">
                                             <span>수정</span>
                                         </a>
