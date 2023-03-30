@@ -33,7 +33,7 @@ public class AdminServiceTests {
         memberService.adminMemberShow(1L);
     }
 
-/* 회원 수정 *//*
+/* 회원 수정 */
 
     @Test
     public void updateMember(){
@@ -42,7 +42,7 @@ public class AdminServiceTests {
         memberVO.setMemberPhoneNumber("01089151820");
         memberService.updateMember(memberVO);
     }
-*/
+
 
 
     /* ------------------------------------------------------------------------------------------------------------- */
