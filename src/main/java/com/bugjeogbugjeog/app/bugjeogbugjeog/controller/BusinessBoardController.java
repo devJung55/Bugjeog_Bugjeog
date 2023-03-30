@@ -38,14 +38,7 @@ public class BusinessBoardController {
 
     //    리스트
     @GetMapping("/board/business/list")
-    public void showList(Model model, HttpServletRequest req) {
-
-        businessBoardService.getList().stream().map(dto -> {
-            String name = dto.getBoardBusinessImgOriginalName();
-            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-            dto.setBoardBusinessImgFullPath(fullPath);
-            return dto;
-        });
+    public void showList(Model model) {
         model.addAttribute("boards", businessBoardService.getList());
     }
 
@@ -184,10 +177,11 @@ public class BusinessBoardController {
     }
 
     @PostMapping("/board/business/write")
-    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
+    public String register(BoardBusinessVO boardBusinessVO, HttpServletRequest req, Model model) {
         log.info(req.getParameter("category"));
-        businessBoardService.registerBoard(boardBusinessVO);
-
+        boardBusinessVO.setBusinessId(3L);
+        Long businessBoardId = businessBoardService.registerBoard(boardBusinessVO);
+        model.addAttribute(businessBoardId);
 //        List<String> uuids = new ArrayList<>();
 //        String reqBoardBusinessId = req.getParameter("boardBusinessId");
 //        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
@@ -215,7 +209,7 @@ public class BusinessBoardController {
 //            businessBoardImgService.registerImg(vo);
 //        }
 
-        return new RedirectView("/board/business/list");
+        return "/img/business/save";
     }
 
     @PostMapping("/board/business/delete")

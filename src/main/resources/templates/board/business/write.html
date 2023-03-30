@@ -21,7 +21,7 @@
             <div id="header_btn">
                 <label for="regist_btn" class="register_btn" id="regist_label">
                     <span id="btn_span">등록하기</span>
-                    <button type="submit" id="regist_btn" style="display: none"></button>
+                    <button type="button" id="regist_btn" style="display: none"></button>
                 </label>
             </div>
         </div>
@@ -157,29 +157,35 @@
     });
 
     $("#regist_btn").on("click", function(){
-        const $files = $("input[name=file]")[0].files;
-        let imgVOs = new Array();
+        const $files = $("input[type=file]")[0].files;
+        console.log($files);
+        let boardBusinessImgVO = new Array();
 
         $files.forEach((file, i) => {
-            let boardBusinessImgVO = new Object();
-            boardBusinessImgVO.boardBusinessImgOriginalName = file.name;
-            boardBusinessImgVO.boardBusinessImgUuid = globalThis.uuids[i];
-            boardBusinessImgVO.boardBusinessImgPath = toStringByFormatting(new Date());
-            boardBusinessImgVO.boardBusinessId = boardBusinessId;
+            let boardBusinessImgVOObj = new Object();
+            boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
+            boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
+            boardBusinessImgVOObj.boardBusinessImgPath = toStringByFormatting(new Date());
+            // boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
             // boardBusinessImgVO.fileSize = file.size;
             // boardBusinessImgVO.fileType = file.type.startsWith("image");
-            imgVOs.push(boardBusinessImgVO);
+            boardBusinessImgVO.push(boardBusinessImgVOObj);
         });
 
         $.ajax({
             url: "/imgs/business/save",
             type: "post",
-            data: {"boardBusinessImgVO" : JSON.stringify(imgVOs)},
+            data: JSON.stringify(boardBusinessImgVO),
             contentType: "application/json; charset=utf-8",
-            success: function(){
+            success: function(result){
                 alert("전송 성공");
+                form.submit();
+            },
+            error: function () {
+                alert("전송 실패")
             }
         });
+
     });
 
     /*****************************************************/
