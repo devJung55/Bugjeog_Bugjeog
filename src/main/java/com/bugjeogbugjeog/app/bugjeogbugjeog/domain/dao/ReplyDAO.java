@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageReplyDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.ReplyMapper;
@@ -43,5 +44,16 @@ public class ReplyDAO {
     public Integer getBusinessReplyTotal(Long businessId){
         return replyMapper.businessReplyCount(businessId);
     }
+
+    // 이용자의 댓글 단 게시물 목록
+    public List<BoardFreeVO> findAllBoardFreeToMember(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria){
+        return replyMapper.selectAll(memberId, criteria);
+    }
+
+    // 이용자의 게시물의 댓글 단 리스트
+    public List<FreeReplyVO> findAllFreeReplyToMember(Long memberId, Long boardFreeId){
+        return replyMapper.replyAllList(memberId, boardFreeId);
+    }
+
 
 }

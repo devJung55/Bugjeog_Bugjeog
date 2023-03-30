@@ -65,19 +65,19 @@ public class BusinessMyPageController {
     }
 
     // 댓글 단 리스트
-    @GetMapping("commentList")
-    public void replyList(Model model, Criteria criteria){
-        HttpSession session = req.getSession();
-        Long businessId = (Long) session.getAttribute("businessId");
-
-        BoardReplyDTO boardReplyDTO = myPageService.businessReplyList(businessId,criteria);
-
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
-        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
-        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
-        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessReplyCount(businessId)));
-    }
+//    @GetMapping("commentList")
+//    public void replyList(Model model, Criteria criteria){
+//        HttpSession session = req.getSession();
+//        Long businessId = (Long) session.getAttribute("businessId");
+//
+//        BoardReplyDTO boardReplyDTO = myPageService.businessReplyList(businessId,criteria);
+//
+//        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+//        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
+//        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
+//        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
+//        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessReplyCount(businessId)));
+//    }
 
     // 좋아요 한 게시물목록
     @GetMapping("likedList")
