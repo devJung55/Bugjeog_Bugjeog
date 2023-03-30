@@ -34,6 +34,7 @@ public class InterestingCompanyController {
         model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
 
+
         return "mypage/specific/personalFavoriteList";
     }
 
