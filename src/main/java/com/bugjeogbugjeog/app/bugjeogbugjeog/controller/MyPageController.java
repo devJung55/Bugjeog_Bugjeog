@@ -228,10 +228,23 @@ public class MyPageController {
         myPageService.likeDown(freeLikeVO);
     }
 
-    @PatchMapping("like/likeCount")
+    @PatchMapping("like/likeCountUpdate")
     @ResponseBody
     public void businessLikeCountUpdate(@RequestParam("boardFreeId") Long boardFreeId){
         myPageService.countUp(boardFreeId);
+    }
+
+    @PostMapping("like/like-check")
+    @ResponseBody
+    public Boolean likeCheck(@RequestBody FreeLikeVO freeLikeVO){
+        log.info("들어옴");
+        return myPageService.likeCheck(freeLikeVO);
+    }
+
+    @PostMapping("like/likeCount")
+    @ResponseBody
+    public Integer getLikeCount(@RequestBody FreeLikeVO freeLikeVO){
+        return myPageService.getlikeCount(freeLikeVO);
     }
 
     //    현재 날짜 경로 구하기
