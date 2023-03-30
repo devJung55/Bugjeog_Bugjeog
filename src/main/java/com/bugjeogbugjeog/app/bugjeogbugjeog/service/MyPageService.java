@@ -414,8 +414,8 @@ public class MyPageService {
     }
 
     // 좋아요 갯수 가져오기
-    public Integer getlikeCount(FreeLikeVO freeLikeVO){
-        return freeLikeDAO.getLikeCount(freeLikeVO);
+    public Integer getlikeCount(Long boardFreeId){
+        return freeLikeDAO.getLikeCount(boardFreeId);
     }
 
 }
