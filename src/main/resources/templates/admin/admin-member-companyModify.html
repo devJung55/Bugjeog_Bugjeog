@@ -81,7 +81,7 @@
                                                     <span class="info-tag">회사명</span>
                                                     <!-- 회사명 -->
                                                     <div class="info">
-                                                        <input type="text" class="member-email input-style" name="companyName" th:field="*{businessCeoName}">
+                                                        <input type="text" class="member-email input-style" name="companyName" th:field="*{businessCompanyName}">
                                                     </div>
                                                 </div>
                                                 <div class="member-info-tag-box">
@@ -129,10 +129,9 @@
     const $deleteImg = $(".member-img span");
 
     $deleteImg.on("click", function() {
-        $(this).attr("background-image", "url('..//image/admin/nomal_person_icon.png')");
+        $(this).attr("background-image", "url('/image/admin/nomal_person_icon.png')");
     });
 </script>
-<script src="/js/admin/modify-member.js"></script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 </html>

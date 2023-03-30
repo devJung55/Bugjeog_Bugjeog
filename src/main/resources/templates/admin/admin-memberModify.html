@@ -76,7 +76,8 @@
                                                     <span th:text="${memberVO.memberName}"></span>
                                                 </div>
                                             </div>
-                                            <form th:action="@{/admin/admin-memberModify}" method="post">
+                                            <form th:action="@{/admin/admin-memberModify(memberId=${memberId})}" method="post">
+                                                <input type="hidden" th:value="*{memberId}">
                                                 <div class="member-info-tag-box">
                                                     <span class="info-tag">이메일</span>
                                                     <!-- 이메일 -->
@@ -122,10 +123,15 @@
     const $deleteImg = $(".member-img span");
 
     $deleteImg.on("click", function() {
-        $(this).attr("background-image", "url('..//image/admin/nomal_person_icon.png')");
+
+        $(this).attr("src", "url('/image/admin/nomal_person_icon.png')");
+        // document.getElementById("img").src = "/image/admin/nomal_person_icon.png";
     });
+
+
+
+
 </script>
-<script src="/js/admin/modify-member.js"></script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 </html>

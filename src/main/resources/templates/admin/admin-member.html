@@ -56,8 +56,7 @@
                                         <span>회원 정보</span>
                                     </div>
                                     <div class="modify-button-box">
-                                        <a href="">
-                                       <!-- <a th:href="{admin-member/{memberId}(memberId=${member.memberId})}">-->
+                                       <a th:href="@{/admin/admin-memberModify(memberId=${memberId})}">
                                             <img src="/image/admin/gear_icon.png" class="gear-icon">
                                             <span>수정</span>
                                         </a>

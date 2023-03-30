@@ -56,8 +56,7 @@
                                         <span>회원 정보</span>
                                     </div>
                                     <div class="modify-button-box">
-                                        <a href="">
-                                        <!--<a th:href="{admin-member-company/{businessId}(businessId=${busienss.businessId})}">-->
+                                        <a th:href="@{/admin/admin-member-companyModify(businessId=${businessId})}">
                                             <img src="/image/admin/gear_icon.png" class="gear-icon">
                                             <span>수정</span>
                                         </a>
