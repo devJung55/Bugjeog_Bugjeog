@@ -26,6 +26,18 @@
         where member_email = #{memberEmail} and member_password = #{memberPassword}
     </select>
 
+    <!-- 자영업자 계정 상태 조회-->
+    <select id="selectForStatus" resultType="Integer">
+        select member_status from tbl_member
+        where member_email = #{memberEmail}
+    </select>
+
+    <!-- 사업자 계정 상태 조회-->
+    <select id="businessSelectForStatus" resultType="Integer">
+        select business_status from tbl_business
+        where business_email = #{busienss_email}
+    </select>
+
     <!-- 유통업체 회원가입 -->
     <insert id="insertBusiness">
         insert into tbl_business
