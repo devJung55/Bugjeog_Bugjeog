@@ -4,7 +4,7 @@
     <!-- 자영업자 회원가입 -->
     <insert id="insertMember">
         insert into tbl_member
-        (member_email, member_password, member_phone_number, memeber_name)
+        (member_email, member_password, member_phone_number, member_name)
         values(#{memberEmail}, #{memberPassword}, #{memberPhoneNumber}, #{memberName})
     </insert>
 
