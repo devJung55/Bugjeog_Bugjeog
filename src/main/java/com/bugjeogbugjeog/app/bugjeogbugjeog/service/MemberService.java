@@ -107,6 +107,16 @@ public class MemberService {
         return findEmailDTO;
     }
 
+//    자영업자 비밀번호 변경
+    public void changePassword(String memberEamil, String memberPassword) {
+        memberDAO.setPassword(memberEamil, memberPassword);
+    }
+
+//    사업자 비밀번호 변경
+    public void businessChangePassword(String businessEmail, String businessPassword) {
+        memberDAO.businessSetPassword(businessEmail, businessPassword);
+    }
+
     /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록

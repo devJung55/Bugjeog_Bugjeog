@@ -12,7 +12,7 @@
         <div class="find-end-all-wrap">
             <div class="find-end-mid-wrap">
                 <div class="find-end-center-wrap">
-                    <form action="" name="accountForm">
+                    <form name="accountForm">
                         <div class="find-end-Top">
                             <div class="find-end-right">
                                 <button type="button" class="find-right-arrow">
@@ -44,7 +44,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <p class="find-end-emailWrite" th:text="'자영업자 이메일 : ' + ${findEmailDTO.memberEmail}"></p>
+                                        <p class="find-end-emailWrite" name="memberEmail" th:text="'자영업자 이메일 : ' + ${findEmailDTO.memberEmail}"></p>
+                                        <button type="button" name="member" class="find-end-emailWrite go-to-password" style="display: none">비밀번호 변경하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <p class="find-end-emailWrite" th:text="'사업자 이메일 : ' + ${findEmailDTO.businessEmail}"></p>
+                                        <p class="find-end-emailWrite" name="businessEmail" th:text="'사업자 이메일 : ' + ${findEmailDTO.businessEmail}"></p>
+                                        <button type="button" name="business" class="find-end-emailWrite go-to-password" style="display: none">비밀번호 변경하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +88,8 @@
                                                     </span>
                                             </div>
                                         </div>
-                                        <p class="find-end-emailWrite" th:text="'자영업자 이메일 : ' + ${findEmailDTO.memberEmail}"></p>
+                                        <p class="find-end-emailWrite" name="memberEmail" th:text="'자영업자 이메일 : ' + ${findEmailDTO.memberEmail}"></p>
+                                        <button type="button" name="member" class="find-end-emailWrite go-to-password" style="display: none">비밀번호 변경하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +115,8 @@
                                                     </span>
                                             </div>
                                         </div>
-                                        <p class="find-end-emailWrite" th:text="'사업자 이메일 : ' + ${findEmailDTO.businessEmail}"></p>
+                                        <p class="find-end-emailWrite" name="businessEmail" th:text="'사업자 이메일 : ' + ${findEmailDTO.businessEmail}"></p>
+                                        <button type="button" name="business" class="find-end-emailWrite go-to-password" style="display: none">비밀번호 변경하기</button>
                                     </div>
                                 </div>
                             </div>
