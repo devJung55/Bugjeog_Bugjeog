@@ -10,5 +10,6 @@ import org.springframework.stereotype.Service;
 public class ReplyService {
     private final ReplyDAO replyDAO;
 
+//    댓글 등록
     public void save(FreeReplyVO freeReplyVO){ replyDAO.addReply(freeReplyVO);}
 }

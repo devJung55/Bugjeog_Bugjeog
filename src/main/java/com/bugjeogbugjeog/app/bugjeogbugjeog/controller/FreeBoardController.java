@@ -32,7 +32,7 @@ public class FreeBoardController {
         return "/board/free/write";
     }
 
-    /*중요!! 참고하기 mapper*/
+    /*참고하기 mapper*/
     /*작성 후 디비 입력 -> 화면 이동*/
     @PostMapping("free/insert")
     public RedirectView freeInsert(BoardFreeVO boardFreeVO){
