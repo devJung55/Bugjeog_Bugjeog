@@ -50,9 +50,13 @@ public class FreeLikeDAO {
     public void removeFreeLike(FreeLikeVO freeLikeVO){
         freeLikeMapper.likeDown(freeLikeVO);
     }
+    
     //해당 좋아요 게시판 글 번호(boardFreeId) 조회
     public void updateCount(Long boardFreeId){
         freeLikeMapper.likeCountUp(boardFreeId);
     }
+    
+    // 해당 좋아요 개수
+    public Integer getLikeCount(FreeLikeVO freeLikeVO) { return freeLikeMapper.searchLike(freeLikeVO);}
 
 }
