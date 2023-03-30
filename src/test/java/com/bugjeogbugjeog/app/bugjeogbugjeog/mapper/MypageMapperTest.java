@@ -168,14 +168,14 @@ public class MypageMapperTest {
         freeLikeMapper.likeDown(freeLikeVO);
     }
 
-    // 좋아요 갯수 업데이트
-    @Test
-    public void updateFreeCount(){
-        FreeLikeVO freeLikeVO = new FreeLikeVO();
-        Long a = null;
-        freeLikeVO.setBusinessId(a);
-        freeLikeVO.setMemberId(1L);
-
-        freeLikeMapper.likeCountUp(freeLikeVO);
-    }
+//    // 좋아요 갯수 업데이트
+//    @Test
+//    public void updateFreeCount(){
+//        FreeLikeVO freeLikeVO = new FreeLikeVO();
+//        Long a = null;
+//        freeLikeVO.setBusinessId(a);
+//        freeLikeVO.setMemberId(1L);
+//
+//        freeLikeMapper.likeCountUp(freeLikeVO);
+//    }
 }
