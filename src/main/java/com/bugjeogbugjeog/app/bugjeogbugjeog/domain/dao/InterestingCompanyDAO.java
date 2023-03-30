@@ -21,4 +21,8 @@ public class InterestingCompanyDAO {
     public int count(){
         return interestingCompanyMapper.count();
     }
+    public void deleteByInterestingCompany(Long interestingCompanyId) {
+        interestingCompanyMapper.deleteByInterestingCompany(interestingCompanyId);
+    }
+
 }
