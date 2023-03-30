@@ -1,18 +1,20 @@
-package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
+package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.ReplyDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
 @SpringBootTest
 @Slf4j
-public class ReplyMapperTest {
+public class ReplyDAOTest {
 
     @Autowired
-    ReplyMapper replyMapper;
+    ReplyDAO replyDAO;
 
     @Autowired
     FreeReplyVO freeReplyVO;
@@ -27,7 +29,8 @@ public class ReplyMapperTest {
         freeReplyVO.setReplyId(1L);
         freeReplyVO.setReplyRegisterDate("2023-03-30");
         freeReplyVO.setReplyUpdateDate("2023-03-30");
-        replyMapper.replyAdd(freeReplyVO);
+        replyDAO.addReply(freeReplyVO);
     }
 
 }
+
