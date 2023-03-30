@@ -1,0 +1,38 @@
+package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
+
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class BusinessService {
+    private final BusinessDAO businessDAO;
+
+    /* ------------------------------------------------------------ */
+    /* 관리자 유통 목록 */
+    public List<BusinessDTO> showListBusiness(Criteria criteria){ return businessDAO.adminFindAll(criteria);}
+
+    /* 관리자 카운트 */
+    public int count(){return businessDAO.count();}
+
+    /* 관리자 유통 상세 보기 */
+    public MemberDTO showBusiness(Long memberId){return businessDAO.adminFindById(memberId);}
+
+    /* 관리자 유통 회원 수정 */
+    public void setBusiness(BusinessVO businessVO){ businessDAO.updateById(businessVO);}
+
+    /* 관리자 유통 회원 삭제 */
+    public void removeBusiness( List<String> businessIds) {
+//        noticeIds.stream().map(noticeId -> Long.parseLong(noticeId)).forEach(noticeDAO::remove);
+        businessIds.stream().map(businessId -> Long.parseLong(businessId)).forEach(businessDAO::removeById);
+    }
+
+}
+
