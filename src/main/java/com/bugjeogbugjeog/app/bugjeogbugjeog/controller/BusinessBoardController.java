@@ -158,12 +158,8 @@ public class BusinessBoardController {
     @PostMapping("/board/business/write")
     @ResponseBody
     public Long register(@RequestBody BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
-        log.info(req.getParameter("category"));
         boardBusinessVO.setBusinessId(3L);
         businessBoardService.registerBoard(boardBusinessVO);
-        log.info("==============");
-        log.info(String.valueOf(boardBusinessVO.getBoardBusinessId()));
-        log.info("==============");
         return boardBusinessVO.getBoardBusinessId();
 //        return null;
 //        businessBoardImgService.write();

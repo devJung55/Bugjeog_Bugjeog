@@ -182,7 +182,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (boardBusinessId) {
                 let boardBusinessImgVO = new Array();
-                alert("boardBusinessVO 전송 성공" + boardBusinessId);
+                alert("boardBusinessVO 전송 성공, boardBusinessId : " + boardBusinessId);
 
                 $files.forEach((file, i) => {
                     let boardBusinessImgVOObj = new Object();
