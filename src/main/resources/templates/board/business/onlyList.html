@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유통업체 PR 사이트</title>
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/boardList/pr-boardList.css">
+</head>
+<body>
+<div class="all-wrap">
+    <div th:insert="~{main/header :: header}" id="header"></div>
+    <div class="header-padding"></div>
+    <div>
+        <header class="boardList-header">
+            <a href="#">
+                <section class="banner-box"></section>
+            </a>
+        </header>
+    </div>
+    <div class="boardList-section">
+        <h2 class="boardList-title">다양한 유통업체들을 만나보세요!</h2>
+        <div class="edge-div"></div>
+        <div class="select-button-box">
+            <div class="select-button-box-layout">
+                <div class="cate-button-box">
+                    <!--                    <div class="cate-button-box-layout" th:object="${categorys}">-->
+                    <!--                        <ul>-->
+                    <!--                            <li th:each="category : ${categorys}">-->
+                    <!--                                <a class="cate-button" href="/board/business/list?boardBusinessCategory=${category.categoryEng}" th:method="post">-->
+                    <!--                                    <span th:text="${category.categoryKor}"></span>-->
+                    <!--                                </a>-->
+                    <!--                            </li>-->
+                    <!--                        </ul>-->
+                    <!--                    </div>-->
+                    <!--                        <button type="button" class="cate-button cate-button-active" href="/board/business/list?boardBusinessCategory=meat" th:method="post">-->
+                    <!--                            <span>육류</span>-->
+                    <!--                        </button>-->
+                    <div class="cate-button-box-layout">
+                        <button type="button" class="cate-button cate-button-active" name="all">
+                            <span>전체</span>
+                        </button>
+                        <button type="button" class="cate-button" name="meat">
+                            <span>육류</span>
+                        </button>
+                        <button type="button" class="cate-button" name="seafood">
+                            <span>해산물</span>
+                        </button>
+                        <button type="button" class="cate-button" name="vegetable">
+                            <span>채소</span>
+                        </button>
+                        <button type="button" class="cate-button" name="spice">
+                            <span>향신료</span>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <div class="recent-popluar-box">
+                    <div class="recent-popluar-box-layout">
+                        <div class="recent-box">
+                            <button type="button" name="recent" class="recent-button sort-button sort-button-active">
+                                <span>최신순</span>
+                            </button>
+                        </div>
+                        <div class="popluar-box">
+                            <button type="button" name="popular" class="popluar-button sort-button">
+                                <span>인기순</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="pr-register-button">
+                            <a href="/board/business/write">
+                                등록하기
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="boardList-info-box" th:object="${boards}">
+            <!-- 보드 리스트 하나씩 뽑아낼 DOM 만들기 -->
+            <li class="info-box-layout" th:each="board : ${boards}">
+                <form action="/board/business/detail" method="post">
+                    <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}" methods="">
+                        <!-- 상세보기 모달 버튼 -->
+                        <div class="image-box">
+                            <img src="${board.boardBusinessImgPath}/${board.boardBusinessImgUuid}_${board.boardBusinessOriginalName}"
+                                 class="info-image">
+                        </div>
+                        <div class="info-section-box">
+                            <div class="cate-title-box">
+                                <span class="cate-title-style">
+                                    <span class="cate-title" th:text="${board.businessCategory}"></span>
+                                </span>
+                            </div>
+                            <p class="circulation-title" th:text="${board.boardBusinessTitle}"></p>
+                        </div>
+                        <div class="location-box">
+                            <div class="location-box-layout" th:text="${board.businessLocation}">
+                                서울
+                            </div>
+                        </div>
+                        <div class="review-count-box">
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/review_icon.png" class="review-icon">
+                                </div>
+                                <div>
+                                    <span class="review-count" th:text="${board.boardBusinessReviewCount}">0</span>
+                                </div>
+                            </div>
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                                </div>
+                                <div>
+                                    <span class="review-grade-count"
+                                          th:text="${board.boardBusinessGradeAverage}">1.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="scroll-top-button">
+        <img src="/image/boardList/arrow_icon.png" class="top-button">
+    </button>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/boardList/pr-boardList.js"></script>
+<!--<script src="/js/boardList/boardBusinessList.js"></script>-->
+<script th:inline="javascript">
+    let boards = [[${boards}]];
+    console.log("boards");
+    console.log(boards);
+    const $ul = $($('ul.boardList-info-box')[0]);
+
+    /* 작성글 목록 */
+    // const boards = JSON.parse($boards); /* boards 정의해야 함 */
+    showList(boards);
+
+    function showList(boards) {
+        console.log("들2");
+
+        $ul.empty();
+        let text = ``;
+        boards.forEach(board => {
+            console.log(`${board.boardBusinessImgFullPath}`);
+            text += `
+                <li class="info-box-layout" th:object="${board}">
+                    <a href="/board/business/detail?boardBusinessId=${board.boardBusinessId}">
+                        <div class="image-box">
+                                <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
+                        </div>
+                        <div class="info-section-box">
+                            <div class="cate-title-box">
+                                <span class="cate-title-style">
+                                    <span class="cate-title"> ${board.businessCategory}</span>
+                                </span>
+                            </div>
+                            <p class="circulation-title"> ${board.boardBusinessTitle}</p>
+                        </div>
+                        <div class="location-box">
+                            <div class="location-box-layout">${board.businessLocation}</div>
+                        </div>
+                        <div class="review-count-box">
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/review_icon.png" class="review-icon">
+                                </div>
+                                <div>
+                                    <span class="review-count">${board.boardBusinessReviewCount}</span>
+                                </div>
+                            </div>
+                            <div class="icon-box">
+                                <div class="review-icon-box">
+                                    <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                                </div>
+                                <div>
+                                    <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+			`;
+        });
+        $ul.append(text);
+    }
+
+    /* 카테고리 버튼 이벤트 */
+    const $cateButton = $(".cate-button");
+
+    $cateButton.each((i, e) => {
+
+        $(e).click(function () {
+            $cateButton.removeClass("cate-button-active");
+            $(e).addClass("cate-button-active");
+            ajax();
+        });
+    });
+
+    function ajax() {
+        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+        const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+        console.log(sortType);
+        $.ajax({
+            url: "/board/business/list",
+            method: "POST",
+            data: {
+                category: categoryName
+                , sort: sortType
+            },
+            dataType: "json",
+            success: function (result) {
+                let newBoards = `${result}`;
+                $ul.empty();
+                showList(result);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    /* sort 버튼 이벤트 */
+    const $sortButton = $(".sort-button");
+
+    $sortButton.each((i, e) => {
+        $(e).click(function () {
+            $sortButton.removeClass("sort-button-active");
+            $(e).addClass("sort-button-active");
+            ajax();
+        });
+    });
+</script>
+
+<!--<script src="/js/board_business/getList.js"></script>-->
+</html>

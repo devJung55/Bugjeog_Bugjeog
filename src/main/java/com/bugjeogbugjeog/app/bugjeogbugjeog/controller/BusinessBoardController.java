@@ -32,6 +32,11 @@ public class BusinessBoardController {
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
+    @GetMapping("/board/business/test")
+    public String test(){
+        return "/board/business/boardList";
+    }
+
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
         return new RedirectView("/board/business/list");
