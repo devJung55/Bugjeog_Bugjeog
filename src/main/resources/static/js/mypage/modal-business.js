@@ -14,12 +14,12 @@ $fileExitButton.each((i, e) => {
 const $companyModalButton = $(".company-modal-open");
 const $companyModal = $(".company-modal-display");
 const $companyModalExit = $(".company-modal-exit");
-$companyModalButton.click(function(){
+$companyModalButton.click(function () {
     $companyModal.show();
 });
 
 $companyModalExit.each((i, e) => {
-    $(e).click(function(){
+    $(e).click(function () {
         companyNameCheck = false;
         errorMsg.text("");
         $("#company-name").val(businessVO.businessCompanyName);
@@ -31,12 +31,12 @@ $companyModalExit.each((i, e) => {
 const $ceoNameModal = $(".ceoName-modal");
 const $ceoNameModalButton = $(".ceoName-modal-button");
 const $ceoNameModalExit = $(".ceoName-exit");
-$ceoNameModalButton.click(function(){
+$ceoNameModalButton.click(function () {
     $ceoNameModal.show();
 });
 
-$ceoNameModalExit.each((i , e) => {
-    $(e).click(function(e){
+$ceoNameModalExit.each((i, e) => {
+    $(e).click(function (e) {
         $("input[name=businessCeoName]").val(businessVO.businessCeoName);
         errorMsg.text("");
         nameCheck = false;
@@ -74,7 +74,7 @@ $businessNumberModalButton.click(() => {
 $businessNumberModalExit.each((i, e) => {
     $(e).click(() => {
         $("#business-number").val(businessVO.businessNumber);
-        businessNumberCheck =false;
+        businessNumberCheck = false;
         errorMsg.text("");
         $businessNumberModal.hide();
     });
@@ -85,7 +85,7 @@ const $passwordModalButton = $(".password-change-modal");
 const $passwordModal = $(".password-modal-display");
 const $passwordModalExit = $(".password-modal-exit");
 
-$passwordModalButton.click(function(e){
+$passwordModalButton.click(function (e) {
     $("input[type=password]").val("");
     $(".password-error").text("");
     $(".password-check-error").text("");

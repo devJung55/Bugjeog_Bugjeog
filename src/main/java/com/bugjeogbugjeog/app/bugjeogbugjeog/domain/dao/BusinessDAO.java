@@ -29,7 +29,7 @@ public class BusinessDAO {
         return businessMapper.selectListToBusinessNumber();
     }
 
-    // 회원 탈퇴
+    // 회원 삭제
     public void removeById(Long businessId){
         businessMapper.withdraw(businessId);
     }

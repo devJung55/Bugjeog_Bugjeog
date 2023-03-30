@@ -36,7 +36,7 @@ public class FreeLikeDAO {
     };
 
 
-    // 좋아요한 게시물 번호 리스트
+    // 좋아요 한 게시물 번호 리스트
     public Integer findByIdBoardFreeId(FreeLikeVO freeLikeVO){
         return freeLikeMapper.searchLike(freeLikeVO);
     }
@@ -57,6 +57,6 @@ public class FreeLikeDAO {
     }
     
     // 해당 좋아요 개수
-    public Integer getLikeCount(FreeLikeVO freeLikeVO) { return freeLikeMapper.searchLike(freeLikeVO);}
+    public Integer getLikeCount(Long boardFreeId) { return freeLikeMapper.selectLikeCount(boardFreeId);}
 
 }

@@ -2,7 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessMyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class MyPageSpecificController {
 
-    private final MyPageService myPageService;
+    private final BusinessMyPageService businessMyPageService;
 
     @GetMapping("edit")
     public String main(Model model){
 
-        model.addAttribute("businessVO", myPageService.businessInfo(1L));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(1L));
         return "mypage/specific/businessEdit";
     }
 //    @GetMapping("favorite")
@@ -42,7 +42,7 @@ public class MyPageSpecificController {
 //        HttpSession session = req.getSession();
 //        Long businessId = (Long) session.getAttribute("businessId");
         Long businessId = 1L;
-        businessVO = myPageService.businessInfo(businessId);
+        businessVO = businessMyPageService.businessInfo(businessId);
 
 
         String categorys = req.getParameter("categorys");
@@ -51,7 +51,7 @@ public class MyPageSpecificController {
 
         businessVO.setBusinessCategory(categorys);
         businessVO.setBusinessLocation(foods);
-        myPageService.updateLocation(businessVO);
+        businessMyPageService.updateLocation(businessVO);
 
         return new RedirectView("/mypage/edit");
     }
