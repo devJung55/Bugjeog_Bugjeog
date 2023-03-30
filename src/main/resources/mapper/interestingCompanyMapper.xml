@@ -13,7 +13,6 @@
         on ic.business_id = bb.business_id
         left join tbl_board_business_img bbi
         on bb.board_business_id = bbi.board_business_id;
---         limit #{startRow}, #{amount}
     </select>
 <!--    <select id="count" resultType="int">-->
 <!--        select count(interesting_company_id) from tbl_interesting_company-->
