@@ -11,7 +11,7 @@ import java.util.Map;
 public interface BusinessBoardMapper {
 
     //    추가
-    public Long insert(BoardBusinessVO boardBusinessVO);
+    public void insert(BoardBusinessVO boardBusinessVO);
 
     //    삭제
     public void delete(Long orderId);

@@ -34,11 +34,10 @@ public class BoardImgController {
     private final BoardBusinessImgService businessBoardImgService;
 
     //    파일 저장
-    @GetMapping("/imgs/business/save")
+    @PostMapping("/imgs/business/save")
     @ResponseBody
-    public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
+    public void businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
         businessBoardImgService.write(boardBusinessImgVOs);
-        return new RedirectView("/board/business/list");
     }
 
     //    파일 업로드

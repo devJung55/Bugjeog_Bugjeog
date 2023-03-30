@@ -23,8 +23,8 @@ public class BoardBusinessService {
 
 
     //    추가
-    public Long registerBoard(BoardBusinessVO boardBusinessVO) {
-        return businessBoardDAO.save(boardBusinessVO);
+    public void registerBoard(BoardBusinessVO boardBusinessVO) {
+        businessBoardDAO.save(boardBusinessVO);
     }
 
     //    삭제

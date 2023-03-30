@@ -17,7 +17,7 @@ public class BusinessBoardDAO {
 
 
     //    추가
-    public Long save(BoardBusinessVO boardBusinessVO){ return businessBoardMapper.insert(boardBusinessVO); }
+    public void save(BoardBusinessVO boardBusinessVO){ businessBoardMapper.insert(boardBusinessVO); }
 
     //    삭제
     public void deleteById(Long boardBusinessId){ businessBoardMapper.delete(boardBusinessId);}

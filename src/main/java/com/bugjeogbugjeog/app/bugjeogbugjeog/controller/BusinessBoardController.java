@@ -175,7 +175,6 @@ public class BusinessBoardController {
     @GetMapping("/board/business/write")
     public void write(Model model) {
         model.addAttribute(new BoardBusinessVO());
-        model.addAttribute(new BoardBusinessImgVO());
     }
 
     @PostMapping("/board/business/write")
