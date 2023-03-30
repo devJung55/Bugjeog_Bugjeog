@@ -13,4 +13,5 @@ public class BoardBusinessVO {
     private String boardBusinessContent;
     private String boardBusinessRegisterDate;
     private String boardBusinessUpdateDate;
+    private Long boardBusinessStatus;
 }

@@ -1,8 +1,5 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -63,5 +59,12 @@ public class BoardBusinessControllerTest {
         ).andReturn().getModelAndView().getModelMap().toString());
     }
 
-
+    @Test
+    public void uploadTest() throws Exception {
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/business/write")).andReturn().getModelAndView().getModelMap().toString());
+        log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/business/save")
+                .param("boardBusinessImgOriginalName", "imgname1")
+                .param("businessId", "3")
+        ).andReturn().getModelAndView().getModelMap().toString());
+    }
 }

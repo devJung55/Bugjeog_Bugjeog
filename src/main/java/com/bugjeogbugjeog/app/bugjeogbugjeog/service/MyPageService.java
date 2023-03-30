@@ -200,6 +200,7 @@ public class MyPageService {
         allCount.put("replyCount", replyDAO.getReplyTotal(memberId));
         allCount.put("likeBoardCount", freeLikeDAO.getCountToLike(memberId));
         allCount.put("inquireCount", inquiryBoardDAO.getCountToInquire(memberId));
+        allCount.put("interestingCount",memberDAO.getInterestingCountById(memberId));
 
         return allCount;
     }
@@ -354,13 +355,15 @@ public class MyPageService {
     }
 
     // 게시판 각각의 개수
-    public Map<String, Integer> businessAllCount(Long businessId){
-        Map<String, Integer> allCount = new HashMap<>();
+    public Map<String, Object> businessAllCount(Long businessId){
+        Map<String, Object> allCount = new HashMap<>();
 
         allCount.put("freeBoardCount",freeBoardDAO.getFreeBoardBusinessTotal(businessId));
         allCount.put("replyCount", replyDAO.getBusinessReplyTotal(businessId));
         allCount.put("likeBoardCount", freeLikeDAO.getBusinessCountToLike(businessId));
         allCount.put("inquireCount", inquiryBoardDAO.getBusinessInquireCount(businessId));
+        allCount.put("reviewGrade", businessDAO.getReviewGrade(businessId));
+        allCount.put("reviewCount", businessDAO.getReviewCount(businessId));
 
         return allCount;
     }
@@ -370,5 +373,24 @@ public class MyPageService {
         businessDAO.updateLocation(businessVO);
     }
 
+    // 좋아요 추가
+    public void likeInsert(FreeLikeVO freeLikeVO) {
+        freeLikeDAO.saveFreeLike(freeLikeVO);
+    }
+
+    // 좋아요 제거
+    public void likeDown(FreeLikeVO freeLikeVO) {
+        freeLikeDAO.removeFreeLike(freeLikeVO);
+    }
+    
+    // 좋아요 갯수 업데이트
+    public void countUp(Long boardFreeId){
+        freeLikeDAO.updateCount(boardFreeId);
+    }
+
+    // 좋아요 눌럿는지 확인
+    public Boolean likeCheck(FreeLikeVO freeLikeVO){
+        return freeLikeDAO.findByIdBoardFreeId(freeLikeVO) == 0;
+    }
 
 }

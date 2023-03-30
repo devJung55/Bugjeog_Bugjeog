@@ -147,4 +147,35 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script>
+	let $pageForm = $(pageForm);
+
+	$("a.changePage").on("click", function(e){
+		e.preventDefault();
+		$pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+		$pageForm.submit();
+	});
+
+
+	/* delete 버튼 클릭 시 ajax실행*/
+	$('.delete-button').on('click', function() {
+		var checkedIds = new Array();
+		// 체크 박스 체크된 값
+		$('input:checkbox[name=check]:checked').parent().next().each(function(){
+			console.log(this.innerText);
+			checkedIds.push(this.innerText);
+		});
+
+		console.log(checkedIds);
+
+		$.ajax({
+			url: "/admin/admin-deleteBusiness",
+			type: "delete",
+			data: {"checkedIds": checkedIds},
+			success: function(){
+				location.reload();
+			}
+		});
+	});
+</script>
 </html>

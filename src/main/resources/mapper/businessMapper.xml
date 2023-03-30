@@ -24,5 +24,52 @@
         delete from tbl_business where business_id = #{businessId}
     </delete>
 
+    <!-- 해당 유통업자의 리뷰 평점-->
+    <select id="reviewGrade" resultType="double">
+        select round(avg(review_grade),1) from tbl_business_review r join
+        (select board_business_id from tbl_board_business where business_id = #{businessId}) t
+        on r.board_business_id = t.board_business_id
+    </select>
+
+    <!-- 해당 유통업자 리뷰 개수-->
+    <select id="reviewCount" resultType="int">
+        select count(review_id) from tbl_business_review r join
+        (select board_business_id from tbl_board_business where business_id = #{businessId}) t
+        on r.board_business_id = t.board_business_id
+    </select>
+
+    <!-- 관리자 **************************************************************************** -->
+    <!--  유통 전체 목록 -->
+    <select id="adminSelectAllBusiness" resultType="businessDTO">
+       select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category
+        from tbl_business
+        order by business_id desc
+        limit #{startRow}, #{amount}
+    </select>
+
+    <!-- 유통 회원 수 카운트 -->
+    <select id="count" resultType="int">
+        select count(business_id) from tbl_business
+    </select>
+
+    <!-- 유통 회원 조회 -->
+    <select id="adminSelectBusiness" resultType="businessDTO">
+        select b.business_id, count(distinct tbf.board_free_id) as boardCount , count(distinct tfr.reply_id ) as replyCount ,
+        business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number,
+        business_establishment_date, business_register_date, business_status, business_img_original_name,
+        business_img_uuid, business_img_path, business_location, business_category
+        from tbl_business b
+        left join tbl_board_free tbf on b.business_id  = tbf.business_id
+        left join tbl_free_reply tfr on tbf.business_id  = tfr.business_id where b.business_id = #{business_id}
+        group by b.busines_id
+    </select>
+
+    <!-- 유통 회원 수정 -->
+    <update id="update">
+        update tbl_business
+        set business_email= #{businessEmail}, business_password= #{businessPassword}, business_ceo_name= #{businessCeoName}, business_company_name= #{businessCompanyName}, business_phone_number= #{businessPhoneNumber}, business_establishment_date= #{businessEstablishmentDate}, business_status=1, business_img_original_name= #{businessImgOriginalName}, business_img_uuid= #{businessImgUuid}, business_img_path= #{businessImgPath}, business_location= #{businessLocation}, business_category= #{businessCategory}
+        where business_id = #{businessId}
+    </update>
+
 </mapper>
 

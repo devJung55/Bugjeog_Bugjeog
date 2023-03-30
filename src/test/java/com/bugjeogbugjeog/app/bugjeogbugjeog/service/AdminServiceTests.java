@@ -25,14 +25,14 @@ public class AdminServiceTests {
 /*
 
     */
-/* 회원 조회 *//*
+/* 회원 조회 */
 
     @Test
     public void showMember(){
         MemberDTO memberDTO = new MemberDTO();
         memberService.adminMemberShow(1L);
     }
-    */
+
 /* 회원 수정 *//*
 
     @Test

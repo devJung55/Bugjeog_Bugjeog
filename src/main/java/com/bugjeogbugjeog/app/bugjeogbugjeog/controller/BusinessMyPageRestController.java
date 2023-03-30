@@ -126,7 +126,7 @@ public class BusinessMyPageRestController {
 
     // 각 게시물 작성 갯수
     @GetMapping("count")
-    public Map<String, Integer> businessAllCount(){
+    public Map<String, Object> businessAllCount(){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 

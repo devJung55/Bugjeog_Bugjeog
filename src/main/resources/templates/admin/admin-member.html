@@ -65,7 +65,9 @@
                                 <hr>
                                 <div class="board-info-box">
                                     <div class="member-img-box">
-                                        <div class="member-img"></div>
+                                        <div class="member-img" >
+                                            <img style="max-width: 100%; max-height: 100%;" th:if="${memberDTO.memberImgPath}" th:src="@{/mypage/profile/display(fileName=${memberDTO.memberImgPath}+'/'+${memberDTO.memberImgUuid}+'_'+${memberDTO.memberImgOriginalName})}"/>
+                                        </div>
                                         <!-- <div class="member-nickname-box">
                                             <span>벅벅코딩</span>
                                         </div> -->

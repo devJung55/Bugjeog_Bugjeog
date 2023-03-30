@@ -26,4 +26,27 @@
         on f.board_free_id = k.board_free_id and k.business_id = #{businessId}
         limit #{criteria.startRow}, #{criteria.amount}
     </select>
+
+    <insert id="likeInsert">
+        insert into tbl_free_like
+        (board_free_id, member_id, business_id)
+        values (#{boardFreeId} , #{memberId} , #{businessId} )
+    </insert>
+
+    <!--갯수 삭제-->
+    <delete id="likeDown">
+        delete from tbl_free_like
+        where board_free_id = #{boardFreeId} and (member_id = #{memberId} or business_id = #{businessId})
+    </delete>
+
+    <update id="likeCountUp">
+        update tbl_board_free f
+        set board_free_like = (select count(free_like_id) from tbl_free_like k WHERE k.board_free_id = #{boardFreeId})
+        WHERE f.board_free_id = #{boardFreeId}
+    </update>
+
+    <!--좋아요 눌럿는지 확인-->
+    <select id="searchLike" resultType="int">
+        select count(board_free_id) from tbl_free_like where member_id = #{memberId} or business_id = #{businessId}
+    </select>
 </mapper>
