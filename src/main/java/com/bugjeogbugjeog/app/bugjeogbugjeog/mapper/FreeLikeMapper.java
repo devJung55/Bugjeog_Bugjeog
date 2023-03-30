@@ -34,6 +34,6 @@ public interface FreeLikeMapper {
     public void likeCountUp(Long boardFreeId);
 
     // 좋아요 갯수
-    public Integer selectLikeCount(FreeLikeVO freeLikeVO);
+    public Integer selectLikeCount(Long boardFreeId);
 
 }

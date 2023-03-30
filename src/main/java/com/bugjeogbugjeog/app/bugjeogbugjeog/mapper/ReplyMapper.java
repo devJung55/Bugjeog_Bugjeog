@@ -15,17 +15,8 @@ public interface ReplyMapper {
     // 댓글 등록
     public void replyAdd(FreeReplyVO freeReplyVO);
 
-    //  댓글 단 게시물 목록
-    public List<MyPageReplyDTO> replyList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
-
     //    댓글 단 갯수
     public Integer replyCount(Long memberId);
-
-    // 게시물의 댓글 개수
-    public Integer boardReplyCount(Long boardFreeId);
-
-    //  유통업자 댓글 단 게시물 목록
-    public List<MyPageReplyDTO> businessReplyList(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
 
     //  유통업자 댓글 단 갯수
     public Integer businessReplyCount(Long businessId);
@@ -35,4 +26,13 @@ public interface ReplyMapper {
 
     // 이용자의 게시물의 댓글 단 리스트
     public List<FreeReplyVO> replyAllList(Long memberId, Long boardFreeId);
+
+    // 유통업자의 댓글 단 게시물 목록
+    public List<BoardFreeVO> businessSelectAll(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);
+
+    // 유통업자의 게시물의 댓글 단 리스트
+    public List<FreeReplyVO> businessReplyAllList(Long businessId, Long boardFreeId);
+
+    // 게시물의 댓글 개수
+    public Integer boardReplyCount(Long boardFreeId);
 }

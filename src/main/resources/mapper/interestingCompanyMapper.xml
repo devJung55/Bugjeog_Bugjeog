@@ -20,4 +20,7 @@
     <select id="count" resultType="int">
         select count(interesting_company_id) from tbl_interesting_company
     </select>
+    <delete id="deleteByInterestingCompany">
+        delete from tbl_interesting_company where interesting_company_id = #{interestingCompanyId}
+    </delete>
 </mapper>

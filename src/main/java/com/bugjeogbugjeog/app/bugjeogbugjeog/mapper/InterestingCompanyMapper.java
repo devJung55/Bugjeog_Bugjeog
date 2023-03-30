@@ -14,4 +14,5 @@ public interface InterestingCompanyMapper {
 //    갯수 가져오기
     public int count();
 
+    public void deleteByInterestingCompany(Long interestingCompanyId);
 }

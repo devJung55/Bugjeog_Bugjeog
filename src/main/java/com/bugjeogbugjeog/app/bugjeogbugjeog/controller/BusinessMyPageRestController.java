@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -131,6 +133,13 @@ public class BusinessMyPageRestController {
         Long businessId = (Long) session.getAttribute("businessId");
 
         return myPageService.businessAllCount(businessId);
+    }
+
+    @GetMapping("replyList")
+    public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+        return myPageService.businessReplyList(businessId, boardFreeId);
     }
 
     //    현재 날짜 경로 구하기

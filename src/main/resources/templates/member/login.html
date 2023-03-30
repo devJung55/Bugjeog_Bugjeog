@@ -8,122 +8,130 @@
     <link rel="stylesheet" href="/css/member/login.css">
 </head>
 <body>
-    <div id="allPage">
-        <div class="fullPage">
-            <div class="gapWithLogin">
-                <div class="allLogIn">
-                    <div class="inside">
-                        <div class="logoPart">
+<div id="allPage">
+    <div class="fullPage">
+        <div class="gapWithLogin">
+            <div class="allLogIn">
+                <div class="inside">
+                    <div class="logoPart">
                             <span class="logo">
                                 <img src="/image/main/logo1-removebg-preview.png" class="wantedRealLogo">
                             </span>
-                        </div>
-                        <!-- 로고 아래 로그인 화면  -->
-                        <form action="" name="loginForm" method="post">
-                            <!-- 회사 모토 -->
-                                <h1 class="form-companyMoto">
-                                    현명한 거래의 시작, 북적북적
-                                </h1>
+                    </div>
+                    <!-- 로고 아래 로그인 화면  -->
+                    <form action="" name="loginForm" method="post">
+                        <!-- 회사 모토 -->
+                        <h1 class="form-companyMoto">
+                            현명한 거래의 시작, 북적북적
+                        </h1>
 
-                                        <div class="form-blankEmail" style="float: left;">
-                                            <label for="email" class="form-guideEmail">
-                                             로그인
-                                            </label>
-                                            <div class="choice-container" style="float: right;">
-                                                <div class="private-business change-effect">개인</div>
-                                                <div class="private-business">사업자</div>
-                                            </div>
-                                        </div>
-                                             <!-- 이메일 입력하는 곳 -->
-                                              <input type="email" placeholder="이메일을 입력해 주세요." name="email" class="form-input-writeEmail id-input" th:field="${memberVO.memberEmail}"> <!-- value 값 있음 -->
-                                              <p class="error-message-email"></p>
-                                              <!-- 비밀번호 입력 -->
-                                              <input type="password" placeholder="비밀번호를 입력해 주세요." name="password" class="form-input-writeEmail password-input" id="inputPW" th:field="${memberVO.memberPassword}"> <!-- value 값 있음 -->
-                                              <p class="error-message-password"></p>
-                                              <button type="button" class="form-button-countinueEmail" disabled>
+                        <div class="form-blankEmail" style="float: left;">
+                            <label for="email" class="form-guideEmail">
+                                로그인
+                            </label>
+                            <div class="choice-container" style="float: right;">
+                                <div class="private-business change-effect">개인</div>
+                                <div class="private-business">사업자</div>
+                            </div>
+                        </div>
+                        <!-- 이메일 입력하는 곳 -->
+                        <input type="email" placeholder="이메일을 입력해 주세요." name="email"
+                               class="form-input-writeEmail id-input" th:field="${memberVO.memberEmail}">
+                        <!-- value 값 있음 -->
+                        <p class="error-message-email"></p>
+                        <!-- 비밀번호 입력 -->
+                        <input type="password" placeholder="비밀번호를 입력해 주세요." name="password"
+                               class="form-input-writeEmail password-input" id="inputPW"
+                               th:field="${memberVO.memberPassword}"> <!-- value 값 있음 -->
+                        <p class="error-message-password"></p>
+                        <button type="button" class="form-button-countinueEmail" disabled>
                                                        <span class="form-button-cuntinueEmail-ment">
                                                        이메일로 로그인
                                                        </span>
-                                              </button>
-                                                    <p class="form-or">또는</p>
-                                                        <div class="form-otherLogin">
-                                                            <button type="button" class="form-google-btn">
+                        </button>
+                        <p class="form-or">또는</p>
+                        <div class="form-otherLogin">
+                            <button type="button" class="form-google-btn">
                                                                 <span class="logo-btn">
-                                                                    <img src="/image/login/naverIcon.png" class="siteLogo-naver">
+                                                                    <img src="/image/login/naverIcon.png"
+                                                                         class="siteLogo-naver">
                                                                 </span>
-                                                                    <p class="word-of-logo">
-                                                                        Naver
-                                                                    </p>
-                                                            </button>
-                                                            <a class="form-btn-other" href="https://kauth.kakao.com/oauth/authorize?client_id=e7826f87a0156e2eebbc3ef1006284d5&redirect_uri=http://localhost:10000/member/kakao-login&response_type=code">
+                                <p class="word-of-logo">
+                                    Naver
+                                </p>
+                            </button>
+                            <a class="form-btn-other"
+                               href="https://kauth.kakao.com/oauth/authorize?client_id=e7826f87a0156e2eebbc3ef1006284d5&redirect_uri=http://localhost:10000/member/kakao-login&response_type=code">
                                                                 <span class="logo-btn">
                                                                     <svg viewBox="0 0 57 56" class="siteLogo">
-                                                                        <path d="M0.5 28C0.5 12.536 13.036 0 28.5 0C43.964 0 56.5 12.536 56.5 28C56.5 43.464 43.964 56 28.5 56C13.036 56 0.5 43.464 0.5 28Z" fill="#FEE500"></path>
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 16.2063C21.5606 16.2063 15.9286 20.5812 15.9286 25.9617C15.9286 29.3183 18.1034 32.2474 21.4223 34.0326L20.0269 39.1492C20.0005 39.2509 20.006 39.3583 20.0424 39.4569C20.0788 39.5555 20.1446 39.6406 20.2307 39.7008C20.3169 39.761 20.4195 39.7934 20.5246 39.7937C20.6297 39.7939 20.7324 39.7621 20.8189 39.7023L26.9286 35.6417C27.444 35.6417 27.972 35.7297 28.5 35.7297C35.4394 35.7297 41.0714 31.3549 41.0714 25.9617C41.0714 20.5686 35.4394 16.2063 28.5 16.2063Z" fill="#181600"></path></svg>
+                                                                        <path d="M0.5 28C0.5 12.536 13.036 0 28.5 0C43.964 0 56.5 12.536 56.5 28C56.5 43.464 43.964 56 28.5 56C13.036 56 0.5 43.464 0.5 28Z"
+                                                                              fill="#FEE500"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                              d="M28.5 16.2063C21.5606 16.2063 15.9286 20.5812 15.9286 25.9617C15.9286 29.3183 18.1034 32.2474 21.4223 34.0326L20.0269 39.1492C20.0005 39.2509 20.006 39.3583 20.0424 39.4569C20.0788 39.5555 20.1446 39.6406 20.2307 39.7008C20.3169 39.761 20.4195 39.7934 20.5246 39.7937C20.6297 39.7939 20.7324 39.7621 20.8189 39.7023L26.9286 35.6417C27.444 35.6417 27.972 35.7297 28.5 35.7297C35.4394 35.7297 41.0714 31.3549 41.0714 25.9617C41.0714 20.5686 35.4394 16.2063 28.5 16.2063Z"
+                                                                              fill="#181600"></path></svg>
                                                                 </span>
-                                                                <p class="word-of-logo">Kakao</p>
-                                                            </a>
-                                                        </div>
-                                                       <!-- 계정을 잊으셨나요? 버튼 --> 
-                                                    <button type="button" class="form-forgetPlace">
-                                                        <p class="form-btn-forget">
-                                                            <a th:href="@{/member/findAccount}">계정을 잊으셨나요?</a>
-                                                        </p>
-                                                    </button> 
+                                <p class="word-of-logo">Kakao</p>
+                            </a>
+                        </div>
+                        <!-- 계정을 잊으셨나요? 버튼 -->
+                        <button type="button" class="form-forgetPlace">
+                            <p class="form-btn-forget">
+                                <a th:href="@{/member/findAccount}">계정을 잊으셨나요?</a>
+                            </p>
+                        </button>
 
-                                                    <button type="button" class="form-forgetPlace join-button">
-                                                        <p class="form-btn-forget">
-                                                            <a th:href="@{/member/join}">회원가입</a>
-                                                        </p>
-                                                    </button> 
-                                                <hr class="form-blankblank">  
-                                            <!-- 이용약관 개인정보처리방침 부분 -->
-                                            <div class="form-termsOfUse">
-                                                <a href="" class="small-btn"><!-- target있음 -->
-                                                    이용약관
-                                                </a>
-                                                <a href="" class="small-btn"><!-- target있음 -->
-                                                    개인정보처리방침
-                                                </a>
-                                            </div>
-                                        <p class="inc-btn">
-                                            ⓒ Wantedlab, Inc.
-                                        </p> 
-                                                    </form>
-                                                </div> 
-                                            </div>
-                                    </div>
-                                </div>    
-                        </form> 
-                    </div>
+                        <button type="button" class="form-forgetPlace join-button">
+                            <p class="form-btn-forget">
+                                <a href="" class="sign-up">회원가입</a>
+                            </p>
+                        </button>
+                        <hr class="form-blankblank">
+                        <!-- 이용약관 개인정보처리방침 부분 -->
+                        <div class="form-termsOfUse">
+                            <a href="" class="small-btn"><!-- target있음 -->
+                                이용약관
+                            </a>
+                            <a href="" class="small-btn"><!-- target있음 -->
+                                개인정보처리방침
+                            </a>
+                        </div>
+                        <p class="inc-btn">
+                            ⓒ Wantedlab, Inc.
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 <!-- js 수정해야함 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/member/login.js"></script>
 <script>
     const test = $(".private-business");
-    $(".join-button").click(function(){
+    $(".join-button").click(function () {
         location.href = "www.naver.com";
     });
 
-    test.each((i , e) => {
-        $(e).click(function(){
+    test.each((i, e) => {
+        $(e).click(function () {
             test.removeClass("change-effect");
             $(e).addClass("change-effect");
-                console.log($(e).text() == "개인");
-            if($(e).text() == "개인"){
+            console.log($(e).text() == "개인");
+            if ($(e).text() == "개인") {
 
 
-                $(".join-button").click(function(){
+                $(".join-button").click(function () {
                     location.href = "www.naver.com";
                     /* 개인 회원가입쪽 컨트롤러 보내주기 */
                 });
-            }else {
-                $(".join-button").click(function(){
+            } else {
+                $(".join-button").click(function () {
                     location.href = "www.goo.com";
                     /* 사업자 회원가입쪽 컨트롤러 보내주기 */
                 });
