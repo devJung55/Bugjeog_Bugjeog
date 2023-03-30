@@ -41,18 +41,27 @@ public class FreeBoardController {
     public RedirectView freeInsert(BoardFreeVO boardFreeVO){
         freeBoardService.registerBoard(boardFreeVO);
         return new RedirectView("/FreeBoards/");
+
+    }
+
+    @GetMapping("resister-reply")
+    public String replyResister(){
+        return "/board/free/detail";
     }
 
     /*댓글 등록*/
-    @GetMapping("resister-reply")
-    public void replyResister(FreeReplyVO freeReplyVO){
+    @PostMapping("resister-reply")
+    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+
         replyService.save(freeReplyVO);
+
+        return new RedirectView("/FreeBoards/detail");
     }
 
     /* 댓글 등록완료*/
     @GetMapping("reply-complate")
     public String replyAddEnd(Model model){
         model.addAttribute(new FreeReplyVO());
-        return "/FreeBoard/resister-reply";
+        return "/FreeBoards/detail";
     }
 }

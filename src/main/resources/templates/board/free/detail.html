@@ -224,8 +224,8 @@
                         <span id="my_nickname">최선규</span>
                     </div>
                     <div id="form_wrap">
-                        <form th:action="@{/FreeBoards/resister-reply}" method="post" th:object="*{FreeReplyVO}" name="form">
-                            <textarea th:field="*{replyContent}" id="reply_textarea" placeholder="댓글 남기기"></textarea>
+                        <form th:action="@{/FreeBoards/resister-reply}" method="post">
+                            <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
                             <button type="submit">
                                 <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
                             </button>
