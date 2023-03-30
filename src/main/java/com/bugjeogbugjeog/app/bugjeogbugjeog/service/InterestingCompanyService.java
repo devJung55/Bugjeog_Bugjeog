@@ -19,4 +19,7 @@ public class InterestingCompanyService {
     public int count(){
         return interestingCompanyDAO.count();
     }
+    public void interestingCompanyRemove(Long interestingCompanyId) {
+        interestingCompanyDAO.deleteByInterestingCompany(interestingCompanyId);
+    }
 }

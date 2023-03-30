@@ -295,22 +295,32 @@ public class MyPageService {
         return freeBoardDAO.getFreeBoardBusinessTotal(businessId);
     }
 
-//    //  유통업자 댓글 단 게시물 목록
-//    public BoardReplyDTO businessReplyList(Long businessId, Criteria criteria){
-//        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
-//        List<MemberVO> memberVOs = new ArrayList<>();
-//        List<BusinessVO> businessVOS = new ArrayList<>();
-//        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllBusinessMyPageReplyDTO(businessId, criteria);
-//
-//        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
-//        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
-//
-//        boardReplyDTO.setBusinessVOS(businessVOS);
-//        boardReplyDTO.setMemberVOs(memberVOs);
-//        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
-//
-//        return boardReplyDTO;
-//    };
+    //  유통업자 댓글 단 게시물 목록
+    public BoardReplyDTO businessReplyBoardFreeList(Long businessId, Criteria criteria){
+        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
+        List<MemberVO> memberVOs = new ArrayList<>();
+        List<BusinessVO> businessVOS = new ArrayList<>();
+        List<BoardFreeVO> boardFreeVOS = replyDAO.findAllBoardFreeToBusiness(businessId,criteria);
+
+        boardFreeVOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        boardFreeVOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+
+        boardReplyDTO.setBusinessVOS(businessVOS);
+        boardReplyDTO.setMemberVOS(memberVOs);
+        boardReplyDTO.setBoardFreeVOS(boardFreeVOS);
+
+        return boardReplyDTO;
+    }
+
+    // 댓글 단 게시판의 갯수
+    public Integer businessReplyBoardFreeCount(Long businessId, Criteria criteria){
+        return replyDAO.findAllBoardFreeToMember(businessId,criteria).size();
+    }
+
+    // 유통업자의 각 보드의 댓글 리스트
+    public List<FreeReplyVO> businessReplyList(Long businessId, Long boardFreeId){
+        return replyDAO.findAllFreeReplyToBusiness(businessId, boardFreeId);
+    }
 
     // 유통업자가 쓴 댓글 갯수
     public Integer businessReplyCount(Long businessId){
@@ -404,8 +414,8 @@ public class MyPageService {
     }
 
     // 좋아요 갯수 가져오기
-    public Integer getlikeCount(FreeLikeVO freeLikeVO){
-        return freeLikeDAO.getLikeCount(freeLikeVO);
+    public Integer getlikeCount(Long boardFreeId){
+        return freeLikeDAO.getLikeCount(boardFreeId);
     }
 
 }

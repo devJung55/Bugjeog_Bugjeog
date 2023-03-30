@@ -57,6 +57,6 @@ public class FreeLikeDAO {
     }
     
     // 해당 좋아요 개수
-    public Integer getLikeCount(FreeLikeVO freeLikeVO) { return freeLikeMapper.searchLike(freeLikeVO);}
+    public Integer getLikeCount(Long boardFreeId) { return freeLikeMapper.selectLikeCount(boardFreeId);}
 
 }

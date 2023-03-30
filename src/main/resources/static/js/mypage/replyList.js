@@ -54,10 +54,9 @@ function replyList(){
                                 </div>
                     `;
                     text +=  `
-                                        <a class="PostItem_body" href="">
-                                            <div><img src="/image/mypage/reply-64.png" alt=""></div>
-                                            <p class="PostItem_content reply-content" id="${boardFreeVOS[i].boardFreeId}"></p>
-                                        </a>
+                                <div class="reply-content-box" id="${boardFreeVOS[i].boardFreeId}">
+                                        
+                                </div>        
                              `;
              text +=  `           </article>
                 `;
