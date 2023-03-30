@@ -102,7 +102,6 @@ public class MemberDAO {
     // 관심업체 갯수
     public Integer getInterestingCountById(Long memberId){ return memberMapper.interestingBusinessCount(memberId);}
 
-
     /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록

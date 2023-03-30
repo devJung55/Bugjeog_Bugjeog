@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class FindEmailDTO {
-    String memberEmail;
-    String businessEmail;
+    private String memberEmail;
+    private String businessEmail;
 }

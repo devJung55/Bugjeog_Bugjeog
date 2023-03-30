@@ -393,4 +393,9 @@ public class MyPageService {
         return freeLikeDAO.findByIdBoardFreeId(freeLikeVO) == 0;
     }
 
+    // 좋아요 갯수 가져오기
+    public Integer getlikeCount(FreeLikeVO freeLikeVO){
+        return freeLikeDAO.getLikeCount(freeLikeVO);
+    }
+
 }
