@@ -30,6 +30,7 @@ public class InterestingCompanyController {
     public String company(Model model,Criteria criteria){
         HttpSession session = req.getSession();
         log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
+        model.addAttribute("memberVO",myPageService.memberInfo(1L));
         model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
 

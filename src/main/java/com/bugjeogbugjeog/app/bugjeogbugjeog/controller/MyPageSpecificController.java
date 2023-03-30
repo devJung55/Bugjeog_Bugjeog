@@ -42,6 +42,8 @@ public class MyPageSpecificController {
         log.info("들어옴");
 //        HttpSession session = req.getSession();
 //        Long businessId = (Long) session.getAttribute("businessId");
+        Long businessId = 1L;
+        businessVO = myPageService.businessInfo(businessId);
 
         String categorys = req.getParameter("categorys");
         String foods = req.getParameter("foods");
