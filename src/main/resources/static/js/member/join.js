@@ -96,7 +96,6 @@ $phone.keyup(function(){
 
 $phone.on("change", function(e) {
     if(phoneNumberCheck) {
-        joinService.sendSMS();
         $(".authcode-input").addClass("authcode-input-active");
         $(".auth-msg").show();
     }
