@@ -26,11 +26,11 @@ public class InterestingCompanyController {
     private final MyPageService myPageService;
 
     @GetMapping("company")
-    public String company(Model model){
-        log.info(interestingCompanyService.findAllToInterestingCompany().toString());
+    public String company(Model model,Criteria criteria){
+        log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
         model.addAttribute("memberVO",myPageService.memberInfo(1L));
-        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany());
-//        model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
+        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
 
         return "mypage/specific/personalFavoriteList";
     }
