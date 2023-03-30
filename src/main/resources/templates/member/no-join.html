@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/css/member/no-join.css">
+</head>
+<body>
+<div id="__next" style="height: 961px;">
+    <div class="find-end-all-wrap">
+        <div class="find-end-mid-wrap">
+            <div class="find-end-center-wrap">
+                <form th:action="@{/member/join}" name="noJoinForm">
+                    <div class="find-end-Top">
+                        <div class="find-end-right">
+                            <button type="button" class="find-right-arrow">
+                                    <span class="find-small-arrow">
+                                        <svg viewBox="0 0 18 18" class="svg-ssilta"><path d="m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"></path></svg>
+                                    </span>
+                            </button>
+                        </div>
+                        <div class="find-end-title-border">
+                            <p class="find-end-ment">로그인</p>
+                        </div>
+                        <div class="find-end-whatThis"></div>
+                    </div>
+                    <div class="find-end-titleMent">
+                        <h1 class="find-end-mentment">가입한 계정이 없습니다.</h1>
+                        <button type="submit" class="find-end-backBorder">
+                            <span class="find-end-comeBack">회원가입 하러가기</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -6,18 +6,26 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MemberService {
     private final MemberDAO memberDAO;
 
@@ -116,8 +124,6 @@ public class MemberService {
     public void businessChangePassword(String businessEmail, String businessPassword) {
         memberDAO.businessSetPassword(businessEmail, businessPassword);
     }
-
-    /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
     public List<MemberDTO> adminMemberShowList(Criteria criteria){return memberDAO.adminFindAll(criteria);}

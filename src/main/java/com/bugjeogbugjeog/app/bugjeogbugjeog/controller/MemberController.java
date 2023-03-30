@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.KakaoService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ import java.util.Base64;
 @Slf4j
 public class MemberController {
     private final MemberService memberService;
+    private final KakaoService kakaoService;
 
     //    자영업자 회원가입
     @GetMapping("join")
@@ -146,4 +148,35 @@ public class MemberController {
         httpSession.invalidate();
         return "/main/";
     }
+
+    //    카카오 로그인
+    @GetMapping("/kakao-login")
+    public String kakaoCallback(String code, HttpSession session) throws Exception {
+        log.info("code1234 : " + code);
+        String token = kakaoService.getKaKaoAccessToken(code);
+//        session.setAttribute("token", token);
+        MemberVO kakaoInfo = kakaoService.getKakaoInfo(token);
+
+        log.info("kakaoInfo : " + kakaoInfo);
+        if(memberService.checkEmail(kakaoInfo.getMemberEmail()) == 0){
+            session.setAttribute("memberVO", kakaoInfo);
+            return "redirect:no-join";
+        }
+
+        session.setAttribute("memberVO", kakaoInfo);
+        return "redirect:/main/";
+    }
+
+//    카카오 로그아웃
+    @GetMapping("/kakao-logout")
+    public String kakaoLogout(HttpSession session){
+        log.info("logout");
+        kakaoService.logoutKakao((String)session.getAttribute("token"));
+        session.invalidate();
+        return "redirect:main/";
+    }
+
+//    가입 내역 없을 시
+    @GetMapping("no-join")
+    public void noJoin() {;}
 }
