@@ -227,9 +227,10 @@
     let reviews = [[${reviews}]];
     let boards = [[${boardList}]];
     let member = [[${member}]];
+    let boardImgs = [[${boardImgs}]];
     let memberImgFullPath = [[${memberImgFullPath}]];
     console.log(board);
-    showList(board, reviews, boards, member);
+    showList(board, reviews, boards, member, boardImgs);
     $(document).ready(function () {
         // 등록 버튼 초기 색상 설정
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
@@ -252,7 +253,7 @@
         return false;
     });
 
-    function showList(board, reviews, boards, member) {
+    function showList(board, reviews, boards, member, boardImgs) {
         $('#all_wrap').empty();
         let text = ``
         text = `
@@ -269,9 +270,11 @@
                     <section id="section_info">
                         <header style="display: flex;">
                             <section id="main_img">
-                                <div style="width: 700px; height: 400px;">
-                                    <img style="width: 100%; height: 100%;" src="${board.boardBusinessImgFullPath}" alt="">
-                                </div>
+                                <div style="width: 700px; height: 400px;">`
+                                boardImgs.forEach(boardImg => {
+                                    text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`
+                                });
+                        text += `</div>
                                 <button class="main_img_btn" id="main_img_btn_left"><</button>
                                 <button class="main_img_btn" id="main_img_btn_right">></button>
                             </section>
