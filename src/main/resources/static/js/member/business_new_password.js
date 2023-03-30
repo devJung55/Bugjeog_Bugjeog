@@ -22,6 +22,7 @@
             $passwordError.hide();
             $passwordError.text("");
             passwordCheck1 = true;
+            console.log(passwordCheck1)
         }
     });
 
@@ -30,19 +31,21 @@
         if($password.val() != $passwordCheck.val()){
             $passwordCheckError.text("비밀번호를 확인해주세요.");
             passwordCheck2 = false;
+            console.log(passwordCheck2)
         }else {
             $passwordCheckError.hide();
             passwordCheck2 = true;
+            console.log(passwordCheck2)
         }
     });
 
     const $button = $(".pw-countinue-border");
 
     $button.on("click", function(e) {
-        let $form = $(document.passwordForm);
-        let memberPassword = $("input[name=memberPassword]").val();
+        let $form = $(document.businessPasswordForm);
+        let businessPassword = $("input[name=businessPassword]").val();
         if(passwordCheck1 && passwordCheck2) {
-            $form.attr("action", "/member/memberPasswordChange?memberEmail=" + memberEmail + "&memberPassword=" + memberPassword);
+            $form.attr("action", "/member/businessPasswordChange?businessEmail=" + businessEmail + "&businessPassword=" + businessPassword);
             $form.submit();
         }
     });

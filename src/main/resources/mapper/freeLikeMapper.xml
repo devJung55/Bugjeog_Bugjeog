@@ -39,6 +39,7 @@
         where board_free_id = #{boardFreeId} and (member_id = #{memberId} or business_id = #{businessId})
     </delete>
 
+    <!--갯수 업데이트-->
     <update id="likeCountUp">
         update tbl_board_free f
         set board_free_like = (select count(free_like_id) from tbl_free_like k WHERE k.board_free_id = #{boardFreeId})
@@ -48,5 +49,10 @@
     <!--좋아요 눌럿는지 확인-->
     <select id="searchLike" resultType="int">
         select count(board_free_id) from tbl_free_like where member_id = #{memberId} or business_id = #{businessId}
+    </select>
+
+    <!--좋아요 갯수-->
+    <select id="selectLikeCount">
+        select count(free_like_id) from tbl_free_like where business_id = #{businessId} or member_id = #{memberId}
     </select>
 </mapper>

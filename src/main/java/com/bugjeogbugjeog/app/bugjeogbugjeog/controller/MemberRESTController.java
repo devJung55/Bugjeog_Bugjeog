@@ -1,15 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.Base64;
 
 @RestController
 @RequiredArgsConstructor

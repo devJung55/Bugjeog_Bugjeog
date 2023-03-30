@@ -31,6 +31,10 @@
             background-color: #f7f7f7;
         }
 
+        a {
+            text-decoration: none;
+        }
+
         .find-end-mid-wrap{
             max-width: 400px;
             width: 100%;
@@ -268,4 +272,10 @@
 
         .find-end-backBorder span {
             color: #fff;
+        }
+
+        .go-to-password {
+            background-color: inherit;
+            border: none;
+            cursor: pointer;
         }
