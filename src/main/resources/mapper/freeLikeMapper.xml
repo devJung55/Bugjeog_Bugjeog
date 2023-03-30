@@ -53,6 +53,6 @@
 
     <!--좋아요 갯수-->
     <select id="selectLikeCount">
-        select count(free_like_id) from tbl_free_like where business_id = #{businessId} or member_id = #{memberId}
+        select count(free_like_id) from tbl_free_like where board_free_id = #{boardFreeId}
     </select>
 </mapper>

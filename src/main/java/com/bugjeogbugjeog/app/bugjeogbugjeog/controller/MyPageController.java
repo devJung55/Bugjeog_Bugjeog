@@ -244,14 +244,13 @@ public class MyPageController {
     @PostMapping("like/like-check")
     @ResponseBody
     public Boolean likeCheck(@RequestBody FreeLikeVO freeLikeVO){
-        log.info("들어옴");
         return myPageService.likeCheck(freeLikeVO);
     }
 
     @PostMapping("like/likeCount")
     @ResponseBody
-    public Integer getLikeCount(@RequestBody FreeLikeVO freeLikeVO){
-        return myPageService.getlikeCount(freeLikeVO);
+    public Integer getLikeCount(@RequestBody Long boardFreeId){
+        return myPageService.getlikeCount(boardFreeId);
     }
 
     //    현재 날짜 경로 구하기

@@ -92,7 +92,8 @@ $(".liked").each((i, e) => {
                 likeService.likeUp(freeLikeVO,function(){
                     $(e).attr("src", "/image/mypage/like_after.png");
                     likeService.countUp({boardFreeId : boardFreeId});
-                    likeService.count(freeLikeVO,function(result){
+                    likeService.count({boardFreeId : boardFreeId},function(result){
+                        console.log(result);
                         $($(".like-count")[i]).text(result);
                     })
                 });
@@ -100,7 +101,8 @@ $(".liked").each((i, e) => {
                 likeService.likeDown(freeLikeVO,function() {
                     $(e).attr("src", "/image/mypage/like_before.png");
                     likeService.countUp({boardFreeId: boardFreeId});
-                    likeService.count(freeLikeVO,function(result){
+                    likeService.count({boardFreeId : boardFreeId},function(result){
+                        console.log(result);
                         $($(".like-count")[i]).text(result);
                     })
                 });
