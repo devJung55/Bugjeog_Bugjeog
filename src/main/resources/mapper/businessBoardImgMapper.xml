@@ -4,7 +4,9 @@
     <insert id="insert" parameterType="boardBusinessImgVO">
         INSERT INTO tbl_board_business_img
         (board_business_id, board_business_img_original_name, board_business_img_uuid, board_business_img_path)
-        VALUES(0, '', '', '');
-
+        VALUES(#{}
+        , #{boardBusinessImgOriginalName}
+        , #{boardBusinessImgUuid}
+        , #{boardBusinessImgPath})
     </insert>
 </mapper>

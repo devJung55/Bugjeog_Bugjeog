@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,10 +34,11 @@ public class BoardImgController {
     private final BoardBusinessImgService businessBoardImgService;
 
     //    파일 저장
-    @PostMapping("/imgs/business/save")
+    @GetMapping("/imgs/business/save")
     @ResponseBody
-    public void businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
+    public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
         businessBoardImgService.write(boardBusinessImgVOs);
+        return new RedirectView("/board/business/list");
     }
 
     //    파일 업로드
