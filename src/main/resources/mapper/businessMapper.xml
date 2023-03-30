@@ -61,7 +61,7 @@
         from tbl_business b
         left join tbl_board_free tbf on b.business_id  = tbf.business_id
         left join tbl_free_reply tfr on tbf.business_id  = tfr.business_id where b.business_id = #{business_id}
-        group by b.busines_id
+        group by b.business_id
     </select>
 
     <!-- 유통 회원 수정 -->

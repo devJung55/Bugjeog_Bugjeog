@@ -36,7 +36,7 @@ public interface BusinessMapper {
     public int count();
 
     /* 관리자 유통 상세 보기 */
-    public MemberDTO adminSelectBusiness(Long memberId);
+    public BusinessDTO adminSelectBusiness(Long businessId);
 
     /* 관리자 유통 회원 수정 */
     public void update(BusinessVO businessVO);

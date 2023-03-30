@@ -52,7 +52,7 @@ public class BusinessDAO {
     public int count(){return businessMapper.count();}
 
     /* 관리자 유통 상세 보기 */
-    public MemberDTO adminFindById(Long memberId){return businessMapper.adminSelectBusiness(memberId);}
+    public BusinessDTO adminFindById(Long businessId){return businessMapper.adminSelectBusiness(businessId);}
 
     /* 관리자 유통 회원 수정 */
     public void updateById(BusinessVO businessVO){businessMapper.update(businessVO);}

@@ -72,15 +72,15 @@
 											<!--<th>수정 날짜</th>-->
 										</tr>
 									</thead>
-									<tr th:each="notice : ${noticeVO}">
+								<!--	<tr th:each="notice : ${noticeVO}">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td th:text="${notice.noticeId}"></td>
 										<td ><a th:href="@{admin-notice/{noticeId}(noticeId=${notice.noticeId})}" th:text="${notice.noticeTitle}" name="notice"></a></td>
 										<td th:text="${notice.noticeRegisterDate}"></td>
-										<!--<td>2023.02.02</td>-->
-									</tr>
+										&lt;!&ndash;<td>2023.02.02</td>&ndash;&gt;
+									</tr>-->
 									<!--<tr>
 										<td>
 											<input type="checkbox" name="check">
@@ -88,7 +88,7 @@
 										<td>2</td>
 										<td><a href="javascript:void(0)">공지사항 테스트2</a></td>
 										<td>2023.01.01</td>
-										&lt;!&ndash;<td>2023.02.02</td>&ndash;&gt;
+										<td>2023.02.02</td>
 									</tr>-->
 								</table>
 							</div>
@@ -96,9 +96,9 @@
 					</section>
 
 					<!-- 페이지 버튼 -->
-					<div class="page-button-box-layout">
+					<!--<div class="page-button-box-layout">
 						<div class="page-button-box">
-							<!-- 페이지 번호 --><!-- 페이지 버튼 -->
+							&lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;
 							<div class="page-box page-button-margin">
 								<a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
 							<span>
@@ -122,7 +122,7 @@
 								<input type="hidden" th:field="*{amount}">
 							</form>
 						</div>
-					</div>
+					</div>-->
 					<!-- 페이지 버튼 끝 -->
 				</div>
 			</div>
@@ -133,7 +133,8 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
+<script th:inline="javascript">
+	let $notices = [[${NoticeVO}]];
 	let $pageForm = $(pageForm);
 
 	$("a.changePage").on("click", function(e){
@@ -158,12 +159,44 @@
 			type: "delete",
 			data: {"checkedIds": checkedIds},
 			success: function(){
-				location.reload();
+				reload();
+			}
+		});
+	});
 
+	function showList(notices){
+		const $result = $('.info-table table');
+		var text = "";
+		notices.forEach(notice => {
+			text += `
+					<tr th:each="notice : ${noticeVO}">
+						<td>
+							<input type="checkbox" name="check">
+						</td>
+						<td th:text="${notice.noticeId}"></td>
+						<td ><a th:href="@{admin-notice/{noticeId}(noticeId=${notice.noticeId})}" th:text="${notice.noticeTitle}" name="notice"></a></td>
+						<td th:text="${notice.noticeRegisterDate}"></td>
+					</tr>
+			`
+		})
+		$result.html(text);
+	}
+
+	function reload() {
+		$.ajax({
+			url:"admin-noticeList",
+			type: "post",
+			success: function(result){
+				showList(result);
 			}
 
 		});
-	});
+	}
+
+	window.onload = reload();
+
+
+
 
 </script>
 </html>
