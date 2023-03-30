@@ -201,7 +201,7 @@ form {
     /*background-color:#f2f4f7;*/
     background-color: #36f;
     border: none;
-    cursor: default;
+    cursor: pointer;
 }
 
 .form-button-countinueEmail{

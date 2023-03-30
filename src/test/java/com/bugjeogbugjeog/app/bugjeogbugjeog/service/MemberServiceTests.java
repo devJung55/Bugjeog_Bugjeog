@@ -87,4 +87,16 @@ public class MemberServiceTests {
     public void findAccount() {
         log.info(memberService.findAccount("01012341234").toString());
     }
+
+//    자영업자 비밀번호 변경
+     @Test
+    public void changePassword() {
+        memberService.changePassword("jjy1234@naver.com", "wjdwldud1!!");
+     }
+
+//     사업자 비밀번호 변경
+     @Test
+    public void businessChangePassword() {
+        memberService.businessChangePassword("jjy1234@naver.com", "wjdwldud1!!");
+     }
 }
