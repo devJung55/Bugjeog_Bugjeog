@@ -1,10 +1,13 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ public class AdminController {
 
     private final NoticeService noticeService;
     private final MemberService memberService;
+    private final BusinessService businessService;
 
 
     /*  관리자 회원 목록 조회 */
@@ -43,43 +47,80 @@ public class AdminController {
         return "admin/admin-member";
     }
 
-/*    *//* 회원 수정 *//*
+  /*  *//* 회원 수정 *//*
+    @GetMapping("admin-memberModify/{memberId}")
+    public void adminMemberModify(@PathVariable Long memberId, Model model){
+        MemberVO memberVO = memberService.showMember(memberId);
+        model.addAttribute(new MemberVO());
+    }*/
+    
+    /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public void adminMemberModify(Model model){
-    }*/
+       /* MemberVO memberVO = memberService.showMember(memberId);*/
+        model.addAttribute(new MemberVO());
+    }
 
     /* 회원 수정 완료 */
-    @PostMapping("admin-memberModify")
+    @PatchMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("memberEmail", memberVO.getMemberEmail());
         redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
         redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
         memberService.updateMember(memberVO);
-        return new RedirectView("admin-memberList");
+        return new RedirectView("admin-member");
     }
+
+    /* 회원 삭제 */
+    @DeleteMapping("admin-deleteMember")
+    @ResponseBody
+    public void removeMember(@RequestParam("checkedIds[]") List<String> memberIds){
+        memberService.removeMember(memberIds);
+    }
+
+
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
 
-/* 유통 회원 목록 조회*//*
+    /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
+    @ResponseBody
     public void adminMemberCompanyList(){}
 
-    */
-/* 유통 회원 상세 보기 *//*
+    /* 유통 회원 상세 보기 */
 
-    @GetMapping("admin-member-company")
-    public void adminMemberCompany(){}
+    @GetMapping("admin-member-company/{businessId}")
+    public String adminMemberCompany(@PathVariable Long businessId, Model model){
+        model.addAttribute(businessService.showBusiness(businessId));
+        return "admin/admin-member-company";
+    }
 
-    */
-/* 유통 회원 수정 *//*
 
+    /* 유통 회원 수정 */
     @GetMapping("admin-member-companyModify")
-    public void adminMemberCompanyModify(){}
-*/
+    public void adminMemberCompanyModify(/*Model model*/){
+        /*model.addAttribute(new BusinessVO());*/
+    }
+/*
+    /* 유통 회원 수정 완료*/
+    @PatchMapping("admin-member-companyModify")
+    public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("businessCompanyName", businessVO.getBusinessCompanyName());
+        redirectAttributes.addAttribute("businessNumber",businessVO.getBusinessNumber());
+        redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
+        businessService.setBusiness(businessVO);
+        return new RedirectView("admin-member-companyList");
+    }
+
 
     /* 유통 회원 삭제 */
+    @DeleteMapping("admin-deleteBusiness")
+    @ResponseBody
+    public void removeBusiness(@RequestParam("checkedIds[]")  List<String> businessIds){
+        businessService.removeBusiness(businessIds);
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
@@ -115,7 +156,7 @@ public class AdminController {
     }
 
     /* 공지사항 삭제 */
-    @DeleteMapping("admin-delete")
+    @DeleteMapping("admin-deleteNotice")
     @ResponseBody
     public void removeNotice(@RequestParam("checkedIds[]") List<String> noticeIds){
         noticeService.remove(noticeIds);

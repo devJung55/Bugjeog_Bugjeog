@@ -1,6 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +22,24 @@ public interface BusinessMapper {
 
     // 회원 탈퇴
     public void withdraw(Long businessId);
+
+    // 해당 업체의 평점
+    public Double reviewGrade(Long businessId);
+
+    // 해당 업체 리뷰 개수
+    public Integer reviewCount(Long businessId);
+
+    /* 관리자 유통 목록 ------------------------------------------------------------ */
+    public List<BusinessDTO> adminSelectAllBusiness(Criteria criteria);
+
+    /* 관리자 카운트 */
+    public int count();
+
+    /* 관리자 유통 상세 보기 */
+    public MemberDTO adminSelectBusiness(Long memberId);
+
+    /* 관리자 유통 회원 수정 */
+    public void update(BusinessVO businessVO);
+
+
 }

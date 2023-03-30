@@ -50,9 +50,9 @@ function likedList() {
                            <div class="PostItem_like">
                                <label>
                                    <button style="display: none;"></button>
-                                   <img src="/image/mypage/like_after.png" class="liked" alt="">
+                                   <img src="/image/mypage/like_after.png" class="liked" id="${freeVOs[i].boardFreeId}">
                                </label>
-                                   <span class="button_count">${freeVOs[i].boardFreeLike}</span>
+                                   <span class="button_count like-count">${freeVOs[i].boardFreeLike}</span>
                            </div>
                            <div class="PostItem_comments">
                                <img src="/image/mypage/comment-dots-64.png">

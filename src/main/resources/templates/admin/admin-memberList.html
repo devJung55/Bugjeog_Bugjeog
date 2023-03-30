@@ -40,11 +40,11 @@
 			<div class="container">
 				<div class="container-margin">
 					<!-- 헤더 -->
-					<!--<div class="delete-box-layout">
+					<<div class="delete-box-layout">
 							<div class="delete-box">
 								<button class="delete-button">선택 게시물 삭제</button>
 							</div>
-					</div>-->
+					</div>
 					
 					<!-- 내용 섹션 -->
 					<section class="board-info-box-layout">
@@ -128,6 +128,28 @@
 		e.preventDefault();
 		$pageForm.find("input[name='pageNum']").val($(this).attr("href"));
 		$pageForm.submit();
+	});
+
+
+	/* delete 버튼 클릭 시 ajax실행*/
+	$('.delete-button').on('click', function() {
+		var checkedIds = new Array();
+		// 체크 박스 체크된 값
+		$('input:checkbox[name=check]:checked').parent().next().each(function(){
+			console.log(this.innerText);
+			checkedIds.push(this.innerText);
+		});
+
+		console.log(checkedIds);
+
+		$.ajax({
+			url: "/admin/admin-deleteMember",
+			type: "delete",
+			data: {"checkedIds": checkedIds},
+			success: function(){
+				location.reload();
+			}
+		});
 	});
 </script>
 </html>

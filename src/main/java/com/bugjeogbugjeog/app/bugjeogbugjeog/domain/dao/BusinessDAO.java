@@ -1,6 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -30,5 +33,29 @@ public class BusinessDAO {
     public void removeById(Long businessId){
         businessMapper.withdraw(businessId);
     }
+
+    // 해당 업체의 평점
+    public Double getReviewGrade(Long businessId){
+        return businessMapper.reviewGrade(businessId);
+    }
+
+    // 해당 업체의 리뷰 개수
+    public Integer getReviewCount(Long businessId){
+        return businessMapper.reviewCount(businessId);
+    }
+
+    /* ------------------------------------------------------------ */
+    /* 관리자 유통 목록 */
+    public List<BusinessDTO> adminFindAll(Criteria criteria){ return businessMapper.adminSelectAllBusiness(criteria);}
+
+    /* 관리자 카운트 */
+    public int count(){return businessMapper.count();}
+
+    /* 관리자 유통 상세 보기 */
+    public MemberDTO adminFindById(Long memberId){return businessMapper.adminSelectBusiness(memberId);}
+
+    /* 관리자 유통 회원 수정 */
+    public void updateById(BusinessVO businessVO){businessMapper.update(businessVO);}
+
 
 }
