@@ -88,7 +88,9 @@ public class BusinessMyPageService {
 
     // 유통업자 회원 탈퇴
     public void businessWithdraw(Long businessId){
-        businessDAO.removeById(businessId);
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessStatus(0L);
+        businessDAO.updateLocation(businessVO);
     }
 
     // 유통업자 자유게시판 목록 가져오기

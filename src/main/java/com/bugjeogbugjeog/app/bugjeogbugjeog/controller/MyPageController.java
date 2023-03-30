@@ -44,6 +44,7 @@ public class MyPageController {
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
     }
 
+    // 회원 탈퇴 페이지
     @GetMapping("exit")
     public void exit(Model model){
         HttpSession session = req.getSession();
@@ -52,6 +53,7 @@ public class MyPageController {
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
     }
 
+    // 회원 탈퇴
     @PostMapping("withdraw")
     public RedirectView withdraw(){
         HttpSession session = req.getSession();

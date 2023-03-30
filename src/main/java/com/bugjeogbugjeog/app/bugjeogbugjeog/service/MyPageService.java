@@ -34,7 +34,11 @@ public class MyPageService {
     }
 
     //    회원 탈퇴
-    public void memberWithdraw(Long memberId) { memberDAO.deleteById(memberId);}
+    public void memberWithdraw(Long memberId) {
+        MemberVO memberVO = memberDAO.findById(memberId);
+        memberVO.setMemberStatus(0L);
+        memberDAO.updateById(memberVO);
+    }
 
     //    파일 저장
     public void fileSave(MemberVO member){
