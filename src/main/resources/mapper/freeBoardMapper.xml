@@ -10,8 +10,8 @@
     <select id="freeList" resultType="boardFreeVO">
         select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
         from tbl_board_free where member_id = #{memberId}
-        limit #{criteria.startRow}, #{criteria.amount}
     </select>
+         <!-- limit #{criteria.startRow}, #{criteria.amount}-->
 
     <!--유통업체 자유게시판 게시판 갯수-->
     <select id="businessFreeCount" resultType="int">
@@ -33,5 +33,9 @@
     </insert>
 
     <!---->
+    <select id="selectAll" resultType="boardFreeVO">
+        select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
+        from tbl_board_free
+    </select>
 
 </mapper>
