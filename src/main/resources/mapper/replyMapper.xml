@@ -52,4 +52,3 @@
         select board_free_id, member_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where member_id = #{memberId} and board_free_id = #{boardFreeId};
     </select>
 </mapper>
-</mapper>
