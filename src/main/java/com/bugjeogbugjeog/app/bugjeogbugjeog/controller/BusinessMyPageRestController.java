@@ -138,6 +138,7 @@ public class BusinessMyPageRestController {
     public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
+
         return businessMyPageService.businessReplyList(businessId, boardFreeId);
     }
 

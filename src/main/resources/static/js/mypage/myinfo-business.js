@@ -18,7 +18,7 @@ $("input[name='file']").on("change", function (e) {
             globalThis.uuid = uuid;
             if ($file.type.startsWith("image")) {
                 $fileModal.show();
-                $(".file-modal-image").attr("src", `/mypage/profile/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
+                $(".file-modal-image").attr("src", `/myPages/business/display?fileName=${toStringByFormatting(new Date())}/t_${uuid}_${$file.name}`);
             } else {
                 alert("이미지 파일만 넣어주세요.");
             }
@@ -42,7 +42,7 @@ $(".image-save-button").on("click", function () {
         contentType: "application/json; charset=utf-8",
         success: function () {
             $fileModal.hide();
-            $(".img_profile").attr("src", `/mypages/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
+            $(".img_profile").attr("src", `/myPages/business/display?fileName=${toStringByFormatting(new Date())}/${uuid}_${$file.name}`);
         }
     });
 });

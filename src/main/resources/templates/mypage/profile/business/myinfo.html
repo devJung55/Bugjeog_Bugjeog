@@ -381,7 +381,7 @@
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
     if (businessVO.businessImgUuid != null) {
-        $(".img_profile").attr("src", `/mypages/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
+        $(".img_profile").attr("src", `/myPages/business/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
     }
 
     $(".phoneNumber").text(phoneNumber(businessVO.businessPhoneNumber));
