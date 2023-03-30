@@ -1,12 +1,11 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessMyPageService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,6 +27,7 @@ import java.util.UUID;
 public class BusinessMyPageRestController {
 
     private final HttpServletRequest req;
+    private final BusinessMyPageService businessMyPageService;
     private final MyPageService myPageService;
 
     @PostMapping("upload-file")
@@ -55,7 +56,7 @@ public class BusinessMyPageRestController {
     //    파일 저장
     @PatchMapping("file-business-save")
     public void fileSave(@RequestBody BusinessVO business){
-        myPageService.businessFileSave(business);
+        businessMyPageService.businessFileSave(business);
     }
 
     //    이름 변경
@@ -64,7 +65,7 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.updateBusinessCeoName(businessId, businessCeoName);
+        businessMyPageService.updateBusinessCeoName(businessId, businessCeoName);
         return businessCeoName;
     }
 
@@ -74,7 +75,7 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        return myPageService.businessInfo(businessId);
+        return businessMyPageService.businessInfo(businessId);
     }
 
     //    핸드폰 중복검사
@@ -89,7 +90,7 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.updateBusinessPhoneNumber(businessId, businessPhoneNumber);
+        businessMyPageService.updateBusinessPhoneNumber(businessId, businessPhoneNumber);
         return businessPhoneNumber;
     }
 
@@ -98,13 +99,13 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.updateBusinessCompanyName(businessId, businessCompanyName);
+        businessMyPageService.updateBusinessCompanyName(businessId, businessCompanyName);
         return businessCompanyName;
     }
 
     @GetMapping("businessNumber-check")
     public Boolean businessNumberCheck(@RequestParam("businessNumber") String businessNumber){
-        return myPageService.businessNumberCheck(businessNumber);
+        return businessMyPageService.businessNumberCheck(businessNumber);
     }
 
     @PatchMapping("businessNumber-update")
@@ -112,7 +113,7 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.businessNumberUpdate(businessId, businessNumber);
+        businessMyPageService.businessNumberUpdate(businessId, businessNumber);
         return businessNumber;
     }
 
@@ -121,7 +122,7 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.businessPasswordUpdate(businessId, businessPassword);
+        businessMyPageService.businessPasswordUpdate(businessId, businessPassword);
     }
 
     // 각 게시물 작성 갯수
@@ -130,7 +131,14 @@ public class BusinessMyPageRestController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        return myPageService.businessAllCount(businessId);
+        return businessMyPageService.businessAllCount(businessId);
+    }
+
+    @GetMapping("replyList")
+    public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
+        HttpSession session = req.getSession();
+        Long businessId = (Long) session.getAttribute("businessId");
+        return businessMyPageService.businessReplyList(businessId, boardFreeId);
     }
 
     //    현재 날짜 경로 구하기

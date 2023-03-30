@@ -80,6 +80,16 @@ public class MemberDAO {
         memberMapper.businessUpdatePassword(businessEmail, businessPassword);
     }
 
+//    자영업자 계정 상태 조회
+    public Integer findForStatus(String memberEmail) {
+        return memberMapper.selectForStatus(memberEmail);
+    }
+
+//    사업자 계정 상태 조회
+    public Integer businessFindForStatus(String businessEmail) {
+        return memberMapper.businessSelectForStatus(businessEmail);
+    }
+
     /*-----------------------------------------------------------------------------*/
     //    회원정보 조회
     public MemberVO findById(Long memberId){return memberMapper.select(memberId);};

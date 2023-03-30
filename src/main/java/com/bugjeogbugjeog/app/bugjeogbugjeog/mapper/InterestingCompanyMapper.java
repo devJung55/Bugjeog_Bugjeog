@@ -10,7 +10,9 @@ import java.util.List;
 public interface InterestingCompanyMapper {
     //         관심업체 리스트
     public List<InterestingCompanyDTO> selectInterestingCompany(Criteria criteria);
+    
 //    갯수 가져오기
     public int count();
 
+    public void deleteByInterestingCompany(Long interestingCompanyId);
 }

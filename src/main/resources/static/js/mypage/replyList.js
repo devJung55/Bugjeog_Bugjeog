@@ -2,7 +2,7 @@ const $replyList = $(".reply-list");
 
 function replyList(){
     let text = "";
-    if(replyDTOs.length == 0){
+    if(boardFreeVOS.length == 0){
         text += `
                 <article class="PostItem_wrapper no-content">
                 <div style="text-align: center;">
@@ -11,9 +11,9 @@ function replyList(){
                 </article>
             `;
     }else {
-
-        for (var i = 0; i < replyDTOs.length; i++) {
+        for (var i = 0; i < boardFreeVOS.length; i++) {
             let memberIdCheck = memberVOs[i] == null;
+
             text += `
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
@@ -46,20 +46,22 @@ function replyList(){
             }
             text += `                      </div>
                                                 <div>
-                                                    <span class="AuthorBox_createAt">${date(replyDTOs[i].boardFreeRegisterDate)}</span>
+                                                    <span class="AuthorBox_createAt">${date(boardFreeVOS[i].boardFreeRegisterDate)}</span>
                                                 </div>
                                             </div>
-                                            <h3 class="Author_title">${replyDTOs[i].boardFreeTitle}</h3>
+                                            <h3 class="Author_title">${boardFreeVOS[i].boardFreeTitle}</h3>
                                         </div>
                                 </div>
-                                <a class="PostItem_body" href="">
-                                    <div><img src="/image/mypage/reply-64.png" alt=""></div>
-                                    <p class="PostItem_content">${replyDTOs[i].replyContent}</p>
-                                </a>
-                            </article>
+                    `;
+                    text +=  `
+                                <div class="reply-content-box" id="${boardFreeVOS[i].boardFreeId}">
+                                        
+                                </div>        
+                             `;
+             text +=  `           </article>
                 `;
         }
     }
     $replyList.append(text);
 }
-replyList();
+    replyList();

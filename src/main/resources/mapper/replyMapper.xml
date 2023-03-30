@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.ReplyMapper">
-    <!-- 이용자가 댓글 단 목록-->
-    <select id="replyList" resultType="myPageReplyDTO">
-        select  r.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like,reply_content, reply_register_date, reply_update_date, f.member_id, f.business_id
-        from tbl_free_reply r join tbl_board_free f
-        on r.board_free_id = f.board_free_id and r.member_id = #{memberId}
-        limit #{criteria.startRow}, #{criteria.amount}
-    </select>
-
     <!-- 이용자의 댓글 갯수-->
     <select id="replyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where member_id = #{memberId}
@@ -21,21 +13,39 @@
         VALUES(#{memberId}, #{businessId}, #{replyContent},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
     </insert>
 
-    <!-- 게시물의 댓글 개수-->
-    <select id="boardReplyCount" resultType="int">
-        select count(reply_id) from tbl_free_reply where board_free_id = #{boardFreeId}
-    </select>
-
-    <!-- 유통업자의 댓글 단 목록-->
-    <select id="businessReplyList" resultType="myPageReplyDTO">
-        select  r.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like,reply_content, reply_register_date, reply_update_date, f.member_id, f.business_id
-        from tbl_free_reply r join tbl_board_free f
-        on r.board_free_id = f.board_free_id and r.business_id = #{businessId}
-        limit #{criteria.startRow}, #{criteria.amount}
-    </select>
-
     <!-- 유통업자의 댓글 갯수-->
     <select id="businessReplyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where business_id = #{businessId}
+    </select>
+
+    <!-- 보드 게시판 리스트 -->
+    <select id="selectAll" resultType="boardFreeVO">
+        select t.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, t.member_id, t.business_id from tbl_board_free t join
+        (select board_free_id from tbl_free_reply  where member_id = #{memberId} group by board_free_id) f
+        on t.board_free_id  = f.board_free_id
+        limit #{criteria.startRow}, #{criteria.amount}
+    </select>
+
+    <!-- 댓글 리스트-->
+    <select id="replyAllList" resultType="freeReplyVO">
+        select board_free_id, member_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where member_id = #{memberId} and board_free_id = #{boardFreeId};
+    </select>
+
+    <!-- 유통업자 보드 게시판 리스트 -->
+    <select id="businessSelectAll" resultType="boardFreeVO">
+        select t.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, t.member_id, t.business_id from tbl_board_free t join
+        (select board_free_id from tbl_free_reply  where business_id = #{businessId} group by board_free_id) f
+        on t.board_free_id  = f.board_free_id
+        limit #{criteria.startRow}, #{criteria.amount}
+    </select>
+
+    <!-- 유통업자 댓글 리스트-->
+    <select id="businessReplyAllList" resultType="freeReplyVO">
+        select board_free_id, member_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where business_id = #{businessId} and board_free_id = #{boardFreeId};
+    </select>
+
+    <!-- 게시물의 댓글 개수-->
+    <select id="boardReplyCount" resultType="int">
+        select count(reply_id) from tbl_free_reply where board_free_id = #{boardFreeId}
     </select>
 </mapper>

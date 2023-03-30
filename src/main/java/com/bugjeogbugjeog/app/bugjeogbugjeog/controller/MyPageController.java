@@ -3,9 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeLikeVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +22,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -163,20 +163,27 @@ public class MyPageController {
         model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.inquireCount(memberId)));
         model.addAttribute("inquireCount", myPageService.inquireCount(memberId));
     }
-
-    // 댓글 단 리스트
+    
+    // 댓글 단 게시판 정보
     @GetMapping("commentList")
     public void replyList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
         Long memberId = (Long) session.getAttribute("memberId");
-
-        BoardReplyDTO boardReplyDTO = myPageService.replyList(memberId,criteria);
+        BoardReplyDTO boardReplyDTO = myPageService.replyBoardFreeList(memberId,criteria);
 
         model.addAttribute("memberVO",myPageService.memberInfo(memberId));
-        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
-        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
-        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.replyCount(memberId)));
+        model.addAttribute("memberVOs", boardReplyDTO.getMemberVOS());
+        model.addAttribute("businessVOs", boardReplyDTO.getBusinessVOS());
+        model.addAttribute("boardFreeVOS",boardReplyDTO.getBoardFreeVOS());
+        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.replyBoardFreeCount(memberId, criteria)));
+    }
+
+    @GetMapping("replyList")
+    @ResponseBody
+    public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
+        HttpSession session = req.getSession();
+        Long memberId = (Long) session.getAttribute("memberId");
+        return myPageService.replyList(memberId, boardFreeId);
     }
 
     // 자유게시판 작성 목록
@@ -214,37 +221,6 @@ public class MyPageController {
         Long memberId = (Long) session.getAttribute("memberId");
 
         return myPageService.allcount(memberId);
-    }
-
-    @PostMapping("like/likeUp")
-    @ResponseBody
-    public void likeInsert(@RequestBody FreeLikeVO freeLikeVO) {
-        myPageService.likeInsert(freeLikeVO);
-    }
-
-    @DeleteMapping("like/likeDown")
-    @ResponseBody
-    public void likeDown(@RequestBody FreeLikeVO freeLikeVO){
-        myPageService.likeDown(freeLikeVO);
-    }
-
-    @PatchMapping("like/likeCountUpdate")
-    @ResponseBody
-    public void businessLikeCountUpdate(@RequestParam("boardFreeId") Long boardFreeId){
-        myPageService.countUp(boardFreeId);
-    }
-
-    @PostMapping("like/like-check")
-    @ResponseBody
-    public Boolean likeCheck(@RequestBody FreeLikeVO freeLikeVO){
-        log.info("들어옴");
-        return myPageService.likeCheck(freeLikeVO);
-    }
-
-    @PostMapping("like/likeCount")
-    @ResponseBody
-    public Integer getLikeCount(@RequestBody FreeLikeVO freeLikeVO){
-        return myPageService.getlikeCount(freeLikeVO);
     }
 
     //    현재 날짜 경로 구하기

@@ -4,7 +4,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessMyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,14 +24,14 @@ import java.util.Map;
 public class BusinessMyPageController {
 
     private final HttpServletRequest req;
-    private final MyPageService myPageService;
+    private final BusinessMyPageService businessMyPageService;
 
     // 유통업체 정보
     @GetMapping("myinfo")
     public void myInfoBusiness(Model model){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
     @GetMapping("exit")
@@ -41,7 +39,7 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        model.addAttribute("businessVO",myPageService.businessInfo(4L));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(4L));
     }
 
     @PostMapping("businessWithdraw")
@@ -49,7 +47,7 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        myPageService.businessWithdraw(businessId);
+        businessMyPageService.businessWithdraw(businessId);
         return new RedirectView("/main/main");
     }
 
@@ -59,24 +57,23 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
-        model.addAttribute("boardFreeVO", myPageService.businessFreeBoardList(businessId,criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessFreeCount(businessId)));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
+        model.addAttribute("boardFreeVO", businessMyPageService.businessFreeBoardList(businessId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessFreeCount(businessId)));
     }
 
-    // 댓글 단 리스트
+    // 댓글 단 게시판 정보
     @GetMapping("commentList")
     public void replyList(Model model, Criteria criteria){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
+        BoardReplyDTO boardReplyDTO = businessMyPageService.businessReplyBoardFreeList(businessId,criteria);
 
-        BoardReplyDTO boardReplyDTO = myPageService.businessReplyList(businessId,criteria);
-
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
-        model.addAttribute("memberVOs",boardReplyDTO.getMemberVOs() );
-        model.addAttribute("businessVOs",boardReplyDTO.getBusinessVOS() );
-        model.addAttribute("replyDTOs",boardReplyDTO.getMyPageReplyDTOS() );
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessReplyCount(businessId)));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
+        model.addAttribute("memberVOs", boardReplyDTO.getMemberVOS());
+        model.addAttribute("businessVOs", boardReplyDTO.getBusinessVOS());
+        model.addAttribute("boardFreeVOS",boardReplyDTO.getBoardFreeVOS());
+        model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessReplyBoardFreeCount(businessId, criteria)));
     }
 
     // 좋아요 한 게시물목록
@@ -85,14 +82,14 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        BoardFreeLikeDTO boardFreeLikeDTO = myPageService.businessLikeList(businessId, criteria);
+        BoardFreeLikeDTO boardFreeLikeDTO = businessMyPageService.businessLikeList(businessId, criteria);
 
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
         model.addAttribute("memberVOs", boardFreeLikeDTO.getMemberVOs());
         model.addAttribute("replyCounts", boardFreeLikeDTO.getBoardReplyCounts());
         model.addAttribute("businessVOs", boardFreeLikeDTO.getBusinessVOS());
         model.addAttribute("freeVOs", boardFreeLikeDTO.getBoardFreeVOs());
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessLikeCount(businessId)));
+        model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessLikeCount(businessId)));
     }
 
     // faq 리스트
@@ -101,10 +98,12 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        model.addAttribute("businessVO",myPageService.businessInfo(businessId));
-        model.addAttribute("inquireDTO",myPageService.businessInquireList(businessId,criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, myPageService.businessInquireCount(businessId)));
-        model.addAttribute("inquireCount", myPageService.inquireCount(businessId));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
+        model.addAttribute("inquireDTO", businessMyPageService.businessInquireList(businessId,criteria));
+        model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessInquireCount(businessId)));
+        model.addAttribute("inquireCount", businessMyPageService.businessInquireCount(businessId));
     }
+
+
 
 }

@@ -117,11 +117,11 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
-    let replyDTOs = [[${replyDTOs}]];
+    let boardFreeVOS = [[${boardFreeVOS}]];
     let memberVOs = [[${memberVOs}]];
     let businessVOs = [[${businessVOs}]];
 
-    if(replyDTOs.length == 0){
+    if(boardFreeVOS.length == 0){
         $(".page-box").hide();
         $(".no-content").show();
     }else {
@@ -132,4 +132,46 @@
 <script src="/js/mypage/memberList.js"></script>
 <script src="/js/mypage/count.js"></script>
 <script src="/js/mypage/replyList.js"></script>
+<script>
+    let replyService = (function(){
+
+        function replyContent(data, callback){
+            $.ajax({
+                url: "/mypage/profile/replyList",
+                type: "get",
+                data: data,
+                success : function(result){
+                    if(callback){
+                        callback(result);
+                    }
+                }
+            })
+        }
+
+        return { replyContent : replyContent }
+    })();
+
+    let $replyContentBox = $(".reply-content-box");
+
+
+    $replyContentBox.each((i, e) => {
+        let boardFreeId = $(e).attr("id");
+        replyService.replyContent({
+            boardFreeId : boardFreeId
+        }, function(result){
+            let text = "";
+            let length = result.length;
+            for(var i =0; i < length; i++){
+                text+= `
+                            <a class="PostItem_body" href="">
+                                 <div><img src="/image/mypage/reply-64.png" alt=""></div>
+                                 <p class="PostItem_content reply-content">${result[i].replyContent}</p>
+                            </a>
+                    `;
+            }
+
+            $(e).append(text);
+        })
+    });
+</script>
 </html>

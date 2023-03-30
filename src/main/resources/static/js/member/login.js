@@ -155,7 +155,15 @@ $pw.change(function(){
     check2=false;
 })
 
-// $loginBt.removeAttr("disabled");
+
+/*-------------------------- 회원가입 a href 이벤트 --------------------------*/
+
+
+const $signUpButton = $(".sign-up");
+
+$signUpButton.on("click", function(e) {
+    $(this).attr("href", flag == "개인" ? "/member/join" : "/member/business-join");
+});
 
 
 /*-------------------------- 로그인 form submit 이벤트 --------------------------*/
@@ -177,8 +185,10 @@ $whichForm.each((i, v) => {
     $(v).on("click", function(e) {
         if($(v).text() == "개인") {
             flag = "개인";
+            console.log(flag);
         } else {
             flag = "사업자";
+            console.log(flag);
         }
     })
 });

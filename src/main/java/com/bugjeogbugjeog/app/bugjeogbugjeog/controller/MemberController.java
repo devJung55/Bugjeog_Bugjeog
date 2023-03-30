@@ -52,13 +52,16 @@ public class MemberController {
         memberVO.setMemberPassword(new String(Base64.getEncoder().encode(memberVO.getMemberPassword().getBytes())));
 
         Long memberId = memberService.login(memberVO);
+        Integer memberStatus = memberService.findForStatus(memberVO.getMemberEmail());
 
         if(memberId == null) {
             return new RedirectView("/member/login?check=false");
-        } else {
-            httpSession.setAttribute("memberId", memberId);
-            return new RedirectView("/main/");
+        } else if(memberStatus != 1) {
+            return new RedirectView("/member/login?check=false");
         }
+
+        httpSession.setAttribute("memberId", memberId);
+        return new RedirectView("/main/");
     }
 
     //    유통업체 회원가입
@@ -79,13 +82,16 @@ public class MemberController {
     @PostMapping("business-login")
     public RedirectView businessLogin(@RequestParam String memberEmail, @RequestParam String memberPassword, HttpSession httpSession) {
         Long businessId = memberService.businessLongin(memberEmail, new String(Base64.getEncoder().encode(memberPassword.getBytes())));
+        Integer businessStatus = memberService.businessFindForStatus(memberEmail);
 
         if(businessId == null) {
             return new RedirectView("/member/login?check=false");
-        } else {
-            httpSession.setAttribute("businessId", businessId);
-            return new RedirectView("/main/");
+        } else if(businessStatus != 1) {
+            return new RedirectView("/member/login?check=false");
         }
+        
+        httpSession.setAttribute("businessId", businessId);
+        return new RedirectView("/main/");
     }
 
     //    계정 찾기
