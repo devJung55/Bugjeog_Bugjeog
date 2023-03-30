@@ -160,22 +160,32 @@ public class MyPageService {
         return freeLikeDAO.getCountToLike(memberId);
     }
 
-    //  댓글 단 게시물 목록
-    public BoardReplyDTO replyList(Long memberId, Criteria criteria){
+    // 댓글 달린 보드 리스트
+    public BoardReplyDTO replyBoardFreeList(Long memberId, Criteria criteria){
         BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
         List<MemberVO> memberVOs = new ArrayList<>();
         List<BusinessVO> businessVOS = new ArrayList<>();
-        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllMyPageReplyDTO(memberId, criteria);
+        List<BoardFreeVO> boardFreeVOS = replyDAO.findAllBoardFreeToMember(memberId,criteria);
 
-        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
-        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+        boardFreeVOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+        boardFreeVOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
 
         boardReplyDTO.setBusinessVOS(businessVOS);
-        boardReplyDTO.setMemberVOs(memberVOs);
-        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
+        boardReplyDTO.setMemberVOS(memberVOs);
+        boardReplyDTO.setBoardFreeVOS(boardFreeVOS);
 
         return boardReplyDTO;
-    };
+    }
+
+    // 댓글 단 게시판의 갯수
+    public Integer replyBoardFreeCount(Long memberId, Criteria criteria){
+        return replyDAO.findAllBoardFreeToMember(memberId,criteria).size();
+    }
+
+    // 각 보드의 댓글 리스트
+    public List<FreeReplyVO> replyList(Long memberId, Long boardFreeId){
+        return replyDAO.findAllFreeReplyToMember(memberId, boardFreeId);
+    }
 
     // 댓글 갯수
     public Integer replyCount(Long memberId){
@@ -285,22 +295,22 @@ public class MyPageService {
         return freeBoardDAO.getFreeBoardBusinessTotal(businessId);
     }
 
-    //  유통업자 댓글 단 게시물 목록
-    public BoardReplyDTO businessReplyList(Long businessId, Criteria criteria){
-        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
-        List<MemberVO> memberVOs = new ArrayList<>();
-        List<BusinessVO> businessVOS = new ArrayList<>();
-        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllBusinessMyPageReplyDTO(businessId, criteria);
-
-        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
-        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
-
-        boardReplyDTO.setBusinessVOS(businessVOS);
-        boardReplyDTO.setMemberVOs(memberVOs);
-        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
-
-        return boardReplyDTO;
-    };
+//    //  유통업자 댓글 단 게시물 목록
+//    public BoardReplyDTO businessReplyList(Long businessId, Criteria criteria){
+//        BoardReplyDTO boardReplyDTO = new BoardReplyDTO();
+//        List<MemberVO> memberVOs = new ArrayList<>();
+//        List<BusinessVO> businessVOS = new ArrayList<>();
+//        List<MyPageReplyDTO> myPageReplyDTOS = replyDAO.findAllBusinessMyPageReplyDTO(businessId, criteria);
+//
+//        myPageReplyDTOS.stream().map(data -> data.getMemberId()).forEach(data -> memberVOs.add(memberDAO.findById(data)));
+//        myPageReplyDTOS.stream().map(data -> data.getBusinessId()).forEach(data -> businessVOS.add(businessDAO.findByIdToBusiness(data)));
+//
+//        boardReplyDTO.setBusinessVOS(businessVOS);
+//        boardReplyDTO.setMemberVOs(memberVOs);
+//        boardReplyDTO.setMyPageReplyDTOS(myPageReplyDTOS);
+//
+//        return boardReplyDTO;
+//    };
 
     // 유통업자가 쓴 댓글 갯수
     public Integer businessReplyCount(Long businessId){

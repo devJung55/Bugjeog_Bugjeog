@@ -38,4 +38,17 @@
     <select id="businessReplyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where business_id = #{businessId}
     </select>
+
+    <!-- 보드 게시판 리스트 -->
+    <select id="selectAll" resultType="boardFreeVO">
+        select t.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, t.member_id, t.business_id from tbl_board_free t join
+        (select board_free_id from tbl_free_reply  where member_id = #{memberId} group by board_free_id) f
+        on t.board_free_id  = f.board_free_id
+        limit #{criteria.startRow}, #{criteria.amount}
+    </select>
+
+    <!-- 댓글 리스트-->
+    <select id="replyAllList" resultType="freeReplyVO">
+        select board_free_id, member_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where member_id = #{memberId} and board_free_id = #{boardFreeId};
+    </select>
 </mapper>

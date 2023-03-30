@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 @Data
 public class BoardReplyDTO {
-    private List<MemberVO> memberVOs;
+    private List<MemberVO> memberVOS;
     private List<BusinessVO> businessVOS;
-    private List<MyPageReplyDTO> myPageReplyDTOS;
+    private List<BoardFreeVO> BoardFreeVOS;
 }
