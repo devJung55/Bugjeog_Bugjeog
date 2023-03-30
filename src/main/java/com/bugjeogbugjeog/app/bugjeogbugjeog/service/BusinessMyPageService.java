@@ -120,7 +120,7 @@ public class BusinessMyPageService {
 
     // 댓글 단 게시판의 갯수
     public Integer businessReplyBoardFreeCount(Long businessId, Criteria criteria){
-        return replyDAO.findAllBoardFreeToMember(businessId,criteria).size();
+        return replyDAO.findAllBoardFreeToBusiness(businessId,criteria).size();
     }
 
     // 유통업자의 각 보드의 댓글 리스트

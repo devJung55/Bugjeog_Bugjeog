@@ -39,7 +39,7 @@ public class BusinessMyPageController {
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        model.addAttribute("businessVO", businessMyPageService.businessInfo(4L));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
     @PostMapping("businessWithdraw")
@@ -73,6 +73,7 @@ public class BusinessMyPageController {
         model.addAttribute("memberVOs", boardReplyDTO.getMemberVOS());
         model.addAttribute("businessVOs", boardReplyDTO.getBusinessVOS());
         model.addAttribute("boardFreeVOS",boardReplyDTO.getBoardFreeVOS());
+        log.info("사이즈: :::::::::::::::::::::::" + businessMyPageService.businessReplyBoardFreeCount(businessId, criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, businessMyPageService.businessReplyBoardFreeCount(businessId, criteria)));
     }
 

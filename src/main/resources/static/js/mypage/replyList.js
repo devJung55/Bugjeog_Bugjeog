@@ -1,8 +1,8 @@
 const $replyList = $(".reply-list");
 
-function replyList(){
+function replyList() {
     let text = "";
-    if(boardFreeVOS.length == 0){
+    if (boardFreeVOS.length == 0) {
         text += `
                 <article class="PostItem_wrapper no-content">
                 <div style="text-align: center;">
@@ -10,7 +10,7 @@ function replyList(){
                 </div>
                 </article>
             `;
-    }else {
+    } else {
         for (var i = 0; i < boardFreeVOS.length; i++) {
             let memberIdCheck = memberVOs[i] == null;
 
@@ -23,15 +23,15 @@ function replyList(){
                                                     <div class="AuthorBox_avatar">
                         `;
             if (!memberIdCheck) {
-                if(memberVOs[i].memberImgUuid == null){
+                if (memberVOs[i].memberImgUuid == null) {
                     text += `<img class="writer-image" src="/image/boardList/self_employ_icon.png">`;
-                }else {
+                } else {
                     text += `<img src="${'/mypage/profile/display?fileName=' + memberVOs[i].memberImgPath + '/' + memberVOs[i].memberImgUuid + '_' + memberVOs[i].memberImgOriginalName}">`;
                 }
             } else {
-                if(businessVOs[i].businessImgUuid == null){
+                if (businessVOs[i].businessImgUuid == null) {
                     text += `<img class="writer-image" src="/image/boardList/distributor_icon.png">`;
-                }else {
+                } else {
                     text += `<img src="${'/mypage/profile/display?fileName=' + businessVOs[i].businessImgPath + '/' + businessVOs[i].businessImgUuid + '_' + businessVOs[i].businessImgOriginalName}">`;
                 }
             }
@@ -39,9 +39,9 @@ function replyList(){
                                                 </div>
                                                 <div>
                         `;
-            if(!memberIdCheck){
+            if (!memberIdCheck) {
                 text += `<span class="AuthorBox_username">${memberVOs[i].memberName}</span>`;
-            }else{
+            } else {
                 text += `<span class="AuthorBox_username">${businessVOs[i].businessCompanyName}</span>`;
             }
             text += `                      </div>
@@ -53,15 +53,16 @@ function replyList(){
                                         </div>
                                 </div>
                     `;
-                    text +=  `
+            text += `
                                 <div class="reply-content-box" id="${boardFreeVOS[i].boardFreeId}">
                                         
                                 </div>        
                              `;
-             text +=  `           </article>
+            text += `           </article>
                 `;
         }
     }
     $replyList.append(text);
 }
-    replyList();
+
+replyList();

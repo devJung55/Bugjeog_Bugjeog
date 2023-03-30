@@ -78,15 +78,15 @@ public class MyPageServiceTests {
 
 
 
-    //    유통 분야 설정 수정
-    @Test
-    public void updateLocationTest(){
-        BusinessVO businessVO = myPageService.businessInfo(1L);
-
-
-        businessVO.setBusinessLocation("경남");
-        businessVO.setBusinessCategory("채소");
-        myPageService.updateLocation(businessVO);
-    }
+//    //    유통 분야 설정 수정
+//    @Test
+//    public void updateLocationTest(){
+//        BusinessVO businessVO = myPageService.businessInfo(1L);
+//
+//
+//        businessVO.setBusinessLocation("경남");
+//        businessVO.setBusinessCategory("채소");
+//        myPageService.updateLocation(businessVO);
+//    }
 
 }

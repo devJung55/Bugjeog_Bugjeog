@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/mypages/*")
+@RequestMapping("/myPages/business/*")
 public class BusinessMyPageRestController {
 
     private final HttpServletRequest req;
@@ -138,6 +138,7 @@ public class BusinessMyPageRestController {
     public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
+
         return businessMyPageService.businessReplyList(businessId, boardFreeId);
     }
 

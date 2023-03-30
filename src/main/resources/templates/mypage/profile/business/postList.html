@@ -8,8 +8,7 @@
     <title>나의 활동</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" as="style" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
     <link rel="stylesheet" href="/css/mypage/font.css">
     <link rel="stylesheet" href="/css/mypage/mypage.css"><!-- 마이페이지 관련 공통 -->
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css"><!-- 마이페이지 중 프로필 공통 -->
@@ -20,92 +19,96 @@
 </head>
 
 <body class="profile_body">
-    <div class="Container_Profile">
-        <header th:insert="~{main/header-signin :: header_signin}"></header>
-        <div class="padding_for_header"></div>
-        <main class="MatchUp-Container">
-            <nav class="NavBar_presentation mypage">
-                <h2 class="Nav_title mypage">
-                    <p>프로필</p>
-                    <button class="Nav_button">프로필</button>
-                </h2>
-            </nav>
-            <section class="main_container is-relative">
-                <!-- 사이드 메뉴 인클루드 -->
-                <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
-                <section>
-                    <aside class="CareerConnectBanner is-hidden">
-                        <picture>
-                            <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
-                            <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
-                        </picture>
-                    </aside>
-                    <div>
-                        <header class="summary_wrapper">
-                            <h2 class="summary_title">나의 활동</h2>
-                            <ul class="summary_status">
-                                <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/business/postList}">
-                                        <em class="freeCount">0</em>
-                                        <span>작성글</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content">
-                                    <a th:href="@{/mypage/profile/business/commentList}">
-                                        <em class="replyCount">0</em>
-                                        <span>작성댓글</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content">
-                                    <a  th:href="@{/mypage/profile/business/likedList}">
-                                        <em class="likeCount">0</em>
-                                        <span>좋아요</span>
-                                    </a>
-                                </li>
-                                <li class="summary_content" style="border: none;">
-                                    <a th:href="@{/mypage/profile/business/faqList}">
-                                        <em  class="inquireCount"></em>
-                                        <span>문의글</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </header>
+<div class="Container_Profile">
+    <header th:insert="~{main/header-signin :: header_signin}"></header>
+    <div class="padding_for_header"></div>
+    <main class="MatchUp-Container">
+        <nav class="NavBar_presentation mypage">
+            <h2 class="Nav_title mypage">
+                <p>프로필</p>
+                <button class="Nav_button">프로필</button>
+            </h2>
+        </nav>
+        <section class="main_container is-relative">
+            <!-- 사이드 메뉴 인클루드 -->
+            <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
+            <section>
+                <aside class="CareerConnectBanner is-hidden">
+                    <picture>
+                        <source srcset="https://static.wanted.co.kr/career_connect/banner-back-pc-common.webp">
+                        <img src="https://static.wanted.co.kr/career_connect/banner-back-pc-common.png" alt="">
+                    </picture>
+                </aside>
+                <div>
+                    <header class="summary_wrapper">
+                        <h2 class="summary_title">나의 활동</h2>
+                        <ul class="summary_status">
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/business/postList}">
+                                    <em class="freeCount">0</em>
+                                    <span>작성글</span>
+                                </a>
+                            </li>
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/business/commentList}">
+                                    <em class="replyCount">0</em>
+                                    <span>작성댓글</span>
+                                </a>
+                            </li>
+                            <li class="summary_content">
+                                <a th:href="@{/mypage/profile/business/likedList}">
+                                    <em class="likeCount">0</em>
+                                    <span>좋아요</span>
+                                </a>
+                            </li>
+                            <li class="summary_content" style="border: none;">
+                                <a th:href="@{/mypage/profile/business/faqList}">
+                                    <em class="inquireCount"></em>
+                                    <span>문의글</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+                </div>
+                <div class="CommunityProfile_body">
+                    <div class="CommunityProfile_header">
+                        <h2>내 활동</h2>
+                        <ul class="CommunityProfile_tabs">
+                            <li class="CommunityProfile_current">
+                                <a th:href="@{/mypage/profile/business/postList}">작성글</a>
+                            </li>
+                            <li class="">
+                                <a th:href="@{/mypage/profile/business/commentList}">작성댓글</a>
+                            </li>
+                            <li class="">
+                                <a th:href="@{/mypage/profile/business/likedList}">좋아요</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/mypage/profile/business/faqList}">문의글</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="CommunityProfile_body">
-                        <div class="CommunityProfile_header">
-                            <h2>내 활동</h2>
-                            <ul class="CommunityProfile_tabs">
-                                <li class="CommunityProfile_current">
-                                    <a th:href="@{/mypage/profile/business/postList}">작성글</a>
-                                </li>
-                                <li class="">
-                                    <a th:href="@{/mypage/profile/business/commentList}">작성댓글</a>
-                                </li>
-                                <li class="">
-                                    <a th:href="@{/mypage/profile/business/likedList}">좋아요</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/mypage/profile/business/faqList}">문의글</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <!-- 첫번째 글 -->
-                            <th:block th:each="boardFreeVO, i : ${boardFreeVO}" th:if="${not #strings.isEmpty(boardFreeVO)}">
+                    <div>
+                        <!-- 첫번째 글 -->
+                        <th:block th:each="boardFreeVO, i : ${boardFreeVO}"
+                                  th:if="${not #strings.isEmpty(boardFreeVO)}">
                             <article class="PostItem_wrapper">
                                 <div class="PostItem_top">
-                                        <div class="AuthorBox_Wrapper">
-                                            <div class="AuthorBox_horizontalBox">
-                                                <div class="AuthorBox_avatarWrapper">
-                                                    <div class="AuthorBox_avatar">
-                                                        <img class="img_profile" src="/image/boardList/distributor_icon.png">
-                                                    </div>
+                                    <div class="AuthorBox_Wrapper">
+                                        <div class="AuthorBox_horizontalBox">
+                                            <div class="AuthorBox_avatarWrapper">
+                                                <div class="AuthorBox_avatar">
+                                                    <img class="img_profile"
+                                                         src="/image/boardList/distributor_icon.png">
                                                 </div>
-                                                <span class="AuthorBox_username" th:text="${businessVO.businessCompanyName}"></span>
                                             </div>
-                                            <span
-                                                class="AuthorBox_createAt" th:text="${boardFreeVO.boardFreeRegisterDate}"></span>
+                                            <span class="AuthorBox_username"
+                                                  th:text="${businessVO.businessCompanyName}"></span>
                                         </div>
+                                        <span
+                                                class="AuthorBox_createAt"
+                                                th:text="${boardFreeVO.boardFreeRegisterDate}"></span>
+                                    </div>
                                 </div>
                                 <div class="PostItem_body">
                                     <div class="PostItem_header">
@@ -117,44 +120,46 @@
                                     </div>
                                 </div>
                             </article>
-                            </th:block>
-                            <article class="PostItem_wrapper no-content">
-                                <div style="text-align: center;">
-                                    <h2>작성한 게시글이 없습니다.</h2>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="page-box">
-                            <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
-                            <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
-                                <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
-                                    <span th:text="${num}"style="margin-right: 15px; width: 26px;height: 26px;"></span>
-                                </a>
-                            </th:block>
-                            <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}"><span>></span></a>
-                        </div>
-                        <form action="/mypage/profile/business/postList" th:object="${criteria}" name="pageForm">
-                            <input type="hidden" th:field="*{pageNum}">
-                            <input type="hidden" th:field="*{amount}">
-                        </form>
+                        </th:block>
+                        <article class="PostItem_wrapper no-content">
+                            <div style="text-align: center;">
+                                <h2>작성한 게시글이 없습니다.</h2>
+                            </div>
+                        </article>
                     </div>
-                </section>
+                    <div class="page-box">
+                        <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
+                        <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                            <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
+                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                            <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                            </a>
+                        </th:block>
+                        <a class="changePage" th:if="${pageDTO.next}"
+                           th:href="${pageDTO.endPage + 1}"><span>></span></a>
+                    </div>
+                    <form action="/mypage/profile/business/postList" th:object="${criteria}" name="pageForm">
+                        <input type="hidden" th:field="*{pageNum}">
+                        <input type="hidden" th:field="*{amount}">
+                    </form>
+                </div>
             </section>
-        </main>
-        <footer id="footer" th:insert="~{main/footer :: footer}"></footer>
-    </div>
+        </section>
+    </main>
+    <footer id="footer" th:insert="~{main/footer :: footer}"></footer>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/mypage/count-business.js"></script>
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
-    let boardFreeVO =[[${boardFreeVO}]];
+    let boardFreeVO = [[${boardFreeVO}]];
 
-    if(boardFreeVO.length == 0){
+    if (boardFreeVO.length == 0) {
         $(".page-box").hide();
         $(".no-content").show();
-    }else {
+    } else {
         $(".no-content").hide();
         $(".page-box").show();
     }
