@@ -33,7 +33,7 @@ $(".image-save-button").on("click", function () {
     member.memberImgOriginalName = $file.name;
     member.memberImgUuid = globalThis.uuid;
     member.memberImgPath = toStringByFormatting(new Date());
-    member.memberId = 1;
+    member.memberId = memberId;
     $.ajax({
         url: "/myPages/file-memeber-save",
         type: "patch",
