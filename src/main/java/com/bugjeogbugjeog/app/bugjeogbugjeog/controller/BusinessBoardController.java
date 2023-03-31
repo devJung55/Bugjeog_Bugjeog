@@ -90,7 +90,7 @@ public class BusinessBoardController {
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
 
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(Long.parseLong(req.getParameter("boardBusinessId")));
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
@@ -112,15 +112,12 @@ public class BusinessBoardController {
     @PostMapping("/board/business/detail")
     @ResponseBody
     public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
-
+        log.info(String.valueOf(boardBusinessId));
         // 클라의 success 내 retData로 갈 값
         JSONObject returnObj = new JSONObject();
-
-
-
         BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
 
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(boardBusinessId);
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
         List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(boardBusinessId);
 
         // MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
@@ -133,7 +130,9 @@ public class BusinessBoardController {
         returnObj.put("member", memberVO);
         returnObj.put("memberFullPath", (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName()));
         returnObj.put("boardImgs", businessBoardImgService.getList(boardBusinessId));
-
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+        log.info(returnObj.toString());
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
         // 서버에서 클라로 전송
         return returnObj.toString();
     }

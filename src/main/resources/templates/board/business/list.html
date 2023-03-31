@@ -470,6 +470,7 @@
                 url: "/board/business/detail",
                 method: "post",
                 data: `${board.boardBusinessId}`,
+                data_type: "json",
                 success: function (result) {
                     alert("디테일 성공");
                     let board = result.board;
@@ -712,8 +713,6 @@
 <!--<script src="/js/boardList/boardBusinessList.js"></script>-->
 <script th:inline="javascript">
 
-    console.log("boards");
-    console.log(boards);
     const $ul = $($('ul.boardList-info-box')[0]);
 
     /* 작성글 목록 */
@@ -729,7 +728,8 @@
             console.log(`${board.boardBusinessImgFullPath}`);
             text += `
            <li class="info-box-layout"  th:object="${board}">
-                <a href="javascript:void(0)" onclick="modal()" class="modal_button" name="${board.boardBusinessId}"><!-- 상세보기 모달 버튼 -->
+                <a href="javascript:void(0)" onclick="modal()" class="modal_button" name="${board.boardBusinessId}">
+                <!-- 상세보기 모달 버튼 -->
                     <div class="image-box">
                         <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
                     </div>

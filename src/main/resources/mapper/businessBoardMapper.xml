@@ -97,7 +97,7 @@
         ) i
         on b.board_business_id = i.board_business_id
         left outer join (
-        select r.review_id, r.member_id , b.board_business_id, count(r.review_id) board_business_review_count
+        select r.member_id , b.board_business_id, count(r.review_id) board_business_review_count
         , ifnull(avg(r.review_grade), 0) board_business_grade_average
         from tbl_business_review r
         right outer join tbl_board_business b
