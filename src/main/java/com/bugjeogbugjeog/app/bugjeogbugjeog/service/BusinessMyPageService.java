@@ -88,7 +88,9 @@ public class BusinessMyPageService {
 
     // 유통업자 회원 탈퇴
     public void businessWithdraw(Long businessId){
-        businessDAO.removeById(businessId);
+        BusinessVO businessVO =businessDAO.findByIdToBusiness(businessId);
+        businessVO.setBusinessStatus(0L);
+        businessDAO.updateLocation(businessVO);
     }
 
     // 유통업자 자유게시판 목록 가져오기
@@ -120,7 +122,7 @@ public class BusinessMyPageService {
 
     // 댓글 단 게시판의 갯수
     public Integer businessReplyBoardFreeCount(Long businessId, Criteria criteria){
-        return replyDAO.findAllBoardFreeToMember(businessId,criteria).size();
+        return replyDAO.findAllBoardFreeToBusiness(businessId,criteria).size();
     }
 
     // 유통업자의 각 보드의 댓글 리스트

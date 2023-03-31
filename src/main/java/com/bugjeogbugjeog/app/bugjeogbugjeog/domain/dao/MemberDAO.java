@@ -99,7 +99,7 @@ public class MemberDAO {
         memberMapper.update(memberVO);
     };
 
-    // 회원탈퇴
+    // 회원 삭제
     public void deleteById(Long memberId){
         memberMapper.deleteMember(memberId);
     };

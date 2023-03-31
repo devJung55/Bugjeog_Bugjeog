@@ -24,7 +24,8 @@
 <body>
 <div class="wrapper_wrapper">
     <div class="whole_wrapper">
-        <div id="header" style="width: 100%; position: fixed;" th:insert="~{mypage/fragment/header :: logout_header}"></div>
+        <div id="header" style="width: 100%; position: fixed;"
+             th:insert="~{mypage/fragment/header :: logout_header}"></div>
         <main class="mainbody_wrapper">
             <div class="main_wrapper_first">
                 <div class="main_wrapper is-flex">
@@ -55,7 +56,8 @@
                                 </p>
                                 <p class="warning_content">
                                     ·
-                                    서비스 이용 중 본인의 BugjeogID 계정에 귀속되지 않은 정보는 자동으로 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다. BugjeogID
+                                    서비스 이용 중 본인의 BugjeogID 계정에 귀속되지 않은 정보는 자동으로 삭제되지 않으며, 탈퇴 시 수정이나 삭제가 불가능합니다.
+                                    BugjeogID
                                     계정에
                                     귀속되지 않은 정보를 수정하거나 삭제하려는 경우, 회원 탈퇴 이전에 해당 서비스에서 수정 또는 삭제를 진행해 주세요.
                                 </p>
@@ -150,8 +152,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
-    if(businessVO.businessImgUuid != null){
-        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
+    if (businessVO.businessImgUuid != null) {
+        $(".img_profile").attr("src", `/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
     }
 
 </script>
@@ -160,7 +162,7 @@
     const $checkboxAceept = $('span.btn_accept');
     const $btnConfirm = $('#button_confirm');
 
-    $($checkboxs).on('click', (e)=>{
+    $($checkboxs).on('click', (e) => {
         var $hidden = $(e.currentTarget).children('span.is-hidden');
         var $show = $(e.currentTarget).children('span.is-show');
 
@@ -168,9 +170,9 @@
         $show.removeClass('is-show').addClass('is-hidden');
         var isAcceptAll = $checkboxs.children('span.is-flex.btn_accept.is-show').length == 2;
 
-        if(isAcceptAll){
+        if (isAcceptAll) {
             $btnConfirm.addClass('button_active');
-        } else if($btnConfirm.hasClass('button_active')){
+        } else if ($btnConfirm.hasClass('button_active')) {
             $btnConfirm.removeClass('button_active');
         }
     });

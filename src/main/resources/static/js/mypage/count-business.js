@@ -7,7 +7,7 @@ const $reviewCount = $(".review-count");
 
 function count() {
     $.ajax({
-        url: "/mypages/count",
+        url: "/myPages/business/count",
         type: "get",
         success: function (count) {
             $freeCount.text(count.freeBoardCount);
@@ -19,4 +19,5 @@ function count() {
         }
     });
 }
+
 count();

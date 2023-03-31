@@ -31,17 +31,21 @@ public class BusinessMyPageController {
     public void myInfoBusiness(Model model){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
+        businessId = 4L;
+
         model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
+    // 회원탈퇴 페이지
     @GetMapping("exit")
     public void exitBusiness(Model model){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
 
-        model.addAttribute("businessVO", businessMyPageService.businessInfo(4L));
+        model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
 
+    // 회원 탈퇴
     @PostMapping("businessWithdraw")
     public RedirectView businessWithdraw(HttpServletRequest req){
         HttpSession session = req.getSession();

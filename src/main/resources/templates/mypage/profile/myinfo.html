@@ -5,294 +5,304 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_dedicated_header.css">
 </head>
 <body>
-    <!-- 파일 넣으면 뜰 모달-->
-    <div class="file-modal-display">
-        <div class="file-modal">
-            <div class="file-modal-box">
-                <div class="file-modal-title-box-layout">
-                    <div class="file-modal-cell"></div>
-                    <div class="file-modal-title-box">
-                        <p class="file-modal-title">
-                            프로필 사진
-                        </p>
-                    </div>
-                    <div class="file-modal-exit-box">
-                        <button class="file-modal-exit exit" type="button">
-                            <span class="file-modal-exit-icon-box">
-                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
-                            </span>
-                        </button>
-                    </div>
+<!-- 파일 넣으면 뜰 모달-->
+<div class="file-modal-display">
+    <div class="file-modal">
+        <div class="file-modal-box">
+            <div class="file-modal-title-box-layout">
+                <div class="file-modal-cell"></div>
+                <div class="file-modal-title-box">
+                    <p class="file-modal-title">
+                        프로필 사진
+                    </p>
                 </div>
-                <div class="file-modal-image-box-layout">
-                    <div class="file-modal-image-box">
-                        <img src="/image/boardList/distributor_icon.png" class="file-modal-image">
-                    </div>
-                    <div class="file-modal-button-box">
-                        <button class="image-cancel-button cancel">
-                            <span>취소</span>
-                        </button>
-                        <button class="image-save-button save">
-                            <span>저장</span>
-                        </button>
-                    </div>
+                <div class="file-modal-exit-box">
+                    <button class="file-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path
+                                        d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                    </button>
+                </div>
+            </div>
+            <div class="file-modal-image-box-layout">
+                <div class="file-modal-image-box">
+                    <img src="/image/boardList/distributor_icon.png" class="file-modal-image">
+                </div>
+                <div class="file-modal-button-box">
+                    <button class="image-cancel-button cancel">
+                        <span>취소</span>
+                    </button>
+                    <button class="image-save-button save">
+                        <span>저장</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- 비밀번호 변경 모달-->
-    <div class="password-modal-display">
-        <div class="password-modal">
-            <div class="password-modal-box">
-                <div class="password-modal-title-layout">
-                    <div class="file-modal-cell"></div>
-                    <div class="password-modal-title-box">
-                        <p class="file-modal-title">
-                            비밀번호 변경
-                        </p>
-                    </div>
-                    <div class="file-modal-exit-box">
-                        <button class="password-modal-exit exit" type="button">
-                            <span class="file-modal-exit-icon-box">
-                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
-                            </span>
-                        </button>
-                    </div>
+<!-- 비밀번호 변경 모달-->
+<div class="password-modal-display">
+    <div class="password-modal">
+        <div class="password-modal-box">
+            <div class="password-modal-title-layout">
+                <div class="file-modal-cell"></div>
+                <div class="password-modal-title-box">
+                    <p class="file-modal-title">
+                        비밀번호 변경
+                    </p>
                 </div>
-                <div class="password-modal-input-box-layout">
-                    <div style="margin: 30px 0px;">
-                        <div>
-                            <div class="password-title-box">
-                                <span>변경 비밀번호</span>
-                            </div>
-                            <div class="password-modal-input-box">
-                                <input type="password" id="new-password" class="password-input" placeholder="비밀번호를 입력해주세요.">
-                            </div>
-                            <p class="password-error error-msg"></p>
-                            <div class="password-title-box">
-                                <span>비밀번호 재확인</span>
-                            </div>
-                            <div class="password-modal-input-box">
-                                <input type="password" id="new-password-check" class="password-input" placeholder="비밀번호를 입력해주세요.">
-                            </div>
-                            <p class="password-check-error error-msg"></p>
+                <div class="file-modal-exit-box">
+                    <button class="password-modal-exit exit" type="button">
+                            <span class="file-modal-exit-icon-box">
+                                <svg viewBox="0 0 24 24" class="file-modal-exit-icon"><path
+                                        d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path></svg>
+                            </span>
+                    </button>
+                </div>
+            </div>
+            <div class="password-modal-input-box-layout">
+                <div style="margin: 30px 0px;">
+                    <div>
+                        <div class="password-title-box">
+                            <span>변경 비밀번호</span>
                         </div>
+                        <div class="password-modal-input-box">
+                            <input type="password" id="new-password" class="password-input" placeholder="비밀번호를 입력해주세요.">
+                        </div>
+                        <p class="password-error error-msg"></p>
+                        <div class="password-title-box">
+                            <span>비밀번호 재확인</span>
+                        </div>
+                        <div class="password-modal-input-box">
+                            <input type="password" id="new-password-check" class="password-input"
+                                   placeholder="비밀번호를 입력해주세요.">
+                        </div>
+                        <p class="password-check-error error-msg"></p>
                     </div>
-                    <div class="password-modal-button-box-layout">
-                        <button class="password-modal-exit cancel">
-                            <span>취소</span>
-                        </button>
-                        <button class="password-save">
-                            <span>저장</span>
-                        </button>
-                    </div>
+                </div>
+                <div class="password-modal-button-box-layout">
+                    <button class="password-modal-exit cancel">
+                        <span>취소</span>
+                    </button>
+                    <button class="password-save">
+                        <span>저장</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="whole_wrapper">
-        <div class="mypage_wrapper">
-            <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
-            <div class="header-padding">
-            </div>
-            <main class="mypage_info_container">
-                <header class="member_img_container">
-                    <div class="img_wrapper">
-                            <img class="img_profile" src="/image/boardList/self_employ_icon.png">
-                        <label class="edit_wrapper">
-                            <input style="display: none;" type="file" name="file">
-                            <span class="edit_span">
+<div class="whole_wrapper">
+    <div class="mypage_wrapper">
+        <header id="header" style="width: 100%;" th:insert="~{mypage/fragment/header :: logout_header}"></header>
+        <div class="header-padding">
+        </div>
+        <main class="mypage_info_container">
+            <header class="member_img_container">
+                <div class="img_wrapper">
+                    <img class="img_profile" src="/image/boardList/self_employ_icon.png">
+                    <label class="edit_wrapper">
+                        <input style="display: none;" type="file" name="file">
+                        <span class="edit_span">
                                 <img src="/image/mypage/ink-pen-64.png">
                             </span>
-                        </label>
-                    </div>
-                    <p class="welcome_msg change-name"th:text="|${memberVO.memberName}님, 환영해요.|">
-                    </p>
-                </header>
-                <section class="info_content member_info_container">
-                    <p class="manageAccount">
-                        계정 관리
-                    </p>
-                    <p class="manageAccount_message">
-                        서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.
-                    </p>
-                    <ul class="info_wrapper" th:object="${memberVO}">
-                        <li class="emailChange">
-                            <p class="changeTitle">이메일</p>
-                            <p class="emailText" th:text="*{memberEmail}"></p>
-                        </li>
-                        <li class="changeDefault">
-                            <p class="changeTitle">이름</p>
-                            <p class="changeText memberName" th:text="*{memberName}"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger member-name-modal-button">
+                    </label>
+                </div>
+                <p class="welcome_msg change-name" th:text="|${memberVO.memberName}님, 환영해요.|">
+                </p>
+            </header>
+            <section class="info_content member_info_container">
+                <p class="manageAccount">
+                    계정 관리
+                </p>
+                <p class="manageAccount_message">
+                    서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.
+                </p>
+                <ul class="info_wrapper" th:object="${memberVO}">
+                    <li class="emailChange">
+                        <p class="changeTitle">이메일</p>
+                        <p class="emailText" th:text="*{memberEmail}"></p>
+                    </li>
+                    <li class="changeDefault">
+                        <p class="changeTitle">이름</p>
+                        <p class="changeText memberName" th:text="*{memberName}"></p>
+                        <a class="changeButton MainResume-edit js-modal-trigger member-name-modal-button">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png">
                                 </span>
-                            </a>
-                        </li>
-                        <li class="changeDefault">
-                            <p class="changeTitle">휴대폰 번호</p>
-                            <p class="changeText phoneNumber"></p>
-                            <a class="changeButton MainResume-edit js-modal-trigger phone-modal-button" data-target="modal-edit_phone">
+                        </a>
+                    </li>
+                    <li class="changeDefault">
+                        <p class="changeTitle">휴대폰 번호</p>
+                        <p class="changeText phoneNumber"></p>
+                        <a class="changeButton MainResume-edit js-modal-trigger phone-modal-button"
+                           data-target="modal-edit_phone">
                                 <span class="img_span is-flex">
                                     <img src="/image/mypage/arrow-right-64.png" alt="">
                                 </span>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+                        </a>
+                    </li>
+                </ul>
+            </section>
 
-                <section class="info_content member_exit">
-                    <p class="manageAccount">
-                        개인 정보 보호
-                    </p>
-                    <p class="manageAccount_message">
-                        내 계정을 안전하게 보호하기 위한 정보를 관리할 수 있습니다.
-                    </p>
-                    <ul class="info_wrapper">
-                        <li class="changeDefault">
-                            <p class="changeTitle">비밀번호 변경</p>
-                            <p class="changeText"></p>
-                            <a class="changeButton password-change-modal">
-                                <img src="/image/mypage/arrow-right-64.png" alt="">
-                            </a>
-                        </li>
-                        <li class="changeDefault">
-                            <p class="changeTitle">회원 탈퇴</p>
-                            <p class="changeText"></p>
-                            <a class="changeButton" th:href="@{/mypage/profile/exit}">
-                                <img src="/image/mypage/arrow-right-64.png" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-                <div class="footer-wrap">
-                    <div style="display: flex">
-                        <a href="javascript:void(0)" class="footer-link">
-                            이용약관
+            <section class="info_content member_exit">
+                <p class="manageAccount">
+                    개인 정보 보호
+                </p>
+                <p class="manageAccount_message">
+                    내 계정을 안전하게 보호하기 위한 정보를 관리할 수 있습니다.
+                </p>
+                <ul class="info_wrapper">
+                    <li class="changeDefault">
+                        <p class="changeTitle">비밀번호 변경</p>
+                        <p class="changeText"></p>
+                        <a class="changeButton password-change-modal">
+                            <img src="/image/mypage/arrow-right-64.png" alt="">
                         </a>
-                        <a href="javascript:void(0)" class="footer-link font-bold">
-                            개인정보처리방침
+                    </li>
+                    <li class="changeDefault">
+                        <p class="changeTitle">회원 탈퇴</p>
+                        <p class="changeText"></p>
+                        <a class="changeButton" th:href="@{/mypage/profile/exit}">
+                            <img src="/image/mypage/arrow-right-64.png" alt="">
                         </a>
-                    </div>
-                    <p class="footer-p">© bugjeogbugjeog, Inc.</p>
+                    </li>
+                </ul>
+            </section>
+            <div class="footer-wrap">
+                <div style="display: flex">
+                    <a href="javascript:void(0)" class="footer-link">
+                        이용약관
+                    </a>
+                    <a href="javascript:void(0)" class="footer-link font-bold">
+                        개인정보처리방침
+                    </a>
                 </div>
-            </main>
-        </div>
+                <p class="footer-p">© bugjeogbugjeog, Inc.</p>
+            </div>
+        </main>
     </div>
+</div>
 
-    <!-- 이름 변경 모달창 -->
-    <div class="member-name-modal">
-        <div id="modal-edit_name" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                    <div class="modal_content_wrapper is-relative">
-                        <div class="modal_content_top">
-                            <div class="modal_content_top_center">
-                                <p class="modal_content_name">이름</p>
-                            </div>
+<!-- 이름 변경 모달창 -->
+<div class="member-name-modal">
+    <div id="modal-edit_name" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                <div class="modal_content_wrapper is-relative">
+                    <div class="modal_content_top">
+                        <div class="modal_content_top_center">
+                            <p class="modal_content_name">이름</p>
                         </div>
-                        <div class="modal_content_bottom">
-                            <form>
-                                <div class="modal_edit_input_wrapper">
-                                    <input type="text" placeholder="이름을 입력해주세요." name="membername" class="edit_input_name"
-                                           th:value="${memberVO.memberName}">
-                                    <span class="error-msg name-error"></span>
-                                </div>
-                                <div class="modal_edit_btn_wrapper">
-                                    <button type="button" class="modal_cancel name-modal-exit">
-                                        <span class="modal_btn_span">취소</span>
-                                    </button>
-                                    <button type="button" class="modal_save name-save">
-                                        <span class="modal_btn_span">저장</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <button class="modal-close is-large name-modal-exit" style="position: absolute;" aria-label="close"></button>
                     </div>
+                    <div class="modal_content_bottom">
+                        <form>
+                            <div class="modal_edit_input_wrapper">
+                                <input type="text" placeholder="이름을 입력해주세요." name="membername" class="edit_input_name"
+                                       th:value="${memberVO.memberName}">
+                                <span class="error-msg name-error"></span>
+                            </div>
+                            <div class="modal_edit_btn_wrapper">
+                                <button type="button" class="modal_cancel name-modal-exit">
+                                    <span class="modal_btn_span">취소</span>
+                                </button>
+                                <button type="button" class="modal_save name-save">
+                                    <span class="modal_btn_span">저장</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <button class="modal-close is-large name-modal-exit" style="position: absolute;"
+                            aria-label="close"></button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- 휴대폰 번호 변경 모달창 -->
-    <div class="member-phone-modal">
-        <div id="modal-edit_phone" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
-                    <div class="modal_content_wrapper">
-                        <div class="modal_content_top">
-                            <div class="modal_content_top_center">
-                                <p class="modal_content_name">휴대폰 번호</p>
-                            </div>
+<!-- 휴대폰 번호 변경 모달창 -->
+<div class="member-phone-modal">
+    <div id="modal-edit_phone" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box modal_box"><!-- 이 안에만 넣어야 됨 -->
+                <div class="modal_content_wrapper">
+                    <div class="modal_content_top">
+                        <div class="modal_content_top_center">
+                            <p class="modal_content_name">휴대폰 번호</p>
                         </div>
-                        <div class="modal_content_bottom">
-                            <form>
-                                <div class="modal_content_main_wrapper">
-                                    <div class="columns is-multiline m-0">
-                                        <div class="modal_input_number column columns is-full m-0 p-0">
-                                            <div class="columns column is-multiline m-0 p-0">
-                                                <input name="memberPhoneNumber" class="modal_input column is-full" th:value="${memberVO.memberPhoneNumber}"
-                                                    placeholder="(예시) 01013245768" type="text" readonly disabled>
-                                            </div>
-                                            <label class="">
-                                                <button type="button" class="auth_number find-take-btn btn_active change-phoneNumber">
-                                                    <span class="edit_phone_number">번호 변경</span>
-                                                </button>
-                                                <button type="button" class="auth_number find-take-btn btn_active code-button" disabled>
-                                                    <span class="edit_phone_number">인증번호 받기</span>
-                                                </button>
-                                            </label>
+                    </div>
+                    <div class="modal_content_bottom">
+                        <form>
+                            <div class="modal_content_main_wrapper">
+                                <div class="columns is-multiline m-0">
+                                    <div class="modal_input_number column columns is-full m-0 p-0">
+                                        <div class="columns column is-multiline m-0 p-0">
+                                            <input name="memberPhoneNumber" class="modal_input column is-full"
+                                                   th:value="${memberVO.memberPhoneNumber}"
+                                                   placeholder="(예시) 01013245768" type="text" readonly disabled>
                                         </div>
-                                        <span class="phone-error error-msg column is-full p-0"></span>
-                                        <div class="modal_input_number column is-full p-0">
-                                            <input readonly type="text" class="modal_input code-check-input" id="auth-check" placeholder="인증번호를 입력해주세요." maxlength="4">
-                                        </div>
-                                        <p class="error-msg auth-msg"></p>
+                                        <label class="">
+                                            <button type="button"
+                                                    class="auth_number find-take-btn btn_active change-phoneNumber">
+                                                <span class="edit_phone_number">번호 변경</span>
+                                            </button>
+                                            <button type="button"
+                                                    class="auth_number find-take-btn btn_active code-button" disabled>
+                                                <span class="edit_phone_number">인증번호 받기</span>
+                                            </button>
+                                        </label>
                                     </div>
+                                    <span class="phone-error error-msg column is-full p-0"></span>
+                                    <div class="modal_input_number column is-full p-0">
+                                        <input readonly type="text" class="modal_input code-check-input" id="auth-check"
+                                               placeholder="인증번호를 입력해주세요." maxlength="4">
+                                    </div>
+                                    <p class="error-msg auth-msg"></p>
                                 </div>
-                                <div class="modal_edit_btn_wrapper">
-                                    <button type="button" class="modal_cancel phone-modal-exit">
-                                        <span class="modal_btn_span">취소</span>
-                                    </button>
-                                    <button type="button" class="modal_save phone-save">
-                                        <span class="modal_btn_span">저장</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <button class="modal-close is-large phone-modal-exit" style="position: absolute;" aria-label="close"></button>
+                            </div>
+                            <div class="modal_edit_btn_wrapper">
+                                <button type="button" class="modal_cancel phone-modal-exit">
+                                    <span class="modal_btn_span">취소</span>
+                                </button>
+                                <button type="button" class="modal_save phone-save">
+                                    <span class="modal_btn_span">저장</span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
+                    <button class="modal-close is-large phone-modal-exit" style="position: absolute;"
+                            aria-label="close"></button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
 
-    if(memberVO.memberImgUuid){
-        $(".img_profile").attr("src",`/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
+    if (memberVO.memberImgUuid) {
+        $(".img_profile").attr("src", `/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
     }
 
     $(".phoneNumber").text(phoneNumber(memberVO.memberPhoneNumber));
 
-    function phoneNumber(phoneNumber){
-        var phone1 = phoneNumber.substring(0,3);
-        var phone2 = phoneNumber.substring(3,7);
+    function phoneNumber(phoneNumber) {
+        var phone1 = phoneNumber.substring(0, 3);
+        var phone2 = phoneNumber.substring(3, 7);
         var phone3 = phoneNumber.substring(7);
         let phone = phone1 + "-" + phone2 + "-" + phone3;
         return phone;

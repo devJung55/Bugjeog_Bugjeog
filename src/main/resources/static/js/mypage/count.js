@@ -6,7 +6,7 @@ const $interestingCount = $(".interest-count");
 
 function count() {
     $.ajax({
-        url: "/mypage/profile/count",
+        url: "/myPages/count",
         type: "get",
         success: function (count) {
             $freeCount.text(count.freeBoardCount);
@@ -17,4 +17,5 @@ function count() {
         }
     });
 }
+
 count();
