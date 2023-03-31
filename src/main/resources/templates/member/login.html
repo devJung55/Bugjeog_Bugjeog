@@ -112,6 +112,33 @@
 <!-- js 수정해야함 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/member/login.js"></script>
+<script>
+    const test = $(".private-business");
+    $(".join-button").click(function () {
+        location.href = "www.naver.com";
+    });
+
+    test.each((i, e) => {
+        $(e).click(function () {
+            test.removeClass("change-effect");
+            $(e).addClass("change-effect");
+            console.log($(e).text() == "개인");
+            if ($(e).text() == "개인") {
+
+
+                $(".join-button").click(function () {
+                    location.href = "www.naver.com";
+                    /* 개인 회원가입쪽 컨트롤러 보내주기 */
+                });
+            } else {
+                $(".join-button").click(function () {
+                    location.href = "www.goo.com";
+                    /* 사업자 회원가입쪽 컨트롤러 보내주기 */
+                });
+            }
+        });
+    });
+</script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">

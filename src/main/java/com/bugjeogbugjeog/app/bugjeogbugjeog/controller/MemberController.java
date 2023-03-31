@@ -152,9 +152,9 @@ public class MemberController {
 
 //    로그아웃
     @GetMapping("logout")
-    public String logout(HttpSession httpSession) {
+    public RedirectView logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return "/main/";
+        return new RedirectView("/main/");
     }
 
     //    카카오 로그인
