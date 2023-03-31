@@ -18,7 +18,7 @@ import java.util.List;
 public class BusinessReviewService {
     private final BusinessReviewDAO businessReviewDAO;
 
-    public List<BusinessReviewDTO> getReply(long boardBusinessId) {
+    public List<BusinessReviewDTO> getReviews(long boardBusinessId) {
         return businessReviewDAO.findById(boardBusinessId);
     }
 
