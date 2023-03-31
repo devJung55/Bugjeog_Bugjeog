@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,5 +53,22 @@ public class MemberRESTController {
     @PostMapping("businessNumbersCheck")
     public Long checkBusinessNumber(@RequestParam("businessNumber") String businessNumber) {
         return memberService.businessCheckBusinessNumber(businessNumber);
+    }
+
+//네이버 로그인
+    @PostMapping("login-naver")
+    public Integer loginOauth(String memberEmail, HttpSession httpSession){
+        Long memberId = memberService.loginNaverOauth(memberEmail);
+        log.info(String.valueOf(memberId));
+        if(memberId == null){
+            MemberVO memberVO = new MemberVO();
+            memberVO.setMemberEmail(memberEmail);
+            httpSession.setAttribute("memberVO", memberVO);
+            return  0;
+        }else{
+            MemberVO memberVO = memberService.findInfoByEmail(memberEmail);
+            httpSession.setAttribute("memberVO", memberVO);
+            return 1;
+        }
     }
 }

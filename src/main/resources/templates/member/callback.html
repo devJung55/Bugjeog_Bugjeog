@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("XnNlYI4KapA_cDSkMjxv", "http://localhost:10000/member/callback");
+    // 접근 토큰 값 출력
+    naver_id_login.oauthParams.access_token;
+    // 네이버 사용자 프로필 조회
+    naver_id_login.get_naver_userprofile("naverSignInCallback()");
+    // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+    function naverSignInCallback() {
+        naver_id_login.getProfileData('email');
+        $.ajax({
+            url:"/members/login-naver",
+            type: "post",
+            data:{memberEmail : naver_id_login.getProfileData('email')},
+            success: function (result) {
+                if (result == 1) {
+                    window.location.href = "/main/"
+                } else{
+                    window.location.href = "/member/no-join"
+                }
+            }
+        });
+    }
+</script>
+</html>
