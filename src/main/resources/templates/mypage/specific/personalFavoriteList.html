@@ -129,18 +129,18 @@
                                         <div class="page-button-box">
                                             <!-- 페이지 번호 --><!-- 페이지 버튼 -->
                                             <div class="page-box page-button-margin" style="display: flex">
-                                                <a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                                                <a class="changePage page-button-margin" th:if="${pageInterestingDTO.prev}" th:href="${pageInterestingDTO.startPage - 1}">
                                                 </a>
-                                                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                                    <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>
-                                                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                                <th:block th:each="num:${#numbers.sequence(pageInterestingDTO.startPage, pageInterestingDTO.endPage)}">
+                                                    <span th:text="${num}" th:if="${pageInterestingDTO.interestingCriteria.pageNum == num}" class="page-button-active page-button"></span>
+                                                    <a class="changePage" th:unless="${pageInterestingDTO.interestingCriteria.pageNum == num}" th:href="${num}">
                                                         <span th:text="${num}" class="page-button"></span>
                                                     </a>
                                                 </th:block>
-                                                <a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                                                <a class="changePage page-button-margin" th:if="${pageInterestingDTO.next}" th:href="${pageInterestingDTO.endPage + 1}">
                                                 </a>
                                             </div>
-                                            <form action="/mypage/specific/personalFavoriteList" th:object="${criteria}" name="pageForm">
+                                            <form action="/mypage/specific/personalFavoriteList" th:object="${interestingCriteria}" name="pageForm">
                                                 <input type="hidden" th:field="*{pageNum}">
                                                 <input type="hidden" th:field="*{amount}">
                                             </form>
@@ -295,5 +295,15 @@
         $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
         $pageForm.submit();
     });
+
+    let interestingCompanyDTOs = [[${interestingCompanyDTOs}]];
+
+    if (interestingCompanyDTOs.length == 0) {
+        $(".page-box").hide();
+        $(".no-content").show();
+    } else {
+        $(".no-content").hide();
+        $(".page-box").show();
+    }
 </script>
 </html>
