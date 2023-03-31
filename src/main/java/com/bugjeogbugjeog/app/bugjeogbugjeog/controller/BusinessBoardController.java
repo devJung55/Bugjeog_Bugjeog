@@ -2,28 +2,30 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -34,6 +36,11 @@ public class BusinessBoardController {
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
+    @GetMapping("/board/business/test")
+    public String test() {
+        return "/board/business/boardList";
+    }
+
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
         return new RedirectView("/board/business/list");
@@ -41,14 +48,7 @@ public class BusinessBoardController {
 
     //    리스트
     @GetMapping("/board/business/list")
-    public void showList(Model model, HttpServletRequest req) {
-
-        businessBoardService.getList().stream().map(dto -> {
-            String name = dto.getBoardBusinessImgOriginalName();
-            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-            dto.setBoardBusinessImgFullPath(fullPath);
-            return dto;
-        });
+    public void showList(Model model) {
         model.addAttribute("boards", businessBoardService.getList());
     }
 
@@ -74,16 +74,10 @@ public class BusinessBoardController {
                 category = null;
                 break;
         }
-        businessBoardService.getList().stream().map(dto -> {
-            String name = dto.getBoardBusinessImgOriginalName();
-            String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-            dto.setBoardBusinessImgFullPath(fullPath);
-            return dto;
-        });
+        ;
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));
-//            return businessBoardService.getList(searchMap);
         return businessBoardService.getList(searchMap);
     }
 
@@ -94,92 +88,145 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/detail")
-    public void detail(Model model, HttpServletRequest req) {
+    public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
         log.info(req.getParameter("boardBusinessId"));
 
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
-        String fullPath = (name == null || name == "null" || name == "") ? "/image/boardList/no-image-64.png" : (dto.getBoardBusinessImgPath() + "/" + dto.getBoardBusinessImgUuid() + "_" + dto.getBoardBusinessImgOriginalName());
-        dto.setBoardBusinessImgFullPath(fullPath);
 
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(Long.parseLong(req.getParameter("boardBusinessId")));
-        businessReviewDTOs.stream().map(reviewDTO -> {
-            String orginName = reviewDTO.getMemberImgOriginalName();
-            String memberFullPath = (orginName == null || orginName == "null" || orginName == "") ? "/image/mypage/member_no_image.png" : (reviewDTO.getMemberImgPath() + "/" + reviewDTO.getMemberImgUuid() + "_" + reviewDTO.getMemberImgOriginalName());
-            reviewDTO.setMemberImgFullPath(memberFullPath);
-            return reviewDTO;
-        });
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(Long.parseLong(req.getParameter("boardBusinessId")));
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
         List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(dto.getBusinessId());
-        dtos.stream().map(eventDTO -> {
-            String eventName = eventDTO.getBoardBusinessImgOriginalName();
-            String eventFullPath = (eventName == null || eventName == "null" || eventName == "") ? "/image/boardList/no-image-64.png" : (eventDTO.getBoardBusinessImgPath() + "/" + eventDTO.getBoardBusinessImgUuid() + "_" + eventDTO.getBoardBusinessImgOriginalName());
-            eventDTO.setBoardBusinessImgFullPath(eventFullPath);
-            return eventDTO;
-        });
 
 //        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
         MemberVO memberVO = businessReviewService.getMember(5L);
-        log.info("==============");
-        log.info(memberVO.getMemberName());
-        log.info("==============");
         String orginalName = memberVO.getMemberImgOriginalName();
         String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
-        model.addAttribute("board", dto);
-        model.addAttribute("reviews", businessReviewDTOs);
-        model.addAttribute("boardList", dtos);
-        model.addAttribute("member", memberVO);
-        model.addAttribute("memberFullPath", memberFullPath);
+        ObjectMapper objectMapper = new ObjectMapper();
+        model.addAttribute("board", objectMapper.writeValueAsString(dto));
+        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+        model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
+        model.addAttribute("member", objectMapper.writeValueAsString(memberVO));
+        model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+        businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
+        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
     }
 
-    //    파일 저장
-    @PostMapping("/board/business/save")
+    @PostMapping("/board/business/detail")
     @ResponseBody
-    public void save(@RequestBody List<BoardBusinessImgVO> images){
-        businessBoardImgService.write(images);
+    public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
+        log.info(String.valueOf(boardBusinessId));
+        // 클라의 success 내 retData로 갈 값
+        JSONObject returnObj = new JSONObject();
+        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
+
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
+        List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(boardBusinessId);
+
+        // MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+        MemberVO memberVO = businessReviewService.getMember(5L);
+
+        // json object에 key : value 쌍으로 값을 넣어 줌
+        returnObj.put("board", dto);
+        returnObj.put("reviews", businessReviewDTOs);
+        returnObj.put("boardList", dtos);
+        returnObj.put("member", memberVO);
+        returnObj.put("memberFullPath", (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName()));
+        returnObj.put("boardImgs", businessBoardImgService.getList(boardBusinessId));
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+        log.info(returnObj.toString());
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+        // 서버에서 클라로 전송
+        return returnObj.toString();
     }
 
-    //    현재 날짜 경로 구하기
-    private String getPath(){
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-    }
+//    //    파일 저장
+//    @PostMapping("/board/business/save")
+//    @ResponseBody
+//    public void save(@RequestBody List<BoardBusinessImgVO> images) {
+//        businessBoardImgService.write(images);
+//    }
+//
+//    //    현재 날짜 경로 구하기
+//    private String getPath() {
+//        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+//    }
 
     //    파일 업로드
-    @PostMapping("/board/business/upload")
-    @ResponseBody
-    public List<String> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
-        List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
-        File file = new File(path);
-        if(!file.exists()) {file.mkdirs();}
+//    @PostMapping("/board/business/upload")
+//    @ResponseBody
+//    public RedirectView upload(@RequestParam("file") List<MultipartFile> multipartFiles, HttpServletRequest req) throws IOException {
+//        List<String> uuids = new ArrayList<>();
+//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
+//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
+//                ? 3L
+//                : Long.parseLong(reqBoardBusinessId);
+//        String path = "C:/upload/" + getPath();
+//        File file = new File(path);
+//        if (!file.exists()) { file.mkdirs(); }
+//
+//        for (int i = 0; i < multipartFiles.size(); i++) {
+//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
+//            String uuid = UUID.randomUUID().toString();
+//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
+//            String fileFullPath = uuid + "_" + originalFileName;
+//            vo.setBoardBusinessId(boardBusinessId);
+//            vo.setBoardBusinessImgOriginalName(originalFileName);
+//            vo.setBoardBusinessImgUuid(uuid);
+//            vo.setBoardBusinessImgPath(path);
+////            uuids.add(UUID.randomUUID().toString());
+//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
+//
+//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
+//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
+//            out.close();
+//            businessBoardImgService.registerImg(vo);
+//        }
 
-        for(int i=0; i<multipartFiles.size(); i++){
-            uuids.add(UUID.randomUUID().toString());
-            multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-
-            FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
-            out.close();
-        }
-        return uuids;
-    }
+//        return new RedirectView("/board/business/list");
+//    }
 
     @GetMapping("/board/business/write")
     public void write(Model model) {
         model.addAttribute(new BoardBusinessVO());
-        model.addAttribute(new BoardBusinessImgVO());
     }
 
     @PostMapping("/board/business/write")
-    public RedirectView register(BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
-        log.info(req.getParameter("category"));
+    @ResponseBody
+    public Long register(@RequestBody BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
+        boardBusinessVO.setBusinessId(3L);
         businessBoardService.registerBoard(boardBusinessVO);
-//        Arrays.stream(boardBusinessImgVOs).filter(vo -> vo.getBoardBusinessImgOriginalName()!=null).map(vo -> vo.)
-//                .forEach(vo -> businessBoardImgService.registerImg(vo));
-//        log.info(boardBusinessVO.toString());
-        return new RedirectView("/board/business/list");
+        return boardBusinessVO.getBoardBusinessId();
+//        return null;
+//        businessBoardImgService.write();
+//        List<String> uuids = new ArrayList<>();
+//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
+//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
+//                ? 3L
+//                : Long.parseLong(reqBoardBusinessId);
+//        String path = "C:/upload/" + getPath();
+//        File file = new File(path);
+//        if (!file.exists()) { file.mkdirs(); }
+//        for (int i = 0; i < multipartFiles.size(); i++) {
+//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
+//            String uuid = UUID.randomUUID().toString();
+//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
+//            String fileFullPath = uuid + "_" + originalFileName;
+//            vo.setBoardBusinessId(boardBusinessId);
+//            vo.setBoardBusinessImgOriginalName(originalFileName);
+//            vo.setBoardBusinessImgUuid(uuid);
+//            vo.setBoardBusinessImgPath(path);
+////            uuids.add(UUID.randomUUID().toString());
+//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
+//
+//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
+//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
+//            out.close();
+//            businessBoardImgService.registerImg(vo);
+//        }
+
     }
 
     @PostMapping("/board/business/delete")
