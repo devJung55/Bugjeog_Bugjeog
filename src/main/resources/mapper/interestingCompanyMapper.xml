@@ -13,12 +13,12 @@
         on ic.business_id = bb.business_id
         left join tbl_board_business_img bbi
         on bb.board_business_id = bbi.board_business_id
-        where bb.board_business_status = 1
-        order by bb.board_business_id desc
-        limit #{startRow}, #{amount}
+        where bb.board_business_status = 1 and ic.member_id = #{memberId}
+        order by bb.board_business_id desc, ic.member_id
+        limit #{interestingCriteria.startRow}, #{interestingCriteria.amount}
     </select>
     <select id="count" resultType="int">
-        select count(interesting_company_id) from tbl_interesting_company
+        select count(interesting_company_id) from tbl_interesting_company where member_id = #{memberId}
     </select>
     <delete id="deleteByInterestingCompany">
         delete from tbl_interesting_company where interesting_company_id = #{interestingCompanyId}
