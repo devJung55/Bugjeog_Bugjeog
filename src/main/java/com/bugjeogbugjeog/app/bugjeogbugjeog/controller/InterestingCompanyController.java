@@ -1,10 +1,10 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InterestingCompanyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageInterestingDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeLikeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InterestingCompanyService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +27,12 @@ public class InterestingCompanyController {
     private final MyPageService myPageService;
 
     @GetMapping("specific/personalFavoriteList")
-    public String company(Model model,Criteria criteria){
+    public String company(Model model, InterestingCriteria interestingCriteria){
         HttpSession session = req.getSession();
         Long memberId = (Long) session.getAttribute("memberId");
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
-        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(memberId,criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
+        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(memberId, interestingCriteria));
+        model.addAttribute("pageInterestingDTO", new PageInterestingDTO(interestingCriteria, interestingCompanyService.count()));
 
         return "mypage/specific/personalFavoriteList";
     }
