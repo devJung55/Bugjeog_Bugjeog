@@ -9,6 +9,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -31,6 +31,11 @@ public class BusinessBoardController {
     private final BoardBusinessService businessBoardService;
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
+
+    @GetMapping("/board/business/test")
+    public String test(){
+        return "/board/business/boardList";
+    }
 
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
@@ -102,6 +107,35 @@ public class BusinessBoardController {
         model.addAttribute("memberFullPath", memberFullPath);
         businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
         model.addAttribute("boardImgs", businessBoardImgService.getList(dto.getBoardBusinessId()));
+    }
+
+    @PostMapping("/board/business/detail")
+    @ResponseBody
+    public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
+
+        // 클라의 success 내 retData로 갈 값
+        JSONObject returnObj = new JSONObject();
+
+
+
+        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
+
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReply(boardBusinessId);
+        List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(boardBusinessId);
+
+        // MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+        MemberVO memberVO = businessReviewService.getMember(5L);
+
+        // json object에 key : value 쌍으로 값을 넣어 줌
+        returnObj.put("board", dto);
+        returnObj.put("reviews", businessReviewDTOs);
+        returnObj.put("boardList", dtos);
+        returnObj.put("member", memberVO);
+        returnObj.put("memberFullPath", (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName()));
+        returnObj.put("boardImgs", businessBoardImgService.getList(boardBusinessId));
+
+        // 서버에서 클라로 전송
+        return returnObj.toString();
     }
 
 //    //    파일 저장
