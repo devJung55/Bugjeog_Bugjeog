@@ -466,8 +466,10 @@
                 let member =    JSON.parse(dataResult.member);
                 let boardImgs = JSON.parse(dataResult.boardImgs);
 
-                console.log(typeof boards);
-                showDetail(board, reviews, boards, member, boardImgs);
+                console.log("☆☆☆☆☆☆☆")
+                console.log(typeof boardsImgs);
+                console.log($($(boardImgs)[0]));
+                showDetail(board, reviews, boards, member, $(boardImgs)[0]);
                 // console.log(dataResult);
                 // console.log(result.member);
                 // console.log(dataResult.member);
