@@ -410,279 +410,73 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+<script th:inline="javascript">
+    const $ul = $($('ul.boardList-info-box')[0]);
+    //      모달 키고 끄는 js
+    const $modal = $(".modal-active");
+    const $modalBtn = $(".modal_button");
+    const $closeBtn = $(".event_detail_modal_btn");
+    const body = document.getElementsByTagName('body')[0];
+</script>
+<script th:inline="javascript" src="/js/boardDetail/boardBusinessDetailFunction.js"></script>
+<script th:inline="javascript">
+    let boards = [[${boards}]];
+    showList(boards);
+</script>
 <script src="/js/boardList/pr-boardList.js"></script>
 <script src="/js/boardDetail/pr-boardList-test.js"></script>
 <script th:inline="javascript">
-    let boards = [[${boards}]];
-    $(document).ready(function () {
-        // 등록 버튼 초기 색상 설정
-        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
-        // textarea 입력시 등록 버튼 색상 변경
-        $('#reply_textarea').on('input', function () {
-            if ($(this).val().length > 0) {
-                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-            } else {
-                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+    const $labels = $('label.modal_button');
+    $labels.on("click", (e) =>{
+        let $label = $(e.currentTarget);
+        alert($label.attr("name"));
+        $modal.fadeIn(200);
+        body.classList.add('scrollLock');
+        $(".scroll-top-button").css("display", "none");
+        detailAjax($label.attr("name"));
+    });
+
+    // $modalBtn.each((i, e) => {
+    //     $(e).click(function () {
+    //
+    //     });
+    // });
+
+    function detailAjax(boardBusinessId) {
+        $.ajax({
+            url: "/board/business/detail",
+            method: "post",
+            data: JSON.stringify(boardBusinessId),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                alert("디테일 성공");
+                let datamember = JSON.parse(JSON.stringify(result));
+                alert(`${datamember.member}`);
+                // let data = JSON.parse(result);
+                // let dataMember = data.member;
+                // console.log(dataMember);
+
+                // alert(result);
+                // let resultObject = JSON.parse(JSON.stringify(result));
+                // console.log(result.member.memberId);
+                // let test = JSON.parse(result);
+                // let reviews = test.reviews;
+                // let boards = test.boardList;
+                // let member = test.member;
+                // let boardImgs = test.boardImgs;
+                // let memberImgFullPath = result.memberImgFullPath;
+                // console.log(board);
+                // showDetail(board, reviews, boards, member, boardImgs);
+
+            },
+            error: function (e) {
+                alert("전송실패 " + e);
             }
-        });
-    });
-
-    //       맨위로 버튼
-    const $modalTop = $(".modal-top-active");
-    const $modalTopButton = $("#up_btn");
-    $modalTopButton.click(function () {
-        $modalTop.animate({scrollTop: 0}, 400);
-        return false;
-    });
-
-
-    //      모달 키고 끄는 js
-    const $modal = $(".modal-active");
-
-    const $closeBtn = $(".event_detail_modal_btn");
-    const body = document.getElementsByTagName('body')[0];
-    $(document).ready(function () {
-        // 등록 버튼 초기 색상 설정
-        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-
-        // textarea 입력시 등록 버튼 색상 변경
-        $('#reply_textarea').on('input', function () {
-            if ($(this).val().length > 0) {
-                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-            } else {
-                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-            }
-        });
-    });
-
-    function modal() {
-        const $btn = $(".modal_button");
-        $btn.each((i, e) => {
-            console.log(i, e);
-            console.log("click");
-            $modal.fadeIn(200);
-            body.classList.add('scrollLock');
-            $(".scroll-top-button").css("display", "none");
-            $.ajax({
-                url: "/board/business/detail",
-                method: "post",
-                data: `${board.boardBusinessId}`,
-                data_type: "json",
-                success: function (result) {
-                    alert("디테일 성공");
-                    let board = result.board;
-                    let reviews = result.reviews;
-                    let boards = result.boardList;
-                    let member = result.member;
-                    let boardImgs = result.boardImgs;
-                    let memberImgFullPath = result.memberImgFullPath;
-                    console.log(board);
-                    showList(board, reviews, boards, member, boardImgs);
-
-                    const $top = $("#up_btn");
-
-                    $top.click(function () {
-                        $('html, body').animate({scrollTop: 0}, 400);
-                        return false;
-                    });
-
-                    function showList(board, reviews, boards, member, boardImgs) {
-                        $('#all_wrap').empty();
-                        let text = ``
-                        text = `
-    <div id="all_wrap_div" th:object="${board}">
-        <div class="modal-top-active" style="overflow-y: auto; flex: 1 1;">
-            <div id="third_div">
-                <div id="title">
-                    <div id="title_div">
-                        <div>
-                            <h2 id="title_h2">${board.boardBusinessTitle}</h2>
-                        </div>
-                        <div id="correction_delete">
-                            <img style="width: 18px" src="/image/board_detail/crystal.png" alt="">
-                            <img style="width: 22px;margin-left: 7px;" src="/image/board_detail/delete.png" alt="">
-                        </div>
-                        <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.58065 1C3.25997 1 3 1.26206 3 1.58533V16.4138C3 16.8632 3.48164 17.145 3.86873 16.922L9.00004 13.9662L14.1313 16.922C14.5184 17.145 15 16.8632 15 16.4138V1.58533C15 1.26206 14.74 1 14.4194 1H9.00004H3.58065ZM8.71195 12.7838C8.89046 12.681 9.10961 12.681 9.28812 12.7838L13.8387 15.4052V2.17067H9.00004H4.1613V15.4052L8.71195 12.7838Z" fill="white"></path>
-                            <path class="book-mark" d="M9.28812 12.7838C9.10961 12.681 8.89046 12.681 8.71195 12.7838L4.1613 15.4052V2.17067H9.00004H13.8387V15.4052L9.28812 12.7838Z" fill="black" fill-opacity="0.25"></path>
-                        </svg>
-                    </div>
-                </div>
-                <section id="section_info">
-                    <header style="display: flex;">
-                        <section id="main_img">
-                            <div class="relative_size" style="position: relative; width: 700px; height: 400px;">
-                                <div class="file-banner-box">`;
-                        boardImgs.forEach(boardImg => {
-                            text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`
-                        });
-                        text += `
-                        </div>
-                            </div>
-                            <button class="main_img_btn" id="main_img_btn_left">
-                                <img id="left_arrow" src="/image/board_detail/left_arrow.png" alt="">
-                            </button>
-                            <button class="main_img_btn" id="main_img_btn_right">
-                                <img id="right_arrow" src="/image/board_detail/right_arrow.png" alt="">
-                            </button>
-                        </section>
-                        <section id="right_section">
-                            <h2 class="title_h2">${board.businessCompanyName}</h2>
-                            <h4 class="h4">설립일</h4>
-                            <h5 class="h5">${board.businessEstablishmentDate}</h5>
-                            <h4 class="h5">대표자: ${board.businessCeoName}</h4>
-                            <h5 class="h4">유통물류센터</h5>
-                            <h4 class="h5">${board.businessLocation}</h4>
-                            <h4 class="h4">슬로건</h4>
-                            <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>
-                        </section>
-                        <div style="display: flex; justify-content: space-between;">
-                            <div style="margin-left: 10px; flex: 1 1 auto;">
-                                <a></a>
-                            </div>
-                        </div>
-                    </header>
-                    <div style="width: calc(100% - 360px); color: #333;">
-                        <div id="content">
-                            <div>
-                                ${board.boardBusinessContent}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <h2 id="footer_title">이 회사의 모든 글</h2>
-        <ul id="footer_ul">`;
-                        boards.forEach(other => {
-                                text += `
-            <li class="footer_li" th:object="${other}">
-                <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
-                    <div class="footer_li_div">
-                        <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
-                    </div>
-                    <div class="event_content">
-                        <p class="event_content_p">${other.boardBusinessContent}</p>
-                    </div>
-                </a>
-            </li>`;
-                            }
-                        );
-                        text += `
-                </ul>
-                    <div class="see-more-button">
-                        <a id="event_all">
-                            이벤트 모두 보기
-                            <svg width="12" height="12" viewBox="0 0 12 12" margin-left="5px" margin-right="10px">
-                                <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}">
-                    <div class="profile-box">
-                        <div id="profile_img_nickname">
-                            <div class="profile_img" id="profile_my_img">
-                                <div class="profile-image-login">
-                                    <div class="profile-member-status">
-                                        <!-- <span class="profile-image">유</span> -->
-                                        <img src="${member.memberImgFullPath || ''}" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <span id="my_nickname">${member.memberName}</span>
-                            <div class="rating-reply">
-                                <input type="radio" id="star1" name="rating" class="star" value="1" />
-                                <label for="star1" id="label1" style="cursor: pointer;"></label>
-                                <input type="radio" id="star2" name="rating"  class="star" value="2" />
-                                <label for="star2" id="label2" style="cursor: pointer;"></label>
-                                <input type="radio" id="star3" name="rating" class="star"  value="3" />
-                                <label for="star3" id="label3" style="cursor: pointer;"></label>
-                                <input type="radio" id="star4" name="rating" class="star"  value="4" />
-                                <label for="star4" id="label4" style="cursor: pointer;"></label>
-                                <input type="radio" id="star5" name="rating" class="star" value="5" />
-                                <label for="star5" id="label5" style="cursor: pointer;"></label>
-                            </div>
-                        </div>
-                        <div id="form_wrap" th:object="${board}">
-                            <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
-                                <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
-                                <button type="submit">
-                                    <span>등록</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div id="review_score_box_layout">
-                    총 리뷰 개수: 1개
-                    <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
-                        <label class="review-score"></label>
-                        <label class="review-score"></label>
-                        <label class="review-score"></label>
-                        <label class="review-score"></label>
-                        <label class="review-score"></label>
-                    </div>
-                </div>`;
-                        reviews.forEach(review => {
-                            text += `
-                <div id="reply_wrap">
-                    <div id="reply_wrap_div">
-                        <div style="display: flex; justify-content: space-between;">
-                            <a style="display: flex; width: 0;">
-                                <div style="display: inline-flex; align-items: center; margin-right: auto;">
-                                    <div style="text-align: left; display: flex; align-items: center;">
-                                        <div style="position: relative; margin-right: 7px;">
-                                            <div id="reply_my">
-                                                <div class="profile-image-login">
-                                                    <div class="profile-member-status">
-                                                    <!-- <span class="profile-image">유</span> -->
-                                                    <img src="${memberImgFullPath || ''}" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; flex-direction: column;">
-                                        <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                        <div id="reply_nickname">${review.memberName}</div>
-                                    </div>
-                                    <span id="reply_date">${review.reviewRegisterDate}</span>
-                                    <div class="review-score-box">
-                                        <label class="review-score"></label>
-                                        <label class="review-score"></label>
-                                        <label class="review-score"></label>
-                                        <label class="review-score"></label>
-                                        <label class="review-score"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div id="float_delete">
-                            수정&nbsp;&nbsp;&nbsp;삭제
-                            </div>
-                        <div id="reply_content">${review.reviewContent}</div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div id="up_div">
-                <button id="up_btn">
-                <span id="up_btn_span">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2674 5.29328L5.53033 11.0303C5.23744 11.3232 4.76256 11.3232 4.46967 11.0303C4.17678 10.7374 4.17678 10.2626 4.46967 9.96967L11.4697 2.96967C11.5063 2.93306 11.5457 2.90102 11.5873 2.87356C11.8784 2.68135 12.274 2.71339 12.5303 2.96967L19.5303 9.96967C19.8232 10.2626 19.8232 10.7374 19.5303 11.0303C19.2374 11.3232 18.7626 11.3232 18.4697 11.0303L12.7326 5.29328C12.744 5.34522 12.75 5.39918 12.75 5.45455V21.4545C12.75 21.8688 12.4142 22.2045 12 22.2045C11.5858 22.2045 11.25 21.8688 11.25 21.4545V5.45455C11.25 5.39918 11.256 5.34522 11.2674 5.29328ZM11.8387 4.72193C11.8907 4.71054 11.9446 4.70455 12 4.70455C12.0554 4.70455 12.1093 4.71054 12.1613 4.72193L12 4.56066L11.8387 4.72193Z" fill="black"></path>
-                    </svg>
-                </span>
-            </button>
-        </div>
-    </div>`;
-                        });
-                        $('#all_wrap').append(text);
-                    }
-                }
-            })
         });
     }
 
@@ -709,337 +503,58 @@
 
 
 </script>
-<script src="/js/boardList/pr-boardList.js"></script>
-<!--<script src="/js/boardList/boardBusinessList.js"></script>-->
+
 <script th:inline="javascript">
 
-    const $ul = $($('ul.boardList-info-box')[0]);
 
     /* 작성글 목록 */
     // const boards = JSON.parse($boards); /* boards 정의해야 함 */
-    showList(boards);
 
-    function showList(boards) {
-        console.log("들2");
 
-        $ul.empty();
-        let text = ``;
-        boards.forEach(board => {
-            console.log(`${board.boardBusinessImgFullPath}`);
-            text += `
-           <li class="info-box-layout"  th:object="${board}">
-                <a href="javascript:void(0)" onclick="modal()" class="modal_button" name="${board.boardBusinessId}">
-                <!-- 상세보기 모달 버튼 -->
-                    <div class="image-box">
-                        <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
-                    </div>
-                    <div class="info-section-box">
-                        <div class="cate-title-box">
-                            <span class="cate-title-style">
-                                <span class="cate-title">${board.businessCategory}</span>
-                            </span>
-                        </div>
-                        <p class="circulation-title">${board.boardBusinessTitle}</p>
-                    </div>
-                    <div class="location-box">
-                        <div class="location-box-layout">${board.businessLocation}</div>
-                    </div>
-                    <div class="review-count-box">
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/review_icon.png" class="review-icon">
-                            </div>
-                            <div>
-                                <span class="review-count">${board.boardBusinessReviewCount}</span>
-                            </div>
-                        </div>
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                            </div>
-                            <div>
-                                <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-			`;
-        });
-        $ul.append(text);
-    }
-
-        /* 카테고리 버튼 이벤트 */
-        const $cateButton = $(".cate-button");
-
-        $cateButton.each((i, e) => {
-
-            $(e).click(function () {
-                $cateButton.removeClass("cate-button-active");
-                $(e).addClass("cate-button-active");
-                ajax();
-            });
-        });
-
-        function ajax() {
-            const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
-            const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
-            console.log(sortType);
-            $.ajax({
-                url: "/board/business/list",
-                method: "POST",
-                data: {
-                    category: categoryName
-                    , sort: sortType
-                },
-                dataType: "json",
-                success: function (result) {
-                    let newBoards = `${result}`;
-                    $ul.empty();
-                    showList(result);
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-            });
-        }
-
-        /* sort 버튼 이벤트 */
-        const $sortButton = $(".sort-button");
-
-        $sortButton.each((i, e) => {
-            $(e).click(function () {
-                $sortButton.removeClass("sort-button-active");
-                $(e).addClass("sort-button-active");
-                ajax();
-            });
-        });
+    // /* 카테고리 버튼 이벤트 */
+    // const $cateButton = $(".cate-button");
+    //
+    // $cateButton.each((i, e) => {
+    //
+    //     $(e).click(function () {
+    //         $cateButton.removeClass("cate-button-active");
+    //         $(e).addClass("cate-button-active");
+    //         ajax();
+    //     });
+    // });
+    //
+    // function ajax() {
+    //     const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+    //     const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+    //     console.log(sortType);
+    //     $.ajax({
+    //         url: "/board/business/list",
+    //         method: "POST",
+    //         data: {
+    //             category: categoryName
+    //             , sort: sortType
+    //         },
+    //         dataType: "json",
+    //         success: function (result) {
+    //             let newBoards = `${result}`;
+    //             $ul.empty();
+    //             showList(result);
+    //         },
+    //         error: function (e) {
+    //             console.log(e);
+    //         }
+    //     });
+    // }
+    //
+    // /* sort 버튼 이벤트 */
+    // const $sortButton = $(".sort-button");
+    //
+    // $sortButton.each((i, e) => {
+    //     $(e).click(function () {
+    //         $sortButton.removeClass("sort-button-active");
+    //         $(e).addClass("sort-button-active");
+    //         ajax();
+    //     });
+    // });
 </script>
-
-<script th:inline="javascript">
-    /*    let board = [[${board}]];
-        let reviews = [[${reviews}]];
-        let boards = [[${boardList}]];
-        let member = [[${member}]];
-        let boardImgs = [[${boardImgs}]];
-        let memberImgFullPath = [[${memberImgFullPath}]];
-        console.log(board);
-        showList(board, reviews, boards, member, boardImgs);
-        $(document).ready(function () {
-            // 등록 버튼 초기 색상 설정
-            $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-
-            // textarea 입력시 등록 버튼 색상 변경
-            $('#reply_textarea').on('input', function () {
-                if ($(this).val().length > 0) {
-                    $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-                } else {
-                    $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-                }
-            });
-        });
-
-
-        const $top = $("#up_btn");
-
-        $top.click(function () {
-            $('html, body').animate({scrollTop: 0}, 400);
-            return false;
-        });
-
-        function showList(board, reviews, boards, member, boardImgs) {
-            $('#all_wrap').empty();
-            let text = ``
-            text = `
-        <div id="all_wrap_div" th:object="${board}">
-            <div class="modal-top-active" style="overflow-y: auto; flex: 1 1;">
-                <div id="third_div">
-                    <div id="title">
-                        <div id="title_div">
-                            <div>
-                                <h2 id="title_h2">${board.boardBusinessTitle}</h2>
-                            </div>
-                            <div id="correction_delete">
-                                <img style="width: 18px" src="/image/board_detail/crystal.png" alt="">
-                                <img style="width: 22px;margin-left: 7px;" src="/image/board_detail/delete.png" alt="">
-                            </div>
-                            <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.58065 1C3.25997 1 3 1.26206 3 1.58533V16.4138C3 16.8632 3.48164 17.145 3.86873 16.922L9.00004 13.9662L14.1313 16.922C14.5184 17.145 15 16.8632 15 16.4138V1.58533C15 1.26206 14.74 1 14.4194 1H9.00004H3.58065ZM8.71195 12.7838C8.89046 12.681 9.10961 12.681 9.28812 12.7838L13.8387 15.4052V2.17067H9.00004H4.1613V15.4052L8.71195 12.7838Z" fill="white"></path>
-                                <path class="book-mark" d="M9.28812 12.7838C9.10961 12.681 8.89046 12.681 8.71195 12.7838L4.1613 15.4052V2.17067H9.00004H13.8387V15.4052L9.28812 12.7838Z" fill="black" fill-opacity="0.25"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <section id="section_info">
-                        <header style="display: flex;">
-                            <section id="main_img">
-                                <div class="relative_size" style="position: relative; width: 700px; height: 400px;">
-                                    <div class="file-banner-box">`;
-            boardImgs.forEach(boardImg => {
-                text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`
-            });
-            text += `
-                            </div>
-                                </div>
-                                <button class="main_img_btn" id="main_img_btn_left">
-                                    <img id="left_arrow" src="/image/board_detail/left_arrow.png" alt="">
-                                </button>
-                                <button class="main_img_btn" id="main_img_btn_right">
-                                    <img id="right_arrow" src="/image/board_detail/right_arrow.png" alt="">
-                                </button>
-                            </section>
-                            <section id="right_section">
-                                <h2 class="title_h2">${board.businessCompanyName}</h2>
-                                <h4 class="h4">설립일</h4>
-                                <h5 class="h5">${board.businessEstablishmentDate}</h5>
-                                <h4 class="h5">대표자: ${board.businessCeoName}</h4>
-                                <h5 class="h4">유통물류센터</h5>
-                                <h4 class="h5">${board.businessLocation}</h4>
-                                <h4 class="h4">슬로건</h4>
-                                <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>
-                            </section>
-                            <div style="display: flex; justify-content: space-between;">
-                                <div style="margin-left: 10px; flex: 1 1 auto;">
-                                    <a></a>
-                                </div>
-                            </div>
-                        </header>
-                        <div style="width: calc(100% - 360px); color: #333;">
-                            <div id="content">
-                                <div>
-                                    ${board.boardBusinessContent}
-            </div>
-            </div>
-            </div>
-            </section>
-            <div id="footer">
-            <h2 id="footer_title">이 회사의 모든 글</h2>
-            <ul id="footer_ul">`;
-            boards.forEach(other => {
-                text += `
-            <li class="footer_li" th:object="${other}">
-            <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
-            <div class="footer_li_div">
-            <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
-            </div>
-            <div class="event_content">
-            <p class="event_content_p">${other.boardBusinessContent}</p>
-            </div>
-            </a>
-            </li>`;
-            }
-        );
-        text += `
-                    </ul>
-                        <div class="see-more-button">
-                            <a id="event_all">
-                                이벤트 모두 보기
-                                <svg width="12" height="12" viewBox="0 0 12 12" margin-left="5px" margin-right="10px">
-                                    <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}">
-                        <div class="profile-box">
-                            <div id="profile_img_nickname">
-                                <div class="profile_img" id="profile_my_img">
-                                    <div class="profile-image-login">
-                                        <div class="profile-member-status">
-                                            <!-- <span class="profile-image">유</span> -->
-                                            <img src="${member.memberImgFullPath || ''}" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <span id="my_nickname">${member.memberName}</span>
-                                <div class="rating-reply">
-                                    <input type="radio" id="star1" name="rating" class="star" value="1" />
-                                    <label for="star1" id="label1" style="cursor: pointer;"></label>
-                                    <input type="radio" id="star2" name="rating"  class="star" value="2" />
-                                    <label for="star2" id="label2" style="cursor: pointer;"></label>
-                                    <input type="radio" id="star3" name="rating" class="star"  value="3" />
-                                    <label for="star3" id="label3" style="cursor: pointer;"></label>
-                                    <input type="radio" id="star4" name="rating" class="star"  value="4" />
-                                    <label for="star4" id="label4" style="cursor: pointer;"></label>
-                                    <input type="radio" id="star5" name="rating" class="star" value="5" />
-                                    <label for="star5" id="label5" style="cursor: pointer;"></label>
-                                </div>
-                            </div>
-                            <div id="form_wrap" th:object="${board}">
-                                <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
-                                    <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
-                                    <button type="submit">
-                                        <span>등록</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="review_score_box_layout">
-                        총 리뷰 개수: 1개
-                        <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
-                            <label class="review-score"></label>
-                            <label class="review-score"></label>
-                            <label class="review-score"></label>
-                            <label class="review-score"></label>
-                            <label class="review-score"></label>
-                        </div>
-                    </div>`;
-        reviews.forEach(review => {
-            text += `
-                    <div id="reply_wrap">
-                        <div id="reply_wrap_div">
-                            <div style="display: flex; justify-content: space-between;">
-                                <a style="display: flex; width: 0;">
-                                    <div style="display: inline-flex; align-items: center; margin-right: auto;">
-                                        <div style="text-align: left; display: flex; align-items: center;">
-                                            <div style="position: relative; margin-right: 7px;">
-                                                <div id="reply_my">
-                                                    <div class="profile-image-login">
-                                                        <div class="profile-member-status">
-                                                        <!-- <span class="profile-image">유</span> -->
-                                                        <img src="${memberImgFullPath || ''}" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div style="display: flex; flex-direction: column;">
-                                            <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="reply_nickname">${review.memberName}</div>
-                                        </div>
-                                        <span id="reply_date">${review.reviewRegisterDate}</span>
-                                        <div class="review-score-box">
-                                            <label class="review-score"></label>
-                                            <label class="review-score"></label>
-                                            <label class="review-score"></label>
-                                            <label class="review-score"></label>
-                                            <label class="review-score"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div id="float_delete">
-                                수정&nbsp;&nbsp;&nbsp;삭제
-                                </div>
-                            <div id="reply_content">${review.reviewContent}</div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div id="up_div">
-                    <button id="up_btn">
-                    <span id="up_btn_span">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2674 5.29328L5.53033 11.0303C5.23744 11.3232 4.76256 11.3232 4.46967 11.0303C4.17678 10.7374 4.17678 10.2626 4.46967 9.96967L11.4697 2.96967C11.5063 2.93306 11.5457 2.90102 11.5873 2.87356C11.8784 2.68135 12.274 2.71339 12.5303 2.96967L19.5303 9.96967C19.8232 10.2626 19.8232 10.7374 19.5303 11.0303C19.2374 11.3232 18.7626 11.3232 18.4697 11.0303L12.7326 5.29328C12.744 5.34522 12.75 5.39918 12.75 5.45455V21.4545C12.75 21.8688 12.4142 22.2045 12 22.2045C11.5858 22.2045 11.25 21.8688 11.25 21.4545V5.45455C11.25 5.39918 11.256 5.34522 11.2674 5.29328ZM11.8387 4.72193C11.8907 4.71054 11.9446 4.70455 12 4.70455C12.0554 4.70455 12.1093 4.71054 12.1613 4.72193L12 4.56066L11.8387 4.72193Z" fill="black"></path>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>`;
-        });
-        $('#all_wrap').append(text);
-        }*/
-</script>
-
 </html>

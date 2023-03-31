@@ -7,9 +7,13 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +37,7 @@ public class BusinessBoardController {
     private final BusinessReviewService businessReviewService;
 
     @GetMapping("/board/business/test")
-    public String test(){
+    public String test() {
         return "/board/business/boardList";
     }
 
@@ -84,7 +88,7 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/detail")
-    public void detail(Model model, HttpServletRequest req) {
+    public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
         log.info(req.getParameter("boardBusinessId"));
 
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
@@ -100,13 +104,14 @@ public class BusinessBoardController {
         MemberVO memberVO = businessReviewService.getMember(5L);
         String orginalName = memberVO.getMemberImgOriginalName();
         String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
-        model.addAttribute("board", dto);
-        model.addAttribute("reviews", businessReviewDTOs);
-        model.addAttribute("boardList", dtos);
-        model.addAttribute("member", memberVO);
-        model.addAttribute("memberFullPath", memberFullPath);
+        ObjectMapper objectMapper = new ObjectMapper();
+        model.addAttribute("board", objectMapper.writeValueAsString(dto));
+        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+        model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
+        model.addAttribute("member", objectMapper.writeValueAsString(memberVO));
+        model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
         businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
-        model.addAttribute("boardImgs", businessBoardImgService.getList(dto.getBoardBusinessId()));
+        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
     }
 
     @PostMapping("/board/business/detail")
