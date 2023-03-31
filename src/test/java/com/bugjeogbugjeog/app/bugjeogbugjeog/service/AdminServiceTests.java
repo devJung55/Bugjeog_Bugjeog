@@ -37,9 +37,8 @@ public class AdminServiceTests {
 
     @Test
     public void updateMember(){
-        MemberDTO memberDTO = memberService.adminMemberShow(1L);
-        MemberVO memberVO = new MemberVO();
-        memberVO.setMemberPhoneNumber("01089151820");
+        MemberVO memberVO = memberService.showMember(1L);
+        memberVO.setMemberPhoneNumber("01089151829");
         memberService.updateMember(memberVO);
     }
 
