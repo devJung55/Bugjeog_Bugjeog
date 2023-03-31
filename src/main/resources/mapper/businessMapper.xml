@@ -10,7 +10,7 @@
 
     <!--유통 업체 정보 조회-->
     <select id="selectBusiness" resultType="businessVO">
-        select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category
+        select business_id, business_email, business_password, business_status, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category
         from tbl_business where business_id = #{businessId}
     </select>
 
