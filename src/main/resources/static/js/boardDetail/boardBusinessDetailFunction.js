@@ -78,9 +78,10 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                 <section id="main_img">
                                     <div class="relative_size" style="position: relative; width: 700px; height: 400px;">
                                         <div class="file-banner-box">`;
-    boardImgs.forEach(boardImg => {
-        text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`
-    });
+    // boardImgs.forEach(boardImg => {
+        /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
+    // });
+    text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImgs.boardBusinessImgPath + '/' + boardImgs.boardBusinessImgUuid + '_' + boardImgs.boardBusinessImgOriginalName}" alt="">`;
     text += `
                                 </div>
                                     </div>

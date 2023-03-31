@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessImgDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +111,7 @@ public class BusinessBoardController {
         model.addAttribute("board", objectMapper.writeValueAsString(dto));
         model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
         model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
-        model.addAttribute("member", objectMapper.writeValueAsString(memberVO));
+        model.addAttribute("member", JSONObject.toString("member", memberVO));
         model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
         businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
         model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
@@ -116,30 +119,34 @@ public class BusinessBoardController {
 
     @PostMapping("/board/business/detail")
     @ResponseBody
-    public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
+    public String detailAjax(@RequestBody Long boardBusinessId) throws Exception {
         log.info(String.valueOf(boardBusinessId));
         // 클라의 success 내 retData로 갈 값
-        JSONObject returnObj = new JSONObject();
-        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
+//        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+        BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
+        List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardBusinessId);
+        List<BoardBusinessDTO> boards = businessBoardService.getBoardByBusinessId(boardBusinessId);
+        MemberVO member = businessReviewService.getMember(5L);
+        String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
+        List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
+//        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
-        List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(boardBusinessId);
+        log.info("memberImgFullPath : " + memberImgFullPath);
 
-        // MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
-        MemberVO memberVO = businessReviewService.getMember(5L);
-
-        // json object에 key : value 쌍으로 값을 넣어 줌
-        returnObj.put("board", dto);
-        returnObj.put("reviews", businessReviewDTOs);
-        returnObj.put("boardList", dtos);
-        returnObj.put("member", memberVO);
-        returnObj.put("memberFullPath", (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName()));
-        returnObj.put("boardImgs", businessBoardImgService.getList(boardBusinessId));
-        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
-        log.info(returnObj.toString());
-        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
         // 서버에서 클라로 전송
-        return returnObj.toString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JSONObject returnObj = new JSONObject();
+
+        returnObj.put("board", objectMapper.writeValueAsString(board));
+        returnObj.put("reviews", objectMapper.writeValueAsString(reviews));
+        returnObj.put("boards", objectMapper.writeValueAsString(boards));
+        returnObj.put("member", objectMapper.writeValueAsString(member));
+        returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
+        returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
+
+
+
+        return returnObj.toJSONString();
     }
 
 //    //    파일 저장

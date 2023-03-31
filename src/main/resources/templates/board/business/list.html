@@ -432,7 +432,7 @@
 <script th:inline="javascript">
 
     const $labels = $('label.modal_button');
-    $labels.on("click", (e) =>{
+    $labels.on("click", (e) => {
         let $label = $(e.currentTarget);
         alert($label.attr("name"));
         $modal.fadeIn(200);
@@ -448,6 +448,7 @@
     // });
 
     function detailAjax(boardBusinessId) {
+        alert(boardBusinessId);
         $.ajax({
             url: "/board/business/detail",
             method: "post",
@@ -455,8 +456,21 @@
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 alert("디테일 성공");
-                let datamember = JSON.parse(JSON.stringify(result));
-                alert(`${datamember.member}`);
+                console.log(typeof result);
+                console.log(JSON.parse(result));
+                let dataResult = JSON.parse(result);
+
+                let board =     JSON.parse(dataResult.board);
+                let reviews =   JSON.parse(dataResult.reviews);
+                let boards =    JSON.parse(dataResult.boards);
+                let member =    JSON.parse(dataResult.member);
+                let boardImgs = JSON.parse(dataResult.boardImgs);
+
+                console.log(typeof boards);
+                showDetail(board, reviews, boards, member, boardImgs);
+                // console.log(dataResult);
+                // console.log(result.member);
+                // console.log(dataResult.member);
                 // let data = JSON.parse(result);
                 // let dataMember = data.member;
                 // console.log(dataMember);
@@ -471,7 +485,7 @@
                 // let boardImgs = test.boardImgs;
                 // let memberImgFullPath = result.memberImgFullPath;
                 // console.log(board);
-                // showDetail(board, reviews, boards, member, boardImgs);
+
 
             },
             error: function (e) {
