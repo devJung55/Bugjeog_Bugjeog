@@ -29,7 +29,7 @@
                         <img class="img_profile" src="/image/boardList/distributor_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
                     </th:block>
                     <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid)}">
-                        <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                        <img class="img_profile" th:src="@{'/myPages/business/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
                     </th:block>
                 </div>
             </div>
