@@ -293,6 +293,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let memberVO = [[${memberVO}]];
+    let memberId = [[${session.memberId}]];
 
     if (memberVO.memberImgUuid) {
         $(".img_profile").attr("src", `/mypage/profile/display?fileName=${memberVO.memberImgPath}/${memberVO.memberImgUuid}_${memberVO.memberImgOriginalName}`);
