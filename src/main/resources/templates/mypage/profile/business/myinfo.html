@@ -380,6 +380,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
+    let businessId = [[${session.businessId}]];
+
     if (businessVO.businessImgUuid != null) {
         $(".img_profile").attr("src", `/myPages/business/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
     }
