@@ -62,8 +62,8 @@ public class AdminController {
 
     
     /* 회원 수정 */
-    @GetMapping("admin-memberModify/{memberId}")
-    public String adminMemberModify(@PathVariable Long memberId, Model model){
+    @GetMapping("admin-memberModify")
+    public String adminMemberModify(Long memberId, Model model){
         model.addAttribute(memberService.showMember(memberId));
         return "admin/admin-memberModify";
     }
@@ -75,7 +75,8 @@ public class AdminController {
         redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
         redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
         memberService.updateMember(memberVO);
-        return new RedirectView("/admin/admin-member/{memberId}");
+
+        return new RedirectView("/admin/admin-member");
     }
 
     /* 회원 삭제 */
@@ -123,8 +124,8 @@ public class AdminController {
 
 
     /* 유통 회원 수정 */
-    @GetMapping("admin-member-companyModify/{businessId}")
-    public String adminMemberCompanyModify(@PathVariable Long businessId, Model model){
+    @GetMapping("admin-member-companyModify")
+    public String adminMemberCompanyModify(Long businessId, Model model){
         model.addAttribute(businessService.showBusiness(businessId));
         return "/admin/admin-member-companyModify";
     }
@@ -136,6 +137,7 @@ public class AdminController {
         redirectAttributes.addAttribute("businessNumber",businessVO.getBusinessNumber());
         redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
         businessService.setBusiness(businessVO);
+
         return new RedirectView("/admin/admin-member-company/{businessId}");
     }
 
@@ -152,10 +154,9 @@ public class AdminController {
 
    /* *//* 공지사항 리스트 *//*
    @GetMapping("admin-noticeList")
-    public String noticeList(Criteria criteria, Model model){
+    public void noticeList(Criteria criteria, Model model){
        model.addAttribute("noticeVO", noticeService.showList(criteria));
        model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
-       return "/admin/admin-noticeList";
    }*/
 
     /* 공지사항 리스트 */
