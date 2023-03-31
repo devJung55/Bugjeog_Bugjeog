@@ -6,6 +6,8 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.KakaoService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -156,7 +158,7 @@ public class MemberController {
     }
 
     //    카카오 로그인
-    @GetMapping("/kakao-login")
+    @GetMapping("kakao-login")
     public String kakaoCallback(String code, HttpSession session) throws Exception {
         log.info("code1234 : " + code);
         String token = kakaoService.getKaKaoAccessToken(code);
@@ -185,4 +187,7 @@ public class MemberController {
 //    가입 내역 없을 시
     @GetMapping("no-join")
     public void noJoin() {;}
+
+    @GetMapping("callback")
+    public void callback() {;}
 }

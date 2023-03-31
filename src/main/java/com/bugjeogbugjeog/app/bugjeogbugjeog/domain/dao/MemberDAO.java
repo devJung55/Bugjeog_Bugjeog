@@ -90,6 +90,16 @@ public class MemberDAO {
         return memberMapper.businessSelectForStatus(businessEmail);
     }
 
+//    네이버 로그인
+    public Long findIdByEmail(String memberEmail) {
+        return memberMapper.selectNaver(memberEmail);
+    }
+
+//    네이버 로그인
+    public MemberVO findMemberInfo(String memberEmail) {
+        return memberMapper.selectMemberInfo(memberEmail);
+    }
+
     /*-----------------------------------------------------------------------------*/
     //    회원정보 조회
     public MemberVO findById(Long memberId){return memberMapper.select(memberId);};

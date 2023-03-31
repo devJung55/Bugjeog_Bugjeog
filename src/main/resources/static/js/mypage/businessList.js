@@ -6,10 +6,6 @@ $("a.changePage").on("click", function (e) {
     $pageForm.submit();
 });
 
-if (businessVO.businessImgUuid) {
-    $(".img_profile").attr("src", `/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
-}
-
 $(".phoneNumber").text(phoneNumber(businessVO.businessPhoneNumber));
 
 function phoneNumber(phone) {
