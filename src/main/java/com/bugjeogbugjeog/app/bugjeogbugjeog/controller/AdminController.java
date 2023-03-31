@@ -138,7 +138,7 @@ public class AdminController {
         redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
         businessService.setBusiness(businessVO);
 
-        return new RedirectView("/admin/admin-member-company/{businessId}");
+        return new RedirectView("/admin/admin-member-company");
     }
 
 
