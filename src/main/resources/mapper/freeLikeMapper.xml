@@ -11,6 +11,7 @@
         select f.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, f.member_id, f.business_id
         from tbl_board_free f join tbl_free_like k
         on f.board_free_id = k.board_free_id and k.member_id = #{memberId}
+        order by f.board_free_id desc
         limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
@@ -24,6 +25,7 @@
         select f.board_free_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, f.member_id, f.business_id
         from tbl_board_free f join tbl_free_like k
         on f.board_free_id = k.board_free_id and k.business_id = #{businessId}
+        order by f.board_free_id desc
         limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
