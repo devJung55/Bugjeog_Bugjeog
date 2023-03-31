@@ -128,9 +128,15 @@ public class BusinessBoardController {
         List<BoardBusinessDTO> boards = businessBoardService.getBoardByBusinessId(boardBusinessId);
         MemberVO member = businessReviewService.getMember(5L);
         String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
+        try {
+            memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 
+        log.info(boardImgs.toString());
         log.info("memberImgFullPath : " + memberImgFullPath);
 
         // 서버에서 클라로 전송
