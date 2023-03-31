@@ -16,9 +16,11 @@ import java.util.List;
 public class BoardBusinessImgService {
     private final BusinessBoardImgDAO businessBoardImgDAO;
 
-    public void write(List<BoardBusinessImgVO> boardBusinessImgVOs){
-        boardBusinessImgVOs.forEach(imgVO -> businessBoardImgDAO.save(imgVO));
+    public void writeList(List<BoardBusinessImgVO> boardBusinessImgVOs){
+//        businessBoardImgDAO.saveList(boardBusinessImgVOs);
+        boardBusinessImgVOs.stream().forEach(boardBusinessImgVO -> businessBoardImgDAO.save(boardBusinessImgVO));
     }
+
 
     public void registerImg(BoardBusinessImgVO boardBusinessImgVO) {
         businessBoardImgDAO.save(boardBusinessImgVO);
