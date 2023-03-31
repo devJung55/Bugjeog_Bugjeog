@@ -29,9 +29,9 @@ public class InterestingCompanyController {
     @GetMapping("specific/personalFavoriteList")
     public String company(Model model,Criteria criteria){
         HttpSession session = req.getSession();
-        log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
-        model.addAttribute("memberVO",myPageService.memberInfo(1L));
-        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(criteria));
+        Long memberId = (Long) session.getAttribute("memberId");
+        model.addAttribute("memberVO", myPageService.memberInfo(memberId));
+        model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(memberId,criteria));
         model.addAttribute("pageDTO", new PageDTO(criteria, interestingCompanyService.count()));
 
         return "mypage/specific/personalFavoriteList";

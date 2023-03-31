@@ -15,7 +15,9 @@ public class InterestingCompanyDAO {
     private final InterestingCompanyMapper interestingCompanyMapper;
 
     //         관심업체 리스트
-    public List<InterestingCompanyDTO> findAllToInterestingCompany(Criteria criteria){ return interestingCompanyMapper.selectInterestingCompany(criteria);}
+    public List<InterestingCompanyDTO> findAllToInterestingCompany(Long memberId, Criteria criteria){
+        return interestingCompanyMapper.selectInterestingCompany(memberId, criteria);
+    }
 
     //    갯수 가져오기
     public int count(){
