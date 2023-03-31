@@ -22,7 +22,10 @@ public class FreeBoardController {
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
-    public String freeBoard(){return "/board/free/list";} //html 경로
+    public String freeBoard(Model model){
+        model.addAttribute("boardLists", freeBoardService.getList());
+
+        return "/board/free/list";} //html 경로
 
     /*자유게시판 디테일 */
     @GetMapping("detail")
@@ -64,4 +67,5 @@ public class FreeBoardController {
         model.addAttribute(new FreeReplyVO());
         return "/FreeBoards/detail";
     }
+
 }

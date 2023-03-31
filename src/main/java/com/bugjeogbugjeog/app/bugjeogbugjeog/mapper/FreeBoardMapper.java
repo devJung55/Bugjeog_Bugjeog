@@ -24,7 +24,7 @@ public interface FreeBoardMapper {
     public void delete(Long boardFreeId);
 
     //    게시글 전체 조회
-//    public List<BoardFreeVO> selectAll();
+   public List<BoardFreeVO> selectAll();
 
 //    비즈니스 참고하여 추가
 

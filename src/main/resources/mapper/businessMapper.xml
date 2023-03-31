@@ -19,7 +19,7 @@
         select business_number from tbl_business
     </select>
 
-    <!-- 회원 탈퇴 -->
+    <!-- 회원 삭제 -->
     <delete id="withdraw">
         delete from tbl_business where business_id = #{businessId}
     </delete>
@@ -67,7 +67,7 @@
     <!-- 유통 회원 수정 -->
     <update id="update">
         update tbl_business
-        set business_email= #{businessEmail}, business_password= #{businessPassword}, business_ceo_name= #{businessCeoName}, business_company_name= #{businessCompanyName}, business_phone_number= #{businessPhoneNumber}, business_establishment_date= #{businessEstablishmentDate}, business_status=1, business_img_original_name= #{businessImgOriginalName}, business_img_uuid= #{businessImgUuid}, business_img_path= #{businessImgPath}, business_location= #{businessLocation}, business_category= #{businessCategory}
+        set business_email= #{businessEmail}, business_password= #{businessPassword}, business_ceo_name= #{businessCeoName}, business_company_name= #{businessCompanyName}, business_phone_number= #{businessPhoneNumber}, business_establishment_date= #{businessEstablishmentDate}, business_status=#{businessStatus}, business_img_original_name= #{businessImgOriginalName}, business_img_uuid= #{businessImgUuid}, business_img_path= #{businessImgPath}, business_location= #{businessLocation}, business_category= #{businessCategory}
         where business_id = #{businessId}
     </update>
 
