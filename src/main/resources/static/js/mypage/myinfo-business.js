@@ -33,7 +33,7 @@ $(".image-save-button").on("click", function () {
     business.businessImgOriginalName = $file.name;
     business.businessImgUuid = globalThis.uuid;
     business.businessImgPath = toStringByFormatting(new Date());
-    business.businessId = 4;
+    business.businessId = businessId;
 
     $.ajax({
         url: "/myPages/business/file-business-save",
