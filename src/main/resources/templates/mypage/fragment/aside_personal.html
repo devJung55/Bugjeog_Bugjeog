@@ -6,18 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> -->
-    <!-- <link rel="stylesheet" href="../../static/css/mypage/mypage.css"> -->
 </head>
 
 <body class="mypage">
-    <!-- <div class="mypage-wrapper"> -->
-
-    <!-- 공통요소(컨테이너) -->
-    <!-- <section class="Container_Profile mypage is-block"> -->
-    <!-- <main class="MatchUp-Container"> -->
-    <!-- CareerConnectBanner_ MatchUp_CareerConnectBanner_ -->
 
     <!-- 사이드 바 -->
     <aside th:fragment="aside_personal">
@@ -25,7 +16,12 @@
             <header class="Aside-profile Aside-content">
                 <div class="Aside-avatar">
                     <div class="Aside-avatar_image">
-                        <img class="img_profile" style="border-radius: 50%"  src="/image/boardList/self_employ_icon.png">
+                        <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                            <img class="img_profile" src="/image/boardList/self_employ_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
+                        </th:block>
+                        <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                        </th:block>
                     </div>
                 </div>
                 <div class="Aside-me"  th:object="${memberVO}">
