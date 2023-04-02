@@ -98,8 +98,12 @@
                                         <div class="AuthorBox_horizontalBox">
                                             <div class="AuthorBox_avatarWrapper">
                                                 <div class="AuthorBox_avatar">
-                                                    <img class="img_profile"
-                                                         src="/image/boardList/self_employ_icon.png">
+                                                    <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                                                        <img class="img_profile" src="/image/boardList/self_employ_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
+                                                    <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                                                        <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
                                                 </div>
                                             </div>
                                             <span class="AuthorBox_username" th:text="${memberVO.memberName}"></span>

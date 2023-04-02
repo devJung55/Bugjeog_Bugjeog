@@ -10,6 +10,8 @@
     <select id="freeList" resultType="boardFreeVO">
         select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
         from tbl_board_free where member_id = #{memberId}
+        order by board_free_id desc
+        limit #{criteria.startRow}, #{criteria.amount}
     </select>
          <!-- limit #{criteria.startRow}, #{criteria.amount}-->
 
@@ -22,6 +24,7 @@
     <select id="businessFreeList" resultType="boardFreeVO">
         select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
         from tbl_board_free where business_id = #{businessId}
+        order by board_free_id desc
         limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
