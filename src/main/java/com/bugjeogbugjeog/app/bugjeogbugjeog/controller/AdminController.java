@@ -84,18 +84,8 @@ public class AdminController {
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO){
-//        memberService.updateMember(memberVO);
-//        String memberId = memberVO.getMemberId() + "";
-//        String memberId = String.valueOf(memberVO.getMemberId());
-//        return new RedirectView("/admin/admin-member/" + memberId);
-        log.info("---------------------------------");
-        log.info(memberVO.toString());
-        log.info(memberVO.getMemberId().toString());
-
         memberService.updateMember(memberVO);
-        String memberId = String.valueOf(memberVO.getMemberId());
-        return new RedirectView("/admin/admin-member/" + memberId);
-//        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
+        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
@@ -151,9 +141,9 @@ public class AdminController {
 
     /* 유통 회원 수정 완료*/
     @PostMapping("admin-member-companyModify")
-    public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
+    public RedirectView adminMemberCompanyModify(BusinessVO businessVO){
         businessService.setBusiness(businessVO);
-        return new RedirectView("/admin/admin-member-company");
+        return new RedirectView("/admin/admin-member-company/" + businessVO.getBusinessId());
     }
 
 
