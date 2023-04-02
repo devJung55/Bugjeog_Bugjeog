@@ -121,8 +121,8 @@
             </div>
             <input class="imageFileInput" id="photo-picker" type="file"
                    accept="image/jpg, image/jpeg, image/png, image/bmp"
-                   style="display: none;">
-        </label>
+                   style="display: none;" multiple>
+
     </div>
 </form>
 </body>
@@ -132,15 +132,28 @@
 </script>
 <script src="/js/boardDetail/boardBusinessWriteBasic.js"></script>
 <script th:inline="javascript">
+    /* uuid를 담을 전역?변수 */
     globalThis.uuids;
+    // globalThis.fileData = new Array();
     FileList.prototype.forEach = Array.prototype.forEach;
 
+    /* input 태그에 변화가 생기면 */
     $('input[type=file]').on("change", function () {
+        console.log(this);
+        /* input 태그 내 파일 */
+        /* 근데 하나뿐임 */
         const $files = $('input[type=file]')[0].files;
+
+        /* 파일 업로드마다 바뀜. */
+        console.log($('input[type=file]'));
         let formData = new FormData();
+
+        /* 여러개 올리면 여러번 돌아감 */
+        /* 하지만 하나도 db에 들어가지 않음*/
         $files.forEach(file => {
-            formData.append("file", file)
+            formData.append("file", file);
         });
+        /* 단순 썸네일 및 파일 저장 */
         $.ajax({
             url: "/imgs/business/upload",
             type: "post",
@@ -165,9 +178,8 @@
     });
 
     $("#regist_btn").on("click", function () {
-        const $files = $("input[type=file]")[0].files;
-        console.log($files);
 
+        const $files = $("input[type=file]")[0].files;
         let boardBusinessVO = new Object();
         boardBusinessVO.boardBusinessTitle = $('#title_textarea').val();
         console.log(boardBusinessVO.boardBusinessTitle);
@@ -181,10 +193,16 @@
             data: JSON.stringify(boardBusinessVO),
             contentType: "application/json; charset=utf-8",
             success: function (boardBusinessId) {
-                let boardBusinessImgVO = new Array();
                 alert("boardBusinessVO 전송 성공, boardBusinessId : " + boardBusinessId);
+                let boardBusinessImgVOs = new Array();
+                const $files = $('input[type=file]')[0].files;
+                let formData = new FormData();
 
-                $files.forEach((file, i) => {
+                $files.forEach(file => {
+                    formData.append("file", file);
+                });
+                formData.forEach((file, i) => {
+
                     let boardBusinessImgVOObj = new Object();
                     boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
                     boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
@@ -192,13 +210,13 @@
                     boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
                     // boardBusinessImgVO.fileSize = file.size;
                     // boardBusinessImgVO.fileType = file.type.startsWith("image");
-                    boardBusinessImgVO.push(boardBusinessImgVOObj);
+                    boardBusinessImgVOs.push(boardBusinessImgVOObj);
                 });
 
                 $.ajax({
                     url: "/imgs/business/save",
                     type: "post",
-                    data: JSON.stringify(boardBusinessImgVO),
+                    data: JSON.stringify(boardBusinessImgVOs),
                     contentType: "application/json; charset=utf-8",
                     success: function (result) {
                         alert("boardBusinessImgVO 전송 성공");
