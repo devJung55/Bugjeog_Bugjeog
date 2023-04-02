@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
@@ -39,18 +40,17 @@ public class AdminController {
 
     @PostMapping("admin-memberList")
     @ResponseBody
-    public List<MemberDTO> memberListShow(Criteria criteria){
+    public List<MemberDTO> memberListShow(@RequestBody int page, AdminCriteria adminCriteria){
+        log.info("들어옴");
+        log.info("" + adminCriteria.getPage());
 
-        if (criteria.getPageNum() == 0) {
-            criteria.setPageNum(1);
-            criteria.setAmount(6);
-        } else {
-            criteria.setPageNum(criteria.getPageNum());
-            criteria.setAmount(6);
+        if( page == 0) {
+            page = 1;
         }
-        return memberService.adminMemberShowList(criteria);
-    }
+        adminCriteria.create( page, 10, memberService.count(), 5);
 
+        return memberService.adminMemberShowList(adminCriteria);
+    }
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -59,8 +59,6 @@ public class AdminController {
         return "admin/admin-member";
     }
 
-
-    
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public String adminMemberModify(Long memberId, Model model){
@@ -71,12 +69,8 @@ public class AdminController {
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("memberEmail", memberVO.getMemberEmail());
-        redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
-        redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
         memberService.updateMember(memberVO);
-
-        return new RedirectView("/admin/admin-member");
+        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
@@ -133,12 +127,8 @@ public class AdminController {
     /* 유통 회원 수정 완료*/
     @PostMapping("admin-member-companyModify")
     public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("businessCompanyName", businessVO.getBusinessCompanyName());
-        redirectAttributes.addAttribute("businessNumber",businessVO.getBusinessNumber());
-        redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
         businessService.setBusiness(businessVO);
-
-        return new RedirectView("/admin/admin-member-company/{businessId}");
+        return new RedirectView("/admin/admin-member-company");
     }
 
 
@@ -196,8 +186,6 @@ public class AdminController {
     /* 공지사항 작성 완료 */
     @PostMapping("admin-noticeWrite")
     public RedirectView AddNotice(NoticeVO noticeVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
-        redirectAttributes.addAttribute("noticeContent", noticeVO.getNoticeContent());
         noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
     }

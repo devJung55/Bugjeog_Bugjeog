@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
@@ -128,7 +129,7 @@ public class MemberDAO {
     /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
-    public List<MemberDTO> adminFindAll(Criteria criteria){return memberMapper.adminSelectAllMember(criteria);}
+    public List<MemberDTO> adminFindAll(AdminCriteria adminCriteria){return memberMapper.adminSelectAllMember(adminCriteria);}
 
     // 관리자 멤버 카운트
     public int count(){return memberMapper.count();}
