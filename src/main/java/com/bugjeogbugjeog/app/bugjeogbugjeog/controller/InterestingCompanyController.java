@@ -32,7 +32,7 @@ public class InterestingCompanyController {
         Long memberId = (Long) session.getAttribute("memberId");
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
         model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(memberId, interestingCriteria));
-        model.addAttribute("pageInterestingDTO", new PageInterestingDTO(interestingCriteria, interestingCompanyService.count()));
+        model.addAttribute("pageInterestingDTO", new PageInterestingDTO(interestingCriteria, interestingCompanyService.count(memberId)));
 
         return "mypage/specific/personalFavoriteList";
     }

@@ -17,8 +17,8 @@
         order by bb.board_business_id desc, ic.member_id
         limit #{interestingCriteria.startRow}, #{interestingCriteria.amount}
     </select>
-    <select id="count" resultType="int">
-        select count(interesting_company_id) from tbl_interesting_company where member_id = #{memberId}
+    <select id="count" parameterType="Long" resultType="int">
+        select count(interesting_company_id) interesting_company_id_count from tbl_interesting_company where member_id = #{memberId}
     </select>
     <delete id="deleteByInterestingCompany">
         delete from tbl_interesting_company where interesting_company_id = #{interestingCompanyId}
