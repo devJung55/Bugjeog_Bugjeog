@@ -60,7 +60,7 @@ public class AdminController {
     }
 
 
-    
+
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public String adminMemberModify(Long memberId, Model model){
@@ -179,7 +179,7 @@ public class AdminController {
    }
 
 
-   
+
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
     public String notice(@PathVariable Long noticeId, Model model ){
