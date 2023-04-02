@@ -7,17 +7,20 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class MemberDAO {
     private final MemberMapper memberMapper;
 
 //    자영업자 회원가입
     public void register(MemberVO memberVO) {
+        log.info(memberVO.toString());
         memberMapper.insertMember(memberVO);
     }
 
@@ -89,6 +92,16 @@ public class MemberDAO {
 //    사업자 계정 상태 조회
     public Integer businessFindForStatus(String businessEmail) {
         return memberMapper.businessSelectForStatus(businessEmail);
+    }
+
+//    네이버 로그인
+    public Long findIdByEmail(String memberEmail) {
+        return memberMapper.selectNaver(memberEmail);
+    }
+
+//    네이버 로그인
+    public MemberVO findMemberInfo(String memberEmail) {
+        return memberMapper.selectMemberInfo(memberEmail);
     }
 
     /*-----------------------------------------------------------------------------*/

@@ -18,8 +18,10 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -135,6 +137,18 @@ public class MemberService {
     public Integer businessFindForStatus(String businessEmail) {
         return memberDAO.businessFindForStatus(businessEmail);
     }
+
+//    네이버 로그인
+    public Long loginNaverOauth(String memberEmail) {
+        return memberDAO.findIdByEmail(memberEmail);
+    }
+
+//    네이버 로그인
+    public MemberVO findInfoByEmail(String memberEmail) {
+        return memberDAO.findMemberInfo(memberEmail);
+    }
+
+    /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
     public List<MemberDTO> adminMemberShowList(AdminCriteria adminCriteria){return memberDAO.adminFindAll(adminCriteria);}

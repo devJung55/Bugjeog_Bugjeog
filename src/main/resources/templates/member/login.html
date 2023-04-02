@@ -14,9 +14,11 @@
             <div class="allLogIn">
                 <div class="inside">
                     <div class="logoPart">
+                        <a th:href="@{/main/}">
                             <span class="logo">
                                 <img src="/image/main/logo1-removebg-preview.png" class="wantedRealLogo">
                             </span>
+                        </a>
                     </div>
                     <!-- 로고 아래 로그인 화면  -->
                     <form action="" name="loginForm" method="post">
@@ -52,24 +54,22 @@
                         <p class="form-or">또는</p>
                         <div class="form-otherLogin">
                             <button type="button" class="form-google-btn">
-                                                                <span class="logo-btn">
-                                                                    <img src="/image/login/naverIcon.png"
-                                                                         class="siteLogo-naver">
-                                                                </span>
-                                <p class="word-of-logo">
-                                    Naver
-                                </p>
+                                <div id="naver_id_login">
+                                    <a href="https://nid.naver.com/oauth2.0/authorize?response_type=token&amp;client_id=XnNlYI4KapA_cDSkMjxv&amp;redirect_uri=http%3A%2F%2Flocalhost%3A10000%2Fmember%2Fcallback&amp;state=c7cc4857-6848-4149-8ab9-1493823c6320" id="naver_id_login_anchor">
+                                        <span class="logo-btn">
+                                            <img src="/image/login/naverIcon.png" class="siteLogo-naver">
+                                        </span>
+                                        <p class="word-of-logo">Naver</p>
+                                    </a>
+                                </div>
                             </button>
-                            <a class="form-btn-other"
-                               href="https://kauth.kakao.com/oauth/authorize?client_id=e7826f87a0156e2eebbc3ef1006284d5&redirect_uri=http://localhost:10000/member/kakao-login&response_type=code">
-                                                                <span class="logo-btn">
-                                                                    <svg viewBox="0 0 57 56" class="siteLogo">
-                                                                        <path d="M0.5 28C0.5 12.536 13.036 0 28.5 0C43.964 0 56.5 12.536 56.5 28C56.5 43.464 43.964 56 28.5 56C13.036 56 0.5 43.464 0.5 28Z"
-                                                                              fill="#FEE500"></path>
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                              d="M28.5 16.2063C21.5606 16.2063 15.9286 20.5812 15.9286 25.9617C15.9286 29.3183 18.1034 32.2474 21.4223 34.0326L20.0269 39.1492C20.0005 39.2509 20.006 39.3583 20.0424 39.4569C20.0788 39.5555 20.1446 39.6406 20.2307 39.7008C20.3169 39.761 20.4195 39.7934 20.5246 39.7937C20.6297 39.7939 20.7324 39.7621 20.8189 39.7023L26.9286 35.6417C27.444 35.6417 27.972 35.7297 28.5 35.7297C35.4394 35.7297 41.0714 31.3549 41.0714 25.9617C41.0714 20.5686 35.4394 16.2063 28.5 16.2063Z"
-                                                                              fill="#181600"></path></svg>
-                                                                </span>
+                            <a class="form-btn-other" href="https://kauth.kakao.com/oauth/authorize?client_id=e7826f87a0156e2eebbc3ef1006284d5&redirect_uri=http://localhost:10000/member/kakao-login&response_type=code">
+                                <span class="logo-btn">
+                                    <svg viewBox="0 0 57 56" class="siteLogo">
+                                        <path d="M0.5 28C0.5 12.536 13.036 0 28.5 0C43.964 0 56.5 12.536 56.5 28C56.5 43.464 43.964 56 28.5 56C13.036 56 0.5 43.464 0.5 28Z" fill="#FEE500"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 16.2063C21.5606 16.2063 15.9286 20.5812 15.9286 25.9617C15.9286 29.3183 18.1034 32.2474 21.4223 34.0326L20.0269 39.1492C20.0005 39.2509 20.006 39.3583 20.0424 39.4569C20.0788 39.5555 20.1446 39.6406 20.2307 39.7008C20.3169 39.761 20.4195 39.7934 20.5246 39.7937C20.6297 39.7939 20.7324 39.7621 20.8189 39.7023L26.9286 35.6417C27.444 35.6417 27.972 35.7297 28.5 35.7297C35.4394 35.7297 41.0714 31.3549 41.0714 25.9617C41.0714 20.5686 35.4394 16.2063 28.5 16.2063Z" fill="#181600"></path>
+                                    </svg>
+                                </span>
                                 <p class="word-of-logo">Kakao</p>
                             </a>
                         </div>
@@ -138,5 +138,13 @@
             }
         });
     });
+</script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("XnNlYI4KapA_cDSkMjxv", "http://localhost:10000/member/callback");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setDomain("http://localhost:10000");
+    naver_id_login.setState(state);
 </script>
 </html>

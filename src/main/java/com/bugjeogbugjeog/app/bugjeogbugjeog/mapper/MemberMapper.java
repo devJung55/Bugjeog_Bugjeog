@@ -57,6 +57,12 @@ public interface MemberMapper {
 //    사업자 계정 상태 조회
     public Integer businessSelectForStatus(String businessEmail);
 
+//    네이버 로그인
+    public Long selectNaver(String memberEmail);
+
+//    네이버 로그인
+    public MemberVO selectMemberInfo(String memberEmail);
+
     /*------------------------------------------------------------------------------------------------*/
 
     //    회원정보 조회

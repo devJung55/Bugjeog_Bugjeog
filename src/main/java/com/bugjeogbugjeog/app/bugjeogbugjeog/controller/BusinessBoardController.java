@@ -39,10 +39,10 @@ public class BusinessBoardController {
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
-    @GetMapping("/board/business/test")
-    public String test() {
-        return "/board/business/boardList";
-    }
+//    @GetMapping("/board/business/test")
+//    public String test() {
+//        return "/board/business/boardList";
+//    }
 
     @GetMapping(value = {"/board/business", " "})
     public RedirectView defaultRoot() {
@@ -113,6 +113,7 @@ public class BusinessBoardController {
         model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
         model.addAttribute("member", JSONObject.toString("member", memberVO));
         model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+        log.info(businessBoardImgService.getList(dto.getBoardBusinessId()).toString());
         businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
         model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
     }
@@ -128,9 +129,14 @@ public class BusinessBoardController {
         List<BoardBusinessDTO> boards = businessBoardService.getBoardByBusinessId(boardBusinessId);
         MemberVO member = businessReviewService.getMember(5L);
         String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
+        try {
+            memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
+        } catch (Exception e) {
+        }
         List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 
+        log.info(boardImgs.toString());
         log.info("memberImgFullPath : " + memberImgFullPath);
 
         // 서버에서 클라로 전송

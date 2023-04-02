@@ -67,7 +67,12 @@
                                 <p class="exit_account">탈퇴하려는 계정</p>
                                 <div class="profile_wrapper">
                                     <div class="profile_img">
-                                        <img class="img_profile" src="/image/boardList/distributor_icon.png">
+                                        <th:block th:if="${#strings.isEmpty(businessVO.businessImgUuid)}">
+                                            <img class="img_profile" src="/image/boardList/distributor_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
+                                        </th:block>
+                                        <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid)}">
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                                        </th:block>
                                     </div>
                                     <p class="profile_email" th:text="${businessVO.businessEmail}"></p>
                                 </div>
@@ -152,10 +157,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let businessVO = [[${businessVO}]];
-    if (businessVO.businessImgUuid != null) {
-        $(".img_profile").attr("src", `/mypage/profile/display?fileName=${businessVO.businessImgPath}/${businessVO.businessImgUuid}_${businessVO.businessImgOriginalName}`);
-    }
-
 </script>
 <script>
     const $checkboxs = $('label.accept_wrapper');
