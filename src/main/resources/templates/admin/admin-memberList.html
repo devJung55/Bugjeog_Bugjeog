@@ -40,7 +40,7 @@
 		<div class="container">
 			<div class="container-margin">
 				<!-- 헤더 -->
-				<<div class="delete-box-layout">
+				<div class="delete-box-layout">
 				<div class="delete-box">
 					<button class="delete-button">선택 게시물 삭제</button>
 				</div>
@@ -136,7 +136,7 @@
 <script th:inline="javascript">
 	let page = 1;
 	let $members = [[${memberDTO}]];
-	let criteria = null;
+
 	/*
        let $pageForm = $(pageForm);
 
@@ -170,7 +170,7 @@
 	});
 
 	function showList(members){
-		const $result = $('.info-table table');
+		const $showListResult = $('.info-table table');
 		var text = "";
 		members.forEach(member => {
 			text += `
@@ -186,20 +186,24 @@
             </tr>
          `
 		})
-		$result.html(text);
+		$showListResult.html(text);
 	}
 
 	function reload() {
+
+		console.log(page);
+
 		$.ajax({
 			url:"/admin/admin-memberList",
 			type: "post",
-			/*data: {
-				"adminCriteria": JSON.stringify(criteria)
-			},*/
+			data:JSON.stringify({  // 보낼 데이터 (Object , String, Array)
+				"page" : page
+			}),
+			contentType: 'application/json',
+			dataType : 'json',       // 데이터 타입 (html, xml, json, text 등등)
 			success: function(result){
-				criteria = result.criteria;
 				showList(result.members);
-				/*showPage(result.criteria);*/
+				showPage(result.criteria);
 				console.log(result);
 
 			}
@@ -210,18 +214,18 @@
 	window.onload = reload();
 
 
-/*
 	function showPage(criteria) {
-		const $result = (".page-button-box-layout");
+		const $showPageResult = $(".page-button-box-layout");
+		var text = "";
 		text += `
             <div class="page-button-box">
                <!-- 페이지 번호 -->
-		<div class="prev paging" data-page = "${criteria.startPage - 1}" style="${criteria.prev ? visibility : visible : visibility: hidden}">
-		<div class="page-button-margin">
-		<div>
-		<img src="/image/admin/left_icon.png" class="left-button">
-		</div>
-		</div>
+		<div class="prev paging" data-page = "${criteria.startPage - 1}" >
+			<div class="page-button-margin">
+				<div>
+					<img src="/image/admin/left_icon.png" class="left-button">
+				</div>
+			</div>
 		</div>`
 		for (let i = criteria.startPage; i <= criteria.endPage; i++) {
 		text += `
@@ -235,7 +239,7 @@
                `
 		}
 		text += `
-               <div class="next paging" data-page = "${criteria.endPage + 1}" style="${criteria.next ? visibility : visible : visibility: hidden}">
+               <div class="next paging" data-page = "${criteria.endPage + 1}">
                   <div class="page-button-margin">
                      <div>
                         <img src="/image/admin/right_icon.png" class="right-button">
@@ -244,18 +248,17 @@
                </div>
             </div>`
 
-		$result.html(text);
+		$showPageResult.html(text);
 
 		$('.paging').each(function(i, btn) {
-		$(btn).on('click', e => {
-		criteria.page = e.dataset.page; // page에 현재 page값 담는 것.(string)
-		criteria.page *= 1; // page를 number타입으로 변환
-		reload();
-		})
+			$(btn).on('click', e => {
+				page = e.dataset.page; // page에 현재 page값 담는 것.(string)
+				page *= 1; // page를 number타입으로 변환
+				reload();
+			})
 		});
 
-		}
-*/
+	}
 
 
 

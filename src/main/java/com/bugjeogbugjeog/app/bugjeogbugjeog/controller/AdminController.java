@@ -42,21 +42,22 @@ public class AdminController {
 
     @PostMapping("admin-memberList")
     @ResponseBody
-    public Map<String, Object> memberListShow( AdminCriteria adminCriteria){
+    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
         Map<String, Object> result = new HashMap<>();
-        log.info("들어옴");
-        log.info("" + adminCriteria.getPage());
+        int page = (int) requestData.get("page");
 
-    /*    if( page == 0) {
+        if( page == 0) {
             page = 1;
         }
-        adminCriteria.create( page, 10, memberService.count(), 5);*/
+        adminCriteria.create( page, 10, memberService.count(), 5);
+/*
 
         if( adminCriteria.getPage() == 0) {
             adminCriteria.create( 1, 10, memberService.count(), 5);
         } else {
             adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
         }
+*/
 
         List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
         log.info(members.toString());
@@ -82,9 +83,19 @@ public class AdminController {
 
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
-    public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
+    public RedirectView adminMemberModify(MemberVO memberVO){
+//        memberService.updateMember(memberVO);
+//        String memberId = memberVO.getMemberId() + "";
+//        String memberId = String.valueOf(memberVO.getMemberId());
+//        return new RedirectView("/admin/admin-member/" + memberId);
+        log.info("---------------------------------");
+        log.info(memberVO.toString());
+        log.info(memberVO.getMemberId().toString());
+
         memberService.updateMember(memberVO);
-        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
+        String memberId = String.valueOf(memberVO.getMemberId());
+        return new RedirectView("/admin/admin-member/" + memberId);
+//        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
