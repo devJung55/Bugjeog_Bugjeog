@@ -203,3 +203,7 @@ a.main_bar_logo_a {
 	width: 15px;	
 	cursor: pointer;
 }
+
+.paging {
+	cursor:pointer;
+}
