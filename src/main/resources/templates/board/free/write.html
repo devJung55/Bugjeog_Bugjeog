@@ -13,7 +13,7 @@
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
-    <form th:action="@{free/insert}" th:method="post" th:object="${boardFreeVO}" name="form">
+    <form th:action="@{/FreeBoards/write}" method="post" name="form">
         <div id="header">
             <div id="header_div">
                 <div id="header_btn">
@@ -27,12 +27,12 @@
             <div id="wrap_div">
                 <!-- <input id="location" type="text" placeholder="지역을 적어주세요."> -->
                 <div id="title">
-                    <textarea id="title_textarea" placeholder="제목을 입력해 주세요." th:field="*{boardFreeTitle}"></textarea>
+                    <textarea id="title_textarea" placeholder="제목을 입력해 주세요." name="boardFreeTitle"></textarea>
                     <!-- <textarea></textarea> -->
                 </div>
                 <div id="content">
                     <div>
-                        <textarea id="content_textarea" placeholder="내용을 작성해 주세요." th:field="*{boardFreeContent}"></textarea>
+                        <textarea id="content_textarea" placeholder="내용을 작성해 주세요." name="boardFreeContent"></textarea>
                         <!-- <textarea></textarea> -->
                     </div>
                 </div>
