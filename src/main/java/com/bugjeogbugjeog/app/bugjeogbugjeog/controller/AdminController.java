@@ -215,5 +215,54 @@ public class AdminController {
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
+    /* 유통 게시판 목록 */
+    @GetMapping("admin-distributionList")
+    public void distributionShowList(){}
 
+    /* 유통 게시판 조회 */
+    @GetMapping("admin-distribution")
+    public void distributionShow(){}
+
+    /* 유통 게시판 수정 */
+
+    /* 유통 게시판 삭제 */
+    @DeleteMapping("admin-distributionList")
+    @ResponseBody
+    public void removeDistribution(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 자유 게시판 목록 */
+    @GetMapping("admin-freeBoardList")
+    public void freeBoardShowList() {}
+
+    /* 자유 게시판 조회 */
+
+    /* 자유 게시판 수정 */
+
+    /* 자유 게시판 삭제 */
+    @DeleteMapping("admin-freeBoardList")
+    @ResponseBody
+    public void removeFree(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 문의 게시판 목록 */
+    @GetMapping("admin-inquiryList")
+    public void inquiryShowList(){}
+
+    /* 문의 게시판 조회 */
+    @GetMapping("admin-inquiry")
+    public void inquiryShow() {}
+
+    /* 문의 게시판 작성 */
+    @GetMapping("admin-inquiryWrite")
+    public void inquiryWrite(){}
+
+    /* 문의 게시판 삭제 */
+    @DeleteMapping("admin-inquiryList")
+    @ResponseBody
+    public void removeInquiry(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
 }
