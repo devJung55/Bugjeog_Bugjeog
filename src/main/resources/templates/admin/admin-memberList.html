@@ -96,8 +96,8 @@
 					</section>
 
 					<!-- 페이지 버튼 -->
-					<!--<div class="page-button-box-layout">
-						<div class="page-button-box">
+					<div class="page-button-box-layout">
+						<!--<div class="page-button-box">
 							&lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;
 							<div class="page-box page-button-margin">
 								<a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
@@ -121,8 +121,8 @@
 								<input type="hidden" th:field="*{pageNum}">
 								<input type="hidden" th:field="*{amount}">
 							</form>
-						</div>
-					</div>-->
+						</div>-->
+					</div>
 					<!-- 페이지 버튼 끝 -->
 				</div>
 			</div>
@@ -134,6 +134,7 @@
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script th:inline="javascript">
+	let page = 1;
 	let $members = [[${memberDTO}]];
 	let $pageForm = $(pageForm);
 
@@ -170,11 +171,11 @@
 		var text = "";
 		members.forEach(member => {
 			text += `
-				<tr th:each="member : ${memberDTO}">
+				<tr>
 					<td>
 						<input type="checkbox" name="check">
 					</td>
-					<td >${member.memberId}</td>
+					<td>${member.memberId}</td>
 					<td><a href="{admin-member/{memberId}(memberId=${member.memberId})}">${member.memberName}</a></td>
 						<td>${member.memberEmail}</td>
 					<td>${member.memberRegisterDate}</td>
@@ -187,16 +188,48 @@
 
 	function reload() {
 		$.ajax({
-			url:"admin-memberList",
+			url:"/admin/admin-memberList",
 			type: "post",
 			success: function(result){
 				showList(result);
+				console.log(result);
 			}
 
 		});
 	}
 
 	window.onload = reload();
+
+	/*function showPage(members) {
+		const $result = (".page-button-box-layout");
+		members.forEach(member => {
+			text += `
+				<div class="page-button-box">
+					<!-- 페이지 번호 -->
+					<div class="">
+						<div class="page-button-margin">
+							<div>
+								<img src="/image/admin/left_icon.png" class="left-button">
+							</div>
+						</div>
+					</div>
+					<div class="page-button-active page-button">
+						<div class="page-button-margin">
+							<div>
+								<span>1</span>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="page-button-margin">
+							<div>
+								<img src="/image/admin/right_icon.png" class="right-button">
+							</div>
+						</div>
+					</div>
+				</div>`
+		});
+	}*/
 
 
 </script>

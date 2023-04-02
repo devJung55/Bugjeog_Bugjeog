@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
@@ -77,7 +78,7 @@ public interface MemberMapper {
     /* 관리자는 맨 밑으로 내려주세요------------------------------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
-    public List<MemberDTO> adminSelectAllMember(Criteria criteria);
+    public List<MemberDTO> adminSelectAllMember(AdminCriteria adminCriteria);
 
     // 관리자 멤버 카운트
     public int count();

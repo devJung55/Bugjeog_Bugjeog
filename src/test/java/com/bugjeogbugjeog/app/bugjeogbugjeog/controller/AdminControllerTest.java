@@ -35,15 +35,15 @@ public class AdminControllerTest {
 'url' should start with a path or be a complete HTTP URL: admin/admin-member
 java.lang.IllegalArgumentException: 'url' should start with a path or be a complete HTTP URL: admin/admin-member
 */
-    /*
+
     @Test
     public void adminMemberModifyTest() throws Exception{
         log.info(mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin-memberModify").param("memberId","1")).andReturn().getModelAndView().getModelMap().toString());
-        mockMvc.perform(MockMvcRequestBuilders.post("admin/admin-memberList")
+        mockMvc.perform(MockMvcRequestBuilders.post("admin/admin-member")
                         .param("memberPhoneNumber","01098987777"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
     }
-*/
+
 
 
 
