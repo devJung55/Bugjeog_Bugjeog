@@ -2,6 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeLikeDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryBoardDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.ReplyDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
@@ -21,6 +24,15 @@ public class MypageDAOTest {
 
     @Autowired
     BusinessDAO businessDAO;
+
+    @Autowired
+    InquiryBoardDAO inquiryBoardDAO;
+
+    @Autowired
+    FreeLikeDAO freeLikeDAO;
+
+    @Autowired
+    ReplyDAO replyDAO;
 
 //    @Test
 //    public void findByIdTest(){
@@ -56,18 +68,6 @@ public class MypageDAOTest {
 //        mypageDAO.findByIdToBusiness(1L);
 //    }
 //
-//
-//    //    좋아요 한 게시물 수
-//    @Test
-//    public void likeCountTest(){
-//        log.info(String.valueOf(mypageDAO.getCountToLike(1L)));
-//    }
-//
-//    //    좋아요 한 게시물 리스트
-//
-//    //    문의 작성 목록
-//
-//    //    문의 게시글 작성 갯수
 //    @Test
 //    public void inquireCountTest(){
 //        mypageDAO.getCountToInquire(1L);
@@ -85,10 +85,51 @@ public class MypageDAOTest {
 //    }
 
 
-    // 사업자 번호 중복검사
-    @Test
-    public void businessNumberCheckTest(){
-        businessDAO.findAllToBusinessNumber().stream().filter(data -> data.equals("12-1111-123")).forEach(log::info);
-//        businessDAO.findAllToBusinessNumber().stream().forEach(log::info);
-    }
+//    // 사업자 번호 중복검사
+//    @Test
+//    public void businessNumberCheckTest(){
+//        businessDAO.findAllToBusinessNumber().stream().filter(data -> data.equals("12-1111-123")).forEach(log::info);
+////        businessDAO.findAllToBusinessNumber().stream().forEach(log::info);
+//    }
+
+    // 문의 게시판 목록
+//    @Test
+//    public void inquireListTest(){
+//        inquiryBoardDAO.findAllByIdToInquire(1L,new Criteria(1,4)).stream().forEach(data -> log.info(data.toString()));
+//    }
+
+    // 문의 게시판 개수
+//    @Test
+//    public void inquiryCountTest(){
+//        log.info("문의 게시판 개수" + inquiryBoardDAO.getCountToInquire(1L));
+//    }
+
+
+    // 좋아요 한 게시물 목록
+//    @Test
+//    public void likeListTest(){
+//        freeLikeDAO.findAllToLike(1L, new Criteria(1, 4)).stream().forEach(data-> log.info(data.toString()));
+//    }
+
+    // 좋아요 게시물 갯수
+//    @Test
+//    public void likeCountTest(){
+//        log.info("좋아요 갯수 : " + freeLikeDAO.getCountToLike(1L));
+//    }
+
+    // 댓글 달린 보드 리스트
+//    @Test
+//    public void replyListTest(){
+//        replyDAO.findAllBoardFreeToMember(1L, new Criteria(1,4)).stream().forEach(data-> log.info(data.toString()));
+//    }
+
+
+
+
+
+
+
+
+
+
 }
