@@ -17,8 +17,8 @@ public class InterestingCompanyService {
     public List<InterestingCompanyDTO> findAllToInterestingCompany(Long memberId, InterestingCriteria interestingCriteria){
         return interestingCompanyDAO.findAllToInterestingCompany(memberId, interestingCriteria);}
     //    갯수 가져오기
-    public int count(){
-        return interestingCompanyDAO.count();
+    public int count(Long memberId){
+        return interestingCompanyDAO.count(memberId);
     }
     public void interestingCompanyRemove(Long interestingCompanyId) {
         interestingCompanyDAO.deleteByInterestingCompany(interestingCompanyId);

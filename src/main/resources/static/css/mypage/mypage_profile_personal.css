@@ -402,8 +402,8 @@ div.paging_wrapper {
 }
 
 .reply-content-box-border {
-    padding-left: 28px;
     border-bottom: 1px solid #e1e2e3;
+    padding: 5px 28px;
 }
 
 .reply-content-box-border:first-child {
@@ -413,4 +413,5 @@ div.paging_wrapper {
 .reply-content-box-border p {
     font-size: 13px;
 }
+
 
