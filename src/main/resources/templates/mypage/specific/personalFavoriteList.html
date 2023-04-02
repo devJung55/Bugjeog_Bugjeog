@@ -99,7 +99,7 @@
                                         <th:block th:each="interestingCompanyDTO : ${interestingCompanyDTOs}">
                                             <li class="column is-one-third">
                                                 <div class="list_card">
-                                                    <a class="card_wrapper"><!--th:href="@{/board/business/list}"-->
+                                                    <a class="card_wrapper" th:href="@{/board/business/list(businessId=${interestingCompanyDTO.businessId})}">
                                                         <header class="card_thumbnail_wrapper is-relative">
                                                             <div style="width: 250px; height: 200px">
                                                                 <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>

@@ -18,7 +18,8 @@ public class InterestingCompanyDTO {
     private String boardBusinessImgUuid;
     private String boardBusinessImgPath;
     private String businessCompanyName;
-    private String board_businessRegisterDate;
-    private String board_businessUpdateDate;
+    private String boardBusinessRegisterDate;
+    private String boardBusinessUpdateDate;
     private Long boardBusinessStatus;
+    private Long interestingCompanyIdCount;
 }
