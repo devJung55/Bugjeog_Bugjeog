@@ -41,4 +41,13 @@
         from tbl_board_free
     </select>
 
+    <!--게시글 조회-->
+    <select id="select" resultType="boardFreeDTO">
+        select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
+        from tbl_board_free
+        where board_free_id = #{boardFreeId}
+    </select>
+
+<!--            SELECT board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like-->
+<!--    FROM bugjeog.tbl_board_free;-->
 </mapper>

@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.*;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeLikeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MyPageInquireDTO;
@@ -196,7 +197,7 @@ public class MyPageService {
     };
 
     // 자유게시판 목록 가져오기
-    public List<BoardFreeVO> freeList(Long memberId, Criteria criteria){
+    public List<BoardFreeDTO> freeList(Long memberId, Criteria criteria){
         return freeBoardDAO.findByIdBoardFreeVO(memberId, criteria);
     }
 

@@ -50,25 +50,30 @@ const createDOM = function (boardLists) {
                                 <div class="content-member-info">
                                     <div class="content-persnal-distributor-box">
                                         <div class="content-register-name-box">
+                                             <!--memberId, businessId인지 구분하는 법-->
                                              <span>임종욱</span>
                                         </div>
                                         <div class="content-persnal-distributor">
+                                                            <!--유통업체인지 개인인지 구분 or 위에 의해서 따라오는건지-->
                                              <div class="content-member-type">유통업체</div>
                                         </div>
                                     </div>
-                                        <span class="register-date">1시간 전</span>
+                                        <!--시간 구하는 법-->
+                                        <span class="register-date">시간 전</span>
                                  </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <a href="/FreeBoards/detail" class="content hasImage">
+                <a href="/FreeBoards/detail/${boardLists.boardFreeId}" class="content hasImage">
                             <h3 class="content-title">
-                             어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.
+                            ${boardLists.boardFreeTitle}
+<!--                             어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->
                             </h3>
                             <p class="content-detail">
-                            (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준
-                            (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음
+                            ${boardLists.boardFreeContent}
+<!--                            (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준-->
+<!--                            (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음-->
                             </p>
                             <!-- 이미지를 넣었다면 여기에 넣어주기 없다면 없애기 -->
                             <!-- 이미지를 넣었다면 감싸고있는 a태그에 hasImage클래스 넣어주기 표시해둠 -->
