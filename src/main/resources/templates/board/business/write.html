@@ -195,23 +195,36 @@
             success: function (boardBusinessId) {
                 alert("boardBusinessVO 전송 성공, boardBusinessId : " + boardBusinessId);
                 let boardBusinessImgVOs = new Array();
-                const $files = $('input[type=file]')[0].files;
+                // const $files = $('input[type=file]')[0].files;
+                const $imgs = $('#thumbnail-list>li>a>img');
                 let formData = new FormData();
 
-                $files.forEach(file => {
-                    formData.append("file", file);
-                });
-                formData.forEach((file, i) => {
-
+                $imgs.each((i, img) => {
                     let boardBusinessImgVOObj = new Object();
-                    boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
-                    boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
-                    boardBusinessImgVOObj.boardBusinessImgPath = toStringByFormatting(new Date());
-                    boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
-                    // boardBusinessImgVO.fileSize = file.size;
-                    // boardBusinessImgVO.fileType = file.type.startsWith("image");
+                    let src = $(img).attr('src');
+
+                    //  /imgs/business/display?fileName=2023/04/02/t_21637e7a-fac2-4ce6-a650-098927fd73b0_company1.png
+                    boardBusinessImgVOObj.boardBusinessImgOriginalName = src.toString().split("_")[2];
+                    boardBusinessImgVOObj.boardBusinessImgUuid = src.toString().split("_")[1];
+                    boardBusinessImgVOObj.boardBusinessImgPath = src.toString().split("=")[1].split("/t")[0];
+                    boardBusinessImgVOObj.boardBusinessId = boardBusinessId
                     boardBusinessImgVOs.push(boardBusinessImgVOObj);
-                });
+                })
+
+                // $files.forEach(file => {
+                //     formData.append("file", file);
+                // });
+                // formData.forEach((file, i) => {
+                //
+                //     let boardBusinessImgVOObj = new Object();
+                //     boardBusinessImgVOObj.boardBusinessImgOriginalName = file.name;
+                //     boardBusinessImgVOObj.boardBusinessImgUuid = globalThis.uuids[i];
+                //     boardBusinessImgVOObj.boardBusinessImgPath = toStringByFormatting(new Date());
+                //     boardBusinessImgVOObj.boardBusinessId = boardBusinessId;
+                //     // boardBusinessImgVO.fileSize = file.size;
+                //     // boardBusinessImgVO.fileType = file.type.startsWith("image");
+                //     boardBusinessImgVOs.push(boardBusinessImgVOObj);
+                // });
 
                 $.ajax({
                     url: "/imgs/business/save",
