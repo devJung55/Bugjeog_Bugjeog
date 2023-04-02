@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,16 +42,28 @@ public class AdminController {
 
     @PostMapping("admin-memberList")
     @ResponseBody
-    public List<MemberDTO> memberListShow(@RequestBody int page, AdminCriteria adminCriteria){
+    public Map<String, Object> memberListShow( AdminCriteria adminCriteria){
+        Map<String, Object> result = new HashMap<>();
         log.info("들어옴");
         log.info("" + adminCriteria.getPage());
 
-        if( page == 0) {
+    /*    if( page == 0) {
             page = 1;
         }
-        adminCriteria.create( page, 10, memberService.count(), 5);
+        adminCriteria.create( page, 10, memberService.count(), 5);*/
 
-        return memberService.adminMemberShowList(adminCriteria);
+        if( adminCriteria.getPage() == 0) {
+            adminCriteria.create( 1, 10, memberService.count(), 5);
+        } else {
+            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+        }
+
+        List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
+        log.info(members.toString());
+        log.info("-------------------------------------------------------------------------------------------------");
+        result.put("members", members);
+        result.put("criteria", adminCriteria);
+        return result;
     }
 
     /* 회원 상세 보기 */
@@ -142,7 +156,7 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
 
-   /* *//* 공지사항 리스트 *//*
+    /* *//* 공지사항 리스트 *//*
    @GetMapping("admin-noticeList")
     public void noticeList(Criteria criteria, Model model){
        model.addAttribute("noticeVO", noticeService.showList(criteria));
@@ -150,26 +164,26 @@ public class AdminController {
    }*/
 
     /* 공지사항 리스트 */
-   @GetMapping("admin-noticeList")
+    @GetMapping("admin-noticeList")
     public String noticeListShow(){
-       return "/admin/admin-noticeList";
-   }
+        return "/admin/admin-noticeList";
+    }
 
-   @PostMapping("admin-noticeList")
-   public List<NoticeVO> noticeListShow(Criteria criteria){
-       if (criteria.getPageNum() == 0) {
-           criteria.setPageNum(1);
-           criteria.setAmount(6);
-       } else {
-           criteria.setPageNum(criteria.getPageNum());
-           criteria.setAmount(6);
-       }
+    @PostMapping("admin-noticeList")
+    public List<NoticeVO> noticeListShow(Criteria criteria){
+        if (criteria.getPageNum() == 0) {
+            criteria.setPageNum(1);
+            criteria.setAmount(6);
+        } else {
+            criteria.setPageNum(criteria.getPageNum());
+            criteria.setAmount(6);
+        }
 
-       return noticeService.showList(criteria);
-   }
+        return noticeService.showList(criteria);
+    }
 
 
-   
+
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
     public String notice(@PathVariable Long noticeId, Model model ){
@@ -177,7 +191,7 @@ public class AdminController {
         return "admin/admin-notice";
     }
 
-   /* 공지사항 작성 페이지 이동 */
+    /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());
