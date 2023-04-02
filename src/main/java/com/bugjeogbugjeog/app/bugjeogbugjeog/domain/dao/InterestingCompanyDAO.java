@@ -20,8 +20,8 @@ public class InterestingCompanyDAO {
     }
 
     //    갯수 가져오기
-    public int count(){
-        return interestingCompanyMapper.count();
+    public int count(Long memberId){
+        return interestingCompanyMapper.count(memberId);
     }
     public void deleteByInterestingCompany(Long interestingCompanyId) {
         interestingCompanyMapper.deleteByInterestingCompany(interestingCompanyId);
