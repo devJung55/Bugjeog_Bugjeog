@@ -25,8 +25,8 @@
         select bs.board_business_id, bs.business_id, bs.board_business_title
         , bs.board_business_content, bs.board_business_register_date, bs.board_business_update_date
         , b.business_ceo_name, b.business_number, b.business_company_name, b.business_phone_number
-        , b.business_establishment_date, b.business_register_date, b.business_img_original_name
-        , b.business_img_uuid, b.business_img_path, b.business_location, b.business_category
+        , b.business_establishment_date, b.business_register_date
+        , b.business_location, b.business_category
         from tbl_board_business bs
         join tbl_business b
         on b.business_id = bs.business_id
@@ -68,6 +68,7 @@
         join tbl_business bs
         on b.business_id = bs.business_id
         where bs.business_status = 1
+        group by board_business_id
         order by b.board_business_id desc
     </select>
 
@@ -106,6 +107,7 @@
         <if test="category != null">
             where bs.business_category = #{category} and bs.business_status = 1
         </if>
+        group by board_business_id
         <if test="sort == 'recent'">
             order by b.board_business_id desc
         </if>
