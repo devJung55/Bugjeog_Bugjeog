@@ -78,7 +78,7 @@ textarea {
     background-position: 50%;
     width: 70%;
     height: 450px;
-    margin-right: 30px;
+    /*margin-right: 30px;*/
     position: relative;
     overflow: hidden;
 }
@@ -86,6 +86,7 @@ textarea {
     flex-grow: 1;
     width: 360px;
     position: relative;
+    margin-left: 30px;
 }
 .title_h2{
     font-size: 30px;
@@ -485,7 +486,8 @@ form button{
 }
 .img_size{
     width: 700px;
-    height: 450px;
+    min-width: 700px;
+    max-height: 450px;
     float: left;
 }
 .relative_size{
@@ -495,6 +497,7 @@ form button{
 
 .file-banner-box {
     width: 2100px;
+    height: 100%;
 }
 
 .see-more-button {

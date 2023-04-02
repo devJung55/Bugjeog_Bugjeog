@@ -37,7 +37,10 @@ public class BoardImgController {
     @PostMapping("/imgs/business/save")
     @ResponseBody
     public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
-        businessBoardImgService.write(boardBusinessImgVOs);
+        log.info("☆☆☆☆☆☆☆☆☆☆☆");
+        boardBusinessImgVOs.stream().map(boardBusinessImgVO -> boardBusinessImgVO.getBoardBusinessImgUuid()).forEach(log::info);
+        log.info("☆☆☆☆☆☆☆☆☆☆☆");
+        businessBoardImgService.writeList(boardBusinessImgVOs);
         return new RedirectView("/board/business/list");
     }
 
@@ -69,7 +72,7 @@ public class BoardImgController {
     @GetMapping("/imgs/business/display")
     @ResponseBody
     public byte[] businessDisplay(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return fileName.isEmpty() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
     @GetMapping("/imgs/business/download")

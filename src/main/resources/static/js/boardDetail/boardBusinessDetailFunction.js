@@ -76,60 +76,68 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                         <section id="section_info">
                             <header style="display: flex;">
                                 <section id="main_img">
-                                    <div class="relative_size" style="position: relative; width: 700px; height: 400px;">
-                                        <div class="file-banner-box">`;
+                                    <div class="relative_size">
+                                        <div class="file-banner-box" style="display: flex">`;
     // boardImgs.forEach(boardImg => {
         /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
     // });
-    text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImgs.boardBusinessImgPath + '/' + boardImgs.boardBusinessImgUuid + '_' + boardImgs.boardBusinessImgOriginalName}" alt="">`;
+    boardImgs.forEach(boardImg => {
+        text += `
+<!--                                            <div style="min-width: 686px; max-width: 686px; height: auto; text-align: center;">-->
+                                                <img class="img_size" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">
+<!--                                            </div>-->
+                `;
+    })
     text += `
-                                </div>
+                                        </div>
+                                            </div>
+                                            <label for="main_img_btn_left" class="main_img_btn" id="main_img_btn_left">
+                                                <img id="left_arrow" src="/image/board_detail/left_arrow.png" alt="">
+                                                <button class="main_img_btn" style="display: none;"></button>
+                                            </label>
+                                            <label for="main_img_btn_left" class="main_img_btn" id="main_img_btn_right">
+                                                <img id="right_arrow" src="/image/board_detail/right_arrow.png" alt="">
+                                                <button class="main_img_btn" style="display: none;"></button>
+                                            </label>
+                                        </section>
+                                        <section id="right_section">
+                                            <h2 class="title_h2">${board.businessCompanyName}</h2>
+                                            <h4 class="h4">설립일</h4>
+                                            <h5 class="h5">${board.businessEstablishmentDate}</h5>
+                                            <h4 class="h5">대표자: ${board.businessCeoName}</h4>
+                                            <h5 class="h4">유통물류센터</h5>
+                                            <h4 class="h5">${board.businessLocation}</h4>
+                                            <h4 class="h4">슬로건</h4>
+                                            <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>
+                                        </section>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <div style="margin-left: 10px; flex: 1 1 auto;">
+                                                <a></a>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div style="width: calc(100% - 360px); color: #333;">
+                                        <div id="content">
+                                            <div>
+                                                ${board.boardBusinessContent}
                                     </div>
-                                    <button class="main_img_btn" id="main_img_btn_left">
-                                        <img id="left_arrow" src="/image/board_detail/left_arrow.png" alt="">
-                                    </button>
-                                    <button class="main_img_btn" id="main_img_btn_right">
-                                        <img id="right_arrow" src="/image/board_detail/right_arrow.png" alt="">
-                                    </button>
-                                </section>
-                                <section id="right_section">
-                                    <h2 class="title_h2">${board.businessCompanyName}</h2>
-                                    <h4 class="h4">설립일</h4>
-                                    <h5 class="h5">${board.businessEstablishmentDate}</h5>
-                                    <h4 class="h5">대표자: ${board.businessCeoName}</h4>
-                                    <h5 class="h4">유통물류센터</h5>
-                                    <h4 class="h5">${board.businessLocation}</h4>
-                                    <h4 class="h4">슬로건</h4>
-                                    <h5 class="h5">고객과 협력사의 동반성장 원칙으로 새로운 유통물류 패러다임 형성</h5>
-                                </section>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <div style="margin-left: 10px; flex: 1 1 auto;">
-                                        <a></a>
-                                    </div>
                                 </div>
-                            </header>
-                            <div style="width: calc(100% - 360px); color: #333;">
-                                <div id="content">
-                                    <div>
-                                        ${board.boardBusinessContent}
                             </div>
-                        </div>
-                    </div>
-                </section>
-                <h2 id="footer_title">이 회사의 모든 글</h2>
-                <ul id="footer_ul">`;
+                        </section>
+                        <h2 id="footer_title">이 회사의 모든 글</h2>
+                        <ul id="footer_ul">`;
     boards.forEach(other => {
             text += `
-                    <li class="footer_li" th:object="${other}">
-                        <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
-                            <div class="footer_li_div">
-                                <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
-                            </div>
-                            <div class="event_content">
-                                <p class="event_content_p">${other.boardBusinessContent}</p>
-                            </div>
-                        </a>
-                    </li>`;
+                            <li class="footer_li" th:object="${other}">
+                                <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
+                                    <div class="footer_li_div">
+                                        <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
+                                    </div>
+                                    <div class="event_content">
+                                        <p class="event_content_p">${other.boardBusinessContent}</p>
+                                    </div>
+                                </a>
+                            </li>`;
         }
     );
     text += `

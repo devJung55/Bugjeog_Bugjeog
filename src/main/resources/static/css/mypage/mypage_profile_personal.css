@@ -400,3 +400,17 @@ div.PostItem_like span, div.PostItem_comments span {
 div.paging_wrapper {
     margin-bottom: 16px;
 }
+
+.reply-content-box-border {
+    padding-left: 28px;
+    border-bottom: 1px solid #e1e2e3;
+}
+
+.reply-content-box-border:first-child {
+    border-top: 1px solid #e1e2e3;
+}
+
+.reply-content-box-border p {
+    font-size: 13px;
+}
+

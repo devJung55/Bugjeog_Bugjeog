@@ -24,6 +24,12 @@ public class BusinessBoardImgDAO {
         return businessBoardImgMapper.selectAllByBoardBusinessId(boardBusinessId);
     }
 
+    public void saveList(List<BoardBusinessImgVO> boardBusinessImgVOs) {
+//        businessBoardImgMapper.insertList(boardBusinessImgVOs);
+        boardBusinessImgVOs.stream().forEach(boardBusinessImgVO -> businessBoardImgMapper.insert(boardBusinessImgVO));
+    }
+
+
 
 //    public void deleteById(Long boardBusinessId){ businessBoardMapper.delete(boardBusinessId);}
 
