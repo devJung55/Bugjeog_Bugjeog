@@ -35,7 +35,7 @@ public class BoardBusinessService {
         return businessBoardDAO.findById(boardBusinessId);
     }
 
-    public List<BoardBusinessDTO> getBoardByBusinessId(Long businessId) {
+    public List<BoardBusinessDTO> getBoardsByBusinessId(Long businessId) {
         return businessBoardDAO.findByBusinessId(businessId);
     }
 
