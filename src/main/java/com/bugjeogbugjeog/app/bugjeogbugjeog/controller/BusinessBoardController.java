@@ -108,14 +108,26 @@ public class BusinessBoardController {
         String orginalName = memberVO.getMemberImgOriginalName();
         String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
         ObjectMapper objectMapper = new ObjectMapper();
+        //  게시글 정보
         model.addAttribute("board", objectMapper.writeValueAsString(dto));
+
+        //  게시글 배너 이미지들 정보
+        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
+
+        //  게시글 리뷰 정보
         model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+
+        //  게시글 작성자(businessId)의 작성글 리스트
         model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
+
+        //  로그인한 사용자 정보
         model.addAttribute("member", JSONObject.toString("member", memberVO));
+
+        //  로그인한 사용자 이미지 정보
         model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+
         log.info(businessBoardImgService.getList(dto.getBoardBusinessId()).toString());
         businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
-        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
     }
 
     @PostMapping("/board/business/detail")
