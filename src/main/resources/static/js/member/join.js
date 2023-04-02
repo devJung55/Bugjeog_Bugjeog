@@ -14,7 +14,7 @@ let allCheckBox = false;
 let must1CheckBox = false;
 let must2CheckBox = false;
 
-let joinCheckAll = [emailCheck, nameCheck, phoneNumberCheck, authCodeCheck, passwordCheck1, passwordCheck2, allCheckBox, must1CheckBox, must2CheckBox];
+// let joinCheckAll = [emailCheck, nameCheck, phoneNumberCheck, passwordCheck1, passwordCheck2, allCheckBox, must1CheckBox, must2CheckBox, authCodeCheck];
 
 $email.blur(function(){
     let emailVal = $email.val();
@@ -53,7 +53,6 @@ $name.blur(function(){
     }else {
         $nameError.text("");
         nameCheck = true;
-        /*joinButtonActive();*/
     }
 });
 
@@ -90,7 +89,6 @@ $phone.keyup(function(){
         $(".phone-check").css("color", "blue");
         $(".phone-check").html("사용가능한 휴대폰번호입니다.");
         phoneNumberCheck = true;
-        /*joinButtonActive();*/
     }
 });
 
@@ -114,10 +112,26 @@ const $authcode = $(".authcode-input");
 const $authCheckButton = $(".authcode-check-button");
 $authcode.keyup(function(){
     if($authcode.val().length == 4){
-        /*$(".auth-msg").hide();*/
         $authCheckButton.show();
     }
 });
+
+
+/*----------------- 인증 성공 여부 ------------------*/
+
+
+$(".authcode-check-button").on("click", function(e) {
+    if($(".authcode-check").val() == code) {
+        $(".auth-mag").css("color", "blue");
+        $(".auth-msg").html("인증에 성공했습니다.");
+        authCodeCheck = true;
+    } else {
+        $(".auth-mag").css("color", "red");
+        $(".auth-msg").html("인증에 실패했습니다.");
+        authCodeCheck = false;
+    }
+});
+
 
 // 비밀번호 검사
 const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
@@ -140,7 +154,6 @@ $password.blur(function(){
         $passwordError.hide();
         $passwordError.text("");
         passwordCheck1 = true;
-        /*joinButtonActive();*/
     }
 });
 
@@ -152,7 +165,6 @@ $passwordCheck.blur(function(){
     }else {
         $passwordCheckError.hide();
         passwordCheck2 = true;
-        /*joinButtonActive();*/
     }
 });
 
@@ -163,13 +175,11 @@ $("#allSelect").click(function() {
         $(".join-terms-agree").addClass("checkbox-active-box");
         $(".checkbox-display").show();
         allCheckBox = true;
-        /*joinButtonActive();*/
     }else {
         $(".checkbox-display").hide();
         $(".join-terms-agree").removeClass("checkbox-active-box");
         $("input[name=check]").prop("checked", false);
         allCheckBox = false;
-        console.log(allCheckBox);
     }
 });
 
@@ -185,7 +195,6 @@ $("input[name=check]").click(function() {
         $($(".join-terms-agree")[0]).addClass("checkbox-active-box");
         $($(".checkbox-display")[0]).show();
         $("#allSelect").prop("checked", true);
-        /*joinButtonActive();*/
     }
 });
 
@@ -194,7 +203,6 @@ $("input[name=check]").each((i, e) => {
         if($(e).is(":checked")){
             $($(".checkbox-display")[i+1]).show();
             $($(".check-state")[i]).addClass("checkbox-active-box");
-            /*joinButtonActive();*/
         }else {
             $($(".check-state")[i]).removeClass("checkbox-active-box");
             $($(".checkbox-display")[i+1]).hide();
@@ -210,18 +218,17 @@ const $joinButton = $(".join-jjoin-btn-border");
 const $must1 = $(".must1");
 const $must2 = $(".must2");
 
-$joinButton.on("click", function(e) {
-    if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
-        $(document.joinForm).submit();
-    } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
-        $(document.joinForm).submit();
-    }
-});
+// $joinButton.on("click", function(e) {
+//     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
+//         $(document.joinForm).submit();
+//     } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
+//         $(document.joinForm).submit();
+//     }
+// });
 
 $must1.on("click", function(e) {
     if($must1.is(":checked")) {
         must1CheckBox = true;
-        /*joinButtonActive();*/
     } else {
         must1CheckBox = false;
     }
@@ -230,7 +237,6 @@ $must1.on("click", function(e) {
 $must2.on("click", function(e) {
     if($must2.is(":checked")) {
         must2CheckBox = true;
-        /*joinButtonActive();*/
     } else {
         must2CheckBox = false;
     }
@@ -239,31 +245,28 @@ $must2.on("click", function(e) {
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
-const $joinInputs = $('.must1', '.must2', '.join-all-agree-ment', "input[type=text], input[type=email], input[type=password]");
+const $joinInputs = $(".must1, .must2, .join-all-agree-ment, input[type=text], input[type=email], input[type=password]");
+
 function send() {
     $joinInputs.trigger("blur");
-    if (joinCheckAll.filter(check => check).length != $joinInputs.length) {
-        return;
+
+    console.log("emailCheck : " + emailCheck);
+    console.log("nameCheck : " + nameCheck);
+    console.log("phoneNumberCheck : " + phoneNumberCheck);
+    console.log("authCodeCheck : " + authCodeCheck);
+    console.log("passwordCheck1 : " + passwordCheck1);
+    console.log("passwordCheck2 : " + passwordCheck2);
+    console.log("must1CheckBox : " + must1CheckBox);
+    console.log("must2CheckBox : " + must2CheckBox);
+    console.log("allCheckBox : " + allCheckBox);
+
+    if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
+        $(document.joinForm).submit();
+    } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
+        $(document.joinForm).submit();
     }
-    $(document.joinForm).submit();
+
 }
-
-
-/*----------------- 인증 성공 여부 ------------------*/
-
-
-$(".authcode-check-button").on("click", function(e) {
-    if($(".authcode-check").val() == code) {
-        $(".auth-mag").css("color", "blue");
-        $(".auth-msg").html("인증에 성공했습니다.");
-        authCodeCheck = true;
-        /*joinButtonActive();*/
-    } else {
-        $(".auth-mag").css("color", "red");
-        $(".auth-msg").html("인증에 실패했습니다.");
-        authCodeCheck = false;
-    }
-});
 
 
 /*--------------------- join ajax 모듈화 ---------------------*/

@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,18 +42,30 @@ public class AdminController {
 
     @PostMapping("admin-memberList")
     @ResponseBody
-    public List<MemberDTO> memberListShow(Criteria criteria){
+    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
+        Map<String, Object> result = new HashMap<>();
+        int page = (int) requestData.get("page");
 
-        if (criteria.getPageNum() == 0) {
-            criteria.setPageNum(1);
-            criteria.setAmount(6);
-        } else {
-            criteria.setPageNum(criteria.getPageNum());
-            criteria.setAmount(6);
+        if( page == 0) {
+            page = 1;
         }
-        return memberService.adminMemberShowList(criteria);
-    }
+        adminCriteria.create( page, 10, memberService.count(), 5);
+/*
 
+        if( adminCriteria.getPage() == 0) {
+            adminCriteria.create( 1, 10, memberService.count(), 5);
+        } else {
+            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+        }
+*/
+
+        List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
+        log.info(members.toString());
+        log.info("-------------------------------------------------------------------------------------------------");
+        result.put("members", members);
+        result.put("criteria", adminCriteria);
+        return result;
+    }
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -59,8 +74,6 @@ public class AdminController {
         return "admin/admin-member";
     }
 
-
-    
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
     public String adminMemberModify(Long memberId, Model model){
@@ -70,13 +83,9 @@ public class AdminController {
 
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
-    public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("memberEmail", memberVO.getMemberEmail());
-        redirectAttributes.addAttribute("memberPhoneNumber",memberVO.getMemberPhoneNumber());
-        redirectAttributes.addAttribute("memberStatus",memberVO.getMemberStatus());
+    public RedirectView adminMemberModify(MemberVO memberVO){
         memberService.updateMember(memberVO);
-
-        return new RedirectView("/admin/admin-member");
+        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
@@ -132,13 +141,9 @@ public class AdminController {
 
     /* 유통 회원 수정 완료*/
     @PostMapping("admin-member-companyModify")
-    public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("businessCompanyName", businessVO.getBusinessCompanyName());
-        redirectAttributes.addAttribute("businessNumber",businessVO.getBusinessNumber());
-        redirectAttributes.addAttribute("businessPhoneNumber", businessVO.getBusinessPhoneNumber());
+    public RedirectView adminMemberCompanyModify(BusinessVO businessVO){
         businessService.setBusiness(businessVO);
-
-        return new RedirectView("/admin/admin-member-company/{businessId}");
+        return new RedirectView("/admin/admin-member-company/" + businessVO.getBusinessId());
     }
 
 
@@ -152,7 +157,7 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
 
-   /* *//* 공지사항 리스트 *//*
+    /* *//* 공지사항 리스트 *//*
    @GetMapping("admin-noticeList")
     public void noticeList(Criteria criteria, Model model){
        model.addAttribute("noticeVO", noticeService.showList(criteria));
@@ -160,26 +165,26 @@ public class AdminController {
    }*/
 
     /* 공지사항 리스트 */
-   @GetMapping("admin-noticeList")
+    @GetMapping("admin-noticeList")
     public String noticeListShow(){
-       return "/admin/admin-noticeList";
-   }
+        return "/admin/admin-noticeList";
+    }
 
-   @PostMapping("admin-noticeList")
-   public List<NoticeVO> noticeListShow(Criteria criteria){
-       if (criteria.getPageNum() == 0) {
-           criteria.setPageNum(1);
-           criteria.setAmount(6);
-       } else {
-           criteria.setPageNum(criteria.getPageNum());
-           criteria.setAmount(6);
-       }
+    @PostMapping("admin-noticeList")
+    public List<NoticeVO> noticeListShow(Criteria criteria){
+        if (criteria.getPageNum() == 0) {
+            criteria.setPageNum(1);
+            criteria.setAmount(6);
+        } else {
+            criteria.setPageNum(criteria.getPageNum());
+            criteria.setAmount(6);
+        }
 
-       return noticeService.showList(criteria);
-   }
+        return noticeService.showList(criteria);
+    }
 
 
-   
+
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
     public String notice(@PathVariable Long noticeId, Model model ){
@@ -187,7 +192,7 @@ public class AdminController {
         return "admin/admin-notice";
     }
 
-   /* 공지사항 작성 페이지 이동 */
+    /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());
@@ -196,8 +201,6 @@ public class AdminController {
     /* 공지사항 작성 완료 */
     @PostMapping("admin-noticeWrite")
     public RedirectView AddNotice(NoticeVO noticeVO, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
-        redirectAttributes.addAttribute("noticeContent", noticeVO.getNoticeContent());
         noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
     }

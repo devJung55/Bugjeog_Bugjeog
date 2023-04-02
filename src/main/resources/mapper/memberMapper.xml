@@ -139,7 +139,7 @@
         select member_id, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name, member_img_uuid, member_img_path
         from tbl_member
         order by member_id desc
-        limit #{startRow}, #{amount}
+        limit #{offset}, #{rowCount}
     </select>
 
     <!-- 회원 수 카운트 -->

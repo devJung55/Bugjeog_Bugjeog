@@ -13,7 +13,7 @@ public interface InterestingCompanyMapper {
     public List<InterestingCompanyDTO> selectInterestingCompany(@Param("memberId") Long memberId, @Param("interestingCriteria") InterestingCriteria interestingCriteria);
     
 //    갯수 가져오기
-    public int count();
+    public int count(Long memberId);
 
     public void deleteByInterestingCompany(Long interestingCompanyId);
 }

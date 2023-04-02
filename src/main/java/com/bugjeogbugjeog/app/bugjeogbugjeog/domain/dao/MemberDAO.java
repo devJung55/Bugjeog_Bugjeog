@@ -1,22 +1,26 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class MemberDAO {
     private final MemberMapper memberMapper;
 
 //    자영업자 회원가입
     public void register(MemberVO memberVO) {
+        log.info(memberVO.toString());
         memberMapper.insertMember(memberVO);
     }
 
@@ -125,7 +129,7 @@ public class MemberDAO {
     /*-----------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
-    public List<MemberDTO> adminFindAll(Criteria criteria){return memberMapper.adminSelectAllMember(criteria);}
+    public List<MemberDTO> adminFindAll(AdminCriteria adminCriteria){return memberMapper.adminSelectAllMember(adminCriteria);}
 
     // 관리자 멤버 카운트
     public int count(){return memberMapper.count();}

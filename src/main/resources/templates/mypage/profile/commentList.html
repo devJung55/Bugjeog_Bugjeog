@@ -164,10 +164,11 @@
             let length = result.length;
             for (var i = 0; i < length; i++) {
                 text += `
+                        <div class="reply-content-box-border">
                             <a class="PostItem_body" href="">
-                                 <div><img src="/image/mypage/reply-64.png" alt=""></div>
                                  <p class="PostItem_content reply-content">${result[i].replyContent}</p>
                             </a>
+                        </div>
                     `;
             }
 
