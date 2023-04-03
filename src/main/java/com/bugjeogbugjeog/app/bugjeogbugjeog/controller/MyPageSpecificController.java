@@ -38,7 +38,6 @@ public class MyPageSpecificController {
     @PostMapping("edit")
     @Transactional(rollbackFor = Exception.class)
     public RedirectView updateLocation(HttpServletRequest req, BusinessVO businessVO){
-        log.info("들어옴");
 //        HttpSession session = req.getSession();
 //        Long businessId = (Long) session.getAttribute("businessId");
         Long businessId = 1L;
