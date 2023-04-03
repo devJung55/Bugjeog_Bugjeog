@@ -24,17 +24,20 @@ public class FreeBoardController {
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(Long boardFreeId, Model model){
-        model.addAttribute("boardLists", freeBoardService.getList());
 
-        return "/board/free/list";} //html 경로
+        model.addAttribute("boardLists", freeBoardService.getList());
+        return "/board/free/list";
+
+    } //html 경로
 
 
     /*자유게시판 디테일 */
     @GetMapping("detail/{boardFreeId}")
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model){
-        model.addAttribute("boardFreeId",freeBoardService.getListBoard(boardFreeId));
+        model.addAttribute("boardFreeVO",freeBoardService.getListBoard(boardFreeId));
 
-        return "/board/free/detail";}
+        return "/board/free/detail";
+    }
 
     /*자유게시판 작성*/
     @PostMapping("write")
