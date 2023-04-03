@@ -6,11 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class BoardFreeDTO {
-<<<<<<< HEAD
-
-
-
-=======
     private Long boardFreeId;/* 게시글ID */
     private Long businessId;/* 사업자ID */
     private Long memberId;/* 멤버ID */
@@ -24,5 +19,4 @@ public class BoardFreeDTO {
     private String boardFreeImgUuid;/* 썸네일 이미지 고유번호 */
     private String boardFreeImgPath;/* 썸네일 이미지 경로 */
     private String boardBusinessImgFullPath; /* ?? */
->>>>>>> master
 }
