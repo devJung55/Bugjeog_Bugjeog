@@ -35,6 +35,18 @@ public class InquiryBoardController {
         model.addAttribute("boards", inquiryBoardService.showList());
     }
 
+
+    @GetMapping("/board/inquiry/detail")
+    public void detail() {
+//        model.addAttribute("board", inquiryBoardService.getBoard());
+    }
+
+    //    @GetMapping("/board/inquiry/")
+
+    @GetMapping("/board/inquiry/write")
+    public void write() {
+
+    }
 //    @GetMapping("/board/business/detail")
 //    public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
 //
