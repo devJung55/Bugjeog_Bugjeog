@@ -14,14 +14,14 @@ $(window).scroll(function () {
 });
 
 // /* sort 버튼 이벤트 */
-// const $sortButton = $(".sort-button");
-//
-// $sortButton.each((i, e) => {
-//     $(e).click(function () {
-//         $sortButton.removeClass("sort-button-active");
-//         $(e).addClass("sort-button-active");
-//     });
-// });
+const $sortButton = $(".sort-button");
+
+$sortButton.each((i, e) => {
+    $(e).click(function () {
+        $sortButton.removeClass("sort-button-active");
+        $(e).addClass("sort-button-active");
+    });
+});
 
 
 // /* 카테고리 버튼 이벤트 */
