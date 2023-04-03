@@ -52,13 +52,13 @@ public class FreeBoardController {
 
     }
 
-//    /*댓글 목록*/
+    /*댓글 목록*/
 //    @GetMapping("resister-reply")
 //    public String replyResister(){
 //        return "/board/free/detail";
 //    }
-//
-//    /*댓글 등록*/
+
+    /*댓글 등록*/
 //    @PostMapping("resister-reply")
 //    public RedirectView replyResister(FreeReplyVO freeReplyVO){
 //
@@ -66,8 +66,8 @@ public class FreeBoardController {
 //
 //        return new RedirectView("/FreeBoards/detail");
 //    }
-//
-//    /* 댓글 등록완료*/
+
+    /* 댓글 등록완료*/
 //    @GetMapping("reply-complate")
 //    public String replyAddEnd(Model model){
 //        model.addAttribute(new FreeReplyVO());
