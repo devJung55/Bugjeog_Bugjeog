@@ -96,7 +96,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <script th:inline="javascript">
-    // const
+
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
     const $modal = $(".modal-active");
@@ -109,7 +109,6 @@
 <script th:inline="javascript" src="/js/boardDetail/boardBusinessDetailFunction.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
-    let sessionId = [[${}]];
     showList(boards);
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
