@@ -1,39 +1,43 @@
 /* 리스트 삽입 js */
 function showDetail(answers) {
-    $ul.empty();
     let text = ``;
+    $('#reply_img_wrap').empty();
     console.log(answers);
-    if(answers.length == 0){
+    if (answers.length == 0) {
         text = `
-           <div th:if="${answers.length == 0}">
+           <div th:if="${answers.length == 0}" style="text-align: center;">
                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png"
                     alt="">
                <p id="reply_content">현재 검토중 입니다.</p>
            </div>
         `;
+        $('#reply_img_wrap').addClass("autoHeight");
         $('#reply_img_wrap').append(text);
         return;
     }
+    text += `
+        <div>
+            <ul class="answer_ul" id="answer_wrap">
+    `
     answers.forEach(answer => {
+        console.log(answer);
         text += `
-            <div style="display: flex; justify-content: space-between;">
-                <a style="display: flex; width: 0;">
-                    <div style="display: inline-flex; align-items: center; margin-right: auto;">
-                        <div style="text-align: left; display: flex; align-items: center;">
-                            <div style="position: relative; margin-right: 7px;">
-                                <div class="reply_my">
-                                    <div class="profile-image-login">
-                                        <div class="profile-member-status">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <li>
+                    <div class="reply_wrap_div">
+                        <div class="time_wrap">
+                            <span class="reply_date">답변시각 : ${answer.boardInquiryAnswerRegisterDate}</span>
                         </div>
+                        <div class="reply_content">${answer.boardInquiryAnswerContent}</div>
                     </div>
-                </a>
-            </div>
+                </li>
         `;
     });
-    $ul.append(text);
+    text += `
+            </ul>
+        </div>
+    `
+    $('#reply_img_wrap').removeClass("autoHeight");
+    $('#reply_img_wrap').append(text);
+    return;
 }
 

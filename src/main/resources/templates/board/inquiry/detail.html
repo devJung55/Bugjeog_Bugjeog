@@ -77,12 +77,8 @@
             </div>
         </article>
         <div id="reply_wrap">
-            <div id="reply_img_wrap">
-                <div>
-                    <ul class="answer_ul" id="answer_wrap">
-                    </ul>
-                </div>
-            </div>
+            <div id="reply_img_wrap"></div>
+
             <a th:href="@{/board/inquiry/list}" th:method="get" id="list_button">
                 <span style="width: 100%;">
                     <span id="list_button_span">
@@ -110,7 +106,6 @@
 <script src="/js/boardDetail/boardShowReply.js"></script>
 <script th:inline="javascript">
     showDetail(answers);
-    showReply(answers, $ul);
 </script>
 <script>
     // 좋아요 댓글 color변경
@@ -137,16 +132,16 @@
             }
         });
     });
-    const dot = document.getElementById("dot_third");
-    const declaration = document.getElementById("declaration");
-
-    dot.addEventListener('click', () => {
-        if (declaration.style.display == "block") {
-            declaration.style.display = "none"
-        } else {
-            declaration.style.display = "block"
-        }
-    })
+    // const dot = document.getElementById("dot_third");
+    // const declaration = document.getElementById("declaration");
+    //
+    // dot.addEventListener('click', () => {
+    //     if (declaration.style.display == "block") {
+    //         declaration.style.display = "none"
+    //     } else {
+    //         declaration.style.display = "block"
+    //     }
+    // })
 
 
 </script>

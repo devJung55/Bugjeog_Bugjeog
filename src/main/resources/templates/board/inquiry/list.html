@@ -44,15 +44,15 @@
                     <ul class="content-list-box">
                         <!-- th:object="${boards}"-->
                         <!-- 리스트 뽑을 요소 -->
-<!--                        <li class="content-list" th:each="board, i: ${boards}">-->
-<!--                            <a th:href="@{/board/inquiry/detail(boardInquiryId=${board.boardInquiryId})}" th:method="get"-->
-<!--                               class="content-title" th:text="${board.boardInquiryTitle}">-->
-<!--                                좋은 기업을 원티드 #와이즐리-->
-<!--                            </a>-->
-<!--                            <div class="content" th:text="${board.boardInquiryContent}">-->
-<!--                                있습니다." 27번째 좋은 으로 와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐-->
-<!--                            </div>-->
-<!--                        </li>-->
+                        <li class="content-list" th:each="board, i: ${boards}">
+                            <a th:href="@{/board/inquiry/detail(boardInquiryId=${board.boardInquiryId})}" th:method="get"
+                               class="content-title" th:text="${board.boardInquiryTitle}">
+                                좋은 기업을 원티드 #와이즐리
+                            </a>
+                            <div class="content" th:text="${board.boardInquiryContent}">
+                                있습니다." 27번째 좋은 으로 와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐
+                            </div>
+                        </li>
                         <!-- 리스트 뽑을 요소 -->
 <!--                        <li class="content-list">-->
 <!--                            <a href="javascript:void(0)" class="content-title">-->
@@ -103,6 +103,7 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 <script src="/js/main/header.js">
 </script>
 </html>
