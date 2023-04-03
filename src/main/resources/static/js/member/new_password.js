@@ -46,3 +46,13 @@
             $form.submit();
         }
     });
+
+    const $goToLogin = $(".pw-left-box");
+
+    $goToLogin.on("click", function(e) {
+        const $form = $(document.passwordForm);
+
+        $form.attr("action", "/member/login");
+        $form.attr("method", "get");
+        $form.submit();
+    });

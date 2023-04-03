@@ -17,5 +17,8 @@ public class InterestingCompanyDAOTest {
     @Autowired
     Criteria criteria;
 
-
+    @Test
+    public void InterestingCompanyDAOTest(){
+//        log.info(interestingCompanyDAO.findAllToInterestingCompany(criteria).toString());
+    }
 }

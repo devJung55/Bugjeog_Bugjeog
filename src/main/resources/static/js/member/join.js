@@ -122,11 +122,11 @@ $authcode.keyup(function(){
 
 $(".authcode-check-button").on("click", function(e) {
     if($(".authcode-check").val() == code) {
-        $(".auth-mag").css("color", "blue");
+        $(".auth-msg").css("color", "blue");
         $(".auth-msg").html("인증에 성공했습니다.");
         authCodeCheck = true;
     } else {
-        $(".auth-mag").css("color", "red");
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").html("인증에 실패했습니다.");
         authCodeCheck = false;
     }

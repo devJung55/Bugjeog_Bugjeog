@@ -103,13 +103,15 @@
                         </li>
                         <li class="aside_li">
                             <div class="profile_img">
-                                <a href="javascript:void(0)">
+                                <a th:href="@{/mypage/profile/myinfo}">
                                     <img src="/image/main/profile_image.png" width="32" height="32">
                                 </a>
                             </div>
                         </li>
                         <li class="aside_li">
-                            <button type="button" class="signUp_button">로그아웃</button>
+                            <form th:action="@{/member/logout}">
+                                <button type="submit" class="signUp_button">로그아웃</button>
+                            </form>
                         </li>
                     </ul>
                 </aside>
