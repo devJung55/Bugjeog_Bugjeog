@@ -27,6 +27,7 @@ header.nav_bar {
     width: 100%;
     z-index: 800;
     border-bottom: 1px solid #e1e2e3;
+    background: #f8f8f8;
 }
 
 .main_bar {
