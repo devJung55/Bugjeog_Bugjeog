@@ -132,11 +132,12 @@
         on r.board_business_id = b.board_business_id
         join tbl_business bs
         on b.business_id = bs.business_id
-        <if test="category == null">
-            where bs.business_status = 1
-        </if>
+        where bs.business_status = 1
         <if test="category != null">
-            where bs.business_category = #{category} and bs.business_status = 1
+        and bs.business_category = #{category}
+        </if>
+        <if test="businessId != null">
+        and b.business_id = #{businessId}
         </if>
         group by board_business_id
         <if test="sort == 'recent'">

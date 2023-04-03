@@ -96,7 +96,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <script th:inline="javascript">
-
+    // const
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
     const $modal = $(".modal-active");
@@ -109,6 +109,7 @@
 <script th:inline="javascript" src="/js/boardDetail/boardBusinessDetailFunction.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
+    let sessionId = [[${}]];
     showList(boards);
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
@@ -144,8 +145,9 @@
                 let boards =    JSON.parse(dataResult.boards);
                 let member =    JSON.parse(dataResult.member);
                 let boardImgs = JSON.parse(dataResult.boardImgs);
-
+                /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 showDetail(board, reviews, boards, member, boardImgs);
+                /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
                 $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");

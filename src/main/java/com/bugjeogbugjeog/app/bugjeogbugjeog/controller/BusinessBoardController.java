@@ -72,10 +72,12 @@ public class BusinessBoardController {
             default:
                 category = null;
                 break;
-        };
+        }
+        ;
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));
+        searchMap.put("businessId", Long.parseLong(req.getParameter("businessId") == null ? null : req.getParameter("businessId")));
         return businessBoardService.getList(searchMap);
     }
 
@@ -153,7 +155,6 @@ public class BusinessBoardController {
         returnObj.put("member", objectMapper.writeValueAsString(member));
         returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
         returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
-
 
 
         return returnObj.toJSONString();
