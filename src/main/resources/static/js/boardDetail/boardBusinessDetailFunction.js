@@ -1,12 +1,10 @@
 
 /* 리스트 삽입 js */
 function showList(boards) {
-    console.log("들2");
 /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
     $ul.empty();
     let text = ``;
     boards.forEach(board => {
-        console.log(`${board.boardBusinessImgFullPath}`);
         text += `
            <li class="info-box-layout"  th:object="${board}">
                 <label class="modal_button" name="${board.boardBusinessId}">
@@ -123,7 +121,6 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                     </div>
                                 </div>
                             </div>
-                        </section>
                         <h2 id="footer_title">이 회사의 모든 글</h2>
                         <ul id="footer_ul">`;
     boards.forEach(other => {
@@ -186,6 +183,7 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                 </div>
                             </div>
                         </div>
+                        </section>
                         <div id="review_score_box_layout">
                             총 리뷰 개수: 1개
                             <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">

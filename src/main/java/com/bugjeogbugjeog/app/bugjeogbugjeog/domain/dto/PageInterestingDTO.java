@@ -22,7 +22,7 @@ public class PageInterestingDTO {
         this.total = total;
 
         this.endPage = (int)(Math.ceil(interestingCriteria.getPageNum() / (double)interestingCriteria.getAmount())) * interestingCriteria.getAmount();
-        this.startPage = this.endPage - 3;
+        this.startPage = this.endPage - 8;
         this.realEnd = (int)Math.ceil(total / (double)interestingCriteria.getAmount());
 
         if(realEnd < this.endPage){

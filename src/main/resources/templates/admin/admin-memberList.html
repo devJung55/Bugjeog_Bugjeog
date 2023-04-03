@@ -1,133 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원정보 관리</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원정보 관리</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/admin-boardList.css">
 	<link rel="stylesheet" href="/css/admin/side-menu.css">
 </head>
 <body>
-	<div th:insert="~{admin/side-menu :: aside_admin_list}"></div>
-	<div>
-		<div class="info-title-box info-title-box-flex">
-			<div class="logo-box-layout">
-				<div class="logo-box">
-					<a href="javascript:void(0)" class="main_bar_logo_a">
-						<img src="/image/main/logo1-removebg-preview.png">
-					</a>
-				</div>
-				<!-- <div class="logo-title">
-					<span>북적북적</span>
-				</div> -->
+<div th:insert="~{admin/side-menu :: aside_admin_list}"></div>
+<div>
+	<div class="info-title-box info-title-box-flex">
+		<div class="logo-box-layout">
+			<div class="logo-box">
+				<a href="javascript:void(0)" class="main_bar_logo_a">
+					<img src="/image/main/logo1-removebg-preview.png">
+				</a>
 			</div>
-			<div>
-				<div class="select-name">
-					<span>회원정보 관리</span>	
-				</div>
-			</div>
+			<!-- <div class="logo-title">
+               <span>북적북적</span>
+            </div> -->
 		</div>
-		<div class="wrap"> 
-		
-			<!-- 사이드 바 -->
-			<div id="side-bar"></div>
-			<!-- 사이드 바 끝-->
-		
-			<div class="container">
-				<div class="container-margin">
-					<!-- 헤더 -->
-					<<div class="delete-box-layout">
-							<div class="delete-box">
-								<button class="delete-button">선택 게시물 삭제</button>
-							</div>
-					</div>
-					
-					<!-- 내용 섹션 -->
-					<section class="board-info-box-layout">
-						
-						<div class="board-info-box">
-							<div class="board-info-title-box">
-								<span>회원정보 목록</span>
-							</div>
-							
-							<div class="info-table">
-								<table>
-									<thead>
-										<tr>
-											<th>
-												<input type="checkbox" id="allSelect">
-											</th>
-											<th>No</th>
-											<th>이름</th>
-											<th>이메일</th>
-											<th>가입날짜</th>
-											<th>계정 상태</th>
-										</tr>
-									</thead>
-
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td></td>		 <!-- 회원 아이디 -->
-										<td><a></a></td>		<!-- 이름 -->
-										<td></td>		 <!-- 이메일 -->
-										<td></td> 	 <!-- 가입 날짜 -->
-										<td></td>	<!-- 계정 상태 -->
-									</tr>
-
-									<!--<tr th:each="member : ${memberDTO}">
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td th:text="${member.memberId}"></td>
-										<td><a th:href="@{admin-member/{memberId}(memberId=${member.memberId})}" th:text="${member.memberName}"></a></td>
-										<td th:text="${member.memberEmail}"></td>
-										<td th:text="${member.memberRegisterDate}"></td>
-										<td th:text="${member.memberStatus}"></td>
-									</tr>-->
-								</table>
-							</div>
-						</div>
-					</section>
-
-					<!-- 페이지 버튼 -->
-					<div class="page-button-box-layout">
-						<!--<div class="page-button-box">
-							&lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;
-							<div class="page-box page-button-margin">
-								<a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
-							<span>
-								<img src="/image/admin/left_icon.png" class="left-button">
-							</span>
-								</a>
-								<th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-									<span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>
-									<a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
-										<span th:text="${num}" class="page-button"></span>
-									</a>
-								</th:block>
-								<a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
-							<span>
-								<img src="/image/admin/right_icon.png" class="right-button">
-							</span>
-								</a>
-							</div>
-							<form action="/admin/admin-memberList" th:object="${criteria}" name="pageForm">
-								<input type="hidden" th:field="*{pageNum}">
-								<input type="hidden" th:field="*{amount}">
-							</form>
-						</div>-->
-					</div>
-					<!-- 페이지 버튼 끝 -->
-				</div>
+		<div>
+			<div class="select-name">
+				<span>회원정보 관리</span>
 			</div>
 		</div>
 	</div>
+	<div class="wrap">
+
+		<!-- 사이드 바 -->
+		<div id="side-bar"></div>
+		<!-- 사이드 바 끝-->
+
+		<div class="container">
+			<div class="container-margin">
+				<!-- 헤더 -->
+				<div class="delete-box-layout">
+				<div class="delete-box">
+					<button class="delete-button">선택 게시물 삭제</button>
+				</div>
+			</div>
+
+				<!-- 내용 섹션 -->
+				<section class="board-info-box-layout">
+
+					<div class="board-info-box">
+						<div class="board-info-title-box">
+							<span>회원정보 목록</span>
+						</div>
+
+						<div class="info-table">
+							<table>
+								<thead>
+								<tr>
+									<th>
+										<input type="checkbox" id="allSelect">
+									</th>
+									<th>No</th>
+									<th>이름</th>
+									<th>이메일</th>
+									<th>가입날짜</th>
+									<th>계정 상태</th>
+								</tr>
+								</thead>
+
+								<tr>
+									<td>
+										<input type="checkbox" name="check">
+									</td>
+									<td></td>       <!-- 회원 아이디 -->
+									<td><a></a></td>      <!-- 이름 -->
+									<td></td>       <!-- 이메일 -->
+									<td></td>     <!-- 가입 날짜 -->
+									<td></td>   <!-- 계정 상태 -->
+								</tr>
+
+								<!--<tr th:each="member : ${memberDTO}">
+                                   <td>
+                                      <input type="checkbox" name="check">
+                                   </td>
+                                   <td th:text="${member.memberId}"></td>
+                                   <td><a th:href="@{admin-member/{memberId}(memberId=${member.memberId})}" th:text="${member.memberName}"></a></td>
+                                   <td th:text="${member.memberEmail}"></td>
+                                   <td th:text="${member.memberRegisterDate}"></td>
+                                   <td th:text="${member.memberStatus}"></td>
+                                </tr>-->
+							</table>
+						</div>
+					</div>
+				</section>
+
+				<!-- 페이지 버튼 -->
+				<div class="page-button-box-layout">
+					<!--<div class="page-button-box">
+                       &lt;!&ndash; 페이지 번호 &ndash;&gt;&lt;!&ndash; 페이지 버튼 &ndash;&gt;
+                       <div class="page-box page-button-margin">
+                          <a class="changePage page-button-margin" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
+                       <span>
+                          <img src="/image/admin/left_icon.png" class="left-button">
+                       </span>
+                          </a>
+                          <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                             <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}" class="page-button-active page-button"></span>
+                             <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                                <span th:text="${num}" class="page-button"></span>
+                             </a>
+                          </th:block>
+                          <a class="changePage page-button-margin" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
+                       <span>
+                          <img src="/image/admin/right_icon.png" class="right-button">
+                       </span>
+                          </a>
+                       </div>
+                       <form action="/admin/admin-memberList" th:object="${criteria}" name="pageForm">
+                          <input type="hidden" th:field="*{pageNum}">
+                          <input type="hidden" th:field="*{amount}">
+                       </form>
+                    </div>-->
+				</div>
+				<!-- 페이지 버튼 끝 -->
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/checkbox.js"></script>
@@ -136,14 +136,17 @@
 <script th:inline="javascript">
 	let page = 1;
 	let $members = [[${memberDTO}]];
-	let $pageForm = $(pageForm);
 
-	$("a.changePage").on("click", function(e){
-		e.preventDefault();
-		$pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-		$pageForm.submit();
-	});
+	/*
+       let $pageForm = $(pageForm);
 
+       $("a.changePage").on("click", function(e){
+          e.preventDefault();
+          $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+          $pageForm.submit();
+       });
+
+    */
 
 	/* delete 버튼 클릭 시 ajax실행*/
 	$('.delete-button').on('click', function() {
@@ -167,32 +170,42 @@
 	});
 
 	function showList(members){
-		const $result = $('.info-table table');
+		const $showListResult = $('.info-table table');
 		var text = "";
 		members.forEach(member => {
 			text += `
-				<tr>
-					<td>
-						<input type="checkbox" name="check">
-					</td>
-					<td>${member.memberId}</td>
-					<td><a href="{admin-member/{memberId}(memberId=${member.memberId})}">${member.memberName}</a></td>
-						<td>${member.memberEmail}</td>
-					<td>${member.memberRegisterDate}</td>
-					<td>${member.memberStatus}</td>
-				</tr>
-			`
+            <tr>
+               <td>
+                  <input type="checkbox" name="check">
+               </td>
+               <td>${member.memberId}</td>
+               <td><a href="{/admin-member/${member.memberId}">${member.memberName}</a></td>
+                  <td>${member.memberEmail}</td>
+               <td>${member.memberRegisterDate}</td>
+               <td>${member.memberStatus}</td>
+            </tr>
+         `
 		})
-		$result.html(text);
+		$showListResult.html(text);
 	}
 
 	function reload() {
+
+		console.log(page);
+
 		$.ajax({
 			url:"/admin/admin-memberList",
 			type: "post",
+			data:JSON.stringify({  // 보낼 데이터 (Object , String, Array)
+				"page" : page
+			}),
+			contentType: 'application/json',
+			dataType : 'json',       // 데이터 타입 (html, xml, json, text 등등)
 			success: function(result){
-				showList(result);
+				showList(result.members);
+				showPage(result.criteria);
 				console.log(result);
+
 			}
 
 		});
@@ -200,36 +213,55 @@
 
 	window.onload = reload();
 
-	/*function showPage(members) {
-		const $result = (".page-button-box-layout");
-		members.forEach(member => {
-			text += `
-				<div class="page-button-box">
-					<!-- 페이지 번호 -->
-					<div class="">
-						<div class="page-button-margin">
-							<div>
-								<img src="/image/admin/left_icon.png" class="left-button">
-							</div>
-						</div>
-					</div>
-					<div class="page-button-active page-button">
-						<div class="page-button-margin">
-							<div>
-								<span>1</span>
-							</div>
-						</div>
-					</div>
-					<div class="">
-						<div class="page-button-margin">
-							<div>
-								<img src="/image/admin/right_icon.png" class="right-button">
-							</div>
-						</div>
-					</div>
-				</div>`
+
+	function showPage(criteria) {
+		const $showPageResult = $(".page-button-box-layout");
+		var text = "";
+		text += `
+            <div class="page-button-box">
+               <!-- 페이지 번호 -->
+		<div class="prev paging" data-page = "${criteria.startPage - 1}" >
+			<div class="page-button-margin">
+				<div>
+					<img src="/image/admin/left_icon.png" class="left-button">
+				</div>
+			</div>
+		</div>`
+		for (let i = criteria.startPage; i <= criteria.endPage; i++) {
+		text += `
+               <div class="paging page-button ${criteria.page === i ? 'page-button-active' : ''}" data-page="${i}">
+                  <div class="page-button-margin">
+                     <div>
+                        <span>${i}</span>
+                     </div>
+                  </div>
+               </div>
+               `
+		}
+		text += `
+               <div class="next paging" data-page = "${criteria.endPage + 1}">
+                  <div class="page-button-margin">
+                     <div>
+                        <img src="/image/admin/right_icon.png" class="right-button">
+                     </div>
+                  </div>
+               </div>
+            </div>`
+
+		$showPageResult.html(text);
+
+		$('.paging').each(function(i, btn) {
+			$(btn).on('click', e => {
+				page = e.dataset.page; // page에 현재 page값 담는 것.(string)
+				page *= 1; // page를 number타입으로 변환
+				reload();
+			})
 		});
-	}*/
+
+	}
+
+
+
 
 
 </script>

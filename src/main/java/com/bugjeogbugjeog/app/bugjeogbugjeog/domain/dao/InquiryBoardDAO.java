@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper;
@@ -14,6 +15,15 @@ import java.util.List;
 public class InquiryBoardDAO {
 
     private final InquiryBoardMapper inquiryBoardMapper;
+
+    //    문의 작성하기
+    public void save(BoardInquiryVO boardInquiryVO){
+        inquiryBoardMapper.insert(boardInquiryVO);
+    }
+
+    public List<BoardInquiryDTO> findAllByIdToInquire(){
+        return inquiryBoardMapper.inquiryList();
+    }
 
     //    문의 작성 목록
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){

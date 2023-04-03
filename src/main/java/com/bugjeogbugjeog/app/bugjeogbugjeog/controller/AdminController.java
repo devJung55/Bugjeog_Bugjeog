@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,16 +42,29 @@ public class AdminController {
 
     @PostMapping("admin-memberList")
     @ResponseBody
-    public List<MemberDTO> memberListShow(@RequestBody int page, AdminCriteria adminCriteria){
-        log.info("들어옴");
-        log.info("" + adminCriteria.getPage());
+    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
+        Map<String, Object> result = new HashMap<>();
+        int page = (int) requestData.get("page");
 
         if( page == 0) {
             page = 1;
         }
         adminCriteria.create( page, 10, memberService.count(), 5);
+/*
 
-        return memberService.adminMemberShowList(adminCriteria);
+        if( adminCriteria.getPage() == 0) {
+            adminCriteria.create( 1, 10, memberService.count(), 5);
+        } else {
+            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+        }
+*/
+
+        List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
+        log.info(members.toString());
+        log.info("-------------------------------------------------------------------------------------------------");
+        result.put("members", members);
+        result.put("criteria", adminCriteria);
+        return result;
     }
 
     /* 회원 상세 보기 */
@@ -68,7 +83,7 @@ public class AdminController {
 
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
-    public RedirectView adminMemberModify(MemberVO memberVO, RedirectAttributes redirectAttributes){
+    public RedirectView adminMemberModify(MemberVO memberVO){
         memberService.updateMember(memberVO);
         return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
@@ -126,9 +141,9 @@ public class AdminController {
 
     /* 유통 회원 수정 완료*/
     @PostMapping("admin-member-companyModify")
-    public RedirectView adminMemberCompanyModify(BusinessVO businessVO, RedirectAttributes redirectAttributes){
+    public RedirectView adminMemberCompanyModify(BusinessVO businessVO){
         businessService.setBusiness(businessVO);
-        return new RedirectView("/admin/admin-member-company");
+        return new RedirectView("/admin/admin-member-company/" + businessVO.getBusinessId());
     }
 
 
@@ -200,5 +215,56 @@ public class AdminController {
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
+    /* 유통 게시판 목록 */
+    @GetMapping("admin-distributionList")
+    public void distributionShowList(){}
 
+    /* 유통 게시판 조회 */
+    @GetMapping("admin-distribution")
+    public void distributionShow(){}
+
+    /* 유통 게시판 수정 */
+
+    /* 유통 게시판 삭제 */
+    @DeleteMapping("admin-distributionList")
+    @ResponseBody
+    public void removeDistribution(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 자유 게시판 목록 */
+    @GetMapping("admin-freeBoardList")
+    public void freeBoardShowList() {}
+
+    /* 자유 게시판 조회 */
+    @GetMapping("admin-freeBoard")
+    public void freeBoardShow(){}
+
+    /* 자유 게시판 수정 */
+
+    /* 자유 게시판 삭제 */
+    @DeleteMapping("admin-freeBoardList")
+    @ResponseBody
+    public void removeFree(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
+
+    /* 문의 게시판 목록 */
+    @GetMapping("admin-inquiryList")
+    public void inquiryShowList(){}
+
+    /* 문의 게시판 조회 */
+    @GetMapping("admin-inquiry")
+    public void inquiryShow() {}
+
+    /* 문의 게시판 작성 */
+    @GetMapping("admin-inquiryWrite")
+    public void inquiryWrite(){}
+
+    /* 문의 게시판 삭제 */
+    @DeleteMapping("admin-inquiryList")
+    @ResponseBody
+    public void removeInquiry(){}
+
+    /* ------------------------------------------------------------------------------------------------------------- */
 }

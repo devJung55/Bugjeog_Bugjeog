@@ -18,9 +18,8 @@ import java.util.Map;
 @Qualifier("businessBoard")
 @Primary
 @RequiredArgsConstructor
-public class BoardBusinessService {
+public class BusinessBoardService {
     private final BusinessBoardDAO businessBoardDAO;
-
 
     //    추가
     public void registerBoard(BoardBusinessVO boardBusinessVO) {
@@ -35,7 +34,7 @@ public class BoardBusinessService {
         return businessBoardDAO.findById(boardBusinessId);
     }
 
-    public List<BoardBusinessDTO> getBoardByBusinessId(Long businessId) {
+    public List<BoardBusinessDTO> getBoardsByBusinessId(Long businessId) {
         return businessBoardDAO.findByBusinessId(businessId);
     }
 
@@ -44,7 +43,7 @@ public class BoardBusinessService {
         return businessBoardDAO.findAll();
     }
 
-    //    목록(대표 이미지 하나)
+    //    목록(대표 이미지 하나 + 검색)
     public List<BoardBusinessDTO> getList(Map<String, Object> searchMap) {
         return businessBoardDAO.findAll(searchMap);
     }

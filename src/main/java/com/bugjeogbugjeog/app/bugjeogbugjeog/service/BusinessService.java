@@ -26,7 +26,13 @@ public class BusinessService {
     public BusinessDTO adminShowBusiness(Long businessId){return businessDAO.adminFindById(businessId);}
 
     /* 관리자 유통 회원 수정 */
-    public void setBusiness(BusinessVO businessVO){ businessDAO.updateById(businessVO);}
+    public void setBusiness(BusinessVO businessVO){
+        BusinessVO business = businessDAO.findByIdToBusiness(businessVO.getBusinessId());
+        business.setBusinessCompanyName(businessVO.getBusinessCompanyName());
+        business.setBusinessNumber(businessVO.getBusinessNumber());
+        business.setBusinessPhoneNumber(businessVO.getBusinessPhoneNumber());
+        business.setBusinessStatus(businessVO.getBusinessStatus());
+        businessDAO.updateById(business);}
 
     /* 관리자 유통 회원 삭제 */
     public void removeBusiness( List<String> businessIds) {
