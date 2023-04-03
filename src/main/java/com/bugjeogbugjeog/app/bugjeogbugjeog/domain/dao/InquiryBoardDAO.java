@@ -76,10 +76,7 @@ public class InquiryBoardDAO {
     //    문의 게시글 작성 갯수
     public Integer getBusinessInquireCount(Long businessId) {
         return inquiryBoardMapper.businessInquireCount(businessId);
-<<<<<<< HEAD
     }
-=======
-    };
 
     /* 관리자 ------------------------------------------------------------------------ */
 
@@ -94,7 +91,5 @@ public class InquiryBoardDAO {
 
     // 문의 카운트
     public int count(){return inquiryBoardMapper.count();}
-
->>>>>>> ddc8d66d5f91b5b6d83e4425ffeaae58a0fd8a4e
 
 }

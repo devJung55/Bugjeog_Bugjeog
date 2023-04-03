@@ -1,11 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
-<<<<<<< HEAD
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
-=======
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
->>>>>>> admin
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
