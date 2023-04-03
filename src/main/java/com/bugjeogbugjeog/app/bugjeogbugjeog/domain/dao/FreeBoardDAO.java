@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
@@ -106,4 +107,14 @@ public class FreeBoardDAO {
 //    }
 
 
+    /* 관리자 *********************************************************************************** */
+
+    /* 자유 게시판 목록 */
+    public List<BoardFreeVO> adminFindAll(AdminCriteria adminCriteria){return freeBoardMapper.adminSelectAllFree(adminCriteria);}
+
+    /* 자유 게시판 조회  */
+    public List<BoardFreeDTO> adminFindById(Long boardFreeId){return freeBoardMapper.adminSelectFree(boardFreeId);}
+
+    /* 관리자 삭제 */
+    public void adminDelete(Long boardFreeId){freeBoardMapper.deleteAdmin(boardFreeId);}
 }

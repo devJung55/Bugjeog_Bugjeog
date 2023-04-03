@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
@@ -49,5 +50,18 @@ public interface FreeBoardMapper {
 
     //    자유 게시판 개수
     public Integer businessFreeCount(Long businessId);
+
+    /* --------------------------------------------------------------------------------- */
+    /* 관리자 */
+
+    /* 자유 게시판 목록 */
+    public List<BoardFreeVO> adminSelectAllFree(AdminCriteria adminCriteria);
+
+    /* 자유 게시판 조회  */
+    public List<BoardFreeDTO> adminSelectFree(Long boardFreeId);
+
+    /* 관리자 삭제 */
+    public void deleteAdmin(Long boardFreeID);
+
 }
 
