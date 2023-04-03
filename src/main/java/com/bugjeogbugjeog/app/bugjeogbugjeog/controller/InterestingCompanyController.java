@@ -36,8 +36,4 @@ public class InterestingCompanyController {
 
         return "mypage/specific/personalFavoriteList";
     }
-    @DeleteMapping("specific/delete")
-    public void removeInterestingCompany(@RequestParam("interestingCompanyId") Long interestingCompanyId){
-        interestingCompanyService.interestingCompanyRemove(interestingCompanyId);
-    }
 }
