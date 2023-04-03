@@ -1,6 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper;
@@ -74,6 +76,25 @@ public class InquiryBoardDAO {
     //    문의 게시글 작성 갯수
     public Integer getBusinessInquireCount(Long businessId) {
         return inquiryBoardMapper.businessInquireCount(businessId);
+<<<<<<< HEAD
     }
+=======
+    };
+
+    /* 관리자 ------------------------------------------------------------------------ */
+
+    // 문의 목록
+    public List<BoardInquiryVO> getInquiryList(AdminCriteria adminCriteria){return inquiryBoardMapper.adminSelectAllInquiry(adminCriteria);}
+
+    // 문의 조회
+    public InquiryDTO getInquiry(Long boardInquiryId){return inquiryBoardMapper.adminSelectInquiry(boardInquiryId);}
+
+    // 문의 삭제
+    public void deleteInquiry(Long boardInquiryId){inquiryBoardMapper.delete(boardInquiryId);}
+
+    // 문의 카운트
+    public int count(){return inquiryBoardMapper.count();}
+
+>>>>>>> ddc8d66d5f91b5b6d83e4425ffeaae58a0fd8a4e
 
 }

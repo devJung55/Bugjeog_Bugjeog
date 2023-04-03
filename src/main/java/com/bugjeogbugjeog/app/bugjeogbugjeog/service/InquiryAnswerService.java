@@ -1,23 +1,32 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryAnswerDAO;
+<<<<<<< HEAD
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+=======
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryAnswerVO;
+import lombok.RequiredArgsConstructor;
+>>>>>>> ddc8d66d5f91b5b6d83e4425ffeaae58a0fd8a4e
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+<<<<<<< HEAD
 @Qualifier("inquiryBoard")
 @Primary
+=======
+>>>>>>> ddc8d66d5f91b5b6d83e4425ffeaae58a0fd8a4e
 @RequiredArgsConstructor
 public class InquiryAnswerService {
     private final InquiryAnswerDAO inquiryAnswerDAO;
 
+<<<<<<< HEAD
     //    추가
 //    public void registerBoard(BoardBusinessVO boardBusinessVO) {
 //        businessBoardDAO.save(boardBusinessVO);
@@ -46,4 +55,11 @@ public class InquiryAnswerService {
 //    }
 
 
+=======
+    // 문의 작성
+    public void addInquire(BoardInquiryAnswerVO boardInquiryAnswerVO){
+        inquiryAnswerDAO.setInquiry(boardInquiryAnswerVO);
+    }
+
+>>>>>>> ddc8d66d5f91b5b6d83e4425ffeaae58a0fd8a4e
 }
