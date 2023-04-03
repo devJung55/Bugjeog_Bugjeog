@@ -162,7 +162,12 @@ public class MemberService {
     /*-----------------------------------------------------------------------------*/
 
     /* 회원 정보 수정 */
-    public void updateMember(MemberVO memberVO){memberDAO.updateById(memberVO);}
+    public void updateMember(MemberVO memberVO){
+        MemberVO member = memberDAO.findById(memberVO.getMemberId());
+        member.setMemberEmail(memberVO.getMemberEmail());
+        member.setMemberPhoneNumber(memberVO.getMemberPhoneNumber());
+        member.setMemberStatus(memberVO.getMemberStatus());
+        memberDAO.updateById(member);}
 
     /* 회원 정보 조회*/
     public MemberVO showMember(Long memberId){return memberDAO.findById(memberId);}

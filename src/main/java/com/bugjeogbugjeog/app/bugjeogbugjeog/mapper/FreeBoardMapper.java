@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +16,8 @@ public interface FreeBoardMapper {
     public void insert(BoardFreeVO boardFreeVO);
 
     //    게시글 조회
-    public BoardFreeVO select(Long boardFreeId);
+//    public BoardFreeVO select(Long boardFreeId);
+    public BoardFreeDTO select(Long boardFreeId);
 
     //    게시글 수정
     public void update(BoardFreeVO boardFreeVO);
@@ -36,7 +38,8 @@ public interface FreeBoardMapper {
 
     /*------------------------------------------------------------------------*/
     //  자유 게시판 목록
-    public List<BoardFreeVO> freeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
+    public List<BoardFreeDTO> freeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
+//    public List<BoardFreeVO> freeList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
 
     //    자유 게시판 개수
     public Integer freeCount(Long memberId);

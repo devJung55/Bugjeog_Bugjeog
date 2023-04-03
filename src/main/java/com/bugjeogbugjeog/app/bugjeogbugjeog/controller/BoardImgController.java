@@ -37,9 +37,6 @@ public class BoardImgController {
     @PostMapping("/imgs/business/save")
     @ResponseBody
     public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
-        log.info("☆☆☆☆☆☆☆☆☆☆☆");
-        boardBusinessImgVOs.stream().map(boardBusinessImgVO -> boardBusinessImgVO.getBoardBusinessImgUuid()).forEach(log::info);
-        log.info("☆☆☆☆☆☆☆☆☆☆☆");
         businessBoardImgService.writeList(boardBusinessImgVOs);
         return new RedirectView("/board/business/list");
     }

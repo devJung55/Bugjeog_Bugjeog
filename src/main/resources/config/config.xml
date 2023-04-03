@@ -8,6 +8,7 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO" alias="boardBusinessDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryAnswerVO" alias="boardInquiryAnswerVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO" alias="boardInquiryVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO" alias="boardInquiryDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO" alias="businessReviewVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO" alias="businessReviewDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCompanyVO" alias="interestingCompanyVO"/>
@@ -23,5 +24,6 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO" alias="noticeVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO" alias="memberDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO" alias="businessDTO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO" alias="boardFreeDTO"/>
     </typeAliases>
 </configuration>

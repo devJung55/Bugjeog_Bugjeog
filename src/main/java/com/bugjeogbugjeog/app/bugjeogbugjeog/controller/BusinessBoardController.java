@@ -1,21 +1,18 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessImgDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +31,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class BusinessBoardController {
-    private final BoardBusinessService businessBoardService;
+    private final BusinessBoardService businessBoardService;
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
@@ -44,7 +40,7 @@ public class BusinessBoardController {
 //        return "/board/business/boardList";
 //    }
 
-    @GetMapping(value = {"/board/business", " "})
+    @GetMapping(value = {"/board/business", "/board/business/"})
     public RedirectView defaultRoot() {
         return new RedirectView("/board/business/list");
     }
@@ -76,8 +72,7 @@ public class BusinessBoardController {
             default:
                 category = null;
                 break;
-        }
-        ;
+        };
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));
@@ -92,7 +87,6 @@ public class BusinessBoardController {
 
     @GetMapping("/board/business/detail")
     public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
-        log.info(req.getParameter("boardBusinessId"));
 
         BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
         String name = dto.getBoardBusinessImgOriginalName();
@@ -101,32 +95,44 @@ public class BusinessBoardController {
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
-        List<BoardBusinessDTO> dtos = businessBoardService.getBoardByBusinessId(dto.getBusinessId());
+        List<BoardBusinessDTO> otherBoardDTOs = businessBoardService.getBoardsByBusinessId(dto.getBusinessId());
+
 
 //        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
         MemberVO memberVO = businessReviewService.getMember(5L);
         String orginalName = memberVO.getMemberImgOriginalName();
         String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
         ObjectMapper objectMapper = new ObjectMapper();
+        //  게시글 정보
         model.addAttribute("board", objectMapper.writeValueAsString(dto));
-        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
-        model.addAttribute("boardList", objectMapper.writeValueAsString(dtos));
-        model.addAttribute("member", JSONObject.toString("member", memberVO));
-        model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
-        log.info(businessBoardImgService.getList(dto.getBoardBusinessId()).toString());
-        businessBoardImgService.getList(dto.getBoardBusinessId()).stream().forEach(one -> log.info(one.getBoardBusinessImgOriginalName()));
+
+        //  게시글 배너 이미지들 정보
         model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
+
+        //  게시글 리뷰 정보
+        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+
+        //  게시글 작성자(businessId)의 작성글 리스트
+        model.addAttribute("boardList", objectMapper.writeValueAsString(otherBoardDTOs));
+
+        //  로그인한 사용자 정보
+        model.addAttribute("member", JSONObject.toString("member", memberVO));
+
+        //  로그인한 사용자 이미지 정보
+        model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+
     }
 
     @PostMapping("/board/business/detail")
     @ResponseBody
     public String detailAjax(@RequestBody Long boardBusinessId) throws Exception {
-        log.info(String.valueOf(boardBusinessId));
         // 클라의 success 내 retData로 갈 값
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
         BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
         List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardBusinessId);
-        List<BoardBusinessDTO> boards = businessBoardService.getBoardByBusinessId(boardBusinessId);
+        List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(boardBusinessId);
+
+
         MemberVO member = businessReviewService.getMember(5L);
         String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
         try {
@@ -136,8 +142,6 @@ public class BusinessBoardController {
         List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 
-        log.info(boardImgs.toString());
-        log.info("memberImgFullPath : " + memberImgFullPath);
 
         // 서버에서 클라로 전송
         ObjectMapper objectMapper = new ObjectMapper();

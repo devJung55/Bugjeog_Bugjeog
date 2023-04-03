@@ -99,17 +99,19 @@
                                         <th:block th:each="interestingCompanyDTO : ${interestingCompanyDTOs}">
                                             <li class="column is-one-third">
                                                 <div class="list_card">
-                                                    <a class="card_wrapper"><!--th:href="@{/board/business/list}"-->
+                                                    <a class="card_wrapper"> <!--th:href="@{/board/business/list(businessId=${interestingCompanyDTO.businessId})}"-->
                                                         <header class="card_thumbnail_wrapper is-relative">
                                                             <div style="width: 250px; height: 200px">
                                                                 <img style="max-width: 100%; max-height: 100%; overflow: hidden" th:src="@{/mypage/profile/display(fileName=${interestingCompanyDTO.boardBusinessImgPath}+'/'+${interestingCompanyDTO.boardBusinessImgUuid}+'_'+${interestingCompanyDTO.boardBusinessImgOriginalName})}"/>
                                                             </div>
-                                                            <button type="button" class="card_favorite_marker is-absolute" th:href="@{/mypage/specific/delete}">
-                                                                <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.58065 1C3.25997 1 3 1.26206 3 1.58533V16.4138C3 16.8632 3.48164 17.145 3.86873 16.922L9.00004 13.9662L14.1313 16.922C14.5184 17.145 15 16.8632 15 16.4138V1.58533C15 1.26206 14.74 1 14.4194 1H9.00004H3.58065ZM8.71195 12.7838C8.89046 12.681 9.10961 12.681 9.28812 12.7838L13.8387 15.4052V2.17067H9.00004H4.1613V15.4052L8.71195 12.7838Z" fill="white"></path>
-                                                                    <path class="book-mark" d="M9.28812 12.7838C9.10961 12.681 8.89046 12.681 8.71195 12.7838L4.1613 15.4052V2.17067H9.00004H13.8387V15.4052L9.28812 12.7838Z" fill="black" fill-opacity="0.25"></path>
-                                                                </svg>
-                                                            </button>
+                                                            <label>
+                                                                <button type="button" class="card_favorite_marker is-absolute" th:href="@{/mypage/specific/delete}">
+                                                                    <svg style="background: none; cursor: pointer;" width="25" height="25" viewBox="0 0 18 18" fill="none" xmlns="https://www.w3.org/2000/svg">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.58065 1C3.25997 1 3 1.26206 3 1.58533V16.4138C3 16.8632 3.48164 17.145 3.86873 16.922L9.00004 13.9662L14.1313 16.922C14.5184 17.145 15 16.8632 15 16.4138V1.58533C15 1.26206 14.74 1 14.4194 1H9.00004H3.58065ZM8.71195 12.7838C8.89046 12.681 9.10961 12.681 9.28812 12.7838L13.8387 15.4052V2.17067H9.00004H4.1613V15.4052L8.71195 12.7838Z" fill="white"></path>
+                                                                        <path class="book-mark" d="M9.28812 12.7838C9.10961 12.681 8.89046 12.681 8.71195 12.7838L4.1613 15.4052V2.17067H9.00004H13.8387V15.4052L9.28812 12.7838Z" fill="black" fill-opacity="0.25"></path>
+                                                                    </svg>
+                                                                </button>
+                                                            </label>
                                                         </header>
                                                         <div class="card_body">
                                                             <header class="card_header" th:text="${interestingCompanyDTO.boardBusinessTitle}"></header>
@@ -146,95 +148,6 @@
                                             </form>
                                         </div>
                                     </div>
-
-
-<!--                                    <div class="paging_wrapper">-->
-<!--                                        <label class="btn_paging_before">-->
-<!--                                            <button class="is-hidden"></button>-->
-<!--                                            <span style="margin-right: 3px;">-->
-<!--                                                < -->
-<!--                                            </span>-->
-<!--                                        </label>-->
-<!--
-<!--                                        <ul class="num_wrapper">-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label current_page">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        1-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        2-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        3-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        4-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        5-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        6-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        7-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        8-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <label class="num_label">-->
-<!--                                                    <button class="is-hidden btn_paging"></button>-->
-<!--                                                    <span class="paging_num">-->
-<!--                                                        9-->
-<!--                                                    </span>-->
-<!--                                                </label>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                        <label>-->
-<!--                                            <button class="btn_paging_after is-hidden"></button>-->
-<!--                                            <span> > </span>-->
-<!--                                        </label>-->
-<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
