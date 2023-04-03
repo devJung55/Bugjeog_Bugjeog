@@ -10,6 +10,9 @@ import java.util.List;
 @Mapper
 public interface InquiryBoardMapper {
 
+    //    문의 작성하기
+    public void insert(BoardInquiryVO boardInquiryVO);
+
     //    문의 작성 목록
     public List<BoardInquiryVO> inquireList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
 

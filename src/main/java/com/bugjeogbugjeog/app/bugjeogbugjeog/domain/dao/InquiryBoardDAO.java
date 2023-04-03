@@ -15,6 +15,11 @@ public class InquiryBoardDAO {
 
     private final InquiryBoardMapper inquiryBoardMapper;
 
+    //    문의 작성하기
+    public void save(BoardInquiryVO boardInquiryVO){
+        inquiryBoardMapper.insert(boardInquiryVO);
+    }
+
     //    문의 작성 목록
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria){
         return inquiryBoardMapper.inquireList(memberId,criteria);

@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BusinessBoardServiceTests {
 
     @Autowired
-    BoardBusinessService businessBoardService;
+    BusinessBoardService businessBoardService;
 
     @Test
     public void registerTest(){
