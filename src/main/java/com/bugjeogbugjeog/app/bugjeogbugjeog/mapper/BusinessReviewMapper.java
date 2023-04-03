@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface BusinessReviewMapper {
     //    추가
-//    public void insert(BusinessReviewVO boardBusinessVO);
+    public void insert(BusinessReviewVO boardBusinessVO);
 
     //    삭제
 //    public void delete(Long orderId);
