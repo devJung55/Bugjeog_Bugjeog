@@ -1,7 +1,6 @@
-
 /* 리스트 삽입 js */
 function showList(boards) {
-/*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
+    /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
     $ul.empty();
     let text = ``;
     boards.forEach(board => {
@@ -77,7 +76,7 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                     <div class="relative_size">
                                         <div class="file-banner-box" style="display: flex">`;
     // boardImgs.forEach(boardImg => {
-        /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
+    /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
     // });
     boardImgs.forEach(boardImg => {
         text += `
@@ -150,37 +149,37 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                         </div>
                         <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}">
                             <div class="profile-box">
-                                <div id="profile_img_nickname">
-                                    <div class="profile_img" id="profile_my_img">
-                                        <div class="profile-image-login">
-                                            <div class="profile-member-status">
-                                                <!-- <span class="profile-image">유</span> -->
-                                                <img src="${member.memberImgFullPath || ''}" alt="">
+                                    <div id="profile_img_nickname">
+                                        <div class="profile_img" id="profile_my_img">
+                                            <div class="profile-image-login">
+                                                <div class="profile-member-status">
+                                                    <!-- <span class="profile-image">유</span> -->
+                                                    <img src="${member.memberImgFullPath || ''}" alt="">
+                                                </div>
                                             </div>
                                         </div>
+                                        <span id="my_nickname">${member.memberName}</span>
+                                        <div class="rating-reply">
+                                            <input type="radio" id="star1" name="rating" class="star" value="1" />
+                                            <label for="star1" id="label1" style="cursor: pointer;"></label>
+                                            <input type="radio" id="star2" name="rating"  class="star" value="2" />
+                                            <label for="star2" id="label2" style="cursor: pointer;"></label>
+                                            <input type="radio" id="star3" name="rating" class="star"  value="3" />
+                                            <label for="star3" id="label3" style="cursor: pointer;"></label>
+                                            <input type="radio" id="star4" name="rating" class="star"  value="4" />
+                                            <label for="star4" id="label4" style="cursor: pointer;"></label>
+                                            <input type="radio" id="star5" name="rating" class="star" value="5" />
+                                            <label for="star5" id="label5" style="cursor: pointer;"></label>
+                                        </div>
                                     </div>
-                                    <span id="my_nickname">${member.memberName}</span>
-                                    <div class="rating-reply">
-                                        <input type="radio" id="star1" name="rating" class="star" value="1" />
-                                        <label for="star1" id="label1" style="cursor: pointer;"></label>
-                                        <input type="radio" id="star2" name="rating"  class="star" value="2" />
-                                        <label for="star2" id="label2" style="cursor: pointer;"></label>
-                                        <input type="radio" id="star3" name="rating" class="star"  value="3" />
-                                        <label for="star3" id="label3" style="cursor: pointer;"></label>
-                                        <input type="radio" id="star4" name="rating" class="star"  value="4" />
-                                        <label for="star4" id="label4" style="cursor: pointer;"></label>
-                                        <input type="radio" id="star5" name="rating" class="star" value="5" />
-                                        <label for="star5" id="label5" style="cursor: pointer;"></label>
+                                    <div id="form_wrap">
+                                        <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
+                                            <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
+                                            <button type="submit">
+                                                <span>등록</span>
+                                            </button>
+                                        </form>
                                     </div>
-                                </div>
-                                <div id="form_wrap" th:object="${board}">
-                                    <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
-                                        <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
-                                        <button type="submit">
-                                            <span>등록</span>
-                                        </button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                         </section>
@@ -207,34 +206,32 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                            <img src="${memberImgFullPath || ''}" alt="">
+                                                                <img src="${memberImgFullPath || ''}" alt="">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div style="display: flex; flex-direction: column;">
-                                                <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                                <div id="reply_nickname">${review.memberName}</div>
-                                            </div>
-                                            <span id="reply_date">${review.reviewRegisterDate}</span>
-                                            <div class="review-score-box">
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <div style="display: flex; margin-bottom: 3px; align-items: center;">
+                                                        <div id="reply_nickname">${review.memberName}</div>
+                                                    </div>
+                                                    <span id="reply_date">${review.reviewRegisterDate}</span>
+                                                    <div class="review-score-box">
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                        <div id="float_delete">
-                                    수정&nbsp;&nbsp;&nbsp;삭제
-                                    </div>
+                                <div id="float_delete">수정&nbsp;&nbsp;&nbsp;삭제</div>
                                 <div id="reply_content">${review.reviewContent}</div>
-                                </div>
                             </div>
+                        </div>
                         </div>
                         </div>
                         <div id="up_div">

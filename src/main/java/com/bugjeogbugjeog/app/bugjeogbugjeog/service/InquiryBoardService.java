@@ -1,33 +1,24 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryBoardDAO;
-<<<<<<< HEAD
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-=======
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
-import lombok.RequiredArgsConstructor;
->>>>>>> admin
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-<<<<<<< HEAD
 @Qualifier("inquiryBoard")
 @Primary
-=======
->>>>>>> admin
 @RequiredArgsConstructor
 public class InquiryBoardService {
     private final InquiryBoardDAO inquiryBoardDAO;
 
-<<<<<<< HEAD
     //    추가
     public void registerBoard(BoardInquiryVO boardInquiryVO) {
         inquiryBoardDAO.save(boardInquiryVO);
@@ -43,6 +34,9 @@ public class InquiryBoardService {
         return inquiryBoardDAO.findAllByIdToInquire();
     }
 
+    public BoardInquiryDTO getBoard(Long boardInquiryId){
+        return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
+    }
     //    조회(이미지들까지)
 //    public BoardBusinessDTO getBoard(Long boardBusinessId) {
 //        return inquiryBoardDAO.findById(boardBusinessId);
@@ -53,7 +47,6 @@ public class InquiryBoardService {
 //    }
 
 
-=======
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
@@ -71,5 +64,4 @@ public class InquiryBoardService {
 
     // 문의 카운트
     public int count(){return inquiryBoardDAO.count();}
->>>>>>> admin
 }

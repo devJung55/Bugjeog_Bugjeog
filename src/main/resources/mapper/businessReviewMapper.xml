@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper">
+    <insert id="insert">
+        insert into tbl_business_review
+        (member_id, board_business_id, review_content
+        , review_grade)
+        values(#{memberId}, #{boardBusinessId}, #{reviewContent}
+        , #{reviewGrade});
+    </insert>
+
     <select id="select" resultType="businessReviewDTO">
         select r.review_id, r.member_id, r.board_business_id
         , r.review_content, r.review_register_date, r.review_update_date
