@@ -6,7 +6,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class BusinessBoardController {
-    private final BoardBusinessService businessBoardService;
+    private final BusinessBoardService businessBoardService;
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
 
@@ -40,7 +40,7 @@ public class BusinessBoardController {
 //        return "/board/business/boardList";
 //    }
 
-    @GetMapping(value = {"/board/business", " "})
+    @GetMapping(value = {"/board/business", "/board/business/"})
     public RedirectView defaultRoot() {
         return new RedirectView("/board/business/list");
     }
@@ -72,8 +72,7 @@ public class BusinessBoardController {
             default:
                 category = null;
                 break;
-        }
-        ;
+        };
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));

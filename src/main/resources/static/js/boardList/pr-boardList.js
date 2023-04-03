@@ -14,37 +14,35 @@ $(window).scroll(function () {
 });
 
 // /* sort 버튼 이벤트 */
-// const $sortButton = $(".sort-button");
-//
-// $sortButton.each((i, e) => {
-//     $(e).click(function () {
-//         $sortButton.removeClass("sort-button-active");
-//         $(e).addClass("sort-button-active");
-//     });
-// });
+const $sortButton = $(".sort-button");
+
+$sortButton.each((i, e) => {
+    $(e).click(function () {
+        $sortButton.removeClass("sort-button-active");
+        $(e).addClass("sort-button-active");
+    });
+});
 
 
-// /* 카테고리 버튼 이벤트 */
-// const $cateButton = $(".cate-button");
-//
-// $cateButton.each((i, e) => {
-//
-//     $(e).click(function () {
-//         console.log("카테 클릭")
-//         $cateButton.removeClass("cate-button-active");
-//         $(e).addClass("cate-button-active");
-//         console.log($(e).attr('name'));
-//         const categoryName = $(e).attr('name');
-//         $.ajax({
-//             url: "/board/business/list",
-//             method: "POST",
-//             data: "category=".concat(categoryName),
-//             success: function (newBoards) {
-//                 showList(newBoards);
-//             }
-//         });
-//     });
-// });
+/* 카테고리 버튼 이벤트 */
+const $cateButton = $(".cate-button");
+
+$cateButton.each((i, e) => {
+
+    $(e).click(function () {
+        $cateButton.removeClass("cate-button-active");
+        $(e).addClass("cate-button-active");
+        const categoryName = $(e).attr('name');
+        $.ajax({
+            url: "/board/business/list",
+            method: "POST",
+            data: "category=".concat(categoryName),
+            success: function (newBoards) {
+                showList(newBoards);
+            }
+        });
+    });
+});
 
 /* 상단으로 올리는 버튼 */
 $top.click(function () {
