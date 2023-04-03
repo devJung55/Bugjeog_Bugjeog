@@ -258,7 +258,27 @@
     let boardFreeId = [[${boardFreeId}]]
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
-<script>
+<script th:inline="javascript">
+
+    // 댓글 작성
+    let boardId = [[${boardDTO.boardId}]];
+    const $ul = $("#replies");
+    const replyService = (() => {
+        function getList(callback){
+            $.ajax({
+                url: `/replies/list?page=${page}&boardId=${boardId}`,
+                success: function(replies){
+                    if(callback){
+                        callback(replies);
+                    }
+                }
+            });
+        }
+        return {getList: getList};
+    })();
+
+
+
     // 좋아요 댓글 color변경
     const viewbox = document.getElementsByClassName("viewbox_path");
 $('.viewbox').click(function() {

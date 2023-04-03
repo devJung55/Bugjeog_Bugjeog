@@ -24,19 +24,12 @@ public class FreeBoardController {
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(Long boardFreeId, Model model){
-//        model.addAttribute("boardLists", freeBoardService.getList());
         model.addAttribute("boardLists", freeBoardService.getList());
-        /*로그인한 유저 정보(유통,개인) 정보 가져오기*/
-//        model.addAttribute()
 
         return "/board/free/list";} //html 경로
 
 
     /*자유게시판 디테일 */
-//    기존 로직
-//    @GetMapping("detail")
-//    public String freeDetail(){return "/board/free/detail";}
-//    새로운 로직
     @GetMapping("detail/{boardFreeId}")
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model){
         model.addAttribute("boardFreeId",freeBoardService.getListBoard(boardFreeId));
@@ -59,25 +52,26 @@ public class FreeBoardController {
 
     }
 
-    @GetMapping("resister-reply")
-    public String replyResister(){
-        return "/board/free/detail";
-    }
-
-    /*댓글 등록*/
-    @PostMapping("resister-reply")
-    public RedirectView replyResister(FreeReplyVO freeReplyVO){
-
-        replyService.save(freeReplyVO);
-
-        return new RedirectView("/FreeBoards/detail");
-    }
-
-    /* 댓글 등록완료*/
-    @GetMapping("reply-complate")
-    public String replyAddEnd(Model model){
-        model.addAttribute(new FreeReplyVO());
-        return "/FreeBoards/detail";
-    }
+//    /*댓글 목록*/
+//    @GetMapping("resister-reply")
+//    public String replyResister(){
+//        return "/board/free/detail";
+//    }
+//
+//    /*댓글 등록*/
+//    @PostMapping("resister-reply")
+//    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+//
+//        replyService.save(freeReplyVO);
+//
+//        return new RedirectView("/FreeBoards/detail");
+//    }
+//
+//    /* 댓글 등록완료*/
+//    @GetMapping("reply-complate")
+//    public String replyAddEnd(Model model){
+//        model.addAttribute(new FreeReplyVO());
+//        return "/FreeBoards/detail";
+//    }
 
 }
