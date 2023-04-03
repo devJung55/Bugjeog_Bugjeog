@@ -1,19 +1,24 @@
 .modal_fail{
     border: solid 1px;
     position: absolute;
-    top: 39px;
+    top: 33px;
     left: 185px;
-    height: 132px;
+    height: 147px;
+    width: 300px;
     display: none;
+    background: #dee2e6;
 }
 .modal_header{
     font-size: 20px;
     text-align: center;
+    margin-top: 12px;
+    background: #dee2e6;
 }
 .modal_body{
     text-align: center;
     padding-top: 23px;
     font-weight: bold;
+    background: #dee2e6;
 }
 .modal_confirm{
     background-color: #36f;
@@ -32,9 +37,10 @@
 .modal_success{
     border: solid 1px;
     position: absolute;
-    top: 39px;
+    top: 33px;
     left: 185px;
-    height: 132px;
+    height: 147px;
     width: 250px;
     display: none;
+    background: #dee2e6;
 }
