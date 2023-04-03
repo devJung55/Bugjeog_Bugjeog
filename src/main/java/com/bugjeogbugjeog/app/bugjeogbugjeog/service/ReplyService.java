@@ -15,7 +15,7 @@ public class ReplyService {
     private final ReplyDAO replyDAO;
     //    댓글 전체 조회
     public List<BoardReplyDTO> getList(Criteria criteria, Long boardId){
-        criteria.create(getTotal(boardId));
+//        criteria.create(getTotal(boardId));
         return replyDAO.findAll(criteria, boardId);
     }
 
