@@ -21,10 +21,10 @@
         select count(interesting_company_id) interesting_company_id_count from tbl_interesting_company where member_id = #{memberId}
     </select>
     <delete id="deleteByInterestingCompany">
-        delete from tbl_interesting_company where interesting_company_id = #{interestingCompanyId} and member_id = #{memberId}
+        delete from tbl_interesting_company where business_id = #{businessId} and member_id = #{memberId}
     </delete>
     <insert id="insertByInterestingCompany">
-        INSERT INTO tbl_interesting_company(interesting_company_id, member_id)
-        VALUES(#{interestingCompanyId} ,#{memberId});
+        INSERT INTO tbl_interesting_company(member_id, business_id)
+        VALUES(#{memberId}, #{businessId});
     </insert>
 </mapper>

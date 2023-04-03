@@ -15,13 +15,13 @@ public class InterestingCompanyRestController {
     private final InterestingCompanyService interestingCompanyService;
 
     @DeleteMapping("specific/personalFavoriteList")
-    public ResponseEntity<Void> deleteInterestingCompany(@RequestParam("interestingCompanyId") Long interestingCompanyId, @RequestParam("memberId") Long memberId) {
-        interestingCompanyService.deleteInterestingCompany(interestingCompanyId, memberId);
+    public ResponseEntity<Void> deleteInterestingCompany(@RequestParam("businessId") Long businessId, @RequestParam("memberId") Long memberId) {
+        interestingCompanyService.deleteInterestingCompany(businessId, memberId);
         return ResponseEntity.noContent().build();
     }
     @PostMapping("specific/personalFavoriteList")
-    public ResponseEntity<Void> insertInterestingCompany(@RequestBody InterestingCompanyDTO interestingCompanyDTO) {
-        interestingCompanyService.insertInterestingCompany(interestingCompanyDTO.getInterestingCompanyId(), interestingCompanyDTO.getMemberId());
+    public ResponseEntity<Void> insertInterestingCompany(@RequestParam("businessId") Long businessId, @RequestParam("memberId") Long memberId) {
+        interestingCompanyService.insertInterestingCompany(businessId, memberId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

@@ -25,12 +25,12 @@ public class InterestingCompanyService {
     }
 
     //   관심글 삭제
-    public void deleteInterestingCompany(Long interestingCompanyId, Long memberId) {
-        interestingCompanyDAO.deleteByInterestingCompany(interestingCompanyId, memberId);
+    public void deleteInterestingCompany(Long businessId, Long memberId) {
+        interestingCompanyDAO.deleteByInterestingCompany(businessId, memberId);
     }
     //    관심글 재 클릭시 추가
-    public void insertInterestingCompany(Long interestingCompanyId, Long memberId) {
-        interestingCompanyDAO.insertByInterestingCompany(interestingCompanyId, memberId);
+    public void insertInterestingCompany(Long businessId, Long memberId) {
+        interestingCompanyDAO.insertByInterestingCompany(businessId, memberId);
     }
 
 }

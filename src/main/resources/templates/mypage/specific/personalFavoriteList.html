@@ -114,7 +114,7 @@
                                                             </label>
                                                         </header>
                                                         <div class="card_body">
-                                                            <input type="hidden" name="interestingCompanyId" th:value="${interestingCompanyDTO.interestingCompanyId}">
+                                                            <input type="hidden" name="businessId" th:value="${interestingCompanyDTO.businessId}">
                                                             <header class="card_header" th:text="${interestingCompanyDTO.boardBusinessTitle}"></header>
                                                             <div class="card_business_name" th:text="${interestingCompanyDTO.businessCompanyName}"></div>
                                                             <div class="category_wrapper">
@@ -241,45 +241,43 @@
     //         }
     // }
     //     });
-    let myPageServiceInsert = (function () {
-        function insertInterestingCompany(memberId, interestingCompanyId) {
-            $.ajax({
-                url: "/mypage/specific/personalFavoriteList",
-                type: "post",
-                data: {"memberId": memberId, "interestingCompanyId": interestingCompanyId},
-                success: function(result) {
-                    alert("insert 들어옴")
-                    button.classList.remove('is-favorite');
-                }
-            });
-        }
-        return {insertInterestingCompany: insertInterestingCompany}
-    }());
-
     const $buttons = $(".is-absolute");
 
     let myPageService = (function() {
-        function deleteInterestingCompany(memberId, interestingCompanyId) {
+        function deleteInterestingCompany(memberId, businessId) {
             $.ajax({
                 url: "/mypage/specific/personalFavoriteList",
                 type: "delete",
-                data: {"memberId": memberId, "interestingCompanyId": interestingCompanyId},
+                data: {"memberId": memberId, "businessId": businessId},
                 success: function(result) {
                     alert("delete 들어옴")
-                    button.classList.add('is-favorite');
                 }
             });
         }
-        return {deleteInterestingCompany: deleteInterestingCompany}
+
+        function insertInterestingCompany(memberId, businessId) {
+            $.ajax({
+                url: "/mypage/specific/personalFavoriteList",
+                type: "post",
+                data: {"memberId": memberId, "businessId": businessId},
+                success: function() {
+                    alert("insert 들어옴")
+                }
+            });
+        }
+        return {deleteInterestingCompany: deleteInterestingCompany, insertInterestingCompany: insertInterestingCompany}
     }());
 
     $buttons.each((i, button) => {
         $(button).on("click", function(e) {
-            let interestingCompanyId = $($(button).parent().parent().siblings().children()[0]).val();
+            let businessId = $($(button).parent().parent().siblings().children()[0]).val();
+            console.log(globalThis.status);
             if(globalThis.status == 0){
-                myPageService.deleteInterestingCompany(memberId, interestingCompanyId);
+                myPageService.deleteInterestingCompany(memberId, businessId);
             } else if(globalThis.status == 1) {
-                myPageServiceInsert.insertInterestingCompany(memberId, interestingCompanyId);
+
+                console.log("들어옴");
+                myPageService.insertInterestingCompany(memberId, businessId);
             }
         })
     });

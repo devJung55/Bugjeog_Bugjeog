@@ -30,17 +30,17 @@ public class InterestingCompanyDAO {
     }
 
     //   관심글 삭제
-    public void deleteByInterestingCompany(Long interestingCompanyId, Long memberId) {
+    public void deleteByInterestingCompany(Long businessId, Long memberId) {
         Map<String, Object> params = new HashMap<>();
-        params.put("interestingCompanyId", interestingCompanyId);
+        params.put("businessId", businessId);
         params.put("memberId", memberId);
         sqlSession.delete("deleteByInterestingCompany", params);
     }
 
     //    관심글 재 클릭시 추가
-    public void insertByInterestingCompany(Long interestingCompanyId, Long memberId) {
+    public void insertByInterestingCompany(Long businessId, Long memberId) {
         Map<String, Object> params = new HashMap<>();
-        params.put("interestingCompanyId", interestingCompanyId);
+        params.put("businessId", businessId);
         params.put("memberId", memberId);
         sqlSession.insert("insertByInterestingCompany", params);
     }
