@@ -19,4 +19,15 @@ public class BoardFreeDTO {
     private String boardFreeImgUuid;/* 썸네일 이미지 고유번호 */
     private String boardFreeImgPath;/* 썸네일 이미지 경로 */
     private String boardBusinessImgFullPath; /* ?? */
+
+
+    private String businessEmail;
+    private String businessCeoName;
+    private String businessPhoneNumber;
+    private Long businessStatus;
+
+    private String memberEmail;
+    private String memberPhoneNumber;
+    private String memberName;
+    private Long memberStatus;
 }
