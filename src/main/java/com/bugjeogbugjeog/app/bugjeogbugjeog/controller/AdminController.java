@@ -237,6 +237,8 @@ public class AdminController {
     public void freeBoardShowList() {}
 
     /* 자유 게시판 조회 */
+    @GetMapping("admin-freeBoard")
+    public void freeBoardShow(){}
 
     /* 자유 게시판 수정 */
 
