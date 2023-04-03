@@ -47,7 +47,7 @@
         <section style="width: 100%;">
             <h2 id="inquiry_register">문의 등록</h2>
             <div style="margin-bottom: 40px; background: #ffff;">
-                <form th:action="@{/board/inquiry/write}" method="post" th:object="${boardInquiryVO}" name="form">
+                <form th:action="@{/board/inquiry/write(businessId=${businessId},memberId=${memberId})}" method="post" th:object="${boardInquiryVO}" name="form">
                     <!--
                     <div id="email_address">
                         <label id="label_first">
@@ -74,7 +74,7 @@
                     </div>
                     <label name="label_agree">
                         이 글을 공개 하시겠습니까?
-                        <input name="label_agree_box" th:field="*{boardInquiryStatus}" type="checkbox" value="1">
+                        <input name="label_agree_box" th:field="*{boardInquiryStatus}" type="checkbox" value="true">
                     </label>
                     <!--                         <div id="phone_number">
                                                 <label>

@@ -21,22 +21,31 @@ public class InquiryBoardDAO {
     private final InquiryBoardMapper inquiryBoardMapper;
 
     //    문의 작성하기
-    public void save(BoardInquiryVO boardInquiryVO) {
-        inquiryBoardMapper.insert(boardInquiryVO);
+    public void save(BoardInquiryVO boardInquiryVO, String memberType) {
+        switch (memberType) {
+            case "business":
+                inquiryBoardMapper.insertWithBusinessId(boardInquiryVO);
+                break;
+            case "member":
+                inquiryBoardMapper.insertWithMemberId(boardInquiryVO);
+                break;
+            default:
+                ;
+        }
     }
 
 
     //    문의글 상세보기
     public BoardInquiryDTO findOneByBoardInquiryId(Long boardInquiryId) {
-        boolean isMember = inquiryBoardMapper.selectOneIsMember(boardInquiryId).getBusinessId()==null;
+        boolean isMember = inquiryBoardMapper.selectOneIsMember(boardInquiryId).getBusinessId() == null;
         System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
         System.out.println(isMember);
         System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
         BoardInquiryDTO dto;
-        if(isMember){
+        if (isMember) {
             dto = inquiryBoardMapper.selectOneMember(boardInquiryId);
             dto.setWriterType("member");
-        } else{
+        } else {
             dto = inquiryBoardMapper.selectOneBusiness(boardInquiryId);
             dto.setWriterType("business");
         }
@@ -81,15 +90,23 @@ public class InquiryBoardDAO {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> getInquiryList(AdminCriteria adminCriteria){return inquiryBoardMapper.adminSelectAllInquiry(adminCriteria);}
+    public List<BoardInquiryVO> getInquiryList(AdminCriteria adminCriteria) {
+        return inquiryBoardMapper.adminSelectAllInquiry(adminCriteria);
+    }
 
     // 문의 조회
-    public InquiryDTO getInquiry(Long boardInquiryId){return inquiryBoardMapper.adminSelectInquiry(boardInquiryId);}
+    public InquiryDTO getInquiry(Long boardInquiryId) {
+        return inquiryBoardMapper.adminSelectInquiry(boardInquiryId);
+    }
 
     // 문의 삭제
-    public void deleteInquiry(Long boardInquiryId){inquiryBoardMapper.delete(boardInquiryId);}
+    public void deleteInquiry(Long boardInquiryId) {
+        inquiryBoardMapper.delete(boardInquiryId);
+    }
 
     // 문의 카운트
-    public int count(){return inquiryBoardMapper.count();}
+    public int count() {
+        return inquiryBoardMapper.count();
+    }
 
 }

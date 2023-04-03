@@ -20,8 +20,8 @@ public class InquiryBoardService {
     private final InquiryBoardDAO inquiryBoardDAO;
 
     //    추가
-    public void registerBoard(BoardInquiryVO boardInquiryVO) {
-        inquiryBoardDAO.save(boardInquiryVO);
+    public void registerBoard(BoardInquiryVO boardInquiryVO, String memberType) {
+        inquiryBoardDAO.save(boardInquiryVO, memberType);
     }
 
     //    삭제
