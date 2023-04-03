@@ -32,7 +32,7 @@ public class InquiryBoardController {
     //    리스트
     @GetMapping("/board/inquiry/list")
     public void showList(Model model) {
-        model.addAttribute("boards", inquiryBoardService);
+        model.addAttribute("boards", inquiryBoardService.showList());
     }
 
 //    @GetMapping("/board/business/detail")
