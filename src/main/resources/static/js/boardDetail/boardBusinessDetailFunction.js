@@ -1,7 +1,6 @@
-
 /* 리스트 삽입 js */
 function showList(boards) {
-/*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
+    /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
     $ul.empty();
     let text = ``;
     boards.forEach(board => {
@@ -77,7 +76,7 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                     <div class="relative_size">
                                         <div class="file-banner-box" style="display: flex">`;
     // boardImgs.forEach(boardImg => {
-        /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
+    /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
     // });
     boardImgs.forEach(boardImg => {
         text += `
@@ -207,34 +206,32 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                            <img src="${memberImgFullPath || ''}" alt="">
+                                                                <img src="${memberImgFullPath || ''}" alt="">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div style="display: flex; flex-direction: column;">
-                                                <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                                <div id="reply_nickname">${review.memberName}</div>
-                                            </div>
-                                            <span id="reply_date">${review.reviewRegisterDate}</span>
-                                            <div class="review-score-box">
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
-                                                <label class="review-score"></label>
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <div style="display: flex; margin-bottom: 3px; align-items: center;">
+                                                        <div id="reply_nickname">${review.memberName}</div>
+                                                    </div>
+                                                    <span id="reply_date">${review.reviewRegisterDate}</span>
+                                                    <div class="review-score-box">
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                        <label class="review-score"></label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                        <div id="float_delete">
-                                    수정&nbsp;&nbsp;&nbsp;삭제
-                                    </div>
+                                <div id="float_delete">수정&nbsp;&nbsp;&nbsp;삭제</div>
                                 <div id="reply_content">${review.reviewContent}</div>
-                                </div>
                             </div>
+                        </div>
                         </div>
                         </div>
                         <div id="up_div">

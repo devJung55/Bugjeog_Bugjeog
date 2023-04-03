@@ -32,6 +32,9 @@ public class InquiryBoardService {
         return inquiryBoardDAO.findAllByIdToInquire();
     }
 
+    public BoardInquiryDTO getBoard(Long boardInquiryId){
+        return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
+    }
     //    조회(이미지들까지)
 //    public BoardBusinessDTO getBoard(Long boardBusinessId) {
 //        return inquiryBoardDAO.findById(boardBusinessId);

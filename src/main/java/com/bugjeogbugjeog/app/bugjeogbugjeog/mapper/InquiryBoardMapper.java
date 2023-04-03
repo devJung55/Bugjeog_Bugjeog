@@ -14,6 +14,15 @@ public interface InquiryBoardMapper {
     //    문의 작성하기
     public void insert(BoardInquiryVO boardInquiryVO);
 
+//    문의글 상세보기(작성자 타입 확인)
+    public BoardInquiryDTO selectOneIsMember(Long boardInquiryId);
+
+//    문의글 상세보기(일반회원)
+    public BoardInquiryDTO selectOneMember(Long boardInquiryId);
+
+//    문의글 상세보기(유통업자)
+    public BoardInquiryDTO selectOneBusiness(Long boardInquiryId);
+
     //    문의 작성 목록(게시글용 전체)
     public List<BoardInquiryDTO> inquiryList();
 

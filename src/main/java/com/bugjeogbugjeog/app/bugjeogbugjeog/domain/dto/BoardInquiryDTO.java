@@ -14,6 +14,8 @@ public class BoardInquiryDTO {
     private String boardInquiryRegisterDate;
     private String boardInquiryStatus;
 
+    private String writerType;
+
     private String businessEmail;
     private String businessPassword;
     private String businessCeoName;

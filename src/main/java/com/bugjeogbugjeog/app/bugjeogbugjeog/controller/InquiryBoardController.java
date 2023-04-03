@@ -1,21 +1,16 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryAnswerService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryBoardService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 //@RequestMapping("/board/inquiry")
@@ -23,6 +18,7 @@ import java.util.List;
 @Slf4j
 public class InquiryBoardController {
     private final InquiryBoardService inquiryBoardService;
+    private final InquiryAnswerService inquiryAnswerService;
 
     @GetMapping(value = {"/board/inquiry", "/board/inquiry/"})
     public RedirectView defaultRoot() {
@@ -35,10 +31,22 @@ public class InquiryBoardController {
         model.addAttribute("boards", inquiryBoardService.showList());
     }
 
+//    @GetMapping("/board/inquiry/boardList")
+//    public void showBoardList(Model model) {
+//        model.addAttribute("boards", inquiryBoardService.showList());
+//    }
+
 
     @GetMapping("/board/inquiry/detail")
-    public void detail() {
-//        model.addAttribute("board", inquiryBoardService.getBoard());
+    public void detail(HttpServletRequest req, Model model) {
+        Long boardInquiryId = Long.parseLong(req.getParameter("boardInquiryId"));
+        BoardInquiryDTO dto = inquiryBoardService.getBoard(boardInquiryId);
+//        log.info("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+//        log.info(dto.toString());
+//        log.info("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+        model.addAttribute("board", dto);
+        model.addAttribute("answers", inquiryAnswerService.getAnswersByBoardInquiryId(boardInquiryId));
+//        model.addAttribute("");
     }
 
     //    @GetMapping("/board/inquiry/")

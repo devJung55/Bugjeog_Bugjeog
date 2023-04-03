@@ -1,7 +1,11 @@
-body{
-    font-family: Pretendard Variable,Pretendard JP Variable,-apple-system,
-    system-ui,BlinkMacSystemFont,Roboto,Segoe UI,Helvetica,Arial,Apple SD Gothic Neo,
-    Nanum Gothic,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
+* {
+    background-color: inherit;
+}
+
+body {
+    font-family: Pretendard Variable, Pretendard JP Variable, -apple-system,
+    system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial, Apple SD Gothic Neo,
+    Nanum Gothic, Malgun Gothic, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif;
     margin: 0;
     font-size: 14px;
     background-color: #f8f8f8;
@@ -13,7 +17,8 @@ body{
     width: 800px;
     margin: 80px auto 0;
 }
-#aside{
+
+#aside {
     flex: 0 0 180px;
     margin: 0;
     margin-right: 100px;
@@ -22,13 +27,15 @@ body{
     padding: 0;
     border: 0;
 }
-#top_profile{
+
+#top_profile {
     padding-bottom: 30px;
     border-bottom: 1px solid #e1e2e3;
     margin-bottom: 25px;
     padding-left: 6px;
 }
-.profile_img{
+
+.profile_img {
     border: 1px solid #ececec;
     border-radius: 50%;
     overflow: hidden;
@@ -39,26 +46,31 @@ body{
     clip-path: circle(50% at 50% 50%);
     vertical-align: middle;
 }
-.left_profile_img{
+
+.left_profile_img {
     width: 37px;
     height: 37px;
 }
-.right_profile_img{
+
+.right_profile_img {
     width: 37px;
     height: 37px;
 }
-#nickname{
+
+#nickname {
     color: #333;
     font-size: 16px;
     max-width: 120px;
 }
-.nickname{
+
+.nickname {
     font-weight: 700;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.career{
+
+.career {
     align-items: center;
     padding: 0 4px;
     height: 19px;
@@ -69,16 +81,19 @@ body{
     line-height: 19px;
     color: #888;
 }
-.field{
+
+.field {
     margin-right: 4px;
     color: #8958fa;
 }
-#like_button{
+
+#like_button {
     display: flex;
     align-items: center;
     color: #333;
 }
-button{
+
+button {
     margin: 0;
     padding: 0;
     border: 0;
@@ -86,59 +101,71 @@ button{
     cursor: pointer;
     font-family: inherit;
 }
-.like_count{
+
+.like_count {
     margin-left: 6px;
     line-height: 100%;
     font-size: 13px;
     font-weight: 700;
 }
-.like_count_bottom{
+
+.like_count_bottom {
     font-size: 15px;
     font-weight: 700;
 }
-.left_count{
-    display: flex; 
-    flex: 1 1; 
+
+.left_count {
+    display: flex;
+    flex: 1 1;
     align-items: center;
 }
-.flex-direction{
-    display: flex; 
+
+.flex-direction {
+    display: flex;
     flex-direction: column;
 }
-.flex_width{
+
+.flex_width {
     display: flex;
     width: 0;
     text-decoration-line: none;
 }
-.dis_align{
+
+.dis_align {
     display: inline-flex;
     align-items: center;
 }
-.posi_right{
+
+.posi_right {
     position: relative;
     margin-right: 7px;
 }
-.flex_align{
+
+.flex_align {
     display: flex;
     align-items: center;
 }
-#right_nickname{
+
+#right_nickname {
     font-size: 14px;
     margin-right: 4px;
     color: #333;
 }
-.career_field{
+
+.career_field {
     display: flex;
     white-space: nowrap;
 }
-#register_date{
+
+#register_date {
     font-size: 12px;
     color: #939393;
     flex: none;
     line-height: 100%;
     white-space: nowrap;
 }
-#title{
+
+#title {
     font-size: 28px;
     font-weight: 700;
     color: #333;
@@ -147,7 +174,8 @@ button{
     margin-bottom: 32px;
     font-family: inherit;
 }
-#content{
+
+#content {
     max-width: 710px;
     margin-bottom: 80px;
     font-size: 17px;
@@ -158,27 +186,32 @@ button{
     word-wrap: break-word;
     word-break: keep-all;
 }
-#contet_img{
+
+#contet_img {
     width: 100%;
     image-rendering: auto;
     vertical-align: middle;
 }
-#bottom_action{
+
+#bottom_action {
     display: flex;
     color: #333;
     position: relative;
 }
-.viewbox{
+
+.viewbox {
     width: 20px;
     height: 20px;
 }
-#reply_wrap{
+
+#reply_wrap {
     padding: 25px 39px 100px;
     background-color: #fff;
     border: 1px solid #e1e2e3;
     border-top: 0;
 }
-#reply_img_wrap{
+
+#reply_img_wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -187,27 +220,32 @@ button{
     height: 208px;
     margin-bottom: 21px;
 }
-#reply_img{
+
+#reply_img {
     width: 75px;
     height: 75px;
     vertical-align: middle;
 }
-#reply_content{
+
+#reply_content {
     margin-top: 12px;
     color: #666;
 }
-#profile_img_nickname{
+
+#profile_img_nickname {
     margin-bottom: 18px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-#profile_my_img{
+
+#profile_my_img {
     width: 37px;
     height: 37px;
     margin-right: 9px;
 }
-#my_nickname{
+
+#my_nickname {
     font-size: 14px;
     color: #000;
     font-weight: 700;
@@ -216,11 +254,13 @@ button{
     white-space: nowrap;
     max-width: 650px;
 }
-.wid_hei{
+
+.wid_hei {
     width: 100%;
     height: 100%;
 }
-#form_wrap{
+
+#form_wrap {
     border-radius: 4px;
     border: 1px solid #e1e2e3;
     background-color: #fff;
@@ -228,7 +268,8 @@ button{
     position: relative;
     overflow: hidden;
 }
-#reply_textarea{
+
+#reply_textarea {
     width: 100%;
     height: 84px;
     padding: 16px 20px;
@@ -236,7 +277,8 @@ button{
     resize: none;
     outline: none;
 }
-form button{
+
+form button {
     width: 70px;
     height: 32px;
     padding: 0;
@@ -256,7 +298,8 @@ form button{
     line-height: normal;
     cursor: pointer;
 }
-#list_button{
+
+#list_button {
     height: 32px;
     padding: 0 16px;
     margin-top: 30px;
@@ -275,19 +318,22 @@ form button{
     border-radius: 25px;
     cursor: pointer;
 }
-#list_button_span{
+
+#list_button_span {
     margin-top: -2px;
     margin-right: 2px;
     margin-left: -1px;
 }
-#arrow{
+
+#arrow {
     margin-right: 4px;
     -webkit-transform: rotate(180deg) translateY(-1.5px);
     transform: rotate(180deg) translateY(-1.5px);
     width: 12px;
     height: 12px;
 }
-#declaration{
+
+#declaration {
     box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
     border: 1px solid #ccc;
     background-color: #fff;
@@ -303,7 +349,8 @@ form button{
     height: 45px;
     display: none;
 }
-#declaration_ul{
+
+#declaration_ul {
     list-style: none;
     color: #333;
     font-size: 13px;
@@ -312,7 +359,8 @@ form button{
     position: absolute;
     top: 0px;
 }
-.declaration_button{
+
+.declaration_button {
     color: #fe415c;
     display: block;
     padding: 4px 17px 4px 10px;
@@ -324,14 +372,16 @@ form button{
     background: none;
     cursor: pointer;
 }
-#bubble{
+
+#bubble {
     top: 100%;
     position: absolute;
     overflow: hidden;
     right: 19px;
     height: 7px;
 }
-#bubble::after{
+
+#bubble::after {
     margin-top: -12px;
     border-bottom-left-radius: 2px;
     transform: rotate(-55deg) skewX(-20deg);
@@ -341,7 +391,7 @@ form button{
     height: 14px;
     width: 14px;
     display: block;
-} 
+}
 
 /* 헤더 */
 .header {
@@ -350,7 +400,7 @@ form button{
 
 .header-inner {
     width: 1170px;
-   /*  padding-right: 15px; */
+    /*  padding-right: 15px; */
     padding-left: 65px;
     margin-right: auto;
     margin-left: auto;
@@ -367,7 +417,7 @@ form button{
     padding-left: 15px;
 }
 
-.header_logo_img{
+.header_logo_img {
     max-width: 180px;
     max-height: 20px;
     margin-top: 12px;
@@ -431,12 +481,12 @@ footer {
 
 .footer-container::before {
     display: table;
-    content:  " ";
+    content: " ";
 }
 
 .footer-container::after {
     display: table;
-    content:  " ";
+    content: " ";
     clear: both;
 }
 
@@ -519,17 +569,21 @@ p {
     color: #666666;
     font-size: 13px;
 }
+
 .profile-image {
     font-size: 24px;
     color: #fff;
     font-weight: 500;
+    background-color: inherit;
 }
+
 .profile-member-status-box {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     background-color: #FFCD4A;
 }
+
 .profile-image-login {
     width: 38px;
     height: 38px;
@@ -541,9 +595,11 @@ p {
     width: 100%;
     height: 100%;
 }
+
 .profile-member-status {
     padding: 2px 8px 6px;
 }
+
 .content-member-image-size {
     width: 28px;
     height: 28px;
@@ -564,5 +620,6 @@ p {
 .content-member-status span {
     font-size: 17px;
     font-weight: 500;
-    color: #fff;    
+    color: #fff;
 }
+
