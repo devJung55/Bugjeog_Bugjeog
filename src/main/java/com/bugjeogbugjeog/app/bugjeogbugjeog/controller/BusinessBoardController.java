@@ -72,8 +72,7 @@ public class BusinessBoardController {
             default:
                 category = null;
                 break;
-        }
-        ;
+        };
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         searchMap.put("category", category);
         searchMap.put("sort", req.getParameter("sort"));

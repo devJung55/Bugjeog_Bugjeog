@@ -31,16 +31,16 @@
                         <button type="button" class="cate-button cate-button-active">
                             <span>전체</span>
                         </button>
-                        <button type="button" class="cate-button">
+                        <button type="button" class="cate-button" name="meat">
                             <span>육류</span>
                         </button>
-                        <button type="button" class="cate-button">
+                        <button type="button" class="cate-button" name="seafood">
                             <span>해산물</span>
                         </button>
-                        <button type="button" class="cate-button">
+                        <button type="button" class="cate-button" name="vegetable">
                             <span>채소</span>
                         </button>
-                        <button type="button" class="cate-button">
+                        <button type="button" class="cate-button" name="spice">
                             <span>향신료</span>
                         </button>
                     </div>
@@ -96,19 +96,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <script th:inline="javascript">
-    $(document).ready(function () {
-        // 등록 버튼 초기 색상 설정
-        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
-        // textarea 입력시 등록 버튼 색상 변경
-        $('#reply_textarea').on('input', function () {
-            if ($(this).val().length > 0) {
-                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-            } else {
-                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-            }
-        });
-    });
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
     const $modal = $(".modal-active");
@@ -130,7 +118,6 @@
     const $labels = $('label.modal_button');
     $labels.on("click", (e) => {
         let $label = $(e.currentTarget);
-        alert($label.attr("name"));
         $modal.fadeIn(200);
         body.classList.add('scrollLock');
         $(".scroll-top-button").css("display", "none");
@@ -150,7 +137,6 @@
             data: JSON.stringify(boardBusinessId),
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                alert("디테일 성공");
                 let dataResult = JSON.parse(result);
 
                 let board =     JSON.parse(dataResult.board);
@@ -195,6 +181,7 @@
             $(".scroll-top-button").show();
             $modal.fadeOut(200);
             body.classList.remove('scrollLock');
+            $header.css('z-index', 800);
         });
     });
 

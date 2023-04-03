@@ -1,12 +1,10 @@
 
 /* 리스트 삽입 js */
 function showList(boards) {
-    console.log("들2");
 /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
     $ul.empty();
     let text = ``;
     boards.forEach(board => {
-        console.log(`${board.boardBusinessImgFullPath}`);
         text += `
            <li class="info-box-layout"  th:object="${board}">
                 <label class="modal_button" name="${board.boardBusinessId}">
