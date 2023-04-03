@@ -18,5 +18,8 @@ public class InterestingCompanyServiceTests {
     InterestingCriteria interestingCriteria;
 
 
-
+    @Test
+    public void Test(){
+//        log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
+    }
 }
