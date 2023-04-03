@@ -179,3 +179,5 @@ boardDetailContainer.append(createDOM(boardFreeId));
 //     boardDetailContainer.append(createDOM(detailsOfBoards));
 // });
 
+/*=================================== 댓글 ===================================================*/
+
