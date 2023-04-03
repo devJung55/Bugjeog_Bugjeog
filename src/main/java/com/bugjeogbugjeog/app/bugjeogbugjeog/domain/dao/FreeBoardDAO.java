@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
@@ -28,9 +29,13 @@ public class FreeBoardDAO {
     public void remove(Long boardFreeId){ freeBoardMapper.delete(boardFreeId);}
 
     //    조회(이미지 정보까지)
-    public BoardFreeVO findById(Long memberId){ return freeBoardMapper.select(memberId);}
+//    public BoardFreeVO findById(Long memberId){ return freeBoardMapper.select(memberId);}
+//    public BoardFreeDTO findById(Long memberId){ return freeBoardMapper.select(memberId);}
+    public BoardFreeDTO findById(Long boardFreeId){
+        return freeBoardMapper.select(boardFreeId);
+    }
 
-//    //    게시글 전체 조회
+   //    게시글 전체 조회
     public List<BoardFreeVO> findAll(){
         return freeBoardMapper.selectAll();
     }
@@ -44,7 +49,7 @@ public class FreeBoardDAO {
     /*--------------------------------------------------------------------------------------------*/
 
     // 자유게시판 글 목록
-    public List<BoardFreeVO> findByIdBoardFreeVO(Long memberId, Criteria criteria) {
+    public List<BoardFreeDTO> findByIdBoardFreeVO(Long memberId, Criteria criteria) {
         return freeBoardMapper.freeList(memberId, criteria);
     }
 
