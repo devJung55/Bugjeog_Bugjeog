@@ -18,7 +18,7 @@ public class InterestingCompanyServiceTests {
 
     @Test
     public void Test(){
-        log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
+//        log.info(interestingCompanyService.findAllToInterestingCompany(criteria).toString());
     }
 
 }

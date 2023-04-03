@@ -142,7 +142,7 @@ public class AdminController {
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
 
-   /* *//* 공지사항 리스트 *//*
+    /* *//* 공지사항 리스트 *//*
    @GetMapping("admin-noticeList")
     public void noticeList(Criteria criteria, Model model){
        model.addAttribute("noticeVO", noticeService.showList(criteria));
@@ -150,26 +150,26 @@ public class AdminController {
    }*/
 
     /* 공지사항 리스트 */
-   @GetMapping("admin-noticeList")
+    @GetMapping("admin-noticeList")
     public String noticeListShow(){
-       return "/admin/admin-noticeList";
-   }
+        return "/admin/admin-noticeList";
+    }
 
-   @PostMapping("admin-noticeList")
-   public List<NoticeVO> noticeListShow(Criteria criteria){
-       if (criteria.getPageNum() == 0) {
-           criteria.setPageNum(1);
-           criteria.setAmount(6);
-       } else {
-           criteria.setPageNum(criteria.getPageNum());
-           criteria.setAmount(6);
-       }
+    @PostMapping("admin-noticeList")
+    public List<NoticeVO> noticeListShow(Criteria criteria){
+        if (criteria.getPageNum() == 0) {
+            criteria.setPageNum(1);
+            criteria.setAmount(6);
+        } else {
+            criteria.setPageNum(criteria.getPageNum());
+            criteria.setAmount(6);
+        }
 
-       return noticeService.showList(criteria);
-   }
+        return noticeService.showList(criteria);
+    }
 
 
-   
+
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
     public String notice(@PathVariable Long noticeId, Model model ){
@@ -177,7 +177,7 @@ public class AdminController {
         return "admin/admin-notice";
     }
 
-   /* 공지사항 작성 페이지 이동 */
+    /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
     public void AddNotice(Model model){
         model.addAttribute(new NoticeVO());

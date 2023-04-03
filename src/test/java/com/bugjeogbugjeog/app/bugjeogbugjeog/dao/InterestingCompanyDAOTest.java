@@ -19,6 +19,6 @@ public class InterestingCompanyDAOTest {
 
     @Test
     public void InterestingCompanyDAOTest(){
-        log.info(interestingCompanyDAO.findAllToInterestingCompany(criteria).toString());
+//        log.info(interestingCompanyDAO.findAllToInterestingCompany(criteria).toString());
     }
 }
