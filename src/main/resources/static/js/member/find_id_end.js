@@ -56,5 +56,13 @@ $goToChangePasswordButton.each((i, button) => {
             $(document.accountForm).submit();
         }
     })
+});
 
+/*-------------------- 뒤로가기 --------------------*/
+
+let $goToBack = $(".find-right-arrow");
+
+$goToBack.on("click", function(e) {
+    $(document.accountForm).attr("action", "/member/findAccount");
+    $(document.accountForm).submit();
 });

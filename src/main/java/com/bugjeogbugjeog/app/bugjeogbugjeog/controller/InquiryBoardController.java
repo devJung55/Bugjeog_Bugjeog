@@ -32,9 +32,21 @@ public class InquiryBoardController {
     //    리스트
     @GetMapping("/board/inquiry/list")
     public void showList(Model model) {
-        model.addAttribute("boards", inquiryBoardService);
+        model.addAttribute("boards", inquiryBoardService.showList());
     }
 
+
+    @GetMapping("/board/inquiry/detail")
+    public void detail() {
+//        model.addAttribute("board", inquiryBoardService.getBoard());
+    }
+
+    //    @GetMapping("/board/inquiry/")
+
+    @GetMapping("/board/inquiry/write")
+    public void write() {
+
+    }
 //    @GetMapping("/board/business/detail")
 //    public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
 //

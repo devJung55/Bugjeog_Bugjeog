@@ -28,7 +28,9 @@ public class InquiryBoardService {
 //    }
 
     //    리스트 조회
-//    public List<BoardInquiryDTO>
+    public List<BoardInquiryDTO> showList(){
+        return inquiryBoardDAO.findAllByIdToInquire();
+    }
 
     //    조회(이미지들까지)
 //    public BoardBusinessDTO getBoard(Long boardBusinessId) {

@@ -121,7 +121,9 @@
 <!--        </div>-->
 <!--    </header>-->
 
-    <div th:insert="~{main/header :: header}"></div>
+    <div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
+    <div th:insert="~{main/header-signin :: header}" th:if="${session.memberId} != null or ${session.businessId} != null"></div>
+
     <!-- ------------------------------------------- 메인 --------------------------------------------- -->
 
 
