@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/css/mypage/mypage_profile_business.css">
     <link rel="stylesheet" href="/css/main/header-signin.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-9oHjEMpXMUhFnawZPnOLdOG2Qn1wKjV7U8L6jK9QSWOf1NfIlZICzygKjkkcTuIrrMYY6U5jA8pfvOgJ9X9ahA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" type="text/css">
+
 </head>
 <style>
     body.profile_body {
@@ -215,6 +218,11 @@
                                                                 <button id="submit-button" type="submit" style="color: white; background-color: #36f; cursor: pointer" >
                                                                     적용하기
                                                                 </button>
+                                                                <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                                  <div class="toast-body">
+                                                                    지역선택 또는 카테고리를 입력해 주세요.
+                                                                  </div>
+                                                                </div>
                                                             </span>
                                                         </div>
                                                     </label>
@@ -235,6 +243,8 @@
 <script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/mypage/mypage_profile_business.js"></script>
 <script src="/js/mypage/mypage_profile_business_select.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-HaIBeh20fIt4jzZB7OvL6yKo2Q9+6JcwZb1+JpopdLZlSSaZ6H5p6ri5MvYWfN+a" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-XrNKrVi13G8xOthScogjKkDwRwF8PE1hwhHggchgrD9YpJPsmg19JZVdEZllnxQnQ2w+1bTnT2JrvndM3qX9zA==" crossorigin="anonymous"></script>
 <script>
     /* 카테고리 버튼 이벤트 */
     const $cateButton = $(".cate-button");
@@ -257,21 +267,39 @@
         console.log($(this).val());
         $('#foods').val($(this).val());
     });
+
     // 적용하기 버튼 클릭시 categoryValue 와 foodValue 둘중 하나라도 없다면 alert
-    $('#submit-button').on('click', function() {
-        var categoryValue = $('#catergorys').val();
-        var foodValue = $('#foods').val();
+    // $('#submit-button').on('click', function() {
+    //     var categoryValue = $('#catergorys').val();
+    //     var foodValue = $('#foods').val();
+    //
+    //     console.log(categoryValue);
+    //     console.log(foodValue);
+    //     if (!categoryValue || !foodValue) {
+    //         alert('지역선택 또는 카테고리를 입력해 주세요.');
+    //         return false; // form submit 막기
+    //     }else{
+    //         alert('변경되었습니다.')
+    //     }
+    // });
 
-        console.log(categoryValue);
-        console.log(foodValue);
-        if (!categoryValue || !foodValue) {
-            alert('지역선택 또는 카테고리를 입력해 주세요.');
-            return false; // form submit 막기
-        }else{
-            alert('변경되었습니다.')
-        }
+    $(function() {
+        var toastElement = $('#toast');
+        var toast = new bootstrap.Toast(toastElement, { delay: 2000 });
+
+        $('#submit-button').on('click', function() {
+            var categoryValue = $('#catergorys').val();
+            var foodValue = $('#foods').val();
+
+            if (!categoryValue || !foodValue) {
+                toast.show();
+                return false;
+            }
+
+            toastElement.find('.toast-body').text('변경되었습니다.');
+            toast.show();
+        });
     });
-
     /* 카테고리 버튼 이벤트 */
     const $locaButton = $(".loca-button");
 

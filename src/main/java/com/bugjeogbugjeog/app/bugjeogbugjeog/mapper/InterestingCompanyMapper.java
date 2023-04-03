@@ -15,5 +15,9 @@ public interface InterestingCompanyMapper {
 //    갯수 가져오기
     public int count(Long memberId);
 
-    public void deleteByInterestingCompany(Long interestingCompanyId);
+//   관심글 삭제
+    public void deleteByInterestingCompany(@Param("businessId") Long businessId, @Param("memberId") Long memberId);
+
+//    관심글 재 클릭시 추가
+    public void insertByInterestingCompany(@Param("businessId") Long businessId, @Param("memberId") Long memberId);
 }

@@ -4,13 +4,8 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -32,6 +27,8 @@ public class AdminController {
     private final NoticeService noticeService;
     private final MemberService memberService;
     private final BusinessService businessService;
+    private final InquiryBoardService inquiryBoardService;
+    private final InquiryAnswerService inquiryAnswerService;
 
 
     /*  관리자 회원 목록 조회 */
@@ -194,13 +191,11 @@ public class AdminController {
 
     /* 공지사항 작성 페이지 이동 */
     @GetMapping("admin-noticeWrite")
-    public void AddNotice(Model model){
-        model.addAttribute(new NoticeVO());
-    }
+    public void AddNotice(Model model){model.addAttribute(new NoticeVO());}
 
     /* 공지사항 작성 완료 */
     @PostMapping("admin-noticeWrite")
-    public RedirectView AddNotice(NoticeVO noticeVO, RedirectAttributes redirectAttributes){
+    public RedirectView AddNotice(NoticeVO noticeVO){
         noticeService.add(noticeVO);
         return new RedirectView("admin-noticeList");
     }
@@ -251,20 +246,45 @@ public class AdminController {
 
     /* 문의 게시판 목록 */
     @GetMapping("admin-inquiryList")
-    public void inquiryShowList(){}
+    public void inquiryShowList(){
+    }
+
+
 
     /* 문의 게시판 조회 */
-    @GetMapping("admin-inquiry")
-    public void inquiryShow() {}
+    @GetMapping("admin-inquiry/{boardInquiryId}")
+    public String inquiryShow(@PathVariable Long boardInquiryId, Model model) {
+        model.addAttribute(inquiryBoardService.adminFindByInquiry(boardInquiryId));
+        return "admin/admin-inquiry";
+    }
 
-    /* 문의 게시판 작성 */
+    /* 문의 답변 작성 */
     @GetMapping("admin-inquiryWrite")
-    public void inquiryWrite(){}
+    public String addInquiryWrite(@RequestParam(value = "boardInquiryId") String boardInquiryId, Model model){
+        model.addAttribute("boardInquiryId", boardInquiryId);
+        model.addAttribute(new BoardInquiryAnswerVO());
+        log.info("@@@@@@@@@@@@@@@@들어옴@@@@@@@@@@@@");
+        log.info(boardInquiryId);
+        return "/admin/admin-inquiryWrite";
+    }
+
+    /* 문의 답변 작성 완료 */
+    @PostMapping("admin-inquiryWrite")
+    public RedirectView addInquiryWrite(BoardInquiryAnswerVO boardInquiryAnswerVO){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(boardInquiryAnswerVO.toString());
+
+        inquiryAnswerService.addInquire(boardInquiryAnswerVO);
+        return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
+//        return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
+    }
 
     /* 문의 게시판 삭제 */
     @DeleteMapping("admin-inquiryList")
     @ResponseBody
-    public void removeInquiry(){}
+    public void removeInquiry(@RequestParam("checkedIds[]") List<String> boardInquiryIds){
+        inquiryBoardService.removeInquiry(boardInquiryIds);
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
 }

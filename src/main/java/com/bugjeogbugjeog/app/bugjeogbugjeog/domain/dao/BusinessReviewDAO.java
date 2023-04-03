@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class BusinessReviewDAO {
     private final BusinessReviewMapper businessReviewMapper;
 
     //    추가
-    public void save(BoardBusinessVO boardBusinessVO) {
-//    businessBoardMapper.insert(boardBusinessVO);
+    public void save(BusinessReviewVO businessReviewVO) {
+        businessReviewMapper.insert(businessReviewVO);
     }
 
     public MemberVO findByMemberId(Long memberId){

@@ -41,11 +41,11 @@
 					<div class="container-margin">
 						<!-- 헤더 -->
 						<div class="delete-box-layout">
-							<div class="delete-box">
+							<!--<div class="delete-box">
 								<button class="register-button">
 									<a href="javascript:location.href='${pageContext.request.contextPath}/adminNoticeWrite.admin?page=${page}'">문의사항 등록</a>
 								</button>
-							</div>
+							</div>-->
 							<div class="delete-box">
 								<button class="delete-button">선택 게시물 삭제</button>
 							</div>
@@ -70,7 +70,7 @@
 												<th>이름</th>
 												<th>제목</th>
 												<th>작성 날짜</th>
-												<th>수정 날짜</th>
+												<th>문의 문의 상태</th>
 											</tr>
 										</thead>
 										<tr>
@@ -81,18 +81,9 @@
 											<td>최선규</td>
 											<td><a href="javascript:void(0)">공지사항 테스트1</a></td>
 											<td>2023.01.01</td>
-											<td>2023.02.02</td>
+											<td>답변 완료</td>
 										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" name="check">
-											</td>
-											<td>2</td>
-											<td>임종욱</td>
-											<td><a href="javascript:void(0)">공지사항 테스트2</a></td>
-											<td>2023.01.01</td>
-											<td>2023.02.02</td>
-										</tr>
+
 									</table>
 								</div>
 							</div>
@@ -116,20 +107,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>2</span>
-										</div>
-									</div>
-								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>3</span>
-										</div>
-									</div>
-								</div>
 								<div class="">
 									<div class="page-button-margin">
 										<div>
@@ -150,4 +127,28 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+
+	/* delete 버튼 클릭 시 ajax실행*/
+	$('.delete-button').on('click', function() {
+		var checkedIds = new Array();
+		// 체크 박스 체크된 값
+		$('input:checkbox[name=check]:checked').parent().next().each(function(){
+			console.log(this.innerText);
+			checkedIds.push(this.innerText);
+		});
+
+		console.log(checkedIds);
+
+		$.ajax({
+			url: "/admin/admin-deleteMember",
+			type: "delete",
+			data: {"checkedIds": checkedIds},
+			success: function(){
+				reload();
+			}
+		});
+	});
+
+</script>
 </html>

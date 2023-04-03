@@ -107,3 +107,34 @@ hr {
 .div-class {
 	padding: 25px;
 }
+
+
+.delete-box {
+	text-align: right;
+}
+
+.delete-box-layout {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.delete-button {
+	box-shadow: 2px 2px 7px -2px grey;
+	font-family: 'GmarketSansMedium';
+	border: none;
+	width: 120px;
+	height: 50px;
+	background-color: #fff;
+	font-weight: bold;
+}
+
+.register-button {
+	margin-right: 10px;
+	box-shadow: 2px 2px 7px -2px grey;
+	font-family: 'GmarketSansMedium';
+	border: none;
+	width: 120px;
+	height: 50px;
+	background-color: #fff ;
+	font-weight: bold;
+}

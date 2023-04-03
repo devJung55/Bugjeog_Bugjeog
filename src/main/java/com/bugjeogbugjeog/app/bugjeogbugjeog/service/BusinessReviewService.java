@@ -27,9 +27,9 @@ public class BusinessReviewService {
     }
 
     //    추가
-//    public void registerBoard(BoardBusinessVO boardBusinessVO) {
-//        businessBoardDAO.save(boardBusinessVO);
-//    }
+    public void save(BusinessReviewVO businessReviewVO) {
+        businessReviewDAO.save(businessReviewVO);
+    }
 
     //    삭제
 //    public void remove(Long businessId) {

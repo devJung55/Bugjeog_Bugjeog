@@ -147,26 +147,17 @@
 
                 showDetail(board, reviews, boards, member, boardImgs);
                 $header.css('z-index', -2);
+                // 등록 버튼 초기 색상 설정
+                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
-
-
-                // console.log(dataResult);
-                // console.log(result.member);
-                // console.log(dataResult.member);
-                // let data = JSON.parse(result);
-                // let dataMember = data.member;
-                // console.log(dataMember);
-
-                // alert(result);
-                // let resultObject = JSON.parse(JSON.stringify(result));
-                // console.log(result.member.memberId);
-                // let test = JSON.parse(result);
-                // let reviews = test.reviews;
-                // let boards = test.boardList;
-                // let member = test.member;
-                // let boardImgs = test.boardImgs;
-                // let memberImgFullPath = result.memberImgFullPath;
-                // console.log(board);
+                // textarea 입력시 등록 버튼 색상 변경
+                $('#reply_textarea').on('input', function () {
+                    if ($(this).val().length > 0) {
+                        $('button[type="submit"]').css("color", "white").css("background-color", "blue");
+                    } else {
+                        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+                    }
+                });
                 afterDetail();
 
             },

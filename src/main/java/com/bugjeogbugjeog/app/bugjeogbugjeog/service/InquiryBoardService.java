@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.InquiryBoardDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,8 +30,13 @@ public class InquiryBoardService {
 //    }
 
     //    리스트 조회
-//    public List<BoardInquiryDTO>
+    public List<BoardInquiryDTO> showList(){
+        return inquiryBoardDAO.findAllByIdToInquire();
+    }
 
+    public BoardInquiryDTO getBoard(Long boardInquiryId){
+        return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
+    }
     //    조회(이미지들까지)
 //    public BoardBusinessDTO getBoard(Long boardBusinessId) {
 //        return inquiryBoardDAO.findById(boardBusinessId);
@@ -40,4 +47,21 @@ public class InquiryBoardService {
 //    }
 
 
+    /* 관리자 ------------------------------------------------------------------------ */
+
+    // 문의 목록
+    public List<BoardInquiryVO> adminFindAll(AdminCriteria adminCriteria){
+        return inquiryBoardDAO.getInquiryList(adminCriteria);}
+
+    // 문의 조회
+    public InquiryDTO adminFindByInquiry(Long boardInquiryId){
+        return inquiryBoardDAO.getInquiry(boardInquiryId);}
+
+    // 문의 삭제
+    public void removeInquiry(List<String> boardInquiryIds){
+        boardInquiryIds.stream().map(boardInquiryId -> Long.parseLong(boardInquiryId)).forEach(inquiryBoardDAO::deleteInquiry);
+    }
+
+    // 문의 카운트
+    public int count(){return inquiryBoardDAO.count();}
 }
