@@ -24,6 +24,11 @@ public class InterestingCompanyService {
         return interestingCompanyDAO.count(memberId);
     }
 
+//    interestingCompanyIdCount 가져오기
+    public Long interestingCompanyCount(Long interestingCompanyId) {
+        return interestingCompanyDAO.interestingCompanyCount(interestingCompanyId);
+    }
+
     //   관심글 삭제
     public void deleteInterestingCompany(Long businessId, Long memberId) {
         interestingCompanyDAO.deleteByInterestingCompany(businessId, memberId);

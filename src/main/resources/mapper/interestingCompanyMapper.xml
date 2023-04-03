@@ -27,4 +27,7 @@
         INSERT INTO tbl_interesting_company(member_id, business_id)
         VALUES(#{memberId}, #{businessId});
     </insert>
+    <select id="interestingCompanyCount" resultType="Long">
+        select count(interesting_company_id) interesting_company_id_count from tbl_interesting_company
+    </select>
 </mapper>

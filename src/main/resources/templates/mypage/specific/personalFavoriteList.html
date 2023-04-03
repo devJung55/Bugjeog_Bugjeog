@@ -131,7 +131,7 @@
                                     <div class="page-button-box-layout">
                                         <div class="page-button-box">
                                             <!-- 페이지 번호 --><!-- 페이지 버튼 -->
-                                            <div class="page-box page-button-margin" style="display: flex">
+                                            <div class="page-box page-button-margin" style="display: flex; line-height: normal;">
                                                 <a class="changePage page-button-margin" th:if="${pageInterestingDTO.prev}" th:href="${pageInterestingDTO.startPage - 1}">
                                                 </a>
                                                 <th:block th:each="num:${#numbers.sequence(pageInterestingDTO.startPage, pageInterestingDTO.endPage)}">

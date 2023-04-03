@@ -44,4 +44,8 @@ public class InterestingCompanyDAO {
         params.put("memberId", memberId);
         sqlSession.insert("insertByInterestingCompany", params);
     }
+
+    public Long interestingCompanyCount(Long interestingCompanyId) {
+        return interestingCompanyMapper.interestingCompanyCount(interestingCompanyId);
+    }
 }

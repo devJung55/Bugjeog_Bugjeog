@@ -13,11 +13,9 @@
     <link rel="stylesheet" href="/css/mypage/mypage_info.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile.css">
     <link rel="stylesheet" href="/css/mypage/mypage_profile_business.css">
+    <link rel="stylesheet" href="/css/mypage/mypage_profile_modal.css">
     <link rel="stylesheet" href="/css/main/header-signin.css">
     <link rel="stylesheet" href="/css/main/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-9oHjEMpXMUhFnawZPnOLdOG2Qn1wKjV7U8L6jK9QSWOf1NfIlZICzygKjkkcTuIrrMYY6U5jA8pfvOgJ9X9ahA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" type="text/css">
-
 </head>
 <style>
     body.profile_body {
@@ -143,7 +141,7 @@
                 <!-- 사이드 메뉴 인클루드 -->
                 <aside th:insert="~{mypage/fragment/aside_business :: aside_business}"></aside>
                 <!--<aside class="Aside_include"></aside>-->
-                <section>
+                <section style="position: relative">
                     <aside class="Title_wrapper">
                         <picture>
                             <span>유통 분야 설정</span>
@@ -151,87 +149,102 @@
                     </aside>
                     <div>
                         <div class="MatchUpForm EnterInterestArea-Wrapper">
-<!--                            <form action="">-->
-                                <div class="FormBlock">
-                                    <div class="FormBlock-content">
-                                        <div class="MainResume-fieldset">
-                                            <form action="/mypage/edit" method="post" name="regionForm">
-                                                <div class="fieldset-Static_content-first">
-                                                    <div class="Static-label is-flex">지역선택</div>
-                                                    <div class="Static-body">
-                                                        <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="loca-button" id="서울" name="category" value="서울">
-                                                                <span class="category_span">서울</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="경기" name="category" value="경기">
-                                                                <span class="category_span">경기</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="강원" name="category" value="강원">
-                                                                <span class="category_span">강원</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="충북" name="category" value="충북">
-                                                                <span class="category_span">충북</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="충남" name="category" value="충남">
-                                                                <span class="category_span">충남</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="전북" name="category" value="전북">
-                                                                <span class="category_span">전북</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="전남" name="category" value="전남">
-                                                                <span class="category_span">전남</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="경북" name="category" value="경북">
-                                                                <span class="category_span">경북</span>
-                                                            </button>
-                                                            <button type="button" class="loca-button" id="경남" name="category" value="경남">
-                                                                <span class="category_span">경남</span>
-                                                            </button>
-                                                        </div>
+                            <div class="FormBlock">
+                                <div class="FormBlock-content">
+                                    <div class="MainResume-fieldset">
+                                        <form action="/mypage/edit" method="post" name="regionForm">
+                                            <div class="fieldset-Static_content-first">
+                                                <div class="Static-label is-flex">지역선택</div>
+                                                <div class="Static-body">
+                                                    <div style="display: flex; margin-bottom: 15px;">
+                                                        <button type="button" class="loca-button" id="서울" name="category" value="서울">
+                                                            <span class="category_span">서울</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="경기" name="category" value="경기">
+                                                            <span class="category_span">경기</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="강원" name="category" value="강원">
+                                                            <span class="category_span">강원</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="충북" name="category" value="충북">
+                                                            <span class="category_span">충북</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="충남" name="category" value="충남">
+                                                            <span class="category_span">충남</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="전북" name="category" value="전북">
+                                                            <span class="category_span">전북</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="전남" name="category" value="전남">
+                                                            <span class="category_span">전남</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="경북" name="category" value="경북">
+                                                            <span class="category_span">경북</span>
+                                                        </button>
+                                                        <button type="button" class="loca-button" id="경남" name="category" value="경남">
+                                                            <span class="category_span">경남</span>
+                                                        </button>
                                                     </div>
                                                 </div>
-                                                <div class="fieldset-Static_content-others">
-                                                    <div class="Static-label is-flex">카테고리</div>
-                                                    <div class="Static-body">
-                                                        <div style="display: flex; margin-bottom: 15px;">
-                                                            <button type="button" class="cate-button" id="육류" name="category" value="육류">
-                                                                <span class="category_span">육류</span>
-                                                            </button>
-                                                            <button type="button" class="cate-button" id="해산물" name="category" value="해산물">
-                                                                <span class="category_span">해산물</span>
-                                                            </button>
-                                                            <button type="button" class="cate-button" id="채소" name="category" value="채소">
-                                                                <span class="category_span">채소</span>
-                                                            </button>
-                                                            <button type="button" class="cate-button" id="향신료" name="category" value="향신료">
-                                                                <span class="category_span">향신료</span>
-                                                            </button>
-                                                            <input type="hidden" name="categorys" id="catergorys">
-                                                            <input type="hidden" name="foods" id="foods">
-                                                        </div>
+                                            </div>
+                                            <div class="fieldset-Static_content-others">
+                                                <div class="Static-label is-flex">카테고리</div>
+                                                <div class="Static-body">
+                                                    <div style="display: flex; margin-bottom: 15px;">
+                                                        <button type="button" class="cate-button" id="육류" name="category" value="육류">
+                                                            <span class="category_span">육류</span>
+                                                        </button>
+                                                        <button type="button" class="cate-button" id="해산물" name="category" value="해산물">
+                                                            <span class="category_span">해산물</span>
+                                                        </button>
+                                                        <button type="button" class="cate-button" id="채소" name="category" value="채소">
+                                                            <span class="category_span">채소</span>
+                                                        </button>
+                                                        <button type="button" class="cate-button" id="향신료" name="category" value="향신료">
+                                                            <span class="category_span">향신료</span>
+                                                        </button>
+                                                        <input type="hidden" name="categorys" id="catergorys">
+                                                        <input type="hidden" name="foods" id="foods">
                                                     </div>
                                                 </div>
-                                                <div class="apply_wrapper_upper">
-                                                    <label>
-                                                        <div class="apply_wrapper">
-                                                            <span>
-                                                                <button id="submit-button" type="submit" style="color: white; background-color: #36f; cursor: pointer" >
-                                                                    적용하기
-                                                                </button>
-                                                                <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                                                  <div class="toast-body">
-                                                                    지역선택 또는 카테고리를 입력해 주세요.
-                                                                  </div>
-                                                                </div>
-                                                            </span>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </form>
+                                            </div>
+                                            <div class="apply_wrapper_upper">
+                                                <label>
+                                                    <div class="apply_wrapper">
+                                                        <span>
+                                                            <button id="submit-button" type="button" style="color: white; background-color: #36f; cursor: pointer" >
+                                                                적용하기
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </form>
+                                        <div class="modal_fail">
+                                            <div class="modal_header">
+                                                알림
+                                            </div>
+                                            <div class="modal_body">
+                                                지역선택 또는 카테고리를 입력해 주세요.
+                                            </div>
+                                            <div class="modal_footer">
+                                                <button class="modal_confirm">확인</button>
+                                            </div>
+                                        </div>
+                                        <div class="modal_success">
+                                            <div class="modal_header">
+                                                알림
+                                            </div>
+                                            <div class="modal_body">
+                                                변경되었습니다.
+                                            </div>
+                                            <div class="modal_footer">
+                                                <button class="modal_confirm">확인</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -243,73 +256,5 @@
 <script src="https:/code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/mypage/mypage_profile_business.js"></script>
 <script src="/js/mypage/mypage_profile_business_select.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-HaIBeh20fIt4jzZB7OvL6yKo2Q9+6JcwZb1+JpopdLZlSSaZ6H5p6ri5MvYWfN+a" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-XrNKrVi13G8xOthScogjKkDwRwF8PE1hwhHggchgrD9YpJPsmg19JZVdEZllnxQnQ2w+1bTnT2JrvndM3qX9zA==" crossorigin="anonymous"></script>
-<script>
-    /* 카테고리 버튼 이벤트 */
-    const $cateButton = $(".cate-button");
-
-    $cateButton.each((i, e) => {
-
-        $(e).click(function(){
-            $cateButton.removeClass("cate-button-active");
-            $(e).addClass("cate-button-active");
-        });
-    });
-
-    // 버튼을 클릭하면 그 버튼의 value를 val에 담아줌
-    $('.cate-button').on('click', function () {
-        console.log($(this).val());
-        $('#catergorys').val($(this).val());
-    });
-
-    $('.loca-button').on('click', function () {
-        console.log($(this).val());
-        $('#foods').val($(this).val());
-    });
-
-    // 적용하기 버튼 클릭시 categoryValue 와 foodValue 둘중 하나라도 없다면 alert
-    // $('#submit-button').on('click', function() {
-    //     var categoryValue = $('#catergorys').val();
-    //     var foodValue = $('#foods').val();
-    //
-    //     console.log(categoryValue);
-    //     console.log(foodValue);
-    //     if (!categoryValue || !foodValue) {
-    //         alert('지역선택 또는 카테고리를 입력해 주세요.');
-    //         return false; // form submit 막기
-    //     }else{
-    //         alert('변경되었습니다.')
-    //     }
-    // });
-
-    $(function() {
-        var toastElement = $('#toast');
-        var toast = new bootstrap.Toast(toastElement, { delay: 2000 });
-
-        $('#submit-button').on('click', function() {
-            var categoryValue = $('#catergorys').val();
-            var foodValue = $('#foods').val();
-
-            if (!categoryValue || !foodValue) {
-                toast.show();
-                return false;
-            }
-
-            toastElement.find('.toast-body').text('변경되었습니다.');
-            toast.show();
-        });
-    });
-    /* 카테고리 버튼 이벤트 */
-    const $locaButton = $(".loca-button");
-
-    $locaButton.each((i, e) => {
-
-        $(e).click(function(){
-            $locaButton.removeClass("loca-button-active");
-            $(e).addClass("loca-button-active");
-        });
-    });
-</script>
-
+<script src="/js/mypage/mypage_profile_businessEdit.js"></script>
 </html>
