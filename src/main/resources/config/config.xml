@@ -8,6 +8,7 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO" alias="boardBusinessDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryAnswerVO" alias="boardInquiryAnswerVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO" alias="boardInquiryVO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO" alias="boardInquiryDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO" alias="businessReviewVO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO" alias="businessReviewDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCompanyVO" alias="interestingCompanyVO"/>
