@@ -40,15 +40,25 @@
                         <!-- 헤더 -->
                         <div class="prev-button-layout">
                             <div>
-                                <a>
+                                <a th:href="@{/admin/admin-inquiryList}">
                                     <img src="/image/admin/prev_icon.png" class="prev-icon">
                                     <span class="prev-title">리스트로 돌아가기</span>
                                 </a>
                             </div>
+                            <div class="delete-box-layout">
+                                <div class="delete-box">
+                                    <button class="register-button" th:if="*{inquiryDTO.boardInquiryAnswerId == null}" >
+                                        <!--<a href="javascript:location.href='${pageContext.request.contextPath}/adminNoticeWrite.admin?page=${page}'">문의사항 등록</a>-->
+                                        <a th:href="@{/admin/admin-inquiryWrite?(boardInquiryId=${boardInquiryId})}" >문의사항 등록</a>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+
                         
                         <!-- 내용 섹션 -->
-                        <section class="board-info-box-layout">
+                        <section class="board-info-box-layout" th:object="${inquiryDTO}">
                             <!-- 문의사항  -->
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
@@ -59,32 +69,31 @@
                                     <div class="info-member">
                                             <span class="span-bold">이름 :</span>
                                             <!-- 이름  -->
-                                            <span>최규선</span>
+                                            <span th:text="*{memberId} != null ? *{memberName} : *{businessCeoName}"></span>
                                     </div>
                                     <div class="info-member">
                                             <span class="span-bold">제목 :</span>
                                             <!-- 제목  -->
-                                            <span>문의사항 테스트</span>
+                                            <span th:text="*{boardInquiryTitle}"></span>
                                     </div>
                                     <div class="info-member">
                                         <span class="span-bold">작성 날짜 :</span>
                                         <!-- 작성 날짜  -->
-                                        <span>2023.01.01</span>
+                                        <span th:text="*{boardInquiryRegisterDate}"></span>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <div><!-- 게시판 내용 -->
-                                        오늘 전체적인 레이아웃을 바꾸다보니 시간이 이래 됫네요
-                                        여러분은 한번에 하도록 디자인을 잘 짜도록 하세욧
+                                    <div th:text="*{boardInquiryContent}">
+                                        <!-- 게시판 내용 -->
                                     </div>
                                 </div>	
                             </div>
 
                             <div class="div-class"></div>
 
-                            <!-- 문의 답변 -->
-                            <div class="board-info-box">
+                          <!-- 문의 답변 -->
+                            <div class="board-info-box" th:if="*{boardInquiryAnswerId != null}">
                                 <div class="board-info-title-box">
                                     <span>문의 답변</span>
                                 </div>
@@ -92,18 +101,15 @@
                                 <div class="info-table">
                                     <div class="info-member">
                                         <span class="span-bold">작성 날짜 :</span>
-                                        <!-- 작성 날짜  -->
-                                        <span>2023.01.01</span>
+                                       <!--  작성 날짜 -->
+                                        <span th:text="*{boardInquiryAnswerRegisterDate}"></span>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <div><!-- 게시판 내용 -->
-                                        오늘 전체적인 레이아웃을 바꾸다보니 시간이 이래 됫네요
-                                        여러분은 한번에 하도록 디자인을 잘 짜도록 하세욧
-                                        앞으로는 문의 하지마세요 
+                                    <div th:text="*{boardInquiryAnswerContent}"> <!-- 게시판 내용 -->
                                     </div>
-                                </div>	
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -114,4 +120,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+</script>
 </html>

@@ -29,4 +29,35 @@
     <select id="businessInquireCount" resultType="int">
         select count(business_id) from tbl_board_inquiry where business_id = #{businessId}
     </select>
+
+    <!-- *************************************************************************** -->
+
+    <!-- 문의 목록 -->
+    <select id="adminSelectAllInquiry" resultType="boardInquiryVO">
+        select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date
+        from tbl_board_inquiry
+    </select>
+
+    <!-- 문의 조회 -->
+    <select id="adminSelectInquiry" resultType="inquiryDTO">
+        select  bi.board_inquiry_id, bi.member_id, bi.business_id, m.member_name, b.business_ceo_name, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status, board_inquiry_answer_id,board_inquiry_answer_content, board_inquiry_answer_register_date
+        from tbl_board_inquiry bi
+        left join tbl_board_inquiry_answer bia on bi.board_inquiry_id = bia.board_inquiry_id
+        left join tbl_member m on bi.member_id = m.member_id
+        left join tbl_business b on bi.business_id = b.business_id where bi.board_inquiry_id = #{boardInquiryId}
+    </select>
+
+
+    <!-- 문의 삭제 -->
+    <delete id="delete">
+        delete from tbl_board_inquiry
+        where board_inquiry_id= #{boardInquiryId}
+    </delete>
+
+    <!-- 문의 카운트 -->
+    <select id="count" resultType="int">
+        select count(board_inquiry_id) from tbl_board_inquiry;
+    </select>
+
+
 </mapper>
