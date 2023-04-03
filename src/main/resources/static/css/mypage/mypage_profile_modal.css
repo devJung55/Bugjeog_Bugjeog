@@ -1,0 +1,40 @@
+.modal_fail{
+    border: solid 1px;
+    position: absolute;
+    top: 39px;
+    left: 185px;
+    height: 132px;
+    display: none;
+}
+.modal_header{
+    font-size: 20px;
+    text-align: center;
+}
+.modal_body{
+    text-align: center;
+    padding-top: 23px;
+    font-weight: bold;
+}
+.modal_confirm{
+    background-color: #36f;
+    position: absolute;
+    color: white;
+    border-radius: 12px;
+    width: 75px;
+    height: 40px;
+    cursor: pointer;
+    right: 5px;
+    bottom: -55px;
+}
+.modal_footer{
+    position: relative;
+}
+.modal_success{
+    border: solid 1px;
+    position: absolute;
+    top: 39px;
+    left: 185px;
+    height: 132px;
+    width: 250px;
+    display: none;
+}

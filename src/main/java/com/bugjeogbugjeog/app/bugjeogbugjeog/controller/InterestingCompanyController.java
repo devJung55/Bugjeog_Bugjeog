@@ -27,13 +27,13 @@ public class InterestingCompanyController {
     private final MyPageService myPageService;
 
     @GetMapping("specific/personalFavoriteList")
-    public String company(Model model, InterestingCriteria interestingCriteria){
+    public String company(Model model, InterestingCriteria interestingCriteria, Long interestingCompanyId){
         HttpSession session = req.getSession();
         Long memberId = (Long) session.getAttribute("memberId");
         model.addAttribute("memberVO", myPageService.memberInfo(memberId));
         model.addAttribute("interestingCompanyDTOs", interestingCompanyService.findAllToInterestingCompany(memberId, interestingCriteria));
         model.addAttribute("pageInterestingDTO", new PageInterestingDTO(interestingCriteria, interestingCompanyService.count(memberId)));
-
+        model.addAttribute("interestingCompanyCount", interestingCompanyService.count(memberId));
         return "mypage/specific/personalFavoriteList";
     }
 }

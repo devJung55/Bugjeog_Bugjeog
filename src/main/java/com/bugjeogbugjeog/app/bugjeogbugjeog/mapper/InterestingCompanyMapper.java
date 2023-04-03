@@ -20,4 +20,6 @@ public interface InterestingCompanyMapper {
 
 //    관심글 재 클릭시 추가
     public void insertByInterestingCompany(@Param("businessId") Long businessId, @Param("memberId") Long memberId);
+
+    public Long interestingCompanyCount(Long interestingCompanyId);
 }
