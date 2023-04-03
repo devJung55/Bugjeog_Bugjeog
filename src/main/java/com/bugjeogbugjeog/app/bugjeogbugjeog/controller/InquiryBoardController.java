@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,4 +47,20 @@ public class InquiryBoardController {
         model.addAttribute(new BoardInquiryVO());
     }
 
+    @PostMapping("/board/inquiry/write")
+    public RedirectView write(BoardInquiryVO boardInquiryVO, HttpServletRequest req) {
+        System.out.println(boardInquiryVO.getBoardInquiryStatus());
+        if (req.getParameter("businessId") != null) {
+//            boardInquiryVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+            boardInquiryVO.setBusinessId(3L);
+            boardInquiryVO.setMemberId(null);
+            inquiryBoardService.registerBoard(boardInquiryVO, "business");
+        } else {
+            boardInquiryVO.setBusinessId(null);
+//            boardInquiryVO.setMemberId(Long.parseLong(req.getParameter("memberId")));
+            boardInquiryVO.setMemberId(3L);
+            inquiryBoardService.registerBoard(boardInquiryVO, "member");
+        }
+        return new RedirectView("/board/inquiry/list");
+    }
 }

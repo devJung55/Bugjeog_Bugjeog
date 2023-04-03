@@ -13,5 +13,5 @@ public class BoardInquiryVO {
     private String boardInquiryTitle;
     private String boardInquiryContent;
     private String boardInquiryRegisterDate;
-    private String boardInquiryStatus;
+    private Boolean boardInquiryStatus;
 }

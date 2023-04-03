@@ -14,7 +14,9 @@ import java.util.List;
 public interface InquiryBoardMapper {
 
     //    문의 작성하기
-    public void insert(BoardInquiryVO boardInquiryVO);
+    public void insertWithMemberId(BoardInquiryVO boardInquiryVO);
+
+    public void insertWithBusinessId(BoardInquiryVO boardInquiryVO);
 
 //    문의글 상세보기(작성자 타입 확인)
     public BoardInquiryDTO selectOneIsMember(Long boardInquiryId);
