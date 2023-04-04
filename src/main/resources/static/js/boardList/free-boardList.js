@@ -63,7 +63,7 @@ const createDOM = function (boardLists) {
                         </div>
                     </a>
                 </div>
-                <a href="/FreeBoards/detail/${boardLists.boardFreeId}" class="content hasImage">
+                <a href="/free-boards/detail/${boardLists.boardFreeId}" class="content hasImage">
                             <h3 class="content-title">
                             ${boardLists.boardFreeTitle}
 <!--                             어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->

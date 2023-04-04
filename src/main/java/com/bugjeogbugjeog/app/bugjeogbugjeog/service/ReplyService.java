@@ -23,4 +23,9 @@ public class ReplyService {
     public int getTotal(Long boardId){
         return replyDAO.findCountAll(boardId);
     }
+
+    /* 댓글 등록 용준*/
+    public void save(FreeReplyVO freeReplyVO){
+        replyDAO.addReply(freeReplyVO);
+    }
 }

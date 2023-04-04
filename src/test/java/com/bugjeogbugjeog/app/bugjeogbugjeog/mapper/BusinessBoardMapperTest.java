@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import lombok.extern.slf4j.Slf4j;
@@ -36,5 +37,18 @@ public class BusinessBoardMapperTest {
     @Test
     public void selectAllTest(){ businessBoardMapper.selectAll(); }
 
+//  게시글 목록 조회 페이징
+    @Test
+    public void selectAllListTest(){
+        AdminCriteria adminCriteria = new AdminCriteria();
+        adminCriteria.create(1, 5, 10, 1);
+        businessBoardMapper.selectAllBusinessBoard(adminCriteria);
+    }
+
+//  게시글 상세조회
+    @Test
+    public void selectBoardTest(){
+        businessBoardMapper.selectBoard(1L).toString();
+    }
 
 }
