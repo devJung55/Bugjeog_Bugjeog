@@ -9,12 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Qualifier("freeBoard")
@@ -53,6 +51,15 @@ public class FreeBoardService{
                 ));
     }
 
+    /* 자유게시판 게시글 목록조회 */
+    public List<BoardFreeDTO> getListWithName(AdminCriteria adminCriteria){
+        return freeBoardDAO.findListWithName(adminCriteria);
+    }
+
+    /* 자유게시판 총 갯수 */
+    public Integer getTotal(){
+        return freeBoardDAO.findTotal();
+    }
 
     /* 관리자 ************************************************************************** */
 
