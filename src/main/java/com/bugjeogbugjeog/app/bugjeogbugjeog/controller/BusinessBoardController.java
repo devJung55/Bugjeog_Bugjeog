@@ -50,27 +50,29 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/list")
-    public void businessList(Long businessId, String category, String sort, Model model) throws Exception {
+    public void businessList(Long businessId, String category, String sort, Model model) {
 //        model.addAttribute(businessBoardService.getBoardsByBusinessId(businessId));
         System.out.println("/board/business/list 들어옴");
         System.out.println(category);
         Map<String, Object> searchMap = new HashMap<>();
-        switch (category) {
-            case "meat":
-                category = "육류";
-                break;
-            case "seafood":
-                category = "해산물";
-                break;
-            case "spice":
-                category = "향신료";
-                break;
-            case "vegetable":
-                category = "채소";
-                break;
-            default:
-                category = null;
-                break;
+        if (category != null) {
+            switch (category) {
+                case "meat":
+                    category = "육류";
+                    break;
+                case "seafood":
+                    category = "해산물";
+                    break;
+                case "spice":
+                    category = "향신료";
+                    break;
+                case "vegetable":
+                    category = "채소";
+                    break;
+                default:
+                    category = null;
+                    break;
+            }
         }
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         if (category != null) {
@@ -99,7 +101,7 @@ public class BusinessBoardController {
     public void detail(Model model, @RequestParam("boardId") Long boardBusinessId, HttpServletRequest req) throws JsonProcessingException {
 
         BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
-        String name = dto.getBoardBusinessImgOriginalName();
+//        String name = dto.getBoardBusinessImgOriginalName();
 
         List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
 
@@ -141,30 +143,30 @@ public class BusinessBoardController {
 
     @PostMapping("/board/business/detail")
     @ResponseBody
-    public String detailAjax(@RequestBody Long boardBusinessId, @RequestBody Long memberId) throws Exception {
+    public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) throws Exception {
         // 클라의 success 내 resultData로 갈 값
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
         BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
         List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardBusinessId);
         List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(boardBusinessId);
-
-        MemberVO member = businessReviewService.getMember(memberId);
-        String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
-        memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
-        List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
-//        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
-
         // 서버에서 클라로 전송
         ObjectMapper objectMapper = new ObjectMapper();
         JSONObject returnObj = new JSONObject();
+        Long memberId = (Long) req.getSession().getAttribute("memberId");
+        if (memberId != null) {
+            MemberVO member = businessReviewService.getMember(memberId);
 
+            String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
+            memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
+            List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
+            returnObj.put("member", objectMapper.writeValueAsString(member));
+            returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
+            returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
+        }
+//        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
         returnObj.put("board", objectMapper.writeValueAsString(board));
         returnObj.put("reviews", objectMapper.writeValueAsString(reviews));
         returnObj.put("boards", objectMapper.writeValueAsString(boards));
-        returnObj.put("member", objectMapper.writeValueAsString(member));
-        returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
-        returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
-
 
         return returnObj.toJSONString();
     }
