@@ -50,29 +50,27 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/list")
-    public void businessList(Long businessId, String category, String sort, Model model) {
+    public void businessList(Long businessId, String category, String sort, Model model) throws Exception {
 //        model.addAttribute(businessBoardService.getBoardsByBusinessId(businessId));
         System.out.println("/board/business/list 들어옴");
         System.out.println(category);
         Map<String, Object> searchMap = new HashMap<>();
-        if(category != null) {
-            switch (category) {
-                case "meat":
-                    category = "육류";
-                    break;
-                case "seafood":
-                    category = "해산물";
-                    break;
-                case "spice":
-                    category = "향신료";
-                    break;
-                case "vegetable":
-                    category = "채소";
-                    break;
-                default:
-                    category = null;
-                    break;
-            }
+        switch (category) {
+            case "meat":
+                category = "육류";
+                break;
+            case "seafood":
+                category = "해산물";
+                break;
+            case "spice":
+                category = "향신료";
+                break;
+            case "vegetable":
+                category = "채소";
+                break;
+            default:
+                category = null;
+                break;
         }
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
         if (category != null) {
@@ -109,13 +107,12 @@ public class BusinessBoardController {
         System.out.println(businessReviewDTOs.toString());
         List<BoardBusinessDTO> otherBoardDTOs = businessBoardService.getBoardsByBusinessId(dto.getBusinessId());
 
-
 //        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
 
         MemberVO memberVO = null;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            memberVO = businessReviewService.getMember((Long)req.getSession().getAttribute("memberId"));
+            memberVO = businessReviewService.getMember((Long) req.getSession().getAttribute("memberId"));
             String orginalName = memberVO.getMemberImgOriginalName();
             String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
             //  로그인한 사용자 이미지 정보
@@ -140,29 +137,22 @@ public class BusinessBoardController {
 
         //  로그인한 사용자 정보
         model.addAttribute("member", JSONObject.toString("member", memberVO));
-
-
     }
 
     @PostMapping("/board/business/detail")
     @ResponseBody
-    public String detailAjax(@RequestBody Long boardBusinessId, BusinessReviewVO businessReviewVO) throws Exception {
-        // 클라의 success 내 retData로 갈 값
+    public String detailAjax(@RequestBody Long boardBusinessId, @RequestBody Long memberId) throws Exception {
+        // 클라의 success 내 resultData로 갈 값
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
         BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
         List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardBusinessId);
         List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(boardBusinessId);
 
-
-        MemberVO member = businessReviewService.getMember(5L);
+        MemberVO member = businessReviewService.getMember(memberId);
         String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
-        try {
-            memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
-        } catch (Exception e) {
-        }
+        memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
         List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
-
 
         // 서버에서 클라로 전송
         ObjectMapper objectMapper = new ObjectMapper();
@@ -179,52 +169,6 @@ public class BusinessBoardController {
         return returnObj.toJSONString();
     }
 
-//    //    파일 저장
-//    @PostMapping("/board/business/save")
-//    @ResponseBody
-//    public void save(@RequestBody List<BoardBusinessImgVO> images) {
-//        businessBoardImgService.write(images);
-//    }
-//
-//    //    현재 날짜 경로 구하기
-//    private String getPath() {
-//        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-//    }
-
-    //    파일 업로드
-//    @PostMapping("/board/business/upload")
-//    @ResponseBody
-//    public RedirectView upload(@RequestParam("file") List<MultipartFile> multipartFiles, HttpServletRequest req) throws IOException {
-//        List<String> uuids = new ArrayList<>();
-//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
-//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
-//                ? 3L
-//                : Long.parseLong(reqBoardBusinessId);
-//        String path = "C:/upload/" + getPath();
-//        File file = new File(path);
-//        if (!file.exists()) { file.mkdirs(); }
-//
-//        for (int i = 0; i < multipartFiles.size(); i++) {
-//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
-//            String uuid = UUID.randomUUID().toString();
-//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
-//            String fileFullPath = uuid + "_" + originalFileName;
-//            vo.setBoardBusinessId(boardBusinessId);
-//            vo.setBoardBusinessImgOriginalName(originalFileName);
-//            vo.setBoardBusinessImgUuid(uuid);
-//            vo.setBoardBusinessImgPath(path);
-////            uuids.add(UUID.randomUUID().toString());
-//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
-//
-//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
-//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
-//            out.close();
-//            businessBoardImgService.registerImg(vo);
-//        }
-
-//        return new RedirectView("/board/business/list");
-//    }
-
     @GetMapping("/board/business/write")
     public void write(Model model) {
         model.addAttribute(new BoardBusinessVO());
@@ -236,34 +180,6 @@ public class BusinessBoardController {
         boardBusinessVO.setBusinessId(3L);
         businessBoardService.registerBoard(boardBusinessVO);
         return boardBusinessVO.getBoardBusinessId();
-//        return null;
-//        businessBoardImgService.write();
-//        List<String> uuids = new ArrayList<>();
-//        String reqBoardBusinessId = req.getParameter("boardBusinessId");
-//        Long boardBusinessId = reqBoardBusinessId == null || reqBoardBusinessId == "null" || reqBoardBusinessId == ""
-//                ? 3L
-//                : Long.parseLong(reqBoardBusinessId);
-//        String path = "C:/upload/" + getPath();
-//        File file = new File(path);
-//        if (!file.exists()) { file.mkdirs(); }
-//        for (int i = 0; i < multipartFiles.size(); i++) {
-//            BoardBusinessImgVO vo = new BoardBusinessImgVO();
-//            String uuid = UUID.randomUUID().toString();
-//            String originalFileName = multipartFiles.get(i).getOriginalFilename();
-//            String fileFullPath = uuid + "_" + originalFileName;
-//            vo.setBoardBusinessId(boardBusinessId);
-//            vo.setBoardBusinessImgOriginalName(originalFileName);
-//            vo.setBoardBusinessImgUuid(uuid);
-//            vo.setBoardBusinessImgPath(path);
-////            uuids.add(UUID.randomUUID().toString());
-//            multipartFiles.get(i).transferTo(new File(path, fileFullPath));
-//
-//            FileOutputStream out = new FileOutputStream(new File(path, "t_" + fileFullPath));
-//            Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
-//            out.close();
-//            businessBoardImgService.registerImg(vo);
-//        }
-
     }
 
     @PostMapping("/board/business/delete")
@@ -271,57 +187,4 @@ public class BusinessBoardController {
         businessBoardService.remove(boardBusinessId);
     }
 
-//    @GetMapping("upload")
-//    public String goUploadForm(){
-//        return "/upload";
-//    }
-//
-//    //    파일 저장
-//    @PostMapping("save")
-//    @ResponseBody
-//    public void save(@RequestBody List<FileVO> files){
-//        fileService.write(files);
-//    }
-//
-//    //    파일 업로드
-//    @PostMapping("upload")
-//    @ResponseBody
-//    public List<String> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
-//        List<String> uuids = new ArrayList<>();
-//        String path = "C:/upload/" + getPath();
-//        File file = new File(path);
-//        if(!file.exists()) {file.mkdirs();}
-//
-//        for(int i=0; i<multipartFiles.size(); i++){
-//            uuids.add(UUID.randomUUID().toString());
-//            multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-//
-//            if(multipartFiles.get(i).getContentType().startsWith("image")){
-//                FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-//                Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 100, 100);
-//                out.close();
-//            }
-//        }
-//        return uuids;
-//    }
-//
-//    //    파일 불러오기
-//    @GetMapping("display")
-//    @ResponseBody
-//    public byte[] display(String fileName) throws IOException {
-//        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
-//    }
-//
-//    @GetMapping("download")
-//    public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
-//        Resource resource = new FileSystemResource("C:/upload/" + fileName);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
-//        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-//    }
-//
-//    //    현재 날짜 경로 구하기
-//    private String getPath(){
-//        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-//    }
 }

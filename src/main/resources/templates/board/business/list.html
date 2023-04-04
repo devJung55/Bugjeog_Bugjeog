@@ -112,8 +112,8 @@
 <script th:inline="javascript" src="/js/boardList/boardBusinessList.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
-    alert(businessId);
-    alert(memberId);
+    alert("businessId: " + businessId);
+    alert("memberId" + memberId);
     $(document).ready(function () {
         if (memberId == null || businessId == null) {
             $($('button.pr-register-button')[0]).hide();
@@ -146,7 +146,10 @@
         $.ajax({
             url: "/board/business/detail",
             method: "post",
-            data: JSON.stringify(boardBusinessId),
+            data: {
+                "boardBusinessId": JSON.stringify(boardBusinessId),
+                "memberId" : JSON.stringify(memberId)
+            },
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 let dataResult = JSON.parse(result);
@@ -161,7 +164,6 @@
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
-
 
                 afterDetail();
 
