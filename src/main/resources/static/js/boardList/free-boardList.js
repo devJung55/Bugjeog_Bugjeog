@@ -24,13 +24,54 @@ $(window).scroll(function(){
     }
 });
 
+let getTimePassed = function(writtenDate, writtenTime) {
+    const [yyyy, mm, dd] = writtenDate.split("-");
+    const [hh, MM, ss] = writtenTime.split(":");
+    const currentTime = new Date();
+    const givenTime = new Date();
+    givenTime.setFullYear(yyyy, mm-1, dd);
+    givenTime.setHours(hh, MM, ss);
 
+    const betweenTime = Math.floor((currentTime.getTime() - givenTime.getTime()) / 1000 / 60);
 
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 30) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    const betweenTimeMonth = Math.floor(betweenTimeDay / 30);
+    if (betweenTimeMonth < 12) {
+        return `${betweenTimeMonth}개월전`;
+    }
+
+    const betweenTimeYear = Math.floor(betweenTimeDay / 365);
+    return `${betweenTimeYear}년전`;
+}
+
+console.log(boardLists);
 
 /* 게시글 목록 불러오기*/
 
 const boardContainer = $('#listContainer')
-const createDOM = function (boardLists) {
+const createDOM = function (board) {
+
+    let isWriterMember = board.memberId == null ? false : true;
+    let writerName = isWriterMember ? board.memberName : board.businessCeoName;
+    let writtenDate = board.boardFreeRegisterDate.split(" ")[0];
+    let writtenTime = board.boardFreeRegisterDate.split(" ")[1];
+    let timeText = getTimePassed(writtenDate, writtenTime);
+
+    console.log(writtenTime);
 
     let text= `
 
@@ -49,27 +90,27 @@ const createDOM = function (boardLists) {
                                     <div class="content-persnal-distributor-box">
                                         <div class="content-register-name-box">
                                              <!--memberId, businessId인지 구분하는 법-->
-                                             <span>임종욱</span>
+                                             <span>${writerName}</span>
                                         </div>
                                         <div class="content-persnal-distributor">
                                                             <!--유통업체인지 개인인지 구분 or 위에 의해서 따라오는건지-->
-                                             <div class="content-member-type">유통업체</div>
+                                             <div class="content-member-type">${isWriterMember ? '일반회원' : '유통업체'}</div>
                                         </div>
                                     </div>
                                         <!--시간 구하는 법-->
-                                        <span class="register-date">시간 전</span>
+                                        <span class="register-date">${timeText}</span>
                                  </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <a href="/free-boards/detail/${boardLists.boardFreeId}" class="content hasImage">
+                <a href="/free-boards/detail/${board.boardFreeId}" class="content hasImage">
                             <h3 class="content-title">
-                            ${boardLists.boardFreeTitle}
+                            ${board.boardFreeTitle}
 <!--                             어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->
                             </h3>
                             <p class="content-detail">
-                            ${boardLists.boardFreeContent}
+                            ${board.boardFreeContent}
 <!--                            (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준-->
 <!--                            (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음-->
                             </p>
@@ -100,6 +141,6 @@ const createDOM = function (boardLists) {
 
     }
 
-boardLists.forEach((boardLists, i) => {
-    boardContainer.append(createDOM(boardLists));
+boardLists.forEach((board, i) => {
+    boardContainer.append(createDOM(board));
 });
