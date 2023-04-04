@@ -96,6 +96,8 @@
     <select id="adminSelectAllInquiry" resultType="boardInquiryVO">
         select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date
         from tbl_board_inquiry
+        order by board_inquiry_id desc
+        limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 
     <!-- 문의 조회 -->
