@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="PostItem_body">
                                     <div class="PostItem_header">
-                                        <a href="">
+                                        <a th:href="@{/free-boards/detail/{boardFreeId}(boardFreeId = ${boardFreeVO.boardFreeId})}">
                                             <h3 class="PostItem_title" th:text="${boardFreeVO.boardFreeTitle}"></h3>
                                             <p class="PostItem_content" th:text="${boardFreeVO.boardFreeContent}">
                                             </p>
