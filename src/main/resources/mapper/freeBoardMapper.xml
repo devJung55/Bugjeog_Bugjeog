@@ -62,6 +62,21 @@
         left join tbl_business b on bf.business_id = b.business_id where bf.board_free_id = #{boardFreeId};
     </select>
 
+    <!-- 자유게시판 게시물 DTO -->
+    <select id="selectWithName" resultType="boardFreeDTO">
+        select board_free_id, bf.member_id, bf.business_id, board_free_title, board_free_content, board_free_register_date,
+        board_free_update_date, board_free_like, (select member_name from tbl_member where member_id = bf.member_id) as member_name,
+        (select business_ceo_name from tbl_business where business_id = bf.business_id) as business_ceo_name
+        from tbl_board_free bf
+        order by board_free_register_date desc
+        limit #{offset}, #{pageCount}
+    </select>
+
+    <!-- 자유게시판 게시물 갯수 -->
+    <select id="getTotal" resultType="int">
+        select count(board_free_id) from tbl_board_free
+    </select>
+
 <!--            SELECT board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like-->
 <!--    FROM bugjeog.tbl_board_free;-->
 

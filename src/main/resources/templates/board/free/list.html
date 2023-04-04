@@ -173,6 +173,24 @@
 <!--                            </a>-->
 <!--                        </article>-->
                       </div>
+                        <div th:object="${criteria}">
+                            <div class="paging" style="text-align: center">
+                                <a class="changePage" th:href="'/FreeBoards/?page=' + *{startPage - 1}" th:if="*{prev}"
+                                   style="color: black"><code><</code></a>
+                                <th:block th:each="page:${#numbers.sequence(criteria.startPage, criteria.endPage)}">
+                                    <a class="changePage" style="color: black" th:href="'/FreeBoards/?page=' + ${page}"
+                                       th:if="${criteria.page != page}"><code th:text="${page}"></code></a>
+                                    <code id="currentPage" th:unless="${criteria.page != page}"
+                                          th:text="${page}"></code>
+                                </th:block>
+                                <a class="changePage" th:href="'/FreeBoards/?page=' + ${criteria.endPage + 1}" th:if="*{next}"
+                                   style="color: black"><code>></code></a>
+                            </div>
+                            <form th:action="@{/FreeBoards/}" name="pageForm">
+                                <input type="hidden" th:field="*{page}">
+                                <input type="hidden" th:field="*{rowCount}">
+                            </form>
+                        </div>
                           <!-- 여기 까지 -->
                         <!-- 자유게시판 정보 (반복문 또는 DOM) -->
 <!--                        <article class="content-box">-->
@@ -343,6 +361,7 @@
 <!--<script src="../../../static/js/boardList/free-boardList.js"></script>-->
 <script th:inline="javascript">
 let boardLists = [[${boardLists}]]
+console.log([[${total}]]);
 </script>
     <script src="/js/boardList/free-boardList.js"></script>
 
