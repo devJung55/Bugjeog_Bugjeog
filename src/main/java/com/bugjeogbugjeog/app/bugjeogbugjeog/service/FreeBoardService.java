@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,8 +39,18 @@ public class FreeBoardService{
 
     //    목록(대표 이미지 하나)
 //    public List<BoardFreeVO> getList(Map<String, Object> searchMap) { return freeBoardDAO.findById(searchMap); }
-    public BoardFreeDTO getListBoard(Long boardFreeId){
-        return freeBoardDAO.findById(boardFreeId);
+    public List<BoardFreeDTO> getListBoard(Long boardFreeId){
+        BoardFreeDTO boardFreeDTO = freeBoardDAO.findById(boardFreeId);
+
+        /**
+         * 이전글, 현재글, 다음글을 리스트에 담는다.
+         * */
+        return new ArrayList<>(Arrays
+                .asList(
+                        freeBoardDAO.findById(boardFreeDTO.getPrevBoardId())
+                        , boardFreeDTO
+                        , freeBoardDAO.findById(boardFreeDTO.getNextBoardId())
+                ));
     }
 
 

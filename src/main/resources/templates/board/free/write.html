@@ -13,11 +13,11 @@
 </head>
 <body>
 <div th:insert="~{main/header :: header}"></div>
-    <form th:action="@{/FreeBoards/write}" method="post" name="form">
+    <form th:action="@{/free-boards/write}" method="post" name="form">
         <div id="header">
             <div id="header_div">
                 <div id="header_btn">
-                    <button id="regist_btn">
+                    <button id="regist_btn" onclick="location.href='/free-boards/'">
                         <span id="btn_span">등록하기</span>
                     </button>
                 </div>

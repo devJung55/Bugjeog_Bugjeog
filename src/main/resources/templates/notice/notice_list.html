@@ -5,145 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 게시판</title>
-    <link rel="stylesheet" href=/css/boardList/notice-list.css">
-    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/boardList/notice-list.css">
 </head>
 <body>
-    <div>
-        <div th:insert="~{main/header :: header}"></div>
-        <header class="header">
-            <div class="header-inner container">
-                <div class="row">
-                    <div class="left_top">
-                        <div class="header_logo">
-                            <a href="">
-                                <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
-                            </a>
-                            <a href="">
-                                <img src="/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
-                            </a>
-                        </div>
+<div>
+    <header class="header">
+        <div class="header-inner container">
+            <div class="row">
+                <div class="left_top">
+                    <div class="header_logo">
+                        <a href="">
+                            <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
+                        </a>
+                        <a href="">
+                            <img src="/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
+                        </a>
                     </div>
-                    <div class="right_top"></div>
                 </div>
+                <div class="right_top"></div>
             </div>
-        </header>
-        <main class="content-main">
-            <section class="top_line"></section>
-            <div class="content-main-box">
-                <div class="content-box">
-                    <section class="content-box-layout">
-                        <h2 class="content-box-title">공지사항</h2>
-                        <ul class="content-list-box">
-                            <!-- 리스트 뽑을 요소 -->
+        </div>
+    </header>
+    <main class="content-main">
+        <section class="top_line"></section>
+        <div class="content-main-box">
+            <div class="content-box">
+                <section class="content-box-layout">
+                    <h2 class="content-box-title">공지사항</h2>
+                    <ul class="content-list-box">
+                        <!-- 리스트 뽑을 요소 -->
+                        <th:block th:each="noticeVO : ${noticeVO}">
                             <li class="content-list">
-                                <a href="javascript:void(0)" class="content-title">
-                                    좋은 기업을 원티드 #와이즐리
-                                </a>
-                                <div class="content">
-                                    있습니다." 27번째 좋은 으로 와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가 선와이즐
+                                <div class="content-title" th:text="${noticeVO.noticeTitle}"></div>
+                                <div class="content" th:text="${noticeVO.noticeContent}"></div>
                             </li>
-                            <!-- 리스트 뽑을 요소 -->
-                            <li class="content-list">
-                                <a href="javascript:void(0)" class="content-title">
-                                    좋은 기업을 원티드 #와이즐리
-                                </a>
-                                <!---->
-                                <div class="content">
-                                    있습니다." 27번째 좋은 으로 와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가 선와이즐
-                            </li>
-                            <!-- 리스트 뽑을 요소 -->
-                            <li class="content-list">
-                                <a href="javascript:void(0)" class="content-title">
-                                    좋은 기업을 원티드 #와이즐리
-                                </a>
-                                <div class="content">
-                                    있습니다." 27번째 좋은 으로 와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가 선와이즐
-                            </li>
-                            <!-- 리스트 뽑을 요소 -->
-                            <li class="content-list">
-                                <a href="javascript:void(0)" class="content-title">
-                                    좋은 기업을 원티드 #와이즐리
-                                </a>
-                                <div class="content">
-                                    있습니다." 27번째 좋은 으로 와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가 선와이즐
-                            </li>
-                        </ul>
-                    </section>
-                </div>
-                <nav class="page-box">
-                    <ul class="page-box-layout">
-                        <li class="page-button-box">
-                            <a href="javascript:void(0)"><<</a>
-                        </li>
-                        <li class="page-button-box">
-                            <a href="javascript:void(0)"><</a>
-                        </li>
-                        <li class="page-button-box">
-                            <span>1</span>
-                        </li>
-                        <li class="page-button-box">
-                            <span>2</span>
-                        </li>
-                        <li class="page-button-box">
-                            <a href="javascript:void(0)">></a>
-                        </li>
-                        <li class="page-button-box">
-                            <a href="javascript:void(0)">>></a>
-                        </li>
+                        </th:block>
                     </ul>
-                </nav>
+                </section>
             </div>
-        </main>
-        <!--<footer>
-            <div class="footer-container">
-                <div class="footer-box">
-                    <div class="footer-info">
-                        <a href="javascript:void(0)" class="footer-image-box">
-                            <img src="../../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="footer-image">
-                        </a>
-                    </div>
-                    <div class="footer-info-title">
-                        <a href="javascript:void(0)">
-                            <h3>기업소개</h3>
-                        </a>
-                    </div>
-                    <div class="footer-info-title">
-                        <a href="javascript:void(0)">
-                            <h3>이용약관</h3>
-                        </a>
-                    </div>
-                    <div class="footer-info-title">
-                        <a href="javascript:void(0)">
-                            <h3>개인정보처리방침</h3>
-                        </a>
-                    </div>
-                    <div class="footer-info-title">
-                        <a href="javascript:void(0)">
-                            <h3>고객센터</h3>
-                        </a>
-                    </div>
-                </div>
-                <aside class="footer-aside">
-                    <div class="footer-aside-container">
-                        <p>(주)북적북적 (대표이사:이순철) | 서울특별시 강남구 테헤란로 146 | 통신판매업번호 : 2015 - 서울강남 - 03148호</p>
-                        <p>유료직업소개사업등록번호 : (국내) 제2999-3230259-14-5-0118호 | 사업자등록번호 : 000-1234-1234 |  02-538-0017</p>
-                        <p>© Bugjeoglab, Inc</p>
-                    </div>
-                </aside>
+            <div class="page-box">
+                <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
+                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                            <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
+                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                        <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                    </a>
+                </th:block>
+                <a class="changePage" th:if="${pageDTO.next}"
+                   th:href="${pageDTO.endPage + 1}"><span>></span></a>
             </div>
-        </footer>-->
-        <block th:insert="~{main/footer :: footer}"></block>
-                     <!-- 문의하기 버튼  -->
-                     <div class="inquire_">
-                        <div style="margin: 0 auto;">
-                            <a href="" class="inquire_write">
-                                <img src="/image/notice/questionmark.png"class="questionmark">
-                            </a>
-                        </div>
-                    </div>
+            <form action="/notice/list" th:object="${criteria}" name="pageForm">
+                <input type="hidden" th:field="*{pageNum}">
+                <input type="hidden" th:field="*{amount}">
+            </form>
+        </div>
+    </main>
+    <block th:insert="~{main/footer :: footer}"></block>
+    <!-- 문의하기 버튼  -->
+    <div class="inquire_">
+        <div style="margin: 0 auto;">
+            <a href="" class="inquire_write">
+                <img src="/image/notice/questionmark.png"class="questionmark">
+            </a>
+        </div>
     </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    let inquireDTO = [[${inquireDTO}]];
+
+    //페이징 처리
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    let interestingCompanyDTOs = [[${interestingCompanyDTOs}]];
+
+    if (interestingCompanyDTOs.length == 0) {
+        $(".page-box").hide();
+        $(".no-content").show();
+    } else {
+        $(".no-content").hide();
+        $(".page-box").show();
+    }
+</script>
 </html>
