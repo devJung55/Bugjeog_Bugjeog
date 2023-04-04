@@ -12,6 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface MemberMapper {
+
 //    자영업자 회원가입
     public void insertMember(MemberVO memberVO);
 

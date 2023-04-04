@@ -43,11 +43,11 @@ public class FreeBoardService{
 
     /* 관리자 ************************************************************************** */
 
-    /* 자유 게시판 목록 */
     public List<BoardFreeVO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
 
+    /* 자유 게시판 목록 */
     /* 자유 게시판 조회  */
-    public List<BoardFreeDTO> adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
+    public BoardFreeDTO adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
 
     /* 자유 게시판 삭제 */
     public void adminRemove(List<String> boardFreeIds){
