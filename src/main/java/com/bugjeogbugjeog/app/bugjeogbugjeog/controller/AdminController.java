@@ -1,9 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +26,7 @@ public class AdminController {
     private final BusinessService businessService;
     private final InquiryBoardService inquiryBoardService;
     private final InquiryAnswerService inquiryAnswerService;
-
+    private final FreeBoardService freeBoardService;
 
     /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
@@ -232,15 +229,22 @@ public class AdminController {
     public void freeBoardShowList() {}
 
     /* 자유 게시판 조회 */
-    @GetMapping("admin-freeBoard")
-    public void freeBoardShow(){}
+    @GetMapping("admin-freeBoard/{boardFreeId}")
+    public String freeBoardShow(@PathVariable Long boardFreeId, Model model){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(boardFreeId.toString());
+        log.info(freeBoardService.adminShow(boardFreeId).toString());
+        model.addAttribute(freeBoardService.adminShow(boardFreeId));
+        return "admin/admin-freeBoard";
+    }
 
     /* 자유 게시판 수정 */
 
     /* 자유 게시판 삭제 */
     @DeleteMapping("admin-freeBoardList")
     @ResponseBody
-    public void removeFree(){}
+    public void removeFree(@RequestParam("checkedIds[]") List<String> boardFreeId){
+        freeBoardService.adminRemove(boardFreeId);}
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -263,17 +267,12 @@ public class AdminController {
     public String addInquiryWrite(@RequestParam(value = "boardInquiryId") String boardInquiryId, Model model){
         model.addAttribute("boardInquiryId", boardInquiryId);
         model.addAttribute(new BoardInquiryAnswerVO());
-        log.info("@@@@@@@@@@@@@@@@들어옴@@@@@@@@@@@@");
-        log.info(boardInquiryId);
         return "/admin/admin-inquiryWrite";
     }
 
     /* 문의 답변 작성 완료 */
     @PostMapping("admin-inquiryWrite")
     public RedirectView addInquiryWrite(BoardInquiryAnswerVO boardInquiryAnswerVO){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(boardInquiryAnswerVO.toString());
-
         inquiryAnswerService.addInquire(boardInquiryAnswerVO);
         return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
 //        return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
