@@ -165,22 +165,22 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                             </div>
                                         </div>
                                         <span id="my_nickname">${member.memberName}</span>
-                                        <div class="rating-reply">
-                                            <input type="radio" id="star1" name="rating" class="star" value="1" />
-                                            <label for="star1" id="label1" style="cursor: pointer;"></label>
-                                            <input type="radio" id="star2" name="rating"  class="star" value="2" />
-                                            <label for="star2" id="label2" style="cursor: pointer;"></label>
-                                            <input type="radio" id="star3" name="rating" class="star"  value="3" />
-                                            <label for="star3" id="label3" style="cursor: pointer;"></label>
-                                            <input type="radio" id="star4" name="rating" class="star"  value="4" />
-                                            <label for="star4" id="label4" style="cursor: pointer;"></label>
-                                            <input type="radio" id="star5" name="rating" class="star" value="5" />
-                                            <label for="star5" id="label5" style="cursor: pointer;"></label>
-                                        </div>
                                     </div>
                                     <div id="form_wrap">
                                         <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
-                                            <textarea id="reply_textarea" placeholder="리뷰 남기기"></textarea>
+                                            <div class="rating-reply">
+                                                <input type="radio" id="star1" name="reviewGrade" class="star" value="1" />
+                                                <label for="star1" id="label1" style="cursor: pointer;"></label>
+                                                <input type="radio" id="star2" name="reviewGrade"  class="star" value="2" />
+                                                <label for="star2" id="label2" style="cursor: pointer;"></label>
+                                                <input type="radio" id="star3" name="reviewGrade" class="star"  value="3" />
+                                                <label for="star3" id="label3" style="cursor: pointer;"></label>
+                                                <input type="radio" id="star4" name="reviewGrade" class="star"  value="4" />
+                                                <label for="star4" id="label4" style="cursor: pointer;"></label>
+                                                <input type="radio" id="star5" name="reviewGrade" class="star" value="5" />
+                                                <label for="star5" id="label5" style="cursor: pointer;"></label>
+                                            </div>
+                                            <textarea id="reply_textarea" placeholder="리뷰 남기기" name="reviewContent"></textarea>
                                             <button type="submit">
                                                 <span>등록</span>
                                             </button>

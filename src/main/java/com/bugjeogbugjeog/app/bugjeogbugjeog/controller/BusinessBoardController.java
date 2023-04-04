@@ -85,6 +85,7 @@ public class BusinessBoardController {
     @GetMapping("/board/business/list/ajax")
     @ResponseBody
     public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
+        model.addAttribute(new BusinessReviewVO());
         if (category == null && sort == null && businessId == null) {
             return businessBoardService.getList();
         } else {
