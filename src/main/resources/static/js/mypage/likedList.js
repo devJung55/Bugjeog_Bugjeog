@@ -41,7 +41,7 @@ function likedList() {
                    </div>
                    <div class="PostItem_body">
                        <div class="PostItem_header">
-                           <a href="">
+                           <a href="/free-boards/detail/${freeVOs[i].boardFreeId}">
                                <h3 class="PostItem_title">${freeVOs[i].boardFreeTitle}</h3>
                                <p class="PostItem_content">${freeVOs[i].boardFreeContent}</p>
                            </a>

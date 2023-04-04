@@ -105,7 +105,7 @@
                                     <span class="info-tag">계정 상태</span>
                                     <!-- 계정 상태 -->
                                     <div class="info">
-                                        <span th:text="*{memberId} != null ? *{memberStatus} : *{businessStatus}"></span>
+                                        <span th:text="*{memberId} != null ? *{memberStatus} : *{businessStatus}" class="status"></span>
                                     </div>
                                 </div>
                             </div>
@@ -166,6 +166,32 @@
 </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let memberStatus = [[${boardFreeDTO.memberStatus}]];
+    let businessStatus = [[${boardFreeDTO.businessStatus}]];
+
+    console.log(memberStatus);
+
+    if(memberStatus == 1){
+        $(".status").text("일반계정");
+    }else if(memberStatus == 2){
+        $(".status").text("휴면계정");
+    }else {
+        $(".status").text("탈퇴계정");
+    }
+
+    console.log(businessStatus);
+
+    if(businessStatus == 1){
+        $(".status").text("일반계정");
+    }else if(businessStatus == 2){
+        $(".status").text("휴면계정");
+    }else {
+        $(".status").text("탈퇴계정");
+    }
+
+</script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
