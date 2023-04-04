@@ -122,11 +122,11 @@ $authcode.keyup(function(){
 
 $(".authcode-check-button").on("click", function(e) {
     if($(".authcode-check").val() == code) {
-        $(".auth-mag").css("color", "blue");
+        $(".auth-msg").css("color", "blue");
         $(".auth-msg").html("인증에 성공했습니다.");
         authCodeCheck = true;
     } else {
-        $(".auth-mag").css("color", "red");
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").html("인증에 실패했습니다.");
         authCodeCheck = false;
     }
@@ -175,11 +175,15 @@ $("#allSelect").click(function() {
         $(".join-terms-agree").addClass("checkbox-active-box");
         $(".checkbox-display").show();
         allCheckBox = true;
+        must1CheckBox = true;
+        must2CheckBox = true;
     }else {
         $(".checkbox-display").hide();
         $(".join-terms-agree").removeClass("checkbox-active-box");
         $("input[name=check]").prop("checked", false);
         allCheckBox = false;
+        must1CheckBox = false;
+        must2CheckBox = false;
     }
 });
 
@@ -218,14 +222,6 @@ const $joinButton = $(".join-jjoin-btn-border");
 const $must1 = $(".must1");
 const $must2 = $(".must2");
 
-// $joinButton.on("click", function(e) {
-//     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
-//         $(document.joinForm).submit();
-//     } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
-//         $(document.joinForm).submit();
-//     }
-// });
-
 $must1.on("click", function(e) {
     if($must1.is(":checked")) {
         must1CheckBox = true;
@@ -245,27 +241,17 @@ $must2.on("click", function(e) {
 
 /*--------------------- 회원가입 버튼 활성화 이벤트 ---------------------*/
 
+
 const $joinInputs = $(".must1, .must2, .join-all-agree-ment, input[type=text], input[type=email], input[type=password]");
 
 function send() {
     $joinInputs.trigger("blur");
-
-    console.log("emailCheck : " + emailCheck);
-    console.log("nameCheck : " + nameCheck);
-    console.log("phoneNumberCheck : " + phoneNumberCheck);
-    console.log("authCodeCheck : " + authCodeCheck);
-    console.log("passwordCheck1 : " + passwordCheck1);
-    console.log("passwordCheck2 : " + passwordCheck2);
-    console.log("must1CheckBox : " + must1CheckBox);
-    console.log("must2CheckBox : " + must2CheckBox);
-    console.log("allCheckBox : " + allCheckBox);
 
     if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2 && allCheckBox) {
         $(document.joinForm).submit();
     } else if(emailCheck && nameCheck && phoneNumberCheck && authCodeCheck && passwordCheck1 && passwordCheck2  && must1CheckBox && must2CheckBox) {
         $(document.joinForm).submit();
     }
-
 }
 
 

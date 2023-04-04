@@ -1,7 +1,7 @@
 /* 작성글 목록 */
-const $ul = $($('ul.boardList-info-box')[0]);
-function showList(boards) {
-    $ul.empty();
+function showBoardsList(boards) {
+
+    $($('ul.boardList-info-box')[0]).empty();
     let text = ``;
     boards.forEach(board => {
         console.log(`${board.boardBusinessImgFullPath}`);
@@ -9,7 +9,7 @@ function showList(boards) {
                 <li class="info-box-layout"  th:object="${board}">
                     <a href="/board/business/detail?boardId=${board.boardBusinessId}">
                         <div class="image-box">
-                                <img src="${board.boardBusinessImgFullPath || "/image/boardList/no-image-64.png"}" class="info-image">
+                            <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
                         </div>
                         <div class="info-section-box">
                             <div class="cate-title-box">
@@ -17,7 +17,7 @@ function showList(boards) {
                                     <span class="cate-title"> ${board.businessCategory}</span>
                                 </span>
                             </div>
-                            <p class="circulation-title"> ${board.boardBusinessTitle}</p>
+                            <p class="circulation-title">${board.boardBusinessTitle}</p>
                         </div>
                         <div class="location-box">
                             <div class="location-box-layout">${board.businessLocation}</div>
@@ -44,5 +44,6 @@ function showList(boards) {
                 </li>
 			`;
     });
-    $ul.append(text);
+    $($('ul.boardList-info-box')[0]).append(text);
+
 }

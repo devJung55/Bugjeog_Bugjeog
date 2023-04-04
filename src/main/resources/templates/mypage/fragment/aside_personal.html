@@ -35,16 +35,16 @@
             <div class="MatchUpStatus-container Aside-content list_container">
                 <a href="" class="MatchUpStatus-item">
                     <span>관심 업체</span>
-                    <strong class="interest-count">0</strong>
+                    <strong class="interest-count" th:text="${interestingCompanyCount}"></strong>
                 </a>
             </div>
             <div class="Aside-pageList Aside-content list_container">
 
                 <!-- 프로필 페이지가 아닐 경우 활성화 -->
-                <a href="" class="Aside-profile">프로필</a>
+                <a class="Aside-profile" th:href="@{/mypage/profile/postList}">프로필</a>
 
                 <!-- My원티드 페이지가 아닐 경우 활성화 -->
-                <a href="" class="Aside-other">관심업체 리스트</a>
+                <a style="margin-top: 17px;" class="Aside-other" th:href="@{/mypage/specific/personalFavoriteList}">관심업체 리스트</a>
             </div>
         </aside>
     </aside>

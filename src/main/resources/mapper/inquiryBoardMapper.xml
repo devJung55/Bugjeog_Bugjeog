@@ -2,11 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper">
 
+    <insert id="insertWithMemberId">
+        INSERT INTO tbl_board_inquiry
+        (
+        member_id, business_id, board_inquiry_title
+        , board_inquiry_content, board_inquiry_status)
+        VALUES(
+        #{memberId}, null, #{boardInquiryTitle}
+        , #{boardInquiryContent}, #{boardInquiryStatus});
+
+    </insert>
+
+    <insert id="insertWithBusinessId">
+        INSERT INTO tbl_board_inquiry
+        (
+        member_id, business_id, board_inquiry_title
+        , board_inquiry_content, board_inquiry_status)
+        VALUES(
+        null, #{businessId}, #{boardInquiryTitle}
+        , #{boardInquiryContent}, #{boardInquiryStatus});
+
+    </insert>
+
+    <select id="selectOneIsMember" resultType="boardInquiryDTO">
+        select board_inquiry_id, member_id, business_id , board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status
+        from tbl_board_inquiry
+        where board_inquiry_id = #{boardInquiryId}
+    </select>
+
+    <select id="selectOneMember" resultType="boardInquiryDTO">
+        select q.board_inquiry_id, q.member_id, q.board_inquiry_title, q.board_inquiry_content, q.board_inquiry_register_date, q.board_inquiry_status
+        , m.member_email, m.member_name, m.member_img_original_name, m.member_img_uuid, m.member_img_path
+        , 'member' writer_type
+        from tbl_board_inquiry q
+        join tbl_member m
+        on q.member_id = m.member_id
+        where board_inquiry_id = #{boardInquiryId} and q.board_inquiry_status = 1
+    </select>
+
+    <select id="selectOneBusiness" resultType="boardInquiryDTO">
+        select q.board_inquiry_id, q.business_id, q.board_inquiry_title, q.board_inquiry_content, q.board_inquiry_register_date, q.board_inquiry_status
+        , b.business_id, b.business_email, b.business_ceo_name, b.business_number
+        , b.business_company_name, b.business_phone_number, b.business_img_original_name
+        , b.business_img_uuid, b.business_img_path, b.business_location, b.business_category
+        , 'business' writer_type
+        from tbl_board_inquiry q
+        join tbl_business b
+        on q.business_id = b.business_id
+        where board_inquiry_id = #{boardInquiryId} and q.board_inquiry_status = 1
+    </select>
+
     <select id="inquiryList" resultType="boardInquiryDTO">
         select board_inquiry_id, member_id, business_id
         , board_inquiry_title, board_inquiry_content, board_inquiry_register_date
         , board_inquiry_status
         from tbl_board_inquiry
+        where board_inquiry_status = 1
+        order by board_inquiry_id desc
     </select>
 
     <!-- 이용자의 문의게시판 목록 -->
@@ -37,4 +89,35 @@
     <select id="businessInquireCount" resultType="int">
         select count(business_id) from tbl_board_inquiry where business_id = #{businessId}
     </select>
+
+    <!-- *************************************************************************** -->
+
+    <!-- 문의 목록 -->
+    <select id="adminSelectAllInquiry" resultType="boardInquiryVO">
+        select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date
+        from tbl_board_inquiry
+    </select>
+
+    <!-- 문의 조회 -->
+    <select id="adminSelectInquiry" resultType="inquiryDTO">
+        select  bi.board_inquiry_id, bi.member_id, bi.business_id, m.member_name, b.business_ceo_name, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status, board_inquiry_answer_id,board_inquiry_answer_content, board_inquiry_answer_register_date
+        from tbl_board_inquiry bi
+        left join tbl_board_inquiry_answer bia on bi.board_inquiry_id = bia.board_inquiry_id
+        left join tbl_member m on bi.member_id = m.member_id
+        left join tbl_business b on bi.business_id = b.business_id where bi.board_inquiry_id = #{boardInquiryId}
+    </select>
+
+
+    <!-- 문의 삭제 -->
+    <delete id="delete">
+        delete from tbl_board_inquiry
+        where board_inquiry_id= #{boardInquiryId}
+    </delete>
+
+    <!-- 문의 카운트 -->
+    <select id="count" resultType="int">
+        select count(board_inquiry_id) from tbl_board_inquiry;
+    </select>
+
+
 </mapper>

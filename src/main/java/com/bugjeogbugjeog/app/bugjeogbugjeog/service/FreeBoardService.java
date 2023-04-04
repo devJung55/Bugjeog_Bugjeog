@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardImgDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,19 @@ public class FreeBoardService{
     public BoardFreeDTO getListBoard(Long boardFreeId){
         return freeBoardDAO.findById(boardFreeId);
     }
+
+
+    /* 관리자 ************************************************************************** */
+
+    public List<BoardFreeVO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
+
+    /* 자유 게시판 목록 */
+    /* 자유 게시판 조회  */
+    public BoardFreeDTO adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
+
+    /* 자유 게시판 삭제 */
+    public void adminRemove(List<String> boardFreeIds){
+        boardFreeIds.stream().map(boardFreeId -> Long.parseLong(boardFreeId)).forEach(freeBoardDAO::adminDelete);}
+
+
 }

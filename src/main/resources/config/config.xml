@@ -25,5 +25,6 @@
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO" alias="memberDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO" alias="businessDTO"/>
         <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO" alias="boardFreeDTO"/>
+        <typeAlias type="com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO" alias="inquiryDTO"/>
     </typeAliases>
 </configuration>

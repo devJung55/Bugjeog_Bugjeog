@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -10,6 +11,12 @@ import java.util.List;
 
 @Mapper
 public interface ReplyMapper {
+
+    //    댓글 전체 조회
+    public List<BoardReplyDTO> selectAll(@Param("cri") Criteria criteria, @Param("boardId") Long boardId);
+
+    //    댓글 전체 개수
+    public int getTotal(Long boardId);
 
     // 댓글 등록
     public void replyAdd(FreeReplyVO freeReplyVO);
