@@ -112,8 +112,6 @@
 <script th:inline="javascript" src="/js/boardList/boardBusinessList.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
-    alert("businessId: " + businessId);
-    alert("memberId: " + memberId);
     $(document).ready(function () {
         if (memberId != null || businessId == null) {
             $($('button.pr-register-button')[0]).hide();
@@ -132,7 +130,6 @@
         $modal.fadeIn(200);
         body.classList.add('scrollLock');
         $(".scroll-top-button").css("display", "none");
-        alert($label.attr("name"));
         detailAjax($label.attr("name"));
     });
 
@@ -150,7 +147,6 @@
             async: false,
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                alert(result);
                 /*가져온 데이터무더기*/
                 let dataResult = JSON.parse(result);
 
