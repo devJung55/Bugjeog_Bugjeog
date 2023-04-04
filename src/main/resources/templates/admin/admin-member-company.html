@@ -105,7 +105,7 @@
                                             <span class="info-tag">계정 상태</span>
                                             <!-- 핸드폰 번호 -->
                                             <div class="info">
-                                                <span th:text="*{businessStatus}"></span>
+                                                <span th:text="*{businessStatus}" class="status"></span>
                                             </div>
                                         </div>
                                     </div>	
@@ -164,6 +164,19 @@
         </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let businessStatus = [[${businessDTO.businessStatus}]];
+    console.log(businessStatus);
+
+    if(businessStatus == 1){
+        $(".status").text("일반계정");
+    }else if(businessStatus == 2){
+        $(".status").text("휴면계정");
+    }else {
+        $(".status").text("탈퇴계정");
+    }
+
+</script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 </html>
