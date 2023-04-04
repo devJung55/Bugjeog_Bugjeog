@@ -152,7 +152,7 @@ public class BusinessBoardController {
         model.addAttribute("member", JSONObject.toString("member", memberVO));
     }
 
-    @GetMapping("/board/business/detail/ajax")
+    @PostMapping("/board/business/detail")
     @ResponseBody
     public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
         // 클라의 success 내 resultData로 갈 값
@@ -182,7 +182,6 @@ public class BusinessBoardController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
         return returnObj.toJSONString();
     }
 
