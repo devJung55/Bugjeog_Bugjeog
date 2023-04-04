@@ -7,7 +7,7 @@
     </select>
 
     <!-- 게시문 댓글 등록 -->
-    <insert id="replyAdd">
+    <insert id="replyAdd" useGeneratedKeys="true" keyProperty="replyId">
         insert into tbl_free_reply
         (member_id, business_id, reply_content, reply_register_date, reply_update_date)
         VALUES(#{memberId}, #{businessId}, #{replyContent},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

@@ -93,10 +93,10 @@
         <div id="detailBoards">
         </div>
         <div id="reply_wrap">
-            <!--                <div id="reply_img_wrap">-->
-            <!--                    <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">-->
-            <!--                    <p id="reply_content">첫 댓글을 남겨주세요.</p>-->
-            <!--                </div>     -->
+                           <div id="reply_img_wrap">
+                                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
+                                <p id="reply_content">첫 댓글을 남겨주세요.</p>
+                            </div>
             <!-- 댓글 뿌려주는 곳 -->
             <div id="reply_wrap_div">
                 <!--reply 내용-->
@@ -115,9 +115,9 @@
                     <span id="my_nickname">최선규</span>
                 </div>
                 <div id="form_wrap">
-                    <form th:action="@{/free-boards/resister-reply}" method="post">
+                    <form th:action="@{/replies/resister-reply}" method="post">
                         <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
-                        <button type="button" class="reply-register-button">
+                        <button  class="reply-register-button">
                             <!--댓글 등록 완료 시 디테일 페이지로 이동-->
                             <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
                         </button>
@@ -145,9 +145,11 @@
 <script th:inline="javascript">
     /* freBoards 는 이전글, 현재글, 다음글이 담겨있는 list이다. 1번째방이 현재글 */
     let currentBoard = [[${currentBoard}]];
+    let replyLists = [[${replyLists}]];
+
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
-<script>
+<<script>
 
     /*댓글*/
    let page = 1;
@@ -177,6 +179,7 @@
         replyService.getList(function (list) {
             console.log(list.memberName);
             let text = "";
+            console.log("잘나와")
 
             text += `
                      <div style="margin-bottom: 20px">
@@ -195,8 +198,8 @@
                                             </div>
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
-<!--                                                    <div id="reply_nickname">DesignK</div>-->
-                                                    <div id="reply_nickname">${list.memberName}</div>
+                                                    <div id="reply_nickname">DesignK</div>
+                                                  <div id="reply_nickname">${list.memberName}</div>
                                                 </div>
                                                 <span id="reply_date">2023.03.14</span>
                                             </div>
@@ -212,7 +215,7 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>-->
+                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
                             <div id="reply_content">${currentBoard}</div>
                         </div>
             `
@@ -220,11 +223,11 @@
         });
     });
 
-    boardDetailContainer.append(createDOM(boardFreeId));
-    console.log("됐니?");
-    console.log(boardFreeId);
+    // boardDetailContainer.append(createDOM(boardFreeId));
+    // console.log("됐니?");
+    // console.log(boardFreeId);
 
-    // 좋아요 댓글 color변경
+   <!-- 좋아요 댓글 color변경-->
     const viewbox = document.getElementsByClassName("viewbox_path");
     $('.viewbox').click(function () {
         if ($(this).css('color') === 'rgb(0, 0, 0)') {
@@ -236,11 +239,11 @@
 
 
     $(document).ready(function () {
-        // 등록 버튼 초기 색상 설정
+         /*등록 버튼 초기 색상 설정*/
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
         $('#submit_span').css("background-color", "rgb(242, 244, 247)");
 
-        // textarea 입력시 등록 버튼 색상 변경
+        /*textarea 입력시 등록 버튼 색상 변경*/
         $('#reply_textarea').on('input', function () {
             if ($(this).val().length > 0) {
                 $('button[type="submit"]').css("color", "white").css("background-color", "blue"), $('#submit_span').css("background-color", "blue");
