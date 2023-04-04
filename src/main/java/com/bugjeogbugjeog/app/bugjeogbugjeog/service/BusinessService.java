@@ -45,5 +45,9 @@ public class BusinessService {
       return businessDAO.findByIdToBusiness(businessId);
     }
 
+    /* 추천 유통업체 TOP 10 */
+    public List<BusinessDTO> getListByReviewRank(){
+        return businessDAO.findListByReviewRank();
+    }
 }
 

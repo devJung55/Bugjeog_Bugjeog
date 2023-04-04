@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,9 @@ public class FreeBoardService{
     public List<BoardFreeDTO> getListBoard(Long boardFreeId){
         BoardFreeDTO boardFreeDTO = freeBoardDAO.findById(boardFreeId);
 
+        /**
+         * 이전글, 현재글, 다음글을 리스트에 담는다.
+         * */
         return new ArrayList<>(Arrays
                 .asList(
                         freeBoardDAO.findById(boardFreeDTO.getPrevBoardId())

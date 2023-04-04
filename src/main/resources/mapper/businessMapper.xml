@@ -19,6 +19,20 @@
         select business_number from tbl_business
     </select>
 
+    <select id="selectReivewRank" resultType="businessDTO">
+        select business_id, business_email, business_password, business_status, business_ceo_name, business_number, business_company_name,
+        business_phone_number, business_establishment_date, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category,
+           ifnull((select round(avg(review_grade),1) from tbl_business_review r join
+            (select board_business_id from tbl_board_business where business_id = b.business_id) t
+            on r.board_business_id = t.board_business_id), 0) as review_grade,
+           (select count(review_id) from tbl_business_review r join
+            (select board_business_id from tbl_board_business where business_id = b.business_id) t
+            on r.board_business_id = t.board_business_id) as review_count
+           from tbl_business b
+          order by review_grade and review_count desc
+         limit 0, 10;
+    </select>
+
     <!-- 회원 삭제 -->
     <delete id="withdraw">
         delete from tbl_business where business_id = #{businessId}
@@ -62,6 +76,7 @@
         left join tbl_board_free tbf on b.business_id  = tbf.business_id
         left join tbl_free_reply tfr on tbf.business_id  = tfr.business_id where b.business_id = #{business_id}
         group by b.business_id
+        order by replyCount
     </select>
 
     <!-- 유통 회원 수정 -->
