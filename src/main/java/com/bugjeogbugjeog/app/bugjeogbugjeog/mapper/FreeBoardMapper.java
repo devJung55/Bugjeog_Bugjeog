@@ -58,7 +58,7 @@ public interface FreeBoardMapper {
     public List<BoardFreeVO> adminSelectAllFree(AdminCriteria adminCriteria);
 
     /* 자유 게시판 조회  */
-    public List<BoardFreeDTO> adminSelectFree(Long boardFreeId);
+    public BoardFreeDTO adminSelectFree(Long boardFreeId);
 
     /* 관리자 삭제 */
     public void deleteAdmin(Long boardFreeID);
