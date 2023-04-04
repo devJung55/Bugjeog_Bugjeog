@@ -13,17 +13,22 @@
         <div class="join-box-layout">
             <div class="join-box">
                 <div class="join-box-border">
-                    <div class="join-title-box ">
-                        <div class="join-cancel-button-box">
-                            <!-- <button type="button" class="join-cancel-button">
-                                <p class="join-real-cancel-button">취소</p>
-                            </button> -->
-                        </div> 
-                        <div class="join-title-box-layout">
-                            <p class="join-real-title">개인 회원가입</p>
+                    <form th:action="@{/member/login}">
+                        <div class="join-title-box ">
+                            <button type="submit" class="pw-left-box">
+                                <div class="join-cancel-button-box pw-left-inside">
+                                    <!--<button type="button" class="join-cancel-button">
+                                        <p class="join-real-cancel-button">취소</p>
+                                    </button>-->
+                                    <svg viewBox="0 0 18 18" class="svg-ssilta"><path d="m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"></path></svg>
+                                </div>
+                            </button>
+                            <div class="join-title-box-layout">
+                                <p class="join-real-title">개인 회원가입</p>
+                            </div>
+                            <div class="join-what-is-this"></div>
                         </div>
-                        <div class="join-what-is-this"></div>
-                    </div>
+                    </form>
                     <!-- 회원가입 작성 시작 -->
                     <div class="join-write-start">
                         <form class="join-inside-box" name="joinForm" action="/member/join" method="post" th:object="${memberVO}">

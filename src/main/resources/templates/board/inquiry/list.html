@@ -103,7 +103,47 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script>
+    const $pageUl = $($('ul.page-box-layout')[0]);
 
-<script src="/js/main/header.js">
+    function pagingFunc() {
+
+        let text = '';
+
+        `
+                    <li class="page-button-box">
+                        <a href="javascript:void(0)"><<</a>
+                    </li>
+                    <li class="page-button-box">
+                        <a href="javascript:void(0)"><</a>
+                    </li>
+                    <li class="page-button-box">
+                        <span>1</span>
+                    </li>
+                    <li class="page-button-box">
+                        <span>2</span>
+                    </li>
+                    <li class="page-button-box">
+                        <a href="javascript:void(0)">></a>
+                    </li>
+                    <li class="page-button-box">
+                        <a href="javascript:void(0)">>></a>
+                    </li>
+`
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </html>

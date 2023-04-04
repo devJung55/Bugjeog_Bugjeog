@@ -108,3 +108,17 @@ let findIdService = (function() {
     }
     return {sendSMS: sendSMS}
 })();
+
+
+/*-------------------- 뒤로가기 --------------------*/
+
+
+const $backKey = $(".find-left-arrow");
+
+$backKey.on("click", function() {
+    const $form = $(document.findIdForm);
+
+    $form.attr("action", "/member/login");
+    $form.attr("method", "get");
+    $form.submit();
+});
