@@ -153,14 +153,14 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
     if (member != null) {
         text += `
                         <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}" th:if="${member != null}">
-                            <div class="profile-box">
+                            <div class="profile-box" style="position:relative;">
                                 <th:block th:if="${member != null}">
                                     <div id="profile_img_nickname">
                                         <div class="profile_img" id="profile_my_img">
                                             <div class="profile-image-login">
                                                 <div class="profile-member-status">
-                                                     <span class="profile-image">자</span> 
-                                                    <img src="/imgs/business/display?fileName=${member.memberImgPath + '/' + member.memberImgUuid + '_' + member.memberImgOriginalName}" alt="">
+<!--                                                    <span class="profile-image">자</span> -->
+                                                    <img class="profile-image" src="/imgs/business/display?fileName=${member.memberImgPath + '/' + member.memberImgUuid + '_' + member.memberImgOriginalName}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                     <div id="form_wrap">
                                         <form action="/board/business/review/write?boardBusinessId=${board.boardBusinessId}" method="post">
                                             <div class="rating-reply">
-                                                <input type="radio" id="star1" name="reviewGrade" class="star" value="1" />
+                                                <input type="radio" id="star1" name="reviewGrade" class="star" value="1" checked/>
                                                 <label for="star1" id="label1" style="cursor: pointer;"></label>
                                                 <input type="radio" id="star2" name="reviewGrade"  class="star" value="2" />
                                                 <label for="star2" id="label2" style="cursor: pointer;"></label>
@@ -190,10 +190,14 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                             </div>
                         </div>`;
     }
+    let i = 0;
+    reviews.forEach(review => {
+        i++;
+    });
     text += `
                         </section>
                         <div id="review_score_box_layout">
-                            총 리뷰 개수: ${reviews.size}개
+                            총 리뷰 개수:` + i + `개
                             <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
                             `;
     let reviewsGradeAverage;
@@ -205,7 +209,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
 
     for (let i = 0; i < reviewsGradeAverage; i++) {
         text += `
-                                <label class="review-score" style="color: #ffcc00 !important;"></label>
+                                <label class="review-score ratingActive"></label>
         `;
     }
     for (let i = 0; i < 5 - reviewsGradeAverage; i++) {
@@ -230,7 +234,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                                <img src="${review.memberImgPath}/${review.memberImgUuid}_${review.memberImgOriginalName}" alt="">
+                                                                <img src="/imgs/business/display?fileName=${review.memberImgPath + '/' + review.memberImgUuid + '_' + review.memberImgOriginalName}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>

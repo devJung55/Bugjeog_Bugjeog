@@ -19,12 +19,15 @@ public class BusinessReviewController {
 
     @PostMapping("/board/business/review/write")
     public RedirectView writeOk(Long boardBusinessId, String reviewContent, Long reviewGrade, HttpServletRequest req){
+        Long memberId = (Long)req.getSession().getAttribute("memberId");
         BusinessReviewVO businessReviewVO = new BusinessReviewVO();
         businessReviewVO.setBoardBusinessId(boardBusinessId);
         businessReviewVO.setReviewContent(reviewContent);
         businessReviewVO.setReviewGrade(reviewGrade);
-        businessReviewVO.setMemberId((Long)req.getSession().getAttribute("memberId"));
-        businessReviewService.save(businessReviewVO);
+        businessReviewVO.setMemberId(memberId);
+        if(!businessReviewService.wasReview(memberId, boardBusinessId)){
+            businessReviewService.save(businessReviewVO);
+        }
         return new RedirectView("/board/business/list");
     }
 }
