@@ -168,6 +168,10 @@ button{
     color: #333;
     position: relative;
 }
+.like_button{
+    display: flex;
+    align-items: center;
+}
 .viewbox{
     width: 20px;
     height: 20px;

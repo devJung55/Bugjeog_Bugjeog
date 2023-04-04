@@ -33,4 +33,6 @@ public class BoardFreeDTO {
 
     private Long prevBoardId;
     private Long nextBoardId;
+
+    private Integer replyCount;
 }
