@@ -39,7 +39,7 @@ public class ReplyController {
 //    public RedirectView replyResister(FreeReplyVO freeReplyVO){
 //        replyService.save(freeReplyVO);
 //
-//        return new RedirectView("/FreeBoards/detail");
+//        return new RedirectView("/free-boards/detail");
 //    }
 
     /*댓글 목록*/
@@ -54,14 +54,14 @@ public class ReplyController {
 
         replyService.save(freeReplyVO);
 
-        return new RedirectView("/FreeBoards/detail");
+        return new RedirectView("/free-boards/detail");
     }
 
     /* 댓글 등록완료*/
 //    @GetMapping("reply-complate")
 //    public String replyAddEnd(Model model){
 //        model.addAttribute(new FreeReplyVO());
-//        return "/FreeBoards/detail";
+//        return "/free-boards/detail";
 //    }
 
 }
