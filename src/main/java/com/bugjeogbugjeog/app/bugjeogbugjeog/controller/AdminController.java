@@ -246,9 +246,15 @@ public class AdminController {
     /* 유통 게시판 수정 */
 
     /* 유통 게시판 삭제 */
-    @DeleteMapping("admin-distributionList")
+    @DeleteMapping("admin-distributionDelete")
     @ResponseBody
-    public void removeDistribution(){}
+    public void removeDistribution(@RequestParam("checkedIds[]")List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            businessBoardService.remove(checkIds.get(i));
+        }
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
