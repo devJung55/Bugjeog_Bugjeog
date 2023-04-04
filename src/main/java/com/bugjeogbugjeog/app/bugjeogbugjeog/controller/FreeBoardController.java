@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
@@ -30,10 +32,26 @@ public class FreeBoardController {
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
-    public String freeBoard(Long boardFreeId, Model model){
+    public String freeBoard(AdminCriteria criteria, Model model){
+
+        int currentPage = 0;
+        int rowCount = 5;
+        int total = freeBoardService.getTotal();
+        int pageCount = 5;
+
+        if(criteria.getPage() == 0) {
+            currentPage = 1;
+        } else {
+            currentPage = criteria.getPage();
+        }
+
+        criteria.create(currentPage, rowCount, total, pageCount);
 
         model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
-        model.addAttribute("boardLists", freeBoardService.getList());
+        model.addAttribute("boardLists", freeBoardService.getListWithName(criteria));
+        model.addAttribute("criteria", criteria);
+        model.addAttribute("total", total);
+
         return "/board/free/list";
 
     } //html 경로

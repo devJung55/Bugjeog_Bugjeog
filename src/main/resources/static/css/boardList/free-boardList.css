@@ -315,6 +315,7 @@
     }
 
     .boardList-content-box {
+        margin-bottom: 74px;
         width: 100%;
         height: 100%;
         display: flex;
@@ -756,3 +757,32 @@
     .modal-confirm-agree-button-box, .modal-confirm-no-button-box {
         width: 50%;
     }
+
+    .paging{
+        margin: 12px 0 24px;
+        font-weight: 600;
+    }
+
+.paging a.changePage {
+    color: #4690f2;
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    border: 1px solid #4690f2;
+    border-radius: 0.25rem;
+}
+
+.paging a.changePage:hover {
+    background-color: #4690f2;
+    color: #fff;
+}
+
+.paging code#currentPage {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem;
+    color: #fff;
+    background-color: #4690f2;
+    border-radius: 0.25rem;
+    font-size: 16px;
+}
