@@ -35,38 +35,31 @@
                     <h2 class="content-box-title">공지사항</h2>
                     <ul class="content-list-box">
                         <!-- 리스트 뽑을 요소 -->
-                        <li class="content-list">
-                            <a href="javascript:void(0)" class="content-title">
-                                좋은 기업을 원티드 #와이즐리
-                            </a>
-                            <div class="content">
-                                있습니다." 27번째 좋은 으로 와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가  선와이즐리가 선와이즐
-                        </li>
+                        <th:block th:each="noticeVO : ${noticeVO}">
+                            <li class="content-list">
+                                <div class="content-title" th:text="${noticeVO.noticeTitle}"></div>
+                                <div class="content" th:text="${noticeVO.noticeContent}"></div>
+                            </li>
+                        </th:block>
                     </ul>
                 </section>
             </div>
-            <nav class="page-box">
-                <ul class="page-box-layout">
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)"><<</a>
-                    </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)"><</a>
-                    </li>
-                    <li class="page-button-box">
-                        <span>1</span>
-                    </li>
-                    <li class="page-button-box">
-                        <span>2</span>
-                    </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)">></a>
-                    </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)">>></a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="page-box">
+                <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
+                <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+                            <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
+                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                    <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
+                        <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                    </a>
+                </th:block>
+                <a class="changePage" th:if="${pageDTO.next}"
+                   th:href="${pageDTO.endPage + 1}"><span>></span></a>
+            </div>
+            <form action="/notice/list" th:object="${criteria}" name="pageForm">
+                <input type="hidden" th:field="*{pageNum}">
+                <input type="hidden" th:field="*{amount}">
+            </form>
         </div>
     </main>
     <block th:insert="~{main/footer :: footer}"></block>
@@ -82,4 +75,27 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    let memberVO = [[${memberVO}]];
+    let inquireDTO = [[${inquireDTO}]];
+
+    //페이징 처리
+    let $pageForm = $(pageForm);
+
+    $("a.changePage").on("click", function(e){
+        e.preventDefault();
+        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    let interestingCompanyDTOs = [[${interestingCompanyDTOs}]];
+
+    if (interestingCompanyDTOs.length == 0) {
+        $(".page-box").hide();
+        $(".no-content").show();
+    } else {
+        $(".no-content").hide();
+        $(".page-box").show();
+    }
+</script>
 </html>
