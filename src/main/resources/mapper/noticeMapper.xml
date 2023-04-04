@@ -29,7 +29,7 @@
         where notice_id = #{noticeId};
     </delete>
 
-    <select id="count" resultType="int">
+    <select id="count" resultType="long">
         select count(notice_id) from tbl_notice
     </select>
 

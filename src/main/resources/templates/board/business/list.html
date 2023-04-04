@@ -98,11 +98,11 @@
 <script th:inline="javascript">
     let memberId = [[${session.memberId}]];
     let businessId = [[${session.businessId}]];
+    let businessReviewVO = [[${businessReviewVO}]];
 
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
     const $modal = $(".modal-active");
-    const $modalBtn = $(".modal_button");
     const $closeBtn = $(".event_detail_modal_btn");
     const body = document.getElementsByTagName('body')[0];
     const $header = $('header.nav_bar');
@@ -112,23 +112,20 @@
 <script th:inline="javascript" src="/js/boardList/boardBusinessList.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
-    alert("businessId: " + businessId);
-    alert("memberId: " + memberId);
     $(document).ready(function () {
-        if (memberId == null || businessId == null) {
+        if (memberId != null || businessId == null) {
             $($('button.pr-register-button')[0]).hide();
-        } else if (businessId != null) {
+        } else {
             $($('button.pr-register-button')[0]).show();
         }
     });
-    showBoardsList(boards);
+    showSubBoardsList(boards);
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
 
 <script th:inline="javascript">
 
-    const $labels = $('label.modal_button');
-    $labels.on("click", (e) => {
+    $('.modal_button').on("click", (e) => {
         let $label = $(e.currentTarget);
         $modal.fadeIn(200);
         body.classList.add('scrollLock');
@@ -145,22 +142,37 @@
     function detailAjax(boardBusinessId) {
         $.ajax({
             url: "/board/business/detail",
-            method: "post",
-            data: {
-                boardBusinessId: JSON.stringify(boardBusinessId)
-            },
+            method: "GET",
+            data: {boardBusinessId: JSON.parse(boardBusinessId)},
+            async: false,
             contentType: "application/json; charset=utf-8",
             success: function (result) {
+                /*가져온 데이터무더기*/
                 let dataResult = JSON.parse(result);
 
+                /*디테일 대상 게시글 정보*/
                 let board = JSON.parse(dataResult.board);
-                let reviews = JSON.parse(dataResult.reviews);
-                let boards = JSON.parse(dataResult.boards);
-                let member = JSON.parse(dataResult.member);
+
+                /*대상 게시글 이미지 정보*/
                 let boardImgs = JSON.parse(dataResult.boardImgs);
-                let memberImgFullPath = JSON.parse(dataResult.memberImgFullPath);
+
+                /*대상 게시글 리뷰들 정보*/
+                let reviews = JSON.parse(dataResult.reviews);
+
+                /*대상 게시글 작성자의 모든 글*/
+                let boards = JSON.parse(dataResult.boards);
+                let member = null
+                /*로그인 정보가 있을 경우 가져옴*/
+                if (memberId != null) {
+                    member = JSON.parse(dataResult.member);
+                }
+                let reviewCount = JSON.parse(dataResult.reviewCount);
+                let reviewGrade = JSON.parse(dataResult.reviewGrade);
+
+                console.log(reviews);
+                // let memberImgFullPath = JSON.parse(dataResult.memberImgFullPath);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-                showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath);
+                showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCount,reviewGrade);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
@@ -169,6 +181,9 @@
 
             },
             error: function (e) {
+                console.log(e);
+                console.log(e.responseJSON.message);
+                console.log(e.responseJSON.trace);
                 alert("전송실패 " + e);
             }
         });

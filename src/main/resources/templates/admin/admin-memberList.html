@@ -57,29 +57,29 @@
 						<div class="info-table">
 							<table>
 								<thead>
-								<tr>
-									<th>
-										<input type="checkbox" id="allSelect">
-									</th>
-									<th>No</th>
-									<th>이름</th>
-									<th>이메일</th>
-									<th>가입날짜</th>
-									<th>계정 상태</th>
-								</tr>
+									<tr>
+										<th>
+											<input type="checkbox" id="allSelect">
+										</th>
+										<th>No</th>
+										<th>이름</th>
+										<th>이메일</th>
+										<th>가입날짜</th>
+										<th>계정 상태</th>
+									</tr>
 								</thead>
-
-								<tr>
-									<td>
-										<input type="checkbox" name="check">
-									</td>
-									<td></td>       <!-- 회원 아이디 -->
-									<td><a></a></td>      <!-- 이름 -->
-									<td></td>       <!-- 이메일 -->
-									<td></td>     <!-- 가입 날짜 -->
-									<td></td>   <!-- 계정 상태 -->
-								</tr>
-
+								<tbody>
+									<tr>
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td></td>       <!-- 회원 아이디 -->
+										<td><a></a></td>      <!-- 이름 -->
+										<td></td>       <!-- 이메일 -->
+										<td></td>     <!-- 가입 날짜 -->
+										<td></td>   <!-- 계정 상태 -->
+									</tr>
+								</tbody>
 								<!--<tr th:each="member : ${memberDTO}">
                                    <td>
                                       <input type="checkbox" name="check">
@@ -170,7 +170,7 @@
 	});
 
 	function showList(members){
-		const $showListResult = $('.info-table table');
+		const $showListResult = $('.info-table table tbody');
 		var text = "";
 		members.forEach(member => {
 			text += `
@@ -179,13 +179,13 @@
                   <input type="checkbox" name="check">
                </td>
                <td>${member.memberId}</td>
-               <td><a href="{/admin-member/${member.memberId}">${member.memberName}</a></td>
-                  <td>${member.memberEmail}</td>
-               <td>${member.memberRegisterDate}</td>
+               <td><a href="{/admin-memberDate}</td>
                <td>${member.memberStatus}</td>
             </tr>
          `
-		})
+		})r/${member.memberId}">${member.memberName}</a></td>
+		<td>${member.memberEmail}</td>
+		<td>${member.memberRegiste
 		$showListResult.html(text);
 	}
 
@@ -218,8 +218,9 @@
 		const $showPageResult = $(".page-button-box-layout");
 		var text = "";
 		text += `
-            <div class="page-button-box">
-               <!-- 페이지 번호 -->
+            <div class="page-button-box">`
+
+        text += `
 		<div class="prev paging" data-page = "${criteria.startPage - 1}" >
 			<div class="page-button-margin">
 				<div>
@@ -246,7 +247,7 @@
                      </div>
                   </div>
                </div>
-            </div>`
+            </div>`;
 
 		$showPageResult.html(text);
 

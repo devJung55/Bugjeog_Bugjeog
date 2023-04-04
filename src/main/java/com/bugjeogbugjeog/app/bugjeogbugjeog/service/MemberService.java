@@ -154,7 +154,7 @@ public class MemberService {
     public List<MemberDTO> adminMemberShowList(AdminCriteria adminCriteria){return memberDAO.adminFindAll(adminCriteria);}
 
     // 관리자 멤버 카운트
-    public int count(){return memberDAO.count();}
+    public Long count(){return memberDAO.count();}
 
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminMemberShow(Long memberId){return memberDAO.adminFindById(memberId);}

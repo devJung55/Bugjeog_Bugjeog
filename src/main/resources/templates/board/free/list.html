@@ -18,44 +18,46 @@
         <div class="boardList-wrap">
             <aside class="boardList-aside-box">
                 <div class="aside-area-box">
-                    <div class="profile-box-not-login">
-                        <h2 class="profile-not-login-title">My 커뮤니티</h2>
-                        <!-- 로그인이 안되잇을 경우 display:block-->
-                        <!-- 로그인이 되잇을 경우 display:none-->
-                        <button  type="button" class="login-button" style="display:none;">
-                            <div class="profile-image-not-login"></div>
-                            <div class="profile-username-wrap">
-                                <span class="not-login-span">로그인 해주세요</span>
-                            </div>
-                            <span class="profile-arrow">
-                                <svg width="18" height="18">
-                                    <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
-                                </svg>
-                            </span>
-                        </button>
-                        <!-- 로그인이 되 잇을 경우 display:block-->
-                        <!-- 로그인이 안되 잇을 경우 display:none-->
-                        <button  type="button" class="login-button" onclick="location.href='/myPages/'">
-                            <div class="profile-image-login">
-                                <img src="/image/boardList/self_employ_icon.png">
-                            </div>
-                            <div class="profile-username-wrap">
-                                <div class="profile-user-info-box">
-                                    <span class="profile-userName">임종욱</span>
-                                    <div style="display: flex;">
-                                        <div class="profile-userType"> 유통업자</div>
-                                    </div>
-                                    <!-- <div style="display: flex;">
-                                        <div class="profile-userType">이용자</div>
-                                    </div> -->
+                    <div th:switch="${member}">
+                        <div th:case="null" class="profile-box-not-login">
+                            <h2 class="profile-not-login-title">My 커뮤니티</h2>
+                            <!-- 로그인이 안되잇을 경우 display:block-->
+                            <!-- 로그인이 되잇을 경우 display:none-->
+                            <button  type="button" class="login-button">
+                                <div class="profile-image-not-login"></div>
+                                <div class="profile-username-wrap">
+                                    <span class="not-login-span">로그인 해주세요</span>
                                 </div>
-                            </div>
-                            <span class="profile-arrow">
-                                <svg width="18" height="18">
-                                    <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
-                                </svg>
-                            </span>
-                        </button>
+                                <span class="profile-arrow">
+                                    <svg width="18" height="18">
+                                        <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <!-- 로그인이 되 잇을 경우 display:block-->
+                            <!-- 로그인이 안되 잇을 경우 display:none-->
+                            <button th:case="*"  type="button" class="login-button" onclick="location.href='/myPages/'">
+                                <div class="profile-image-login">
+                                    <img src="/image/boardList/self_employ_icon.png">
+                                </div>
+                                <div class="profile-username-wrap">
+                                    <div class="profile-user-info-box">
+                                        <span class="profile-userName">임종욱</span>
+                                        <div style="display: flex;">
+                                            <div class="profile-userType"> 유통업자</div>
+                                        </div>
+                                        <!-- <div style="display: flex;">
+                                            <div class="profile-userType">이용자</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <span class="profile-arrow">
+                                    <svg width="18" height="18">
+                                        <path d="M5.21967 2.21967C5.48594 1.9534 5.9026 1.9292 6.19621 2.14705L6.28033 2.21967L12.5303 8.46967C12.7966 8.73594 12.8208 9.1526 12.6029 9.44621L12.5303 9.53033L6.28033 15.7803C5.98744 16.0732 5.51256 16.0732 5.21967 15.7803C4.9534 15.5141 4.9292 15.0974 5.14705 14.8038L5.21967 14.7197L10.939 9L5.21967 3.28033C4.9534 3.01406 4.9292 2.5974 5.14705 2.30379L5.21967 2.21967Z" fill="#666666"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                     <div class="profile-banner-box">
                         <button type="button" class="profile-banner-button">
@@ -115,182 +117,7 @@
                         </div>
                         <!-- 자유게시판 정보 (반복문 또는 DOM) -->
                       <div id="listContainer">
-<!--                        <article class="content-box">-->
-<!--                            <div class="content-box-layout">-->
-<!--                                <a href="#" class="content-member-info-box">-->
-<!--                                    <div class="content-member-info-box-layout">-->
-<!--                                        <div class="content-member-text-left">-->
-<!--                                            <div class="content-member-image-box">-->
-<!--                                                <div class="content-member-image-size">-->
-<!--&lt;!&ndash;                                                    <img src="../../../static/image/boardList/distributor_icon.png">&ndash;&gt;-->
-<!--                                                    <img src="/image/boardList/distributor_icon.png">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="content-member-info">-->
-<!--                                                <div class="content-persnal-distributor-box">-->
-<!--                                                    <div class="content-register-name-box">-->
-<!--                                                        <span>임종욱</span>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="content-persnal-distributor">-->
-<!--                                                        <div class="content-member-type">유통업체</div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <span class="register-date">1시간 전</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash;페이지 이동 링크?&ndash;&gt;-->
-<!--                            <a th:href="@{/FreeBoards/detail}" class="content hasImage">-->
-<!--                                <h3 class="content-title">-->
-<!--                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->
-<!--                                </h3>-->
-<!--                                <p class="content-detail">-->
-<!--                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준-->
-<!--                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음-->
-<!--                                </p>-->
-<!--                                &lt;!&ndash; 이미지를 넣었다면 여기에 넣어주기 없다면 없애기 &ndash;&gt;-->
-<!--                                &lt;!&ndash; 이미지를 넣었다면 감싸고있는 a태그에 hasImage클래스 넣어주기 표시해둠 &ndash;&gt;-->
-<!--                                <div>-->
-<!--                                    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fcommunity%2F2023%2F3%2Fe636fef8cd94bc0c9c921510c71ffae98c9c636065c75c113e4dd42a027129c9&w=384&q=90" class="board-detail-image">-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash; 이미지 끝 &ndash;&gt;-->
-<!--                                <div class="like-reply-count-box">-->
-<!--                                    <div class="like-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="like-count">10</span>-->
-<!--                                    </div>-->
-<!--                                    <div class="reply-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="reply-count">5</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </article>-->
                       </div>
-                          <!-- 여기 까지 -->
-                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
-<!--                        <article class="content-box">-->
-<!--                            <div class="content-box-layout">-->
-<!--                                <a href="#" class="content-member-info-box">-->
-<!--                                    <div class="content-member-info-box-layout">-->
-<!--                                        <div class="content-member-text-left">-->
-<!--                                            <div class="content-member-image-box">-->
-<!--                                                <div class="content-member-image-box">-->
-<!--                                                    <div class="content-member-image-size">-->
-<!--&lt;!&ndash;                                                        <img src="../../../static/image/boardList/distributor_icon.png">&ndash;&gt;-->
-<!--                                                        <img src="/image/boardList/distributor_icon.png">-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="content-member-info">-->
-<!--                                                <div class="content-persnal-distributor-box">-->
-<!--                                                    <div class="content-register-name-box">-->
-<!--                                                        <span>임종욱</span>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="content-persnal-distributor">-->
-<!--                                                        <div class="content-member-type">유통업체</div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <span class="register-date">1시간 전</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <a href="" class="content">-->
-<!--                                <h3 class="content-title">-->
-<!--                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->
-<!--                                </h3>-->
-<!--                                <p class="content-detail">-->
-<!--                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준-->
-<!--                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음-->
-<!--                                </p>-->
-<!--                                &lt;!&ndash; 이미지를 넣었다면 감싸고있는 a태그에 hasImage클래스 넣어주기 표시해둠 &ndash;&gt;-->
-<!--                                <div>-->
-<!--                                    &lt;!&ndash; 이미지를 넣었다면 여기에 넣어주기 <img> &ndash;&gt;-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash; 이미지 끝 &ndash;&gt;-->
-<!--                                <div class="like-reply-count-box">-->
-<!--                                    <div class="like-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="like-count">10</span>-->
-<!--                                    </div>-->
-<!--                                    <div class="reply-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="reply-count">5</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </article>-->
-                        <!-- 여기 까지 -->
-                        <!-- 자유게시판 정보 (반복문 또는 DOM) -->
-<!--                        <article class="content-box">-->
-<!--                            <div class="content-box-layout">-->
-<!--                                <a href="#" class="content-member-info-box">-->
-<!--                                    <div class="content-member-info-box-layout">-->
-<!--                                        <div class="content-member-text-left">-->
-<!--                                            <div class="content-member-image-box">-->
-<!--                                                <div class="content-member-image-size">-->
-<!--&lt;!&ndash;                                                    <img src="../../../static/image/boardList/distributor_icon.png">&ndash;&gt;-->
-<!--                                                    <img src="/image/boardList/distributor_icon.png">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="content-member-info">-->
-<!--                                                <div class="content-persnal-distributor-box">-->
-<!--                                                    <div class="content-register-name-box">-->
-<!--                                                        <span>임종욱</span>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="content-persnal-distributor">-->
-<!--                                                        <div class="content-member-type">유통업체</div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <span class="register-date">1시간 전</span>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <a href="" class="content hasImage">-->
-<!--                                <h3 class="content-title">-->
-<!--                                    어느회사 가야될까요... 4년제 갓졸업 캐릭터디자인 신입입니다.-->
-<!--                                </h3>-->
-<!--                                <p class="content-detail">-->
-<!--                                    (연봉 2500) 20년 된 안정된 회사고 인지도 있는 작업물 꽤 있음. 입사 후에 빡세게 안조이고 체계적이고 여유있게 배울수있을것같음 신입한테 큰일 바로 안시킴. 야근 자주 없을듯. 지하철 조금 불편? 근데 돈이 최저수준-->
-<!--                                    (연봉 협상 가능) 스타트업 회사. 개발보다는 외주 받는 하청업체에 가까움. 디자이너가 급하고 나랑 꼭 같이 일하고싶다고 연봉도 최대한 맞춰줄테니 거의 제발 와달라는 식으로 절절맴. 연봉도 높고 지하철도 괜찮지만 이렇게까지 절절 매는 이유가 있지 않을까 고민. 입사후 신입인데도 주요업무 시킬것같음-->
-<!--                                </p>-->
-<!--                                &lt;!&ndash; 이미지를 넣었다면 여기에 넣어주기 없다면 없애기 &ndash;&gt;-->
-<!--                                &lt;!&ndash; 이미지를 넣었다면 감싸고있는 a태그에 hasImage클래스 넣어주기 표시해둠 &ndash;&gt;-->
-<!--                                <div>-->
-<!--                                    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fcommunity%2F2023%2F3%2Fe636fef8cd94bc0c9c921510c71ffae98c9c636065c75c113e4dd42a027129c9&w=384&q=90" class="board-detail-image">-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash; 이미지 끝 &ndash;&gt;-->
-<!--                                <div class="like-reply-count-box">-->
-<!--                                    <div class="like-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="like-count">10</span>-->
-<!--                                    </div>-->
-<!--                                    <div class="reply-count-box">-->
-<!--                                        <svg width="18" height="18" viewBox="0 0 18 18">-->
-<!--                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path>-->
-<!--                                        </svg>-->
-<!--                                        <span class="reply-count">5</span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </article>-->
-                        <!-- 여기 까지 -->
                     </section>
                 </div>
             </main>
@@ -341,9 +168,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!--<script src="../../../static/js/boardList/free-boardList.js"></script>-->
-<script th:inline="javascript">
-let boardLists = [[${boardLists}]]
-</script>
-    <script src="/js/boardList/free-boardList.js"></script>
-
+<script src="/js/boardList/free-boardList.js"></script>
 </html>

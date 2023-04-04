@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.*;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
@@ -24,6 +24,7 @@ public class AdminController {
     private final NoticeService noticeService;
     private final MemberService memberService;
     private final BusinessService businessService;
+    private final BusinessBoardService businessBoardService;
     private final InquiryBoardService inquiryBoardService;
     private final InquiryAnswerService inquiryAnswerService;
     private final FreeBoardService freeBoardService;
@@ -33,25 +34,22 @@ public class AdminController {
     public String memberListShow(){
         return "/admin/admin-memberList";
     }
-
-    @PostMapping("admin-memberList")
-    @ResponseBody
-    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
-        Map<String, Object> result = new HashMap<>();
-        int page = (int) requestData.get("page");
-
-        if( page == 0) {
-            page = 1;
-        }
-        adminCriteria.create( page, 10, memberService.count(), 5);
 /*
+    @PostMapping("admin-memberList/{page}")
+    @ResponseBody
+    public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria){
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = memberService.count().intValue();
+
 
         if( adminCriteria.getPage() == 0) {
-            adminCriteria.create( 1, 10, memberService.count(), 5);
+            adminCriteria.create( 1, 10, total, 5);
         } else {
-            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+            log.info(admin)
+            adminCriteria.create(page,10, total,10);
         }
-*/
+
 
         List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
         log.info(members.toString());
@@ -59,7 +57,7 @@ public class AdminController {
         result.put("members", members);
         result.put("criteria", adminCriteria);
         return result;
-    }
+    }*/
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -97,7 +95,7 @@ public class AdminController {
     /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
-    public String memberCompanyList(){
+    public String memberCompanyList(Model model){
         return "admin/admin-member-companyList";
     }
 
@@ -116,7 +114,6 @@ public class AdminController {
 
         return businessService.adminShowListBusiness(criteria);
     }
-
 
     /* 유통 회원 상세 보기 */
     @GetMapping("admin-member-company/{businessId}")
@@ -209,18 +206,55 @@ public class AdminController {
 
     /* 유통 게시판 목록 */
     @GetMapping("admin-distributionList")
-    public void distributionShowList(){}
+    public String distributionShowList(){
+        return "admin/admin-distributionList";
+    }
 
-    /* 유통 게시판 조회 */
-    @GetMapping("admin-distribution")
-    public void distributionShow(){}
+    @GetMapping("admin-distributionList/{page}")
+    @ResponseBody
+    public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());   int total = businessBoardService.getCount().intValue
+     ();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
+        } else {
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
+        }
+        log.info(businessBoardService.getListByPage(adminCriteria).toString());
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("boards",businessBoardService.getListByPage(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
+    }
+
+
+    /* 유통 게시글 상세 보기*/
+    @GetMapping("admin-distribution/{boardBusinessId}")
+    public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
+        model.addAttribute("board", businessBoardService.getBoardById(boardBusinessId));
+        return "admin/admin-distribution";
+    }
 
     /* 유통 게시판 수정 */
 
     /* 유통 게시판 삭제 */
-    @DeleteMapping("admin-distributionList")
+    @DeleteMapping("admin-distributionDelete")
     @ResponseBody
-    public void removeDistribution(){}
+    public void removeDistribution(@RequestParam("checkedIds[]")List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            businessBoardService.remove(checkIds.get(i));
+        }
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
 

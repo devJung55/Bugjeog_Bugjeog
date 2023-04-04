@@ -62,7 +62,7 @@
     </select>
 
     <!-- 유통 회원 수 카운트 -->
-    <select id="count" resultType="int">
+    <select id="count" resultType="long">
         select count(business_id) from tbl_business
     </select>
 
