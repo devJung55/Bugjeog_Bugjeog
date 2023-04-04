@@ -49,7 +49,7 @@ public class BusinessDAO {
     public List<BusinessDTO> adminFindAll(Criteria criteria){ return businessMapper.adminSelectAllBusiness(criteria);}
 
     /* 관리자 카운트 */
-    public int count(){return businessMapper.count();}
+    public Long count(){return businessMapper.count();}
 
     /* 관리자 유통 상세 보기 */
     public BusinessDTO adminFindById(Long businessId){return businessMapper.adminSelectBusiness(businessId);}

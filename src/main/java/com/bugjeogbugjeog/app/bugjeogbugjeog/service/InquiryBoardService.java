@@ -63,5 +63,5 @@ public class InquiryBoardService {
     }
 
     // 문의 카운트
-    public int count(){return inquiryBoardDAO.count();}
+    public Long count(){return inquiryBoardDAO.count();}
 }

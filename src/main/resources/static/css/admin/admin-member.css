@@ -29,6 +29,7 @@
 	border-radius: 3px;
 	background: #fff;
 	box-shadow: 11px 13px 11px -14px grey;
+	z-index: 500;
 }
 
 .info-table {

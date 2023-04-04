@@ -23,6 +23,6 @@ public interface NoticeMapper {
     public void delete(Long noticeId);
 
     /* 카운트 */
-    public int count();
+    public Long count();
 
 }
