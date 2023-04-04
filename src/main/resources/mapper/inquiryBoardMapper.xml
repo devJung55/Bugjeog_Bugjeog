@@ -72,7 +72,7 @@
     </select>
 
     <select id="countBoards" resultType="long">
-        select count(notice_id) from tbl_board_inquiry
+        select count(board_inquiry_id) from tbl_board_inquiry
     </select>
 
     <!-- 이용자의 문의게시판 목록 -->
