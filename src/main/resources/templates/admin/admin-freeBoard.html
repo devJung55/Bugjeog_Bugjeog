@@ -42,7 +42,7 @@
                 <!-- 헤더 -->
                 <div class="prev-button-layout">
                     <div>
-                        <a>
+                        <a th:href="@{/admin/admin-freeBoardList}">
                             <img src="/image/admin/prev_icon.png" class="prev-icon">
                             <span class="prev-title">리스트로 돌아가기</span>
                         </a>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="info-flex">
                     <!-- 내용 섹션 -->
-                    <section class="board-info-box-layout">
+                    <section class="board-info-box-layout" th:object="${boardFreeDTO}">
                         <div class="board-info-box board-info-box-flex">
                             <div class="board-info-title-box">
                                 <span>자유 게시물</span>
@@ -65,7 +65,9 @@
                         <hr>
                         <div class="board-info-box">
                             <div class="member-img-box">
-                                <div class="board-img"></div>
+                                <div class="board-img">
+                                    <img th:src="@{/mypage/profile/display(fileName=${boardFreeDTO.boardFreeImgPath}+'/'+${boardFreeDTO.boardFreeImgUuid}+'_'+${boardFreeDTO.boardFreeImgOriginalName})}"/>
+                                </div>
                                 <!-- <div class="member-nickname-box">
                                     <span>벅벅코딩</span>
                                 </div> -->
@@ -82,28 +84,28 @@
                                     <span class="info-tag">이름</span>
                                     <!-- 이름 -->
                                     <div class="info">
-                                        <span>임순철</span>
+                                        <span th:text="*{memberId} != null ? *{memberName} : *{businessCeoName}"></span>
                                     </div>
                                 </div>
                                 <div class="member-info-tag-box">
                                     <span class="info-tag">이메일</span>
                                     <!-- 이메일 -->
                                     <div class="info">
-                                        <span>ljw1234@naver.com</span>
+                                        <span th:text="*{memberId} != null ? *{memberEmail} : *{businessEamil}"></span>
                                     </div>
                                 </div>
                                 <div class="member-info-tag-box">
                                     <span class="info-tag">휴대폰 번호</span>
                                     <!-- 휴대폰 번호 -->
                                     <div class="info">
-                                        <span>010-4321-1234</span>
+                                        <span th:text="*{memberId} != null ? *{memberPhoneNumber} : *{businessPhoneNumber}"></span>
                                     </div>
                                 </div>
                                 <div class="member-info-tag-box">
                                     <span class="info-tag">계정 상태</span>
                                     <!-- 계정 상태 -->
                                     <div class="info">
-                                        <span>일반 계정</span>
+                                        <span th:text="*{memberId} != null ? *{memberStatus} : *{businessStatus}" class="status"></span>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +116,7 @@
                     <!-- 없앨까 ???  -->
 
 
-                    <section class="board-info-box-layout board-info-box-layout2">
+                    <section class="board-info-box-layout board-info-box-layout2" th:object="${boardFreeDTO}">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
                                 <span>게시물 내용</span>
@@ -125,7 +127,7 @@
                             <div class="info-margin">
                                 <span class="info-tag">작성 날짜</span>
                                 <!-- 작성날짜  -->
-                                <h4>2023.01.01</h4>
+                                <h4 th:text="*{boardFreeRegisterDate}"></h4>
                             </div>
                             <div class="info-margin margin">
                                 <span class="info-tag">게시물</span>
@@ -134,7 +136,7 @@
                                     <div>
                                         <br>
                                         <span>제목</span>
-                                        <p>이런저런 내용을 이렇게 저렇게 작성해서 제목을 만들어 봅니다</p>
+                                        <p th:text="*{boardFreeTitle}"></p>
                                     </div>
                                     <!-- <div  class="count">
                                          <span>0개</span>
@@ -145,7 +147,7 @@
                                     <div class="write-count-box">
                                         <div>
                                             <span>내용</span>
-                                            <p>안녕하세요 안녕하세요안녕하세요안녕하세요</p>
+                                            <p th:text="*{boardFreeContent}"></p>
                                         </div>
                                         <!-- <div class="count">
                                               &lt;!&ndash; 작성한 댓글 갯수 뽑아주기 &ndash;&gt;
@@ -164,6 +166,32 @@
 </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let memberStatus = [[${boardFreeDTO.memberStatus}]];
+    let businessStatus = [[${boardFreeDTO.businessStatus}]];
+
+    console.log(memberStatus);
+
+    if(memberStatus == 1){
+        $(".status").text("일반계정");
+    }else if(memberStatus == 2){
+        $(".status").text("휴면계정");
+    }else {
+        $(".status").text("탈퇴계정");
+    }
+
+    console.log(businessStatus);
+
+    if(businessStatus == 1){
+        $(".status").text("일반계정");
+    }else if(businessStatus == 2){
+        $(".status").text("휴면계정");
+    }else {
+        $(".status").text("탈퇴계정");
+    }
+
+</script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/prev.js"></script>
 <script src="/js/admin/sidemenu.js"></script>

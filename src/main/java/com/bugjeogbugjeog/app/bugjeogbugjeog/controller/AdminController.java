@@ -1,9 +1,17 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +35,10 @@ public class AdminController {
     private final NoticeService noticeService;
     private final MemberService memberService;
     private final BusinessService businessService;
+    private final BusinessBoardService businessBoardService;
     private final InquiryBoardService inquiryBoardService;
     private final InquiryAnswerService inquiryAnswerService;
-
+    private final FreeBoardService freeBoardService;
 
     /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
@@ -100,7 +109,7 @@ public class AdminController {
     /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
-    public String memberCompanyList(){
+    public String memberCompanyList(Model model){
         return "admin/admin-member-companyList";
     }
 
@@ -119,7 +128,6 @@ public class AdminController {
 
         return businessService.adminShowListBusiness(criteria);
     }
-
 
     /* 유통 회원 상세 보기 */
     @GetMapping("admin-member-company/{businessId}")
@@ -212,11 +220,42 @@ public class AdminController {
 
     /* 유통 게시판 목록 */
     @GetMapping("admin-distributionList")
-    public void distributionShowList(){}
+    public String distributionShowList(){
+        return "admin/admin-distributionList";
+    }
 
-    /* 유통 게시판 조회 */
-    @GetMapping("admin-distribution")
-    public void distributionShow(){}
+    @GetMapping("admin-distributionList/{page}")
+    @ResponseBody
+    public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = businessBoardService.getCount().intValue();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
+        } else {
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
+        }
+        log.info(businessBoardService.getListByPage(adminCriteria).toString());
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("boards",businessBoardService.getListByPage(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
+    }
+
+
+    /* 유통 게시글 상세 보기*/
+    @GetMapping("admin-distribution/{boardBusinessId}")
+    public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
+        model.addAttribute("board", businessBoardService.getBoardById(boardBusinessId));
+        return "admin/admin-distribution";
+    }
 
     /* 유통 게시판 수정 */
 
@@ -232,15 +271,22 @@ public class AdminController {
     public void freeBoardShowList() {}
 
     /* 자유 게시판 조회 */
-    @GetMapping("admin-freeBoard")
-    public void freeBoardShow(){}
+    @GetMapping("admin-freeBoard/{boardFreeId}")
+    public String freeBoardShow(@PathVariable Long boardFreeId, Model model){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(boardFreeId.toString());
+        log.info(freeBoardService.adminShow(boardFreeId).toString());
+        model.addAttribute(freeBoardService.adminShow(boardFreeId));
+        return "admin/admin-freeBoard";
+    }
 
     /* 자유 게시판 수정 */
 
     /* 자유 게시판 삭제 */
     @DeleteMapping("admin-freeBoardList")
     @ResponseBody
-    public void removeFree(){}
+    public void removeFree(@RequestParam("checkedIds[]") List<String> boardFreeId){
+        freeBoardService.adminRemove(boardFreeId);}
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -263,17 +309,12 @@ public class AdminController {
     public String addInquiryWrite(@RequestParam(value = "boardInquiryId") String boardInquiryId, Model model){
         model.addAttribute("boardInquiryId", boardInquiryId);
         model.addAttribute(new BoardInquiryAnswerVO());
-        log.info("@@@@@@@@@@@@@@@@들어옴@@@@@@@@@@@@");
-        log.info(boardInquiryId);
         return "/admin/admin-inquiryWrite";
     }
 
     /* 문의 답변 작성 완료 */
     @PostMapping("admin-inquiryWrite")
     public RedirectView addInquiryWrite(BoardInquiryAnswerVO boardInquiryAnswerVO){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(boardInquiryAnswerVO.toString());
-
         inquiryAnswerService.addInquire(boardInquiryAnswerVO);
         return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
 //        return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());

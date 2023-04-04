@@ -115,7 +115,7 @@
                                               th:text="${inquire.boardInquiryRegisterDate}"></span>
                                     </div>
                                 </div>
-                                <a class="PostItem_body" href="">
+                                <a class="PostItem_body" th:href="@{/board/inquiry/detail(boardInquiryId=${inquire.boardInquiryId})}" >
                                     <h3 class="PostItem_title" th:text="${inquire.boardInquiryTitle}"></h3>
                                     <p class="PostItem_content" th:text="${inquire.boardInquiryContent}">
                                     </p>

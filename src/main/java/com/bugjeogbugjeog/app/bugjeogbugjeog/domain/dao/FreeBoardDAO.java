@@ -118,7 +118,7 @@ public class FreeBoardDAO {
     public List<BoardFreeVO> adminFindAll(AdminCriteria adminCriteria){return freeBoardMapper.adminSelectAllFree(adminCriteria);}
 
     /* 자유 게시판 조회  */
-    public List<BoardFreeDTO> adminFindById(Long boardFreeId){return freeBoardMapper.adminSelectFree(boardFreeId);}
+    public BoardFreeDTO adminFindById(Long boardFreeId){return freeBoardMapper.adminSelectFree(boardFreeId);}
 
     /* 관리자 삭제 */
     public void adminDelete(Long boardFreeId){freeBoardMapper.deleteAdmin(boardFreeId);}

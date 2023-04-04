@@ -35,7 +35,7 @@
                         </button>
                         <!-- 로그인이 되 잇을 경우 display:block-->
                         <!-- 로그인이 안되 잇을 경우 display:none-->
-                        <button  type="button" class="login-button">
+                        <button  type="button" class="login-button" onclick="location.href='/myPages/'">
                             <div class="profile-image-login">
                                 <img src="/image/boardList/self_employ_icon.png">
                             </div>
@@ -175,18 +175,18 @@
                       </div>
                         <div th:object="${criteria}">
                             <div class="paging" style="text-align: center">
-                                <a class="changePage" th:href="'/FreeBoards/?page=' + *{startPage - 1}" th:if="*{prev}"
+                                <a class="changePage" th:href="'/free-boards/?page=' + *{startPage - 1}" th:if="*{prev}"
                                    style="color: black"><code><</code></a>
                                 <th:block th:each="page:${#numbers.sequence(criteria.startPage, criteria.endPage)}">
-                                    <a class="changePage" style="color: black" th:href="'/FreeBoards/?page=' + ${page}"
+                                    <a class="changePage" style="color: black" th:href="'/free-boards/?page=' + ${page}"
                                        th:if="${criteria.page != page}"><code th:text="${page}"></code></a>
                                     <code id="currentPage" th:unless="${criteria.page != page}"
                                           th:text="${page}"></code>
                                 </th:block>
-                                <a class="changePage" th:href="'/FreeBoards/?page=' + ${criteria.endPage + 1}" th:if="*{next}"
+                                <a class="changePage" th:href="'/free-boards/?page=' + ${criteria.endPage + 1}" th:if="*{next}"
                                    style="color: black"><code>></code></a>
                             </div>
-                            <form th:action="@{/FreeBoards/}" name="pageForm">
+                            <form th:action="@{/free-boards/}" name="pageForm">
                                 <input type="hidden" th:field="*{page}">
                                 <input type="hidden" th:field="*{rowCount}">
                             </form>
@@ -347,7 +347,7 @@
                 <div class="modal-confirm-button-box">
                     <div class="modal-confirm-agree-button-box">
                         <!--글 작성 페이지로 이동 -->
-                        <button class="modal-confirm-agrre-button confirm-button" onclick="location.href='/FreeBoards/write'">예</button>
+                        <button class="modal-confirm-agrre-button confirm-button" onclick="location.href='/free-boards/write'">예</button>
                     </div>
                     <div class="modal-confirm-no-button-box">
                         <button class="modal-confirm-no-button confirm-button">아니요</button>
