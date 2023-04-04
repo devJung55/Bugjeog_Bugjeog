@@ -195,6 +195,7 @@ button{
 #reply_content{
     margin-top: 12px;
     color: #666;
+    padding-left: 44px;
 }
 #profile_img_nickname{
     margin-bottom: 18px;

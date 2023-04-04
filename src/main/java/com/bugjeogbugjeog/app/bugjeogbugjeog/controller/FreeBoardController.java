@@ -24,17 +24,20 @@ public class FreeBoardController {
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(Long boardFreeId, Model model){
-        model.addAttribute("boardLists", freeBoardService.getList());
 
-        return "/board/free/list";} //html 경로
+        model.addAttribute("boardLists", freeBoardService.getList());
+        return "/board/free/list";
+
+    } //html 경로
 
 
     /*자유게시판 디테일 */
     @GetMapping("detail/{boardFreeId}")
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model){
-        model.addAttribute("boardFreeId",freeBoardService.getListBoard(boardFreeId));
+        model.addAttribute("boardFreeVO",freeBoardService.getListBoard(boardFreeId));
 
-        return "/board/free/detail";}
+        return "/board/free/detail";
+    }
 
     /*자유게시판 작성*/
     @PostMapping("write")
@@ -52,13 +55,13 @@ public class FreeBoardController {
 
     }
 
-//    /*댓글 목록*/
+    /*댓글 목록*/
 //    @GetMapping("resister-reply")
 //    public String replyResister(){
 //        return "/board/free/detail";
 //    }
-//
-//    /*댓글 등록*/
+
+    /*댓글 등록*/
 //    @PostMapping("resister-reply")
 //    public RedirectView replyResister(FreeReplyVO freeReplyVO){
 //
@@ -66,8 +69,8 @@ public class FreeBoardController {
 //
 //        return new RedirectView("/FreeBoards/detail");
 //    }
-//
-//    /* 댓글 등록완료*/
+
+    /* 댓글 등록완료*/
 //    @GetMapping("reply-complate")
 //    public String replyAddEnd(Model model){
 //        model.addAttribute(new FreeReplyVO());

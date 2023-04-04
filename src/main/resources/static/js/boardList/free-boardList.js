@@ -30,10 +30,8 @@ $(window).scroll(function(){
 /* 게시글 목록 불러오기*/
 
 const boardContainer = $('#listContainer')
-    console.log(boardContainer);
-
 const createDOM = function (boardLists) {
-    console.log("괴롭다");
+
     let text= `
 
             <article class="content-box">
@@ -101,9 +99,6 @@ const createDOM = function (boardLists) {
     return text;
 
     }
-
-    console.log("할꺼자나");
-    console.log(boardLists);
 
 boardLists.forEach((boardLists, i) => {
     boardContainer.append(createDOM(boardLists));
