@@ -138,6 +138,10 @@
         and b.business_id = #{businessId}
         </if>
         group by board_business_id
+        ,b.board_business_id, b.business_id, b.board_business_title
+        , b.board_business_content, b.board_business_register_date, b.board_business_update_date
+        , i.board_business_img_id , i.board_business_img_original_name , i.board_business_img_uuid
+        , i.board_business_img_path, bs.business_category, bs.business_location
         <if test="sort == 'recent'">
             order by b.board_business_id desc
         </if>
