@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @Qualifier("review")
@@ -36,10 +37,20 @@ public class BusinessReviewService {
 //        businessBoardDAO.deleteById(businessId);
 //    }
 
-    //    조회(이미지들까지)
-//    public BoardBusinessDTO getBoard(Long boardBusinessId) {
+//    //    조회
+//    public boolean getBoard(Long boardBusinessId) {
 //        return businessBoardDAO.findById(boardBusinessId);
 //    }
+
+    public boolean wasReview(Long memberId, Long boardBusinessId) {
+        AtomicBoolean flag = new AtomicBoolean(false);
+        businessReviewDAO.findById(boardBusinessId).stream().forEach(businessReviewDTO -> {
+            if(businessReviewDTO.getMemberId().equals(memberId)){
+                flag.set(true);
+            }
+        });
+        return flag.get();
+    }
 
     //    목록(대표 이미지 하나)
 //    public List<BoardBusinessDTO> getList() {

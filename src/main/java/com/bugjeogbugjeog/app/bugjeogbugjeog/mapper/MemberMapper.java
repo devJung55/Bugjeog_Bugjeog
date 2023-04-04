@@ -88,7 +88,7 @@ public interface MemberMapper {
     public List<MemberDTO> adminSelectAllMember(AdminCriteria adminCriteria);
 
     // 관리자 멤버 카운트
-    public int count();
+    public Long count();
 
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminSelectMember(Long memberId);

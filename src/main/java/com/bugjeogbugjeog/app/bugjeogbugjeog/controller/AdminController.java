@@ -1,17 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,25 +34,22 @@ public class AdminController {
     public String memberListShow(){
         return "/admin/admin-memberList";
     }
-
-    @PostMapping("admin-memberList")
-    @ResponseBody
-    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
-        Map<String, Object> result = new HashMap<>();
-        int page = (int) requestData.get("page");
-
-        if( page == 0) {
-            page = 1;
-        }
-        adminCriteria.create( page, 10, memberService.count(), 5);
 /*
+    @PostMapping("admin-memberList/{page}")
+    @ResponseBody
+    public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria){
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = memberService.count().intValue();
+
 
         if( adminCriteria.getPage() == 0) {
-            adminCriteria.create( 1, 10, memberService.count(), 5);
+            adminCriteria.create( 1, 10, total, 5);
         } else {
-            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+            log.info(admin)
+            adminCriteria.create(page,10, total,10);
         }
-*/
+
 
         List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
         log.info(members.toString());
@@ -71,7 +57,7 @@ public class AdminController {
         result.put("members", members);
         result.put("criteria", adminCriteria);
         return result;
-    }
+    }*/
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -228,8 +214,8 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
         log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
-        int total = businessBoardService.getCount().intValue();
+        log.info(page.toString());   int total = businessBoardService.getCount().intValue
+     ();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
