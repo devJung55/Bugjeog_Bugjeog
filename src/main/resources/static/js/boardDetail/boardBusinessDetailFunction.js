@@ -181,7 +181,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                                 <label for="star5" id="label5" style="cursor: pointer;"></label>
                                             </div>
                                             <textarea id="reply_textarea" placeholder="리뷰 남기기" name="reviewContent"></textarea>
-                                            <button type="submit">
+                                            <button type="submit" class="replyRegisterButton">
                                                 <span>등록</span>
                                             </button>
                                         </form>
@@ -205,7 +205,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
     reviews.forEach(review => {
         reviewsGradeTotal += `${review.reviewGrade}`;
     });
-    reviewsGradeAverage = reviewsGradeTotal/reviews.size;
+    reviewsGradeAverage = reviewsGradeTotal / reviews.size;
 
     for (let i = 0; i < reviewsGradeAverage; i++) {
         text += `
@@ -224,7 +224,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
     reviews.forEach(review => {
         text += `
                         <div id="reply_wrap">
-                            <div id="reply_wrap_div">
+                            <div id="reply_wrap_div" style="position: relative;">
                                 <div style="display: flex; justify-content: space-between;">
                                     <a style="display: flex; width: 0;">
                                         <div style="display: inline-flex; align-items: center; margin-right: auto;">
@@ -261,7 +261,14 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                         </div>
                                     </a>
                                 </div>
-                                <div id="float_delete">수정&nbsp;&nbsp;&nbsp;삭제</div>
+                                <div class="replyButtonWrap" style="display: inline-block; position: absolute; right: 0; top: 0;">
+                                    <label name="editReply">
+                                        <button type="button" id="float_edit">수정</button>
+                                    </label>
+                                    <label name="deleteReply">
+                                        <button type="button" id="float_delete">삭제</button>
+                                    </label>
+                                </div>
                                 <div id="reply_content">${review.reviewContent}</div>
                             </div>
                         </div>
@@ -279,9 +286,10 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
             </div>`;
     });
     $('#all_wrap').append(text);
-    if (businessId == null) {
-        $('button[type="submit"]').show();
-        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+    const $submitReply = $($('button.replyRegisterButton')[0]);
+    if (businessId == null && memberId != null) {
+        $submitReply.show();
+        $submitReply.css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
         // textarea 입력시 등록 버튼 색상 변경
         $('#reply_textarea').on('input', function () {
@@ -291,16 +299,27 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                 $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
             }
         });
+        if (`${member.memberId === memberId}`) {
+            $($('.replyButtonWrap')[0]).show();
+        } else {
+            $($('.replyButtonWrap')[0]).hide();
+        }
     } else {
-        $('button[type="submit"]').hide();
+        $submitReply.hide();
     }
     let $label = $('label.otherBoards');
     $label.on("click", (e) => {
-        console.log($(e.target));
-        console.log($(e.target).attr('name'));
+        // console.log($(e.target));
+        // console.log($(e.target).attr('name'));
         let selectBoardId = $(e.target).attr('name');
         detailAjax(selectBoardId);
     });
+
+    const $editReviewButton = $('label[name=editReply]');
+    $editReviewButton.on("click", (e) => {
+        console.log("수정 버튼 눌림")
+        console.log($(e.target));
+    })
 };
 
 /*    let board = [[${board}]];
