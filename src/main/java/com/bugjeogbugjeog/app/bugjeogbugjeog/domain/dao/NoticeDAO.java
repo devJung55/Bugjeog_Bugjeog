@@ -26,6 +26,6 @@ public class NoticeDAO {
     public void remove(Long noticeId){ noticeMapper.delete(noticeId);}
 
     /* 카운트 */
-    public int count(){return noticeMapper.count();}
+    public Long count(){return noticeMapper.count();}
 
 }

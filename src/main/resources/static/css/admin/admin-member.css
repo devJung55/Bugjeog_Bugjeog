@@ -29,6 +29,7 @@
 	border-radius: 3px;
 	background: #fff;
 	box-shadow: 11px 13px 11px -14px grey;
+	z-index: 500;
 }
 
 .info-table {
@@ -123,8 +124,8 @@ hr {
 }
 
 .member-img {
-	width: 150px;
-    height: 150px;
+	width: 500px;
+	height: 400px;
 	border-radius: 50%;
 	background-image: url('../../../static/image/admin/nomal_person_icon.png');
 	background-repeat: no-repeat;
@@ -133,8 +134,7 @@ hr {
 }
 
 .member-img img {
-	width: 210px;
-	margin-left: -26px;
+	width: 100%;
 }
 
 .board-img {
@@ -146,6 +146,10 @@ hr {
     background-repeat: no-repeat;
     background-size: contain;
     margin: 0 auto;
+}
+
+.board-img img {
+	width: 100%;
 }
 
 .member-nickname-box {

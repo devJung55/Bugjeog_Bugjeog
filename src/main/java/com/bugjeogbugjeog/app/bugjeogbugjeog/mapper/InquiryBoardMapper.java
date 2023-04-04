@@ -57,6 +57,6 @@ public interface InquiryBoardMapper {
     public void delete(Long boardInquiryId);
 
     // 문의 카운트
-    public int count();
+    public Long count();
 
 }
