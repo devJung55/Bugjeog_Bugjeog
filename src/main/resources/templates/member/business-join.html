@@ -7,24 +7,29 @@
     <title>사업자 회원가입</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
     <link rel="stylesheet" href="/css/member/join.css">
-    <link rel="stylesheet" href="/css/main/header.css">
+    <!--<link rel="stylesheet" href="/css/main/header.css">-->
 </head>
 <body>
     <div id="__next">
         <div class="join-box-layout">
             <div class="join-box">
                 <div class="join-box-border">
-                    <div class="join-title-box ">
-                        <div class="join-cancel-button-box">
+                    <form th:action="@{/member/login}" name="joinForm">
+                        <div class="join-title-box ">
                             <!-- <button type="button" class="join-cancel-button">
                                 <p class="join-real-cancel-button">취소</p>
                             </button> -->
+                            <button type="submit" class="pw-left-box">
+                                <div class="join-cancel-button-box pw-left-inside">
+                                    <svg viewBox="0 0 18 18" class="svg-ssilta svg-business"><path d="m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"></path></svg>
+                                </div>
+                            </button>
+                            <div class="join-title-box-layout">
+                                <p class="join-real-title">사업자 회원가입</p>
+                            </div>
+                            <div class="join-what-is-this"></div>
                         </div>
-                        <div class="join-title-box-layout">
-                            <p class="join-real-title">사업자 회원가입</p>
-                        </div>
-                        <div class="join-what-is-this"></div>
-                    </div>
+                    </form>
                     <!-- 회원가입 작성 시작 -->
                     <div class="join-write-start">
                         <form class="join-inside-box" name="businessForm" th:action="@{/member/business-join}" method="post" th:object="${businessVO}">
@@ -155,7 +160,7 @@
                                 <div class="join-start-bottom-border"></div>
                                 <div class="join-start-top-blank"></div>
                               <button type="button" class="join-jjoin-btn-border">
-                                <span class="join-final-btn-ment" >가입하기</span>
+                                <span class="join-final-btn-ment" onclick="send()">가입하기</span>
                               </button>  
                            </div>  
                         </form>
