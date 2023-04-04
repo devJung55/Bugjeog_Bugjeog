@@ -1,54 +1,54 @@
 /* 리스트 삽입 js */
-function showList(boards) {
-    /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
-    $ul.empty();
-    let text = ``;
-    boards.forEach(board => {
-        text += `
-           <li class="info-box-layout"  th:object="${board}">
-                <label class="modal_button" name="${board.boardBusinessId}">
-                <!-- 상세보기 모달 버튼 -->
-                    <div class="image-box">
-                        <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
-                    </div>
-                    <div class="info-section-box">
-                        <div class="cate-title-box">
-                            <span class="cate-title-style">
-                                <span class="cate-title">${board.businessCategory}</span>
-                            </span>
-                        </div>
-                        <p class="circulation-title">${board.boardBusinessTitle}</p>
-                    </div>
-                    <div class="location-box">
-                        <div class="location-box-layout">${board.businessLocation}</div>
-                    </div>
-                    <div class="review-count-box">
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/review_icon.png" class="review-icon">
-                            </div>
-                            <div>
-                                <span class="review-count">${board.boardBusinessReviewCount}</span>
-                            </div>
-                        </div>
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                            </div>
-                            <div>
-                                <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
-                            </div>
-                        </div>
-                    </div>
-                </label>
-            </li>
-			`;
-    });
-    $ul.append(text);
-};
+// function showSubBoardsList(boards) {
+//     /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
+//     $($('ul.boardList-info-box')[0]).empty();
+//     let text = ``;
+//     boards.forEach(board => {
+//         text += `
+//            <li class="info-box-layout"  th:object="${board}">
+//                 <label class="modal_button" name="${board.boardBusinessId}">
+//                 <!-- 상세보기 모달 버튼 -->
+//                     <div class="image-box">
+//                         <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
+//                     </div>
+//                     <div class="info-section-box">
+//                         <div class="cate-title-box">
+//                             <span class="cate-title-style">
+//                                 <span class="cate-title">${board.businessCategory}</span>
+//                             </span>
+//                         </div>
+//                         <p class="circulation-title">${board.boardBusinessTitle}</p>
+//                     </div>
+//                     <div class="location-box">
+//                         <div class="location-box-layout">${board.businessLocation}</div>
+//                     </div>
+//                     <div class="review-count-box">
+//                         <div class="icon-box">
+//                             <div class="review-icon-box">
+//                                 <img src="/image/boardList/review_icon.png" class="review-icon">
+//                             </div>
+//                             <div>
+//                                 <span class="review-count">${board.boardBusinessReviewCount}</span>
+//                             </div>
+//                         </div>
+//                         <div class="icon-box">
+//                             <div class="review-icon-box">
+//                                 <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+//                             </div>
+//                             <div>
+//                                 <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </label>
+//             </li>
+// 			`;
+//     });
+//     $($('ul.boardList-info-box')[0]).append(text);
+// };
 
 /*  */
-function showDetail(board, reviews, boards, member, boardImgs) {
+function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath) {
     $('#all_wrap').empty();
     let text = ``
     text = `
@@ -206,7 +206,7 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                                <img src="${memberImgFullPath || ''}" alt="">
+                                                                <img src="${memberImgFullPath}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -246,6 +246,21 @@ function showDetail(board, reviews, boards, member, boardImgs) {
             </div>`;
     });
     $('#all_wrap').append(text);
+    if (businessId == null) {
+        $('button[type="submit"]').show();
+        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+
+        // textarea 입력시 등록 버튼 색상 변경
+        $('#reply_textarea').on('input', function () {
+            if ($(this).val().length > 0) {
+                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
+            } else {
+                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+            }
+        });
+    } else {
+        $('button[type="submit"]').hide();
+    }
 };
 
 /*    let board = [[${board}]];
