@@ -71,6 +71,10 @@
         limit #{startRow}, #{amount}
     </select>
 
+    <select id="countBoards" resultType="long">
+        select count(board_inquiry_id) from tbl_board_inquiry
+    </select>
+
     <!-- 이용자의 문의게시판 목록 -->
     <select id="inquireList" resultType="boardInquiryVO">
         select member_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry

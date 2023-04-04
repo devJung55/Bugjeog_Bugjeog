@@ -61,6 +61,7 @@ public class InquiryBoardDAO {
     public List<BoardInquiryDTO> findAllByIdToInquire() {
         return inquiryBoardMapper.inquiryList();
     }
+
     public List<BoardInquiryDTO> findAllByIdToInquire(InquiryCriteria inquiryCriteria) {
         return inquiryBoardMapper.inquiryListPaging(inquiryCriteria);
     }
@@ -69,7 +70,6 @@ public class InquiryBoardDAO {
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria) {
         return inquiryBoardMapper.inquireList(memberId, criteria);
     }
-
 
     //    문의 게시글 작성 갯수
     public Integer getCountToInquire(Long memberId) {
