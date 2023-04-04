@@ -1,17 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +34,8 @@ public class AdminController {
     public String memberListShow(){
         return "/admin/admin-memberList";
     }
-
- /*   @PostMapping("admin-memberList/{page}")
+/*
+    @PostMapping("admin-memberList/{page}")
     @ResponseBody
     public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria){
         log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -55,9 +44,10 @@ public class AdminController {
 
 
         if( adminCriteria.getPage() == 0) {
-            adminCriteria.create( 1, 10, memberService.count(), 5);
+            adminCriteria.create( 1, 10, total, 5);
         } else {
-            adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
+            log.info(admin)
+            adminCriteria.create(page,10, total,10);
         }
 
 
