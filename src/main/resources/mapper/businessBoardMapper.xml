@@ -40,34 +40,20 @@
     </select>
 
     <select id="selectAllByBusinessId" resultType="boardBusinessDTO">
-        select b.board_business_id, b.business_id, b.board_business_title
-            , b.board_business_content, b.board_business_register_date, b.board_business_update_date
-            , b.board_business_img_original_name , b.board_business_img_uuid
-            , b.board_business_img_path, ifnull(r.board_business_review_count, 0) board_business_review_count
-            , ifnull(r.board_business_grade_average, 0) board_business_grade_average
-            , bs.business_category, bs.business_location
-        from (
-            select bb.board_business_id, bb.business_id, bb.board_business_title, bb.board_business_content, bb.board_business_register_date, bb.board_business_update_date, bb.board_business_status
-            , i.board_business_img_original_name , i.board_business_img_uuid, i.board_business_img_path
-            from tbl_board_business bb
-            left outer join tbl_board_business_img i
-            on bb.board_business_id = i.board_business_id
-            where board_business_status = 1
+        select b.board_business_id, b.business_id, b.board_business_title, b.board_business_content,
+               b.board_business_register_date, b.board_business_update_date,
+               i.board_business_img_id, i.board_business_img_original_name, i.board_business_img_uuid,
+               i.board_business_img_path
+        from tbl_board_business b
+        join (
+            select board_business_id, min(board_business_img_id) as board_business_img_id
+            from tbl_board_business_img
             group by board_business_id
-        ) b
-        left outer join (
-            select b.board_business_id, count(r.review_id) board_business_review_count
-            , ifnull(avg(r.review_grade), 0) board_business_grade_average
-            from tbl_business_review r
-            right outer join tbl_board_business b
-            on b.board_business_id = r.board_business_id
-            group by b.board_business_id
-        ) r
-        on r.board_business_id = b.board_business_id
-        join tbl_business bs
-        on b.business_id = bs.business_id
-        where bs.business_id = #{businessId}
-        group by board_business_id
+        ) m
+        on b.board_business_id = m.board_business_id
+        join tbl_board_business_img i
+        on m.board_business_img_id = i.board_business_img_id and m.board_business_id = i.board_business_id
+        where b.business_id = #{businessId}
     </select>
 
     <select id="selectAllList" resultType="boardBusinessDTO">

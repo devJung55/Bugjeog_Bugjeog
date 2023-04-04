@@ -1,54 +1,54 @@
 /* 리스트 삽입 js */
-// function showSubBoardsList(boards) {
-//     /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
-//     $($('ul.boardList-info-box')[0]).empty();
-//     let text = ``;
-//     boards.forEach(board => {
-//         text += `
-//            <li class="info-box-layout"  th:object="${board}">
-//                 <label class="modal_button" name="${board.boardBusinessId}">
-//                 <!-- 상세보기 모달 버튼 -->
-//                     <div class="image-box">
-//                         <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
-//                     </div>
-//                     <div class="info-section-box">
-//                         <div class="cate-title-box">
-//                             <span class="cate-title-style">
-//                                 <span class="cate-title">${board.businessCategory}</span>
-//                             </span>
-//                         </div>
-//                         <p class="circulation-title">${board.boardBusinessTitle}</p>
-//                     </div>
-//                     <div class="location-box">
-//                         <div class="location-box-layout">${board.businessLocation}</div>
-//                     </div>
-//                     <div class="review-count-box">
-//                         <div class="icon-box">
-//                             <div class="review-icon-box">
-//                                 <img src="/image/boardList/review_icon.png" class="review-icon">
-//                             </div>
-//                             <div>
-//                                 <span class="review-count">${board.boardBusinessReviewCount}</span>
-//                             </div>
-//                         </div>
-//                         <div class="icon-box">
-//                             <div class="review-icon-box">
-//                                 <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-//                             </div>
-//                             <div>
-//                                 <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </label>
-//             </li>
-// 			`;
-//     });
-//     $($('ul.boardList-info-box')[0]).append(text);
-// };
+function showSubBoardsList(boards) {
+    /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
+    $($('ul.boardList-info-box')[0]).empty();
+    let text = ``;
+    boards.forEach(board => {
+        text += `
+           <li class="info-box-layout"  th:object="${board}">
+                <label class="modal_button" name="${board.boardBusinessId}">
+                <!-- 상세보기 모달 버튼 -->
+                    <div class="image-box">
+                        <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
+                    </div>
+                    <div class="info-section-box">
+                        <div class="cate-title-box">
+                            <span class="cate-title-style">
+                                <span class="cate-title">${board.businessCategory}</span>
+                            </span>
+                        </div>
+                        <p class="circulation-title">${board.boardBusinessTitle}</p>
+                    </div>
+                    <div class="location-box">
+                        <div class="location-box-layout">${board.businessLocation}</div>
+                    </div>
+                    <div class="review-count-box">
+                        <div class="icon-box">
+                            <div class="review-icon-box">
+                                <img src="/image/boardList/review_icon.png" class="review-icon">
+                            </div>
+                            <div>
+                                <span class="review-count">${board.boardBusinessReviewCount}</span>
+                            </div>
+                        </div>
+                        <div class="icon-box">
+                            <div class="review-icon-box">
+                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
+                            </div>
+                            <div>
+                                <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </li>
+			`;
+    });
+    $($('ul.boardList-info-box')[0]).append(text);
+};
 
 /*  */
-function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath) {
+function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCount, reviewGrade) {
     $('#all_wrap').empty();
     let text = ``
     text = `
@@ -122,39 +122,45 @@ function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath
                             </div>
                         <h2 id="footer_title">이 회사의 모든 글</h2>
                         <ul id="footer_ul">`;
+    /* href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">*/
     boards.forEach(other => {
             text += `
                             <li class="footer_li" th:object="${other}">
-                                <a style="--base-font-size: 10;" href="/board/business/detail?boardBusinessId=${other.boardBusinessId}">
+                                <label class="otherBoards" style="--base-font-size: 10;">
                                     <div class="footer_li_div">
-                                        <img class="footer_img" src="${other.boardBusinessImgFullPath || '/image/boardList/no-image-64.png'}" alt="">
+                                        <img class="footer_img" name="${other.boardBusinessId}"
+                                        src="/imgs/business/display?fileName=${other.boardBusinessImgPath + '/' + other.boardBusinessImgUuid + '_' + other.boardBusinessImgOriginalName}"
+                                        alt="'/image/boardList/no-image-64.png'">
                                     </div>
                                     <div class="event_content">
                                         <p class="event_content_p">${other.boardBusinessContent}</p>
                                     </div>
-                                </a>
+                                </label>
                             </li>`;
         }
     );
     text += `
                         </ul>
                             <div class="see-more-button">
-                                <a id="event_all">
+                                <a id="event_all" href="/board/business/list?businessId=${board.businessId}">
                                     이벤트 모두 보기
                                     <svg width="12" height="12" viewBox="0 0 12 12" margin-left="5px" margin-right="10px">
                                         <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
                                     </svg>
                                 </a>
                             </div>
-                        </div>
-                        <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}">
+                        </div>`;
+    if (member != null) {
+        text += `
+                        <div style="margin-bottom: 20px; margin-top: 20px;" th:object="${member}" th:if="${member != null}">
                             <div class="profile-box">
+                                <th:block th:if="${member != null}">
                                     <div id="profile_img_nickname">
                                         <div class="profile_img" id="profile_my_img">
                                             <div class="profile-image-login">
                                                 <div class="profile-member-status">
-                                                    <!-- <span class="profile-image">유</span> -->
-                                                    <img src="${member.memberImgFullPath || ''}" alt="">
+                                                     <span class="profile-image">자</span> 
+                                                    <img src="/imgs/business/display?fileName=${member.memberImgPath + '/' + member.memberImgUuid + '_' + member.memberImgOriginalName}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -180,19 +186,37 @@ function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath
                                             </button>
                                         </form>
                                     </div>
-                            </div>
-                        </div>
-                        </section>
-                        <div id="review_score_box_layout">
-                            총 리뷰 개수: 1개
-                            <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
-                                <label class="review-score"></label>
-                                <label class="review-score"></label>
-                                <label class="review-score"></label>
-                                <label class="review-score"></label>
-                                <label class="review-score"></label>
+                                </th:block>
                             </div>
                         </div>`;
+    }
+    text += `
+                        </section>
+                        <div id="review_score_box_layout">
+                            총 리뷰 개수: ${reviews.size}개
+                            <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
+                            `;
+    let reviewsGradeAverage;
+    let reviewsGradeTotal = 0;
+    reviews.forEach(review => {
+        reviewsGradeTotal += `${review.reviewGrade}`;
+    });
+    reviewsGradeAverage = reviewsGradeTotal/reviews.size;
+
+    for (let i = 0; i < reviewsGradeAverage; i++) {
+        text += `
+                                <label class="review-score" style="color: #ffcc00 !important;"></label>
+        `;
+    }
+    for (let i = 0; i < 5 - reviewsGradeAverage; i++) {
+        text += `
+                                <label class="review-score"></label>
+        `;
+    }
+    text += `
+                            </div>
+                        </div>`;
+
     reviews.forEach(review => {
         text += `
                         <div id="reply_wrap">
@@ -206,7 +230,7 @@ function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                                <img src="${memberImgFullPath}" alt="">
+                                                                <img src="${review.memberImgPath}/${review.memberImgUuid}_${review.memberImgOriginalName}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -217,11 +241,16 @@ function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath
                                                     </div>
                                                     <span id="reply_date">${review.reviewRegisterDate}</span>
                                                     <div class="review-score-box">
-                                                        <label class="review-score"></label>
-                                                        <label class="review-score"></label>
-                                                        <label class="review-score"></label>
-                                                        <label class="review-score"></label>
-                                                        <label class="review-score"></label>
+                                                    `;
+        for (let i = 0; i < `${review.reviewGrade}`; i++) {
+            text += `
+                                                        <label class="review-score" style="color: #ffcc00 !important;"></label>`;
+        }
+        for (let i = 0; i < `${5 - review.reviewGrade}`; i++) {
+            text += `
+                                                        <label class="review-score"></label>`;
+        }
+        text += `
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,6 +290,13 @@ function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath
     } else {
         $('button[type="submit"]').hide();
     }
+    let $label = $('label.otherBoards');
+    $label.on("click", (e) => {
+        console.log($(e.target));
+        console.log($(e.target).attr('name'));
+        let selectBoardId = $(e.target).attr('name');
+        detailAjax(selectBoardId);
+    });
 };
 
 /*    let board = [[${board}]];

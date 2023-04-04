@@ -7,7 +7,7 @@ function showBoardsList(boards) {
         console.log(`${board.boardBusinessImgFullPath}`);
         text += `
                 <li class="info-box-layout"  th:object="${board}">
-                    <a href="/board/business/detail?boardId=${board.boardBusinessId}">
+                    <label class="modal_button" name="${board.boardBusinessId}">
                         <div class="image-box">
                             <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
                         </div>
@@ -40,7 +40,7 @@ function showBoardsList(boards) {
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </label>
                 </li>
 			`;
     });
