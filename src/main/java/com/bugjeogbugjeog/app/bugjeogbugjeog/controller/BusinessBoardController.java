@@ -108,80 +108,147 @@ public class BusinessBoardController {
 //        return "post:/board/business/detail?boardBusinessId=" + boardBusinessId;
 //    }
 
+//    @GetMapping("/board/business/detail")
+//    @ResponseBody
+//    public void detail(Model model, @RequestParam("boardId") Long boardBusinessId, HttpServletRequest req) throws JsonProcessingException {
+//
+//        System.out.println(boardBusinessId);
+//        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
+////        String name = dto.getBoardBusinessImgOriginalName();
+//
+//        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
+//
+//        System.out.println(dto.toString());
+//        System.out.println(businessReviewDTOs.toString());
+//        List<BoardBusinessDTO> otherBoardDTOs = businessBoardService.getBoardsByBusinessId(dto.getBusinessId());
+//
+////        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+//
+//        MemberVO memberVO = null;
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Long memberId = (Long) req.getSession().getAttribute("memberId");
+//        try {
+//            memberVO = businessReviewService.getMember(memberId);
+//            String orginalName = memberVO.getMemberImgOriginalName();
+//            String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
+//            //  로그인한 사용자 이미지 정보
+//            model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        model.addAttribute(new BusinessReviewVO());
+//
+//        //  게시글 정보
+//        model.addAttribute("board", objectMapper.writeValueAsString(dto));
+//
+//        //  게시글 배너 이미지들 정보
+//        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
+//
+//        //  게시글 리뷰 정보
+//        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+//
+//        //  게시글 작성자(businessId)의 작성글 리스트
+//        model.addAttribute("boardList", objectMapper.writeValueAsString(otherBoardDTOs));
+//
+//        //  로그인한 사용자 정보
+//        model.addAttribute("member", JSONObject.toString("member", memberVO));
+//    }
+
+//    @GetMapping("/board/business/detail")
+//    @ResponseBody
+//    public void detail(@RequestParam("boardId") Long boardBusinessId, Model model, HttpServletRequest req) throws JsonProcessingException {
+//
+//        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
+////        String name = dto.getBoardBusinessImgOriginalName();
+//
+//        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
+//
+//        System.out.println(dto.toString());
+//        System.out.println(businessReviewDTOs.toString());
+//        List<BoardBusinessDTO> otherBoardDTOs = businessBoardService.getBoardsByBusinessId(dto.getBusinessId());
+//
+////        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
+//        Long memberId = (Long) req.getSession().getAttribute("memberId");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        if (memberId != null) {
+//            MemberVO memberVO = businessReviewService.getMember(memberId);
+//            String orginalName = memberVO.getMemberImgOriginalName();
+//            String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
+//            //  로그인한 사용자 정보
+//            model.addAttribute("member", JSONObject.toString("member", memberVO));
+//
+//            //  로그인한 사용자 이미지 정보
+//            model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+//        }
+//
+//        //  게시글 정보
+//        model.addAttribute("board", objectMapper.writeValueAsString(dto));
+//
+//        //  게시글 배너 이미지들 정보
+//        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
+//
+//        //  게시글 리뷰 정보
+//        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
+//
+//        //  게시글 작성자(businessId)의 작성글 리스트
+//        model.addAttribute("boardList", objectMapper.writeValueAsString(otherBoardDTOs));
+//
+//
+//    }
+
     @GetMapping("/board/business/detail")
-    public void detail(Model model, @RequestParam("boardId") Long boardBusinessId, HttpServletRequest req) throws JsonProcessingException {
-
-        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
-//        String name = dto.getBoardBusinessImgOriginalName();
-
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
-
-        System.out.println(dto.toString());
-        System.out.println(businessReviewDTOs.toString());
-        List<BoardBusinessDTO> otherBoardDTOs = businessBoardService.getBoardsByBusinessId(dto.getBusinessId());
-
-//        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
-
-        MemberVO memberVO = null;
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            memberVO = businessReviewService.getMember((Long) req.getSession().getAttribute("memberId"));
-            String orginalName = memberVO.getMemberImgOriginalName();
-            String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
-            //  로그인한 사용자 이미지 정보
-            model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        model.addAttribute(new BusinessReviewVO());
-
-        //  게시글 정보
-        model.addAttribute("board", objectMapper.writeValueAsString(dto));
-
-        //  게시글 배너 이미지들 정보
-        model.addAttribute("boardImgs", objectMapper.writeValueAsString(businessBoardImgService.getList(dto.getBoardBusinessId())));
-
-        //  게시글 리뷰 정보
-        model.addAttribute("reviews", objectMapper.writeValueAsString(businessReviewDTOs));
-
-        //  게시글 작성자(businessId)의 작성글 리스트
-        model.addAttribute("boardList", objectMapper.writeValueAsString(otherBoardDTOs));
-
-        //  로그인한 사용자 정보
-        model.addAttribute("member", JSONObject.toString("member", memberVO));
-    }
-
-    @PostMapping("/board/business/detail")
     @ResponseBody
-    public String detailAjax(@RequestBody Long boardBusinessId, HttpServletRequest req) {
+    public String detailAjax(@RequestParam("boardBusinessId") Long boardBusinessId, HttpServletRequest req) {
         // 클라의 success 내 resultData로 갈 값
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
-        BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
-        List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardBusinessId);
-        List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(boardBusinessId);
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+//        Long boardId = Long.parseLong(boardBusinessId);
+        Long boardId = boardBusinessId;
+        System.out.println(boardBusinessId);
+        System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+        BoardBusinessDTO board = businessBoardService.getBoard(boardId);
+        List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardId);
+        List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(board.getBusinessId());
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put("boardBusinessId", boardId);
+//        searchMap.put("boardBusinessId", board.getBusinessId().toString());
+
+        Long reviewGrade = businessBoardService.getList(searchMap).get(1).getBoardBusinessGradeAverage();
+
         // 서버에서 클라로 전송
         ObjectMapper objectMapper = new ObjectMapper();
         JSONObject returnObj = new JSONObject();
         Long memberId = (Long) req.getSession().getAttribute("memberId");
+
         try {
             if (memberId != null) {
                 MemberVO member = businessReviewService.getMember(memberId);
-
-                String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
-                memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
-                List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardBusinessId);
                 returnObj.put("member", objectMapper.writeValueAsString(member));
-                returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
-                returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
             }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+//        String memberImgFullPath = member.getMemberImgPath() + "/" + member.getMemberImgUuid() + "_" + member.getMemberImgOriginalName();
+//        memberImgFullPath = member.getMemberImgPath().isBlank() ? "" : memberImgFullPath;
+        List<BoardBusinessImgVO> boardImgs = businessBoardImgService.getList(boardId);
+        System.out.println(boardImgs.toString());
+//        returnObj.put("memberImgFullPath", objectMapper.writeValueAsString(memberImgFullPath));
+        try {
+            System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
+            returnObj.put("boardImgs", objectMapper.writeValueAsString(boardImgs));
+            System.out.println("☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆");
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
             returnObj.put("board", objectMapper.writeValueAsString(board));
             returnObj.put("reviews", objectMapper.writeValueAsString(reviews));
             returnObj.put("boards", objectMapper.writeValueAsString(boards));
+            returnObj.put("reviewCount", objectMapper.writeValueAsString(reviews.size()));
+            returnObj.put("reviewGrade", reviewGrade);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
         return returnObj.toJSONString();
     }
 
