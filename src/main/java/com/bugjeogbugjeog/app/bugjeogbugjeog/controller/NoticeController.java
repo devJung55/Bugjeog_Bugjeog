@@ -25,8 +25,9 @@ public class NoticeController {
 
     @GetMapping("/list")
     public String List(Model model, Criteria criteria){
+        Integer count = (int)(long) noticeService.count();
         model.addAttribute("noticeVO", noticeService.showList(criteria));
-        model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
+        model.addAttribute("pageDTO", new PageDTO(criteria, count));
         return "notice/notice_list";
     }
     @GetMapping("/detail/{noticeId}")
