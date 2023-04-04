@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 상세보기</title>
-    <link rel="stylesheet" href="../../static/css/notice/notice_detail.css">
+    <link rel="stylesheet" href="/css/notice/notice_detail.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
 </head>
 <body>
-    
      <!-- 헤더 -->
      <header class="header">
         <div class="header-inner container">
@@ -17,10 +16,10 @@
                 <div class="left_top">
                     <div class="header_logo">
                         <a href="">
-                            <img src="../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
+                            <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
                         </a>
                         <a href="">
-                            <img src="../../static/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
+                            <img src="/image/notice/customercenter.png" alt="고객센터로고" class="header_logo_img">
                         </a>
                     </div>
                 </div>
@@ -39,11 +38,11 @@
                     <li title="북적북적 고객센터">
                         <a href="">북적북적 공지사항</a>
                     </li>
-                    <img src="../../static/image/notice/arrow.png" alt="" class="arrow-ircon">
+                    <img src="/image/notice/arrow.png" alt="" class="arrow-ircon">
                    <li title="개인 회원">
                         <a href="">북적북적 소식</a>
                     </li>
-                    <img src="../../static/image/notice/arrow.png" alt="" class="arrow-ircon"> 
+                    <img src="/image/notice/arrow.png" alt="" class="arrow-ircon"> 
                     <li title="추천하기 ∙ 받기">
                         <a href="">공지사항</a>
                     </li>
@@ -55,42 +54,9 @@
                 <div class="row">
                     <div class="article_base">
                         <div>
-                            <h3 class="article_head">[공지] 설 연휴 업무 시간 조정안내 </h3>
+                            <h3 class="article_head" th:text="${noticeVO.noticeTitle}"></h3>
                             <div class="article_body">
-                                <p>안녕하세요,</p>
-                                <p>북적북적 입니다.</p>
-                                <p>&nbsp;</p>
-                                <p> 설 연휴를 맞아 다음과 같이 업무 시간이 조정될 예정이니 양해바랍니다.</p>
-                                <p>&nbsp;</p>
-                                <p><strong>- 2023년 01월 20일 (금) 오후 4시 업무 조기 마감</strong></p>
-                                <p>&nbsp;</p>
-                                <p>※ 위 안내 드린 업무 시간 이후 요청된 업무는 정상 업무 시작일 2023년 01월 25일 (수) 오전 9시부터 처리될 예정인 점 참고 바랍니다. </p>
-                                <p>&nbsp;</p>
-                                <p>감사합니다.</p>
-                                <p>북적북적 드림</p>
-                                <p>&nbsp;</p>
-                              <!--   <ul>
-                                    <ul>
-                                        <li>사용 중인 본인 계정 메일주소</li>
-                                        <li>사용 중인 본인 계정 메일주소</li>
-                                        <li>사용 중인 본인 계정 메일주소</li>
-                                        <li>사용 중인 본인 계정 메일주소</li>
-                                        <li>사용 중인 본인 계정 메일주소</li>
-                                        <li>지금은 베트남의 대표 음식이 된 쌀국수의 역사는 의외로 짧다. 지금으로부터 100여 년 전인 19세기말 방직공업이 번성했던 남딘(Nam Dinh)의 공장에서 하루 일과를 마친 노동자들이 고기국물에 국수를 말아 먹던 것이 쌀국수의 시초이다.
-                                            [네이버 지식백과] 베트남 쌀국수 - 국수 한 그릇에 담긴 슬픈 역사 (푸드스토리, 김한송)
-                                            
-                                            </li>
-                                        <li>베트남은 전 국민의 70% 이상이 농업에 종사하고 있는 대표적인 농업 국가이다. 그중에서도 쌀을 경작하기 위한 최적의 자연환경을 갖추고 있어 연간 최대 3모작도 가능하다. 이러한 자연환경 때문에 베트남의 한해 쌀 생산량은 베트남 전체 농업 생산량의 절반에 육박한다. 이처럼 풍부한 쌀을 가공하여 만든 음식이 바로 쌀국수이다. ‘퍼(Pho)'라고 불리는 쌀국수는 베트남 사람들이 분주한 아침의 간편한 식사 혹은 출출할 때 가볍게 먹을 수 있는 대중적인 음식이다. 쌀국수는 쫄깃하게 삶아낸 면발에 쇠고기나 닭육수를 넣고 신선한 야채를 듬뿍 곁들여 먹는 건강식이다.
-                                            [네이버 지식백과] 베트남 쌀국수 - 국수 한 그릇에 담긴 슬픈 역사 (푸드스토리, 김한송)</li>
-                                        <li>2000년대 초 국내에 첫 선을 보인 베트남 쌀국수는 건강한 음식을 찾는 한국인들에게 많은 사랑을 받으며 굳건히 그 위치를 지키고 있다. ‘웰빙’ 열풍을 타고 낮은 칼로리와 담백한 맛, 여기에 쌀로 만든 국수라는 점이 쌀 문화권인 한국에서 쌀국수가 성공한 배경이 된듯하다. 하지만 이렇게 맛있는 베트남 쌀국수 ‘퍼(Pho)'가 전쟁과 분단의 산물이라는 사실을 아는 사람은 그리 많지 않다. 전 세계로 퍼져나가 세계화에 성공한 쌀국수이지만 그 내면을 자세히 들여다보면 베트남인들의 슬픈 역사를 들여다 볼 수 있다.
-
-                                            [네이버 지식백과]베트남 쌀국수 - 국수 한 그릇에 담긴 슬픈 역사 (푸드스토리, 김한송)
-                                            
-                                        </li>
-                                    </ul>
-                                </ul>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p> -->
+                                <p th:text="${noticeVO.noticeContent}"></p>
                             </div>
                         </div>
                     </div>
@@ -100,21 +66,9 @@
                             <aside class="article_sidebar">
                                 <section>
                                     <h3 class="sidebar_title">이 섹션의 문서</h3>
-                                    <ul>
+                                    <ul th:each="notice : ${noticeVOS}">
                                         <li>
-                                            <a href="">[공지] 설 연휴 업무 시간 조정 안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="">[필독] 서비스 점검 관련 공지 안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="">[공지] 추석 연휴 업무 시간 조정 안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Internet Explorer 11 지원 종료 안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="">[북적북적] 개인정보 처리방침 개정에 대한 안내 </a>
+                                            <a th:text="${notice.noticeTitle}"></a>
                                         </li>
                                     </ul>
                                 </section>
@@ -127,7 +81,7 @@
         <div class="second_container container">
             <span class="article_bottom">
                 또 다른 질문이 있으십니까?&nbsp;&nbsp;&nbsp;
-                <a href="" class="inquire_a_tag">다른 문의 등록하기</a>
+                <a href="" class="inquire_a_tag" th:href="@{/board/inquiry/write}">다른 문의 등록하기</a>
             </span>
         </div>
     </main>
@@ -138,9 +92,9 @@
             <div class="footer-box">
                 <div class="footer-info">
                     <a href="javascript:void(0)" class="footer-image-box">
-                    <!--<img src="../../static/image/boardList/logo-icon.png" class="footer-image">
-                        <img src="../../static/image/boardList/logo_title.png" class="footer-image" style="width: 90px;"> -->
-                        <img src="../../static/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="footer-image">
+                    <!--<img src="/image/boardList/logo-icon.png" class="footer-image">
+                        <img src="/image/boardList/logo_title.png" class="footer-image" style="width: 90px;"> -->
+                        <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="footer-image">
                     </a>
                 </div>
                 <div class="footer-info-title">

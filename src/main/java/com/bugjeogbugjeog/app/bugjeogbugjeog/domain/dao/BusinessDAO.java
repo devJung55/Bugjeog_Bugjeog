@@ -57,5 +57,8 @@ public class BusinessDAO {
     /* 관리자 유통 회원 수정 */
     public void updateById(BusinessVO businessVO){businessMapper.update(businessVO);}
 
-
+    /* 추천 유통업체 TOP 10 */
+    public List<BusinessDTO> findListByReviewRank(){
+        return businessMapper.selectReivewRank();
+    }
 }

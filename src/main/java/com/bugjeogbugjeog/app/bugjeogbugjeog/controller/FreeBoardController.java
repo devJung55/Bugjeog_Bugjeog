@@ -1,10 +1,13 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,18 +16,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/FreeBoards/*")
+@RequestMapping("/free-boards/*")
 @RequiredArgsConstructor
+@Slf4j
 public class FreeBoardController {
     /*주입*/
     private final FreeBoardService freeBoardService;
     private final ReplyService replyService;
+    private final BusinessService businessService;
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(Long boardFreeId, Model model){
 
+        model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
         model.addAttribute("boardLists", freeBoardService.getList());
         return "/board/free/list";
 
@@ -34,7 +42,12 @@ public class FreeBoardController {
     /*자유게시판 디테일 */
     @GetMapping("detail/{boardFreeId}")
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model){
-        model.addAttribute("boardFreeVO",freeBoardService.getListBoard(boardFreeId));
+        List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
+        model.addAttribute("prevBoard", boardList.get(0));
+        model.addAttribute("currentBoard", boardList.get(1));
+        model.addAttribute("nextBoard", boardList.get(2));
+
+        log.info("========" + boardList);
 
         return "/board/free/detail";
     }
@@ -44,7 +57,7 @@ public class FreeBoardController {
     public RedirectView freeWrite(BoardFreeVO boardFreeVO){
      /*   model.addAttribute(new BoardFreeVO());*/
         freeBoardService.registerBoard(boardFreeVO);
-        return new RedirectView("/FreeBoards/");
+        return new RedirectView("/free-boards/");
     }
 
     /*참고하기 mapper*/
@@ -56,25 +69,25 @@ public class FreeBoardController {
     }
 
     /*댓글 목록*/
-//    @GetMapping("resister-reply")
-//    public String replyResister(){
-//        return "/board/free/detail";
-//    }
+    @GetMapping("resister-reply")
+    public String replyResister(){
+        return "/board/free/detail";
+    }
 
     /*댓글 등록*/
-//    @PostMapping("resister-reply")
-//    public RedirectView replyResister(FreeReplyVO freeReplyVO){
-//
-//        replyService.save(freeReplyVO);
-//
-//        return new RedirectView("/FreeBoards/detail");
-//    }
+    @PostMapping("resister-reply")
+    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+
+        replyService.save(freeReplyVO);
+
+        return new RedirectView("/free-boards/detail");
+    }
 
     /* 댓글 등록완료*/
-//    @GetMapping("reply-complate")
-//    public String replyAddEnd(Model model){
-//        model.addAttribute(new FreeReplyVO());
-//        return "/FreeBoards/detail";
-//    }
+    @GetMapping("reply-complate")
+    public String replyAddEnd(Model model){
+        model.addAttribute(new FreeReplyVO());
+        return "/free-boards/detail";
+    }
 
 }
