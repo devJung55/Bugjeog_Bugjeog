@@ -392,7 +392,9 @@ form button{
     color: #333;
     width: 240px;
 }
-#side_title{
+.side_title{
+    display: block;
+    width: 200px;
     cursor: pointer;
 }
 .profile-image {

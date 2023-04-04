@@ -1,10 +1,12 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/FreeBoards/*")
 @RequiredArgsConstructor
+@Slf4j
 public class FreeBoardController {
     /*주입*/
     private final FreeBoardService freeBoardService;
@@ -34,7 +39,12 @@ public class FreeBoardController {
     /*자유게시판 디테일 */
     @GetMapping("detail/{boardFreeId}")
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model){
-        model.addAttribute("boardFreeVO",freeBoardService.getListBoard(boardFreeId));
+        List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
+        model.addAttribute("prevBoard", boardList.get(0));
+        model.addAttribute("currentBoard", boardList.get(1));
+        model.addAttribute("nextBoard", boardList.get(2));
+
+        log.info("========" + boardList);
 
         return "/board/free/detail";
     }

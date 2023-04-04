@@ -1,7 +1,7 @@
 const boardDetailContainer = $('#detailBoards')
-    console.log(boardDetailContainer);
+console.log(boardDetailContainer);
 
-const createDOM = function (boardFreeId) {
+const createDOM = function (boardFree) {
     console.log("으아아아아아");
 
     let text = `
@@ -37,10 +37,10 @@ const createDOM = function (boardFreeId) {
                             </a>
                         </div>
 <!--                        <h1 id="title">📌개발자를 준비하며 자주 겪는 고민 - 희망 연봉</h1>-->
-                         <h1 id="title">${boardFreeId.boardFreeTitle}</h1>
+                         <h1 id="title">${boardFree.boardFreeTitle}</h1>
                     </div>
                     <div id="content">
-                    ${boardFreeId.boardFreeContent}
+                    ${boardFree.boardFreeContent}
 <!--                        신입 개발자로 입사할 때 희망 연봉을 어떻게 정해야 할지 고민이 많을 거예요. 희망 연봉은 단어 그대로 입사 지원자가 받고 싶은 연봉이에요.-->
 <!--                        연봉은 개발자 실력에 따라 정해져요.-->
 <!--                        실력이란 개발 능력뿐만 아니라 학력, 자격증, 나이, 전공, 사회경험, 성격, 외모까지 포함돼요. 하지만 신입은 본인의 실력을 가늠하기가 쉽지 않죠.-->
@@ -166,13 +166,12 @@ const createDOM = function (boardFreeId) {
 <!--            </div>-->
         </section>
 `
-        return text;
+    return text;
 
 }
-boardDetailContainer.append(createDOM(boardFreeId));
-    console.log("됐니?");
-    console.log(boardFreeId);
 
+boardDetailContainer.append(createDOM(currentBoard));
+console.log("됐니?");
 
 // detailsOfBoards.forEach((detailsOfBoards, i) => {
 //     boardDetailContainer.append(createDOM(detailsOfBoards));
