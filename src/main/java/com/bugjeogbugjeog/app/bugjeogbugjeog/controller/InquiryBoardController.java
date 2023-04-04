@@ -5,6 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryAnswerService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,9 @@ public class InquiryBoardController {
 
     //    리스트
     @GetMapping("/board/inquiry/list")
-    public void showList(Model model) {
-        model.addAttribute("boards", inquiryBoardService.showList());
+    public void showList(Model model, InquiryCriteria inquiryCriteria) {
+        model.addAttribute("boards", inquiryBoardService.showList(inquiryCriteria));
+//        model.addAttribute()
     }
 
     @GetMapping("/board/inquiry/detail")
