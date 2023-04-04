@@ -8,6 +8,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.NoticeService;
@@ -32,7 +33,7 @@ public class AdminController {
     private final NoticeService noticeService;
     private final MemberService memberService;
     private final BusinessService businessService;
-
+    private final BusinessBoardService businessBoardService;
 
     /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
@@ -103,7 +104,7 @@ public class AdminController {
     /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
-    public String memberCompanyList(){
+    public String memberCompanyList(Model model){
         return "admin/admin-member-companyList";
     }
 
@@ -122,7 +123,6 @@ public class AdminController {
 
         return businessService.adminShowListBusiness(criteria);
     }
-
 
     /* 유통 회원 상세 보기 */
     @GetMapping("admin-member-company/{businessId}")
@@ -217,11 +217,26 @@ public class AdminController {
 
     /* 유통 게시판 목록 */
     @GetMapping("admin-distributionList")
-    public void distributionShowList(){}
+    public void distributionShowList(Model model){
+        AdminCriteria adminCriteria = new AdminCriteria();
+        adminCriteria.create(1,5,5,1);
+        log.info("들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22");
+        log.info(businessBoardService.getListByPage(adminCriteria).toString());
+        model.addAttribute("list", businessBoardService.getListByPage(adminCriteria));
+    }
 
     /* 유통 게시판 조회 */
     @GetMapping("admin-distribution")
     public void distributionShow(){}
+
+    /* 유통 게시글 상세 보기*/
+    @GetMapping("admin-board-company/{boardBusinessId}")
+    public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
+        model.addAttribute("board", businessBoardService.getBoardById(boardBusinessId));
+        return "admin/admin-distribution";
+    }
 
     /* 유통 게시판 수정 */
 

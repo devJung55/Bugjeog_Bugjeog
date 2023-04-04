@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardImgMapper;
@@ -37,4 +38,13 @@ public class BusinessBoardDAO {
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> findAll(Map<String, Object> searchMap){ return businessBoardMapper.selectAllListBySearch(searchMap); }
 
+    //    관리자 페이지 목록
+    public List<BoardBusinessDTO> findAllByPage(AdminCriteria adminCriteria){
+        return businessBoardMapper.selectAllBusinessBoard(adminCriteria);
+    }
+
+    //    관리자 페이지 상세보기
+    public BoardBusinessDTO findBoardById(Long boardBusinessId){
+        return businessBoardMapper.selectBoard(boardBusinessId);
+    }
 }

@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessBoardDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessBoardImgDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
@@ -48,5 +49,14 @@ public class BusinessBoardService {
         return businessBoardDAO.findAll(searchMap);
     }
 
+    //    관리자페이지 목록
+    public List<BoardBusinessDTO> getListByPage(AdminCriteria adminCriteria){
+        return businessBoardDAO.findAllByPage(adminCriteria);
+    }
+
+    //    관리자 페이지 상세보기
+    public BoardBusinessDTO getBoardById(Long boardBusinessId){
+        return businessBoardDAO.findBoardById(boardBusinessId);
+    }
 
 }

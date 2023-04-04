@@ -1,8 +1,10 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -29,4 +31,10 @@ public interface BusinessBoardMapper {
 
     //    썸네일 포함 목록
     public List<BoardBusinessDTO> selectAllListBySearch(Map<String, Object> searchMap);
+
+    //    관리자 페이지 목록
+    public List<BoardBusinessDTO> selectAllBusinessBoard(@Param("adminCriteria") AdminCriteria adminCriteria);
+
+    //    관리자 페이지 상세보기
+    public BoardBusinessDTO selectBoard(Long boardBusinessId);
 }
