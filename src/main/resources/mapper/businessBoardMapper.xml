@@ -195,6 +195,9 @@
         and board_business_id = #{boardBusinessId}
     </select>
 
+<!--    <select id="selectBoardImages" resultType="boardBusinessDTO">-->
+
+<!--    </select>-->
 
 
 </mapper>
