@@ -23,16 +23,11 @@ public class ReplyController {
     private final ReplyService replyService;
 
     //    댓글 전체 조회
-//    @GetMapping("list")
-//    public List<BoardReplyDTO> showList(Criteria criteria, Long boardId){
-//        return replyService.getList(criteria, boardId);
-//    }
+    @GetMapping("list")
+    public List<BoardReplyDTO> showList(Criteria criteria, Long boardId){
+        return replyService.getList(criteria, boardId);
+    }
 
-    /*댓글 등록 용준*/
-//    @GetMapping("register-reply")
-//    public void register(Model model){
-//        model.addAttribute(new FreeReplyVO());
-//    }
 
     /*댓글 등록완료 용준*/
 //    @PostMapping("register-reply")
@@ -49,13 +44,13 @@ public class ReplyController {
 //    }
 
     /*댓글 등록*/
-    @PostMapping("resister-reply")
-    public RedirectView replyResister(FreeReplyVO freeReplyVO){
-
-        replyService.save(freeReplyVO);
-
-        return new RedirectView("/free-boards/detail");
-    }
+//    @PostMapping("resister-reply")
+//    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+//
+//        replyService.save(freeReplyVO);
+//
+//        return new RedirectView("/free-boards/detail");
+//    }
 
     /* 댓글 등록완료*/
 //    @GetMapping("reply-complate")

@@ -18,12 +18,12 @@ public class ReplyDAO {
     private final ReplyMapper replyMapper;
 
     //    댓글 전체 조회
-    public List<BoardReplyDTO> findAll(Criteria criteria, Long boardId){
-        return replyMapper.selectAll(criteria, boardId);
+    public List<BoardReplyDTO> findAll(Criteria criteria, Long boardFreeId){    //boardFreeId 원래는 boardId
+        return replyMapper.selectAll(criteria, boardFreeId);
     }
     //    댓글 전체 개수
-    public int findCountAll(Long boardId){
-        return replyMapper.getTotal(boardId);
+    public int findCountAll(Long boardFreeId){
+        return replyMapper.getTotal(boardFreeId);
     }
 
     // 댓글 등록
