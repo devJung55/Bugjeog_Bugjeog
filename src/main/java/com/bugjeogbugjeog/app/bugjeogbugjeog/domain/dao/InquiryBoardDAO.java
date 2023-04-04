@@ -105,7 +105,7 @@ public class InquiryBoardDAO {
     }
 
     // 문의 카운트
-    public int count() {
+    public Long count() {
         return inquiryBoardMapper.count();
     }
 

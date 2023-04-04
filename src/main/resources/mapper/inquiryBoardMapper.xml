@@ -115,7 +115,7 @@
     </delete>
 
     <!-- 문의 카운트 -->
-    <select id="count" resultType="int">
+    <select id="count" resultType="long">
         select count(board_inquiry_id) from tbl_board_inquiry;
     </select>
 
