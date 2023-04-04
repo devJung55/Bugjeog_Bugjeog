@@ -716,3 +716,38 @@ hr {
     /*color: #36f;*/
     display: none;
 }
+
+.pw-left{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.pw-left-box {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: -8px;
+    fill: #000;
+}
+
+.pw-left-inside {
+    display: flex;
+    align-items: inherit;
+}
+
+svg.svg-ssilta {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: 20px;
+    background: #fff;
+}
+
+svg.svg-business {
+    margin-top: 6px;
+}
