@@ -3,6 +3,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +26,13 @@ public class FreeBoardController {
     /*주입*/
     private final FreeBoardService freeBoardService;
     private final ReplyService replyService;
+    private final BusinessService businessService;
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(Long boardFreeId, Model model){
 
+        model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
         model.addAttribute("boardLists", freeBoardService.getList());
         return "/board/free/list";
 

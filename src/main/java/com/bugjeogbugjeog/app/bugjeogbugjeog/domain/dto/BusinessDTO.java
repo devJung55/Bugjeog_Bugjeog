@@ -33,6 +33,8 @@ public class BusinessDTO {
     private Long boardFreeLike;
 
     private Integer replyCount;
+    private Integer reviewCount;
+    private Double reviewGrade;
 
     private Long replyId;
     private String replyContent;

@@ -67,15 +67,18 @@
                         </button>
                     </div>
                     <div class="ranking-box">
-                        <h3 class="ranking-title">이달의 추천 유통업체</h3>
+                        <h3 class="ranking-title">이달의 추천 유통업체 TOP 10</h3>
                         <p class="ranking-subTitle">관심있는 유통업체를 찾아보세요.</p>
                         <div class="ranking-list-box">
-                            <a href="#" class="distributor-box">
+                            <a href="#" class="distributor-box" th:each="business : ${businessReviewTop10}">
                                 <div class="distributor-image-box">
                                      <img src="/image/boardList/distributor_icon.png">
                                      <!--<img src="../../../static/image/boardList/self_employ_icon.png">-->
                                 </div>
-                                <div class="distributor-name">유통업체 이름</div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <div class="distributor-name" th:text="${business.businessCompanyName}"></div>
+                                    <div style="font-size: 8px; margin-top: 3px" th:text="${'리뷰 평점 : ' + business.reviewGrade + ' | ' + '총 리뷰수 : ' + business.reviewCount}"></div>
+                                </div>
                                 <svg width="6" height="13" viewBox="0 0 6 13" fill="#888888" class="arrow-left">
                                     <path d="M0.34467 10.4697C0.0517767 10.7626 0.0517767 11.2374 0.34467 11.5303C0.637563 11.8232 1.11244 11.8232 1.40533 11.5303L5.65533 7.28033C5.94822 6.98744 5.94822 6.51256 5.65533 6.21967L1.40533 1.96967C1.11244 1.67678 0.637563 1.67678 0.34467 1.96967C0.0517767 2.26256 0.0517767 2.73744 0.34467 3.03033L4.06434 6.75L0.34467 10.4697Z"></path>
                                 </svg>

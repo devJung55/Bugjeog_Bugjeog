@@ -41,5 +41,6 @@ public interface BusinessMapper {
     /* 관리자 유통 회원 수정 */
     public void update(BusinessVO businessVO);
 
-
+    /* 추천 유통업체 TOP 10 */
+    public List<BusinessDTO> selectReivewRank();
 }
