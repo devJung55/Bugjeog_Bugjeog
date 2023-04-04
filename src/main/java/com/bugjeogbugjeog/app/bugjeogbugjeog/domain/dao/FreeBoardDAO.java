@@ -2,13 +2,9 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardImgMapper;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardMapper;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.FreeBoardImgMapper;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.FreeBoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -106,6 +102,15 @@ public class FreeBoardDAO {
 //        return freeBoardMapper.selectAll();
 //    }
 
+    /* 자유게시판 게시글 목록조회 */
+    public List<BoardFreeDTO> findListWithName(AdminCriteria adminCriteria){
+        return freeBoardMapper.selectWithName(adminCriteria);
+    }
+
+    /* 자유게시판 총 갯수 */
+    public Integer findTotal(){
+        return freeBoardMapper.getTotal();
+    }
 
     /* 관리자 *********************************************************************************** */
 
