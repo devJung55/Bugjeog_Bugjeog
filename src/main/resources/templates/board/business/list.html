@@ -113,7 +113,7 @@
 <script th:inline="javascript">
     let boards = [[${boards}]];
     alert("businessId: " + businessId);
-    alert("memberId" + memberId);
+    alert("memberId: " + memberId);
     $(document).ready(function () {
         if (memberId == null || businessId == null) {
             $($('button.pr-register-button')[0]).hide();
