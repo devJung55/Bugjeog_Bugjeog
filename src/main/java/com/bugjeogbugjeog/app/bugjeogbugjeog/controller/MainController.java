@@ -22,12 +22,15 @@ public class MainController {
     public String mainPage(HttpSession httpSession){
         if(httpSession.getAttribute("memberId") != null) {  // 자영업자 로그인 시 분기처리
             httpSession.getAttribute("memberId");
+            log.info("memberId : " + httpSession.getAttribute("memberId"));
 
         } else if(httpSession.getAttribute("businessId") != null) { // 비지니스 로그인 시 분기처리
             httpSession.getAttribute("businessId").toString();
+            log.info("businessId : " + httpSession.getAttribute("businessId"));
 
         } else if(httpSession.getAttribute("memberVO") != null){    // 카카오 및 네이버 로그인 시 분기처리
             httpSession.setAttribute("memberId", memberService.loginNaverOauth(((MemberVO)httpSession.getAttribute("memberVO")).getMemberEmail()));
+            log.info("memberId : " + httpSession.getAttribute("memberId"));
         }
         return "/main/main";
     }
