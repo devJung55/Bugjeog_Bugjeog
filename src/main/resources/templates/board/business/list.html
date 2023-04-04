@@ -49,12 +49,12 @@
                 <div class="recent-popluar-box">
                     <div class="recent-popluar-box-layout">
                         <div class="recent-box">
-                            <button type="button" class="recent-button sort-button sort-button-active">
+                            <button type="button" class="recent-button sort-button sort-button-active" name="recent">
                                 <span>최신순</span>
                             </button>
                         </div>
                         <div class="popluar-box">
-                            <button type="button" class="popluar-button sort-button">
+                            <button type="button" class="popluar-button sort-button" name="popular">
                                 <span>인기순</span>
                             </button>
                         </div>
@@ -121,7 +121,7 @@
             $($('button.pr-register-button')[0]).show();
         }
     });
-    showList(boards);
+    showBoardsList(boards);
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
 
@@ -147,7 +147,7 @@
             url: "/board/business/detail",
             method: "post",
             data: {
-                "boardBusinessId": JSON.stringify(boardBusinessId)
+                boardBusinessId: JSON.stringify(boardBusinessId)
             },
             contentType: "application/json; charset=utf-8",
             success: function (result) {
@@ -158,8 +158,9 @@
                 let boards = JSON.parse(dataResult.boards);
                 let member = JSON.parse(dataResult.member);
                 let boardImgs = JSON.parse(dataResult.boardImgs);
+                let memberImgFullPath = JSON.parse(dataResult.memberImgFullPath);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-                showDetail(board, reviews, boards, member, boardImgs);
+                showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
@@ -205,50 +206,52 @@
     // const boards = JSON.parse($boards); /* boards 정의해야 함 */
 
 
-    // /* 카테고리 버튼 이벤트 */
-    // const $cateButton = $(".cate-button");
-    //
-    // $cateButton.each((i, e) => {
-    //
-    //     $(e).click(function () {
-    //         $cateButton.removeClass("cate-button-active");
-    //         $(e).addClass("cate-button-active");
-    //         ajax();
-    //     });
-    // });
-    //
-    // function ajax() {
-    //     const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
-    //     const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
-    //     console.log(sortType);
-    //     $.ajax({
-    //         url: "/board/business/list",
-    //         method: "POST",
-    //         data: {
-    //             category: categoryName
-    //             , sort: sortType
-    //         },
-    //         dataType: "json",
-    //         success: function (result) {
-    //             let newBoards = `${result}`;
-    //             $ul.empty();
-    //             showList(result);
-    //         },
-    //         error: function (e) {
-    //             console.log(e);
-    //         }
-    //     });
-    // }
-    //
-    // /* sort 버튼 이벤트 */
-    // const $sortButton = $(".sort-button");
-    //
-    // $sortButton.each((i, e) => {
-    //     $(e).click(function () {
-    //         $sortButton.removeClass("sort-button-active");
-    //         $(e).addClass("sort-button-active");
-    //         ajax();
-    //     });
-    // });
+    /* 카테고리 버튼 이벤트 */
+    const $cateButton = $(".cate-button");
+
+    $cateButton.each((i, e) => {
+
+        $(e).click(function () {
+            $cateButton.removeClass("cate-button-active");
+            $(e).addClass("cate-button-active");
+            ajax();
+        });
+    });
+
+    function ajax() {
+        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+        const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+        console.log(categoryName);
+        console.log(sortType);
+        $.ajax({
+            url: "/board/business/list/ajax",
+            method: "GET",
+            data: {
+                category: categoryName,
+                sort: sortType
+            },
+            dataType: "json",
+            success: function (boards) {
+                // let newBoards = `${result}`;
+                $ul.empty();
+                showBoardsList(boards);
+            },
+            error: function (e) {
+                alert("보드리스트 실패");
+                console.log(e);
+            }
+        });
+    }
+
+    /* sort 버튼 이벤트 */
+    const $sortButton = $(".sort-button");
+
+    $sortButton.each((i, e) => {
+        $(e).click(function () {
+            $sortButton.removeClass("sort-button-active");
+            $(e).addClass("sort-button-active");
+            ajax();
+        });
+    });
 </script>
 </html>

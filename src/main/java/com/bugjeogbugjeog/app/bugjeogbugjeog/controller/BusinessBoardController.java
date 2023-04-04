@@ -48,12 +48,7 @@ public class BusinessBoardController {
 //    public void showList(Model model) {
 //        model.addAttribute("boards", businessBoardService.getList());
 //    }
-
-    @GetMapping("/board/business/list")
-    public void businessList(Long businessId, String category, String sort, Model model) {
-//        model.addAttribute(businessBoardService.getBoardsByBusinessId(businessId));
-        System.out.println("/board/business/list 들어옴");
-        System.out.println(category);
+    public Map<String, Object> boardFunction(Long businessId, String category, String sort) {
         Map<String, Object> searchMap = new HashMap<>();
         if (category != null) {
             switch (category) {
@@ -84,10 +79,26 @@ public class BusinessBoardController {
         if (businessId != null) {
             searchMap.put("businessId", businessId == null ? null : businessId);
         }
+        return searchMap;
+    }
+
+    @GetMapping("/board/business/list/ajax")
+    @ResponseBody
+    public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
+        if (category == null && sort == null && businessId == null) {
+            return businessBoardService.getList();
+        } else {
+            return businessBoardService.getList(boardFunction(businessId, category, sort));
+        }
+    }
+
+
+    @GetMapping("/board/business/list")
+    public void businessList(Long businessId, String category, String sort, Model model) {
         if (category == null && sort == null && businessId == null) {
             model.addAttribute("boards", businessBoardService.getList());
         } else {
-            model.addAttribute("boards", businessBoardService.getList(searchMap));
+            model.addAttribute("boards", businessBoardService.getList(boardFunction(businessId, category, sort)));
         }
     }
 
