@@ -57,36 +57,48 @@
     </select>
 
     <select id="selectAllList" resultType="boardBusinessDTO">
-       select
-            b.board_business_id,b.business_id,b.board_business_title,
-            b.board_business_content,b.board_business_register_date,b.board_business_update_date,
-            i2.board_business_img_id,i.board_business_img_original_name,i.board_business_img_uuid,
-            i.board_business_img_path
-            , ifnull(r.board_business_review_count, 0) board_business_review_count
-            , ifnull(r.board_business_grade_average, 0) board_business_grade_average,
-            bs.business_category,bs.business_location
-        from tbl_board_business b
-        left join (
-        select board_business_id, min(board_business_img_id) board_business_img_id
-        from tbl_board_business_img
-        group by board_business_id
-        ) i2
-        on b.board_business_id = i2.board_business_id
-        left join
-        tbl_board_business_img i on
-        i2.board_business_img_id = i.board_business_img_id
-        left join (
-        select board_business_id, count(*) board_business_review_count,
-            ifnull(avg(review_grade), 0) board_business_grade_average
-        from tbl_business_review
-        group by board_business_id
-        ) r
-        on b.board_business_id = r.board_business_id
-        inner join tbl_business bs
-        on b.business_id = bs.business_id
-        where bs.business_status = 1
-        group by b.board_business_id
-        order by b.board_business_id desc
+        SELECT
+            b.board_business_id,
+            b.business_id,
+            b.board_business_title,
+            b.board_business_content,
+            b.board_business_register_date,
+            b.board_business_update_date,
+            i2.board_business_img_id,
+            i.board_business_img_original_name,
+            i.board_business_img_uuid,
+            i.board_business_img_path,
+            IFNULL(r.board_business_review_count, 0) board_business_review_count,
+            IFNULL(r.board_business_grade_average, 0) board_business_grade_average,
+            bs.business_category,
+            bs.business_location
+        FROM tbl_board_business b
+        LEFT JOIN (
+            SELECT board_business_id, MIN(board_business_img_id) board_business_img_id
+            FROM tbl_board_business_img
+            GROUP BY board_business_id
+        ) i2 ON b.board_business_id = i2.board_business_id
+        LEFT JOIN tbl_board_business_img i ON i2.board_business_img_id = i.board_business_img_id
+        LEFT JOIN (
+            SELECT
+                board_business_id,
+                COUNT(*) board_business_review_count,
+                IFNULL(AVG(review_grade), 0) board_business_grade_average
+            FROM tbl_business_review
+            GROUP BY board_business_id
+        ) r ON b.board_business_id = r.board_business_id
+        INNER JOIN tbl_business bs ON b.business_id = bs.business_id
+        WHERE bs.business_status = 1
+        GROUP BY b.board_business_id
+            ,b.board_business_id,
+          b.business_id,
+          b.board_business_title,
+          b.board_business_content,
+          b.board_business_register_date,
+          b.board_business_update_date,
+          i2.board_business_img_id,
+          r.board_business_review_count
+        ORDER BY b.board_business_id desc
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
