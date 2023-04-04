@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -218,12 +220,31 @@ public class AdminController {
 
     /* 유통 게시판 목록 */
     @GetMapping("admin-distributionList")
-    public void distributionShowList(Model model){
-        AdminCriteria adminCriteria = new AdminCriteria();
-        adminCriteria.create(1,5,5,1);
-        log.info("들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22");
+    public String distributionShowList(){
+        return "admin/admin-distributionList";
+    }
+
+    @GetMapping("admin-distributionList/{page}")
+    @ResponseBody
+    public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = businessBoardService.getCount().intValue();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
+        } else {
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
+        }
         log.info(businessBoardService.getListByPage(adminCriteria).toString());
-        model.addAttribute("list", businessBoardService.getListByPage(adminCriteria));
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("boards",businessBoardService.getListByPage(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
     }
 
     /* 유통 게시판 조회 */

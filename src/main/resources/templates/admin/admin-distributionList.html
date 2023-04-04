@@ -107,21 +107,21 @@
 										</div>
 									</div>
 								</div>
-								<div class="page-button-active page-button">
+								<div class="page-button-active page-button" onclick="movePage(this)">
 									<div class="page-button-margin">
 										<div>
 											<span>1</span>
 										</div>
 									</div>
 								</div>
-								<div class="page-button">
+								<div class="page-button" onclick="movePage(this)">
 									<div class="page-button-margin">
 										<div>
 											<span>2</span>
 										</div>
 									</div>
 								</div>
-								<div class="page-button">
+								<div class="page-button" onclick="movePage(this)">
 									<div class="page-button-margin">
 										<div>
 											<span>3</span>
@@ -147,4 +147,60 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+	// 이동할 페이지
+	let page = 0;
+	// 이동한 페이지 가져오기 ex) 1클릭하면 1 가져옴
+	// function checkPage() {
+	// 	let page = 0;
+	// 	page = $(this).children().children().children().text();
+	// 	console.log($(this));
+	// 	console.log($(this).children().children().children().text());
+	// }
+
+	$(document).ready(function () {
+		$.ajax({
+			type: 'GET',
+			url: `/admin/admin-distributionList/0`,
+			success: function (info) {
+				console.log(info.boards);
+				console.log(info.criteria);
+			},
+			error: function (error) {
+				console.log('Error fetching data:', error);
+			}
+		});
+	});
+
+	function movePage(e) {
+		// console.log(e);
+		console.log($(e).children().children().children().text());
+		page = $(e).children().children().children().text();
+		// page = $(e).children().children().children().text();
+
+		$.ajax({
+			type: 'GET',
+			url: `/admin/admin-distributionList/${page}`,
+			success: function (result) {
+				console.log(result);
+			},
+			error: function (error) {
+				console.log('Error fetching data:', error);
+			}
+		});
+	}
+
+	// $.ajax({
+	// 	type: 'GET',
+	// 	url: `/admin/admin-distributionList/{page}`,
+	// 	success: function (result) {
+	// 		console.log(result);
+	// 	},
+	// 	error: function (error) {
+	// 		console.log('Error fetching data:', error);
+	// 	}
+	// });
+
+
+</script>
 </html>

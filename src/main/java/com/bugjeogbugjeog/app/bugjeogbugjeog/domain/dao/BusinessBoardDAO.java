@@ -43,6 +43,11 @@ public class BusinessBoardDAO {
         return businessBoardMapper.selectAllBusinessBoard(adminCriteria);
     }
 
+    //    pr게시판 목록 개수
+    public Long findCount(){
+        return businessBoardMapper.selectBoardCount();
+    }
+
     //    관리자 페이지 상세보기
     public BoardBusinessDTO findBoardById(Long boardBusinessId){
         return businessBoardMapper.selectBoard(boardBusinessId);

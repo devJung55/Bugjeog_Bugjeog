@@ -54,6 +54,11 @@ public class BusinessBoardService {
         return businessBoardDAO.findAllByPage(adminCriteria);
     }
 
+    //    pr게시판 목록 개수
+    public Long getCount(){
+        return businessBoardDAO.findCount();
+    }
+
     //    관리자 페이지 상세보기
     public BoardBusinessDTO getBoardById(Long boardBusinessId){
         return businessBoardDAO.findBoardById(boardBusinessId);

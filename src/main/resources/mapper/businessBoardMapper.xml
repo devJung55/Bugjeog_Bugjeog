@@ -159,6 +159,12 @@
         limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 
+<!-- pr게시판 게시물 개수  -->
+    <select id="selectBoardCount" resultType="long">
+        select 	count(board_business_id)
+        from tbl_business b join tbl_board_business bb on b.business_id = bb.business_id
+    </select>
+
 <!-- 관리자 페이지 상세보기 -->
     <select id="selectBoard" resultType="boardBusinessDTO">
         select board_business_id, b.business_id, business_email, business_password, business_ceo_name, business_number, business_company_name,

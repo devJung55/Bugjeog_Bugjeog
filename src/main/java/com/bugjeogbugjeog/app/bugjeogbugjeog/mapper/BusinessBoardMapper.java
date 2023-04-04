@@ -35,6 +35,9 @@ public interface BusinessBoardMapper {
     //    관리자 페이지 목록
     public List<BoardBusinessDTO> selectAllBusinessBoard(@Param("adminCriteria") AdminCriteria adminCriteria);
 
+    //    pr게시판 목록 개수
+    public Long selectBoardCount();
+
     //    관리자 페이지 상세보기
     public BoardBusinessDTO selectBoard(Long boardBusinessId);
 }
