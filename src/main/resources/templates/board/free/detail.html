@@ -17,10 +17,10 @@
 <main id="main">
     <div><!-- 보더 추가 -->
         <div><!-- 패딩 -->
-            <aside id="aside">
-                <article id="side_article">
+            <aside id="aside" th:if="${prevBoard != null}">
+                <article id="side_article" th:object="${prevBoard}">
                     <div style="margin-bottom: 9px;">
-                        <a style="display: flex; width: 0; cursor: pointer;">
+                        <a style="display: flex; width: 0; cursor: pointer;" th:href="'/FreeBoards/detail/' + *{boardFreeId}">
                             <div style="display: inline-flex; align-items: center;">
                                 <div style="text-align: left; display: flex; align-items: center;">
                                     <div style="position: relative; margin-right: 7px;">
@@ -36,27 +36,27 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname">soni</div>
+                                            <div id="side_nickname" th:text="*{memberName}"></div>
                                         </div>
-                                        <span id="side_span_date">2023.03.08</span>
+                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>
                             <div style="position: absolute; right: 0; color: #8958FA;">< 이전글</div>
                         </a>
                     </div>
-                    <a id="side_title">
-                        <h3>제대로된 이직 준비가 처음인데</h3>
+                    <a class="side_title">
+                        <h3 th:text="*{boardFreeTitle}"></h3>
                     </a>
                     <!-- ::after -->
                 </article>
             </aside>
         </div>
         <div><!-- 패딩 -->
-            <aside id="aside">
-                <article id="side_article">
+            <aside id="aside" th:if="${nextBoard != null}">
+                <article id="side_article" th:object="${nextBoard}">
                     <div style="margin-bottom: 9px;">
-                        <a style="display: flex; width: 0; cursor: pointer;">
+                        <a style="display: flex; width: 0; cursor: pointer;" th:href="'/FreeBoards/detail/' + *{boardFreeId}">
                             <div style="display: inline-flex; align-items: center;">
                                 <div style="text-align: left; display: flex; align-items: center;">
                                     <div style="position: relative; margin-right: 7px;">
@@ -72,17 +72,17 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname">soni</div>
+                                            <div id="side_nickname" th:text="*{memberName}">soni</div>
                                         </div>
-                                        <span id="side_span_date">2023.03.12</span>
+                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>
                             <div style="position: absolute; right: 0; color: #8958FA;">다음글 ></div>
                         </a>
                     </div>
-                    <a id="side_title">
-                        <h3>제대로된 이직 준비가 처음인데</h3>
+                    <a class="side_title">
+                        <h3 th:text="*{boardFreeTitle}"></h3>
                     </a>
                     <!-- ::after -->
                 </article>
@@ -143,19 +143,19 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let boardFreeId = [[${boardFreeVO.boardFreeId}]];
+    /* freBoards 는 이전글, 현재글, 다음글이 담겨있는 list이다. 1번째방이 현재글 */
+    let currentBoard = [[${currentBoard}]];
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <script>
 
     /*댓글*/
    let page = 1;
-    console.log(boardFreeId);
 
     const replyService = (() => {
         function getList(callback) {
             $.ajax({
-                url: `/replies/list?page=${page}&boardFreeId=${boardFreeId}`,
+                url: `/replies/list?page=${page}&boardFreeId=${currentBoard.boardFreeId}`,
                 type : "get",
                 success: function (replies) {
                     if (callback) {
