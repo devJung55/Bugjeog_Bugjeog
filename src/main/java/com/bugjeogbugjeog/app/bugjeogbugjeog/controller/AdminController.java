@@ -247,12 +247,9 @@ public class AdminController {
         return info;
     }
 
-    /* 유통 게시판 조회 */
-    @GetMapping("admin-distribution")
-    public void distributionShow(){}
 
     /* 유통 게시글 상세 보기*/
-    @GetMapping("admin-board-company/{boardBusinessId}")
+    @GetMapping("admin-distribution/{boardBusinessId}")
     public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
         log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
