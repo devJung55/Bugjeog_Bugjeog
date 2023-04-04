@@ -5,20 +5,21 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/free-boards/*")
@@ -29,10 +30,27 @@ public class FreeBoardController {
     private final FreeBoardService freeBoardService;
     private final ReplyService replyService;
     private final BusinessService businessService;
+    private final MemberService memberService;
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
-    public String freeBoard(AdminCriteria criteria, Model model){
+    public String freeBoard(AdminCriteria criteria, Model model, HttpServletRequest request){
+
+        MemberVO memberVO = new MemberVO();
+        Object memberId = request.getSession().getAttribute("memberId");
+        if(memberId == null) model.addAttribute("member", null);
+        else model.addAttribute("member", memberService.showMember((Long)memberId));
+
+        model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
+        model.addAttribute("criteria", criteria);
+
+        return "/board/free/list";
+
+    } //html 경로
+
+    @GetMapping("boards")
+    @ResponseBody
+    public List<BoardFreeDTO> getBoards(AdminCriteria criteria){
 
         int currentPage = 0;
         int rowCount = 5;
@@ -47,14 +65,8 @@ public class FreeBoardController {
 
         criteria.create(currentPage, rowCount, total, pageCount);
 
-        model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
-        model.addAttribute("boardLists", freeBoardService.getListWithName(criteria));
-        model.addAttribute("criteria", criteria);
-        model.addAttribute("total", total);
-
-        return "/board/free/list";
-
-    } //html 경로
+        return freeBoardService.getListWithName(criteria);
+    }
 
 
     /*자유게시판 디테일 */
