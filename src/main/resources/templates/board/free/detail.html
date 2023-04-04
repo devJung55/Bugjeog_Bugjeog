@@ -115,7 +115,7 @@
                     <span id="my_nickname">최선규</span>
                 </div>
                 <div id="form_wrap">
-                    <form th:action="@{/FreeBoards/resister-reply}" method="post">
+                    <form th:action="@{/free-boards/resister-reply}" method="post">
                         <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
                         <button type="button" class="reply-register-button">
                             <!--댓글 등록 완료 시 디테일 페이지로 이동-->
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <!--목록으로 클릭시 리스트 페이지로 이동-->
-            <button id="list_button" onclick="location.href='/FreeBoards/'">
+            <button id="list_button" onclick="location.href='/free-boards/'">
                     <span style="width: 100%;">
                         <span id="list_button_span">
                             <svg id="arrow">

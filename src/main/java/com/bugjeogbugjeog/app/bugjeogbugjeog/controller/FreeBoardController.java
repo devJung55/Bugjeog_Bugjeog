@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-@RequestMapping("/FreeBoards/*")
+@RequestMapping("/free-boards/*")
 @RequiredArgsConstructor
 public class FreeBoardController {
     /*주입*/
@@ -44,7 +44,7 @@ public class FreeBoardController {
     public RedirectView freeWrite(BoardFreeVO boardFreeVO){
      /*   model.addAttribute(new BoardFreeVO());*/
         freeBoardService.registerBoard(boardFreeVO);
-        return new RedirectView("/FreeBoards/");
+        return new RedirectView("/free-boards/");
     }
 
     /*참고하기 mapper*/
@@ -67,14 +67,14 @@ public class FreeBoardController {
 
         replyService.save(freeReplyVO);
 
-        return new RedirectView("/FreeBoards/detail");
+        return new RedirectView("/free-boards/detail");
     }
 
     /* 댓글 등록완료*/
     @GetMapping("reply-complate")
     public String replyAddEnd(Model model){
         model.addAttribute(new FreeReplyVO());
-        return "/FreeBoards/detail";
+        return "/free-boards/detail";
     }
 
 }
