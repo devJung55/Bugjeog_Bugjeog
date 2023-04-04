@@ -146,7 +146,35 @@
         <if test="sort == 'popular'">
             order by board_business_grade_average desc
         </if>
-
     </select>
+
+<!--  관리자 페이지 목록 불러오기  -->
+    <select id="selectAllBusinessBoard" resultType="boardBusinessDTO">
+        select 	board_business_id, b.business_id, business_email, business_password, business_ceo_name, business_number, business_company_name,
+                business_phone_number, business_establishment_date, business_register_date, business_status,
+                business_img_original_name, business_img_uuid, business_img_path, business_location, business_category,
+                board_business_title, board_business_content, board_business_register_date, board_business_update_date, board_business_status
+        from tbl_business b join tbl_board_business bb on b.business_id = bb.business_id
+        order by bb.board_business_id desc
+        limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
+    </select>
+
+<!-- pr게시판 게시물 개수  -->
+    <select id="selectBoardCount" resultType="long">
+        select 	count(board_business_id)
+        from tbl_business b join tbl_board_business bb on b.business_id = bb.business_id
+    </select>
+
+<!-- 관리자 페이지 상세보기 -->
+    <select id="selectBoard" resultType="boardBusinessDTO">
+        select board_business_id, b.business_id, business_email, business_password, business_ceo_name, business_number, business_company_name,
+		business_phone_number, business_establishment_date, business_register_date, business_status,
+		business_img_original_name, business_img_uuid, business_img_path, business_location, business_category,
+		board_business_title, board_business_content, board_business_register_date, board_business_update_date, board_business_status
+        from tbl_business b join tbl_board_business bb on b.business_id = bb.business_id
+        and board_business_id = #{boardBusinessId}
+    </select>
+
+
 
 </mapper>
