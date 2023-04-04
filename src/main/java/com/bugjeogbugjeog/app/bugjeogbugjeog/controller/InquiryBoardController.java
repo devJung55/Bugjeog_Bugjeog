@@ -32,6 +32,7 @@ public class InquiryBoardController {
     //    리스트
     @GetMapping("/board/inquiry/list")
     public void showList(Model model, InquiryCriteria inquiryCriteria) {
+
         model.addAttribute("boards", inquiryBoardService.showList(inquiryCriteria));
 //        model.addAttribute()
     }
