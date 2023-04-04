@@ -96,7 +96,9 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <script th:inline="javascript">
-    // const
+    let memberId = [[${session.memberId}]];
+    let businessId = [[${session.businessId}]];
+
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
     const $modal = $(".modal-active");
@@ -107,9 +109,18 @@
 
 </script>
 <script th:inline="javascript" src="/js/boardDetail/boardBusinessDetailFunction.js"></script>
+<script th:inline="javascript" src="/js/boardList/boardBusinessList.js"></script>
 <script th:inline="javascript">
     let boards = [[${boards}]];
-    let sessionId = [[${}]];
+    alert(businessId);
+    alert(memberId);
+    $(document).ready(function () {
+        if (memberId == null || businessId == null) {
+            $($('button.pr-register-button')[0]).hide();
+        } else if (businessId != null) {
+            $($('button.pr-register-button')[0]).show();
+        }
+    });
     showList(boards);
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
@@ -140,26 +151,18 @@
             success: function (result) {
                 let dataResult = JSON.parse(result);
 
-                let board =     JSON.parse(dataResult.board);
-                let reviews =   JSON.parse(dataResult.reviews);
-                let boards =    JSON.parse(dataResult.boards);
-                let member =    JSON.parse(dataResult.member);
+                let board = JSON.parse(dataResult.board);
+                let reviews = JSON.parse(dataResult.reviews);
+                let boards = JSON.parse(dataResult.boards);
+                let member = JSON.parse(dataResult.member);
                 let boardImgs = JSON.parse(dataResult.boardImgs);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 showDetail(board, reviews, boards, member, boardImgs);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
-                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
-                // textarea 입력시 등록 버튼 색상 변경
-                $('#reply_textarea').on('input', function () {
-                    if ($(this).val().length > 0) {
-                        $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-                    } else {
-                        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-                    }
-                });
+
                 afterDetail();
 
             },

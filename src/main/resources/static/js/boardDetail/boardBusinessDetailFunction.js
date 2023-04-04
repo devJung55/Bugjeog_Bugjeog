@@ -246,6 +246,21 @@ function showDetail(board, reviews, boards, member, boardImgs) {
             </div>`;
     });
     $('#all_wrap').append(text);
+    if(businessId==null){
+        $('button[type="submit"]').show();
+        $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+
+        // textarea 입력시 등록 버튼 색상 변경
+        $('#reply_textarea').on('input', function () {
+            if ($(this).val().length > 0) {
+                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
+            } else {
+                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
+            }
+        });
+    } else {
+        $('button[type="submit"]').hide();
+    }
 };
 
 /*    let board = [[${board}]];
