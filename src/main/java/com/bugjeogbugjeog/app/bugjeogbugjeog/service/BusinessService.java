@@ -20,7 +20,7 @@ public class BusinessService {
     public List<BusinessDTO> adminShowListBusiness(Criteria criteria){ return businessDAO.adminFindAll(criteria);}
 
     /* 관리자 카운트 */
-    public int count(){return businessDAO.count();}
+    public Long count(){return businessDAO.count();}
 
     /* 관리자 유통 상세 보기 */
     public BusinessDTO adminShowBusiness(Long businessId){return businessDAO.adminFindById(businessId);}

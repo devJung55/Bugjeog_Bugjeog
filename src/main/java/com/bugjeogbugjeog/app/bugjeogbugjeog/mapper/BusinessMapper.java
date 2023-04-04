@@ -33,7 +33,7 @@ public interface BusinessMapper {
     public List<BusinessDTO> adminSelectAllBusiness(Criteria criteria);
 
     /* 관리자 카운트 */
-    public int count();
+    public Long count();
 
     /* 관리자 유통 상세 보기 */
     public BusinessDTO adminSelectBusiness(Long businessId);

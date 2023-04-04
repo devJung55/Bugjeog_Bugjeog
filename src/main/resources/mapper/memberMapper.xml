@@ -146,7 +146,7 @@
     </select>
 
     <!-- 회원 수 카운트 -->
-    <select id="count" resultType="int">
+    <select id="count" resultType="long">
         select count(member_id) from tbl_member
     </select>
 

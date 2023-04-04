@@ -46,24 +46,20 @@ public class AdminController {
         return "/admin/admin-memberList";
     }
 
-    @PostMapping("admin-memberList")
+ /*   @PostMapping("admin-memberList/{page}")
     @ResponseBody
-    public Map<String, Object> memberListShow(@RequestBody Map<String, Object> requestData, AdminCriteria adminCriteria){
-        Map<String, Object> result = new HashMap<>();
-        int page = (int) requestData.get("page");
+    public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria){
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = memberService.count().intValue();
 
-        if( page == 0) {
-            page = 1;
-        }
-        adminCriteria.create( page, 10, memberService.count(), 5);
-/*
 
         if( adminCriteria.getPage() == 0) {
             adminCriteria.create( 1, 10, memberService.count(), 5);
         } else {
             adminCriteria.create( adminCriteria.getPage(), 10, memberService.count(), 5);
         }
-*/
+
 
         List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
         log.info(members.toString());
@@ -71,7 +67,7 @@ public class AdminController {
         result.put("members", members);
         result.put("criteria", adminCriteria);
         return result;
-    }
+    }*/
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -228,8 +224,8 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
         log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
-        int total = businessBoardService.getCount().intValue();
+        log.info(page.toString());   int total = businessBoardService.getCount().intValue
+     ();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
