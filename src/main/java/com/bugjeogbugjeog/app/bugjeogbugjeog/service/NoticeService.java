@@ -30,5 +30,5 @@ public class NoticeService {
     }
 
     /* 카운트 */
-    public int count(){return noticeDAO.count();}
+    public Long count(){return noticeDAO.count();}
 }
