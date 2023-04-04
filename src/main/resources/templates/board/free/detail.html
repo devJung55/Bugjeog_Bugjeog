@@ -100,6 +100,7 @@
             <!-- 댓글 뿌려주는 곳 -->
             <div id="reply_wrap_div">
                 <!--reply 내용-->
+
             </div>
             <!-- 끝 -->
             <div style="margin-top: 20px">
@@ -147,7 +148,7 @@
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <script>
 
-    /*댓글글*/
+    /*댓글*/
    let page = 1;
     console.log(boardFreeId);
 
@@ -174,8 +175,8 @@
 
     $replyRegisterButton.click(function () {
         replyService.getList(function (list) {
+            console.log(list.memberName);
             let text = "";
-            console.log(list.length);
 
             text += `
                      <div style="margin-bottom: 20px">
@@ -194,7 +195,8 @@
                                             </div>
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                                    <div id="reply_nickname">DesignK</div>
+<!--                                                    <div id="reply_nickname">DesignK</div>-->
+                                                    <div id="reply_nickname">${list.memberName}</div>
                                                 </div>
                                                 <span id="reply_date">2023.03.14</span>
                                             </div>
@@ -210,13 +212,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
+<!--                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>-->
+                            <div id="reply_content">${boardFreeId.replyContent}</div>
                         </div>
             `
 
         });
     });
 
+    boardDetailContainer.append(createDOM(boardFreeId));
+    console.log("됐니?");
+    console.log(boardFreeId);
 
     // 좋아요 댓글 color변경
     const viewbox = document.getElementsByClassName("viewbox_path");
