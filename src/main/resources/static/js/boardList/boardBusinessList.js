@@ -1,6 +1,7 @@
 /* 작성글 목록 */
 const $ul = $($('ul.boardList-info-box')[0]);
 function showList(boards) {
+
     $ul.empty();
     let text = ``;
     boards.forEach(board => {
@@ -45,4 +46,5 @@ function showList(boards) {
 			`;
     });
     $ul.append(text);
+
 }

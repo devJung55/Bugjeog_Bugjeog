@@ -4,6 +4,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
@@ -15,10 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,37 +44,51 @@ public class BusinessBoardController {
     }
 
     //    리스트
-    @GetMapping("/board/business/list")
-    public void showList(Model model) {
-        model.addAttribute("boards", businessBoardService.getList());
-    }
+//    @GetMapping("/board/business/list")
+//    public void showList(Model model) {
+//        model.addAttribute("boards", businessBoardService.getList());
+//    }
 
-    @ResponseBody
-    @PostMapping("/board/business/list")
-    public List<BoardBusinessDTO> searchList(Model model, HttpServletRequest req) {
+    @GetMapping("/board/business/list")
+    public void businessList(Long businessId, String category, String sort, Model model) {
+//        model.addAttribute(businessBoardService.getBoardsByBusinessId(businessId));
+        System.out.println("/board/business/list 들어옴");
+        System.out.println(category);
         Map<String, Object> searchMap = new HashMap<>();
-        String category = null;
-        switch (req.getParameter("category")) {
-            case "meat":
-                category = "육류";
-                break;
-            case "seafood":
-                category = "해산물";
-                break;
-            case "spice":
-                category = "향신료";
-                break;
-            case "vegetable":
-                category = "채소";
-                break;
-            default:
-                category = null;
-                break;
-        };
+        if(category != null) {
+            switch (category) {
+                case "meat":
+                    category = "육류";
+                    break;
+                case "seafood":
+                    category = "해산물";
+                    break;
+                case "spice":
+                    category = "향신료";
+                    break;
+                case "vegetable":
+                    category = "채소";
+                    break;
+                default:
+                    category = null;
+                    break;
+            }
+        }
 //        model.addAttribute("boards", businessBoardService.getList(searchMap));
-        searchMap.put("category", category);
-        searchMap.put("sort", req.getParameter("sort"));
-        return businessBoardService.getList(searchMap);
+        if (category != null) {
+            searchMap.put("category", category == null ? null : category);
+        }
+        if (sort != null) {
+            searchMap.put("sort", sort == null ? "recent" : sort);
+        }
+        if (businessId != null) {
+            searchMap.put("businessId", businessId == null ? null : businessId);
+        }
+        if (category == null && sort == null && businessId == null) {
+            model.addAttribute("boards", businessBoardService.getList());
+        } else {
+            model.addAttribute("boards", businessBoardService.getList(searchMap));
+        }
     }
 
 //    @GetMapping("/board/business/detail")
@@ -86,12 +98,12 @@ public class BusinessBoardController {
 //    }
 
     @GetMapping("/board/business/detail")
-    public void detail(Model model, HttpServletRequest req) throws JsonProcessingException {
+    public void detail(Model model, @RequestParam("boardId") Long boardBusinessId, HttpServletRequest req) throws JsonProcessingException {
 
-        BoardBusinessDTO dto = businessBoardService.getBoard(Long.parseLong(req.getParameter("boardBusinessId")));
+        BoardBusinessDTO dto = businessBoardService.getBoard(boardBusinessId);
         String name = dto.getBoardBusinessImgOriginalName();
 
-        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(Long.parseLong(req.getParameter("boardBusinessId")));
+        List<BusinessReviewDTO> businessReviewDTOs = businessReviewService.getReviews(boardBusinessId);
 
         System.out.println(dto.toString());
         System.out.println(businessReviewDTOs.toString());
@@ -99,10 +111,21 @@ public class BusinessBoardController {
 
 
 //        MemberVO memberVO = businessReviewService.getMember(Long.parseLong(String.valueOf(req.getSession().getAttribute("memberId"))));
-        MemberVO memberVO = businessReviewService.getMember(5L);
-        String orginalName = memberVO.getMemberImgOriginalName();
-        String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
+
+        MemberVO memberVO = null;
         ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            memberVO = businessReviewService.getMember((Long)req.getSession().getAttribute("memberId"));
+            String orginalName = memberVO.getMemberImgOriginalName();
+            String memberFullPath = (orginalName == null || orginalName == "null" || orginalName == "") ? "/image/mypage/member_no_image.png" : (memberVO.getMemberImgPath() + "/" + memberVO.getMemberImgUuid() + "_" + memberVO.getMemberImgOriginalName());
+            //  로그인한 사용자 이미지 정보
+            model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute(new BusinessReviewVO());
+
         //  게시글 정보
         model.addAttribute("board", objectMapper.writeValueAsString(dto));
 
@@ -118,14 +141,12 @@ public class BusinessBoardController {
         //  로그인한 사용자 정보
         model.addAttribute("member", JSONObject.toString("member", memberVO));
 
-        //  로그인한 사용자 이미지 정보
-        model.addAttribute("memberFullPath", objectMapper.writeValueAsString(memberFullPath));
 
     }
 
     @PostMapping("/board/business/detail")
     @ResponseBody
-    public String detailAjax(@RequestBody Long boardBusinessId) throws Exception {
+    public String detailAjax(@RequestBody Long boardBusinessId, BusinessReviewVO businessReviewVO) throws Exception {
         // 클라의 success 내 retData로 갈 값
 //        ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
         BoardBusinessDTO board = businessBoardService.getBoard(boardBusinessId);
