@@ -34,6 +34,11 @@ public class InquiryBoardService {
         return inquiryBoardDAO.findAllByIdToInquire();
     }
 
+    //    리스트 조회
+    public List<BoardInquiryDTO> showList(InquiryCriteria inquiryCriteria){
+        return inquiryBoardDAO.findAllByIdToInquire(inquiryCriteria);
+    }
+
     public BoardInquiryDTO getBoard(Long boardInquiryId){
         return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
     }
