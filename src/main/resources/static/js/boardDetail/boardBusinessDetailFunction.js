@@ -48,7 +48,7 @@ function showList(boards) {
 };
 
 /*  */
-function showDetail(board, reviews, boards, member, boardImgs) {
+function showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath) {
     $('#all_wrap').empty();
     let text = ``
     text = `
@@ -206,7 +206,7 @@ function showDetail(board, reviews, boards, member, boardImgs) {
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                                <img src="${memberImgFullPath || ''}" alt="">
+                                                                <img src="${memberImgFullPath}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>

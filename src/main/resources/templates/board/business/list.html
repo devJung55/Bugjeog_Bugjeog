@@ -158,8 +158,9 @@
                 let boards = JSON.parse(dataResult.boards);
                 let member = JSON.parse(dataResult.member);
                 let boardImgs = JSON.parse(dataResult.boardImgs);
+                let memberImgFullPath = JSON.parse(dataResult.memberImgFullPath);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
-                showDetail(board, reviews, boards, member, boardImgs);
+                showDetail(board, reviews, boards, member, boardImgs, memberImgFullPath);
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
