@@ -261,7 +261,8 @@ public class BusinessBoardController {
     @PostMapping("/board/business/write")
     @ResponseBody
     public Long register(@RequestBody BoardBusinessVO boardBusinessVO, HttpServletRequest req) {
-        boardBusinessVO.setBusinessId(3L);
+        Long businessId = (Long)req.getSession().getAttribute("businessId");
+        boardBusinessVO.setBusinessId(businessId);
         businessBoardService.registerBoard(boardBusinessVO);
         return boardBusinessVO.getBoardBusinessId();
     }

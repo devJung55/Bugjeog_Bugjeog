@@ -115,9 +115,9 @@
     alert("businessId: " + businessId);
     alert("memberId: " + memberId);
     $(document).ready(function () {
-        if (memberId == null || businessId == null) {
+        if (memberId != null || businessId == null) {
             $($('button.pr-register-button')[0]).hide();
-        } else if (businessId != null) {
+        } else {
             $($('button.pr-register-button')[0]).show();
         }
     });
@@ -180,7 +180,6 @@
                 /* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
                 $header.css('z-index', -2);
                 // 등록 버튼 초기 색상 설정
-
 
                 afterDetail();
 
