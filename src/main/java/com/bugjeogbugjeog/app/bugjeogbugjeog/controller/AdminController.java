@@ -55,8 +55,9 @@ public class AdminController {
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
-    public void adminMember(@PathVariable Long memberId, Model model){
-        model.addAttribute(memberService.adminMemberShow(memberId));
+    public String adminMember(@PathVariable Long memberId, Model model){
+        model.addAttribute("memberDTO", memberService.adminMemberShow(memberId));
+        return "admin/admin-member";
     }
 
     /* 회원 수정 */
@@ -76,9 +77,8 @@ public class AdminController {
     @DeleteMapping("admin-memberDelete")
     @ResponseBody
     public void removeMember(@RequestParam("checkedIds[]") List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
-        for (int i=0; i < checkIds.size(); i++){
+        for (int i=0;
+             i < checkIds.size(); i++){
             memberService.removeMember(checkIds.get(i));
         }
     }
@@ -111,8 +111,9 @@ public class AdminController {
 
     /* 유통 회원 상세 보기 */
     @GetMapping("admin-member-company/{businessId}")
-    public void adminMemberCompany(@PathVariable Long businessId, Model model){
-        model.addAttribute(businessService.adminShowBusiness(businessId));
+    public String adminMemberCompany(@PathVariable Long businessId, Model model){
+        model.addAttribute("businessDTO",businessService.adminShowBusiness(businessId));
+        return "admin/admin-member-company";
     }
 
 
@@ -169,8 +170,9 @@ public class AdminController {
 
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
-    public void notice(@PathVariable Long noticeId, Model model ){
-        model.addAttribute(noticeService.showNotice(noticeId));
+    public String notice(@PathVariable Long noticeId, Model model ){
+        model.addAttribute("noticeVO",noticeService.showNotice(noticeId));
+        return "admin/admin-notice";
     }
 
     /* 공지사항 작성 페이지 이동 */
@@ -203,17 +205,12 @@ public class AdminController {
     @GetMapping("admin-distributionList/{page}")
     @ResponseBody
     public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
         int total = businessBoardService.getCount().intValue();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
             adminCriteria.create(page,10, total,10);
-            log.info(adminCriteria.toString());
-            log.info(String.valueOf(adminCriteria.getOffset()));
         }
-        log.info(businessBoardService.getListByPage(adminCriteria).toString());
 
         Map<String, Object> info = new HashMap<>();
 
@@ -227,9 +224,6 @@ public class AdminController {
     /* 유통 게시글 상세 보기*/
     @GetMapping("admin-distribution/{boardBusinessId}")
     public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
-        log.info(businessBoardService.getImagesById(boardBusinessId).toString());
         model.addAttribute("board", businessBoardService.getBoardById(boardBusinessId));
         model.addAttribute("images", businessBoardService.getImagesById(boardBusinessId));
         return "admin/admin-distribution";
@@ -241,8 +235,6 @@ public class AdminController {
     @DeleteMapping("admin-distributionDelete")
     @ResponseBody
     public void removeDistribution(@RequestParam("checkedIds[]")List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
         for (int i=0; i < checkIds.size(); i++){
             businessBoardService.remove(checkIds.get(i));
         }
@@ -274,16 +266,15 @@ public class AdminController {
 
     /* 자유 게시판 조회 */
     @GetMapping("admin-freeBoard/{boardFreeId}")
-    public void freeBoardShow(@PathVariable Long boardFreeId, Model model){
-        model.addAttribute(freeBoardService.adminShow(boardFreeId));
+    public String freeBoardShow(@PathVariable Long boardFreeId, Model model){
+        model.addAttribute("boardFreeDTO", freeBoardService.adminShow(boardFreeId));
+        return "admin/admin-freeBoard";
     }
 
     /* 자유 게시판 삭제 */
     @DeleteMapping("admin-freeDelete")
     @ResponseBody
     public void removeFree(@RequestParam("checkedIds[]") List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
         for (int i=0; i < checkIds.size(); i++){
             freeBoardService.adminRemove(checkIds.get(i));
         }
@@ -316,8 +307,9 @@ public class AdminController {
 
     /* 문의 게시판 조회 */
     @GetMapping("admin-inquiry/{boardInquiryId}")
-    public void inquiryShow(@PathVariable Long boardInquiryId, Model model) {
-        model.addAttribute(inquiryBoardService.adminFindByInquiry(boardInquiryId));
+    public String inquiryShow(@PathVariable Long boardInquiryId, Model model) {
+        model.addAttribute("inquiryDTO",inquiryBoardService.adminFindByInquiry(boardInquiryId));
+        return "admin/admin-inquiry";
     }
 
     /* 문의 답변 작성 */
@@ -338,8 +330,6 @@ public class AdminController {
     @DeleteMapping("admin-inquiryDelete")
     @ResponseBody
     public void removeInquiry(@RequestParam("checkedIds[]") List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
         for (int i=0; i < checkIds.size(); i++){
             inquiryBoardService.removeInquiry(checkIds.get(i));
         }
