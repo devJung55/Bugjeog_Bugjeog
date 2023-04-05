@@ -282,6 +282,8 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
             </div>`;
     });
     $('#all_wrap').append(text);
+
+
     const $submitReply = $($('button.replyRegisterButton')[0]);
     if (businessId == null && memberId != null) {
         $submitReply.removeClass('is-hidden');
@@ -348,34 +350,39 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
 
     $favoriteButton.on("click", (e) => {
         alert("전송 성공");
-        let $this = $(e.target());
+        console.log(e);
+        console.log($(e));
+
+        let $target = $(e.currentTarget);
         console.log("관심 클릭");
-        console.log($this);
-        if ($this.hasClass("fill")) {
-            $this.removeClass("fill");
-            $this.attr("fill", "black");
+        console.log($target);
+        if ($target.hasClass("fill")) {
+            $target.removeClass("fill");
+            $target.attr("fill", "black");
         } else {
-            $this.addClass("fill");
-            $this.attr("fill", "rgb(51, 102, 255)");
+            $target.addClass("fill");
+            $target.attr("fill", "rgb(51, 102, 255)");
         }
-        ajaxFavorite(board.boardBusinessId, member.memberId, $this);
+        ajaxFavorite(board.boardBusinessId, member.memberId, $target);
     });
 
-    function ajaxFavorite(boardId, memberId, target) {
-        let $target = $(target);
+    function ajaxFavorite(boardId, memberId, $target) {
+        console.log(boardId);
+        console.log(memberId);
         $.ajax({
             url: "/favorite/update",
             method: "PUT",
             data: {
-                boardId: boardId,
-                memberId: memberId
+                boardBusinessId: JSON.parse(boardId),
+                memberId: JSON.parse(memberId)
             },
-            dataType: "json",
+            async: false,
+            // contentType: "application/json; charset=utf-8",
             success: function () {
-                alert("관심 전송 성공")
+                alert("관심 전송 성공");
             },
             error: function (e) {
-                alert("관심 전송 실패")
+                alert("관심 전송 실패");
                 if ($target.hasClass("fill")) {
                     $target.removeClass("fill");
                 } else {

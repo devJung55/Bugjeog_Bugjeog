@@ -23,11 +23,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 //@RequestMapping("/board/business")
@@ -92,10 +90,10 @@ public class BusinessBoardController {
     @ResponseBody
     public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
-        PageDTO pageDTO = null;
         model.addAttribute(new BusinessReviewVO());
+
         if (category == null && sort == null && businessId == null) {
-            return businessBoardService.getList(pageDTO);
+            return businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount()))));
         } else {
             return businessBoardService.getList(boardFunction(businessId, category, sort));
         }
@@ -105,9 +103,9 @@ public class BusinessBoardController {
     @GetMapping("/board/business/list")
     public void businessList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
-        PageDTO pageDTO = null;
+        PageDTO pageDTO = new PageDTO();
         if (category == null && sort == null && businessId == null) {
-            model.addAttribute("boards", businessBoardService.getList(pageDTO));
+            model.addAttribute("boards", businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
         } else {
             model.addAttribute("boards", businessBoardService.getList(boardFunction(businessId, category, sort)));
         }
@@ -239,7 +237,7 @@ public class BusinessBoardController {
             if (memberId != null) {
                 MemberVO member = businessReviewService.getMember(memberId);
                 returnObj.put("member", objectMapper.writeValueAsString(member));
-                boolean isThere = businessInterestingService.isThere(memberId, boardBusinessId);
+                boolean isThere = businessInterestingService.countByIds(memberId, boardBusinessId) != null;
                 returnObj.put("isFavorite", isThere);
             }
         } catch (JsonProcessingException e) {
