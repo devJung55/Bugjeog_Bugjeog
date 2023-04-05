@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,11 +45,16 @@ public class FreeBoardController {
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
     public String freeBoard(AdminCriteria criteria, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
 
-        MemberVO memberVO = new MemberVO();
-        Object memberId = request.getSession().getAttribute("memberId");
-        if (memberId == null) model.addAttribute("member", null);
-        else model.addAttribute("member", memberService.showMember((Long) memberId));
+        Long memberId = (Long) session.getAttribute("memberId");
+        Long businessId = (Long) session.getAttribute("businessId");
+
+        if(memberId != null){
+            model.addAttribute("member",memberService.showMember(memberId));
+        }else {
+            model.addAttribute("businessVO", businessService.showBusiness(businessId));
+        }
 
         model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
         model.addAttribute("criteria", criteria);
