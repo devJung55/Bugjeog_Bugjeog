@@ -29,11 +29,17 @@ public class BoardFreeDTO {
     private String businessCeoName;
     private String businessPhoneNumber;
     private Long businessStatus;
+    private String businessImgUuid;
+    private String businessImgPath;
+    private String businessImgOriginalName;
 
     private String memberEmail;
     private String memberPhoneNumber;
     private String memberName;
     private Long memberStatus;
+    private String memberImgOriginalName;
+    private String memberImgUuid;
+    private String memberImgPath;
 
     private Long prevBoardId;
     private Long nextBoardId;

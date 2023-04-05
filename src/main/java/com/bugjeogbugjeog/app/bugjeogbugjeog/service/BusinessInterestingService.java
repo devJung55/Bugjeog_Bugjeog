@@ -16,8 +16,8 @@ public class BusinessInterestingService {
     private final BusinessBoardInterestingDAO businessBoardInterestingDAO;
 
     //    DB에 이미 등록된 내용이 있는지 검사
-    public InterestingCompanyVO getOne(Long memberId, Long businessId) {
-        return businessBoardInterestingDAO.isThere(memberId, businessId);
+    public InterestingCompanyVO getOne(Long businessId, Long memberId) {
+        return businessBoardInterestingDAO.isThere(businessId, memberId);
     }
 
     //    DB에 이미 등록된 내용이 있는지 검사

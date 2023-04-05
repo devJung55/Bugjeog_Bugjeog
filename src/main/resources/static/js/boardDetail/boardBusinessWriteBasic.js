@@ -2,11 +2,12 @@
 $($('label.regist_btn')[0]).css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242,244,247)");
 
 // textarea 입력시 등록 버튼 색상 변경
-$('#content_textarea, #title_textarea').on('input', function () {
+$('#content_textarea, #title_textarea').on('input', registerSensor());
+function registerSensor() {
     console.log("input 이벤트 들어옴.");
     let contentLength = $('#content_textarea').val().length;
     let titleLength = $('#title_textarea').val().length;
-    if (contentLength > 0 && titleLength > 0) {
+    if (contentLength > 0 && titleLength > 0 && ($(".imageThumbnail").length > 0)) {
         console.log("변화1");
         console.log($("#regist_label")[0]);
         $("#regist_label").css("color", "white").css("background-color", "blue");
@@ -14,7 +15,8 @@ $('#content_textarea, #title_textarea').on('input', function () {
         console.log("변화없음");
         $("#regist_label").css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
     }
-});
+}
+
 
 
 /* 카테고리 버튼 이벤트 */

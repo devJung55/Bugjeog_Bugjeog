@@ -1,11 +1,15 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardImgDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.MemberDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -25,6 +29,8 @@ import java.util.List;
 public class FreeBoardService {
     private final FreeBoardDAO freeBoardDAO;
     private final FreeBoardImgDAO freeBoardImgDAO;
+    private final MemberDAO memberDAO;
+    private final BusinessDAO businessDAO;
 
     //    추가
     @Transactional(rollbackFor = Exception.class)
@@ -68,7 +74,22 @@ public class FreeBoardService {
     public List<BoardFreeDTO> getListWithName(AdminCriteria adminCriteria){
 
         List<BoardFreeDTO> list = freeBoardDAO.findListWithName(adminCriteria);
-        list.forEach(board -> board.setBoardFreeImgVOs(freeBoardImgDAO.findListByBoardId(board.getBoardFreeId())));
+        list.forEach(board -> {
+            if(board.getBusinessId() != null) {
+                BusinessVO businessVO = businessDAO.findByIdToBusiness(board.getBusinessId());
+                board.setBusinessImgPath(businessVO.getBusinessImgPath());
+                board.setBusinessImgUuid(businessVO.getBusinessImgUuid());
+                board.setBusinessImgOriginalName(businessVO.getBusinessImgOriginalName());
+            } else if(board.getMemberId() != null){
+                MemberVO memberVO = memberDAO.findById(board.getMemberId());
+                board.setMemberImgPath(memberVO.getMemberImgPath());
+                board.setMemberImgUuid(memberVO.getMemberImgUuid());
+                board.setMemberImgOriginalName(memberVO.getMemberImgOriginalName());
+            }
+
+            board.setBoardFreeImgVOs(freeBoardImgDAO.findListByBoardId(board.getBoardFreeId()));
+
+        });
 
         return list;
     }
