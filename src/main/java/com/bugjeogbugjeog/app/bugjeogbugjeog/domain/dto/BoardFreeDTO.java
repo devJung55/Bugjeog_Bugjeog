@@ -27,6 +27,7 @@ public class BoardFreeDTO {
 
     private String businessEmail;
     private String businessCeoName;
+    private String businessCompanyName;
     private String businessPhoneNumber;
     private Long businessStatus;
     private String businessImgUuid;

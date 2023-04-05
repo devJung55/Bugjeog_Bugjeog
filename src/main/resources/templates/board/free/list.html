@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/css/main/header.css">
 </head>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
+<div th:insert="~{main/header-signin :: header}" th:if="${session.memberId} != null or ${session.businessId} != null"></div>
     <div class="all-wrap">
         
         <div id="header"></div>
@@ -18,12 +19,13 @@
         <div class="boardList-wrap">
             <aside class="boardList-aside-box">
                 <div class="aside-area-box">
-                    <div th:switch="${member}">
-                        <div th:case="null" class="profile-box-not-login">
+                    <div>
+                        <div class="profile-box-not-login">
                             <h2 class="profile-not-login-title">My 커뮤니티</h2>
                             <!-- 로그인이 안되잇을 경우 display:block-->
                             <!-- 로그인이 되잇을 경우 display:none-->
-                            <button  type="button" class="login-button">
+                            <th:block th:if="${session.memberId} == null and ${session.businessId} == null">
+                            <button type="button" class="login-button" onclick="location.href='/member/login'">
                                 <div class="profile-image-not-login"></div>
                                 <div class="profile-username-wrap">
                                     <span class="not-login-span">로그인 해주세요</span>
@@ -34,21 +36,43 @@
                                     </svg>
                                 </span>
                             </button>
+                            </th:block>
                             <!-- 로그인이 되 잇을 경우 display:block-->
                             <!-- 로그인이 안되 잇을 경우 display:none-->
-                            <button th:case="*"  type="button" class="login-button" onclick="location.href='/myPages/'">
+                            <th:block  th:unless="${session.memberId} == null and ${session.businessId} == null" >
+                            <button type="button" class="login-button">
                                 <div class="profile-image-login">
-                                    <img src="/image/boardList/self_employ_icon.png">
+                                    <th:block th:if="${not #strings.isEmpty(member)}">
+                                        <th:block th:if="${member.memberImgUuid == null}">
+                                            <img src="/image/boardList/self_employ_icon.png">
+                                        </th:block>
+                                        <th:block th:unless="${member.memberImgUuid == null}">
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${member.memberImgPath}+'/'+${member.memberImgUuid}+'_'+${member.memberImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:unless="${not #strings.isEmpty(member)}">
+                                        <th:block th:if="${businessVO.businessImgUuid == null}">
+                                        <img src="/image/boardList/distributor_icon.png">
+                                        </th:block>
+                                        <th:block th:unless="${businessVO.businessImgUuid == null}">
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
                                 </div>
                                 <div class="profile-username-wrap">
                                     <div class="profile-user-info-box">
-                                        <span class="profile-userName">임종욱</span>
+                                        <th:block th:if="${not #strings.isEmpty(member)}">
+                                        <span class="profile-userName" th:text="${member.memberName}"></span>
                                         <div style="display: flex;">
-                                            <div class="profile-userType"> 유통업자</div>
+                                            <div class="profile-userType"> 이용자</div>
                                         </div>
-                                        <!-- <div style="display: flex;">
-                                            <div class="profile-userType">이용자</div>
-                                        </div> -->
+                                        </th:block>
+                                        <th:block th:unless="${not #strings.isEmpty(member)}">
+                                            <span class="profile-userName" th:text="${businessVO.businessCompanyName}"></span>
+                                            <div style="display: flex;">
+                                                <div class="profile-userType"> 유통업자</div>
+                                            </div>
+                                        </th:block>
                                     </div>
                                 </div>
                                 <span class="profile-arrow">
@@ -57,6 +81,7 @@
                                     </svg>
                                 </span>
                             </button>
+                            </th:block>
                         </div>
                     </div>
                     <div class="profile-banner-box">
