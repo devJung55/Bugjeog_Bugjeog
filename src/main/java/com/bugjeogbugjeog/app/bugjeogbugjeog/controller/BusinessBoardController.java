@@ -89,33 +89,30 @@ public class BusinessBoardController {
 
     @GetMapping("/board/business/list/ajax")
     @ResponseBody
-    public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
+    public JSONObject businessAjaxList(Criteria criteria, Long businessId, String category, String sort) {
+//        new PageDTO(criteria), Integer.parseInt(String.valueOf(businessBoardService.getCount()))
         /* =================== getList pageDTO 받도록 변경됨 */
-        model.addAttribute(new BusinessReviewVO());
-        Criteria criteria = new Criteria();
-        criteria.setPageNum(5);
-        criteria.setAmount(12);
+        JSONObject returnObj = new JSONObject();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        Integer startPage = criteria.getStartRow();
-        PageDTO pageDTO = new PageDTO();
-        pageDTO.setCriteria(criteria);
-        pageDTO.setStartPage(startPage);
-        pageDTO.setTotal(Integer.parseInt(String.valueOf(businessBoardService.getCount())));
-        if (category == null && sort == null && businessId == null) {
-            return businessBoardService.getList(pageDTO);
-        } else {
-            return businessBoardService.getList(boardFunction(businessId, category, sort));
+        try {
+            returnObj.put("pageDTO", objectMapper.writeValueAsString(new PageDTO(criteria, Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
+            if (category == null && sort == null && businessId == null) {
+                returnObj.put("boardBusinessDTOs", objectMapper.writeValueAsString(businessBoardService.showList(criteria)));
+            } else {
+                returnObj.put("boardBusinessDTOs",businessBoardService.getList(boardFunction(businessId, category, sort)));
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
+        return returnObj;
     }
-
 
     @GetMapping("/board/business/list")
     public void businessList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
         PageDTO pageDTO = new PageDTO();
-        Criteria criteria = new Criteria();
-        criteria.setPageNum(5);
-        criteria.setAmount(12);
+        Criteria criteria = new Criteria(5, 12);
 
         pageDTO.setCriteria(criteria);
         pageDTO.setStartPage(1);
