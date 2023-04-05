@@ -98,14 +98,14 @@ button.main_bar_hamberger img {
 }
 
 button.search_button {
-    background-color: #f0ffff;
+    /*background-color: #f0ffff;*/
     padding: 0 10px;
     margin-top: 5px;
     cursor: pointer;
 }
 
 button.signUp_button {
-    background-color: #f0ffff;
+    /*background-color: #f0ffff;*/
     line-height: 1.4;
     margin-right: 6px;
     padding: 0 10px;
