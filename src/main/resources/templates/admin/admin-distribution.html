@@ -65,7 +65,18 @@
                                 <hr>
                                 <div class="board-info-box">
                                     <div class="member-img-box">
-                                        <div class="board-img"></div>
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 3}">
+                                            <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 33% ">
+                                            <img th:if="${images[1] != null}" th:src="@{/mypage/profile/display(fileName=${images[1].boardBusinessImgPath}+'/'+${images[1].boardBusinessImgUuid}+'_'+${images[1].boardBusinessImgOriginalName})}" class="info-image" style="width: 33%">
+                                            <img th:if="${images[2] != null}" th:src="@{/mypage/profile/display(fileName=${images[2].boardBusinessImgPath}+'/'+${images[2].boardBusinessImgUuid}+'_'+${images[2].boardBusinessImgOriginalName})}" class="info-image" style="width: 33%">
+                                        </div>
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 2}">
+                                            <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 49.5%">
+                                            <img th:if="${images[1] != null}" th:src="@{/mypage/profile/display(fileName=${images[1].boardBusinessImgPath}+'/'+${images[1].boardBusinessImgUuid}+'_'+${images[1].boardBusinessImgOriginalName})}" class="info-image" style="width: 49.5%">
+                                        </div>
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 1}">
+                                            <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 99%">
+                                        </div>
                                         <!-- <div class="member-nickname-box">
                                             <span>벅벅코딩</span>
                                         </div> -->
