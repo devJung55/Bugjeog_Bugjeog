@@ -64,7 +64,6 @@
 
     <!--댓글 삭제-->
     <delete id="replyDelete">
-    delete from tbl_free_reply
-    where reply_id=0;
+    delete from tbl_free_reply where reply_id= #{replyId};
     </delete>
 </mapper>
