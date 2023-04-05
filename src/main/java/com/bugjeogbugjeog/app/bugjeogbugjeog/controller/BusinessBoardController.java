@@ -222,6 +222,7 @@ public class BusinessBoardController {
         BoardBusinessDTO board = businessBoardService.getBoard(boardId);
         List<BusinessReviewDTO> reviews = businessReviewService.getReviews(boardId);
         List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(board.getBusinessId());
+
         Map<String, Object> searchMap = new HashMap<>();
         searchMap.put("boardBusinessId", boardId);
 //        searchMap.put("boardBusinessId", board.getBusinessId().toString());

@@ -263,7 +263,7 @@
         <if test="searchMap.sort == 'popular'">
             ORDER BY board_business_grade_average DESC
         </if>
-        LIMIT #{pageDTO.criteria.pageNum}, #{pageDTO.criteria.amount}
+        LIMIT #{pageDTO.criteria.startRow}, #{pageDTO.criteria.amount}
     </select>
 
 <!--  관리자 페이지 목록 불러오기  -->
