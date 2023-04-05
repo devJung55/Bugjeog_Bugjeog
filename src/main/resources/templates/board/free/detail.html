@@ -149,6 +149,11 @@
     let businessId = [[${session.businessId}]];
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
+</html>
+
+
+
+
 <<script>
     /*댓글*/
     let page = 1;
@@ -201,20 +206,7 @@
         /*댓글 수정 필요?*/
 
         /*댓글 삭제*/
-        /*function update(reply, callback){
-            $.ajax({
-                url: "/replies/update-reply",
-                type: "post",
-                data: JSON.stringify(reply),
-                contentType: "application/json;charset=utf-8",
-                success: function(){
-                    if(callback){
-                        callback();
-                    }
-                }
-            })
-        }*/
-        /*function delete(reply, callback){
+        function delete(reply, callback){
             $.ajax({
                 url:"/replies/delete-reply",
                 type: "post",
@@ -226,7 +218,7 @@
                     }
                 }
             })
-        }*/
+        }
         return {getList: getList, save: save, update: update};
     })();
 
@@ -290,10 +282,14 @@
                         `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
+                                           <button type="button">
                                             <span>수정</span>
+                                            </button>
                                         </div>
                                         <div style="margin-left: 8px" class="delete">
+                                            <button type="button">
                                             <span>삭제</span>
+                                            </button>
                                         </div>
                                     </div>
                         `
@@ -348,4 +344,3 @@
         }
     });
 </script>
-</html>
