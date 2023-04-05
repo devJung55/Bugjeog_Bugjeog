@@ -21,8 +21,8 @@ public class BusinessInterestingService {
     }
 
     //    DB에 이미 등록된 내용이 있는지 검사
-    public boolean isThere(Long businessId, Long memberId) {
-        return businessBoardInterestingDAO.isThere(businessId, memberId)==null;
+    public Long countByIds(Long businessId, Long memberId) {
+        return businessBoardInterestingDAO.isThere(businessId, memberId).getInterestingCompanyId() == null ? 0L : 1L;
     }
 
     public void save(Long businessId, Long memberId) {

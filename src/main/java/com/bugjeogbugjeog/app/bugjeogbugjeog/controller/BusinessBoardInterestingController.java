@@ -6,10 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 //@RequestMapping("/board/business/favorite")
@@ -20,14 +16,15 @@ public class BusinessBoardInterestingController {
     private final BusinessBoardService businessBoardService;
 
     @PutMapping("/favorite/update")
-    public void redirect(Long boardId, Long memberId, RedirectAttributes redirectAttributes){
-        Long businessId = businessBoardService.getBoardById(boardId).getBusinessId();
-        redirectAttributes.addAttribute("businessId", businessId);
-        redirectAttributes.addAttribute("memberId", memberId);
-        if(businessInterestingService.isThere(businessId, memberId)){
-            businessInterestingService.remove(businessId, memberId);
-        }else {
+    @ResponseBody
+    public void redirect(@RequestParam("boardBusinessId") Long boardBusinessId,@RequestParam("memberId") Long memberId){
+        Long businessId = businessBoardService.getBoardById(boardBusinessId).getBusinessId();
+        System.out.println(businessId);
+        System.out.println(businessInterestingService.getOne(businessId, memberId) == null);
+        if(businessInterestingService.getOne(businessId, memberId) == null){
             businessInterestingService.save(businessId, memberId);
+        }else {
+            businessInterestingService.remove(businessId, memberId);
         }
     }
 
