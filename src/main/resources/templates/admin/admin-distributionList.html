@@ -119,11 +119,13 @@
 
 	/* showList, showPage*/
 	function load() {
+		console.log("들어옴");
 		console.log(page);
 		$.ajax({
 			url: `/admin/admin-distributionList/${page}`,
 			type: "get",
 			success: function(result) {
+
 				showList(result.boards);
 				showPage(result.criteria);
 			},
@@ -215,7 +217,6 @@
 			success: function(){
 				console.log("ajax 성공")
 				// location.href= result;
-				// console.log($('#list-body').children().length);
 				load();
 			}
 		});
@@ -251,7 +252,6 @@
 
 	// 게시글 리스트 뿌리기
 	function showList(boards) {
-
 		let list = 	`
 						<thead>
 						  	<tr>
