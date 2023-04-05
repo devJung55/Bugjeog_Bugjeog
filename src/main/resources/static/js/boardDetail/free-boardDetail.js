@@ -127,6 +127,9 @@ function date(date) {
 }
 
 $(".date").text(date($(".date").text()));
+$(".dates").each((i, e) => {
+    $(e).text(date($(e).text()));
+});
 
 // detailsOfBoards.forEach((detailsOfBoards, i) => {
 //     boardDetailContainer.append(createDOM(detailsOfBoards));

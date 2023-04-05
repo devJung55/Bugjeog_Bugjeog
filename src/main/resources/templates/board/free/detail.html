@@ -28,7 +28,7 @@
                                             <div class="content-member-image-box">
                                                 <div class="content-member-image-size">
                                                     <div class="content-member-status">
-                                                        <th:block th:if="${prevBoard.memberId == null}">
+                                                        <th:block th:if="${prevBoard.memberId != null}">
                                                             <th:block th:if="${prevBoard.memberImgUuid == null}">
                                                                 <img src="/image/boardList/self_employ_icon.png" alt="">
                                                             </th:block>
@@ -36,7 +36,7 @@
                                                                 <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${prevBoard.memberImgPath}+'/'+${prevBoard.memberImgUuid}+'_'+${prevBoard.memberImgOriginalName}}">
                                                             </th:block>
                                                         </th:block>
-                                                        <th:block th:unless="${prevBoard.memberId == null}">
+                                                        <th:block th:unless="${prevBoard.memberId != null}">
                                                             <th:block th:if="${prevBoard.businessImgUuid == null}">
                                                                 <img src="/image/boardList/distributor_icon.png" alt="">
                                                             </th:block>
@@ -58,7 +58,7 @@
                                                 <div id="side_nickname" th:text="*{businessCompanyName}"></div>
                                             </th:block>
                                         </div>
-                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
+                                        <span id="side_span_date" class="dates" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,22 @@
                                             <div class="content-member-image-box">
                                                 <div class="content-member-image-size">
                                                     <div class="content-member-status">
-                                                        <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                        <th:block th:if="${nextBoard.memberId != null}">
+                                                            <th:block th:if="${nextBoard.memberImgUuid == null}">
+                                                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${nextBoard.memberImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${nextBoard.memberImgPath}+'/'+${nextBoard.memberImgUuid}+'_'+${nextBoard.memberImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${nextBoard.memberId != null}">
+                                                            <th:block th:if="${nextBoard.businessImgUuid == null}">
+                                                                <img src="/image/boardList/distributor_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${nextBoard.businessImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${nextBoard.businessImgPath}+'/'+${nextBoard.businessImgUuid}+'_'+${nextBoard.businessImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,9 +107,14 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname" th:text="*{memberName}">soni</div>
+                                            <th:block th:if="${nextBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{memberName}"></div>
+                                            </th:block>
+                                            <th:block th:unless="${nextBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{businessCompanyName}"></div>
+                                            </th:block>
                                         </div>
-                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
+                                        <span id="side_span_date" class="dates" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>

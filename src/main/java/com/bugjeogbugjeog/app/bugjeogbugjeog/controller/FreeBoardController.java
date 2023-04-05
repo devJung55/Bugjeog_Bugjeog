@@ -89,6 +89,7 @@ public class FreeBoardController {
     public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model) {
         List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
         model.addAttribute("prevBoard", boardList.get(0));
+        log.info("::::::::::::::::::::" + boardFreeId);
         model.addAttribute("currentBoard", boardList.get(1));
         model.addAttribute("nextBoard", boardList.get(2));
 
