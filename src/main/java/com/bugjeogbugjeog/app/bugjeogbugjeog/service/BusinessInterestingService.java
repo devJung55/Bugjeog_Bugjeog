@@ -28,4 +28,8 @@ public class BusinessInterestingService {
     public void save(Long businessId, Long memberId) {
         businessBoardInterestingDAO.insert(memberId, businessId);
     }
+
+    public void remove(Long boardId, Long memberId) {
+        businessBoardInterestingDAO.deleteByIds(boardId, memberId);
+    }
 }
