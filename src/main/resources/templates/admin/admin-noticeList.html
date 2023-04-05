@@ -175,8 +175,10 @@
 
 		var $checkAllBox = $('#allSelect');
 		var $checkBoxes = $('.checkBoxes');
+		console.log("들어옴1")
 
 		if($checkAllBox.is(":checked")){
+			console.log("들어옴1")
 			$(this).prop("checked", true);
 			$checkBoxes.each(function(i, checkbox) {
 				$(checkbox).prop("checked", true);
@@ -269,7 +271,7 @@
 							<thead>
 									<tr>
 										<th>
-											<input type="checkbox" name="check" id="allSelect">
+											<input type="checkbox" name="check" id="allSelect" onclick="isAllChecked(this)">
 										</th>
 										<th>No</th>
 										<th>제목</th>

@@ -60,7 +60,7 @@ public class InquiryBoardService {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> adminFindAll(AdminCriteria adminCriteria){
+    public List<BoardInquiryDTO> adminFindAll(AdminCriteria adminCriteria){
         return inquiryBoardDAO.getInquiryList(adminCriteria);}
 
     // 문의 조회
@@ -75,4 +75,6 @@ public class InquiryBoardService {
 
     // 문의 카운트
     public Long count(){return inquiryBoardDAO.count();}
+
+    // 문의 답변 유무 체크
 }

@@ -40,4 +40,6 @@ public class BoardInquiryDTO {
     private String memberImgOriginalName;
     private String memberImgUuid;
     private String memberImgPath;
+
+    private Long boardInquiryAnswerId;
 }

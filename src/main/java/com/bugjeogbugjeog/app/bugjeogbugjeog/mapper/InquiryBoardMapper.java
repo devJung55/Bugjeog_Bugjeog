@@ -54,7 +54,7 @@ public interface InquiryBoardMapper {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> adminSelectAllInquiry(@Param("adminCriteria") AdminCriteria adminCriteria);
+    public List<BoardInquiryDTO> adminSelectAllInquiry(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     // 문의 조회
     public InquiryDTO adminSelectInquiry(Long boardInquiryId);

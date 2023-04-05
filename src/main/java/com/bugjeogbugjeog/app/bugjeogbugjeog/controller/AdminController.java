@@ -1,8 +1,10 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryAnswerVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +33,7 @@ public class AdminController {
 
     /*  관리자 회원 목록 조회 */
     @GetMapping("admin-memberList")
-    public String memberListShow(){
-        return "/admin/admin-memberList";
-    }
+    public void memberListShow(){;}
 
     @GetMapping("admin-memberList/{page}")
     @ResponseBody
@@ -55,23 +55,21 @@ public class AdminController {
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
-    public String adminMember(@PathVariable Long memberId, Model model){
+    public void adminMember(@PathVariable Long memberId, Model model){
         model.addAttribute(memberService.adminMemberShow(memberId));
-        return "admin/admin-member";
     }
 
     /* 회원 수정 */
     @GetMapping("admin-memberModify")
-    public String adminMemberModify(Long memberId, Model model){
+    public void adminMemberModify(Long memberId, Model model){
         model.addAttribute(memberService.showMember(memberId));
-        return "admin/admin-memberModify";
     }
 
     /* 회원 수정 완료 */
     @PostMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO){
         memberService.updateMember(memberVO);
-        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
+        return new RedirectView("/admins/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
@@ -93,25 +91,17 @@ public class AdminController {
     /* 유통 회원 목록 조회*/
 
     @GetMapping("admin-member-companyList")
-    public String memberCompanyList(Model model){
-        return "admin/admin-member-companyList";
-    }
+    public void memberCompanyList(){;}
 
     @GetMapping("admin-member-companyList/{page}")
     @ResponseBody
     public Map<String, Object> memberCompanyListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
         int total = businessService.count().intValue();
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
             adminCriteria.create(page,10, total,10);
-            log.info(adminCriteria.toString());
-            log.info(String.valueOf(adminCriteria.getOffset()));
         }
-        log.info(businessService.adminShowListBusiness(adminCriteria).toString());
-
         Map<String, Object> info = new HashMap<>();
         info.put("businesses",businessService.adminShowListBusiness(adminCriteria));
         info.put("criteria",adminCriteria);
@@ -121,17 +111,15 @@ public class AdminController {
 
     /* 유통 회원 상세 보기 */
     @GetMapping("admin-member-company/{businessId}")
-    public String adminMemberCompany(@PathVariable Long businessId, Model model){
+    public void adminMemberCompany(@PathVariable Long businessId, Model model){
         model.addAttribute(businessService.adminShowBusiness(businessId));
-        return "admin/admin-member-company";
     }
 
 
     /* 유통 회원 수정 */
     @GetMapping("admin-member-companyModify")
-    public String adminMemberCompanyModify(Long businessId, Model model){
+    public void adminMemberCompanyModify(Long businessId, Model model){
         model.addAttribute(businessService.showBusiness(businessId));
-        return "/admin/admin-member-companyModify";
     }
 
     /* 유통 회원 수정 완료*/
@@ -146,8 +134,6 @@ public class AdminController {
     @DeleteMapping("admin-businessDelete")
     @ResponseBody
     public void removeBusiness(@RequestParam("checkedIds[]")  List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
         for (int i=0; i < checkIds.size(); i++){
             businessService.removeBusiness(checkIds.get(i));
         }
@@ -158,25 +144,18 @@ public class AdminController {
 
     /* 공지사항 리스트 */
     @GetMapping("admin-noticeList")
-    public String noticeListShow(){
-        return "/admin/admin-noticeList";
-    }
+    public void noticeListShow(){;}
 
     @GetMapping("admin-noticeList/{page}")
     @ResponseBody
     public Map<String, Object> noticeListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
         int total = noticeService.count().intValue();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
             adminCriteria.create(page,10, total,10);
-            log.info(adminCriteria.toString());
-            log.info(String.valueOf(adminCriteria.getOffset()));
         }
 
-        log.info(noticeService.adminShowList(adminCriteria).toString());
 
         Map<String, Object> info = new HashMap<>();
 
@@ -190,9 +169,8 @@ public class AdminController {
 
     /* 공지사항 조회 */
     @GetMapping("admin-notice/{noticeId}")
-    public String notice(@PathVariable Long noticeId, Model model ){
+    public void notice(@PathVariable Long noticeId, Model model ){
         model.addAttribute(noticeService.showNotice(noticeId));
-        return "admin/admin-notice";
     }
 
     /* 공지사항 작성 페이지 이동 */
@@ -210,8 +188,6 @@ public class AdminController {
     @DeleteMapping("admin-noticeDelete")
     @ResponseBody
     public void removeNotice(@RequestParam("checkedIds[]") List<Long> checkIds){
-        log.info("delete들어옴");
-        log.info(checkIds.toString());
         for (int i=0; i < checkIds.size(); i++){
             noticeService.remove(checkIds.get(i));
         }
@@ -222,9 +198,7 @@ public class AdminController {
 
     /* 유통 게시판 목록 */
     @GetMapping("admin-distributionList")
-    public String distributionShowList(){
-        return "admin/admin-distributionList";
-    }
+    public void distributionShowList(){;}
 
     @GetMapping("admin-distributionList/{page}")
     @ResponseBody
@@ -278,22 +252,18 @@ public class AdminController {
 
     /* 자유 게시판 목록 */
     @GetMapping("admin-freeBoardList")
-    public String freeBoardShowList() {return "/admin/admin-freeboardList";}
+    public void freeBoardShowList(){;}
 
     @GetMapping("admin-freeBoardList/{page}")
     @ResponseBody
     public Map<String, Object> freeBoardShowList(@PathVariable Integer page, AdminCriteria adminCriteria) throws Exception{
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
         int total = freeBoardService.count().intValue();
+
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
             adminCriteria.create(page,10, total,10);
-            log.info(adminCriteria.toString());
-            log.info(String.valueOf(adminCriteria.getOffset()));
         }
-        log.info(freeBoardService.adminShowList(adminCriteria).toString());
 
         Map<String, Object> info = new HashMap<>();
 
@@ -304,15 +274,9 @@ public class AdminController {
 
     /* 자유 게시판 조회 */
     @GetMapping("admin-freeBoard/{boardFreeId}")
-    public String freeBoardShow(@PathVariable Long boardFreeId, Model model){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(boardFreeId.toString());
-        log.info(freeBoardService.adminShow(boardFreeId).toString());
+    public void freeBoardShow(@PathVariable Long boardFreeId, Model model){
         model.addAttribute(freeBoardService.adminShow(boardFreeId));
-        return "admin/admin-freeBoard";
     }
-
-    /* 자유 게시판 수정 */
 
     /* 자유 게시판 삭제 */
     @DeleteMapping("admin-freeDelete")
@@ -329,22 +293,17 @@ public class AdminController {
 
     /* 문의 게시판 목록 */
     @GetMapping("admin-inquiryList")
-    public String inquiryShowList(){return "/admin/admin-inquiryList";}
+    public void inquiryShowList(){;}
 
     @GetMapping("admin-inquiryList/{page}")
     @ResponseBody
     public Map<String, Object> inquiryShowList(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
         int total = inquiryBoardService.count().intValue();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
             adminCriteria.create(page,10, total,10);
-            log.info(adminCriteria.toString());
-            log.info(String.valueOf(adminCriteria.getOffset()));
         }
-        log.info(inquiryBoardService.adminFindAll(adminCriteria).toString());
 
         Map<String, Object> info = new HashMap<>();
 
@@ -357,17 +316,15 @@ public class AdminController {
 
     /* 문의 게시판 조회 */
     @GetMapping("admin-inquiry/{boardInquiryId}")
-    public String inquiryShow(@PathVariable Long boardInquiryId, Model model) {
+    public void inquiryShow(@PathVariable Long boardInquiryId, Model model) {
         model.addAttribute(inquiryBoardService.adminFindByInquiry(boardInquiryId));
-        return "admin/admin-inquiry";
     }
 
     /* 문의 답변 작성 */
     @GetMapping("admin-inquiryWrite")
-    public String addInquiryWrite(@RequestParam(value = "boardInquiryId") String boardInquiryId, Model model){
+    public void addInquiryWrite(@RequestParam(value = "boardInquiryId") String boardInquiryId, Model model){
         model.addAttribute("boardInquiryId", boardInquiryId);
         model.addAttribute(new BoardInquiryAnswerVO());
-        return "/admin/admin-inquiryWrite";
     }
 
     /* 문의 답변 작성 완료 */
@@ -375,7 +332,6 @@ public class AdminController {
     public RedirectView addInquiryWrite(BoardInquiryAnswerVO boardInquiryAnswerVO){
         inquiryAnswerService.addInquire(boardInquiryAnswerVO);
         return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
-//        return new RedirectView("/admin/admin-inquiry/" + boardInquiryAnswerVO.getBoardInquiryId());
     }
 
     /* 문의 게시판 삭제 */
