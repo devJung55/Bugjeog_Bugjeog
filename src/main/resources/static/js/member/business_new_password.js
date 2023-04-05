@@ -31,11 +31,9 @@
         if($password.val() != $passwordCheck.val()){
             $passwordCheckError.text("비밀번호를 확인해주세요.");
             passwordCheck2 = false;
-            console.log(passwordCheck2)
         }else {
             $passwordCheckError.hide();
             passwordCheck2 = true;
-            console.log(passwordCheck2)
         }
     });
 

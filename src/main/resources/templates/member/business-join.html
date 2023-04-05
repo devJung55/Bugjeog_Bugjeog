@@ -14,7 +14,7 @@
         <div class="join-box-layout">
             <div class="join-box">
                 <div class="join-box-border">
-                    <form th:action="@{/member/login}" name="joinForm">
+                    <form th:action="@{/member/login}">
                         <div class="join-title-box ">
                             <!-- <button type="button" class="join-cancel-button">
                                 <p class="join-real-cancel-button">취소</p>
@@ -159,8 +159,8 @@
                             <div class="join-start-all-border">
                                 <div class="join-start-bottom-border"></div>
                                 <div class="join-start-top-blank"></div>
-                              <button type="button" class="join-jjoin-btn-border">
-                                <span class="join-final-btn-ment" onclick="send()">가입하기</span>
+                              <button type="button" class="join-jjoin-btn-border" onclick="send()">
+                                <span class="join-final-btn-ment">가입하기</span>
                               </button>  
                            </div>  
                         </form>

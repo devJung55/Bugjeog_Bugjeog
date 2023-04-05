@@ -157,10 +157,10 @@
     const $authCheckButton = $(".authcode-check-button");
     $authcode.keyup(function(){
         if($authcode.val().length == 4){
-            /*$(".auth-msg").hide();*/
             $authCheckButton.show();
         }
     });
+
 
 
     // 비밀번호 검사
@@ -199,24 +199,9 @@
             $passwordCheckError.hide();
             passwordCheck2 = true;
         }
-
-        console.log("12341234     " + $password.val());
-        console.log("55555    " + $passwordCheck.val());
-
-        // if($password.val() != $passwordCheck.val()){
-        //     $passwordCheckError.text("비밀번호를 확인해주세요.");
-        //     passwordCheck2 = false;
-        // } else if ($passwordCheck.length < 3) {
-        //     $passwordCheckError.text("비밀번호를 확인해주세요.");
-        //     passwordCheck2 = false;
-        // } else {
-        //     $passwordCheckError.hide();
-        //     passwordCheck2 = true;
-        // }
     });
     
 	$("#allSelect").click(function() {
-        console.log("눌림");
 	    if($("#allSelect").is(":checked")) {
             $("input[name=check]").prop("checked", true);
             $(".join-terms-agree").addClass("checkbox-active-box");
@@ -250,9 +235,7 @@
 	});
 
     $("input[name=check]").each((i, e) => {
-
         $(e).click(function(){
-            console.log(i);
             if($(e).is(":checked")){
                 $($(".checkbox-display")[i+1]).show();
                 $($(".check-state")[i]).addClass("checkbox-active-box");
@@ -274,32 +257,16 @@
     function send() {
         $joinInputs.trigger("blur");
 
-        console.log("------------------------------------");
-        console.log("emailCheck : " + emailCheck);
-        console.log("ceoNameCheck : " + ceoNameCheck);
-        console.log("businessNameCheck : " + businessNameCheck);
-        console.log("registerCheck : " + registerCheck);
-        console.log("businessNumberCheck : " + businessNumberCheck);
-        console.log("phoneNumberCheck : " + phoneNumberCheck);
-        console.log("passwordCheck1 : " + passwordCheck1);
-        console.log("passwordCheck2 : " + passwordCheck2);
-        console.log("allSelectCheck : " + allSelectCheck);
-        console.log("mustSelectCheck1 : " + mustSelectCheck1);
-        console.log("mustSelectCheck2 : " + mustSelectCheck2);
-
-        if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
-            console.log("들어옴12")
-            $(document.joinForm).submit();
-        } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & passwordCheck1 & passwordCheck2 & mustSelectCheck1 & mustSelectCheck2) {
-            console.log("들어옴33")
-            $(document.joinForm).submit();
+        if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & authCodeCheck & passwordCheck1 & passwordCheck2 & allSelectCheck & mustSelectCheck1 & mustSelectCheck2) {
+            $(document.businessForm).submit();
+        } else if(emailCheck & ceoNameCheck & businessNameCheck & registerCheck & businessNumberCheck & phoneNumberCheck & authCodeCheck & passwordCheck1 & passwordCheck2 & mustSelectCheck1 & mustSelectCheck2) {
+            $(document.businessForm).submit();
         }
     }
 
     $must1.on("click", function(e) {
         if($must1.is(":checked")) {
             mustSelectCheck1 = true;
-            /*joinButtonActive();*/
         } else {
             mustSelectCheck1 = false;
         }
@@ -308,7 +275,6 @@
     $must2.on("click", function(e) {
         if($must2.is(":checked")) {
             mustSelectCheck2 = true;
-            /*joinButtonActive();*/
         } else {
             mustSelectCheck2 = false;
         }
@@ -323,7 +289,6 @@
             $(".auth-msg").html("인증에 성공했습니다.");
             $(".auth-msg").css("color", "blue");
             authCodeCheck = true;
-            /*joinButtonActive();*/
         } else {
             $(".auth-msg").html("인증에 실패했습니다.");
             $(".auth-msg").css("color", "red");
