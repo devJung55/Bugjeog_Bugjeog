@@ -48,7 +48,7 @@ function showSubBoardsList(boards) {
 };
 
 /*  */
-function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCount, reviewGrade) {
+function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCount, reviewGrade, isFavorite) {
     $('#all_wrap').empty();
     let text = ``
     text = `
@@ -230,7 +230,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                                         <div class="profile-image-login">
                                                             <div class="profile-member-status">
                                                             <!-- <span class="profile-image">유</span> -->
-                                                                <img src="/imgs/business/display?fileName=${review.memberImgPath + '/' + review.memberImgUuid + '_' + review.memberImgOriginalName}" alt="">
+                                                                <img src="/imgs/business/display?fileName=${review.memberImgPath != null ? (review.memberImgPath + '/' + review.memberImgUuid + '_' + review.memberImgOriginalName) : "member_no_image.png"}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -284,7 +284,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
     $('#all_wrap').append(text);
     const $submitReply = $($('button.replyRegisterButton')[0]);
     if (businessId == null && memberId != null) {
-        $submitReply.show();
+        $submitReply.removeClass('is-hidden');
         $submitReply.css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
         // textarea 입력시 등록 버튼 색상 변경
@@ -295,13 +295,13 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                 $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
             }
         });
-        if (`${member.memberId === memberId}`) {
-            $($('.replyButtonWrap')[0]).show();
+        if (`${member.memberId == memberId}` && memberId != null) {
+            $($('.replyButtonWrap')[0]).removeClass('is-hidden');
         } else {
-            $($('.replyButtonWrap')[0]).hide();
+            $($('.replyButtonWrap')[0]).addClass('is-hidden');
         }
     } else {
-        $submitReply.hide();
+        $submitReply.addClass('is-hidden');
     }
 
 
@@ -320,27 +320,67 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
     });
 
     const $favoriteButton = $($('svg[name=favoriteButton]')[0]);
+
+    // 즐겨찾기 버튼
+    const $bookMarks = $(".book-mark");
+
+    $bookMarks.each((i, bookMark) => {
+        $(bookMark).on("click", function () {
+            if ($(this).attr("fill") == "rgb(51, 102, 255)") {
+                $(this).attr("fill", "black");
+            } else {
+                $(this).attr("fill", "rgb(51, 102, 255)");
+            }
+        });
+    });
+
+    $favoriteButton.hide();
+    if (`${isFavorite != null}`) {
+        $favoriteButton.show()
+        if (`${isFavorite}`) {
+            $favoriteButton.addClass('fill');
+        } else {
+            $favoriteButton.removeClass('fill');
+        }
+    } else {
+        $favoriteButton.hide();
+    }
+
     $favoriteButton.on("click", (e) => {
         alert("전송 성공");
         let $this = $(e.target());
+        console.log("관심 클릭");
         console.log($this);
-        ajaxFavorite(board.boardBusinessId, member.memberId);
+        if ($this.hasClass("fill")) {
+            $this.removeClass("fill");
+            $this.attr("fill", "black");
+        } else {
+            $this.addClass("fill");
+            $this.attr("fill", "rgb(51, 102, 255)");
+        }
+        ajaxFavorite(board.boardBusinessId, member.memberId, $this);
     });
 
-    function ajaxFavorite(boardId, memberId) {
+    function ajaxFavorite(boardId, memberId, target) {
+        let $target = $(target);
         $.ajax({
-            url: "/board/business/favorite",
-            method: "POST",
+            url: "/favorite/update",
+            method: "PUT",
             data: {
                 boardId: boardId,
                 memberId: memberId
             },
             dataType: "json",
-            success: function (result) {
-
+            success: function () {
+                alert("관심 전송 성공")
             },
-            error : function (e) {
-                alert("전송 실패")
+            error: function (e) {
+                alert("관심 전송 실패")
+                if ($target.hasClass("fill")) {
+                    $target.removeClass("fill");
+                } else {
+                    $target.addClass("fill");
+                }
                 console.log(e);
             }
 

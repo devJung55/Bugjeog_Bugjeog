@@ -230,8 +230,8 @@ public class BusinessBoardController {
             if (memberId != null) {
                 MemberVO member = businessReviewService.getMember(memberId);
                 returnObj.put("member", objectMapper.writeValueAsString(member));
-                boolean companyVO = businessInterestingService.isThere(memberId, boardBusinessId);
-                returnObj.put("isFavorite", objectMapper.writeValueAsBytes(companyVO);
+                boolean isThere = businessInterestingService.isThere(memberId, boardBusinessId);
+                returnObj.put("isFavorite", isThere);
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();

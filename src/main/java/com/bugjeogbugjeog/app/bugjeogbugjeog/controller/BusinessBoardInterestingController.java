@@ -5,8 +5,8 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessInterestingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,16 +19,16 @@ public class BusinessBoardInterestingController {
     private final BusinessInterestingService businessInterestingService;
     private final BusinessBoardService businessBoardService;
 
-    @PostMapping("/favorite/insert")
-    @ResponseBody
-    public RedirectView register(HttpServletRequest req, Long businessId) {
-        Long memberId = (Long) req.getSession().getAttribute("memberId");
-        businessInterestingService.isThere(businessId, memberId);
-        if (businessInterestingService.isThere(businessId, memberId)) {
-            return new RedirectView("/board/business/list");
-        } else {
+    @PutMapping("/favorite/update")
+    public void redirect(Long boardId, Long memberId, RedirectAttributes redirectAttributes){
+        Long businessId = businessBoardService.getBoardById(boardId).getBusinessId();
+        redirectAttributes.addAttribute("businessId", businessId);
+        redirectAttributes.addAttribute("memberId", memberId);
+        if(businessInterestingService.isThere(businessId, memberId)){
+            businessInterestingService.remove(businessId, memberId);
+        }else {
             businessInterestingService.save(businessId, memberId);
-            return new RedirectView("/board/business/list");
         }
     }
+
 }

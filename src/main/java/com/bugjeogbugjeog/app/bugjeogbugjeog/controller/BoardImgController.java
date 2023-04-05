@@ -68,12 +68,20 @@ public class BoardImgController {
     //    파일 불러오기
     @GetMapping("/imgs/business/display")
     @ResponseBody
-    public byte[] businessDisplay(String fileName) throws IOException {
-        return fileName.isEmpty() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+    public byte[] businessDisplay(String fileName){
+        try {
+            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @GetMapping("/imgs/business/download")
     public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
+        System.out.println(fileName);
         Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
