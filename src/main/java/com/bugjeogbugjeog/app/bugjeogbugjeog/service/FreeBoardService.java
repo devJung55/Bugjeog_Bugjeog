@@ -66,7 +66,11 @@ public class FreeBoardService {
 
     /* 자유게시판 게시글 목록조회 */
     public List<BoardFreeDTO> getListWithName(AdminCriteria adminCriteria){
-        return freeBoardDAO.findListWithName(adminCriteria);
+
+        List<BoardFreeDTO> list = freeBoardDAO.findListWithName(adminCriteria);
+        list.forEach(board -> board.setBoardFreeImgVOs(freeBoardImgDAO.findListByBoardId(board.getBoardFreeId())));
+
+        return list;
     }
 
     /* 자유게시판 총 갯수 */
