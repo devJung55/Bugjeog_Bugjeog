@@ -107,6 +107,7 @@
                 b.board_business_id desc
             </otherwise>
         </choose>
+        limit #{pageDTO.startPage}, #{criteria.amount}
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">

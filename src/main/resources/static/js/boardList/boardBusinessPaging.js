@@ -39,22 +39,22 @@ function boardBusinessPagingFunc($pagingWrap, pageDTO) {
     $pagingWrap.append(text);
 }
 
-function ajaxPaging(startPage) {
-    $.ajax({
-        url: "/board/inquiry/list/ajax",
-        method: "GET",
-        data: {"startPage": JSON.parse(startPage)},
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            let setUp = JSON.parse(result);
-            let boards = JSON.parse(setUp.boards);
-            let pageDTO = JSON.parse(setUp.pageDTO);
-            showInquiryList(boards);
-            pagingFunc(pageDTO);
-        },
-        error: function (e) {
-            console.log($(e));
-        }
-    })
-}
+// function ajaxPaging(startPage) {
+//     $.ajax({
+//         url: "/board/inquiry/list/ajax",
+//         method: "GET",
+//         data: {"startPage": JSON.parse(startPage)},
+//         async: false,
+//         contentType: "application/json; charset=utf-8",
+//         success: function (result) {
+//             let setUp = JSON.parse(result);
+//             let boards = JSON.parse(setUp.boards);
+//             let pageDTO = JSON.parse(setUp.pageDTO);
+//             showInquiryList(boards);
+//             pagingFunc(pageDTO);
+//         },
+//         error: function (e) {
+//             console.log($(e));
+//         }
+//     })
+// }

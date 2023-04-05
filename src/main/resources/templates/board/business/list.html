@@ -71,7 +71,23 @@
         </div>
         <ul class="boardList-info-box">
         </ul>
-        <ul id="pagingWrap"></ul>
+        <ul id="pagingWrap" th:object="${pageDTO}">
+            <li class="page-button-box">
+                <a href="javascript:ajaxPaging()" class="pagingNum" name="pagingFirst_1"><<</a>
+            </li>`;
+            <li class="page-button-box">
+                <a href="javascript:ajaxPaging(${pageDTO.startPage - 5})" class="pagingNum" name="pagingPrev_${pageDTO.startPage - 5}"><</a>
+            </li>`;
+            <li class="page-button-box">
+                <a href="javascript:ajaxPaging(${pageDTO.startPage + i})" class="pagingNum" name="pagingList_${pageDTO.startPage + i}">${pageDTO.startPage + i}</a>
+            </li>
+            <li class="page-button-box">
+                <a href="javascript:ajaxPaging(${pageDTO.endPage + 1})" class="pagingNum" name="pagingNext_${pageDTO.endPage + 1}">></a>
+            </li>
+            <li class="page-button-box">
+                <a href="javascript:ajaxPaging(${pageDTO.realEnd})" class="pagingNum" name="pagingEnd_${pageDTO.realEnd}">>></a>
+            </li>
+        </ul>
     </div>
     <button type="button" class="scroll-top-button">
         <img src="/image/boardList/arrow_icon.png" class="top-button">
@@ -231,14 +247,14 @@
         const activePage = $($('a.pagingNum.activePage')[0]).attr('name').toString().split('_')[1];
         console.log(categoryName);
         console.log(sortType);
-        console.log(activePage);
         $.ajax({
             url: "/board/business/list/ajax",
             method: "GET",
             data: {
+                pageNum: activePage,
+                amount: 12,
                 category: categoryName,
-                sort: sortType,
-                page: activePage
+                sort: sortType
             },
             dataType: "json",
             success: function (result) {

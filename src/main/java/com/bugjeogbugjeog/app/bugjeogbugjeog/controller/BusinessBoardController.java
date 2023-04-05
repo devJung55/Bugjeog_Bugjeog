@@ -89,16 +89,16 @@ public class BusinessBoardController {
 
     @GetMapping("/board/business/list/ajax")
     @ResponseBody
-    public JSONObject businessAjaxList(Criteria criteria, Long businessId, String category, String sort) {
+    public JSONObject businessAjaxList(Integer pageNum, Integer amount, Long businessId, String category, String sort) {
 //        new PageDTO(criteria), Integer.parseInt(String.valueOf(businessBoardService.getCount()))
         /* =================== getList pageDTO 받도록 변경됨 */
         JSONObject returnObj = new JSONObject();
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            returnObj.put("pageDTO", objectMapper.writeValueAsString(new PageDTO(criteria, Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
+            returnObj.put("pageDTO", objectMapper.writeValueAsString(new PageDTO(new Criteria(pageNum, amount), Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
             if (category == null && sort == null && businessId == null) {
-                returnObj.put("boardBusinessDTOs", objectMapper.writeValueAsString(businessBoardService.showList(criteria)));
+                returnObj.put("boardBusinessDTOs", objectMapper.writeValueAsString(businessBoardService.showList(new Criteria(pageNum, amount))));
             } else {
                 returnObj.put("boardBusinessDTOs",businessBoardService.getList(boardFunction(businessId, category, sort)));
             }
@@ -112,7 +112,7 @@ public class BusinessBoardController {
     public void businessList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
         PageDTO pageDTO = new PageDTO();
-        Criteria criteria = new Criteria(5, 12);
+        Criteria criteria = new Criteria(1, 12);
 
         pageDTO.setCriteria(criteria);
         pageDTO.setStartPage(1);
