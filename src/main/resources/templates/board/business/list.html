@@ -95,6 +95,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/boardDetail/favoriteControll.js"></script>
+<script src="/js/boardList/boardBusinessPaging.js"></script>
 <script th:inline="javascript">
     let memberId = [[${session.memberId}]];
     let businessId = [[${session.businessId}]];
@@ -227,6 +228,7 @@
     function ajax() {
         const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
         const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+        const activePage = $($('a.pagingNum.activePage')[0]).attr('name');
         console.log(categoryName);
         console.log(sortType);
         $.ajax({
