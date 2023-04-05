@@ -117,16 +117,13 @@
                     <li class="page-button-box">
                         <a href="javascript:ajax(${pageDTO.startPage - 1})" name="pagingPrev"><</a>
                     </li>`;
-=======
     $(".inquire_write").click(function(){
         if(!memberId && !businessId){
             alert("로그인을 먼저 해주세요.");
             return false;
->>>>>>> 66fe45b9b3bd2afb405de22fb06d3cdef0e21468
         }
     });
 
-<<<<<<< HEAD
         let length = `${pageDTO.criteria.pageNum}`;
         for (let i = 0; 0 < length; i++) {
             text += `
@@ -171,7 +168,6 @@
         `;
         })
         $listUl.append(text);
-
     }
 
     function ajax(startPage) {
@@ -192,7 +188,6 @@
                 console.log($(e));
             }
         })
-=======
 
 
     if (inquiryVO.length == 0) {
@@ -201,7 +196,6 @@
     } else {
         $(".no-content").hide();
         $(".page-box").show();
->>>>>>> 66fe45b9b3bd2afb405de22fb06d3cdef0e21468
     }
 
     let $pageForm = $(pageForm);
