@@ -53,10 +53,13 @@ public class ReplyController {
     }
 
     /*댓글 수정*/
-
-    /*댓글 삭제*/
-//    @PostMapping("/delete-reply")
-//    public void replyDelete()
+    @PatchMapping("update-reply")
+    public void replyUpdate(@RequestBody FreeReplyVO freeReplyVO){
+        replyService.update(freeReplyVO);
+    }
+    
+    
+/*댓글 삭제*/
     @DeleteMapping("delete-reply")
     public void replyDelete(@RequestParam("replyId") Long replyId) {
         replyService.delete(replyId);

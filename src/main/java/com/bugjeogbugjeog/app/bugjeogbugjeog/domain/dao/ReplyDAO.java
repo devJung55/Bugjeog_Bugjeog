@@ -78,5 +78,9 @@ public class ReplyDAO {
         return replyMapper.businessReplyAllList(businessId, boardFreeId);
     }
 
+    // 댓글 조회
+    public FreeReplyVO findById(Long replyId){
+        return replyMapper.select(replyId);
+    }
 
 }

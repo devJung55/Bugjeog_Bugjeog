@@ -11,6 +11,25 @@
     <link rel="stylesheet" href="/css/board_detail/board_community_detail.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <style>
+        button.signUp_button {
+            color: black!important;
+            backgound : none!important;
+            position: relative;
+            background-color: #fff !important;
+            bottom : 0;
+            right: 0;
+        }
+
+        .aside_ul {
+            display: flex;
+        }
+
+        div.profile_img{
+            border : none;
+            background: none;
+        }
+    </style>
 </head>
 <body>
 <div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
@@ -138,34 +157,34 @@
                 <p id="reply_content">첫 댓글을 남겨주세요.</p>
             </div>
             <!-- 끝 -->
-            <div style="margin-top: 20px" th:if="${session.memberId} != null or ${session.businessId} != null">
-                <div id="profile_img_nickname">
+            <div style="margin-top: 20px">
+                <div id="profile_img_nickname" th:if="${memberVO} != null or ${businessVO} != null">
                     <div class="profile_img" id="profile_my_img">
                         <div class="profile-image-login">
                             <div class="profile-member-status">
-                                    <th:block th:if="${session.memberId} != null">
-                                        <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
-                                            <img src="/image/boardList/self_employ_icon.png" alt="">
-                                        </th:block>
-                                        <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
-                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}">
-                                        </th:block>
+                                <th:block th:if="${memberVO != null}">
+                                    <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                                        <img src="/image/boardList/self_employ_icon.png">
                                     </th:block>
-                                    <th:block th:if="${session.memberId} != null">
-                                        <th:block th:if="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
-                                            <img src="/image/boardList/distributor_icon.png" alt="">
-                                        </th:block>
-                                        <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
-                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}">
-                                        </th:block>
+                                    <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid)}">
+                                        <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}">
                                     </th:block>
+                                </th:block>
+                                <th:block th:unless="${memberVO != null}">
+                                    <th:block th:if="${#strings.isEmpty(businessVO.businessImgUuid)}">
+                                        <img src="/image/boardList/distributor_icon.png" alt="">
+                                    </th:block>
+                                    <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid)}">
+                                        <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}">
+                                    </th:block>
+                                </th:block>
                             </div>
                         </div>
                     </div>
-                    <th:block th:if="${session.memberId} != null">
-                        <span id="my_nickname" th:text="${memeberVO.memberName}"></span>
+                    <th:block th:if="${memberVO != null}">
+                        <span id="my_nickname" th:text="${memberVO.memberName}"></span>
                     </th:block>
-                    <th:block th:unless="${session.memberId} != null">
+                    <th:block th:unless="${memberVO != null}">
                         <span id="my_nickname" th:text="${businessVO.businessCompanyName}"></span>
                     </th:block>
                 </div>
@@ -211,6 +230,51 @@
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <<script>
+
+    let getTimePassed = function (writtenDate, writtenTime) {
+        const [yyyy, mm, dd] = writtenDate.split("-");
+        const [hh, MM, ss] = writtenTime.split(":");
+        const currentTime = new Date();
+        const givenTime = new Date();
+        givenTime.setFullYear(yyyy, mm - 1, dd);
+        givenTime.setHours(hh, MM, ss);
+
+        const betweenTime = Math.floor((currentTime.getTime() - givenTime.getTime()) / 1000 / 60);
+
+        if (betweenTime < 1) return '방금전';
+        if (betweenTime < 60) {
+            return `${betweenTime}분전`;
+        }
+
+        const betweenTimeHour = Math.floor(betweenTime / 60);
+        if (betweenTimeHour < 24) {
+            return `${betweenTimeHour}시간전`;
+        }
+
+        const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+        if (betweenTimeDay < 30) {
+            return `${betweenTimeDay}일전`;
+        }
+
+        const betweenTimeMonth = Math.floor(betweenTimeDay / 30);
+        if (betweenTimeMonth < 12) {
+            return `${betweenTimeMonth}개월전`;
+        }
+
+        const betweenTimeYear = Math.floor(betweenTimeDay / 365);
+        return `${betweenTimeYear}년전`;
+    }
+
+    const $doAjax = function (ajaxConfig, callback) {
+        $.ajax({
+            url: ajaxConfig.url,
+            type: ajaxConfig.type,
+            success: function (result) {
+                callback(result);
+            }
+        });
+    }
+
     /*댓글*/
     let page = 1;
 
@@ -248,7 +312,7 @@
         function update(reply, callback){
             $.ajax({
                 url: "/replies/update-reply",
-                type: "post",
+                type: "patch",
                 data: JSON.stringify(reply),
                 contentType: "application/json;charset=utf-8",
                 success: function(){
@@ -286,23 +350,45 @@
 
     showList();
 
-    $("#reply_wrap_div").on("click", "div.update", function () {
-        const replyContents = $("div.reply_content");
-        let i = $("div.update").index(this);
-        const replyContent = replyContents[i].value;
-        const replyId = $(this).data("reply-id");
-
-        replyService.update({replyContent: replyContent, replyId: replyId}, function(){
-            showList();
-        });
-
-    });
+    // $("#reply_wrap_div").on("click", "div.update", function () {
+    //     const replyContents = $("div.reply_content");
+    //     let i = $("div.update").index(this);
+    //     const replyContent = $($(".reply_content")[i]).text();
+    //     const replyId = $(this).data("reply-id");
+    //     $($(".modify-reply-box")[i]).show();
+    //     $($(".cancelBtn")[i]).show();
+    //     $($(".modifyBtn")[i]).hide();
+    //
+    //     $($(".new-reply-content")[i]).val(replyContent);
+    //     $($(".reply_content")[i]).hide();
+    // });
+    //
+    // $("#reply_wrap_div").on("click", "button.save-reply", function () {
+    //     let i = $("button.save-reply").index(this);
+    //     let replyVO = new Object();
+    //     replyVO.replyId = $($("div.update")[i]).data("reply-id");
+    //     replyVO.replyContent = $($(".new-reply-content")[i]).val();
+    //     replyService.update(replyVO, function () {
+    //         showList();
+    //     });
+    // });
+    //
+    // $("#reply_wrap_div").on("click", "button.cancelBtn", function () {
+    //     let i = $("button.cancelBtn").index(this);
+    //     $($(".modify-reply-box")[i]).hide();
+    //     $($(".cancelBtn")[i]).hide();
+    //     $($(".modifyBtn")[i]).show();
+    // });
 
     $replyRegisterButton.click(function () {
         const replyContent = $("#reply_textarea").val();
         const boardFreeId = currentBoard.boardFreeId;
         console.log(boardFreeId)
         replyService.save({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            $($(".cancelBtn")[i]).hide();
+            $($(".modifyBtn")[i]).show();
+            $($(".reply_content")[i]).show();
+
             showList();
         });
     });
@@ -333,7 +419,6 @@
     // });
 
     $("#reply_wrap_div").on("click", "button.deleteBtn", function () {
-
         let i = $("button.deleteBtn").index(this);
         const replyId = $($("div.update")[i]).data("reply-id");
         replyService.Delete({replyId : replyId}, function(){
@@ -363,10 +448,9 @@
                                             </div>
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                                    <div id="reply_nickname">DesignK</div>
                                                   <div id="reply_nickname">${reply.memberName}</div>
                                                 </div>
-                                                <span id="reply_date">${reply.replyRegisterDate}</span>
+                                                <span id="reply_date">${getTimePassed(reply.replyUpdateDate,reply.replyRegisterDate)}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -377,9 +461,12 @@
                         `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
-                                           <button type="button" class="modifyBtn">
-                                            <span>수정</span>
-                                            </button>
+<!--                                           <button type="button" class="modifyBtn">-->
+<!--                                            <span>수정</span>-->
+<!--                                            </button>-->
+<!--                                            <button type="button" class="cancelBtn" style="display: none">-->
+<!--                                            <span>취소</span>-->
+<!--                                            </button>-->
                                         </div>
                                         <div style="margin-left: 8px" class="delete" data-reply-id="${reply.replyId}">
                                             <button type="button" class="deleteBtn" >
@@ -392,6 +479,16 @@
                 text += `
                         </div>
                         <div class="reply_content">${reply.replyContent}</div>
+<!--                        <div class="modify-reply-box" style="display: none; padding-left: 44px;">-->
+<!--                            <div style="display: flex; position:relative; width:100%; height: 30px; border-radius: 10px; border: 1px solid #e1e2e3;">-->
+<!--                                <input type="text" placeholder="수정할 댓글을 입력해주세요." class="new-reply-content" style="width: 100%; outline: none; border:none; padding: 3px 5px; background: none;">-->
+<!--                                <div style="position: absolute; right: 8px; top: 8px; display: flex; font-size:13px;">-->
+<!--                                    <button type="button" id="save-reply">-->
+<!--                                        완료-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 `
             })
