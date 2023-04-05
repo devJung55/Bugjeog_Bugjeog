@@ -96,11 +96,6 @@
                 <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
                 <p id="reply_content">첫 댓글을 남겨주세요.</p>
             </div>
-            <!-- 댓글 뿌려주는 곳 -->
-            <div id="reply_wrap_div">
-                <!--reply 내용-->
-
-            </div>
             <!-- 끝 -->
             <div style="margin-top: 20px">
                 <div id="profile_img_nickname">
@@ -282,10 +277,14 @@
                         `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
+                                           <button type="button">
                                             <span>수정</span>
+                                            </button>
                                         </div>
                                         <div style="margin-left: 8px" class="delete">
+                                            <button type="button">
                                             <span>삭제</span>
+                                            </button>
                                         </div>
                                     </div>
                         `
@@ -299,10 +298,6 @@
             $("#reply_wrap_div").html(text);
         });
     }
-
-    // boardDetailContainer.append(createDOM(boardFreeId));
-    // console.log("됐니?");
-    // console.log(boardFreeId);
 
     $(document).ready(function () {
         /*등록 버튼 초기 색상 설정*/
@@ -380,3 +375,8 @@
 
 </script>
 </html>
+
+
+
+
+

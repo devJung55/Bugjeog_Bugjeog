@@ -50,7 +50,7 @@ const createDOM = function (boardFree) {
     /* fileVO로 자바에서 보내야함 */
     if(boardFree.boardFreeImgUuid != null) {
         text += `<div>
-                    <img src="/free-boards/imgs/dispay?fileName=${boardFree.boardFreeImgPath}/${boardFree.boardFreeImgUuid}_${boardFree.boardFreeImgOriginalName}">
+                    <img style="width: 100%" src="/free-boards/imgs/dispay?fileName=${boardFree.boardFreeImgPath}/${boardFree.boardFreeImgUuid}_${boardFree.boardFreeImgOriginalName}">
                 </div>`
     }
     text += `</div>
