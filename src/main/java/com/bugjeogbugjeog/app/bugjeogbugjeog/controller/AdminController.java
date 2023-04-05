@@ -214,8 +214,8 @@ public class AdminController {
     @ResponseBody
     public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
         log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());   int total = businessBoardService.getCount().intValue
-     ();
+        log.info(page.toString());
+        int total = businessBoardService.getCount().intValue();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
@@ -239,7 +239,9 @@ public class AdminController {
     public String adminBoardCompany(@PathVariable Long boardBusinessId, Model model){
         log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         log.info(businessBoardService.getBoardById(boardBusinessId).getBusinessStatus().toString());
+        log.info(businessBoardService.getImagesById(boardBusinessId).toString());
         model.addAttribute("board", businessBoardService.getBoardById(boardBusinessId));
+        model.addAttribute("images", businessBoardService.getImagesById(boardBusinessId));
         return "admin/admin-distribution";
     }
 

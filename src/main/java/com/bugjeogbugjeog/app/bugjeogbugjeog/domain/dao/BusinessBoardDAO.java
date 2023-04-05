@@ -52,4 +52,9 @@ public class BusinessBoardDAO {
     public BoardBusinessDTO findBoardById(Long boardBusinessId){
         return businessBoardMapper.selectBoard(boardBusinessId);
     }
+
+    //    보드아이디에 맞춰 이미지 정보 가져오기
+    public List<BoardBusinessDTO> findImages(Long boardBusinessId){
+        return businessBoardMapper.selectBoardImages(boardBusinessId);
+    }
 }

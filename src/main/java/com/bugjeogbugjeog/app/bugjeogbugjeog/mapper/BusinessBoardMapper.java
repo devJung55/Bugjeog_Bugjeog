@@ -40,4 +40,7 @@ public interface BusinessBoardMapper {
 
     //    관리자 페이지 상세보기
     public BoardBusinessDTO selectBoard(Long boardBusinessId);
+
+    //    보드아이디에 맞춰 이미지 정보 가져오기
+    public List<BoardBusinessDTO> selectBoardImages(Long boardBusinessId);
 }

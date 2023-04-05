@@ -65,7 +65,12 @@
                                 <hr>
                                 <div class="board-info-box">
                                     <div class="member-img-box">
-                                        <div class="board-img"></div>
+                                        <div class="board-img">
+<!--                                            <img th:src="@{/imgs/business/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image">-->
+                                            <img th:src="@{/mypage/profile/display(fileName=${images[1].boardBusinessImgPath}+'/'+${images[1].boardBusinessImgUuid}+'_'+${images[1].boardBusinessImgOriginalName})}" class="info-image">
+<!--                                            <img th:src="@{/mypage/profile/display(fileName=${memberDTO.memberImgPath}+'/'+${memberDTO.memberImgUuid}+'_'+${memberDTO.memberImgOriginalName})}"/>-->
+
+                                        </div>
                                         <!-- <div class="member-nickname-box">
                                             <span>벅벅코딩</span>
                                         </div> -->
