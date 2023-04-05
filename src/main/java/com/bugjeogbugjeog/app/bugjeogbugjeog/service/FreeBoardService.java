@@ -63,15 +63,17 @@ public class FreeBoardService{
 
     /* 관리자 ************************************************************************** */
 
+    /* 자유 게시판 목록 */
     public List<BoardFreeVO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
 
-    /* 자유 게시판 목록 */
     /* 자유 게시판 조회  */
     public BoardFreeDTO adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
 
     /* 자유 게시판 삭제 */
-    public void adminRemove(List<String> boardFreeIds){
-        boardFreeIds.stream().map(boardFreeId -> Long.parseLong(boardFreeId)).forEach(freeBoardDAO::adminDelete);}
+    public void adminRemove(Long boardFreeId){
+        freeBoardDAO.adminDelete(boardFreeId);
+    }
 
-
+    /* 카운트 */
+    public Long count(){return freeBoardDAO.count();}
 }

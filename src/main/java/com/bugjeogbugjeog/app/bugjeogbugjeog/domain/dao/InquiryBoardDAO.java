@@ -35,6 +35,10 @@ public class InquiryBoardDAO {
         }
     }
 
+    public void save(BoardInquiryVO boardInquiryVO) {
+        inquiryBoardMapper.insert(boardInquiryVO);
+    }
+
 
     //    문의글 상세보기
     public BoardInquiryDTO findOneByBoardInquiryId(Long boardInquiryId) {
@@ -61,6 +65,7 @@ public class InquiryBoardDAO {
     public List<BoardInquiryDTO> findAllByIdToInquire() {
         return inquiryBoardMapper.inquiryList();
     }
+
     public List<BoardInquiryDTO> findAllByIdToInquire(InquiryCriteria inquiryCriteria) {
         return inquiryBoardMapper.inquiryListPaging(inquiryCriteria);
     }
@@ -69,7 +74,6 @@ public class InquiryBoardDAO {
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria) {
         return inquiryBoardMapper.inquireList(memberId, criteria);
     }
-
 
     //    문의 게시글 작성 갯수
     public Integer getCountToInquire(Long memberId) {
