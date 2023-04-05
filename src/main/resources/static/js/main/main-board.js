@@ -1,4 +1,5 @@
 const $stage = $(".distribution_list");
+const $businessBoardSelecter = $(".first_list");
 const $freeBoardSelecter = $(".second_list");
 const $freeBoardSortWrapper = $(".free_board_sort");
 const $businessBoardSortWrapper = $(".business_board_sort");
@@ -58,7 +59,7 @@ const createFreeBoardDOM = function (board) {
     let text = `
         <article class="content-box">
             <div class="content-box-layout">
-                <a href="javascript:void(0)" class="content-member-info-box">
+                <a href="/free-boards/detail/${board.boardFreeId}" class="content-member-info-box">
                     <div class="content-member-info-box-layout">
                         <div class="content-member-text-left">
                             <div class="content-member-image-box">
@@ -124,7 +125,7 @@ const createBusinessBoardDOM = function (board) {
         `
         <li>
             <div class="distribution_cards">
-                <a href="javascript:void(0)">
+                <a href="/board/business">
                     <header/>
                     <div class="card_body">
                         <div class="distribution_card_position">[${board.businessCategory}] ${board.boardBusinessTitle}</div>
@@ -169,7 +170,7 @@ const boardService = (function () {
                 $freeBoardSortWrapper.css("display", "flex");
                 $stage.empty();
                 $rankingHeader.text(headerText);
-
+                console.log(result);
                 result.forEach((board, i) => {
                     if (i < 4) {
                         $stage.eq(0).append(createFreeBoardDOM(board));
@@ -210,5 +211,8 @@ boardService.showBusinessBoard();
 
 $freeBoardSelecter.on("click", function () {
     boardService.showFreeBoard();
+});
+$businessBoardSelecter.on("click", function () {
+    boardService.showBusinessBoard();
 });
 
