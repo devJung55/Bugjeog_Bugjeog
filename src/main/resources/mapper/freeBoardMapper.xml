@@ -88,9 +88,11 @@
 
     <!-- 관리자 ***************************************************  -->
     <!-- 자유 게시판 목록 -->
-    <select id="adminSelectAllFree" resultType="boardFreeVO">
-        select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
-        from tbl_board_free
+    <select id="adminSelectAllFree" resultType="boardFreeDTO">
+        select board_free_id, m.member_id, b.business_id, m.member_name, b.business_ceo_name, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
+        from tbl_board_free bf
+        left join tbl_member m on bf.member_id = m.member_id
+        left join tbl_business b on bf.business_id = b.business_id
         order by board_free_id desc
         limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
