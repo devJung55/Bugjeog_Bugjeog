@@ -71,6 +71,7 @@
         </div>
         <ul class="boardList-info-box">
         </ul>
+        <ul id="pagingWrap"></ul>
     </div>
     <button type="button" class="scroll-top-button">
         <img src="/image/boardList/arrow_icon.png" class="top-button">
@@ -217,7 +218,6 @@
     const $cateButton = $(".cate-button");
 
     $cateButton.each((i, e) => {
-
         $(e).click(function () {
             $cateButton.removeClass("cate-button-active");
             $(e).addClass("cate-button-active");
@@ -228,21 +228,25 @@
     function ajax() {
         const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
         const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
-        const activePage = $($('a.pagingNum.activePage')[0]).attr('name');
+        const activePage = $($('a.pagingNum.activePage')[0]).attr('name').toString().split('_')[1];
         console.log(categoryName);
         console.log(sortType);
+        console.log(activePage);
         $.ajax({
             url: "/board/business/list/ajax",
             method: "GET",
             data: {
                 category: categoryName,
-                sort: sortType
+                sort: sortType,
+                page: activePage
             },
             dataType: "json",
-            success: function (boards) {
+            success: function (result) {
+                let boards = JSON.parse(result.boards);
+                let pageDTO = JSON.parse(result.pageDTO);
                 // let newBoards = `${result}`;
                 $ul.empty();
-                showBoardsList(boards);
+                showBoardsList(boards, pageDTO);
             },
             error: function (e) {
                 alert("보드리스트 실패");

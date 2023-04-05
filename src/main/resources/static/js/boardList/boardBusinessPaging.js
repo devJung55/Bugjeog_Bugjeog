@@ -1,10 +1,10 @@
-function boardBusinessPagingFunc($paging, pageDTO) {
-    $paging.empty();
+function boardBusinessPagingFunc($pagingWrap, pageDTO) {
+    $pagingWrap.empty();
     let text = '';
 
     text += `
                     <li class="page-button-box">
-                        <a href="javascript:ajaxPaging(1 )" class="pagingNum" name="pagingFirst_1"><<</a>
+                        <a href="javascript:ajaxPaging(1)" class="pagingNum" name="pagingFirst_1"><<</a>
                     </li>`;
     if (`${pageDTO.prev}`) {
         text +=
@@ -36,7 +36,7 @@ function boardBusinessPagingFunc($paging, pageDTO) {
                         <a href="javascript:ajaxPaging(${pageDTO.realEnd})" class="pagingNum" name="pagingEnd_${pageDTO.realEnd}">>></a>
                     </li>
         `
-    $paging.append(text);
+    $pagingWrap.append(text);
 }
 
 function ajaxPaging(startPage) {

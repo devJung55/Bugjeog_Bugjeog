@@ -83,6 +83,7 @@ public class BusinessBoardController {
         if (businessId != null) {
             searchMap.put("businessId", businessId == null ? null : businessId);
         }
+
         return searchMap;
     }
 
@@ -91,9 +92,17 @@ public class BusinessBoardController {
     public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
         model.addAttribute(new BusinessReviewVO());
+        Criteria criteria = new Criteria();
+        criteria.setPageNum(5);
+        criteria.setAmount(12);
 
+        Integer startPage = criteria.getStartRow();
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setCriteria(criteria);
+        pageDTO.setStartPage(startPage);
+        pageDTO.setTotal(Integer.parseInt(String.valueOf(businessBoardService.getCount())));
         if (category == null && sort == null && businessId == null) {
-            return businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount()))));
+            return businessBoardService.getList(pageDTO);
         } else {
             return businessBoardService.getList(boardFunction(businessId, category, sort));
         }
@@ -104,6 +113,12 @@ public class BusinessBoardController {
     public void businessList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
         PageDTO pageDTO = new PageDTO();
+        Criteria criteria = new Criteria();
+        criteria.setPageNum(5);
+        criteria.setAmount(12);
+
+        pageDTO.setCriteria(criteria);
+        pageDTO.setStartPage(1);
         if (category == null && sort == null && businessId == null) {
             model.addAttribute("boards", businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
         } else {
