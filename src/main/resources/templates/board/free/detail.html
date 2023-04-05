@@ -96,11 +96,6 @@
                                 <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
                                 <p id="reply_content">첫 댓글을 남겨주세요.</p>
                             </div>
-            <!-- 댓글 뿌려주는 곳 -->
-            <div id="reply_wrap_div">
-                <!--reply 내용-->
-
-            </div>
             <!-- 끝 -->
             <div style="margin-top: 20px">
                 <div id="profile_img_nickname">
@@ -116,12 +111,17 @@
                 <div id="form_wrap">
                     <form th:action="@{/replies/resister-reply}" method="post">
                         <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
-                        <button  class="reply-register-button">
+                        <button type="button" class="reply-register-button">
                             <!--댓글 등록 완료 시 디테일 페이지로 이동-->
                             <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
                         </button>
                     </form>
                 </div>
+            </div>
+            <!-- 댓글 뿌려주는 곳 -->
+            <div id="reply_wrap_div">
+                <!--reply 내용-->
+
             </div>
             <!--목록으로 클릭시 리스트 페이지로 이동-->
             <button id="list_button" onclick="location.href='/free-boards/'">
@@ -149,14 +149,13 @@
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <<script>
-
     /*댓글*/
    let page = 1;
 
     const replyService = (() => {
         function getList(callback) {
             $.ajax({
-                url: `/replies/list?page=${page}&boardFreeId=${currentBoard.boardFreeId}`,
+                url: `/replies/list/${page}?boardFreeId=${currentBoard.boardFreeId}`,
                 type : "get",
                 success: function (replies) {
                     if (callback) {
@@ -169,18 +168,42 @@
             });
         }
 
-        return {getList: getList};
+        function save(reply, callback){
+            $.ajax({
+                url: "/replies/register-reply",
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
+
+        return {getList: getList, save: save};
     })();
 
     const $replyRegisterButton = $(".reply-register-button");
 
-    $replyRegisterButton.click(function () {
-        replyService.getList(function (list) {
-            console.log(list.memberName);
-            let text = "";
-            console.log("잘나와")
+    showList();
 
-            text += `
+    $replyRegisterButton.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        replyService.save({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
+
+    function showList(){
+        replyService.getList(function(list) {
+            let text = "";
+            list.forEach(reply => {
+                text +=
+                    `
                      <div style="margin-bottom: 20px">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
                                 <a style="display: flex; width: 0;">
@@ -198,9 +221,9 @@
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
                                                     <div id="reply_nickname">DesignK</div>
-                                                  <div id="reply_nickname">${list.memberName}</div>
+                                                  <div id="reply_nickname">${reply.memberName}</div>
                                                 </div>
-                                                <span id="reply_date">2023.03.14</span>
+                                                <span id="reply_date">${reply.replyRegisterDate}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -214,13 +237,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
-                            <div id="reply_content">${currentBoard}</div>
+                            <div id="reply_content">${reply.replyContent}</div>
                         </div>
-            `
-
+                    `
+            })
+            $("#reply_wrap_div").html(text);
         });
-    });
+    }
 
     // boardDetailContainer.append(createDOM(boardFreeId));
     // console.log("됐니?");
@@ -260,8 +283,6 @@
         } else {
             declaration.style.display = "block"
         }
-    })
-
-
+    });
 </script>
 </html>

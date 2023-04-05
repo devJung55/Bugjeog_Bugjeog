@@ -30,22 +30,27 @@ public class ReplyController {
 
 
     //    댓글 전체 조회
-    @GetMapping("detail/{boardFreeId}")
-    public String showList(@PathVariable("boardFreeId") Long boardFreeId, Model model){
+    @GetMapping("list/{page}")
+    public List<FreeReplyVO> showList(Long boardFreeId, @PathVariable("page") int page, Model model, HttpSession session){
+        Criteria criteria = new Criteria(page, 6);
         List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
-        model.addAttribute("replyLists", replyService.getList());
 
-        return "free-boards";
+        return replyService.getList(boardFreeId);
     }
 
-
-    /*댓글 등록완료 용준*/
-    /*@PostMapping("register-reply")
-    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+    /*댓글 등록 */
+    @PostMapping("register-reply")
+    public void replyResister(@RequestBody FreeReplyVO freeReplyVO, HttpSession session){
+        Long memberId = (Long)session.getAttribute("memberId");
+        Long businessId = (Long)session.getAttribute("businessId");
+        log.info("=============================" + freeReplyVO.toString());
+        if(memberId != null) {
+            freeReplyVO.setMemberId(memberId);
+        }else{
+            freeReplyVO.setBusinessId(businessId);
+        }
         replyService.save(freeReplyVO);
-
-        return new RedirectView("/free-boards/detail");
-    }*/
+    }
 
     /*댓글 목록*/
     /*@GetMapping("resister-reply")               //model = 객체 DB에서 화면에 전달해줄 때 사용하는 객체
@@ -73,22 +78,11 @@ public class ReplyController {
         return "/board/free/detail";
    }*/
 
-    /*댓글 등록 성공*/
-    @PostMapping("resister-reply")
-    public RedirectView replyResister(FreeReplyVO freeReplyVO, HttpSession httpSession){
-        /*아래 두줄 주석 풀면 */
-        freeReplyVO.setMemberId(((MemberVO)httpSession.getAttribute("member")).getMemberId());
-//        /*freeReplyVO.setBusinessId(((BusinessVO)httpSession.getAttribute("business")).getBusinessId());*/
-        replyService.save(freeReplyVO);
-
-        return new RedirectView("/free-boards/");
-    }
-
-    /* 댓글 등록완료*/
+        /*  등록 DB에 올라간 댓글 화면에 뿌려주기*/
 //    @GetMapping("reply-complate")
 //    public String replyAddEnd(Model model){
 //        model.addAttribute(new FreeReplyVO());
 //        return "/free-boards/detail";
 //    }
 
-}
+    }

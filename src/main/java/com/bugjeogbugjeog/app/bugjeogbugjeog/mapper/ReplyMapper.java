@@ -32,7 +32,7 @@ public interface ReplyMapper {
     public List<BoardFreeVO> selectAll(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
 
     // 이용자의 게시물의 댓글 단 리스트
-    public List<FreeReplyVO> replyAllList(Long memberId, Long boardFreeId);
+    public List<FreeReplyVO> replyAllList(Long boardFreeId);
 
     // 유통업자의 댓글 단 게시물 목록
     public List<BoardFreeVO> businessSelectAll(@Param("businessId") Long businessId, @Param("criteria") Criteria criteria);

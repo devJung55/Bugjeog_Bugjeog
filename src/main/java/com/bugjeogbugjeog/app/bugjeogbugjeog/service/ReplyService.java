@@ -17,8 +17,8 @@ public class ReplyService {
     private final ReplyDAO replyDAO;
 
     //    댓글 전체 조회
-    public List<FreeReplyVO> getList(){    //원래 boardId
-        return replyDAO.findAll();
+    public List<FreeReplyVO> getList(Long boardId){    //원래 boardId
+        return replyDAO.findAllFreeReplyToMember(boardId);
     }
 
     //    댓글 전체 개수
@@ -26,7 +26,7 @@ public class ReplyService {
         return replyDAO.findCountAll();
     }
 
-//    /* 댓글 등록 용준*/
+//    /* 댓글 등록*/
     public void save(FreeReplyVO freeReplyVO){
         replyDAO.addReply(freeReplyVO);
     }

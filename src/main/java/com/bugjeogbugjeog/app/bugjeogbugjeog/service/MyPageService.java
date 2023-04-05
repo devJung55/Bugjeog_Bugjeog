@@ -187,8 +187,8 @@ public class MyPageService {
     }
 
     // 각 보드의 댓글 리스트
-    public List<FreeReplyVO> replyList(Long memberId, Long boardFreeId){
-        return replyDAO.findAllFreeReplyToMember(memberId, boardFreeId);
+    public List<FreeReplyVO> replyList(Long boardFreeId){
+        return replyDAO.findAllFreeReplyToMember(boardFreeId);
     }
 
     // 댓글 갯수

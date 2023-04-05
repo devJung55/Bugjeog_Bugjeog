@@ -7,6 +7,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ReplyDAO {
 
     private final ReplyMapper replyMapper;
@@ -28,7 +30,9 @@ public class ReplyDAO {
     }
 
     // 댓글 등록
-    public void addReply(FreeReplyVO freeReplyVO){ replyMapper.replyAdd(freeReplyVO);}
+    public void addReply(FreeReplyVO freeReplyVO){
+        replyMapper.replyAdd(freeReplyVO);
+    }
 
     // 댓글 갯수
     public Integer getReplyTotal(Long memberId){
@@ -50,8 +54,8 @@ public class ReplyDAO {
     }
 
     // 이용자의 게시물의 댓글 단 리스트
-    public List<FreeReplyVO> findAllFreeReplyToMember(Long memberId, Long boardFreeId){
-        return replyMapper.replyAllList(memberId, boardFreeId);
+    public List<FreeReplyVO> findAllFreeReplyToMember(Long boardFreeId){
+        return replyMapper.replyAllList(boardFreeId);
     }
 
     // 이용자의 댓글 단 게시물 목록
