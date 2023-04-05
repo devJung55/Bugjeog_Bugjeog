@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,6 +24,9 @@ public interface NoticeMapper {
     public void delete(Long noticeId);
 
     /* 카운트 */
-    public int count();
+    public Long count();
+
+    /* 공지사항 목록 조회 */
+    public List<NoticeVO> adminSelectAll(@Param("adminCriteria") AdminCriteria adminCriteria);
 
 }

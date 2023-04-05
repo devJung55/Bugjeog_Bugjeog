@@ -781,7 +781,7 @@ li.second_list {
     border-top-right-radius: 38.5px;
     border-bottom-right-radius: 38.5px;
     background-color: #f2fbf5;
-
+    cursor: pointer;
     display: flex;
     -ms-flex-pack: center;
     justify-content: center;
@@ -824,7 +824,7 @@ header.ranking_header h2 {
 }
 
 ul.distribution_list {
-    margin: -10px;
+    margin: -10px -10px 68px -10px;
     padding: 0;
     display: flex;
     justify-content: space-between;
@@ -1214,9 +1214,7 @@ p.footer_text {
 
 .sort_wrapper {
     display: flex;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    justify-content: flex-end;
 }
 
 .sort_wrapper div {

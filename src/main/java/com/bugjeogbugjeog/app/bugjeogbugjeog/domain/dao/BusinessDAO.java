@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
@@ -46,10 +47,10 @@ public class BusinessDAO {
 
     /* ------------------------------------------------------------ */
     /* 관리자 유통 목록 */
-    public List<BusinessDTO> adminFindAll(Criteria criteria){ return businessMapper.adminSelectAllBusiness(criteria);}
+    public List<BusinessDTO> adminFindAll(AdminCriteria adminCriteria){ return businessMapper.adminSelectAllBusiness(adminCriteria);}
 
     /* 관리자 카운트 */
-    public int count(){return businessMapper.count();}
+    public Long count(){return businessMapper.count();}
 
     /* 관리자 유통 상세 보기 */
     public BusinessDTO adminFindById(Long businessId){return businessMapper.adminSelectBusiness(businessId);}
@@ -57,5 +58,8 @@ public class BusinessDAO {
     /* 관리자 유통 회원 수정 */
     public void updateById(BusinessVO businessVO){businessMapper.update(businessVO);}
 
-
+    /* 추천 유통업체 TOP 10 */
+    public List<BusinessDTO> findListByReviewRank(){
+        return businessMapper.selectReivewRank();
+    }
 }

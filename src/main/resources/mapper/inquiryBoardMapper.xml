@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper">
 
+    <insert id="insert">
+        INSERT INTO tbl_board_inquiry
+        (
+        member_id, business_id, board_inquiry_title
+        , board_inquiry_content, board_inquiry_status)
+        VALUES(
+        #{memberId}, #{businessId}, #{boardInquiryTitle}
+        , #{boardInquiryContent}, #{boardInquiryStatus});
+
+    </insert>
+
     <insert id="insertWithMemberId">
         INSERT INTO tbl_board_inquiry
         (
@@ -61,6 +72,20 @@
         order by board_inquiry_id desc
     </select>
 
+    <select id="inquiryListPaging" resultType="boardInquiryDTO">
+        select board_inquiry_id, member_id, business_id
+        , board_inquiry_title, board_inquiry_content, board_inquiry_register_date
+        , board_inquiry_status
+        from tbl_board_inquiry
+        where board_inquiry_status = 1
+        order by board_inquiry_id desc
+        limit #{startRow}, #{amount}
+    </select>
+
+    <select id="countBoards" resultType="long">
+        select count(board_inquiry_id) from tbl_board_inquiry
+    </select>
+
     <!-- 이용자의 문의게시판 목록 -->
     <select id="inquireList" resultType="boardInquiryVO">
         select member_id, board_inquiry_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status from tbl_board_inquiry
@@ -96,6 +121,8 @@
     <select id="adminSelectAllInquiry" resultType="boardInquiryVO">
         select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date
         from tbl_board_inquiry
+        order by board_inquiry_id desc
+        limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 
     <!-- 문의 조회 -->
@@ -115,7 +142,7 @@
     </delete>
 
     <!-- 문의 카운트 -->
-    <select id="count" resultType="int">
+    <select id="count" resultType="long">
         select count(board_inquiry_id) from tbl_board_inquiry;
     </select>
 

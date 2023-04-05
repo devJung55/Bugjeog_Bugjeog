@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.NoticeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.NoticeMapper;
@@ -14,6 +15,9 @@ public class NoticeDAO {
     private final NoticeMapper noticeMapper;
 
     /* 공지사항 목록 조회 */
+    public List<NoticeVO> adminFindAll(AdminCriteria adminCriteria){ return noticeMapper.adminSelectAll(adminCriteria);}
+
+    /* 공지사항 목록 조회 */
     public List<NoticeVO> findAll(Criteria criteria){ return noticeMapper.selectAll(criteria);}
 
     /* 공지사항  상세 보기 */
@@ -26,6 +30,6 @@ public class NoticeDAO {
     public void remove(Long noticeId){ noticeMapper.delete(noticeId);}
 
     /* 카운트 */
-    public int count(){return noticeMapper.count();}
+    public Long count(){return noticeMapper.count();}
 
 }

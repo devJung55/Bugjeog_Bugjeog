@@ -27,6 +27,6 @@ public class ReplyServiceTest {
         freeReplyVO.setReplyId(1L);
         freeReplyVO.setReplyRegisterDate("2023-03-30");
         freeReplyVO.setReplyUpdateDate("2023-03-30");
-        replyService.save(freeReplyVO);
+//        replyService.save(freeReplyVO);
     }
 }

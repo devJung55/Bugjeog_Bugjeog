@@ -30,4 +30,9 @@ public class BoardFreeDTO {
     private String memberPhoneNumber;
     private String memberName;
     private Long memberStatus;
+
+    private Long prevBoardId;
+    private Long nextBoardId;
+
+    private Integer replyCount;
 }

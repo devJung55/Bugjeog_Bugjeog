@@ -55,8 +55,8 @@
 								</div>
 
 								<div class="info-table">
-									<table>
-										<thead>
+									<table id="list-wrapper">
+										<!--<thead>
 											<tr>
 												<th>
 													<input type="checkbox" id="allSelect">
@@ -69,28 +69,19 @@
 												<th>계정 상태</th>
 											</tr>
 										</thead>
-										<tr>
-											<td>
-												<input type="checkbox" name="check">
-											</td>
-											<td></td>
-											<td><a></a></td>
-											<td><a></a></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<!--<tr>
-											<td>
-												<input type="checkbox" name="check">
-											</td>
-											<td>2</td>
-											<td><a href="&lt;!&ndash; 상세보기 페이지 &ndash;&gt;">정지영</a></td>
-											<td><a href="&lt;!&ndash; 상세보기 페이지 &ndash;&gt;">쿠팡</a></td>
-											<td>jjy1234@naver.com</td>
-											<td>2023.02.11</td>
-											<td>휴면 계정</td>
-										</tr>-->
+										<tbody>
+											<tr>
+												<td>
+													<input type="checkbox" name="check">
+												</td>
+												<td>2</td>
+												<td><a href="#" ></a></td>
+												<td><a href="#">쿠팡</a></td>
+												<td>jjy1234@naver.com</td>
+												<td>2023.02.11</td>
+												<td>휴면 계정</td>
+											</tr>
+										</tbody>-->
 									</table>
 								</div>
 							</div>
@@ -98,8 +89,8 @@
 
 						<!-- 페이지 버튼 -->
 						<div class="page-button-box-layout">
-							<div class="page-button-box">
-								<!-- 페이지 번호 -->
+							<!--<div class="page-button-box">
+								&lt;!&ndash; 페이지 번호 &ndash;&gt;
 								<div class="">
 									<div class="page-button-margin">
 										<div>
@@ -121,7 +112,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>-->
 						</div>
 						<!-- 페이지 버튼 끝 -->
 					</div>
@@ -134,71 +125,232 @@
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script th:inline="javascript">
-	let $busiensss = [[${businessDTO}]];
-	let $pageForm = $(pageForm);
+	// 이동할 페이지
+	let page = 1;
 
-	$("a.changePage").on("click", function(e){
-		e.preventDefault();
-		$pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-		$pageForm.submit();
+	/* showList, showPage*/
+	function load() {
+		console.log(page);
+		$.ajax({
+			url: `/admin/admin-member-companyList/${page}`,
+			type: "get",
+			success: function(result) {
+				showList(result.businesses);
+				showPage(result.criteria);
+			},
+			error: function (error) {
+				console.log('Error fetching data:', error);
+			}
+		})
+	};
+
+	/* 페이지 찾기 */
+	function findPage(currentPage) {
+		page = currentPage.dataset.page;
+		page *= 1;
+		// console.log(typeof page);
+		load();
+	}
+	/*개별 체크 박스 선택 시*/
+	function isChecked(checkbox) {
+		var $checkAllBox = $('#allSelect');
+		var $checkBoxes = $('.checkBoxes');
+		var j = 0;
+		checkbox.checked ? checkbox.checked = true : checkbox.checked = false;
+
+		$checkBoxes.each(function(i, checkbox) {
+			if($(checkbox).is(":checked")){
+				j++;
+			}
+		})
+		console.log("j는? " + j);
+		j === $checkBoxes.length ? $checkAllBox.prop("checked", true) : $checkAllBox.prop("checked", false);
+
+	}
+
+	/*전체 체크 박스 선택 시*/
+	function isAllChecked() {
+
+		var $checkAllBox = $('#allSelect');
+		var $checkBoxes = $('.checkBoxes');
+
+		if($checkAllBox.is(":checked")){
+			$(this).prop("checked", true);
+			$checkBoxes.each(function(i, checkbox) {
+				$(checkbox).prop("checked", true);
+			})
+		} else {
+			$(this).prop("checked", false);
+			$checkBoxes.each(function(i, checkbox) {
+				$(checkbox).prop("checked", false);
+			})
+		}
+	}
+
+
+	// 처음 페이지 준비 됐을 때
+	$(document).ready(function () {
+		$.ajax({
+			type: 'GET',
+			url: `/admin/admin-member-companyList/0`,
+			success: function (info) {
+				console.log(info.businesses);
+				console.log(info.criteria);
+				showPage(info.criteria);
+				showList(info.businesses);
+			},
+			error: function (error) {
+				console.log('Error fetching data:', error);
+			}
+		});
 	});
-
 
 	/* delete 버튼 클릭 시 ajax실행*/
 	$('.delete-button').on('click', function() {
+		console.log("delete버튼 들어옴");
 		var checkedIds = new Array();
 		// 체크 박스 체크된 값
-		$('input:checkbox[name=check]:checked').parent().next().each(function(){
-			console.log(this.innerText);
-			checkedIds.push(this.innerText);
+		$('input:checkbox[name=check]:checked').each(function(i, e){
+			console.log(e.dataset.id);
+			checkedIds.push(e.dataset.id);
 		});
 
 		console.log(checkedIds);
-
+		// ?page=${$page}
 		$.ajax({
-			url: "/admin/admin-deleteBusiness",
+			url: `/admin/admin-businessDelete`,
 			type: "delete",
-			data: {"checkedIds": checkedIds},
+			data: {
+				"checkedIds": checkedIds
+			},
 			success: function(){
-				reload();
+				console.log("ajax 성공")
+				// location.href= result;
+				// console.log($('#list-body').children().length);
+				load();
 			}
 		});
 	});
 
-	function showList(businesss){
-		const $result = $('.info-table table');
-		var text = "";
-		businesss.forEach(business => {
-			text += `
-				<tr th:each="business : ${businessDTO}">
-					<td>
-						<input type="checkbox" name="check">
-					</td>
-					<td>${business.businessId}</td>
-					<td><a href="{admin-member-company/{businessId}(businessId=${busienss.businessId})}">${business.businessCeoName}</a></td>
-					<td><a href="{admin-member-company/{businessId}(businessId=${busienss.businessId})}">${business.businessCompanyName}</a></td>
-					<td>${business.businessEmail}</td>
-					<td>${business.businessRegisterDate}</td>
-					<td>${business.businessStatus}</td>
-				</tr>
-			`
-		})
-		$result.html(text);
-	}
+	// 페이지 이동
+	function movePage(e) {
+		// 페이지버튼 전체
+		const $buttons = $(".page-button");
+		// 현재 페이지가 표시된 버튼
+		var $pushedBtn = $(e);
+		// 나머지 버튼들에 일반상태 일때 버튼 클래스로 다 주고
+		$buttons.attr('class', 'page-button');
+		// 클릭된 버튼에만 클릭 됐을 때 클래스로 변경
+		$pushedBtn.attr('class', 'page-button-active page-button');
 
-	function reload() {
+		// 내가 누른 버튼의 텍스트 가져오기 ex) 3번 페이지 누르면 3
+		console.log($(e).children().children().children().text());
+		page = $(e).children().children().children().text();
+
 		$.ajax({
-			url:"admin-member-companyList",
-			type: "post",
-			success: function(result){
-				showList(result);
+			type: 'GET',
+			url: `/admin/admin-member-companyList/${page}`,
+			success: function (info) {
+				console.log(info);
+				showList(info.businesses);
+			},
+			error: function (error) {
+				console.log('Error fetching data:', error);
 			}
-
 		});
 	}
 
-	window.onload = reload();
+	// 게시글 리스트 뿌리기		/**/
+	function showList(businesses) {
 
+		let list = 	`
+							<thead>
+									<tr>
+										<th>
+											<input type="checkbox" name="check" id="allSelect">
+										</th>
+										<th>No</th>
+										<th>대표이름</th>
+										<th>회사명</th>
+										<th>이메일</th>
+										<th>가입날짜</th>
+										<th>계정 상태</th>
+									</tr>
+							</thead>
+						<tbody id="list-body">
+					`;
+		businesses.forEach(business => {
+			// 멤버 리스트 뿌리기
+			list += `
+						<tr>
+							<td>
+							 	<input type="checkbox" name="check" data-id="${business.businessId}" class="checkBoxes" onclick="isChecked(this)">
+							</td>
+							<td>${business.businessId}</td>
+							<td><a href="/admin/admin-member-company/ + ${business.businessId}">${business.businessCeoName}</a></td>
+							<td>${business.businessCompanyName}</td>
+							<td>${business.businessEmail}</td>
+							<td>${business.businessRegisterDate}</td>
+							<td>${business.businessStatus}</td>
+						</tr>
+					`;
+		});
+		list +=  ` </tbody>`;
+
+		$('#list-wrapper').html(list);
+
+	}
+
+	// 페이지 리스트 뿌리기
+	function showPage(criteria) {
+		let text = "";
+
+		// 전체 버튼 wrapper
+		text+=	`
+				<div class="page-button-box">
+				`;
+
+		// criteria에 있는 이전 컬럼의 필드 값을 조회해서 prev가 true면 이전 페이지가 있어야하니깐 이전 버튼 생성
+		if (criteria.prev){
+			text += `
+					<div class="">
+					  <div class="page-button-margin">
+						<div>
+						  <img src="/image/admin/left_icon.png" data-page="${criteria.startPage - 1}" class="left-button" onclick="findPage(this)">
+						</div>
+					  </div>
+					</div>
+					`;
+		}
+
+		// 반복문 돌려서 페이지 이동버튼 뿌려주기
+		for (let i = criteria.startPage; i <= criteria.endPage; i++){
+			text += `
+					<div style="margin-right: 3px; margin-left: 3px;" class="${criteria.page === i ? 'page-button-active ' : ''} page-button" onclick="movePage(this)">
+					  <div class="page-button-margin">
+						<div>
+						  <span>${i}</span>
+						</div>
+					  </div>
+					</div>
+					`;
+		}
+
+		// criteria에 있는 다음 컬럼의 필드 값을 조회해서 next가 true면 다음 페이지가 있어야하니깐 다음 버튼 생성
+		if(criteria.next){
+			text += `
+					<div class="">
+					  <div class="page-button-margin">
+						<div>
+						  <img src="/image/admin/right_icon.png" data-page="${criteria.endPage + 1}" class="right-button" onclick="findPage(this)">
+						</div>
+					  </div>
+					</div>
+		  	</div>
+			`;
+		}
+		$('.page-button-box-layout').html(text);
+	}
 
 </script>
 </html>

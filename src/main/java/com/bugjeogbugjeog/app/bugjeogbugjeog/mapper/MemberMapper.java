@@ -6,6 +6,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -85,10 +86,10 @@ public interface MemberMapper {
     /* 관리자는 맨 밑으로 내려주세요------------------------------------------------------------------------------------------------*/
 
     //  관리자 회원 목록
-    public List<MemberDTO> adminSelectAllMember(AdminCriteria adminCriteria);
+    public List<MemberDTO> adminSelectAllMember(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     // 관리자 멤버 카운트
-    public int count();
+    public Long count();
 
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminSelectMember(Long memberId);

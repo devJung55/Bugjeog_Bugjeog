@@ -5,6 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,6 +19,8 @@ public interface InquiryBoardMapper {
 
     public void insertWithBusinessId(BoardInquiryVO boardInquiryVO);
 
+    public void insert(BoardInquiryVO boardInquiryVO);
+
 //    문의글 상세보기(작성자 타입 확인)
     public BoardInquiryDTO selectOneIsMember(Long boardInquiryId);
 
@@ -29,6 +32,9 @@ public interface InquiryBoardMapper {
 
     //    문의 작성 목록(게시글용 전체)
     public List<BoardInquiryDTO> inquiryList();
+
+    //    문의 작성 목록(게시글용 전체)
+    public List<BoardInquiryDTO> inquiryListPaging(InquiryCriteria inquiryCriteria);
 
     //    문의 작성 목록(멤버용)
     public List<BoardInquiryVO> inquireList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
@@ -48,7 +54,7 @@ public interface InquiryBoardMapper {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> adminSelectAllInquiry(AdminCriteria adminCriteria);
+    public List<BoardInquiryVO> adminSelectAllInquiry(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     // 문의 조회
     public InquiryDTO adminSelectInquiry(Long boardInquiryId);
@@ -57,6 +63,6 @@ public interface InquiryBoardMapper {
     public void delete(Long boardInquiryId);
 
     // 문의 카운트
-    public int count();
+    public Long count();
 
 }

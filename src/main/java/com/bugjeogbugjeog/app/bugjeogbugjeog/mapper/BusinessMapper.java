@@ -1,10 +1,12 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,10 +32,10 @@ public interface BusinessMapper {
     public Integer reviewCount(Long businessId);
 
     /* 관리자 유통 목록 ------------------------------------------------------------ */
-    public List<BusinessDTO> adminSelectAllBusiness(Criteria criteria);
+    public List<BusinessDTO> adminSelectAllBusiness(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     /* 관리자 카운트 */
-    public int count();
+    public Long count();
 
     /* 관리자 유통 상세 보기 */
     public BusinessDTO adminSelectBusiness(Long businessId);
@@ -41,5 +43,6 @@ public interface BusinessMapper {
     /* 관리자 유통 회원 수정 */
     public void update(BusinessVO businessVO);
 
-
+    /* 추천 유통업체 TOP 10 */
+    public List<BusinessDTO> selectReivewRank();
 }

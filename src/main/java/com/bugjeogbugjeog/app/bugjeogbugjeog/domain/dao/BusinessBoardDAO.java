@@ -1,6 +1,8 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardImgMapper;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardMapper;
@@ -32,9 +34,23 @@ public class BusinessBoardDAO {
     public List<BoardBusinessDTO> findByBusinessId(Long businessId){ return businessBoardMapper.selectAllByBusinessId(businessId);}
 
     //    목록(대표 이미지 하나)
-    public List<BoardBusinessDTO> findAll(){ return businessBoardMapper.selectAllList(); }
+    public List<BoardBusinessDTO> findAll(PageDTO pageDTO){ return businessBoardMapper.selectAllList(pageDTO); }
 
     //    목록(대표 이미지 하나)
     public List<BoardBusinessDTO> findAll(Map<String, Object> searchMap){ return businessBoardMapper.selectAllListBySearch(searchMap); }
 
+    //    관리자 페이지 목록
+    public List<BoardBusinessDTO> findAllByPage(AdminCriteria adminCriteria){
+        return businessBoardMapper.selectAllBusinessBoard(adminCriteria);
+    }
+
+    //    pr게시판 목록 개수
+    public Long findCount(){
+        return businessBoardMapper.selectBoardCount();
+    }
+
+    //    관리자 페이지 상세보기
+    public BoardBusinessDTO findBoardById(Long boardBusinessId){
+        return businessBoardMapper.selectBoard(boardBusinessId);
+    }
 }

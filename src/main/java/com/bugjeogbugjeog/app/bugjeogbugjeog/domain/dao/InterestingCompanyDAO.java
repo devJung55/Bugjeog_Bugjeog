@@ -47,5 +47,7 @@ public class InterestingCompanyDAO {
 
     public Long interestingCompanyCount(Long interestingCompanyId) {
         return interestingCompanyMapper.interestingCompanyCount(interestingCompanyId);
+
+
     }
 }

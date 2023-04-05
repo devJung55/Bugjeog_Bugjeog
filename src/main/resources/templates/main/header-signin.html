@@ -103,9 +103,16 @@
                         </li>
                         <li class="aside_li">
                             <div class="profile_img">
-                                <a th:href="@{/mypage/profile/myinfo}">
+                                <th:block th:if="${not #strings.isEmpty(session.memberId)}">
+                                <a th:href="@{/mypage/profile/postList}"> <!--여기 postList 연결-->
                                     <img src="/image/main/profile_image.png" width="32" height="32">
                                 </a>
+                                </th:block>
+                                <th:block th:if="${not #strings.isEmpty(session.businessId)}">
+                                    <a th:href="@{/mypage/profile/business/postList}"> <!--여기 postList 연결-->
+                                        <img src="/image/main/profile_image.png" width="32" height="32">
+                                    </a>
+                                </th:block>
                             </div>
                         </li>
                         <li class="aside_li">

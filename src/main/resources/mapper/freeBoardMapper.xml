@@ -43,9 +43,44 @@
 
     <!--게시글 조회-->
     <select id="select" resultType="boardFreeDTO">
-        select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
-        from tbl_board_free
-        where board_free_id = #{boardFreeId}
+        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id,
+        b.business_email, business_ceo_name, b.business_phone_number, business_status, board_free_title, board_free_content,
+        board_free_register_date, board_free_update_date, board_free_like, board_free_img_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path,
+        coalesce(
+        (
+        select board_free_id from tbl_board_free where board_free_id <![CDATA[<]]> bf.board_free_id order by board_free_id desc limit 1
+        ),
+        0
+        ) as prev_board_id,
+        coalesce(
+        (
+        select board_free_id from tbl_board_free where board_free_id <![CDATA[>]]> bf.board_free_id order by board_free_id asc limit 1
+        ),
+        0
+        ) as next_board_id, ifnull((select count(reply_id) from tbl_free_reply where board_free_id = bf.board_free_id), 0) as reply_count
+        from tbl_board_free bf
+        left join tbl_board_free_img bfi on bf.board_free_id = bfi.board_free_id
+        left join tbl_member m on bf.member_id = m.member_id
+        left join tbl_business b on bf.business_id = b.business_id where bf.board_free_id = #{boardFreeId};
+    </select>
+
+    <!-- 자유게시판 게시물 DTO -->
+    <select id="selectWithName" resultType="boardFreeDTO">
+        select board_free_id, bf.member_id, bf.business_id, board_free_title, board_free_content, board_free_register_date,
+        board_free_update_date, ifnull((select count(free_like_id) from tbl_free_like where board_free_id = bf.board_free_id), 0) as board_free_like,
+        (select member_name from tbl_member where member_id = bf.member_id) as member_name,
+        (select business_ceo_name from tbl_business where business_id = bf.business_id) as business_ceo_name,
+        ifnull((select count(reply_id) from tbl_free_reply where board_free_id = bf.board_free_id), 0) as reply_count
+        from tbl_board_free bf
+        <if test="searchDTO != null and searchDTO.orderColumn != null">
+            order by ${searchDTO.orderColumn} desc
+        </if>
+        limit #{offset}, #{rowCount}
+    </select>
+
+    <!-- 자유게시판 게시물 갯수 -->
+    <select id="getTotal" resultType="int">
+        select count(board_free_id) from tbl_board_free
     </select>
 
 <!--            SELECT board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like-->
@@ -56,6 +91,8 @@
     <select id="adminSelectAllFree" resultType="boardFreeVO">
         select board_free_id, member_id, business_id, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like
         from tbl_board_free
+        order by board_free_id desc
+        limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 
     <!-- 자유 게시판 조회 -->
@@ -73,5 +110,9 @@
         where board_free_id= #{boardFreeId}
     </delete>
 
+    <!-- 카운트 -->
+    <select id="count" resultType="long">
+        select count(board_free_id) from tbl_board_free
+    </select>
 
 </mapper>

@@ -1,7 +1,7 @@
 const boardDetailContainer = $('#detailBoards')
-    console.log(boardDetailContainer);
+console.log(boardDetailContainer);
 
-const createDOM = function (boardFreeId) {
+const createDOM = function (boardFree) {
     console.log("으아아아아아");
 
     let text = `
@@ -37,10 +37,10 @@ const createDOM = function (boardFreeId) {
                             </a>
                         </div>
 <!--                        <h1 id="title">📌개발자를 준비하며 자주 겪는 고민 - 희망 연봉</h1>-->
-                         <h1 id="title">${boardFreeId.boardFreeTitle}</h1>
+                         <h1 id="title">${boardFree.boardFreeTitle}</h1>
                     </div>
                     <div id="content">
-                    ${boardFreeId.boardFreeContent}
+                    ${boardFree.boardFreeContent}
 <!--                        신입 개발자로 입사할 때 희망 연봉을 어떻게 정해야 할지 고민이 많을 거예요. 희망 연봉은 단어 그대로 입사 지원자가 받고 싶은 연봉이에요.-->
 <!--                        연봉은 개발자 실력에 따라 정해져요.-->
 <!--                        실력이란 개발 능력뿐만 아니라 학력, 자격증, 나이, 전공, 사회경험, 성격, 외모까지 포함돼요. 하지만 신입은 본인의 실력을 가늠하기가 쉽지 않죠.-->
@@ -94,85 +94,84 @@ const createDOM = function (boardFreeId) {
 <!--&lt;!&ndash;                    <p id="reply_content">첫 댓글을 남겨주세요.</p>&ndash;&gt;-->
 <!--&lt;!&ndash;                </div>     &ndash;&gt;-->
 <!--                &lt;!&ndash; 댓글 뿌려주는 곳 &ndash;&gt;-->
-<!--                <div id="reply_wrap_div">-->
-<!--                    <div style="display: flex; justify-content: space-between;">-->
-<!--                        <a style="display: flex; width: 0;">-->
-<!--                            <div style="display: inline-flex; align-items: center; margin-right: auto;">-->
-<!--                                <div style="text-align: left; display: flex; align-items: center;">-->
-<!--                                    <div style="position: relative; margin-right: 7px;">-->
-<!--                                        <div id="reply_my">-->
-<!--                                            <div class="profile-image-login">-->
-<!--                                                <div class="profile-member-status">-->
-<!--                                                    &lt;!&ndash; <span class="profile-image">유</span> &ndash;&gt;-->
-<!--                                                    <img src="/image/boardList/self_employ_icon.png" alt="">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
+                <div id="reply_wrap_div">
+                    <div style="display: flex; justify-content: space-between;">
+                        <a style="display: flex; width: 0;">
+                            <div style="display: inline-flex; align-items: center; margin-right: auto;">
+                                <div style="text-align: left; display: flex; align-items: center;">
+                                    <div style="position: relative; margin-right: 7px;">
+                                        <div id="reply_my">
+                                            <div class="profile-image-login">
+                                                <div class="profile-member-status">
+                                                    <!-- <span class="profile-image">유</span> -->
+                                                    <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <div style="display: flex; margin-bottom: 3px; align-items: center;">
+                                            <div id="reply_nickname">DesignK</div>
+                                        </div>
+                                        <span id="reply_date">2023.03.14</span>
+<!--                                        <div class="review-score-box">-->
+<!--                                            <label class="review-score"></label>-->
+<!--                                            <label class="review-score"></label>-->
+<!--                                            <label class="review-score"></label>-->
+<!--                                            <label class="review-score"></label>-->
+<!--                                            <label class="review-score"></label>-->
 <!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div style="display: flex; flex-direction: column;">-->
-<!--                                        <div style="display: flex; margin-bottom: 3px; align-items: center;">-->
-<!--                                            <div id="reply_nickname">DesignK</div>-->
-<!--                                        </div>-->
-<!--                                        <span id="reply_date">2023.03.14</span>-->
-<!--&lt;!&ndash;                                        <div class="review-score-box">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="review-score"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="review-score"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="review-score"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="review-score"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <label class="review-score"></label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div id="float_delete">-->
-<!--                        수정&nbsp;&nbsp;&nbsp;삭제-->
-<!--                    </div>-->
-<!--                    <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; 끝 &ndash;&gt;-->
-<!--                <div>-->
-<!--                    <div id="profile_img_nickname">-->
-<!--                        <div class="profile_img" id="profile_my_img">-->
-<!--                            <div class="profile-image-login">-->
-<!--                                <div class="profile-member-status">-->
-<!--                                    <img src="/image/boardList/self_employ_icon.png" alt="">-->
-<!--                                </div> -->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <span id="my_nickname">최선규</span>-->
-<!--                    </div>-->
-<!--                    <div id="form_wrap">-->
-<!--                        <form th:action="@{/FreeBoards/resister-reply}" method="post">-->
-<!--                            <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>-->
-<!--                            <button type="submit">-->
-<!--                                <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>-->
-<!--                            </button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;목록으로 클릭시 리스트 페이지로 이동&ndash;&gt;-->
-<!--                <button id="list_button" onclick="location.href='/FreeBoards/'">-->
-<!--                    <span style="width: 100%;">-->
-<!--                        <span id="list_button_span">-->
-<!--                            <svg id="arrow">-->
-<!--                                <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>-->
-<!--                            </svg>-->
-<!--                        </span>-->
-<!--                        목록으로-->
-<!--                    </span>-->
-<!--                </button>-->
-<!--            </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="float_delete">
+                        수정&nbsp;&nbsp;&nbsp;삭제
+                    </div>
+                    <div id="reply_content">{replyLists.replyContent}</div>
+                </div>
+                <!-- 끝 -->
+                <div>
+                    <div id="profile_img_nickname">
+                        <div class="profile_img" id="profile_my_img">
+                            <div class="profile-image-login">
+                                <div class="profile-member-status">
+                                    <img src="/image/boardList/self_employ_icon.png" alt="">
+                                </div> 
+                            </div>
+                        </div>
+                        <span id="my_nickname">최선규</span>
+                    </div>
+                    <!--<div id="form_wrap">
+                        <form action="/replies/resister-reply" method="post">
+                            <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
+                            <button type="submit">
+                                <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
+                            </button>
+                        </form>
+                    </div>-->
+                </div>
+                <!--목록으로 클릭시 리스트 페이지로 이동-->
+                <!--<button id="list_button" onclick="location.href='/FreeBoards/'">
+                    <span style="width: 100%;">
+                        <span id="list_button_span">
+                            <svg id="arrow">
+                                <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
+                            </svg>
+                        </span>
+                        목록으로
+                    </span>
+                </button>-->
+            </div>
         </section>
 `
-        return text;
+    return text;
 
 }
-boardDetailContainer.append(createDOM(boardFreeId));
-    console.log("됐니?");
-    console.log(boardFreeId);
 
+boardDetailContainer.append(createDOM(currentBoard));
+console.log("됐니?");
 
 // detailsOfBoards.forEach((detailsOfBoards, i) => {
 //     boardDetailContainer.append(createDOM(detailsOfBoards));

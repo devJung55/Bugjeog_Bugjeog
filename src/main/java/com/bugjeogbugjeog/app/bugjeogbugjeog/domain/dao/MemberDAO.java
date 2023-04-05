@@ -132,7 +132,7 @@ public class MemberDAO {
     public List<MemberDTO> adminFindAll(AdminCriteria adminCriteria){return memberMapper.adminSelectAllMember(adminCriteria);}
 
     // 관리자 멤버 카운트
-    public int count(){return memberMapper.count();}
+    public Long count(){return memberMapper.count();}
 
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminFindById(Long memberId){return memberMapper.adminSelectMember(memberId);}

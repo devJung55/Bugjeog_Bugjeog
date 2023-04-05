@@ -154,7 +154,7 @@ public class MemberService {
     public List<MemberDTO> adminMemberShowList(AdminCriteria adminCriteria){return memberDAO.adminFindAll(adminCriteria);}
 
     // 관리자 멤버 카운트
-    public int count(){return memberDAO.count();}
+    public Long count(){return memberDAO.count();}
 
     /* 관리자 회원 상세 보기 */
     public MemberDTO adminMemberShow(Long memberId){return memberDAO.adminFindById(memberId);}
@@ -173,8 +173,9 @@ public class MemberService {
     public MemberVO showMember(Long memberId){return memberDAO.findById(memberId);}
 
     /* 회원 정보 삭제*/
-    public void removeMember(List<String> memberIds){
-        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::deleteById);
+    public void removeMember(Long memberId){
+//        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::deleteById);
+        memberDAO.deleteById(memberId);
     }
 
 

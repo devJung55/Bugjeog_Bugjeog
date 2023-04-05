@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.mapper;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InterestingCompanyDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCompanyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InterestingCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,4 +23,6 @@ public interface InterestingCompanyMapper {
     public void insertByInterestingCompany(@Param("businessId") Long businessId, @Param("memberId") Long memberId);
 
     public Long interestingCompanyCount(Long interestingCompanyId);
+
+    public InterestingCompanyVO selectOneByIds(Long businessId, Long memberId);
 }

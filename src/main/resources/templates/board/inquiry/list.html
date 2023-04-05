@@ -16,7 +16,7 @@
     }
 </style>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header(${memberId}, ${businessId})}"></div>
 <div>
     <header class="header">
         <div class="header-inner container">
@@ -45,7 +45,8 @@
                         <!-- th:object="${boards}"-->
                         <!-- 리스트 뽑을 요소 -->
                         <li class="content-list" th:each="board, i: ${boards}">
-                            <a th:href="@{/board/inquiry/detail(boardInquiryId=${board.boardInquiryId})}" th:method="get"
+                            <a th:href="@{/board/inquiry/detail(boardInquiryId=${board.boardInquiryId})}"
+                               th:method="get"
                                class="content-title" th:text="${board.boardInquiryTitle}">
                                 좋은 기업을 원티드 #와이즐리
                             </a>
@@ -54,46 +55,45 @@
                             </div>
                         </li>
                         <!-- 리스트 뽑을 요소 -->
-<!--                        <li class="content-list">-->
-<!--                            <a href="javascript:void(0)" class="content-title">-->
-<!--                                좋은 기업을 원티드 #와이즐리-->
-<!--                            </a>-->
-<!--                            <div class="content">-->
-<!--                                있습니다." 27번째 좋은 으로 와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐-->
-<!--                            </div>-->
-<!--                        </li>-->
+                        <!--                        <li class="content-list">-->
+                        <!--                            <a href="javascript:void(0)" class="content-title">-->
+                        <!--                                좋은 기업을 원티드 #와이즐리-->
+                        <!--                            </a>-->
+                        <!--                            <div class="content">-->
+                        <!--                                있습니다." 27번째 좋은 으로 와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐리가 선와이즐-->
+                        <!--                            </div>-->
+                        <!--                        </li>-->
                     </ul>
                 </section>
             </div>
             <nav class="page-box">
                 <ul class="page-box-layout">
-                    <!--
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)"><<</a>
-                    </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)"><</a>
-                    </li>
+                    <!--                    <li class="page-button-box">-->
+                    <!--                        <a href="javascript:void(0)"><<</a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="page-button-box">-->
+                    <!--                        <a href="javascript:void(0)"><</a>-->
+                    <!--                    </li>-->
+
                     <li class="page-button-box">
                         <span>1</span>
                     </li>
                     <li class="page-button-box">
                         <span>2</span>
                     </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)">></a>
-                    </li>
-                    <li class="page-button-box">
-                        <a href="javascript:void(0)">>></a>
-                    </li>
-                    -->
+                    <!--                    <li class="page-button-box">-->
+                    <!--                        <a href="javascript:void(0)">></a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="page-button-box">-->
+                    <!--                        <a href="javascript:void(0)">>></a>-->
+                    <!--                    </li>-->
                 </ul>
             </nav>
         </div>
     </main>
     <block th:insert="~{main/footer :: footer}"></block>
     <!-- 문의하기 버튼  -->
-    <div class="inquire_">
+    <div class="inquire_" name="inquiryWrap">
         <div style="margin: 0 auto;">
             <a href="/board/inquiry/write" th:method="get" class="inquire_write">
                 <img src="/image/notice/questionmark.png" class="questionmark">
@@ -103,7 +103,113 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    const memberId = [[${session.memberId}]];
+    console.log(memberId);
 
-<script src="/js/main/header.js">
+    const businessId = [[${session.businessId}]];
+    console.log(businessId);
+
+    const pageDTO = [[${pageDTO}]]
+    const $ulList = $($('ul.content-list-box')[0]);
+    const $paging = $($('ul.page-box-layout')[0]);
+    const $inquiryWrap = $($('div[name=inquiryWrap]')[0]);
+</script>
+<script>
+    const $pageUl = $($('ul.page-box-layout')[0]);
+
+
+    if(businessId == null && memberId == null){
+        $inquiryWrap.hide();
+    }else {
+        $inquiryWrap.show();
+    }
+    pagingFunc(pageDTO);
+
+    function pagingFunc(pageDTO) {
+        $paging.empty();
+        let text = '';
+
+        text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(1)"><<</a>
+                    </li>`;
+        if (`${pageDTO.prev}`) {
+            text +=
+                `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.startPage - 1})"><</a>
+                    </li>`;
+        }
+
+        let length = `${pageDTO.criteria.pageNum}`;
+        for (let i = 0; 0 < length; i++) {
+            text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.startPage + i})">${pageDTO.startPage + i}</a>
+                    </li>
+                    `;
+        }
+
+        if (`${pageDTO.next}`) {
+            text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.endPage + 1})">></a>
+                    </li>
+                    `;
+        }
+
+        text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.realEnd})">>></a>
+                    </li>
+        `
+        $paging.append(text);
+    }
+
+    function showInquiryList(boards) {
+        let $listUl = $($('ul.content-list-box')[0]);
+        $listUl.empty();
+        let text = ``;
+        boards.forEach(board => {
+            text += `
+                        <li class="content-list">
+                            <a href="/board/inquiry/detail?boardInquiryId=${board.boardInquiryId}"
+                               th:method="get"
+                               class="content-title">
+                                ${board.boardInquiryTitle}
+                            </a>
+                            <div class="content">
+                                ${board.boardInquiryContent}
+                            </div>
+                        </li>
+        `;
+        })
+        $listUl.append(text);
+
+    }
+
+    function ajax(startPage) {
+        $.ajax({
+            url: "/board/inquiry/list/ajax",
+            method: "GET",
+            data: {"startPage": JSON.parse(startPage)},
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                let setUp = JSON.parse(result);
+                let boards = JSON.parse(setUp.boards);
+                let pageDTO = JSON.parse(setUp.pageDTO);
+                showInquiryList(boards);
+                pagingFunc(pageDTO);
+            },
+            error: function (e) {
+                console.log($(e));
+            }
+        })
+    }
+
+
 </script>
 </html>
