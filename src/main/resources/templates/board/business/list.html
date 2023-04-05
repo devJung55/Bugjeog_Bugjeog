@@ -242,8 +242,8 @@
             },
             dataType: "json",
             success: function (result) {
-                let boards = JSON.parse(result.boards);
-                let pageDTO = JSON.parse(result.pageDTO);
+                let boards = JSON.parse(JSON.parse(result).boardBusinessDTOs);
+                let pageDTO = JSON.parse(JSON.parse(result).pageDTO);
                 // let newBoards = `${result}`;
                 $ul.empty();
                 showBoardsList(boards, pageDTO);
