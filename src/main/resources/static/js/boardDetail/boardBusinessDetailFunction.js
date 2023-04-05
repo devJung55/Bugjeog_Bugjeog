@@ -282,7 +282,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
             </div>`;
     });
     $('#all_wrap').append(text);
-
+    favoriteShowControll(isFavorite);
 
     const $submitReply = $($('button.replyRegisterButton')[0]);
     if (businessId == null && memberId != null) {
@@ -336,17 +336,6 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
         });
     });
 
-    $favoriteButton.hide();
-    if (`${isFavorite != null}`) {
-        $favoriteButton.show()
-        if (`${isFavorite}`) {
-            $favoriteButton.addClass('fill');
-        } else {
-            $favoriteButton.removeClass('fill');
-        }
-    } else {
-        $favoriteButton.hide();
-    }
 
     $favoriteButton.on("click", (e) => {
         alert("전송 성공");
