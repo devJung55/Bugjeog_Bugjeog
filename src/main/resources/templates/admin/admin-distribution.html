@@ -55,26 +55,26 @@
                                     <div class="board-info-title-box">
                                         <span>유통업체 게시물</span>
                                     </div>
-                                    <div class="modify-button-box">
+                                    <!--<div class="modify-button-box">
                                         <a href="adminPage-modifyMember.jsp">
                                             <img src="/image/admin/gear_icon.png" class="gear-icon">
                                             <span>수정</span>
                                         </a>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <hr>
                                 <div class="board-info-box">
                                     <div class="member-img-box">
-                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 3}">
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content; justify-content: space-evenly;" th:if="${images.size == 3}">
                                             <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 33% ">
                                             <img th:if="${images[1] != null}" th:src="@{/mypage/profile/display(fileName=${images[1].boardBusinessImgPath}+'/'+${images[1].boardBusinessImgUuid}+'_'+${images[1].boardBusinessImgOriginalName})}" class="info-image" style="width: 33%">
                                             <img th:if="${images[2] != null}" th:src="@{/mypage/profile/display(fileName=${images[2].boardBusinessImgPath}+'/'+${images[2].boardBusinessImgUuid}+'_'+${images[2].boardBusinessImgOriginalName})}" class="info-image" style="width: 33%">
                                         </div>
-                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 2}">
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content; justify-content: space-evenly;" th:if="${images.size == 2}">
                                             <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 49.5%">
                                             <img th:if="${images[1] != null}" th:src="@{/mypage/profile/display(fileName=${images[1].boardBusinessImgPath}+'/'+${images[1].boardBusinessImgUuid}+'_'+${images[1].boardBusinessImgOriginalName})}" class="info-image" style="width: 49.5%">
                                         </div>
-                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content;" th:if="${images.size == 1}">
+                                        <div class="board-img" style="width: 100%; display: flex; height: fit-content; justify-content: space-evenly;" th:if="${images.size == 1}">
                                             <img th:if="${images[0] != null}" th:src="@{/mypage/profile/display(fileName=${images[0].boardBusinessImgPath}+'/'+${images[0].boardBusinessImgUuid}+'_'+${images[0].boardBusinessImgOriginalName})}" class="info-image" style="width: 99%">
                                         </div>
                                         <!-- <div class="member-nickname-box">
@@ -196,4 +196,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="/js/admin/prev.js"></script>
     <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+    let image = [[${images}]];
+    console.log(image);
+</script>
 </html>
