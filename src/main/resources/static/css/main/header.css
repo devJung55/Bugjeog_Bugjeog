@@ -78,10 +78,6 @@ button.main_bar_hamberger img {
     display: inline-block;
 }
 
-.border_bottom {
-    border-bottom: 2px solid #258bf7;
-}
-
 .menu_wrap li a {
     padding: 15px;
     font-size: 14px;
