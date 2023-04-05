@@ -70,6 +70,13 @@ public class BoardImgController {
     @GetMapping("/imgs/business/display")
     @ResponseBody
     public byte[] businessDisplay(String fileName) throws Exception {
+        System.out.println(fileName);
+        System.out.println(fileName);
+        System.out.println(fileName);
+        System.out.println(fileName);
+        System.out.println(fileName);
+        System.out.println(fileName);
+//        fileName.split("_")
         try {
             return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
         } catch (IOException e) {

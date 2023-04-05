@@ -224,9 +224,9 @@ public class BusinessBoardController {
         List<BoardBusinessDTO> boards = businessBoardService.getBoardsByBusinessId(board.getBusinessId());
 
         Map<String, Object> searchMap = new HashMap<>();
-        searchMap.put("boardBusinessId", boardId);
+        searchMap.put("boardBusinessId", board.getBoardBusinessId());
 //        searchMap.put("boardBusinessId", board.getBusinessId().toString());
-        List<BoardBusinessDTO> avgDto = businessBoardService.getList(searchMap);
+        List<BoardBusinessDTO> avgDto = businessBoardService.getList(boardFunction(boardBusinessId, null, "recent"));
         Long reviewGrade = null;
         if (avgDto != null) {
             reviewGrade = avgDto.get(0).getBoardBusinessGradeAverage();
@@ -268,7 +268,13 @@ public class BusinessBoardController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
         return returnObj.toJSONString();
     }
 

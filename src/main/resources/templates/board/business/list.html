@@ -136,13 +136,7 @@
 <script th:inline="javascript">
 
 
-    $('.modal_button').on("click", (e) => {
-        let $label = $(e.currentTarget);
-        $modal.fadeIn(200);
-        body.classList.add('scrollLock');
-        $(".scroll-top-button").css("display", "none");
-        detailAjax($label.attr("name"));
-    });
+
 
     // $modalBtn.each((i, e) => {
     //     $(e).click(function () {
@@ -173,7 +167,7 @@
                 /*대상 게시글 작성자의 모든 글*/
                 let boards = JSON.parse(dataResult.boards);
                 /*로그인 정보가 있을 경우 가져옴*/
-                let member = null
+                let member = null;
                 let isFavorite = null;
                 if (memberId != null) {
                     member = JSON.parse(dataResult.member);
