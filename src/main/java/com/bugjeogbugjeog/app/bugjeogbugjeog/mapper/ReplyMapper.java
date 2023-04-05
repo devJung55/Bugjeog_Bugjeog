@@ -27,7 +27,7 @@ public interface ReplyMapper {
     public void replyUpdate(FreeReplyVO freeReplyVO);
 
     // 댓글 삭제
-    public void replyDelete(FreeReplyVO freeReplyVO);
+    public void replyDelete(Long replyId);
 
 
     //    댓글 단 갯수

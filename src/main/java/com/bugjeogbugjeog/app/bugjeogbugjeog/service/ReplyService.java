@@ -39,9 +39,9 @@ public class ReplyService {
      }
 
 //    댓글 삭제
-     public void delete(FreeReplyVO freeReplyVO){
+     public void delete(Long replyId){
 
-        replyDAO.deleteReply(freeReplyVO);
+        replyDAO.deleteReply(replyId);
      }
 
 }
