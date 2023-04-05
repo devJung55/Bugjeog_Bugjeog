@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -18,12 +19,12 @@ public class ReplyDAO {
     private final ReplyMapper replyMapper;
 
     //    댓글 전체 조회
-    public List<BoardReplyDTO> findAll(Criteria criteria, Long boardId){
-        return replyMapper.selectAll(criteria, boardId);
+    public List<FreeReplyVO> findAll(){    //boardFreeId 원래는 boardId
+        return replyMapper.selectAll();
     }
     //    댓글 전체 개수
-    public int findCountAll(Long boardId){
-        return replyMapper.getTotal(boardId);
+    public int findCountAll(){
+        return replyMapper.getTotal();
     }
 
     // 댓글 등록

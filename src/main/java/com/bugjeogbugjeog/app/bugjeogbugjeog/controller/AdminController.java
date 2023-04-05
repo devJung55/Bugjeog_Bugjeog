@@ -34,30 +34,24 @@ public class AdminController {
     public String memberListShow(){
         return "/admin/admin-memberList";
     }
-/*
-    @PostMapping("admin-memberList/{page}")
+
+    @GetMapping("admin-memberList/{page}")
     @ResponseBody
-    public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria){
-        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        log.info(page.toString());
+    public Map<String, Object> memberListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
         int total = memberService.count().intValue();
-
-
-        if( adminCriteria.getPage() == 0) {
-            adminCriteria.create( 1, 10, total, 5);
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
         } else {
-            log.info(admin)
             adminCriteria.create(page,10, total,10);
         }
 
+        Map<String, Object> info = new HashMap<>();
 
-        List<MemberDTO> members = memberService.adminMemberShowList(adminCriteria);
-        log.info(members.toString());
-        log.info("-------------------------------------------------------------------------------------------------");
-        result.put("members", members);
-        result.put("criteria", adminCriteria);
-        return result;
-    }*/
+        info.put("members",memberService.adminMemberShowList(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
+    }
 
     /* 회원 상세 보기 */
     @GetMapping("admin-member/{memberId}")
@@ -81,10 +75,14 @@ public class AdminController {
     }
 
     /* 회원 삭제 */
-    @DeleteMapping("admin-deleteMember")
+    @DeleteMapping("admin-memberDelete")
     @ResponseBody
-    public void removeMember(@RequestParam("checkedIds[]") List<String> memberIds){
-        memberService.removeMember(memberIds);
+    public void removeMember(@RequestParam("checkedIds[]") List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            memberService.removeMember(checkIds.get(i));
+        }
     }
 
 
@@ -99,20 +97,26 @@ public class AdminController {
         return "admin/admin-member-companyList";
     }
 
-    @PostMapping("admin-member-companyList")
+    @GetMapping("admin-member-companyList/{page}")
     @ResponseBody
-    public List<BusinessDTO> memberCompanyListShow(Criteria criteria){
-
-
-        if (criteria.getPageNum() == 0) {
-            criteria.setPageNum(1);
-            criteria.setAmount(6);
+    public Map<String, Object> memberCompanyListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        int total = businessService.count().intValue();
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
         } else {
-            criteria.setPageNum(criteria.getPageNum());
-            criteria.setAmount(6);
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
         }
+        log.info(businessService.adminShowListBusiness(adminCriteria).toString());
 
-        return businessService.adminShowListBusiness(criteria);
+        Map<String, Object> info = new HashMap<>();
+        info.put("businesses",businessService.adminShowListBusiness(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
     }
 
     /* 유통 회원 상세 보기 */
@@ -139,21 +143,18 @@ public class AdminController {
 
 
     /* 유통 회원 삭제 */
-    @DeleteMapping("admin-deleteBusiness")
+    @DeleteMapping("admin-businessDelete")
     @ResponseBody
-    public void removeBusiness(@RequestParam("checkedIds[]")  List<String> businessIds){
-        businessService.removeBusiness(businessIds);
+    public void removeBusiness(@RequestParam("checkedIds[]")  List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            businessService.removeBusiness(checkIds.get(i));
+        }
     }
 
     /* ------------------------------------------------------------------------------------------------------------- */
     /* 공지 사항 */
-
-    /* *//* 공지사항 리스트 *//*
-   @GetMapping("admin-noticeList")
-    public void noticeList(Criteria criteria, Model model){
-       model.addAttribute("noticeVO", noticeService.showList(criteria));
-       model.addAttribute("pageDTO", new PageDTO(criteria, noticeService.count()));
-   }*/
 
     /* 공지사항 리스트 */
     @GetMapping("admin-noticeList")
@@ -161,17 +162,28 @@ public class AdminController {
         return "/admin/admin-noticeList";
     }
 
-    @PostMapping("admin-noticeList")
-    public List<NoticeVO> noticeListShow(Criteria criteria){
-        if (criteria.getPageNum() == 0) {
-            criteria.setPageNum(1);
-            criteria.setAmount(6);
+    @GetMapping("admin-noticeList/{page}")
+    @ResponseBody
+    public Map<String, Object> noticeListShow(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = noticeService.count().intValue();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
         } else {
-            criteria.setPageNum(criteria.getPageNum());
-            criteria.setAmount(6);
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
         }
 
-        return noticeService.showList(criteria);
+        log.info(noticeService.adminShowList(adminCriteria).toString());
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("notices", noticeService.adminShowList(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
     }
 
 
@@ -195,10 +207,14 @@ public class AdminController {
     }
 
     /* 공지사항 삭제 */
-    @DeleteMapping("admin-deleteNotice")
+    @DeleteMapping("admin-noticeDelete")
     @ResponseBody
-    public void removeNotice(@RequestParam("checkedIds[]") List<String> noticeIds){
-        noticeService.remove(noticeIds);
+    public void removeNotice(@RequestParam("checkedIds[]") List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            noticeService.remove(checkIds.get(i));
+        }
     }
 
 
@@ -262,7 +278,29 @@ public class AdminController {
 
     /* 자유 게시판 목록 */
     @GetMapping("admin-freeBoardList")
-    public void freeBoardShowList() {}
+    public String freeBoardShowList() {return "/admin/admin-freeboardList";}
+
+    @GetMapping("admin-freeBoardList/{page}")
+    @ResponseBody
+    public Map<String, Object> freeBoardShowList(@PathVariable Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = freeBoardService.count().intValue();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
+        } else {
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
+        }
+        log.info(freeBoardService.adminShowList(adminCriteria).toString());
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("frees",freeBoardService.adminShowList(adminCriteria));
+        info.put("criteria",adminCriteria);
+        return info;
+    }
 
     /* 자유 게시판 조회 */
     @GetMapping("admin-freeBoard/{boardFreeId}")
@@ -277,18 +315,44 @@ public class AdminController {
     /* 자유 게시판 수정 */
 
     /* 자유 게시판 삭제 */
-    @DeleteMapping("admin-freeBoardList")
+    @DeleteMapping("admin-freeDelete")
     @ResponseBody
-    public void removeFree(@RequestParam("checkedIds[]") List<String> boardFreeId){
-        freeBoardService.adminRemove(boardFreeId);}
+    public void removeFree(@RequestParam("checkedIds[]") List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            freeBoardService.adminRemove(checkIds.get(i));
+        }
+    }
 
     /* ------------------------------------------------------------------------------------------------------------- */
 
     /* 문의 게시판 목록 */
     @GetMapping("admin-inquiryList")
-    public void inquiryShowList(){
-    }
+    public String inquiryShowList(){return "/admin/admin-inquiryList";}
 
+    @GetMapping("admin-inquiryList/{page}")
+    @ResponseBody
+    public Map<String, Object> inquiryShowList(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
+        log.info("ajax 들어옴@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(page.toString());
+        int total = inquiryBoardService.count().intValue();
+        if (adminCriteria.getPage() == 0){
+            adminCriteria.create(1,10,total,10);
+        } else {
+            adminCriteria.create(page,10, total,10);
+            log.info(adminCriteria.toString());
+            log.info(String.valueOf(adminCriteria.getOffset()));
+        }
+        log.info(inquiryBoardService.adminFindAll(adminCriteria).toString());
+
+        Map<String, Object> info = new HashMap<>();
+
+        info.put("inquiries",inquiryBoardService.adminFindAll(adminCriteria));
+        info.put("criteria",adminCriteria);
+
+        return info;
+    }
 
 
     /* 문의 게시판 조회 */
@@ -315,10 +379,14 @@ public class AdminController {
     }
 
     /* 문의 게시판 삭제 */
-    @DeleteMapping("admin-inquiryList")
+    @DeleteMapping("admin-inquiryDelete")
     @ResponseBody
-    public void removeInquiry(@RequestParam("checkedIds[]") List<String> boardInquiryIds){
-        inquiryBoardService.removeInquiry(boardInquiryIds);
+    public void removeInquiry(@RequestParam("checkedIds[]") List<Long> checkIds){
+        log.info("delete들어옴");
+        log.info(checkIds.toString());
+        for (int i=0; i < checkIds.size(); i++){
+            inquiryBoardService.removeInquiry(checkIds.get(i));
+        }
     }
 
     /* ------------------------------------------------------------------------------------------------------------- */

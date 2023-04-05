@@ -173,8 +173,9 @@ public class MemberService {
     public MemberVO showMember(Long memberId){return memberDAO.findById(memberId);}
 
     /* 회원 정보 삭제*/
-    public void removeMember(List<String> memberIds){
-        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::deleteById);
+    public void removeMember(Long memberId){
+//        memberIds.stream().map(memberId -> Long.parseLong(memberId)).forEach(memberDAO::deleteById);
+        memberDAO.deleteById(memberId);
     }
 
 

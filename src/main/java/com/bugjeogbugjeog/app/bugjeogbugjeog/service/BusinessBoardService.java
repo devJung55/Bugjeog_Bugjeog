@@ -5,6 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessBoardImgDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +41,8 @@ public class BusinessBoardService {
     }
 
     //    목록(대표 이미지 하나)
-    public List<BoardBusinessDTO> getList() {
-        return businessBoardDAO.findAll();
+    public List<BoardBusinessDTO> getList(PageDTO pageDTO) {
+        return businessBoardDAO.findAll(pageDTO);
     }
 
     //    목록(대표 이미지 하나 + 검색)

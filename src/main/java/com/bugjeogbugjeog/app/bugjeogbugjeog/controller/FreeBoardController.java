@@ -2,6 +2,8 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.SearchDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.enums.SearchEnum;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -62,7 +64,7 @@ public class FreeBoardController {
         } else {
             currentPage = criteria.getPage();
         }
-
+        criteria.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_FREE_ID));
         criteria.create(currentPage, rowCount, total, pageCount);
 
         return freeBoardService.getListWithName(criteria);
@@ -99,25 +101,25 @@ public class FreeBoardController {
     }
 
     /*댓글 목록*/
-    @GetMapping("resister-reply")
+   /* @GetMapping("resister-reply")
     public String replyResister(){
         return "/board/free/detail";
-    }
+    }*/
 
     /*댓글 등록*/
-    @PostMapping("resister-reply")
-    public RedirectView replyResister(FreeReplyVO freeReplyVO){
-
-        replyService.save(freeReplyVO);
-
-        return new RedirectView("/free-boards/detail");
-    }
+//    @PostMapping("resister-reply")
+//    public RedirectView replyResister(FreeReplyVO freeReplyVO){
+//
+//        replyService.save(freeReplyVO);
+//
+//        return new RedirectView("/free-boards/detail");
+//    }
 
     /* 댓글 등록완료*/
-    @GetMapping("reply-complate")
+   /* @GetMapping("reply-complate")
     public String replyAddEnd(Model model){
         model.addAttribute(new FreeReplyVO());
         return "/free-boards/detail";
-    }
+    }*/
 
 }

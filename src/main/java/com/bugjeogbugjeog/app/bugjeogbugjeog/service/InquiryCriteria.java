@@ -11,7 +11,9 @@ public class InquiryCriteria extends Criteria {
     private Integer pageNum;
     private Integer amount;
 
-    public InquiryCriteria() {; }
+    public InquiryCriteria() {
+        this(1,4);
+    }
     public InquiryCriteria(Integer pageNum, Integer amount) {
         this.pageNum = pageNum;
         this.amount = amount;
