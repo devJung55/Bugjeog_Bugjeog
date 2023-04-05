@@ -29,7 +29,7 @@
     </select>
 
     <!--게시물 작성-->
-    <insert id="insert" >
+    <insert id="insert" useGeneratedKeys="true" keyProperty="boardFreeId">
         insert into tbl_board_free
         (member_id, business_id, board_free_title, board_free_content)
         values(#{memberId}, #{businessId}, #{boardFreeTitle}, #{boardFreeContent})
