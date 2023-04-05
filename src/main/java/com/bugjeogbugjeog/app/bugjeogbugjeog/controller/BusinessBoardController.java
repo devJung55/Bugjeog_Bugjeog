@@ -7,8 +7,10 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BoardBusinessImgService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessInterestingService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessReviewService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,6 +35,7 @@ public class BusinessBoardController {
     private final BusinessBoardService businessBoardService;
     private final BoardBusinessImgService businessBoardImgService;
     private final BusinessReviewService businessReviewService;
+    private final BusinessInterestingService businessInterestingService;
 
 //    @GetMapping("/board/business/test")
 //    public String test() {
@@ -87,10 +90,10 @@ public class BusinessBoardController {
     @ResponseBody
     public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
-        PageDTO pageDTO = null;
         model.addAttribute(new BusinessReviewVO());
+
         if (category == null && sort == null && businessId == null) {
-            return businessBoardService.getList(pageDTO);
+            return businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount()))));
         } else {
             return businessBoardService.getList(boardFunction(businessId, category, sort));
         }
@@ -100,9 +103,9 @@ public class BusinessBoardController {
     @GetMapping("/board/business/list")
     public void businessList(Long businessId, String category, String sort, Model model) {
         /* =================== getList pageDTO 받도록 변경됨 */
-        PageDTO pageDTO = null;
+        PageDTO pageDTO = new PageDTO();
         if (category == null && sort == null && businessId == null) {
-            model.addAttribute("boards", businessBoardService.getList(pageDTO));
+            model.addAttribute("boards", businessBoardService.getList(new PageDTO(new Criteria(), Integer.parseInt(String.valueOf(businessBoardService.getCount())))));
         } else {
             model.addAttribute("boards", businessBoardService.getList(boardFunction(businessId, category, sort)));
         }
@@ -219,8 +222,11 @@ public class BusinessBoardController {
         Map<String, Object> searchMap = new HashMap<>();
         searchMap.put("boardBusinessId", boardId);
 //        searchMap.put("boardBusinessId", board.getBusinessId().toString());
-
-        Long reviewGrade = businessBoardService.getList(searchMap).get(1).getBoardBusinessGradeAverage();
+        List<BoardBusinessDTO> avgDto = businessBoardService.getList(searchMap);
+        Long reviewGrade = null;
+        if(avgDto != null) {
+            reviewGrade = avgDto.get(0).getBoardBusinessGradeAverage();
+        }
 
         // 서버에서 클라로 전송
         ObjectMapper objectMapper = new ObjectMapper();
@@ -231,6 +237,8 @@ public class BusinessBoardController {
             if (memberId != null) {
                 MemberVO member = businessReviewService.getMember(memberId);
                 returnObj.put("member", objectMapper.writeValueAsString(member));
+                boolean isThere = businessInterestingService.countByIds(memberId, boardBusinessId) != null;
+                returnObj.put("isFavorite", isThere);
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -250,7 +258,9 @@ public class BusinessBoardController {
             returnObj.put("reviews", objectMapper.writeValueAsString(reviews));
             returnObj.put("boards", objectMapper.writeValueAsString(boards));
             returnObj.put("reviewCount", objectMapper.writeValueAsString(reviews.size()));
-            returnObj.put("reviewGrade", reviewGrade);
+            if(reviewGrade!=null){
+                returnObj.put("reviewGrade", reviewGrade);
+            }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
