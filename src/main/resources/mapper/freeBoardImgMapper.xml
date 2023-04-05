@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.FreeBoardImgMapper">
+    <!-- 추가 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="boardFreeImgId">
+        insert into tbl_board_free_img
+        (board_free_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path)
+        values(#{boardFreeId}, #{boardFreeImgOriginalName}, #{boardFreeImgUuid}, #{boardFreeImgPath})
+    </insert>
+    <select id="selectAll" resultType="boardFreeImgVO">
+        select board_free_img_id, board_free_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path
+        from tbl_board_free_img
+        where board_free_id = #{boardFreeId}
+    </select>
+    <delete id="delete">
+        delete from tbl_board_free_img
+        where board_free_id = #{boardFreeId}
+    </delete>
 </mapper>
