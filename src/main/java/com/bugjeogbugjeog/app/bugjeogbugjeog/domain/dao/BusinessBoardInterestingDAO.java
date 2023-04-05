@@ -12,7 +12,7 @@ public class BusinessBoardInterestingDAO {
     private final InterestingCompanyMapper interestingCompanyMapper;
 
     public InterestingCompanyVO isThere(Long businessId, Long memberId) {
-        return interestingCompanyMapper.selectOneByIds(memberId, businessId);
+        return interestingCompanyMapper.selectOneByIds(businessId, memberId);
     }
 
     public void insert(Long businessId, Long memberId) {

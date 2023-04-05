@@ -33,14 +33,6 @@ import java.util.UUID;
 public class BoardImgController {
     private final BoardBusinessImgService businessBoardImgService;
 
-    //    파일 저장
-    @PostMapping("/imgs/business/save")
-    @ResponseBody
-    public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
-        businessBoardImgService.writeList(boardBusinessImgVOs);
-        return new RedirectView("/board/business/list");
-    }
-
     //    파일 업로드
     @PostMapping("/imgs/business/upload")
     @ResponseBody
@@ -63,6 +55,15 @@ public class BoardImgController {
             }
         }
         return uuids;
+    }
+
+    //    파일 저장
+    @PostMapping("/imgs/business/save")
+    @ResponseBody
+    public RedirectView businessSave(@RequestBody List<BoardBusinessImgVO> boardBusinessImgVOs) {
+        log.info(boardBusinessImgVOs.toArray().toString());
+        businessBoardImgService.writeList(boardBusinessImgVOs);
+        return new RedirectView("/board/business/list");
     }
 
     //    파일 불러오기

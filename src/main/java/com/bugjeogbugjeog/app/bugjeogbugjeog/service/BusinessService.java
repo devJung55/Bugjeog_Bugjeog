@@ -49,7 +49,16 @@ public class BusinessService {
 
     /* 추천 유통업체 TOP 10 */
     public List<BusinessDTO> getListByReviewRank(){
-        return businessDAO.findListByReviewRank();
+        List<BusinessDTO> list = businessDAO.findListByReviewRank();
+        list.forEach(board -> {
+            if(board.getBusinessId() != null) {
+                BusinessVO businessVO = businessDAO.findByIdToBusiness(board.getBusinessId());
+                board.setBusinessImgPath(businessVO.getBusinessImgPath());
+                board.setBusinessImgUuid(businessVO.getBusinessImgUuid());
+                board.setBusinessImgOriginalName(businessVO.getBusinessImgOriginalName());
+            }
+        });
+        return list;
     }
 }
 

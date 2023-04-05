@@ -196,7 +196,7 @@ button{
     height: 75px;
     vertical-align: middle;
 }
-#reply_content{
+div.reply_content{
     margin-top: 12px;
     color: #666;
     padding-left: 44px;

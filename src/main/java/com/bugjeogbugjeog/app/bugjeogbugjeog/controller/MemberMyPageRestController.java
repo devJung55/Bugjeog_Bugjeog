@@ -110,9 +110,7 @@ public class MemberMyPageRestController {
 
     @GetMapping("replyList")
     public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
-        HttpSession session = req.getSession();
-        Long memberId = (Long) session.getAttribute("memberId");
-        return myPageService.replyList(memberId, boardFreeId);
+        return myPageService.replyList(boardFreeId);
     }
 
     // 각 게시물 작성 갯수
