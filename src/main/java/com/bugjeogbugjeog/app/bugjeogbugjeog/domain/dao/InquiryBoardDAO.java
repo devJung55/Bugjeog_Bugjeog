@@ -90,7 +90,7 @@ public class InquiryBoardDAO {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> getInquiryList(AdminCriteria adminCriteria) {
+    public List<BoardInquiryDTO> getInquiryList(AdminCriteria adminCriteria) {
         return inquiryBoardMapper.adminSelectAllInquiry(adminCriteria);
     }
 

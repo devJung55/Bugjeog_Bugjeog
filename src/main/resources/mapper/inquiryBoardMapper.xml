@@ -93,10 +93,13 @@
     <!-- *************************************************************************** -->
 
     <!-- 문의 목록 -->
-    <select id="adminSelectAllInquiry" resultType="boardInquiryVO">
-        select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date
-        from tbl_board_inquiry
-        order by board_inquiry_id desc
+    <select id="adminSelectAllInquiry" resultType="boardInquiryDTO">
+       select bi.board_inquiry_id, m.member_id, b.business_id, m.member_name, b.business_ceo_name, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_answer_id
+        from tbl_board_inquiry bi
+        left join tbl_member m on bi.member_id = m.member_id
+        left join tbl_business b on bi.business_id = b.business_id
+        left join tbl_board_inquiry_answer ia on bi.board_inquiry_id = ia.board_inquiry_id
+        order by bi.board_inquiry_id desc
         limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 

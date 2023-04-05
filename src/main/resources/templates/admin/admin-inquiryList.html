@@ -274,7 +274,7 @@
 									<input type="checkbox" name="check" id="allSelect" onclick="isAllChecked(this)">
 								</th>
 								<th>No</th>
-								<!--<th>이름</th>-->
+								<th>이름</th>
 								<th>제목</th>
 								<th>작성 날짜</th>
 								<th>문의 상태</th>
@@ -290,11 +290,26 @@
 							 <input type="checkbox" name="check" data-id="${inquire.boardInquiryId}" class="checkBoxes" onclick="isChecked(this)">
 							</td>
 							<td>${inquire.boardInquiryId}</td>
+						`;
+
+			if(inquire.memberId != null){
+				list += `<td>${inquire.memberName}</td>`;
+			} else {
+				list += `<td>${inquire.businessCeoName}</td>`;
+			}
+
+		list +=		`
 							<td><a href="/admin/admin-inquiry/ + ${inquire.boardInquiryId}">${inquire.boardInquiryTitle}</a></td>
-							<td>${inquire.boardInquiryRegisterDate}</td>
-							<td>${inquire.boardInquiryStatus}</td>
-						</tr>
-					`;
+							<td>${inquire.boardInquiryRegisterDate}</td>`;
+
+			if(inquire.boardInquiryAnswerId != null) {
+				list += `<td>답변 완료</td>`;
+			} else {
+				list += `<td>미답변</td>`;
+			}
+
+		list += `</tr>`;
+
 		list +=  ` </tbody>`;
 
 		$('#list-wrapper').html(list);
