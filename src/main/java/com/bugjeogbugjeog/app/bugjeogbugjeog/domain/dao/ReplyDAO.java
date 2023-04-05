@@ -40,8 +40,8 @@ public class ReplyDAO {
     }
 
     // 댓글 삭제
-    public void deleteReply(FreeReplyVO freeReplyVO){
-        replyMapper.replyDelete(freeReplyVO);
+    public void deleteReply(Long replyId){
+        replyMapper.replyDelete(replyId);
     }
 
     // 댓글 갯수

@@ -201,7 +201,7 @@
         /*댓글 수정 필요?*/
 
         /*댓글 삭제*/
-        function delete(reply, callback){
+        function Delete(reply, callback){
             $.ajax({
                 url:"/replies/delete-reply",
                 type: "post",
@@ -214,10 +214,14 @@
                 }
             })
         }
-        return {getList: getList, save: save, update: update};
+        return {getList: getList, save: save, update: update, Delete: Delete};
     })();
-
+    /*const를 사용하여 아래 사용할 변수를 선언 */
     const $replyRegisterButton = $(".reply-register-button");
+    const $modifyBtn = $(".modifyBtn");
+    const $deleteBtn = $(".deleteBtn");
+      console.log($deleteBtn);
+
 
     showList();
 
@@ -230,6 +234,9 @@
         replyService.update({replyContent: replyContent, replyId: replyId}, function(){
             showList();
         });
+        replyService.Delete({replyContent: replyContent, replyId: replyId}, function(){
+            showList();
+        });
     });
 
     $replyRegisterButton.click(function () {
@@ -237,6 +244,26 @@
         const boardFreeId = currentBoard.boardFreeId;
         console.log(boardFreeId)
         replyService.save({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
+    $modifyBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
+
+    console.log($deleteBtn);
+
+    $deleteBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        console.log($modifyBtn);
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        replyService.delete({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
             showList();
         });
     });
@@ -277,12 +304,12 @@
                         `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
-                                           <button type="button">
+                                           <button type="button" class="modifyBtn">
                                             <span>수정</span>
                                             </button>
                                         </div>
-                                        <div style="margin-left: 8px" class="delete">
-                                            <button type="button">
+                                        <div style="margin-left: 8px" class="delete" data-reply-id="${reply.replyId}">
+                                            <button type="button" class="deleteBtn" >
                                             <span>삭제</span>
                                             </button>
                                         </div>

@@ -63,7 +63,7 @@
     </update>
 
     <!--댓글 삭제-->
-    <delete id="replydelete">
+    <delete id="replyDelete">
     delete from tbl_free_reply
     where reply_id=0;
     </delete>
