@@ -72,8 +72,10 @@
         (select business_ceo_name from tbl_business where business_id = bf.business_id) as business_ceo_name,
         ifnull((select count(reply_id) from tbl_free_reply where board_free_id = bf.board_free_id), 0) as reply_count
         from tbl_board_free bf
-        order by board_free_id desc
-        limit #{offset}, #{pageCount}
+        <if test="searchDTO != null and searchDTO.orderColumn != null">
+            order by ${searchDTO.orderColumn} desc
+        </if>
+        limit #{offset}, #{rowCount}
     </select>
 
     <!-- 자유게시판 게시물 갯수 -->

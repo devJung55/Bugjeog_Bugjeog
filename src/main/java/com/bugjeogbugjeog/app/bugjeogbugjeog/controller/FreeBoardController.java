@@ -2,6 +2,8 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.SearchDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.enums.SearchEnum;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -62,7 +64,7 @@ public class FreeBoardController {
         } else {
             currentPage = criteria.getPage();
         }
-
+        criteria.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_FREE_ID));
         criteria.create(currentPage, rowCount, total, pageCount);
 
         return freeBoardService.getListWithName(criteria);
