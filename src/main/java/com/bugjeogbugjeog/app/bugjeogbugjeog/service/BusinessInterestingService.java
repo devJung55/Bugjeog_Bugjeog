@@ -22,11 +22,11 @@ public class BusinessInterestingService {
 
     //    DB에 이미 등록된 내용이 있는지 검사
     public Long countByIds(Long businessId, Long memberId) {
-        return businessBoardInterestingDAO.isThere(businessId, memberId).getInterestingCompanyId() == null ? 0L : 1L;
+        return businessBoardInterestingDAO.isThere(businessId, memberId) == null ? 0L : 1L;
     }
 
     public void save(Long businessId, Long memberId) {
-        businessBoardInterestingDAO.insert(memberId, businessId);
+        businessBoardInterestingDAO.insert(businessId, memberId);
     }
 
     public void remove(Long boardId, Long memberId) {

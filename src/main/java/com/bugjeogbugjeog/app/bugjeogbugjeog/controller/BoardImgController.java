@@ -68,13 +68,8 @@ public class BoardImgController {
     //    파일 불러오기
     @GetMapping("/imgs/business/display")
     @ResponseBody
-    public byte[] businessDisplay(String fileName) {
-        try {
-            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
-        } catch (Exception e) {
-        }finally {
-            return null;
-        }
+    public byte[] businessDisplay(String fileName) throws Exception {
+        return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
     @GetMapping("/imgs/business/download")
