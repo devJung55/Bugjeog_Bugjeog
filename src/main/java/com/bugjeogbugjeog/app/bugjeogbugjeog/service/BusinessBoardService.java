@@ -65,4 +65,9 @@ public class BusinessBoardService {
         return businessBoardDAO.findBoardById(boardBusinessId);
     }
 
+    //    보드아이디에 맞춰 이미지 정보 가져오기
+    public List<BoardBusinessDTO> getImagesById(Long boardBusinessId){
+        return businessBoardDAO.findImages(boardBusinessId);
+    }
+
 }
