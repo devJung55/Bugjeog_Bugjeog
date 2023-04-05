@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="left_top">
                     <div class="header_logo">
-                        <a href="">
+                        <a th:href="@{/main/main}">
                             <img src="/image/main/logo1-removebg-preview.png" alt="북적북적로고" class="header_logo_img1">
                         </a>
                         <a href="">
@@ -37,8 +37,10 @@
                         <!-- 리스트 뽑을 요소 -->
                         <th:block th:each="noticeVO : ${noticeVO}">
                             <li class="content-list">
-                                <div class="content-title" th:text="${noticeVO.noticeTitle}"></div>
-                                <div class="content" th:text="${noticeVO.noticeContent}"></div>
+                                <a th:href="@{/notice/detail/{noticeId}(noticeId=${noticeVO.noticeId})}">
+                                    <div class="content-title" th:text="${noticeVO.noticeTitle}" style="cursor: pointer"></div>
+                                    <div class="content" th:text="${noticeVO.noticeContent}" style="cursor: pointer"></div>
+                                </a>
                             </li>
                         </th:block>
                     </ul>
