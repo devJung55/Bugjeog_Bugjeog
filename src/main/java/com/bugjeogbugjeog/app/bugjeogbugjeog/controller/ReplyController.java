@@ -55,7 +55,23 @@ public class ReplyController {
     /*댓글 수정*/
 
     /*댓글 삭제*/
+//    @PostMapping("/delete-reply")
+//    public void replyDelete()
+    @PostMapping("/delete-reply")
+    public String replyDelete(FreeReplyVO freeReplyVO, HttpSession session) {
+        Long memberId = (Long)session.getAttribute("memberId");
+        Long businessId = (Long)session.getAttribute("businessId");
+        log.info("나 안해");
 
+        if(memberId != null) {
+            freeReplyVO.setMemberId(memberId);
+        }else{
+            freeReplyVO.setBusinessId(businessId);
+        }
+        replyService.delete(freeReplyVO);
+        return "/free-boards/detail"; // 삭제 후 게시글 페이지로 이동
+//        return "/board/free/datail/";
+    }
 
     /*댓글 목록*/
     /*@GetMapping("resister-reply")               //model = 객체 DB에서 화면에 전달해줄 때 사용하는 객체
