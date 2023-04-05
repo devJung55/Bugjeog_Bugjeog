@@ -265,9 +265,8 @@
         function Delete(reply, callback){
             $.ajax({
                 url:"/replies/delete-reply",
-                type: "post",
-                data:JSON.stringify(reply),
-                contentType: "application/json;charset=utf-8",
+                type: "delete",
+                data: reply ,
                 success: function(){
                     if(callback){
                         callback();
@@ -333,15 +332,14 @@
     //     });
     // });
 
-        $("#reply_wrap_div").on("click", "button.deleteBtn", function () {
+    $("#reply_wrap_div").on("click", "button.deleteBtn", function () {
 
-            let i = $("button.deleteBtn").index(this);
-            const replyId = $($("div.update")[i]).data("reply-id");
-            replyService.Delete(replyId, function(){
-                showList();
-            });
+        let i = $("button.deleteBtn").index(this);
+        const replyId = $($("div.update")[i]).data("reply-id");
+        replyService.Delete({replyId : replyId}, function(){
+            showList();
         });
-
+    });
 
     function showList(){
         replyService.getList(function(list) {
