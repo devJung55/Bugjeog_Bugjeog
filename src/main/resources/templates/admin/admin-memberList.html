@@ -287,12 +287,20 @@
 							<td>${member.memberId}</td>
 							<td><a href="/admin/admin-member/ + ${member.memberId}">${member.memberName}</a></td>
 							<td>${member.memberEmail}</td>
-							<td>${member.memberRegisterDate}</td>
-							<td>${member.memberStatus}</td>
-						</tr>
-					`;
-		});
-		list +=  ` </tbody>`;
+							<td>${member.memberRegisterDate}</td>`;
+
+				if(member.memberStatus == 1){
+					list += `<td>일반계정</td>`;
+				} else if(member.memberStatus == 2) {
+					list += `<td>휴먼계정</td>`;
+				} else {
+					list += `<td>탈퇴계정</td>`;
+				}
+
+				list +=	`</tr>
+						`;
+			});
+				list +=  ` </tbody>`;
 
 		$('#list-wrapper').html(list);
 

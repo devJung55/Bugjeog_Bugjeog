@@ -18,4 +18,8 @@ public class BusinessBoardInterestingDAO {
     public void insert(Long businessId, Long memberId) {
         interestingCompanyMapper.insertByInterestingCompany(businessId, memberId);
     }
+
+    public void deleteByIds(Long boardId, Long memberId) {
+        interestingCompanyMapper.deleteByInterestingCompany(boardId, memberId);
+    }
 }

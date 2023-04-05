@@ -169,7 +169,6 @@ $passwordCheck.blur(function(){
 });
 
 $("#allSelect").click(function() {
-    console.log("눌림");
     if($("#allSelect").is(":checked")) {
         $("input[name=check]").prop("checked", true);
         $(".join-terms-agree").addClass("checkbox-active-box");

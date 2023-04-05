@@ -25,4 +25,5 @@ public interface InterestingCompanyMapper {
     public Long interestingCompanyCount(Long interestingCompanyId);
 
     public InterestingCompanyVO selectOneByIds(Long businessId, Long memberId);
+
 }

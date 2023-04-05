@@ -2,10 +2,8 @@ const boardDetailContainer = $('#detailBoards')
 console.log(boardDetailContainer);
 
 const createDOM = function (boardFree) {
-    console.log("으아아아아아");
-
+    console.log(boardFree);
     let text = `
-    
         <section style="flex: 1 0 790px; background-color: #fff;">
             <article style="padding: 56px 39px 40px; background-color: #fff; border: 1px solid #e1e2e3;">
                  <div class="flex-direction">
@@ -48,10 +46,14 @@ const createDOM = function (boardFree) {
 <!--                        일반적으로 신입 개발자가 본인의 연봉을 결정할 때, 주변 지인 또는 커뮤니티를 참고하곤 하죠. 대부분 이런 방식으로 초봉을 설정하지만, 이 방법은 한 가지 큰 단점이 있어요.-->
 <!--                        그건 지인이나 커뮤니티에서 알려주는 대상과 본인의 실력이 다르다는 거죠.-->
                     <div style="margin-bottom: 20px;"></div>
-                    <div style="margin-top: 20px;">
-                        <img id="contet_img" src="https://static.wanted.co.kr/community/2023/3/e636fef8cd94bc0c9c921510c71ffae98c9c636065c75c113e4dd42a027129c9" alt="">
-                    </div>
-                </div>
+                    `
+    /* fileVO로 자바에서 보내야함 */
+    if(boardFree.boardFreeImgUuid != null) {
+        text += `<div>
+                    <img src="/free-boards/imgs/dispay?fileName=${boardFree.boardFreeImgPath}/${boardFree.boardFreeImgUuid}_${boardFree.boardFreeImgOriginalName}">
+                </div>`
+    }
+    text += `</div>
                 <div id="bottom_action">
                     <div style="width: 78px;">
                         <button class="like_button">

@@ -4,12 +4,16 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.FreeBoardImgDAO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +22,21 @@ import java.util.List;
 @Qualifier("freeBoard")
 @Primary
 @RequiredArgsConstructor
-public class FreeBoardService{
+public class FreeBoardService {
     private final FreeBoardDAO freeBoardDAO;
     private final FreeBoardImgDAO freeBoardImgDAO;
 
     //    추가
-    public void registerBoard(BoardFreeVO boardFreeVO) { freeBoardDAO.save(boardFreeVO); }
+    @Transactional(rollbackFor = Exception.class)
+    public void registerBoard(BoardFreeVO boardFreeVO, BoardFreeImgVO boardFreeImgVO) {
+        freeBoardDAO.save(boardFreeVO);
+
+        if(boardFreeImgVO.getBoardFreeImgOriginalName() != null && boardFreeImgVO.getBoardFreeImgUuid() != null){
+            boardFreeImgVO.setBoardFreeImgPath(getPath());
+            boardFreeImgVO.setBoardFreeId(boardFreeVO.getBoardFreeId());
+            freeBoardImgDAO.save(boardFreeImgVO);
+        }
+    }
 
     //    삭제
     public void remove(Long boardFreeId){ freeBoardDAO.remove(boardFreeId);}
@@ -53,7 +66,11 @@ public class FreeBoardService{
 
     /* 자유게시판 게시글 목록조회 */
     public List<BoardFreeDTO> getListWithName(AdminCriteria adminCriteria){
-        return freeBoardDAO.findListWithName(adminCriteria);
+
+        List<BoardFreeDTO> list = freeBoardDAO.findListWithName(adminCriteria);
+        list.forEach(board -> board.setBoardFreeImgVOs(freeBoardImgDAO.findListByBoardId(board.getBoardFreeId())));
+
+        return list;
     }
 
     /* 자유게시판 총 갯수 */
@@ -64,7 +81,7 @@ public class FreeBoardService{
     /* 관리자 ************************************************************************** */
 
     /* 자유 게시판 목록 */
-    public List<BoardFreeVO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
+    public List<BoardFreeDTO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
 
     /* 자유 게시판 조회  */
     public BoardFreeDTO adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
@@ -76,4 +93,9 @@ public class FreeBoardService{
 
     /* 카운트 */
     public Long count(){return freeBoardDAO.count();}
+
+    //    현재 날짜 경로 구하기
+    private String getPath() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+    }
 }

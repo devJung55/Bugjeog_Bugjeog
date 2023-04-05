@@ -66,7 +66,12 @@
                                 <div class="board-info-box">
                                     <div class="member-img-box">
                                         <div class="member-img">
-                                            <img th:if="${businessDTO.businessImgPath}" th:src="@{/mypage/profile/display(fileName=${businessDTO.businessImgPath}+'/'+${businessDTO.businessImgUuid}+'_'+${businessDTO.businessImgOriginalName})}" class="gear-icon">
+                                            <th:block th:if="${businessDTO.businessImgPath} != null">
+                                                <img th:src="@{/mypage/profile/display(fileName=${businessDTO.businessImgPath}+'/'+${businessDTO.businessImgUuid}+'_'+${businessDTO.businessImgOriginalName})}" />
+                                            </th:block>
+                                            <th:block th:unless="${businessDTO.businessImgPath} != null">
+                                                <img src="/image/boardList/distributor_icon.png" />
+                                            </th:block>
                                         </div>
                                         <!-- <div class="member-nickname-box">
                                             <span>벅벅코딩</span>

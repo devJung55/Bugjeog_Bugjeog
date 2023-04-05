@@ -1,7 +1,10 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeImgVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Data
@@ -20,6 +23,7 @@ public class BoardFreeDTO {
     private String boardFreeImgPath;/* 썸네일 이미지 경로 */
     private String boardBusinessImgFullPath; /* ?? */
 
+    List<BoardFreeImgVO> boardFreeImgVOs;
 
     private String businessEmail;
     private String businessCeoName;

@@ -101,9 +101,10 @@ body{
     font-size: 17px;
     font-weight: 400;
     line-height: 28px;
+    margin-bottom: 30px;
 }
 #content_textarea{
-    height: 28px;
+    height: 50vh;
     width: 100%;
     padding: 0;
     border: 0;
@@ -113,7 +114,29 @@ body{
     color: #333;
     outline: 0;
     resize: none;
-    overflow: hidden;
+}
+#content_textarea::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+    height: 10px; /* 스크롤바 높이 */
+}
+/* 스크롤바 thumb (스크롤바 핸들) */
+#content_textarea::-webkit-scrollbar-thumb {
+    background-color: #4690f2; /* 스크롤바 thumb 배경색 */
+    border-radius: 5px; /* 스크롤바 thumb 둥근 테두리 */
+    border: 2px solid #fff; /* 스크롤바 thumb 테두리 */
+}
+
+/* 스크롤바 track (스크롤바 레일) */
+#content_textarea::-webkit-scrollbar-track {
+    background-color: #fff; /* 스크롤바 track 배경색 */
+    border-radius: 5px; /* 스크롤바 track 둥근 테두리 */
+    border: 2px solid #fff; /* 스크롤바 track 테두리 */
+}
+
+/* 스크롤바 버튼 (스크롤바 상단/하단 버튼) */
+#content_textarea::-webkit-scrollbar-button {
+    background-color: #fff; /* 스크롤바 버튼 배경색 */
+    display: none; /* 스크롤바 버튼 숨기기 */
 }
 #plus_picture{
     position: fixed;

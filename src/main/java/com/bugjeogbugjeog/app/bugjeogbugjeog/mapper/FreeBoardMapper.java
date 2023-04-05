@@ -58,7 +58,7 @@ public interface FreeBoardMapper {
     public Long count();
 
     /* 자유 게시판 목록 */
-    public List<BoardFreeVO> adminSelectAllFree(@Param("adminCriteria") AdminCriteria adminCriteria);
+    public List<BoardFreeDTO> adminSelectAllFree(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     /* 자유 게시판 조회  */
     public BoardFreeDTO adminSelectFree(Long boardFreeId);
