@@ -91,9 +91,15 @@ public class FreeBoardController {
 
     /*자유게시판 작성*/
     @PostMapping("write")
-    public RedirectView freeWrite(BoardFreeVO boardFreeVO, BoardFreeImgVO boardFreeImgVO) {
+    public RedirectView freeWrite(BoardFreeVO boardFreeVO, BoardFreeImgVO boardFreeImgVO, HttpServletRequest request) {
         /*   model.addAttribute(new BoardFreeVO());*/
+        Object memberId = request.getSession().getAttribute("memberId");
 
+        if(memberId != null) {
+            boardFreeVO.setMemberId((Long)memberId);
+        } else {
+            boardFreeVO.setBusinessId((Long)request.getSession().getAttribute("businessId"));
+        }
         freeBoardService.registerBoard(boardFreeVO, boardFreeImgVO);
         return new RedirectView("/free-boards/");
     }
