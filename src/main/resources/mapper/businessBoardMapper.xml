@@ -204,6 +204,14 @@
         and board_business_id = #{boardBusinessId}
     </select>
 
+    <select id="selectBoardImages" resultType="boardBusinessDTO">
+        SELECT  tbb.board_business_id, tbbi.board_business_img_id, tbbi.board_business_id, tbbi.board_business_img_original_name,
+                tbbi.board_business_img_uuid, tbbi.board_business_img_path, tbb.board_business_title, tbb.board_business_content,
+                tbb.board_business_register_date, tbb.board_business_update_date, tbb.board_business_status
+        FROM tbl_board_business_img tbbi JOIN tbl_board_business tbb
+        ON tbbi.board_business_id = tbb.board_business_id
+        and tbb.board_business_id = #{boardBusinessId}
+    </select>
 
 
 </mapper>
