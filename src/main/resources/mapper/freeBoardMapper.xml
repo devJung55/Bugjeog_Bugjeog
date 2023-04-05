@@ -43,7 +43,8 @@
 
     <!--게시글 조회-->
     <select id="select" resultType="boardFreeDTO">
-        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id,
+        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id, m.member_img_original_name, m.member_img_path, m.member_img_uuid,
+        b.business_img_uuid, b.business_img_original_name, b.business_img_path,
         b.business_email, business_ceo_name, business_company_name,b.business_phone_number, business_status, board_free_title, board_free_content,
         board_free_register_date, board_free_update_date, board_free_like, board_free_img_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path,
         coalesce(
