@@ -123,6 +123,7 @@
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script th:inline="javascript">
+
 	// 이동할 페이지
 	let page = 1;
 
@@ -133,6 +134,7 @@
 			url: `/admin/admin-freeBoardList/${page}`,
 			type: "get",
 			success: function(result) {
+				console.log(result.frees);
 				showList(result.frees);
 				showPage(result.criteria);
 			},
@@ -269,7 +271,7 @@
 								</th>
 								<th>No</th>
 								<th>게시물 제목</th>
-								<!--<th>작성자 명</th>-->
+								<th>작성자 명</th>
 								<th>작성 날짜</th>
 							</tr>
 						</thead>
@@ -284,8 +286,14 @@
 							</td>
 							<td>${free.boardFreeId}</td>
 							<td><a href="/admin/admin-freeBoard/ + ${free.boardFreeId}">${free.boardFreeTitle}</a></td>
-
-							<td>${free.boardFreeRegisterDate}</td>
+					`;
+					if(free.memberId != null){
+						list +=	`<td>${free.memberName}</td>`;
+					}else {
+						list +=
+								`<td>${free.businessCeoName}</td>`;
+					}
+			list+=	`		<td>${free.boardFreeRegisterDate}</td>
 						</tr>
 					`;
 		});
