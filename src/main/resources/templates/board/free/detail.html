@@ -151,7 +151,7 @@
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <<script>
     /*댓글*/
-   let page = 1;
+    let page = 1;
 
     const replyService = (() => {
         /*댓글 목록*/
@@ -201,7 +201,20 @@
         /*댓글 수정 필요?*/
 
         /*댓글 삭제*/
-        function delete(reply, callback){
+        /*function update(reply, callback){
+            $.ajax({
+                url: "/replies/update-reply",
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }*/
+        /*function delete(reply, callback){
             $.ajax({
                 url:"/replies/delete-reply",
                 type: "post",
@@ -213,7 +226,7 @@
                     }
                 }
             })
-        }
+        }*/
         return {getList: getList, save: save, update: update};
     })();
 
@@ -274,7 +287,7 @@
                      `
                 if(memberId == list.memberId || businessId == list.businessId){
                     text +=
-                         `
+                        `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
                                             <span>수정</span>
@@ -299,7 +312,7 @@
     // console.log("됐니?");
     // console.log(boardFreeId);
 
-   <!-- 좋아요 댓글 color변경-->
+    <!-- 좋아요 댓글 color변경-->
     const viewbox = document.getElementsByClassName("viewbox_path");
     $('.viewbox').click(function () {
         if ($(this).css('color') === 'rgb(0, 0, 0)') {
@@ -311,7 +324,7 @@
 
 
     $(document).ready(function () {
-         /*등록 버튼 초기 색상 설정*/
+        /*등록 버튼 초기 색상 설정*/
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
         $('#submit_span').css("background-color", "rgb(242, 244, 247)");
 
