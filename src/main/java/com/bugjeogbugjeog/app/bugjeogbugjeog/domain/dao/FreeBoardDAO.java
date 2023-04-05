@@ -115,7 +115,7 @@ public class FreeBoardDAO {
     /* 관리자 *********************************************************************************** */
 
     /* 자유 게시판 목록 */
-    public List<BoardFreeVO> adminFindAll(AdminCriteria adminCriteria){return freeBoardMapper.adminSelectAllFree(adminCriteria);}
+    public List<BoardFreeDTO> adminFindAll(AdminCriteria adminCriteria){return freeBoardMapper.adminSelectAllFree(adminCriteria);}
 
     /* 자유 게시판 조회  */
     public BoardFreeDTO adminFindById(Long boardFreeId){return freeBoardMapper.adminSelectFree(boardFreeId);}

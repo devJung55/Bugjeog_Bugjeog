@@ -64,7 +64,7 @@ public class FreeBoardService{
     /* 관리자 ************************************************************************** */
 
     /* 자유 게시판 목록 */
-    public List<BoardFreeVO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
+    public List<BoardFreeDTO> adminShowList(AdminCriteria adminCriteria){return freeBoardDAO.adminFindAll(adminCriteria);}
 
     /* 자유 게시판 조회  */
     public BoardFreeDTO adminShow(Long boardFreeId){return freeBoardDAO.adminFindById(boardFreeId);}
