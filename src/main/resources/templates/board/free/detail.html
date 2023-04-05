@@ -321,18 +321,26 @@
     });
 
     // 내가 한거 2
-    $deleteBtn.click(function () {
-        const replyContent = $("#reply_textarea").val();
-        let i = $("div.delete").index(this);
-        console.log($modifyBtn);
-        const boardFreeId = currentBoard.boardFreeId;
-        console.log(boardFreeId)
-        const replyId = $(this).data(".deleteBtn");
-        replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
-            showList();
-        });
-    });
+    // $deleteBtn.click(function () {
+    //     const replyContent = $("#reply_textarea").val();
+    //     let i = $("div.delete").index(this);
+    //     console.log($modifyBtn);
+    //     const boardFreeId = currentBoard.boardFreeId;
+    //     console.log(boardFreeId)
+    //     const replyId = $(this).data(".deleteBtn");
+    //     replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
+    //         showList();
+    //     });
+    // });
 
+        $("#reply_wrap_div").on("click", "button.deleteBtn", function () {
+
+            let i = $("button.deleteBtn").index(this);
+            const replyId = $($("div.update")[i]).data("reply-id");
+            replyService.Delete(replyId, function(){
+                showList();
+            });
+        });
 
 
     function showList(){
