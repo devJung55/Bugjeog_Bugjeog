@@ -71,7 +71,7 @@ public class BusinessBoardService {
         return businessBoardDAO.findImages(boardBusinessId);
     }
 
-    public List<BoardBusinessDTO> showList(Criteria criteria) {
-        return null;
+    public List<BoardBusinessDTO> showList(PageDTO pageDTO, Map<String, Object> searchMap) {
+        return businessBoardDAO.findAll(pageDTO, searchMap);
     }
 }

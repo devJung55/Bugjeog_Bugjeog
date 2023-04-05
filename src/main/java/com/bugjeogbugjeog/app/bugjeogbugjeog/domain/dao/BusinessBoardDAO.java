@@ -58,4 +58,8 @@ public class BusinessBoardDAO {
     public List<BoardBusinessDTO> findImages(Long boardBusinessId){
         return businessBoardMapper.selectBoardImages(boardBusinessId);
     }
+
+    public List<BoardBusinessDTO> findAll(PageDTO pageDTO, Map<String, Object> searchMap) {
+        return businessBoardMapper.selectAllListBySearchPaging(pageDTO, searchMap);
+    }
 }
