@@ -160,7 +160,9 @@
                 console.log("change 이벤트 ajax 성공")
                 globalThis.uuids = uuids;
                 $files.forEach((file, i) => {
-                    if(i>2){return ;}
+                    sensor();
+                    registerSensor();
+                    if($(".imageThumbnail").length > 2){return ;}
                     if (file.type.startsWith("image")) {
                         let text = ``;
                         text += `
@@ -172,8 +174,7 @@
                                 </li>`;
                         $("#thumbnail-list").append(text);
                     }
-                    sensor();
-                    registerSensor();
+
                 })
 
                 /* 파일 개수가 3개 이상이면 버튼숨기기 */
