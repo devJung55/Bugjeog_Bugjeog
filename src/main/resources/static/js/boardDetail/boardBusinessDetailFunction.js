@@ -282,6 +282,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
             </div>`;
     });
     $('#all_wrap').append(text);
+    cor(`${board.businessId}`,businessId);
     favoriteShowControll(isFavorite);
 
     const $submitReply = $($('button.replyRegisterButton')[0]);
@@ -354,6 +355,17 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
         }
         ajaxFavorite(board.boardBusinessId, member.memberId, $target);
     });
+
+    function cor(boardBusinessId, sessionBusinessId) {
+        let hi = $('#correction_delete');
+        console.log(boardBusinessId);
+        console.log(sessionBusinessId);
+        if (boardBusinessId == sessionBusinessId){
+            hi.show();
+        }else{
+            hi.hide();
+        }
+    }
 
     function ajaxFavorite(boardId, memberId, $target) {
         console.log(boardId);

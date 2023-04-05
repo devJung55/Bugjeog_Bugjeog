@@ -107,7 +107,6 @@
                 b.board_business_id desc
             </otherwise>
         </choose>
-        limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
