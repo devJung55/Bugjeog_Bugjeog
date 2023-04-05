@@ -34,6 +34,6 @@
     <select id="selectOneByIds" resultType="interestingCompanyVO">
         select interesting_company_id, member_id, business_id
         from tbl_interesting_company
-        where business_id = #{businessId} and member_id = #{businessId}
+        where business_id = #{businessId} and member_id = #{memberId}
     </select>
 </mapper>
