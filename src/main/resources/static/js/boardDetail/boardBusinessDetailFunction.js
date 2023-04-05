@@ -129,7 +129,7 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                 <label class="otherBoards" style="--base-font-size: 10;">
                                     <div class="footer_li_div">
                                         <img class="footer_img" name="${other.boardBusinessId}"
-                                        src="/imgs/business/display?fileName=${other.boardBusinessImgPath + '/' + other.boardBusinessImgUuid + '_' + other.boardBusinessImgOriginalName}"
+                                        src="/imgs/business/display?fileName=${other.boardBusinessImgPath + '/t_' + other.boardBusinessImgUuid + '_' + other.boardBusinessImgOriginalName}"
                                         alt="'/image/boardList/no-image-64.png'">
                                     </div>
                                     <div class="event_content">
@@ -189,36 +189,35 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                 </th:block>
                             </div>
                         </div>`;
-    }// end if
-    text += `
+        `
                         </section>
                         <div id="review_score_box_layout">
                             총 리뷰 개수: ${reviewCount} 개
                             <div class="review-score-box" style="position: absolute; bottom: -30px; left: -5px;">
                             `;
-    let reviewsGradeAverage;
-    let reviewsGradeTotal = 0;
-    reviews.forEach(review => {
-        reviewsGradeTotal += `${review.reviewGrade}`;
-    });
-    reviewsGradeAverage = reviewsGradeTotal / reviews.size;
+        let reviewsGradeAverage;
+        let reviewsGradeTotal = 0;
+        reviews.forEach(review => {
+            reviewsGradeTotal += `${review.reviewGrade}`;
+        });
+        reviewsGradeAverage = reviewsGradeTotal / reviews.size;
 
-    for (let i = 0; i < reviewsGradeAverage; i++) {
-        text += `
+        for (let i = 0; i < reviewsGradeAverage; i++) {
+            text += `
                                 <label class="review-score ratingActive"></label>
         `;
-    }
-    for (let i = 0; i < 5 - reviewsGradeAverage; i++) {
-        text += `
+        }
+        for (let i = 0; i < 5 - reviewsGradeAverage; i++) {
+            text += `
                                 <label class="review-score"></label>
         `;
-    }
-    text += `
+        }
+        text += `
                             </div>
                         </div>`;
 
-    reviews.forEach(review => {
-        text += `
+        reviews.forEach(review => {
+            text += `
                         <div id="reply_wrap">
                             <div id="reply_wrap_div" style="position: relative;">
                                 <div style="display: flex; justify-content: space-between;">
@@ -242,15 +241,15 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                                     <span id="reply_date">${review.reviewRegisterDate}</span>
                                                     <div class="review-score-box">
                                                     `;
-        for (let i = 0; i < `${review.reviewGrade}`; i++) {
-            text += `
+            for (let i = 0; i < `${review.reviewGrade}`; i++) {
+                text += `
                                                         <label class="review-score" style="color: #ffcc00 !important;"></label>`;
-        }
-        for (let i = 0; i < `${5 - review.reviewGrade}`; i++) {
-            text += `
+            }
+            for (let i = 0; i < `${5 - review.reviewGrade}`; i++) {
+                text += `
                                                         <label class="review-score"></label>`;
-        }
-        text += `
+            }
+            text += `
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,119 +279,120 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                     </button>
                 </div>
             </div>`;
-    });
-    $('#all_wrap').append(text);
-    cor(`${board.businessId}`,businessId);
-    favoriteShowControll(isFavorite);
-
-    const $submitReply = $($('button.replyRegisterButton')[0]);
-    if (businessId == null && memberId != null) {
-        $submitReply.removeClass('is-hidden');
-        $submitReply.css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-
-        // textarea 입력시 등록 버튼 색상 변경
-        $('#reply_textarea').on('input', function () {
-            if ($(this).val().length > 0) {
-                $('button[type="submit"]').css("color", "white").css("background-color", "blue");
-            } else {
-                $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
-            }
         });
-        if (`${member.memberId == memberId}` && memberId != null) {
-            $($('.replyButtonWrap')[0]).removeClass('is-hidden');
-        } else {
-            $($('.replyButtonWrap')[0]).addClass('is-hidden');
-        }
-    } else {
-        $submitReply.addClass('is-hidden');
-    }
+        $('#all_wrap').append(text);
+        cor(`${board.businessId}`, businessId);
+        favoriteShowControll(isFavorite);
 
+        const $submitReply = $($('button.replyRegisterButton')[0]);
+        if (businessId == null && memberId != null) {
+            $submitReply.removeClass('is-hidden');
+            $submitReply.css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
 
-    let $label = $('label.otherBoards');
-    $label.on("click", (e) => {
-        // console.log($(e.target));
-        // console.log($(e.target).attr('name'));
-        let selectBoardId = $(e.target).attr('name');
-        detailAjax(selectBoardId);
-    });
-
-    const $editReviewButton = $('label[name=editReply]');
-    $editReviewButton.on("click", (e) => {
-        console.log("수정 버튼 눌림")
-        console.log($(e.target));
-    });
-
-    const $favoriteButton = $($('svg[name=favoriteButton]')[0]);
-
-    // 즐겨찾기 버튼
-    const $bookMarks = $(".book-mark");
-
-    $bookMarks.each((i, bookMark) => {
-        $(bookMark).on("click", function () {
-            if ($(this).attr("fill") == "rgb(51, 102, 255)") {
-                $(this).attr("fill", "black");
-            } else {
-                $(this).attr("fill", "rgb(51, 102, 255)");
-            }
-        });
-    });
-
-
-    $favoriteButton.on("click", (e) => {
-        alert("전송 성공");
-        console.log(e);
-        console.log($(e));
-
-        let $target = $(e.currentTarget);
-        console.log("관심 클릭");
-        console.log($target);
-        if ($target.hasClass("fill")) {
-            $target.removeClass("fill");
-            $target.attr("fill", "black");
-        } else {
-            $target.addClass("fill");
-            $target.attr("fill", "rgb(51, 102, 255)");
-        }
-        ajaxFavorite(board.boardBusinessId, member.memberId, $target);
-    });
-
-    function cor(boardBusinessId, sessionBusinessId) {
-        let hi = $('#correction_delete');
-        console.log(boardBusinessId);
-        console.log(sessionBusinessId);
-        if (boardBusinessId == sessionBusinessId){
-            hi.show();
-        }else{
-            hi.hide();
-        }
-    }
-
-    function ajaxFavorite(boardId, memberId, $target) {
-        console.log(boardId);
-        console.log(memberId);
-        $.ajax({
-            url: "/favorite/update",
-            method: "PUT",
-            data: {
-                boardBusinessId: JSON.parse(boardId),
-                memberId: JSON.parse(memberId)
-            },
-            async: false,
-            // contentType: "application/json; charset=utf-8",
-            success: function () {
-                alert("관심 전송 성공");
-            },
-            error: function (e) {
-                alert("관심 전송 실패");
-                if ($target.hasClass("fill")) {
-                    $target.removeClass("fill");
+            // textarea 입력시 등록 버튼 색상 변경
+            $('#reply_textarea').on('input', function () {
+                if ($(this).val().length > 0) {
+                    $('button[type="submit"]').css("color", "white").css("background-color", "blue");
                 } else {
-                    $target.addClass("fill");
+                    $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
                 }
-                console.log(e);
+            });
+            if (`${member.memberId == memberId}` && memberId != null) {
+                $($('.replyButtonWrap')[0]).removeClass('is-hidden');
+            } else {
+                $($('.replyButtonWrap')[0]).addClass('is-hidden');
             }
+        } else {
+            $submitReply.addClass('is-hidden');
+        }
 
+
+        let $label = $('label.otherBoards');
+        $label.on("click", (e) => {
+            // console.log($(e.target));
+            // console.log($(e.target).attr('name'));
+            let selectBoardId = $(e.target).attr('name');
+            detailAjax(selectBoardId);
         });
+
+        const $editReviewButton = $('label[name=editReply]');
+        $editReviewButton.on("click", (e) => {
+            console.log("수정 버튼 눌림")
+            console.log($(e.target));
+        });
+
+        const $favoriteButton = $($('svg[name=favoriteButton]')[0]);
+
+        // 즐겨찾기 버튼
+        const $bookMarks = $(".book-mark");
+
+        $bookMarks.each((i, bookMark) => {
+            $(bookMark).on("click", function () {
+                if ($(this).attr("fill") == "rgb(51, 102, 255)") {
+                    $(this).attr("fill", "black");
+                } else {
+                    $(this).attr("fill", "rgb(51, 102, 255)");
+                }
+            });
+        });
+
+
+        $favoriteButton.on("click", (e) => {
+            alert("전송 성공");
+            console.log(e);
+            console.log($(e));
+
+            let $target = $(e.currentTarget);
+            console.log("관심 클릭");
+            console.log($target);
+            if ($target.hasClass("fill")) {
+                $target.removeClass("fill");
+                $target.attr("fill", "black");
+            } else {
+                $target.addClass("fill");
+                $target.attr("fill", "rgb(51, 102, 255)");
+            }
+            ajaxFavorite(board.boardBusinessId, member.memberId, $target);
+        });
+
+        function cor(boardBusinessId, sessionBusinessId) {
+            let hi = $('#correction_delete');
+            console.log(boardBusinessId);
+            console.log(sessionBusinessId);
+            if (boardBusinessId == sessionBusinessId) {
+                hi.show();
+            } else {
+                hi.hide();
+            }
+        }
+
+        function ajaxFavorite(boardId, memberId, $target) {
+            console.log(boardId);
+            console.log(memberId);
+            $.ajax({
+                url: "/favorite/update",
+                method: "PUT",
+                data: {
+                    boardBusinessId: JSON.parse(boardId),
+                    memberId: JSON.parse(memberId)
+                },
+                async: false,
+                // contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("관심 전송 성공");
+                },
+                error: function (e) {
+                    alert("관심 전송 실패");
+                    if ($target.hasClass("fill")) {
+                        $target.removeClass("fill");
+                    } else {
+                        $target.addClass("fill");
+                    }
+                    console.log(e);
+                }
+
+            });
+        }
     }
 };
 

@@ -44,4 +44,6 @@ public interface BusinessBoardMapper {
 
     //    보드아이디에 맞춰 이미지 정보 가져오기
     public List<BoardBusinessDTO> selectBoardImages(Long boardBusinessId);
+
+    public List<BoardBusinessDTO> selectAllListBySearchPaging(PageDTO pageDTO, Map<String, Object> searchMap);
 }

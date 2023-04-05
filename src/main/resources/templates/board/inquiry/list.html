@@ -92,6 +92,31 @@
 
 </script>
 <script>
+<<<<<<< HEAD
+    const $pageUl = $($('ul.page-box-layout')[0]);
+
+
+    if(businessId == null && memberId == null){
+        $inquiryWrap.hide();
+    }else {
+        $inquiryWrap.show();
+    }
+    pagingFunc(pageDTO);
+
+    function pagingFunc(pageDTO) {
+        $paging.empty();
+        let text = '';
+
+        text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(1)" name="pagingFirst"><<</a>
+                    </li>`;
+        if (`${pageDTO.prev}`) {
+            text +=
+                `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.startPage - 1})" name="pagingPrev"><</a>
+                    </li>`;
     $(".inquire_write").click(function(){
         if(!memberId && !businessId){
             alert("로그인을 먼저 해주세요.");
@@ -99,6 +124,70 @@
         }
     });
 
+        let length = `${pageDTO.criteria.pageNum}`;
+        for (let i = 0; 0 < length; i++) {
+            text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.startPage + i})" name="pagingList${i}">${pageDTO.startPage + i}</a>
+                    </li>
+                    `;
+        }
+
+        if (`${pageDTO.next}`) {
+            text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.endPage + 1})" name="pagingNext">></a>
+                    </li>
+                    `;
+        }
+
+        text += `
+                    <li class="page-button-box">
+                        <a href="javascript:ajax(${pageDTO.realEnd})" name="pagingEnd">>></a>
+                    </li>
+        `
+        $paging.append(text);
+    }
+
+    function showInquiryList(boards) {
+        let $listUl = $($('ul.content-list-box')[0]);
+        $listUl.empty();
+        let text = ``;
+        boards.forEach(board => {
+            text += `
+                        <li class="content-list">
+                            <a href="/board/inquiry/detail?boardInquiryId=${board.boardInquiryId}"
+                               th:method="get"
+                               class="content-title">
+                                ${board.boardInquiryTitle}
+                            </a>
+                            <div class="content">
+                                ${board.boardInquiryContent}
+                            </div>
+                        </li>
+        `;
+        })
+        $listUl.append(text);
+    }
+
+    function ajax(startPage) {
+        $.ajax({
+            url: "/board/inquiry/list/ajax",
+            method: "GET",
+            data: {"startPage": JSON.parse(startPage)},
+            async: false,
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                let setUp = JSON.parse(result);
+                let boards = JSON.parse(setUp.boards);
+                let pageDTO = JSON.parse(setUp.pageDTO);
+                showInquiryList(boards);
+                pagingFunc(pageDTO);
+            },
+            error: function (e) {
+                console.log($(e));
+            }
+        })
 
 
     if (inquiryVO.length == 0) {

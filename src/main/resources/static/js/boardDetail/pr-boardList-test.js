@@ -76,8 +76,6 @@ function afterDetail() {
         }, 300);
     });
 
-    const $header = $($('header.nav_bar')[0]);
-    $header.css('z-index', -10);
 }
 
 
