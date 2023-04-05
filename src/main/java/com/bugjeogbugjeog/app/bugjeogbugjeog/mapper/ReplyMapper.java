@@ -50,4 +50,7 @@ public interface ReplyMapper {
 
     // 게시물의 댓글 개수
     public Integer boardReplyCount(Long boardFreeId);
+
+    // 댓글 조회
+    public FreeReplyVO select(Long replyId);
 }
