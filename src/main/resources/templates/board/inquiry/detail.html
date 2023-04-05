@@ -16,7 +16,8 @@
 
 <body>
 <!-- 헤더 -->
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
+<div th:insert="~{main/header-signin :: header}" th:if="${session.memberId} != null or ${session.businessId} != null"></div>
 <main id="main">
     <section style="flex: 1 0 790px; background-color: #fff;">
         <article style="padding: 56px 39px 40px; background-color: #fff; border: 1px solid #e1e2e3;">
@@ -30,10 +31,20 @@
                                         <div class="profile-image-login">
                                             <div class="profile-member-status">
                                                 <th:block th:if="${board.writerType == 'business'}">
-                                                    <span class="profile-image">유</span>
+                                                    <th:block th:if="${#strings.isEmpty(board.businessImgUuid)}">
+                                                        <img class="img_profile" src="/image/boardList/distributor_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
+                                                    <th:block th:unless="${#strings.isEmpty(board.businessImgUuid)}">
+                                                        <img class="img_profile" th:src="@{'/myPages/business/display?fileName='+${board.businessImgPath}+'/'+${board.businessImgUuid}+'_'+${board.businessImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
                                                 </th:block>
                                                 <th:block th:unless="${board.writerType == 'business'}">
-                                                    <span class="profile-image">자</span>
+                                                    <th:block th:if="${#strings.isEmpty(board.memberImgUuid)}">
+                                                        <img class="img_profile" src="/image/boardList/self_employ_icon.png" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
+                                                    <th:block th:unless="${#strings.isEmpty(board.memberImgUuid)}">
+                                                        <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${board.memberImgPath}+'/'+${board.memberImgUuid}+'_'+${board.memberImgOriginalName}}" style="border-radius: 50%; width: 100%; height: 100%">
+                                                    </th:block>
                                                 </th:block>
                                             </div>
                                         </div>
@@ -43,17 +54,18 @@
                                     <div class="flex_align" style="margin-bottom: 3px;">
                                         <th:block th:if="${board.writerType == 'business'}">
                                             <div class="nickname" id="right_nickname"
-                                                 th:text="${board.businessCeoName}">조이언
+                                                 th:text="${board.businessCompanyName}">조이언
                                             </div>
                                             <div class="career_field" style="margin-right: 4px;">
-                                                <div class="career field" th:text="${board.businessLocation}">개발</div>
-                                                <div class="career" th:text="${board.businessCategory}">15년차</div>
+                                                <div class="career">유통업체</div>
+                                                <div class="career field" th:text="${board.businessLocation}"></div>
                                             </div>
                                         </th:block>
                                         <th:block th:unless="${board.writerType == 'business'}">
                                             <div class="nickname" id="right_nickname"
                                                  th:text="${board.memberName}">조이언
                                             </div>
+                                            <div class="career">일반계정</div>
                                         </th:block>
                                     </div>
                                     <span id="register_date"
@@ -63,17 +75,9 @@
                         </div>
                     </a>
                 </div>
-                <h1 id="title" th:text="${board.boardInquiryTitle}">📌개발자를 준비하며 자주 겪는 고민 - 희망 연봉</h1>
+                <h1 id="title" th:text="${board.boardInquiryTitle}"></h1>
             </div>
             <div id="content" th:text="${board.boardInquiryContent}">
-                <!--            <div id="content">-->
-                신입 개발자로 입사할 때 희망 연봉을 어떻게 정해야 할지 고민이 많을 거예요. 희망 연봉은 단어 그대로 입사 지원자가 받고 싶은 연봉이에요.
-                연봉은 개발자 실력에 따라 정해져요.
-                실력이란 개발 능력뿐만 아니라 학력, 자격증, 나이, 전공, 사회경험, 성격, 외모까지 포함돼요. 하지만 신입은 본인의 실력을 가늠하기가 쉽지 않죠.
-
-                일반적으로 신입 개발자가 본인의 연봉을 결정할 때, 주변 지인 또는 커뮤니티를 참고하곤 하죠. 대부분 이런 방식으로 초봉을 설정하지만, 이 방법은 한 가지 큰 단점이 있어요.
-                그건 지인이나 커뮤니티에서 알려주는 대상과 본인의 실력이 다르다는 거죠.
-                <div style="margin-bottom: 20px;"></div>
             </div>
         </article>
         <div id="reply_wrap">
@@ -101,6 +105,8 @@
     let board = [[${board}]];
     let answers = [[${answers}]];
     const $ul = $('#answer_wrap');
+
+    console.log(board);
 </script>
 <script src="/js/boardDetail/boardInquiryDetail.js"></script>
 <script src="/js/boardDetail/boardShowReply.js"></script>

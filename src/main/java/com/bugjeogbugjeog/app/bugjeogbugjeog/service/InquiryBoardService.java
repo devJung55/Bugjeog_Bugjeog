@@ -5,6 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -76,5 +77,8 @@ public class InquiryBoardService {
     // 문의 카운트
     public Long count(){return inquiryBoardDAO.count();}
 
-    // 문의 답변 유무 체크
+    public List<BoardInquiryVO> getAllList(Criteria criteria){
+        return inquiryBoardDAO.findAllList(criteria);
+    }
+
 }

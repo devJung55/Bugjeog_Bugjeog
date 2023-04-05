@@ -105,7 +105,8 @@ button.search_button {
 }
 
 button.signUp_button {
-    /*background-color: #f0ffff;*/
+    background: none;
+    color:black;
     line-height: 1.4;
     margin-right: 6px;
     padding: 0 10px;
