@@ -39,7 +39,7 @@ public class ReplyController {
     }
 
     /*댓글 등록 */
-    @PostMapping("register-reply")
+    @PostMapping("register-reply")ㅋ
     public void replyResister(@RequestBody FreeReplyVO freeReplyVO, HttpSession session){
         Long memberId = (Long)session.getAttribute("memberId");
         Long businessId = (Long)session.getAttribute("businessId");
@@ -51,6 +51,13 @@ public class ReplyController {
         }
         replyService.save(freeReplyVO);
     }
+
+    /*댓글 수정*/
+
+    /*댓글 삭제*/
+    @PutMapping("/delete-reply")
+    public void
+
 
     /*댓글 목록*/
     /*@GetMapping("resister-reply")               //model = 객체 DB에서 화면에 전달해줄 때 사용하는 객체

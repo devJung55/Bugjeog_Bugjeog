@@ -34,6 +34,16 @@ public class ReplyDAO {
         replyMapper.replyAdd(freeReplyVO);
     }
 
+    // 댓글 수정
+    public void modifyReply(FreeReplyVO freeReplyVO){
+        replyMapper.replyUpdate(freeReplyVO);
+    }
+
+    // 댓글 삭제
+    public void deleteReply(FreeReplyVO freeReplyVO){
+        replyMapper.replyDelete(freeReplyVO);
+    }
+
     // 댓글 갯수
     public Integer getReplyTotal(Long memberId){
         return replyMapper.replyCount(memberId);

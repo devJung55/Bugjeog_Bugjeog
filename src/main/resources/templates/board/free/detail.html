@@ -145,7 +145,8 @@
     /* freBoards 는 이전글, 현재글, 다음글이 담겨있는 list이다. 1번째방이 현재글 */
     let currentBoard = [[${currentBoard}]];
     let replyLists = [[${replyLists}]];
-
+    let memberId = [[${session.memberId}]];
+    let businessId = [[${session.businessId}]];
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <<script>
@@ -153,6 +154,7 @@
    let page = 1;
 
     const replyService = (() => {
+        /*댓글 목록*/
         function getList(callback) {
             $.ajax({
                 url: `/replies/list/${page}?boardFreeId=${currentBoard.boardFreeId}`,
@@ -167,7 +169,7 @@
                 }
             });
         }
-
+        /*댓글 등록*/
         function save(reply, callback){
             $.ajax({
                 url: "/replies/register-reply",
@@ -181,13 +183,54 @@
                 }
             })
         }
+        /*댓글 수정 + 수정된 데이터 화면에 뿌려줌*/
+        function update(reply, callback){
+            $.ajax({
+                url: "/replies/update-reply",
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
 
-        return {getList: getList, save: save};
+        /*댓글 수정 필요?*/
+
+        /*댓글 삭제*/
+        function delete(reply, callback){
+            $.ajax({
+                url:"/replies/delete-reply",
+                type: "post",
+                data:JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
+        return {getList: getList, save: save, update: update};
     })();
 
     const $replyRegisterButton = $(".reply-register-button");
 
     showList();
+
+    $("#reply_wrap_div").on("click", "div.update", function () {
+        const replyContents = $("div.reply_content");
+        let i = $("div.update").index(this);
+        const replyContent = replyContents[i].value;
+        const replyId = $(this).data("reply-id");
+
+        replyService.update({replyContent: replyContent, replyId: replyId}, function(){
+            showList();
+        });
+    });
 
     $replyRegisterButton.click(function () {
         const replyContent = $("#reply_textarea").val();
@@ -228,18 +271,25 @@
                                         </div>
                                     </div>
                                 </a>
-                                <div id="float_delete" style="display: flex">
-                                    <div>
-                                        <span>수정</span>
+                     `
+                if(memberId == list.memberId || businessId == list.businessId){
+                    text +=
+                         `
+                                    <div id="float_delete" style="display: flex">
+                                        <div class="update" data-reply-id="${reply.replyId}">
+                                            <span>수정</span>
+                                        </div>
+                                        <div style="margin-left: 8px" class="delete">
+                                            <span>삭제</span>
+                                        </div>
                                     </div>
-                                    <div style="margin-left: 8px">
-                                        <span>삭제</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="reply_content">${reply.replyContent}</div>
+                        `
+                }
+                text += `
                         </div>
-                    `
+                        <div class="reply_content">${reply.replyContent}</div>
+                    </div>
+                `
             })
             $("#reply_wrap_div").html(text);
         });

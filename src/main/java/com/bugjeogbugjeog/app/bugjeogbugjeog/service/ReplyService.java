@@ -28,6 +28,20 @@ public class ReplyService {
 
 //    /* 댓글 등록*/
     public void save(FreeReplyVO freeReplyVO){
+
         replyDAO.addReply(freeReplyVO);
     }
+
+//    댓글 수정
+     public void update(FreeReplyVO freeReplyVO){
+
+        replyDAO.modifyReply(freeReplyVO);
+     }
+
+//    댓글 삭제
+     public void delete(FreeReplyVO freeReplyVO){
+
+        replyDAO.deleteReply(freeReplyVO);
+     }
+
 }
