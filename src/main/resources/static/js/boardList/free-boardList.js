@@ -78,9 +78,18 @@ const createDOM = function (board) {
                         <div class="content-member-info-box-layout">
                             <div class="content-member-text-left">
                                 <div class="content-member-image-box">
-                                    <div class="content-member-image-size">
+                                    <div class="content-member-image-size">`
 
-                                         <img src="/image/boardList/distributor_icon.png">
+    if(board.memberImgUuid){
+        text += `<img src="/free-boards/imgs/dispay?fileName=${board.memberImgPath}/t_${board.memberImgUuid}_${board.memberImgOriginalName}">`
+    } else if(board.businessImgUuid){
+        text += `<img src="/free-boards/imgs/dispay?fileName=${board.businessImgPath}/t_${board.businessImgUuid}_${board.businessImgOriginalName}">`
+    } else {
+        let memberCheck = board.memberId ? false : true;
+        text += `<img src="/image/boardList/${memberCheck ? 'distributor_icon.png' : 'self_employ_icon.png'}">`
+    }
+
+    text += `
                                     </div>
                                 </div>
                                 <div class="content-member-info">

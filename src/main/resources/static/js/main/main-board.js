@@ -63,9 +63,16 @@ const createFreeBoardDOM = function (board) {
                     <div class="content-member-info-box-layout">
                         <div class="content-member-text-left">
                             <div class="content-member-image-box">
-                                <div class="content-member-image-size">
-                                    <img src="/image/boardList/distributor_icon.png">
-                                </div>
+                                <div class="content-member-image-size">`
+    if (board.memberImgUuid) {
+        text += `<img src="/main/imgs/display?fileName=${board.memberImgPath}/t_${board.memberImgUuid}_${board.memberImgOriginalName}">`
+    } else if (board.businessImgUuid) {
+        text += `<img src="/main/imgs/display?fileName=${board.businessImgPath}/t_${board.businessImgUuid}_${board.businessImgOriginalName}">`
+    } else {
+        let memberCheck = board.memberId ? false : true;
+        text += `<img src="/image/boardList/${memberCheck ? 'distributor_icon.png' : 'self_employ_icon.png'}">`
+    }
+    text += `</div>
                             </div>
                             <div class="content-member-info">
                                 <div class="content-persnal-distributor-box">
@@ -138,6 +145,13 @@ const createBusinessBoardDOM = function (board) {
             </div>
         </li>
         `
+    if(board.boardBusinessImgUuid != ""){
+        $(".distribution_cards header").css({"background" : `url(/main/imgs/display?fileName=${board.boardBusinessImgPath}/t_${board.boardBusinessImgUuid}_${board.boardBusinessImgOriginalName})`});
+    } else {
+        $(".distribution_cards header").css({"background" : "url(https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F403%2)"});
+    }
+
+
     return text;
 }
 
@@ -203,7 +217,7 @@ const boardService = (function () {
         );
     }
 
-    return {showFreeBoard: showFreeBoard, showBusinessBoard : showBusinessBoard}
+    return {showFreeBoard: showFreeBoard, showBusinessBoard: showBusinessBoard}
 })();
 
 /* 페이지 로딩시 실행 */
