@@ -110,7 +110,7 @@ next.addEventListener("click", function(){
 
 
 const $searchButton = $(".search_button");
-const $searchBar = $(".search_bar");
+// const $searchBar = $(".search_bar"); header 에서 이미 선언
 const $searchClose = $(".search_close");
 
 $searchButton.on("click", function(e) {
@@ -141,21 +141,3 @@ $bookMarks.each((i, bookMark) => {
 
 
 /* ------------------------ 메인 즐겨찾기 클릭 이벤트 ------------------------  */
-
-
-const $prButton = $(".first_list");
-const $freeButton = $(".second_list");
-const $prBoard = $(".pr_board_wrap");
-const $freeBoard = $(".free_board_wrap");
-
-$prButton.on("click", function(e) {
-    console.log("들어옴1")
-    $freeBoard.css("display", "none");
-    $prBoard.css("display", "block"); 
-});
-
-$freeButton.on("click", function(e) {
-    console.log("들어옴2")
-    $prBoard.css("display", "none"); 
-    $freeBoard.css("display", "block");
-});

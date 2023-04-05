@@ -99,6 +99,7 @@
           i2.board_business_img_id,
           r.board_business_review_count
         ORDER BY b.board_business_id desc
+        limit 0, 5
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
