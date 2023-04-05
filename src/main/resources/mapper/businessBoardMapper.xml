@@ -99,15 +99,7 @@
           i2.board_business_img_id,
           r.board_business_review_count
         ORDER BY
-        <choose>
-            <when test="searchDTO != null and searchDTO.orderColumn != null">
-                ${searchDTO.orderColumn} desc
-            </when>
-            <otherwise>
-                b.board_business_id desc
-            </otherwise>
-        </choose>
-        limit #{pageDTO.startPage}, #{criteria.amount}
+        limit #{startPage}, #{criteria.amount}
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">
@@ -141,11 +133,11 @@
         LEFT JOIN tbl_board_business_img bi ON bb.board_business_id = bi.board_business_id
         LEFT JOIN tbl_business_review br ON bb.board_business_id = br.board_business_id
         where b.business_status = 1
-        <if test="category != null">
-            and bs.business_category = #{category}
+        <if test="searchMap.category != null">
+            and bs.business_category = #{searchMap.category}
         </if>
-        <if test="businessId != null">
-            and b.business_id = #{businessId}
+        <if test="searchMap.businessId != null">
+            and b.business_id = #{searchMap.businessId}
         </if>
         GROUP BY
         bb.board_business_id,
@@ -169,12 +161,109 @@
         b.business_img_path,
         b.business_location,
         b.business_category
-        <if test="sort == 'recent'">
+        <if test="searchMap.sort == 'recent'">
             order by bb.board_business_id desc
         </if>
-        <if test="sort == 'popular'">
+        <if test="searchMap.sort == 'popular'">
             order by board_business_grade_average desc
         </if>
+    </select>
+
+    <select id="selectAllListBySearchPaging" resultType="boardBusinessDTO">
+            SELECT
+                ifnull(br.review_count, 0) as board_business_review_count,
+                ifnull(br.board_business_grade_average, 0) as board_business_grade_average,
+                bb.board_business_id,
+                bb.board_business_title,
+                bb.board_business_content,
+                bb.board_business_register_date,
+                bb.board_business_update_date,
+                b.business_id,
+                b.business_email,
+                b.business_ceo_name,
+                b.business_number,
+                b.business_company_name,
+                b.business_phone_number,
+                b.business_establishment_date,
+                b.business_register_date,
+                b.business_img_original_name AS business_img_original_name,
+                b.business_img_uuid AS business_img_uuid,
+                b.business_img_path AS business_img_path,
+                ifnull(b.business_location, "미기재") business_location,
+                ifnull(b.business_category, "미기재") business_category
+                FROM
+                (
+                SELECT
+                business_id,
+                board_business_id,
+                board_business_title,
+                board_business_content,
+                board_business_register_date,
+                board_business_update_date,
+                board_business_status
+                FROM tbl_board_business
+                WHERE board_business_status = 1
+                ) bb
+                LEFT JOIN (
+                select
+                business_id,
+                business_email,
+                business_ceo_name,
+                business_number,
+                business_company_name,
+                business_phone_number,
+                business_establishment_date,
+                business_register_date,
+                business_status,
+                business_img_original_name AS business_img_original_name,
+                business_img_uuid AS business_img_uuid,
+                business_img_path AS business_img_path,
+                ifnull(business_location, "미기재") business_location,
+                ifnull(business_category, "미기재") business_category
+                from tbl_business
+                WHERE business_status = 1
+                ) b ON bb.business_id = b.business_id
+                LEFT JOIN tbl_board_business_img bi ON bb.board_business_id = bi.board_business_id
+                LEFT JOIN (
+                select
+                COUNT(review_id) AS review_count, ifnull(AVG(review_grade), 0) as board_business_grade_average
+                , board_business_id
+                FROM tbl_business_review
+                GROUP BY board_business_id) br ON bb.board_business_id = br.board_business_id
+                --         <if test="searchMap.category != null">
+                --             AND bs.business_category = #{category}
+                --         </if>
+                --         <if test="searchMap.businessId != null">
+                --             AND b.business_id = #{businessId}
+                --         </if>
+                GROUP BY
+                bb.board_business_id,
+                bb.board_business_title,
+                bb.board_business_content,
+                bb.board_business_register_date,
+                bb.board_business_update_date,
+                bb.board_business_status,
+                b.business_id,
+                b.business_email,
+                b.business_ceo_name,
+                b.business_number,
+                b.business_company_name,
+                b.business_phone_number,
+                b.business_establishment_date,
+                b.business_register_date,
+                b.business_status,
+                b.business_img_original_name,
+                b.business_img_uuid,
+                b.business_img_path,
+                b.business_location,
+                b.business_category
+        <if test="searchMap.sort == 'recent'">
+            ORDER BY bb.board_business_id DESC
+        </if>
+        <if test="searchMap.sort == 'popular'">
+            ORDER BY board_business_grade_average DESC
+        </if>
+        LIMIT #{pageDTO.criteria.pageNum}, #{pageDTO.criteria.amount}
     </select>
 
 <!--  관리자 페이지 목록 불러오기  -->

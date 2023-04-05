@@ -71,23 +71,6 @@
         </div>
         <ul class="boardList-info-box">
         </ul>
-        <ul id="pagingWrap" th:object="${pageDTO}">
-            <li class="page-button-box">
-                <a href="javascript:ajaxPaging()" class="pagingNum" name="pagingFirst_1"><<</a>
-            </li>`;
-            <li class="page-button-box">
-                <a href="javascript:ajaxPaging(${pageDTO.startPage - 5})" class="pagingNum" name="pagingPrev_${pageDTO.startPage - 5}"><</a>
-            </li>`;
-            <li class="page-button-box">
-                <a href="javascript:ajaxPaging(${pageDTO.startPage + i})" class="pagingNum" name="pagingList_${pageDTO.startPage + i}">${pageDTO.startPage + i}</a>
-            </li>
-            <li class="page-button-box">
-                <a href="javascript:ajaxPaging(${pageDTO.endPage + 1})" class="pagingNum" name="pagingNext_${pageDTO.endPage + 1}">></a>
-            </li>
-            <li class="page-button-box">
-                <a href="javascript:ajaxPaging(${pageDTO.realEnd})" class="pagingNum" name="pagingEnd_${pageDTO.realEnd}">>></a>
-            </li>
-        </ul>
     </div>
     <button type="button" class="scroll-top-button">
         <img src="/image/boardList/arrow_icon.png" class="top-button">
@@ -117,6 +100,7 @@
     let memberId = [[${session.memberId}]];
     let businessId = [[${session.businessId}]];
     let businessReviewVO = [[${businessReviewVO}]];
+    globalThis.pageNum = 1;
 
     const $ul = $($('ul.boardList-info-box')[0]);
     //      모달 키고 끄는 js
@@ -138,10 +122,19 @@
         }
     });
     showSubBoardsList(boards);
+    window.addEventListener('scroll', () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+        if (scrollTop + clientHeight >= scrollHeight) {
+            // 스크롤이 화면 아래에 닿았을 때 실행할 코드
+            ajax();
+        }
+    });
 </script>
 <script src="/js/boardList/pr-boardList.js"></script>
 
 <script th:inline="javascript">
+
 
     $('.modal_button').on("click", (e) => {
         let $label = $(e.currentTarget);
@@ -229,48 +222,6 @@
     /* 작성글 목록 */
     // const boards = JSON.parse($boards); /* boards 정의해야 함 */
 
-
-    /* 카테고리 버튼 이벤트 */
-    const $cateButton = $(".cate-button");
-
-    $cateButton.each((i, e) => {
-        $(e).click(function () {
-            $cateButton.removeClass("cate-button-active");
-            $(e).addClass("cate-button-active");
-            ajax();
-        });
-    });
-
-    function ajax() {
-        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
-        const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
-        const activePage = $($('a.pagingNum.activePage')[0]).attr('name').toString().split('_')[1];
-        console.log(categoryName);
-        console.log(sortType);
-        $.ajax({
-            url: "/board/business/list/ajax",
-            method: "GET",
-            data: {
-                pageNum: activePage,
-                amount: 12,
-                category: categoryName,
-                sort: sortType
-            },
-            dataType: "json",
-            success: function (result) {
-                let boards = JSON.parse(JSON.parse(result).boardBusinessDTOs);
-                let pageDTO = JSON.parse(JSON.parse(result).pageDTO);
-                // let newBoards = `${result}`;
-                $ul.empty();
-                showBoardsList(boards, pageDTO);
-            },
-            error: function (e) {
-                alert("보드리스트 실패");
-                console.log(e);
-            }
-        });
-    }
-
     /* sort 버튼 이벤트 */
     const $sortButton = $(".sort-button");
 
@@ -278,8 +229,74 @@
         $(e).click(function () {
             $sortButton.removeClass("sort-button-active");
             $(e).addClass("sort-button-active");
-            ajax();
+            ajaxNew();
         });
     });
+    /* 카테고리 버튼 이벤트 */
+    const $cateButton = $(".cate-button");
+
+    $cateButton.each((i, e) => {
+        $(e).click(function () {
+            $cateButton.removeClass("cate-button-active");
+            $(e).addClass("cate-button-active");
+            ajaxNew();
+        });
+    });
+
+    function ajax() {
+        globalThis.pageNum++;
+        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+        const sortType = $($(".sort-button-active")[0]).attr('name');
+        console.log(categoryName);
+        console.log(sortType);
+        $.ajax({
+            url: "/board/business/list/ajax",
+            method: "GET",
+            data: {
+                pageNum: globalThis.pageNum,
+                category: categoryName,
+                sort: sortType
+            },
+            dataType: "json",
+            success: function (result) {
+                let boards = JSON.parse(result.boardBusinessDTOs);
+                // let newBoards = `${result}`;
+                appendBoardsList(boards);
+            },
+            error: function (e) {
+                alert("보드리스트 ajax실패");
+                console.log(e);
+            }
+        });
+    }
+
+    function ajaxNew() {
+        const categoryName = $($(".cate-button.cate-button-active")[0]).attr('name');
+        const sortType = $($(".sort-button.sort-button-active")[0]).attr('name');
+        console.log(categoryName);
+        console.log(sortType);
+        $.ajax({
+            url: "/board/business/list/new",
+            method: "GET",
+            data: {
+                category: categoryName,
+                sort: sortType
+            },
+            dataType: "json",
+            success: function (resultObject) {
+                // let boards = JSON.parse(JSON.parse(boardBusinessDTOs));
+                // let newBoards = `${result}`;
+                // $ul.empty();
+                // showBoardsList(boards);
+                // globalThis.pageNum = 1;
+            },
+            error: function (e) {
+                alert("보드리스트 new 실패");
+                console.log(e);
+            }
+        });
+    }
+
+
 </script>
 </html>
