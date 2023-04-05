@@ -5,10 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.SearchDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.enums.SearchEnum;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.*;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.ReplyService;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -41,6 +38,8 @@ public class FreeBoardController {
     private final ReplyService replyService;
     private final BusinessService businessService;
     private final MemberService memberService;
+    private final MyPageService myPageService;
+    private final BusinessMyPageService businessMyPageService;
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
     @GetMapping("/")
@@ -86,10 +85,21 @@ public class FreeBoardController {
 
     /*자유게시판 디테일 */
     @GetMapping("detail/{boardFreeId}")
-    public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model) {
+    public String freeDetail(@PathVariable("boardFreeId") Long boardFreeId, Model model,HttpServletRequest req) {
+        HttpSession session = req.getSession();
+
+        Long memberId = (Long) session.getAttribute("memberId");
+        Long businssId = (Long) session.getAttribute("businssId");
+
+        if(memberId != null){
+            model.addAttribute("memberVO", myPageService.memberInfo(memberId));
+        }else {
+            model.addAttribute("businessVO", businessMyPageService.businessInfo(businssId));
+        }
+
+
         List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
         model.addAttribute("prevBoard", boardList.get(0));
-        log.info("::::::::::::::::::::" + boardFreeId);
         model.addAttribute("currentBoard", boardList.get(1));
         model.addAttribute("nextBoard", boardList.get(2));
 
