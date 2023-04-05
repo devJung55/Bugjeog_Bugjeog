@@ -39,7 +39,7 @@ public class ReplyController {
     }
 
     /*댓글 등록 */
-    @PostMapping("register-reply")ㅋ
+    @PostMapping("register-reply")
     public void replyResister(@RequestBody FreeReplyVO freeReplyVO, HttpSession session){
         Long memberId = (Long)session.getAttribute("memberId");
         Long businessId = (Long)session.getAttribute("businessId");
@@ -55,8 +55,6 @@ public class ReplyController {
     /*댓글 수정*/
 
     /*댓글 삭제*/
-    @PutMapping("/delete-reply")
-    public void
 
 
     /*댓글 목록*/

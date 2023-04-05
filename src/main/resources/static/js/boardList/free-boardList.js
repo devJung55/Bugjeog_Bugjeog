@@ -4,6 +4,11 @@ const $modal = $("#modal");
 const $modalExitButton = $(".modal-confirm-no-button");
 let $page = 1;
 
+if(!businessId && !memberId){
+    $writeButton.attr('disabled', true);
+    $registerButton.attr('disabled', true);
+}
+
 $writeButton.click(function () {
     $modal.show();
 });

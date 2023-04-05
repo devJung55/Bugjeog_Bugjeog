@@ -92,10 +92,10 @@
     <div style="display: flex; flex-direction: column; width: 40vw;">
         <div id="detailBoards"></div>
         <div id="reply_wrap">
-                           <div id="reply_img_wrap">
-                                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
-                                <p id="reply_content">첫 댓글을 남겨주세요.</p>
-                            </div>
+            <div id="reply_img_wrap">
+                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
+                <p id="reply_content">첫 댓글을 남겨주세요.</p>
+            </div>
             <!-- 끝 -->
             <div style="margin-top: 20px">
                 <div id="profile_img_nickname">
@@ -149,9 +149,9 @@
     let businessId = [[${session.businessId}]];
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
-<<script>
+<script>
     /*댓글*/
-   let page = 1;
+    let page = 1;
 
     const replyService = (() => {
         /*댓글 목록*/
@@ -274,13 +274,17 @@
                      `
                 if(memberId == list.memberId || businessId == list.businessId){
                     text +=
-                         `
+                        `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
+                                           <button type="button">
                                             <span>수정</span>
+                                            </button>
                                         </div>
                                         <div style="margin-left: 8px" class="delete">
+                                            <button type="button">
                                             <span>삭제</span>
+                                            </button>
                                         </div>
                                     </div>
                         `
@@ -295,23 +299,8 @@
         });
     }
 
-    // boardDetailContainer.append(createDOM(boardFreeId));
-    // console.log("됐니?");
-    // console.log(boardFreeId);
-
-   <!-- 좋아요 댓글 color변경-->
-    const viewbox = document.getElementsByClassName("viewbox_path");
-    $('.viewbox').click(function () {
-        if ($(this).css('color') === 'rgb(0, 0, 0)') {
-            $(this).css('color', 'blue');
-        } else {
-            $(this).css('color', 'rgb(0, 0, 0)');
-        }
-    });
-
-
     $(document).ready(function () {
-         /*등록 버튼 초기 색상 설정*/
+        /*등록 버튼 초기 색상 설정*/
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
         $('#submit_span').css("background-color", "rgb(242, 244, 247)");
 
@@ -335,4 +324,59 @@
         }
     });
 </script>
+<script src="/js/mypage/like.js"></script>
+<script>
+    let freeLikeVO = new Object();
+    let boardFreeId = currentBoard.boardFreeId;
+
+    freeLikeVO.memberId = memberId;
+    freeLikeVO.businessId = businessId;
+    freeLikeVO.boardFreeId = boardFreeId;
+
+    likeService.count({boardFreeId: boardFreeId},function(result){
+        $(".good-count").text(result);
+    })
+
+    likeService.likeCheck(freeLikeVO, function(result){
+        if(result){
+            $(".like").css("color", "black");
+        }else {
+            $(".like").css("color", "blue");
+        }
+    });
+
+    $(".good-button").click(() => {
+        if(!memberId && !businessId){
+            alert("로그인을 먼저해주세요.");
+            return false;
+        }
+
+        likeService.likeCheck(freeLikeVO, function(result){
+            if(result){
+                likeService.likeUp(freeLikeVO, function(){
+                    $(".like").css("color", "blue");
+                    likeUpdateAndCount(boardFreeId);
+                })
+            }else {
+                likeService.likeDown(freeLikeVO, function(){
+                    $(".like").css("color", "black");
+                    likeUpdateAndCount(boardFreeId);
+                });
+            }
+        });
+    });
+
+    function likeUpdateAndCount(boardFreeId) {
+        likeService.countUp({boardFreeId: boardFreeId});
+        likeService.count({boardFreeId: boardFreeId}, function (result) {
+            $(".good-count").text(result);
+        })
+    }
+
+</script>
 </html>
+
+
+
+
+
