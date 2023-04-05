@@ -34,13 +34,13 @@ public class ReplyService {
 
 //    댓글 수정
      public void update(FreeReplyVO freeReplyVO){
-
-        replyDAO.modifyReply(freeReplyVO);
+        FreeReplyVO reply = replyDAO.findById(freeReplyVO.getReplyId());
+        reply.setReplyContent(freeReplyVO.getReplyContent());
+        replyDAO.modifyReply(reply);
      }
 
 //    댓글 삭제
      public void delete(Long replyId){
-
         replyDAO.deleteReply(replyId);
      }
 

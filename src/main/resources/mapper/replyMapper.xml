@@ -57,13 +57,18 @@
 
     <!--댓글 수정-->
     <update id="replyUpdate">
-    update bugjeog.tbl_free_reply
-    set board_free_id=0, member_id=0, business_id=0, reply_content='', reply_register_date=CURRENT_TIMESTAMP, reply_update_date=CURRENT_TIMESTAMP
-    where reply_id=0;
+        update tbl_free_reply
+        set board_free_id=#{boardFreeId}, member_id=#{memberId}, business_id=#{businessId}, reply_content= #{replyContent}, reply_update_date = CURRENT_TIMESTAMP
+        where reply_id= #{replyId};
     </update>
 
     <!--댓글 삭제-->
     <delete id="replyDelete">
     delete from tbl_free_reply where reply_id= #{replyId};
     </delete>
+
+    <!--댓글 조회-->
+    <select id="select" resultType="freeReplyVO">
+        select reply_id, board_free_id, member_id, business_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where reply_id = #{replyId}
+    </select>
 </mapper>
