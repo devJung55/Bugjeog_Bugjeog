@@ -267,29 +267,32 @@
         });
     });
 
-    // $modifyBtn.click(function () {
-    //     const replyContent = $("#reply_textarea").val();
-    //     let i = $("div.modifyBtn").index(this);
-    //     const boardFreeId = currentBoard.boardFreeId;
-    //     console.log(boardFreeId)
-    //     replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
-    //         showList();
-    //     });
-    // });
-    //
-    //
-    // $deleteBtn.click(function () {
-    //     const replyContent = $("#reply_textarea").val();
-    //     let i = $("div.delete").index(this);
-    //     console.log($modifyBtn);
-    //     const boardFreeId = currentBoard.boardFreeId;
-    //     console.log(boardFreeId)
-    //     const replyId = $(this).data("reply-id");
-    //     replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
-    //         showList();
-    //     });
-    //
-    // });
+    //  내가 한 거1
+    $modifyBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        let i = $("div.modifyBtn").index(this);
+        const boardFreeId = currentBoard.boardFreeId;
+        const replyId = $(this).data("modifyBtn");
+        console.log(boardFreeId)
+        replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
+
+    // 내가 한거 2
+    $deleteBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        let i = $("div.delete").index(this);
+        console.log($modifyBtn);
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        const replyId = $(this).data(".deleteBtn");
+        replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
+            showList();
+        });
+    });
+
+
 
     function showList(){
         replyService.getList(function(list) {
