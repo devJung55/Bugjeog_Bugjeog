@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
+<div th:insert="~{main/header-signin :: header}" th:if="${session.memberId} != null or ${session.businessId} != null"></div>
 <main id="main">
     <div><!-- 보더 추가 -->
         <div><!-- 패딩 -->
@@ -137,16 +138,36 @@
                 <p id="reply_content">첫 댓글을 남겨주세요.</p>
             </div>
             <!-- 끝 -->
-            <div style="margin-top: 20px">
+            <div style="margin-top: 20px" th:if="${session.memberId} != null or ${session.businessId} != null">
                 <div id="profile_img_nickname">
                     <div class="profile_img" id="profile_my_img">
                         <div class="profile-image-login">
                             <div class="profile-member-status">
-                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                    <th:block th:if="${session.memberId} != null">
+                                        <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
+                                            <img src="/image/boardList/self_employ_icon.png" alt="">
+                                        </th:block>
+                                        <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:if="${session.memberId} != null">
+                                        <th:block th:if="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
+                                            <img src="/image/boardList/distributor_icon.png" alt="">
+                                        </th:block>
+                                        <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
                             </div>
                         </div>
                     </div>
-                    <span id="my_nickname">최선규</span>
+                    <th:block th:if="${session.memberId} != null">
+                        <span id="my_nickname" th:text="${memeberVO.memberName}"></span>
+                    </th:block>
+                    <th:block th:unless="${session.memberId} != null">
+                        <span id="my_nickname" th:text="${businessVO.businessCompanyName}"></span>
+                    </th:block>
                 </div>
                 <div id="form_wrap">
                     <form th:action="@{/replies/resister-reply}" method="post">
