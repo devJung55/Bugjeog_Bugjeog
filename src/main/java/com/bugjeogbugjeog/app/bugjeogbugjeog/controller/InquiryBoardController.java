@@ -42,7 +42,7 @@ public class InquiryBoardController {
 
     @GetMapping("/board/inquiry/list/ajax")
     @ResponseBody
-    public void getList(Model model, @RequestBody() Long startPage){
+    public void getList(Model model, @RequestBody() Long startPage) {
 
     }
 
@@ -62,17 +62,21 @@ public class InquiryBoardController {
     @PostMapping("/board/inquiry/write")
     public RedirectView write(BoardInquiryVO boardInquiryVO, HttpServletRequest req) {
         System.out.println(boardInquiryVO.getBoardInquiryStatus());
-        if (req.getParameter("businessId") != null) {
-//            boardInquiryVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
-            boardInquiryVO.setBusinessId(3L);
-            boardInquiryVO.setMemberId(null);
-            inquiryBoardService.registerBoard(boardInquiryVO, "business");
-        } else {
-            boardInquiryVO.setBusinessId(null);
-//            boardInquiryVO.setMemberId(Long.parseLong(req.getParameter("memberId")));
-            boardInquiryVO.setMemberId(3L);
-            inquiryBoardService.registerBoard(boardInquiryVO, "member");
+        if (!req.getParameter("businessId").isEmpty() || !req.getParameter("memberId").isEmpty()) {
+            boardInquiryVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+            boardInquiryVO.setMemberId(Long.parseLong(req.getParameter("memberId")));
+            inquiryBoardService.registerBoard(boardInquiryVO);
         }
+//        if (req.getParameter("businessId") != null) {
+////            boardInquiryVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+//            boardInquiryVO.setBusinessId(Long.parseLong(req.getParameter("businessId")));
+//            boardInquiryVO.setMemberId(null);
+//            inquiryBoardService.registerBoard(boardInquiryVO, "business");
+//        } else {
+//            boardInquiryVO.setBusinessId(null);
+//            boardInquiryVO.setMemberId(Long.parseLong(req.getParameter("memberId")));
+//            inquiryBoardService.registerBoard(boardInquiryVO, "member");
+//        }
         return new RedirectView("/board/inquiry/list");
     }
 }
