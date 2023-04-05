@@ -46,70 +46,7 @@ function passwordCheck(){
     });
 }
 
-
-
-	// 비밀번호 확인
-	// 비밀번호 text and password 
-  	// const $eye = $(".eye");
-    // const $first = $(".first");
-				
-	// 	$eye.click(function(){
-	// 		if($eye.hasClass("close-eye")) {
-	// 			$eye.removeClass("close-eye");
-	//             $first.attr("type", "text");
-	//             $eye.attr("src", contextPath + '/static/img/member/passwordEye.png');
-	//         } else {
-	// 			$eye.addClass("close-eye");
-	// 			$first.attr("type", "password");
-	//             $eye.attr("src", contextPath + '/static/img/member/passwordEyeSlash.png');
-	//         }
-	// 	});
-
-
-
 const $loginButton = $(".form-button-countinueEmail");
-// const urlParams = new URL(location.href).searchParams;
-// const login = urlParams.get('login');
-
-// if(login == false){
-// 	login = true;
-// }
-
-// $(function() {
-// 	if(login){
-// 		alert("이메일 또는 비밀번호를 확인해주세요.");
-// 	}
-// });
-
-// $loginButton.click(function(){
-// 	$(".loginEmail_form").submit();
-// });
-// $(document).ready(function () {
-//     $loginBt.change(()=>{
-//         if($email.val().length > 0 /* && $password.val().length>0 */){
-//             $loginBt.removeAttr("disabled");
-//             console.log("제발")
-//         }else{
-//             console.log("제발")
-//             $loginBt.attr("disabled", true);
-//         }
-//     });
-// });
-
-// $loginBt.on('change', function(){
-
-//     console.log("제발")
-//     if($email.val().length > 0 && $password.val().length>0){
-//         $loginBt.removeAttr("disabled");
-//         console.log("제발")
-//     }else{
-//         console.log("제발")
-//         $loginBt.attr("disabled", true);
-//     }
-// })
-
-
-/* 이거? */
 const $id=$(".id-input");
 const $pw=$(".password-input");
 let check1=false;
@@ -185,10 +122,8 @@ $whichForm.each((i, v) => {
     $(v).on("click", function(e) {
         if($(v).text() == "개인") {
             flag = "개인";
-            console.log(flag);
         } else {
             flag = "사업자";
-            console.log(flag);
         }
     })
 });

@@ -66,7 +66,12 @@
                                 <div class="board-info-box">
                                     <div class="member-img-box">
                                         <div class="member-img" >
-                                            <img th:if="${memberDTO.memberImgPath}" th:src="@{/mypage/profile/display(fileName=${memberDTO.memberImgPath}+'/'+${memberDTO.memberImgUuid}+'_'+${memberDTO.memberImgOriginalName})}"/>
+                                            <th:block th:if="${memberDTO.memberImgPath} != null">
+                                                <img th:src="@{/mypage/profile/display(fileName=${memberDTO.memberImgPath}+'/'+${memberDTO.memberImgUuid}+'_'+${memberDTO.memberImgOriginalName})}" />
+                                            </th:block>
+                                            <th:block th:unless="${memberDTO.memberImgPath} != null">
+                                                <img src="/image/boardList/self_employ_icon.png" />
+                                            </th:block>
                                         </div>
                                         <!-- <div class="member-nickname-box">
                                             <span>벅벅코딩</span>

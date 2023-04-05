@@ -291,9 +291,17 @@
 							<td>${business.businessCompanyName}</td>
 							<td>${business.businessEmail}</td>
 							<td>${business.businessRegisterDate}</td>
-							<td>${business.businessStatus}</td>
-						</tr>
-					`;
+							`;
+				if(business.businessStatus == 1){
+					list += `<td>일반계정</td>`;
+				} else if(business.businessStatus == 2) {
+					list += `<td>휴면계정</td>`;
+				} else {
+					list += `<td>탈퇴계쩡</td>`;
+				}
+
+			list +=		`</tr>`;
+
 		});
 		list +=  ` </tbody>`;
 

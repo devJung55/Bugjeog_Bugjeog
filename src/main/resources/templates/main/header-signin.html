@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/main/header-signin.css"/>
 </head>
 <body>
-    <header class="nav_bar" th:fragment="header_signin">
+    <header class="nav_bar" th:fragment="header_signin" style="background-color: white">
         <div class="main_bar">
 
 
@@ -65,8 +65,9 @@
             <nav class="nav_main_bar">
                 <div class="main_bar_logo_wrap">
                     <div class="main_bar_logo">
-                        <img src="/image/main/logo1-removebg-preview.png" width="80">
-                        <a href="javascript:void(0)" class="main_bar_logo_a"></a>
+                        <a href="/main/" class="main_bar_logo_a">
+                            <img src="/image/main/logo1-removebg-preview.png" width="80">
+                        </a>
                     </div>
                 </div>
                 <ul class="menu_wrap">
@@ -89,7 +90,7 @@
                 <aside class="aside_wrap">
                     <ul class="aside_ul">
                         <li class="aside_li">
-                            <button class="search_button" type="button">
+                            <button class="search_button" type="button" style="background: none">
                                 <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
                                     <defs>
                                         <path id="qt2dnsql4a" d="M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"></path>
@@ -103,14 +104,21 @@
                         </li>
                         <li class="aside_li">
                             <div class="profile_img">
-                                <a th:href="@{/mypage/profile/myinfo}">
+                                <th:block th:if="${not #strings.isEmpty(session.memberId)}">
+                                <a th:href="@{/mypage/profile/postList}"> <!--여기 postList 연결-->
                                     <img src="/image/main/profile_image.png" width="32" height="32">
                                 </a>
+                                </th:block>
+                                <th:block th:if="${not #strings.isEmpty(session.businessId)}">
+                                    <a th:href="@{/mypage/profile/business/postList}"> <!--여기 postList 연결-->
+                                        <img src="/image/main/profile_image.png" width="32" height="32">
+                                    </a>
+                                </th:block>
                             </div>
                         </li>
                         <li class="aside_li">
                             <form th:action="@{/member/logout}">
-                                <button type="submit" class="signUp_button">로그아웃</button>
+                                <button type="submit" class="signUp_button" style="background: none">로그아웃</button>
                             </form>
                         </li>
                     </ul>
