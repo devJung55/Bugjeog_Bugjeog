@@ -79,6 +79,11 @@ public class BusinessMyPageRestController {
         return businessMyPageService.businessInfo(businessId);
     }
 
+    @GetMapping("businessInfo")
+    public BusinessVO businessInfo(@RequestParam("businessId") Long businessId){
+        return businessMyPageService.businessInfo(businessId);
+    }
+
     //    핸드폰 중복검사
     @GetMapping("businessPhoneCheck")
     public Boolean businessPhoneCheck(@RequestParam("businessPhoneNumber") String businessPhoneNumber){

@@ -117,4 +117,8 @@ public class InquiryBoardDAO {
         return inquiryBoardMapper.count();
     }
 
+    public List<BoardInquiryVO> findAllList(Criteria criteria){
+        return inquiryBoardMapper.showAllList(criteria);
+    }
+
 }

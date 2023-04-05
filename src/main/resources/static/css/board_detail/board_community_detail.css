@@ -143,7 +143,6 @@ button{
     font-weight: 700;
     color: #333;
     word-break: break-all;
-    margin-top: 88px;
     margin-bottom: 32px;
     font-family: inherit;
 }
@@ -154,7 +153,6 @@ button{
     line-height: 1.65;
     color: #333;
     text-align: left;
-    white-space: pre-line;
     word-wrap: break-word;
     word-break: keep-all;
 }
@@ -196,7 +194,7 @@ button{
     height: 75px;
     vertical-align: middle;
 }
-#reply_content{
+div.reply_content{
     margin-top: 12px;
     color: #666;
     padding-left: 44px;
@@ -356,12 +354,8 @@ form button{
 #side_div{
     width: 28px;
     height: 28px;
-    border: 1px solid #ececec;
     border-radius: 50%;
     overflow: hidden;
-    background-color: #d8d8d8;
-    background-image: url(https://static.wanted.co.kr/images/profile_default.png);
-    background-size: cover;
 }
 #side_div_img{
     width: 100%;
@@ -416,7 +410,6 @@ form button{
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: #FFCD4A;
 }
 
 .profile-image-login img {
@@ -427,7 +420,6 @@ form button{
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background-color: #FFCD4A;
 }
 
 .content-member-image-size img {

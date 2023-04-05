@@ -77,10 +77,6 @@ button.main_bar_hamberger img {
     display: inline-block;
 }
 
-.border_bottom {
-    border-bottom: 2px solid #258bf7;
-}
-
 .menu_wrap li a {
     padding: 15px;
     font-size: 14px;
@@ -684,8 +680,7 @@ h2.matching_title {
 
 .matching_title_main img {
     margin-bottom: 3px;
-    width: 114px;
-    vertical-align: -4px;
+    width: 77px;
     margin-right: 3px;
     background-color: #f3f9fe;
 }

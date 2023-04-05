@@ -15,20 +15,42 @@ const createDOM = function (boardFree) {
                                         <div class="left_profile_img profile_img">
                                             <div class="profile-image-login">
                                                 <div class="profile-member-status">
-                                                    <img src="/image/boardList/self_employ_icon.png" alt="">
-                                                </div>
+                               `
+                                if(boardFree.memberId){
+                                    if(!boardFree.memberImgUuid){
+                                        text += `<img src="/image/boardList/self_employ_icon.png">`
+                                    }else {
+                                        text += `<img src="${'/mypage/profile/display?fileName=' + boardFree.memberImgPath + '/' + boardFree.memberImgUuid + '_' + boardFree.memberImgOriginalName}">`;
+                                    }
+                                }else {
+                                    if(boardFree.businssImgUuid){
+                                        text += `<img src="/image/boardList/distributor_icon.png">`
+                                    }else {
+                                        text += `<img src="${'/mypage/profile/display?fileName=' + boardFree.businessImgPath + '/' + boardFree.businessImgUuid + '_' + boardFree.businessImgOriginalName}">`;
+                                    }
+                                }
+            text+=             `                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-direction">
                                         <div class="flex_align" style="margin-bottom: 3px;">
-                                            <div class="nickname" id="right_nickname">조이언</div>
+                                    `
+                                if(boardFree.memberId){
+                                    text += `<div class="nickname" id="right_nickname">${boardFree.memberName}</div>
                                                 <div class="career_field" style="margin-right: 4px;">
-                                                    <div class="career field">개발</div>
-                                                    <div class="career">15년차</div>
-                                                </div>
-                                            </div>
-                                            <span id="register_date">2023.03.10</span>
+                                                    <div class="career field">일반유저</div>
+                                                </div>`
+                                }else {
+                                    text += `<div class="nickname" id="right_nickname">${boardFree.businessCompanyName}</div>
+                                                <div class="career_field" style="margin-right: 4px;">
+                                                    <div class="career field">유통업체</div>
+                                                </div>`
+                                }
+                                            
+
+            text+=                  `      </div>
+                                            <span id="register_date" class="date">${boardFree.boardFreeRegisterDate}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -50,17 +72,17 @@ const createDOM = function (boardFree) {
     /* fileVO로 자바에서 보내야함 */
     if(boardFree.boardFreeImgUuid != null) {
         text += `<div>
-                    <img src="/free-boards/imgs/dispay?fileName=${boardFree.boardFreeImgPath}/${boardFree.boardFreeImgUuid}_${boardFree.boardFreeImgOriginalName}">
+                    <img style="width: 100%" src="/free-boards/imgs/dispay?fileName=${boardFree.boardFreeImgPath}/${boardFree.boardFreeImgUuid}_${boardFree.boardFreeImgOriginalName}">
                 </div>`
     }
     text += `</div>
                 <div id="bottom_action">
                     <div style="width: 78px;">
-                        <button class="like_button">
-                            <svg class="viewbox">
+                        <button class="like_button good-button">
+                            <svg class="viewbox like">
                                 <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path>
                             </svg>
-                            <span class="like_count like_count_bottom">3</span>
+                            <span class="like_count like_count_bottom good-count">3</span>
                         </button>
                     </div>
                     <div style="margin-right: auto;">
@@ -90,81 +112,6 @@ const createDOM = function (boardFree) {
                     </div>
                 </div>
             </article>
-<!--                       <div id="reply_wrap">-->
-<!--&lt;!&ndash;                <div id="reply_img_wrap">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p id="reply_content">첫 댓글을 남겨주세요.</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>     &ndash;&gt;-->
-<!--                &lt;!&ndash; 댓글 뿌려주는 곳 &ndash;&gt;-->
-                <div id="reply_wrap_div">
-                    <div style="display: flex; justify-content: space-between;">
-                        <a style="display: flex; width: 0;">
-                            <div style="display: inline-flex; align-items: center; margin-right: auto;">
-                                <div style="text-align: left; display: flex; align-items: center;">
-                                    <div style="position: relative; margin-right: 7px;">
-                                        <div id="reply_my">
-                                            <div class="profile-image-login">
-                                                <div class="profile-member-status">
-                                                    <!-- <span class="profile-image">유</span> -->
-                                                    <img src="/image/boardList/self_employ_icon.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; flex-direction: column;">
-                                        <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="reply_nickname">DesignK</div>
-                                        </div>
-                                        <span id="reply_date">2023.03.14</span>
-<!--                                        <div class="review-score-box">-->
-<!--                                            <label class="review-score"></label>-->
-<!--                                            <label class="review-score"></label>-->
-<!--                                            <label class="review-score"></label>-->
-<!--                                            <label class="review-score"></label>-->
-<!--                                            <label class="review-score"></label>-->
-<!--                                        </div>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div id="float_delete">
-                        수정&nbsp;&nbsp;&nbsp;삭제
-                    </div>
-                    <div id="reply_content">{replyLists.replyContent}</div>
-                </div>
-                <!-- 끝 -->
-                <div>
-                    <div id="profile_img_nickname">
-                        <div class="profile_img" id="profile_my_img">
-                            <div class="profile-image-login">
-                                <div class="profile-member-status">
-                                    <img src="/image/boardList/self_employ_icon.png" alt="">
-                                </div> 
-                            </div>
-                        </div>
-                        <span id="my_nickname">최선규</span>
-                    </div>
-                    <!--<div id="form_wrap">
-                        <form action="/replies/resister-reply" method="post">
-                            <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
-                            <button type="submit">
-                                <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
-                            </button>
-                        </form>
-                    </div>-->
-                </div>
-                <!--목록으로 클릭시 리스트 페이지로 이동-->
-                <!--<button id="list_button" onclick="location.href='/FreeBoards/'">
-                    <span style="width: 100%;">
-                        <span id="list_button_span">
-                            <svg id="arrow">
-                                <path fill="currentColor" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path>
-                            </svg>
-                        </span>
-                        목록으로
-                    </span>
-                </button>-->
             </div>
         </section>
 `
@@ -173,7 +120,16 @@ const createDOM = function (boardFree) {
 }
 
 boardDetailContainer.append(createDOM(currentBoard));
-console.log("됐니?");
+
+function date(date) {
+    let registerDate = new Date(date);
+    return registerDate.getFullYear() + "." + (registerDate.getMonth() + 1) + "." + registerDate.getDate();
+}
+
+$(".date").text(date($(".date").text()));
+$(".dates").each((i, e) => {
+    $(e).text(date($(e).text()));
+});
 
 // detailsOfBoards.forEach((detailsOfBoards, i) => {
 //     boardDetailContainer.append(createDOM(detailsOfBoards));

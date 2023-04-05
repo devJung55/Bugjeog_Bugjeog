@@ -6,13 +6,6 @@
         select count(reply_id) from tbl_free_reply where member_id = #{memberId}
     </select>
 
-    <!-- 게시문 댓글 등록 -->
-    <insert id="replyAdd" useGeneratedKeys="true" keyProperty="replyId">
-        insert into tbl_free_reply
-        (member_id, business_id, reply_content, reply_register_date, reply_update_date)
-        VALUES(#{memberId}, #{businessId}, #{replyContent},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-    </insert>
-
     <!-- 유통업자의 댓글 갯수-->
     <select id="businessReplyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where business_id = #{businessId}
@@ -30,7 +23,7 @@
     <!-- 댓글 리스트-->
     <select id="replyAllList" resultType="freeReplyVO">
         select reply_id, board_free_id, member_id, reply_content, reply_register_date, reply_update_date
-        from tbl_free_reply where member_id = #{memberId} and board_free_id = #{boardFreeId}
+        from tbl_free_reply where board_free_id = #{boardFreeId}
         order by reply_id desc
     </select>
 
@@ -54,4 +47,24 @@
     <select id="boardReplyCount" resultType="int">
         select count(reply_id) from tbl_free_reply where board_free_id = #{boardFreeId}
     </select>
+
+    <!-- 댓글 추가   -->
+    <insert id="replyAdd">
+    insert into tbl_free_reply
+    (board_free_id, member_id, business_id, reply_content)
+    value (#{boardFreeId}, #{memberId}, #{businessId}, #{replyContent});
+    </insert>
+
+    <!--댓글 수정-->
+    <update id="replyUpdate">
+    update bugjeog.tbl_free_reply
+    set board_free_id=0, member_id=0, business_id=0, reply_content='', reply_register_date=CURRENT_TIMESTAMP, reply_update_date=CURRENT_TIMESTAMP
+    where reply_id=0;
+    </update>
+
+    <!--댓글 삭제-->
+    <delete id="replyDelete">
+    delete from tbl_free_reply
+    where reply_id=0;
+    </delete>
 </mapper>

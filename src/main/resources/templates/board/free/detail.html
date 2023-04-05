@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header}" th:if="${session.memberId} == null and ${session.businessId} == null"></div>
+<div th:insert="~{main/header-signin :: header}" th:if="${session.memberId} != null or ${session.businessId} != null"></div>
 <main id="main">
     <div><!-- 보더 추가 -->
         <div><!-- 패딩 -->
@@ -28,7 +29,22 @@
                                             <div class="content-member-image-box">
                                                 <div class="content-member-image-size">
                                                     <div class="content-member-status">
-                                                        <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                        <th:block th:if="${prevBoard.memberId != null}">
+                                                            <th:block th:if="${prevBoard.memberImgUuid == null}">
+                                                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${prevBoard.memberImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${prevBoard.memberImgPath}+'/'+${prevBoard.memberImgUuid}+'_'+${prevBoard.memberImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${prevBoard.memberId != null}">
+                                                            <th:block th:if="${prevBoard.businessImgUuid == null}">
+                                                                <img src="/image/boardList/distributor_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${prevBoard.businessImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${prevBoard.businessImgPath}+'/'+${prevBoard.businessImgUuid}+'_'+${prevBoard.businessImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
                                                     </div>
                                                 </div>
                                             </div>
@@ -36,9 +52,14 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname" th:text="*{memberName}"></div>
+                                            <th:block th:if="${prevBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{memberName}"></div>
+                                            </th:block>
+                                            <th:block th:unless="${prevBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{businessCompanyName}"></div>
+                                            </th:block>
                                         </div>
-                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
+                                        <span id="side_span_date" class="dates" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +85,22 @@
                                             <div class="content-member-image-box">
                                                 <div class="content-member-image-size">
                                                     <div class="content-member-status">
-                                                        <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                        <th:block th:if="${nextBoard.memberId != null}">
+                                                            <th:block th:if="${nextBoard.memberImgUuid == null}">
+                                                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${nextBoard.memberImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${nextBoard.memberImgPath}+'/'+${nextBoard.memberImgUuid}+'_'+${nextBoard.memberImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${nextBoard.memberId != null}">
+                                                            <th:block th:if="${nextBoard.businessImgUuid == null}">
+                                                                <img src="/image/boardList/distributor_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${nextBoard.businessImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${nextBoard.businessImgPath}+'/'+${nextBoard.businessImgUuid}+'_'+${nextBoard.businessImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,9 +108,14 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname" th:text="*{memberName}">soni</div>
+                                            <th:block th:if="${nextBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{memberName}"></div>
+                                            </th:block>
+                                            <th:block th:unless="${nextBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{businessCompanyName}"></div>
+                                            </th:block>
                                         </div>
-                                        <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
+                                        <span id="side_span_date" class="dates" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -92,36 +133,56 @@
     <div style="display: flex; flex-direction: column; width: 40vw;">
         <div id="detailBoards"></div>
         <div id="reply_wrap">
-                           <div id="reply_img_wrap">
-                                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
-                                <p id="reply_content">첫 댓글을 남겨주세요.</p>
-                            </div>
-            <!-- 댓글 뿌려주는 곳 -->
-            <div id="reply_wrap_div">
-                <!--reply 내용-->
-
+            <div id="reply_img_wrap">
+                <img id="reply_img" src="https://static.wanted.co.kr/images/community/community-3d-comment.png" alt="">
+                <p id="reply_content">첫 댓글을 남겨주세요.</p>
             </div>
             <!-- 끝 -->
-            <div style="margin-top: 20px">
+            <div style="margin-top: 20px" th:if="${session.memberId} != null or ${session.businessId} != null">
                 <div id="profile_img_nickname">
                     <div class="profile_img" id="profile_my_img">
                         <div class="profile-image-login">
                             <div class="profile-member-status">
-                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                    <th:block th:if="${session.memberId} != null">
+                                        <th:block th:if="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
+                                            <img src="/image/boardList/self_employ_icon.png" alt="">
+                                        </th:block>
+                                        <th:block th:unless="${#strings.isEmpty(memberVO.memberImgUuid) or #strings.isEmpty(memberVO)}" >
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${memberVO.memberImgPath}+'/'+${memberVO.memberImgUuid}+'_'+${memberVO.memberImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:if="${session.memberId} != null">
+                                        <th:block th:if="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
+                                            <img src="/image/boardList/distributor_icon.png" alt="">
+                                        </th:block>
+                                        <th:block th:unless="${#strings.isEmpty(businessVO.businessImgUuid) or #strings.isEmpty(businessVO)}" >
+                                            <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${businessVO.businessImgPath}+'/'+${businessVO.businessImgUuid}+'_'+${businessVO.businessImgOriginalName}}">
+                                        </th:block>
+                                    </th:block>
                             </div>
                         </div>
                     </div>
-                    <span id="my_nickname">최선규</span>
+                    <th:block th:if="${session.memberId} != null">
+                        <span id="my_nickname" th:text="${memeberVO.memberName}"></span>
+                    </th:block>
+                    <th:block th:unless="${session.memberId} != null">
+                        <span id="my_nickname" th:text="${businessVO.businessCompanyName}"></span>
+                    </th:block>
                 </div>
                 <div id="form_wrap">
                     <form th:action="@{/replies/resister-reply}" method="post">
                         <textarea name="replyContent" id="reply_textarea" placeholder="댓글 남기기"></textarea>
-                        <button  class="reply-register-button">
+                        <button type="button" class="reply-register-button">
                             <!--댓글 등록 완료 시 디테일 페이지로 이동-->
                             <span id="submit_span" style="background-color: rgb(242, 244, 247);">등록</span>
                         </button>
                     </form>
                 </div>
+            </div>
+            <!-- 댓글 뿌려주는 곳 -->
+            <div id="reply_wrap_div">
+                <!--reply 내용-->
+
             </div>
             <!--목록으로 클릭시 리스트 페이지로 이동-->
             <button id="list_button" onclick="location.href='/free-boards/'">
@@ -145,18 +206,19 @@
     /* freBoards 는 이전글, 현재글, 다음글이 담겨있는 list이다. 1번째방이 현재글 */
     let currentBoard = [[${currentBoard}]];
     let replyLists = [[${replyLists}]];
-
+    let memberId = [[${session.memberId}]];
+    let businessId = [[${session.businessId}]];
 </script>
 <script src="/js/boardDetail/free-boardDetail.js"></script>
 <<script>
-
     /*댓글*/
-   let page = 1;
+    let page = 1;
 
     const replyService = (() => {
+        /*댓글 목록*/
         function getList(callback) {
             $.ajax({
-                url: `/replies/list?page=${page}&boardFreeId=${currentBoard.boardFreeId}`,
+                url: `/replies/list/${page}?boardFreeId=${currentBoard.boardFreeId}`,
                 type : "get",
                 success: function (replies) {
                     if (callback) {
@@ -168,19 +230,117 @@
                 }
             });
         }
+        /*댓글 등록*/
+        function save(reply, callback){
+            $.ajax({
+                url: "/replies/register-reply",
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
+        /*댓글 수정 + 수정된 데이터 화면에 뿌려줌*/
+        function update(reply, callback){
+            $.ajax({
+                url: "/replies/update-reply",
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
 
-        return {getList: getList};
+        /*댓글 수정 필요?*/
+
+        /*댓글 삭제*/
+        function Delete(reply, callback){
+            $.ajax({
+                url:"/replies/delete-reply",
+                type: "post",
+                data:JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            })
+        }
+        return {getList: getList, save: save, update: update, Delete: Delete};
     })();
 
+    /*const를 사용하여 아래 사용할 변수를 선언 */
     const $replyRegisterButton = $(".reply-register-button");
+    const $modifyBtn = $(".modifyBtn");
+    const $deleteBtn = $(".deleteBtn");
+      console.log($deleteBtn);
+
+
+    showList();
+
+    $("#reply_wrap_div").on("click", "div.update", function () {
+        const replyContents = $("div.reply_content");
+        let i = $("div.update").index(this);
+        const replyContent = replyContents[i].value;
+        const replyId = $(this).data("reply-id");
+
+        replyService.update({replyContent: replyContent, replyId: replyId}, function(){
+            showList();
+        });
+
+    });
 
     $replyRegisterButton.click(function () {
-        replyService.getList(function (list) {
-            console.log(list.memberName);
-            let text = "";
-            console.log("잘나와")
+        const replyContent = $("#reply_textarea").val();
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        replyService.save({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
 
-            text += `
+    //  내가 한 거1
+    $modifyBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        let i = $("div.modifyBtn").index(this);
+        const boardFreeId = currentBoard.boardFreeId;
+        const replyId = $(this).data("modifyBtn");
+        console.log(boardFreeId)
+        replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+            showList();
+        });
+    });
+
+    // 내가 한거 2
+    $deleteBtn.click(function () {
+        const replyContent = $("#reply_textarea").val();
+        let i = $("div.delete").index(this);
+        console.log($modifyBtn);
+        const boardFreeId = currentBoard.boardFreeId;
+        console.log(boardFreeId)
+        const replyId = $(this).data(".deleteBtn");
+        replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
+            showList();
+        });
+    });
+
+
+
+    function showList(){
+        replyService.getList(function(list) {
+            let text = "";
+            list.forEach(reply => {
+                text +=
+                    `
                      <div style="margin-bottom: 20px">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
                                 <a style="display: flex; width: 0;">
@@ -198,47 +358,43 @@
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
                                                     <div id="reply_nickname">DesignK</div>
-                                                  <div id="reply_nickname">${list.memberName}</div>
+                                                  <div id="reply_nickname">${reply.memberName}</div>
                                                 </div>
-                                                <span id="reply_date">2023.03.14</span>
+                                                <span id="reply_date">${reply.replyRegisterDate}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
-                                <div id="float_delete" style="display: flex">
-                                    <div>
-                                        <span>수정</span>
+                     `
+                if(memberId == list.memberId || businessId == list.businessId){
+                    text +=
+                        `
+                                    <div id="float_delete" style="display: flex">
+                                        <div class="update" data-reply-id="${reply.replyId}">
+                                           <button type="button" class="modifyBtn">
+                                            <span>수정</span>
+                                            </button>
+                                        </div>
+                                        <div style="margin-left: 8px" class="delete" data-reply-id="${reply.replyId}">
+                                            <button type="button" class="deleteBtn" >
+                                            <span>삭제</span>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div style="margin-left: 8px">
-                                        <span>삭제</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="reply_content">이 회사에서 납품 받았는데 품질이 너무 좋아요!</div>
-                            <div id="reply_content">${currentBoard}</div>
+                        `
+                }
+                text += `
                         </div>
-            `
-
+                        <div class="reply_content">${reply.replyContent}</div>
+                    </div>
+                `
+            })
+            $("#reply_wrap_div").html(text);
         });
-    });
-
-    // boardDetailContainer.append(createDOM(boardFreeId));
-    // console.log("됐니?");
-    // console.log(boardFreeId);
-
-   <!-- 좋아요 댓글 color변경-->
-    const viewbox = document.getElementsByClassName("viewbox_path");
-    $('.viewbox').click(function () {
-        if ($(this).css('color') === 'rgb(0, 0, 0)') {
-            $(this).css('color', 'blue');
-        } else {
-            $(this).css('color', 'rgb(0, 0, 0)');
-        }
-    });
-
+    }
 
     $(document).ready(function () {
-         /*등록 버튼 초기 색상 설정*/
+        /*등록 버튼 초기 색상 설정*/
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
         $('#submit_span').css("background-color", "rgb(242, 244, 247)");
 
@@ -260,8 +416,61 @@
         } else {
             declaration.style.display = "block"
         }
+    });
+</script>
+<script src="/js/mypage/like.js"></script>
+<script>
+    let freeLikeVO = new Object();
+    let boardFreeId = currentBoard.boardFreeId;
+
+    freeLikeVO.memberId = memberId;
+    freeLikeVO.businessId = businessId;
+    freeLikeVO.boardFreeId = boardFreeId;
+
+    likeService.count({boardFreeId: boardFreeId},function(result){
+        $(".good-count").text(result);
     })
 
+    likeService.likeCheck(freeLikeVO, function(result){
+        if(result){
+            $(".like").css("color", "black");
+        }else {
+            $(".like").css("color", "blue");
+        }
+    });
+
+    $(".good-button").click(() => {
+        if(!memberId && !businessId){
+            alert("로그인을 먼저해주세요.");
+            return false;
+        }
+
+        likeService.likeCheck(freeLikeVO, function(result){
+            if(result){
+                likeService.likeUp(freeLikeVO, function(){
+                    $(".like").css("color", "blue");
+                    likeUpdateAndCount(boardFreeId);
+                })
+            }else {
+                likeService.likeDown(freeLikeVO, function(){
+                    $(".like").css("color", "black");
+                    likeUpdateAndCount(boardFreeId);
+                });
+            }
+        });
+    });
+
+    function likeUpdateAndCount(boardFreeId) {
+        likeService.countUp({boardFreeId: boardFreeId});
+        likeService.count({boardFreeId: boardFreeId}, function (result) {
+            $(".good-count").text(result);
+        })
+    }
 
 </script>
 </html>
+
+
+
+
+

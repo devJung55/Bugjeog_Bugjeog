@@ -78,10 +78,6 @@ button.main_bar_hamberger img {
     display: inline-block;
 }
 
-.border_bottom {
-    border-bottom: 2px solid #258bf7;
-}
-
 .menu_wrap li a {
     padding: 15px;
     font-size: 14px;
@@ -105,7 +101,8 @@ button.search_button {
 }
 
 button.signUp_button {
-    /*background-color: #f0ffff;*/
+    background: none;
+    color:black;
     line-height: 1.4;
     margin-right: 6px;
     padding: 0 10px;

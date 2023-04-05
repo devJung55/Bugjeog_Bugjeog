@@ -43,8 +43,9 @@
 
     <!--게시글 조회-->
     <select id="select" resultType="boardFreeDTO">
-        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id,
-        b.business_email, business_ceo_name, b.business_phone_number, business_status, board_free_title, board_free_content,
+        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id, m.member_img_original_name, m.member_img_path, m.member_img_uuid,
+        b.business_img_uuid, b.business_img_original_name, b.business_img_path,
+        b.business_email, business_ceo_name, business_company_name,b.business_phone_number, business_status, board_free_title, board_free_content,
         board_free_register_date, board_free_update_date, board_free_like, board_free_img_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path,
         coalesce(
         (
@@ -69,7 +70,7 @@
         select board_free_id, bf.member_id, bf.business_id, board_free_title, board_free_content, board_free_register_date,
         board_free_update_date, ifnull((select count(free_like_id) from tbl_free_like where board_free_id = bf.board_free_id), 0) as board_free_like,
         (select member_name from tbl_member where member_id = bf.member_id) as member_name,
-        (select business_ceo_name from tbl_business where business_id = bf.business_id) as business_ceo_name,
+        (select business_company_name from tbl_business where business_id = bf.business_id) as business_company_name,
         ifnull((select count(reply_id) from tbl_free_reply where board_free_id = bf.board_free_id), 0) as reply_count
         from tbl_board_free bf
         <if test="searchDTO != null and searchDTO.orderColumn != null">
@@ -99,7 +100,7 @@
 
     <!-- 자유 게시판 조회 -->
     <select id="adminSelectFree" resultType="boardFreeDTO">
-        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id, b.business_email, business_ceo_name, b.business_phone_number, business_status, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, board_free_img_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path
+        select bf.board_free_id, m.member_id, m.member_name, m.member_email, m.member_phone_number, member_status, b.business_id, b.business_email,business_company_name ,business_ceo_name, b.business_phone_number, business_status, board_free_title, board_free_content, board_free_register_date, board_free_update_date, board_free_like, board_free_img_id, board_free_img_original_name, board_free_img_uuid, board_free_img_path
         from tbl_board_free bf
         left join tbl_board_free_img bfi on bf.board_free_id = bfi.board_free_id
         left join tbl_member m on bf.member_id = m.member_id

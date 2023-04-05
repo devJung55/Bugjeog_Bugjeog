@@ -1,5 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MyPageService;
@@ -102,11 +103,14 @@ public class MemberMyPageRestController {
         return myPageService.memberInfo(memberId);
     }
 
+    @GetMapping("memberInfo")
+    public MemberVO memberInfo(@RequestParam("memberId") Long memberId){
+        return myPageService.memberInfo(memberId);
+    }
+
     @GetMapping("replyList")
     public List<FreeReplyVO> reply(@RequestParam("boardFreeId") Long boardFreeId){
-        HttpSession session = req.getSession();
-        Long memberId = (Long) session.getAttribute("memberId");
-        return myPageService.replyList(memberId, boardFreeId);
+        return myPageService.replyList(boardFreeId);
     }
 
     // 각 게시물 작성 갯수
