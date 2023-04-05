@@ -17,6 +17,8 @@ public class AdminCriteria {
     private int total; // 데이터의 총 개수
     private int offset; // mysql은 연산 불가능 하므로 연산해서 넘기기 위해 만든 필드
 
+    private SearchDTO searchDTO;
+
     public void create(int page, int rowCount, int total, int pageCount) {
         this.page = page;
         this.rowCount = rowCount;

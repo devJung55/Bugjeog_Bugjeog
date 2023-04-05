@@ -2,6 +2,7 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardBusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessReviewDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessImgVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardBusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessReviewVO;
@@ -85,9 +86,11 @@ public class BusinessBoardController {
     @GetMapping("/board/business/list/ajax")
     @ResponseBody
     public List<BoardBusinessDTO> businessAjaxList(Long businessId, String category, String sort, Model model) {
+        /* =================== getList pageDTO 받도록 변경됨 */
+        PageDTO pageDTO = null;
         model.addAttribute(new BusinessReviewVO());
         if (category == null && sort == null && businessId == null) {
-            return businessBoardService.getList();
+            return businessBoardService.getList(pageDTO);
         } else {
             return businessBoardService.getList(boardFunction(businessId, category, sort));
         }
@@ -96,8 +99,10 @@ public class BusinessBoardController {
 
     @GetMapping("/board/business/list")
     public void businessList(Long businessId, String category, String sort, Model model) {
+        /* =================== getList pageDTO 받도록 변경됨 */
+        PageDTO pageDTO = null;
         if (category == null && sort == null && businessId == null) {
-            model.addAttribute("boards", businessBoardService.getList());
+            model.addAttribute("boards", businessBoardService.getList(pageDTO));
         } else {
             model.addAttribute("boards", businessBoardService.getList(boardFunction(businessId, category, sort)));
         }

@@ -1,6 +1,7 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.BusinessDAO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BusinessDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.MemberDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
@@ -17,7 +18,7 @@ public class BusinessService {
 
     /* ------------------------------------------------------------ */
     /* 관리자 유통 목록 */
-    public List<BusinessDTO> adminShowListBusiness(Criteria criteria){ return businessDAO.adminFindAll(criteria);}
+    public List<BusinessDTO> adminShowListBusiness(AdminCriteria adminCriteria){ return businessDAO.adminFindAll(adminCriteria);}
 
     /* 관리자 카운트 */
     public Long count(){return businessDAO.count();}
@@ -35,9 +36,10 @@ public class BusinessService {
         businessDAO.updateById(business);}
 
     /* 관리자 유통 회원 삭제 */
-    public void removeBusiness( List<String> businessIds) {
+    public void removeBusiness(Long businessId) {
 //        noticeIds.stream().map(noticeId -> Long.parseLong(noticeId)).forEach(noticeDAO::remove);
-        businessIds.stream().map(businessId -> Long.parseLong(businessId)).forEach(businessDAO::removeById);
+//        businessIds.stream().map(businessId -> Long.parseLong(businessId)).forEach(businessDAO::removeById);
+        businessDAO.removeById(businessId);
     }
 
     /* 유통 회원 조회 */
