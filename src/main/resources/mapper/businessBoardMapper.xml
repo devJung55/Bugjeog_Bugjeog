@@ -98,8 +98,16 @@
           b.board_business_update_date,
           i2.board_business_img_id,
           r.board_business_review_count
-        ORDER BY b.board_business_id desc
-        limit 0, 5
+        ORDER BY
+        <choose>
+            <when test="searchDTO != null and searchDTO.orderColumn != null">
+                ${searchDTO.orderColumn} desc
+            </when>
+            <otherwise>
+                b.board_business_id desc
+            </otherwise>
+        </choose>
+        limit #{criteria.startRow}, #{criteria.amount}
     </select>
 
     <select id="selectAllListBySearch" resultType="boardBusinessDTO">

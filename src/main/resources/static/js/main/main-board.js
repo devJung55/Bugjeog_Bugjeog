@@ -1,7 +1,7 @@
-
 const $stage = $(".distribution_list");
 const $freeBoardSelecter = $(".second_list");
-const $sortWrapper = $(".sort_wrapper");
+const $freeBoardSortWrapper = $(".free_board_sort");
+const $businessBoardSortWrapper = $(".business_board_sort");
 let $rankingHeader = $(".ranking_header h2");
 
 let getTimePassed = function (writtenDate, writtenTime) {
@@ -117,9 +117,32 @@ const createFreeBoardDOM = function (board) {
     return text;
 }
 
-const setConfig = function (boardType, orderTypeNumber) {
+const createBusinessBoardDOM = function (board) {
+
+    let date = board.boardBusinessRegisterDate.split(" ")[0];
+    let text =
+        `
+        <li>
+            <div class="distribution_cards">
+                <a href="javascript:void(0)">
+                    <header/>
+                    <div class="card_body">
+                        <div class="distribution_card_position">[${board.businessCategory}] ${board.boardBusinessTitle}</div>
+                        <div class="distribution_card_company_name">${date}</div>
+                        <div class="distribution_card_location">
+                            ${board.businessLocation} | 평균 평점 : ${board.boardBusinessGradeAverage}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </li>
+        `
+    return text;
+}
+
+const setConfig = function (boardType, orderType) {
     return {
-        url: `/main/boards/${boardType}/${orderTypeNumber}`,
+        url: `/main/boards/${boardType}/${orderType}`,
         type: "GET",
     }
 }
@@ -130,25 +153,25 @@ const boardService = (function () {
      * */
     function showFreeBoard(orderType) {
         let boardType = "free";
-        let check = orderType == undefined || orderType === 'recent';
-        let orderTypeNumber = check ? 0 : 1;
-        let headerText = check ? "최신 자유게시판 게시물" : "인기 자유게시판 게시물";
+        orderType = orderType == undefined ? 'recent' : orderType;
+        let headerText = orderType == undefined || orderType === 'recent' ? "최신 자유게시판 게시물" : "인기 자유게시판 게시물";
 
-        console.log(orderTypeNumber);
+        console.log(orderType);
 
         $doAjax(
             /**$(".distribution_list")
              * ajax 성공 시 $(".distribution_list")를 비우고 다시 채운다.
              * 인기순, 최신순에 따라 헤더 텍스트가 달라진다.
              * */
-            setConfig(boardType, orderTypeNumber),
+            setConfig(boardType, orderType),
             (result) => {
-                $sortWrapper.css("display", "flex");
+                $businessBoardSortWrapper.css("display", "none");
+                $freeBoardSortWrapper.css("display", "flex");
                 $stage.empty();
                 $rankingHeader.text(headerText);
 
                 result.forEach((board, i) => {
-                    if(i < 4){
+                    if (i < 4) {
                         $stage.eq(0).append(createFreeBoardDOM(board));
                     } else $stage.eq(1).append(createFreeBoardDOM(board));
                 });
@@ -156,31 +179,34 @@ const boardService = (function () {
         );
     }
 
-    return {showFreeBoard: showFreeBoard}
+    function showBusinessBoard(orderType) {
+        let boardType = "business";
+        orderType = orderType == undefined ? 'recent' : orderType;
+        let headerText = orderType == undefined || orderType === 'recent' ? "최신 기업게시판 게시물" : "평점 높은 기업게시판 게시물";
+
+        $doAjax(
+            setConfig(boardType, orderType),
+            (result) => {
+                $freeBoardSortWrapper.css("display", "none");
+                $businessBoardSortWrapper.css("display", "flex");
+                $stage.empty();
+                $rankingHeader.text(headerText);
+                console.log(result);
+
+                result.forEach((board, i) => {
+                    if (i < 4) {
+                        $stage.eq(0).append(createBusinessBoardDOM(board));
+                    } else $stage.eq(1).append(createBusinessBoardDOM(board));
+                });
+            }
+        );
+    }
+
+    return {showFreeBoard: showFreeBoard, showBusinessBoard : showBusinessBoard}
 })();
 
-// boardService.showFreeBoard();
-
-$stage.append(
-`
-    <li>
-        <div class="distribution_cards">
-            <a href="javascript:void(0)">
-                <header/>
-                <div class="card_body">
-                    <div class="distribution_card_position">[삼쩜삼] CS/CX Manager</div>
-                    <div class="distribution_card_company_name">자비스앤빌런즈</div>
-                    <div class="distribution_card_location">
-                        서울
-                        <!--<span class="address_dot">.</span>
-                        한국-->
-                    </div>
-                </div>
-            </a>
-        </div>
-    </li>
-`
-);
+/* 페이지 로딩시 실행 */
+boardService.showBusinessBoard();
 
 $freeBoardSelecter.on("click", function () {
     boardService.showFreeBoard();

@@ -16,6 +16,8 @@ public class PageDTO {
     private Integer total;
     private Criteria criteria;
 
+    SearchDTO searchDTO;
+
     public PageDTO(Criteria criteria, Integer total){
         this.criteria = criteria;
         this.total = total;
@@ -30,5 +32,10 @@ public class PageDTO {
 
         this.prev = this.startPage > 1;
         this.next = this.endPage < realEnd;
+    }
+
+    public PageDTO setSearchDTO(SearchDTO searchDTO){
+        this.searchDTO = searchDTO;
+        return this;
     }
 }

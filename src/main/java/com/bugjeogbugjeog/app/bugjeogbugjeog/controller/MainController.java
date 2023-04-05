@@ -2,10 +2,12 @@ package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.SearchDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.enums.SearchEnum;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.MemberVO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.service.BusinessBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.FreeBoardService;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ import java.util.List;
 public class MainController {
     private final MemberService memberService;
     private final FreeBoardService freeBoardService;
+    private final BusinessBoardService businessBoardService;
 
     /*화면 이동*/
     @GetMapping("")    //url 부분
@@ -47,19 +50,42 @@ public class MainController {
     }
     /* http://localhost:10000/main/ */
 
-    @GetMapping("boards/{boardType}/{orderTypeNumber}")
+    @GetMapping("boards/{boardType}/{orderType}")
     @ResponseBody
-    public List<BoardFreeDTO> getBoards(@PathVariable String boardType, @PathVariable Integer orderTypeNumber){
+    public <T> List<T> getBoards(@PathVariable String boardType, @PathVariable String orderType){
+        int rowCount = 8;
+        int total = 0;
+        int pageCount = 0;
+
         if(boardType.equals("free")){
-            int rowCount = 8;
-            int total = 0;
-            int pageCount = 0;
 
             AdminCriteria criteria = new AdminCriteria();
             criteria.create(1, rowCount, total, pageCount);
-            criteria.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.values()[orderTypeNumber]));
+            switch (orderType){
+                case "recent":
+                    criteria.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_FREE_REGISTER_DATE));
+                    break;
+                case "popular":
+                    criteria.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_FREE_LIKE));
+                    break;
+            }
 
-            return freeBoardService.getListWithName(criteria);
+            return (List<T>) freeBoardService.getListWithName(criteria);
+        } else if(boardType.equals("business")){
+
+            Criteria criteria = new Criteria(1, rowCount);
+            PageDTO pageDTO = new PageDTO(criteria, total);
+
+            switch (orderType){
+                case "recent":
+                    pageDTO = pageDTO.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_BUSINESS_REGISTER_DATE));
+                    break;
+                case "grade":
+                    pageDTO = pageDTO.setSearchDTO(new SearchDTO().setOrderColumn(SearchEnum.BOARD_BUSINESS_GRADE_AVERAGE));
+                    break;
+            }
+
+            return (List<T>) businessBoardService.getList(pageDTO);
         }
 
         return null;

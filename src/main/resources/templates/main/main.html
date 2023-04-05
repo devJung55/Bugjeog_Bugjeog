@@ -352,9 +352,13 @@
                 <div class="lsc_wrapper">
                     <header class="ranking_header">
                         <h2></h2>
-                        <div class="sort_wrapper business_board_sort" style="display: none">
+                        <div class="sort_wrapper free_board_sort" style="display: none">
                             <div onclick="boardService.showFreeBoard('recent');">최신순</div>
                             <div onclick="boardService.showFreeBoard('popular');">인기순</div>
+                        </div>
+                        <div class="sort_wrapper business_board_sort" style="display: none">
+                            <div onclick="boardService.showBusinessBoard('recent');">최신순</div>
+                            <div onclick="boardService.showBusinessBoard('grade');">평점순</div>
                         </div>
                     </header>
                     <div class="ranking_list">
