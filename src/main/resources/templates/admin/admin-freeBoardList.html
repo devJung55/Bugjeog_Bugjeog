@@ -285,7 +285,7 @@
 							 <input type="checkbox" name="check" data-id="${free.boardFreeId}" class="checkBoxes" onclick="isChecked(this)">
 							</td>
 							<td>${free.boardFreeId}</td>
-							<td><a href="/admin/admin-freeBoard/ + ${free.boardFreeId}">${free.boardFreeTitle}</a></td>
+							<td><a href="/admin/admin-freeBoard/${free.boardFreeId}">${free.boardFreeTitle}</a></td>
 					`;
 					if(free.memberId != null){
 						list +=	`<td>${free.memberName}</td>`;
