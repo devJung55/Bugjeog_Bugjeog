@@ -74,8 +74,8 @@
                         <div class="ranking-list-box">
                             <a href="#" class="distributor-box" th:each="business : ${businessReviewTop10}">
                                 <div class="distributor-image-box">
-                                     <img src="/image/boardList/distributor_icon.png">
-                                     <!--<img src="../../../static/image/boardList/self_employ_icon.png">-->
+                                     <img th:if="${business.businessImgUuid != null}" th:src="'/free-boards/imgs/dispay?fileName=' + ${business.businessImgPath} + '/' + ${business.businessImgUuid} + '_' + ${business.businessImgOriginalName}">
+                                     <img th:unless="${business.businessImgUuid != null}" src="/image/boardList/distributor_icon.png">
                                 </div>
                                 <div style="display: flex; flex-direction: column;">
                                     <div class="distributor-name" th:text="${business.businessCompanyName}"></div>
