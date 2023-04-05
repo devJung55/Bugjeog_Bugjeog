@@ -1,6 +1,5 @@
 /* 작성글 목록 */
-function showBoardsList(boards) {
-
+function showBoardsList(boards, pageDTO) {
     $($('ul.boardList-info-box')[0]).empty();
     let text = ``;
     boards.forEach(board => {
@@ -45,5 +44,15 @@ function showBoardsList(boards) {
 			`;
     });
     $($('ul.boardList-info-box')[0]).append(text);
+
+    const $pagingButtons = $('a.pagingNum');
+    $pagingButtons.each((i, e) => {
+        $(e).click(function () {
+            $pagingButtons.removeClass("activePage");
+            $(e).addClass("activePage");
+            ajax();
+            boardBusinessPagingFunc($('#pagingWrap'), pageDTO);
+        });
+    });
 
 }
