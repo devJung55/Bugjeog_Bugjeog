@@ -57,20 +57,9 @@ public class ReplyController {
     /*댓글 삭제*/
 //    @PostMapping("/delete-reply")
 //    public void replyDelete()
-    @PostMapping("/delete-reply")
-    public String replyDelete(@RequestBody Long replyId, HttpSession session) {
-        Long memberId = (Long)session.getAttribute("memberId");
-        Long businessId = (Long)session.getAttribute("businessId");
-        log.info("나 안해");
-
-        /*if(memberId != null) {
-            freeReplyVO.setMemberId(memberId);
-        }else{
-            freeReplyVO.setBusinessId(businessId);
-        }*/
+    @DeleteMapping("delete-reply")
+    public void replyDelete(@RequestParam("replyId") Long replyId) {
         replyService.delete(replyId);
-        return "/free-boards/detail"; // 삭제 후 게시글 페이지로 이동
-//        return "/board/free/datail/";
     }
 
     /*댓글 목록*/
