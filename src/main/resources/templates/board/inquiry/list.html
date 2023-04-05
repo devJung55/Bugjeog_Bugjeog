@@ -16,7 +16,7 @@
     }
 </style>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header(${memberId}, ${businessId})}"></div>
 <div>
     <header class="header">
         <div class="header-inner container">
@@ -109,6 +109,8 @@
     console.log(memberId);
 
     const businessId = [[${session.businessId}]];
+    console.log(businessId);
+
     const pageDTO = [[${pageDTO}]]
     const $ulList = $($('ul.content-list-box')[0]);
     const $paging = $($('ul.page-box-layout')[0]);
@@ -117,8 +119,12 @@
 <script>
     const $pageUl = $($('ul.page-box-layout')[0]);
 
-    $inquiryWrap.hidden();
-    if()
+
+    if(businessId == null && memberId == null){
+        $inquiryWrap.hide();
+    }else {
+        $inquiryWrap.show();
+    }
     pagingFunc(pageDTO);
 
     function pagingFunc(pageDTO) {
