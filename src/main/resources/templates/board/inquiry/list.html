@@ -16,7 +16,7 @@
     }
 </style>
 <body>
-<div th:insert="~{main/header :: header}"></div>
+<div th:insert="~{main/header :: header(${memberId}, ${businessId})}"></div>
 <div>
     <header class="header">
         <div class="header-inner container">
@@ -93,7 +93,7 @@
     </main>
     <block th:insert="~{main/footer :: footer}"></block>
     <!-- 문의하기 버튼  -->
-    <div class="inquire_">
+    <div class="inquire_" name="inquiryWrap">
         <div style="margin: 0 auto;">
             <a href="/board/inquiry/write" th:method="get" class="inquire_write">
                 <img src="/image/notice/questionmark.png" class="questionmark">
@@ -105,13 +105,26 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
+    const memberId = [[${session.memberId}]];
+    console.log(memberId);
+
+    const businessId = [[${session.businessId}]];
+    console.log(businessId);
+
     const pageDTO = [[${pageDTO}]]
     const $ulList = $($('ul.content-list-box')[0]);
-    const $paging = $($('ul.page-box-layout')[0])
+    const $paging = $($('ul.page-box-layout')[0]);
+    const $inquiryWrap = $($('div[name=inquiryWrap]')[0]);
 </script>
 <script>
     const $pageUl = $($('ul.page-box-layout')[0]);
 
+
+    if(businessId == null && memberId == null){
+        $inquiryWrap.hide();
+    }else {
+        $inquiryWrap.show();
+    }
     pagingFunc(pageDTO);
 
     function pagingFunc(pageDTO) {
