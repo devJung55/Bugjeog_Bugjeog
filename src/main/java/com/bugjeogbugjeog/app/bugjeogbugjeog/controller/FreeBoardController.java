@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -149,6 +150,13 @@ public class FreeBoardController {
             }
         }
         return uuids;
+    }
+
+    //    파일 디스플레이
+    @GetMapping("/imgs/dispay")
+    @ResponseBody
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
     //    현재 날짜 경로 구하기

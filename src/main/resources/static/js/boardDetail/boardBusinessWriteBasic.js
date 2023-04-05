@@ -16,6 +16,7 @@ $('#content_textarea, #title_textarea').on('input', function () {
     }
 });
 
+
 /* 카테고리 버튼 이벤트 */
 const $cateButton = $(".cate-button");
 
@@ -27,15 +28,15 @@ $cateButton.each((i, e) => {
     });
 });
 
-// /* 파일 썸네일 */
-// /* 파일인풋 */
+/* 파일 썸네일 */
+/* 파일인풋 */
 // const file = document.querySelector('input[type=file]');
 // const imgButton = document.querySelector("#plus_button");
 // console.log(imgButton);
-//
+
 // function handleFiles(files) {
 //     /* 썸네일 담을 div의 부모 */
-//     const thumbnailList = document.getElementById("thumbnail-list");
+//     const thumbnailList = $('#thumbnail-list>li');
 //
 //     for (let i = 0; i < files.length; i++) {
 //
@@ -47,7 +48,6 @@ $cateButton.each((i, e) => {
 //             /* 썸네일 담을 div와 그 자식의 span 선언 */
 //             const thumbnail = document.createElement("div");
 //             const thumbnailSpan = document.createElement("span");
-//
 //
 //             let result = event.target.result;
 //
@@ -88,7 +88,7 @@ $cateButton.each((i, e) => {
 //     }
 //
 // }
-//
+
 // /* 버튼을 감싸고있는 label객체 들고오기 */
 // const fileInput = document.getElementById("photo-picker");
 //

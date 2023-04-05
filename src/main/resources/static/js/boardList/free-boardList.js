@@ -105,9 +105,13 @@ const createDOM = function (board) {
                             <h3 class="content-title">${board.boardFreeTitle}</h3>
                             <p class="content-detail">
                             ${board.boardFreeContent}</p>
-                            <div>
-                                <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fcommunity%2F2023%2F3%2Fe636fef8cd94bc0c9c921510c71ffae98c9c636065c75c113e4dd42a027129c9&w=384&q=90" class="board-detail-image">
-                            </div>
+                            `
+    if (board.boardFreeImgVOs[0] != null) {
+        text += `<div>
+                    <img src="/free-boards/imgs/dispay?fileName=${board.boardFreeImgVOs[0].boardFreeImgPath}/t_${board.boardFreeImgVOs[0].boardFreeImgUuid}_${board.boardFreeImgVOs[0].boardFreeImgOriginalName}" class="board-detail-image">
+                </div>`
+    }
+    text += `
                             <!-- 이미지 끝 -->
                             <div class="like-reply-count-box">
                                 <div class="like-count-box">
@@ -128,7 +132,7 @@ const createDOM = function (board) {
 `
     return text;
 
-    }
+}
 
 let getBoards = function list() {
     $.ajax({
@@ -140,7 +144,7 @@ let getBoards = function list() {
                 boardContainer.append(createDOM(board));
             });
 
-            if(result.length == 0) {
+            if (result.length == 0) {
                 $(window).scroll().unbind();
             }
         }
