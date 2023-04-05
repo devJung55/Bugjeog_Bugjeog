@@ -216,6 +216,7 @@
         }
         return {getList: getList, save: save, update: update, Delete: Delete};
     })();
+
     /*const를 사용하여 아래 사용할 변수를 선언 */
     const $replyRegisterButton = $(".reply-register-button");
     const $modifyBtn = $(".modifyBtn");
@@ -234,9 +235,7 @@
         replyService.update({replyContent: replyContent, replyId: replyId}, function(){
             showList();
         });
-        replyService.Delete({replyContent: replyContent, replyId: replyId}, function(){
-            showList();
-        });
+
     });
 
     $replyRegisterButton.click(function () {
@@ -247,26 +246,30 @@
             showList();
         });
     });
-    $modifyBtn.click(function () {
-        const replyContent = $("#reply_textarea").val();
-        const boardFreeId = currentBoard.boardFreeId;
-        console.log(boardFreeId)
-        replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
-            showList();
-        });
-    });
 
-    console.log($deleteBtn);
-
-    $deleteBtn.click(function () {
-        const replyContent = $("#reply_textarea").val();
-        console.log($modifyBtn);
-        const boardFreeId = currentBoard.boardFreeId;
-        console.log(boardFreeId)
-        replyService.delete({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
-            showList();
-        });
-    });
+    // $modifyBtn.click(function () {
+    //     const replyContent = $("#reply_textarea").val();
+    //     let i = $("div.modifyBtn").index(this);
+    //     const boardFreeId = currentBoard.boardFreeId;
+    //     console.log(boardFreeId)
+    //     replyService.update({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
+    //         showList();
+    //     });
+    // });
+    //
+    //
+    // $deleteBtn.click(function () {
+    //     const replyContent = $("#reply_textarea").val();
+    //     let i = $("div.delete").index(this);
+    //     console.log($modifyBtn);
+    //     const boardFreeId = currentBoard.boardFreeId;
+    //     console.log(boardFreeId)
+    //     const replyId = $(this).data("reply-id");
+    //     replyService.Delete({boardFreeId: boardFreeId, replyId: replyId}, function(){
+    //         showList();
+    //     });
+    //
+    // });
 
     function showList(){
         replyService.getList(function(list) {
