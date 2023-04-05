@@ -15,20 +15,42 @@ const createDOM = function (boardFree) {
                                         <div class="left_profile_img profile_img">
                                             <div class="profile-image-login">
                                                 <div class="profile-member-status">
-                                                    <img src="/image/boardList/self_employ_icon.png" alt="">
-                                                </div>
+                               `
+                                if(boardFree.memberId){
+                                    if(!boardFree.memberImgUuid){
+                                        text += `<img src="/image/boardList/self_employ_icon.png">`
+                                    }else {
+                                        text += `<img src="${'/mypage/profile/display?fileName=' + boardFree.memberImgPath + '/' + boardFree.memberImgUuid + '_' + boardFree.memberImgOriginalName}">`;
+                                    }
+                                }else {
+                                    if(boardFree.businssImgUuid){
+                                        text += `<img src="/image/boardList/distributor_icon.png">`
+                                    }else {
+                                        text += `<img src="${'/mypage/profile/display?fileName=' + boardFree.businessImgPath + '/' + boardFree.businessImgUuid + '_' + boardFree.businessImgOriginalName}">`;
+                                    }
+                                }
+            text+=             `                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-direction">
                                         <div class="flex_align" style="margin-bottom: 3px;">
-                                            <div class="nickname" id="right_nickname">조이언</div>
+                                    `
+                                if(boardFree.memberId){
+                                    text += `<div class="nickname" id="right_nickname">${boardFree.memberName}</div>
                                                 <div class="career_field" style="margin-right: 4px;">
-                                                    <div class="career field">개발</div>
-                                                    <div class="career">15년차</div>
-                                                </div>
-                                            </div>
-                                            <span id="register_date">2023.03.10</span>
+                                                    <div class="career field">일반유저</div>
+                                                </div>`
+                                }else {
+                                    text += `<div class="nickname" id="right_nickname">${boardFree.businessCompanyName}</div>
+                                                <div class="career_field" style="margin-right: 4px;">
+                                                    <div class="career field">유통업체</div>
+                                                </div>`
+                                }
+                                            
+
+            text+=                  `      </div>
+                                            <span id="register_date" class="date">${boardFree.boardFreeRegisterDate}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +120,13 @@ const createDOM = function (boardFree) {
 }
 
 boardDetailContainer.append(createDOM(currentBoard));
-console.log("됐니?");
+
+function date(date) {
+    let registerDate = new Date(date);
+    return registerDate.getFullYear() + "." + (registerDate.getMonth() + 1) + "." + registerDate.getDate();
+}
+
+$(".date").text(date($(".date").text()));
 
 // detailsOfBoards.forEach((detailsOfBoards, i) => {
 //     boardDetailContainer.append(createDOM(detailsOfBoards));

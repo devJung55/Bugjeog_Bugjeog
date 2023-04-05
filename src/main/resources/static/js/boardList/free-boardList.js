@@ -70,7 +70,7 @@ const boardContainer = $('#listContainer')
 const createDOM = function (board) {
 
     let isWriterMember = board.memberId == null ? false : true;
-    let writerName = isWriterMember ? board.memberName : board.businessCeoName;
+    let writerName = isWriterMember ? board.memberName : board.businessCompanyName;
     let writtenDate = board.boardFreeRegisterDate.split(" ")[0];
     let writtenTime = board.boardFreeRegisterDate.split(" ")[1];
     let timeText = getTimePassed(writtenDate, writtenTime);

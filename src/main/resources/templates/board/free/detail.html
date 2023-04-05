@@ -28,7 +28,22 @@
                                             <div class="content-member-image-box">
                                                 <div class="content-member-image-size">
                                                     <div class="content-member-status">
-                                                        <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                        <th:block th:if="${prevBoard.memberId == null}">
+                                                            <th:block th:if="${prevBoard.memberImgUuid == null}">
+                                                                <img src="/image/boardList/self_employ_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${prevBoard.memberImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${prevBoard.memberImgPath}+'/'+${prevBoard.memberImgUuid}+'_'+${prevBoard.memberImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${prevBoard.memberId == null}">
+                                                            <th:block th:if="${prevBoard.businessImgUuid == null}">
+                                                                <img src="/image/boardList/distributor_icon.png" alt="">
+                                                            </th:block>
+                                                            <th:block th:unless="${prevBoard.businessImgUuid == null}">
+                                                                <img class="img_profile" th:src="@{'/mypage/profile/display?fileName='+${prevBoard.businessImgPath}+'/'+${prevBoard.businessImgUuid}+'_'+${prevBoard.businessImgOriginalName}}">
+                                                            </th:block>
+                                                        </th:block>
                                                     </div>
                                                 </div>
                                             </div>
@@ -36,7 +51,12 @@
                                     </div>
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; margin-bottom: 3px; align-items: center;">
-                                            <div id="side_nickname" th:text="*{memberName}"></div>
+                                            <th:block th:if="${prevBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{memberName}"></div>
+                                            </th:block>
+                                            <th:block th:unless="${prevBoard.memberId != null}">
+                                                <div id="side_nickname" th:text="*{businessCompanyName}"></div>
+                                            </th:block>
                                         </div>
                                         <span id="side_span_date" th:text="*{boardFreeRegisterDate}"></span>
                                     </div>
