@@ -35,6 +35,10 @@ public class InquiryBoardDAO {
         }
     }
 
+    public void save(BoardInquiryVO boardInquiryVO) {
+        inquiryBoardMapper.insert(boardInquiryVO);
+    }
+
 
     //    문의글 상세보기
     public BoardInquiryDTO findOneByBoardInquiryId(Long boardInquiryId) {
