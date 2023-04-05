@@ -24,6 +24,11 @@ public class InquiryBoardService {
         inquiryBoardDAO.save(boardInquiryVO, memberType);
     }
 
+    //    추가
+    public void registerBoard(BoardInquiryVO boardInquiryVO) {
+        inquiryBoardDAO.save(boardInquiryVO);
+    }
+
     //    삭제
 //    public void remove(Long businessId) {
 //        inquiryBoardDAO.deleteById(businessId);
