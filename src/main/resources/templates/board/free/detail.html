@@ -299,21 +299,6 @@
         });
     }
 
-    // boardDetailContainer.append(createDOM(boardFreeId));
-    // console.log("됐니?");
-    // console.log(boardFreeId);
-
-    <!-- 좋아요 댓글 color변경-->
-    const viewbox = document.getElementsByClassName("viewbox_path");
-    $('.viewbox').click(function () {
-        if ($(this).css('color') === 'rgb(0, 0, 0)') {
-            $(this).css('color', 'blue');
-        } else {
-            $(this).css('color', 'rgb(0, 0, 0)');
-        }
-    });
-
-
     $(document).ready(function () {
         /*등록 버튼 초기 색상 설정*/
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");
