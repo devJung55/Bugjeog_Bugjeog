@@ -30,6 +30,9 @@ public class MypageMapperTest {
     @Autowired
     InquiryBoardMapper inquiryBoardMapper;
 
+    @Autowired
+    FreeBoardMapper freeBoardMapper;
+
 
 
 //    //    회원정보 조회
@@ -177,5 +180,10 @@ public class MypageMapperTest {
         freeLikeVO.setMemberId(1L);
 
 //        freeLikeMapper.likeCountUp(freeLikeVO);
+    }
+
+    @Test
+    public void test1(){
+        freeBoardMapper.select(11L);
     }
 }
