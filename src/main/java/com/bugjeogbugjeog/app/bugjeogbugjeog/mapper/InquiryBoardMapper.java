@@ -19,6 +19,8 @@ public interface InquiryBoardMapper {
 
     public void insertWithBusinessId(BoardInquiryVO boardInquiryVO);
 
+    public void insert(BoardInquiryVO boardInquiryVO);
+
 //    문의글 상세보기(작성자 타입 확인)
     public BoardInquiryDTO selectOneIsMember(Long boardInquiryId);
 
@@ -52,7 +54,7 @@ public interface InquiryBoardMapper {
     /* 관리자 ------------------------------------------------------------------------ */
 
     // 문의 목록
-    public List<BoardInquiryVO> adminSelectAllInquiry(AdminCriteria adminCriteria);
+    public List<BoardInquiryVO> adminSelectAllInquiry(@Param("adminCriteria") AdminCriteria adminCriteria);
 
     // 문의 조회
     public InquiryDTO adminSelectInquiry(Long boardInquiryId);

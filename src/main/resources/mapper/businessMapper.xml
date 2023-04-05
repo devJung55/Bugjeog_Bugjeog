@@ -58,7 +58,7 @@
        select business_id, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number, business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path, business_location, business_category
         from tbl_business
         order by business_id desc
-        limit #{startRow}, #{amount}
+        limit #{adminCriteria.offset}, #{adminCriteria.rowCount}
     </select>
 
     <!-- 유통 회원 수 카운트 -->
