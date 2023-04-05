@@ -167,6 +167,12 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    /* freBoards 는 이전글, 현재글, 다음글이 담겨있는 list이다. 1번째방이 현재글 */
+    let memberId = [[${session.memberId}]];
+    let businessId = [[${session.businessId}]];
+
+</script>
 <!--<script src="../../../static/js/boardList/free-boardList.js"></script>-->
 <script src="/js/boardList/free-boardList.js"></script>
 </html>
