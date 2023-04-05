@@ -30,4 +30,10 @@
     <select id="interestingCompanyCount" resultType="Long">
         select count(interesting_company_id) interesting_company_id_count from tbl_interesting_company
     </select>
+
+    <select id="selectOneByIds" resultType="interestingCompanyVO">
+        select interesting_company_id, member_id, business_id
+        from tbl_interesting_company
+        where business_id = #{businessId} and member_id = #{businessId}
+    </select>
 </mapper>
