@@ -34,6 +34,11 @@ public class InquiryBoardService {
         return inquiryBoardDAO.findAllByIdToInquire();
     }
 
+    //    리스트 조회
+    public List<BoardInquiryDTO> showList(InquiryCriteria inquiryCriteria){
+        return inquiryBoardDAO.findAllByIdToInquire(inquiryCriteria);
+    }
+
     public BoardInquiryDTO getBoard(Long boardInquiryId){
         return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
     }
@@ -58,8 +63,9 @@ public class InquiryBoardService {
         return inquiryBoardDAO.getInquiry(boardInquiryId);}
 
     // 문의 삭제
-    public void removeInquiry(List<String> boardInquiryIds){
-        boardInquiryIds.stream().map(boardInquiryId -> Long.parseLong(boardInquiryId)).forEach(inquiryBoardDAO::deleteInquiry);
+    public void removeInquiry(Long boardInquiryId){
+//        boardInquiryIds.stream().map(boardInquiryId -> Long.parseLong(boardInquiryId)).forEach(inquiryBoardDAO::deleteInquiry);
+        inquiryBoardDAO.deleteInquiry(boardInquiryId);
     }
 
     // 문의 카운트

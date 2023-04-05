@@ -122,4 +122,7 @@ public class FreeBoardDAO {
 
     /* 관리자 삭제 */
     public void adminDelete(Long boardFreeId){freeBoardMapper.deleteAdmin(boardFreeId);}
+
+    /* 카운트 */
+    public Long count(){return freeBoardMapper.count();}
 }
