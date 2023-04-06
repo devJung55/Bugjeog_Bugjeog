@@ -1,53 +1,4 @@
-/* 리스트 삽입 js */
-function showSubBoardsList(boards) {
-    /*<a th:href="@{/board/business/detail(boardBusinessId=${board.boardBusinessId})}" class="modal_button" name="${board.boardBusinessId}">*/
-    $($('ul.boardList-info-box')[0]).empty();
-    let text = ``;
-    boards.forEach(board => {
-        text += `
-           <li class="info-box-layout"  th:object="${board}">
-                <label class="modal_button" name="${board.boardBusinessId}">
-                <!-- 상세보기 모달 버튼 -->
-                    <div class="image-box">
-                        <img src="/imgs/business/display?fileName=${board.boardBusinessImgPath + '/t_' + board.boardBusinessImgUuid + '_' + board.boardBusinessImgOriginalName}" class="info-image">
-                    </div>
-                    <div class="info-section-box">
-                        <div class="cate-title-box">
-                            <span class="cate-title-style">
-                                <span class="cate-title">${board.businessCategory}</span>
-                            </span>
-                        </div>
-                        <p class="circulation-title">${board.boardBusinessTitle}</p>
-                    </div>
-                    <div class="location-box">
-                        <div class="location-box-layout">${board.businessLocation}</div>
-                    </div>
-                    <div class="review-count-box">
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/review_icon.png" class="review-icon">
-                            </div>
-                            <div>
-                                <span class="review-count">${board.boardBusinessReviewCount}</span>
-                            </div>
-                        </div>
-                        <div class="icon-box">
-                            <div class="review-icon-box">
-                                <img src="/image/boardList/star_icon.png" class="review-grade-icon">
-                            </div>
-                            <div>
-                                <span class="review-grade-count">${board.boardBusinessGradeAverage}</span>
-                            </div>
-                        </div>
-                    </div>
-                </label>
-            </li>
-			`;
-    });
-    $($('ul.boardList-info-box')[0]).append(text);
-};
-
-/*  */
+/* 디테일 페이지 */
 function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCount, reviewGrade, isFavorite) {
     $('#all_wrap').empty();
     let text = ``
@@ -75,14 +26,9 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
                                 <section id="main_img">
                                     <div class="relative_size">
                                         <div class="file-banner-box" style="display: flex">`;
-    // boardImgs.forEach(boardImg => {
-    /*text += `<img style="width: 100%; height: 100%;" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">`*/
-    // });
     boardImgs.forEach(boardImg => {
         text += `
-<!--                                            <div style="min-width: 686px; max-width: 686px; height: auto; text-align: center;">-->
                                                 <img class="img_size" src="/imgs/business/display?fileName=${boardImg.boardBusinessImgPath + '/' + boardImg.boardBusinessImgUuid + '_' + boardImg.boardBusinessImgOriginalName}" alt="">
-<!--                                            </div>-->
                 `;
     })
     text += `
@@ -309,8 +255,8 @@ function showBusinessDetail(board, boardImgs, reviews, boards, member, reviewCou
 
         let $label = $('label.otherBoards');
         $label.on("click", (e) => {
-            // console.log($(e.target));
-            // console.log($(e.target).attr('name'));
+            console.log($(e.target));
+            console.log($(e.target).attr('name'));
             let selectBoardId = $(e.target).attr('name');
             detailAjax(selectBoardId);
         });
