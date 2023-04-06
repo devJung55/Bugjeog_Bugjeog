@@ -20,12 +20,13 @@
             <aside class="boardList-aside-box">
                 <div class="aside-area-box">
                     <div>
+                        <!--          프로필 화면으로 이동             -->
                         <div class="profile-box-not-login">
                             <h2 class="profile-not-login-title">My 커뮤니티</h2>
                             <!-- 로그인이 안되잇을 경우 display:block-->
                             <!-- 로그인이 되잇을 경우 display:none-->
                             <th:block th:if="${session.memberId} == null and ${session.businessId} == null">
-                            <button type="button" class="login-button" onclick="location.href='/member/login'">
+                                <button type="button" class="login-button" onclick="location.href='/member/login'">
                                 <div class="profile-image-not-login"></div>
                                 <div class="profile-username-wrap">
                                     <span class="not-login-span">로그인 해주세요</span>
@@ -40,7 +41,7 @@
                             <!-- 로그인이 되 잇을 경우 display:block-->
                             <!-- 로그인이 안되 잇을 경우 display:none-->
                             <th:block  th:unless="${session.memberId} == null and ${session.businessId} == null" >
-                            <button type="button" class="login-button">
+                            <button type="button" class="login-button mypage-button">
                                 <div class="profile-image-login">
                                     <th:block th:if="${not #strings.isEmpty(member)}">
                                         <th:block th:if="${member.memberImgUuid == null}">
@@ -202,4 +203,13 @@
 </script>
 <!--<script src="../../../static/js/boardList/free-boardList.js"></script>-->
 <script src="/js/boardList/free-boardList.js"></script>
+<script>
+    $(".mypage-button").click(() => {
+        if(memberId){
+           location.href = "/mypage/profile/postList";
+        }else {
+            location.href = "/mypage/profile/business/postList";
+        }
+    });
+</script>
 </html>
