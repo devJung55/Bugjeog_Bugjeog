@@ -29,8 +29,16 @@ public class MemberController {
 
     //    자영업자 회원가입
     @GetMapping("join")
-    public void join(Model model) {
+    public void join(Model model, HttpSession session) {
+        session.invalidate();
         model.addAttribute(new MemberVO());
+    }
+
+    //    카카오 자영업자 회원가입
+    @GetMapping("kakao-join")
+    public String kakaoJoin(Model model) {
+        model.addAttribute(new MemberVO());
+        return "/member/join";
     }
 
     //    자영업자 회원가입 완료
@@ -161,9 +169,7 @@ public class MemberController {
     //    카카오 로그인
     @GetMapping("kakao-login")
     public String kakaoCallback(String code, HttpSession session) throws Exception {
-        log.info("code1234 : " + code);
         String token = kakaoService.getKaKaoAccessToken(code);
-//        session.setAttribute("token", token);
         MemberVO kakaoInfo = kakaoService.getKakaoInfo(token);
 
         log.info("kakaoInfo : " + kakaoInfo);
@@ -187,7 +193,9 @@ public class MemberController {
 
 //    가입 내역 없을 시
     @GetMapping("no-join")
-    public void noJoin() {;}
+    public void noJoin() {
+
+    }
 
     @GetMapping("callback")
     public void callback() {;}
