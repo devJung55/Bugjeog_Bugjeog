@@ -80,11 +80,11 @@
             <div id="dimmer"></div>
             <div id="event_detail_modal" style="z-index: 1000;">
                 <button class="event_detail_modal_btn">
-                        <span style="display: flex;">
-                            <svg class="event_detail_modal_svg" viewBox="0 0 24 24">
-                                <path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path>
-                            </svg>
-                        </span>
+                    <span style="display: flex;">
+                        <svg class="event_detail_modal_svg" viewBox="0 0 24 24">
+                            <path d="M17.97 19.03a.749.749 0 1 0 1.06-1.06l-6.5-6.5a.749.749 0 0 0-1.06 0l-6.5 6.5a.749.749 0 1 0 1.06 1.06L12 13.06l5.97 5.97zM12 10.94 6.03 4.97a.749.749 0 1 0-1.06 1.06l6.5 6.5a.749.749 0 0 0 1.06 0l6.5-6.5a.749.749 0 1 0-1.06-1.06L12 10.94z"></path>
+                        </svg>
+                    </span>
                 </button>
             </div>
             <div id="all_wrap">
@@ -95,7 +95,6 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/boardDetail/favoriteControll.js"></script>
-<script src="/js/boardList/boardBusinessPaging.js"></script>
 <script th:inline="javascript">
     let memberId = [[${session.memberId}]];
     let businessId = [[${session.businessId}]];
@@ -121,9 +120,11 @@
             $($('button.pr-register-button')[0]).show();
         }
     });
-    showSubBoardsList(boards);
+
+    $ul.empty();
+    showBoardList(boards);
     window.addEventListener('scroll', () => {
-        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
 
         if (scrollTop + clientHeight >= scrollHeight) {
             // 스크롤이 화면 아래에 닿았을 때 실행할 코드
@@ -136,13 +137,6 @@
 <script th:inline="javascript">
 
 
-
-
-    // $modalBtn.each((i, e) => {
-    //     $(e).click(function () {
-    //
-    //     });
-    // });
 
     function detailAjax(boardBusinessId) {
         $.ajax({
@@ -253,9 +247,11 @@
             },
             dataType: "json",
             success: function (result) {
+                alert("ajax 성공");
                 let boards = JSON.parse(result.boardBusinessDTOs);
                 // let newBoards = `${result}`;
-                appendBoardsList(boards);
+                $($('ul.boardList-info-box')[0]).empty();
+                showBoardList(boards);
             },
             error: function (e) {
                 alert("보드리스트 ajax실패");
@@ -278,11 +274,11 @@
             },
             dataType: "json",
             success: function (resultObject) {
-                // let boards = JSON.parse(JSON.parse(boardBusinessDTOs));
+                alert("ajaxNew 성공")
+                let boards = JSON.parse(resultObject);
                 // let newBoards = `${result}`;
-                // $ul.empty();
-                // showBoardsList(boards);
-                // globalThis.pageNum = 1;
+                $($('ul.boardList-info-box')[0]).empty();
+                showBoardList(boards);
             },
             error: function (e) {
                 alert("보드리스트 new 실패");
