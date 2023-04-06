@@ -90,7 +90,7 @@ public class FreeBoardController {
 
         Long memberId = (Long) session.getAttribute("memberId");
         Long businessId = (Long) session.getAttribute("businessId");
-        log.info(":::::::::::::::::::" + memberId);
+
         if(memberId != null){
             model.addAttribute("memberVO", myPageService.memberInfo(memberId));
         }else {

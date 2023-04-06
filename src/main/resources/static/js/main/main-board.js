@@ -86,7 +86,7 @@ const createFreeBoardDOM = function (board) {
 
             text+=          `        </div>
                                     <div class="content-persnal-distributor">
-                                        <div class="content-member-type">${isWriterMember ? '일반회원' : '유통업체'}</div>
+                                        <div class="content-member-type">${isWriterMember ? '개인회원' : '유통업체'}</div>
                                     </div>
                                 </div>
                                 <span class="register-date">${timeText}</span>
