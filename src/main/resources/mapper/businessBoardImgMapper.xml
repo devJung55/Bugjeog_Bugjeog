@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.BusinessBoardImgMapper">
-    <insert id="insert" parameterType="boardBusinessImgVO">
+    <insert id="insert">
         insert into tbl_board_business_img
         (board_business_id
         , board_business_img_original_name
         , board_business_img_uuid
-        , board_business_img_path)
+        , board_business_img_path
+        , main)
         values
         (#{boardBusinessId}
         ,#{boardBusinessImgOriginalName}
         ,#{boardBusinessImgUuid}
-        ,#{boardBusinessImgPath})
+        ,#{boardBusinessImgPath}
+        ,#{main})
     </insert>
     <insert id="insertList" parameterType="java.util.List">
         insert into tbl_board_business_img

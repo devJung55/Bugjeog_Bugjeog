@@ -15,8 +15,9 @@
 </head>
 <body>
 <a href="/board/business/list" style="display: none" id="submit_done"></a>
-<div th:insert="~{main/header :: header}"></div>
-<form th:action="@{/board/business/list}" th:method="get" name="form">
+<div th:if="${session.businessId != null or session.memberId != null}" th:insert="~{main/header-signin :: header}"></div>
+<div th:unless="${session.businessId != null or session.memberId != null}" th:insert="~{main/header :: header}"></div>
+<form th:action="@{/board/business/write}" th:method="post" name="form">
     <div>
         <div id="header">
             <div id="header_div">
@@ -46,7 +47,7 @@
                 <!--                </div>-->
                 <!--                <form th:action="@{/board/business/write}" th:method="post">-->
                 <div id="title">
-                    <textarea id="title_textarea" placeholder="제목을 입력해 주세요."
+                    <textarea id="title_textarea" name="boardBusinessTitle" placeholder="제목을 입력해 주세요."
                     ></textarea>
                     <!--                              th:field="*{boardBusinessTitle}"></textarea>-->
                     <!-- <textarea></textarea> -->
@@ -56,7 +57,7 @@
                 <!--                    <input id="location" type="text" placeholder="슬로건을 적어주세요.">-->
                 <div id="content">
                     <div>
-                        <textarea id="content_textarea" placeholder="내용을 작성해 주세요."></textarea>
+                        <textarea id="content_textarea" name="boardBusinessContent" placeholder="내용을 작성해 주세요."></textarea>
                         <!--                              th:field="*{boardBusinessContent}"></textarea>-->
                         <!-- <textarea></textarea> -->
                     </div>
@@ -122,7 +123,7 @@
             <input class="imageFileInput" id="photo-picker" type="file"
                    accept="image/jpg, image/jpeg, image/png, image/bmp"
                    style="display: none;" multiple>
-
+        </label>
     </div>
 </form>
 </body>
@@ -157,7 +158,7 @@
             contentType: false,
             processData: false,
             success: function (uuids) {
-                console.log("change 이벤트 ajax 성공")
+                $("#thumbnail-list").remove("li");
                 globalThis.uuids = uuids;
                 $files.forEach((file, i) => {
                     sensor();
@@ -192,16 +193,8 @@
                 /* x버튼 누를 시 x버튼과 backgroundImage 지워주기 */
 
                 $closeButton.on('click', function (e) {
-                    console.log("클릭됨");
-                    console.log($(e.currentTarget));
                     let target = $(e.currentTarget).parent().parent();
                     target.remove();
-                    // sensor();
-                    // file.value = "";
-                    // this.style.display = 'none';
-                    // thumbnail.style.backgroundImage = `url('')`;
-                    // thumbnail.remove(thumbnail);
-                    // $("#plus_picture").show();
                 });
 
                 // Mutation Observer
@@ -229,68 +222,24 @@
                 console.log("change 이벤트 ajax 실패")
             }
         });
-
-
     });
 
     $("#regist_btn").on("click", function () {
-
         const $files = $("input[type=file]")[0].files;
-        let boardBusinessVO = new Object();
-        boardBusinessVO.boardBusinessTitle = $('#title_textarea').val();
-        console.log(boardBusinessVO.boardBusinessTitle);
-        boardBusinessVO.boardBusinessContent = $('#content_textarea').val();
-        boardBusinessVO.businessId = businessId;
-
-
-        $.ajax({
-            url: "/board/business/write",
-            type: "post",
-            data: JSON.stringify(boardBusinessVO),
-            contentType: "application/json; charset=utf-8",
-            success: function (boardBusinessId) {
-                alert("boardBusinessVO 전송 성공, boardBusinessId : " + boardBusinessId);
-                let boardBusinessImgVOs = new Array();
-                // const $files = $('input[type=file]')[0].files;
-                const $imgs = $('div.imageThumbnail');
-                let formData = new FormData();
-
-                $imgs.each((i, img) => {
-                    let boardBusinessImgVOObj = new Object();
-                    let src = $(img).attr('style');
-                    alert(src.toString());
-
-                    //  /imgs/business/display?fileName=2023/04/02/t_21637e7a-fac2-4ce6-a650-098927fd73b0_company1.png
-                    //  background-image: url('/imgs/business/display?fileName=2023/04/05/t_2af5208e-0665-4bf7-aad0-a0f784b35530_banner1.png')
-                    let stringSrc = src.toString().split("'")[1];
-                    boardBusinessImgVOObj.boardBusinessImgOriginalName = stringSrc.toString().split("_")[2];
-                    boardBusinessImgVOObj.boardBusinessImgUuid = stringSrc.toString().split("_")[1];
-                    boardBusinessImgVOObj.boardBusinessImgPath = stringSrc.toString().split("=")[1].split("/t")[0];
-                    boardBusinessImgVOObj.boardBusinessId = boardBusinessId
-                    boardBusinessImgVOs.push(boardBusinessImgVOObj);
-                })
-
-                $.ajax({
-                    url: "/imgs/business/save",
-                    type: "post",
-                    data: JSON.stringify(boardBusinessImgVOs),
-                    contentType: "application/json; charset=utf-8",
-                    success: function (result) {
-                        alert("boardBusinessImgVO 전송 성공");
-                        form.submit();
-                    },
-                    error: function () {
-                        alert("img 전송 실패")
-                    }
-                });
-            },
-            error: function () {
-                alert("vo 전송 실패")
-            }
-        })
-
-
+        let text = "";
+        FileList.prototype.forEach = Array.prototype.forEach;
+        $files.forEach((file, i) => {
+            text +=
+                `
+                <input type="hidden" name="files[${i}].boardBusinessImgOriginalName" value="${file.name}">
+                <input type="hidden" name="files[${i}].boardBusinessImgUuid" value="${globalThis.uuids[i]}">
+                <input type="hidden" name="files[${i}].boardBusinessImgPath" value="${toStringByFormatting(new Date())}">
+                `;
+        });
+        $("form[name=form]").append(text);
+        $("form[name=form]").submit();
     });
+
     $(document).ready(function () {
         // 등록 버튼 초기 색상 설정
         $('button[type="submit"]').css("color", "rgb(196, 196, 196)").css("background-color", "rgb(242, 244, 247)");

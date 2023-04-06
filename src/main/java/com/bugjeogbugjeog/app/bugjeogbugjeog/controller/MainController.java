@@ -88,7 +88,8 @@ public class MainController {
                     break;
             }
 
-            return (List<T>) businessBoardService.getList(pageDTO);
+//            return (List<T>) businessBoardService.getList(pageDTO);
+            return null;
         }
 
         return null;

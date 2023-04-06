@@ -12,4 +12,5 @@ public class BoardBusinessImgVO {
     private String boardBusinessImgOriginalName;
     private String boardBusinessImgUuid;
     private String boardBusinessImgPath;
+    private boolean main;
 }
