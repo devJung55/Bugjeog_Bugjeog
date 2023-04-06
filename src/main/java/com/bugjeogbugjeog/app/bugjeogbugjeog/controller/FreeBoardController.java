@@ -89,12 +89,12 @@ public class FreeBoardController {
         HttpSession session = req.getSession();
 
         Long memberId = (Long) session.getAttribute("memberId");
-        Long businssId = (Long) session.getAttribute("businssId");
-
+        Long businessId = (Long) session.getAttribute("businessId");
+        log.info(":::::::::::::::::::" + memberId);
         if(memberId != null){
             model.addAttribute("memberVO", myPageService.memberInfo(memberId));
         }else {
-            model.addAttribute("businessVO", businessMyPageService.businessInfo(businssId));
+            model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
         }
 
 
