@@ -110,7 +110,7 @@
     /* 로그인 한 비지니스ID */
     let businessId = [[${session.businessId}]];
 
-    let pageNum = 1;/* 무한스크롤 시 참고하는 페이지넘버 */
+    let page = 1;/* 무한스크롤 시 참고하는 페이지넘버 */
     let sort = "recent";
     let category = "전체";
 
@@ -179,8 +179,8 @@
     $(window).scroll(
         function() {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                pageNum++;
-                boardService.getList(pageNum, sort, category, showBoardList)
+                page++;
+                boardService.getList(page, sort, category, showBoardList)
             }
         }
     );
@@ -194,8 +194,8 @@
             $(e).addClass("sort-button-active");
             sort = $sortButton.eq(i).text().trim() == "최신순" ? "recent" : "popular";
             $ul.children("li").remove();
-            pageNum = 1;
-            boardService.getList(pageNum, sort, category, showBoardList);
+            page = 1;
+            boardService.getList(page, sort, category, showBoardList);
         });
     });
     /* 카테고리 버튼 이벤트 */
@@ -207,8 +207,8 @@
             $(e).addClass("cate-button-active");
             category = $cateButton.eq(i).find("span").text().trim();
             $ul.children("li").remove();
-            pageNum = 1;
-            boardService.getList(pageNum, sort, category, showBoardList);
+            page = 1;
+            boardService.getList(page, sort, category, showBoardList);
         });
     });
 </script>

@@ -1,15 +1,14 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.service;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao.ReplyDAO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +42,15 @@ public class ReplyService {
      public void delete(Long replyId){
         replyDAO.deleteReply(replyId);
      }
+
+     // 댓글 전체 목록 조회
+    public List<ReplyDTO> selectAllReply(AdminCriteria criteria, Long boardFreeId){
+        return replyDAO.findAllByBoard(criteria, boardFreeId);
+    }
+
+    // 게시물의 댓글 갯수
+    public Integer getReplyCountByFreeBoard(Long boardFreeId){
+        return replyDAO.getReplyCountByFreeBoard(boardFreeId);
+    }
 
 }
