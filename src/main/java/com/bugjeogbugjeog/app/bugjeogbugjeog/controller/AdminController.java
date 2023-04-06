@@ -205,7 +205,7 @@ public class AdminController {
     @GetMapping("admin-distributionList/{page}")
     @ResponseBody
     public Map<String, Object> listMobiles(@PathVariable("page") Integer page, AdminCriteria adminCriteria) throws Exception{
-        int total = businessBoardService.getCount().intValue();
+        int total = businessBoardService.getCount();
         if (adminCriteria.getPage() == 0){
             adminCriteria.create(1,10,total,10);
         } else {
@@ -236,7 +236,7 @@ public class AdminController {
     @ResponseBody
     public void removeDistribution(@RequestParam("checkedIds[]")List<Long> checkIds){
         for (int i=0; i < checkIds.size(); i++){
-            businessBoardService.remove(checkIds.get(i));
+//            businessBoardService.remove(checkIds.get(i));
         }
     }
 

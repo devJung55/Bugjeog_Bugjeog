@@ -22,8 +22,6 @@ public class BoardBusinessDTO {
     private Long boardBusinessGradeAverage;
     private String boardBusinessImgFullPath;
 
-
-
     /* businessVO */
     private String businessEmail;
     private String businessPassword;
@@ -39,6 +37,4 @@ public class BoardBusinessDTO {
     private String businessImgPath;
     private String businessLocation;
     private String businessCategory;
-
-
 }
