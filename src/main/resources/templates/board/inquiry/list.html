@@ -57,7 +57,7 @@
                 <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
                 <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
                             <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
-                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                  style="margin-right: 15px; color: black;font-weight: 600;"></span>
                     <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
                         <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
                     </a>
@@ -65,9 +65,9 @@
                 <a class="changePage" th:if="${pageDTO.next}"
                    th:href="${pageDTO.endPage + 1}"><span>></span></a>
             </div>
-            <form action="/board/inquiry/list" th:object="${criteria}">
-                <input type="hidden" th:field="*{pageNum}">
-                <input type="hidden" th:field="*{amount}">
+            <form action="/board/inquiry/list" th:object="${pageDTO}" name="pageForm">
+                <input type="hidden" th:field="*{criteria.pageNum}">
+                <input type="hidden" th:field="*{criteria.amount}">
             </form>
         </div>
     </main>
@@ -88,7 +88,6 @@
     const businessId = [[${session.businessId}]];
     const inquiryVO = [[${inquiryVO}]];
     const pageDTO = [[${pageDTO}]];
-
 </script>
 <script>
 
@@ -105,13 +104,20 @@
         $(".page-box").show();
     }
 
-    let $pageForm = $(pageForm);
+    let $pageForm = $(document.pageForm);
 
     $("a.changePage").on("click", function (e) {
         e.preventDefault();
-        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-        $pageForm.submit();
+        let page = $(this).attr("href")
+        let amount = 10;
+        let url = "";
+
+        url = "/board/inquiry/list?pageNum=" + page + "&amount=" + amount;
+
+        location.href = url;
     });
+
+    console.log($pageForm.find("input[name='pageNum']"));
 </script>
 <script src="/js/main/header.js"></script>
 </html>

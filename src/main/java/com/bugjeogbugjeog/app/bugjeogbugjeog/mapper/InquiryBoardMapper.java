@@ -62,6 +62,6 @@ public interface InquiryBoardMapper {
     // 문의 카운트
     public Long count();
 
-    public List<BoardInquiryVO> showAllList(InquiryCriteria criteria);
+    public List<BoardInquiryVO> showAllList(@Param("cri") InquiryCriteria criteria);
 
 }

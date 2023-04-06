@@ -29,6 +29,8 @@ public class InquiryBoardController {
     //    리스트
     @GetMapping("list")
     public void showList(Model model, InquiryCriteria criteria) {
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@criteria :" + criteria);
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@list : " + inquiryBoardService.getAllList(criteria));
         model.addAttribute("inquiryVO",inquiryBoardService.getAllList(criteria));
         model.addAttribute("pageDTO", new InquiryPageDTO(criteria, inquiryBoardService.count().intValue()));
     }
