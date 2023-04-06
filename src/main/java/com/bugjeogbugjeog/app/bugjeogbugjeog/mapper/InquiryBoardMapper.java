@@ -5,7 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InquiryCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,9 +32,6 @@ public interface InquiryBoardMapper {
 
     //    문의 작성 목록(게시글용 전체)
     public List<BoardInquiryDTO> inquiryList();
-
-    //    문의 작성 목록(게시글용 전체)
-    public List<BoardInquiryDTO> inquiryListPaging(InquiryCriteria inquiryCriteria);
 
     //    문의 작성 목록(멤버용)
     public List<BoardInquiryVO> inquireList(@Param("memberId") Long memberId, @Param("criteria") Criteria criteria);
@@ -65,6 +62,6 @@ public interface InquiryBoardMapper {
     // 문의 카운트
     public Long count();
 
-    public List<BoardInquiryVO> showAllList(Criteria criteria);
+    public List<BoardInquiryVO> showAllList(@Param("cri") InquiryCriteria criteria);
 
 }

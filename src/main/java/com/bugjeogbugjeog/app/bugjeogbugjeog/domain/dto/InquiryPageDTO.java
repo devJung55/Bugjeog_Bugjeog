@@ -1,7 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryCriteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InquiryCriteria;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,11 +15,11 @@ public class InquiryPageDTO {
     private Integer realEnd;
     private boolean next, prev;
     private Integer total;
-    private Criteria criteria;
+    private InquiryCriteria criteria;
 
     SearchDTO searchDTO;
 
-    public InquiryPageDTO(Criteria criteria, Integer total){
+    public InquiryPageDTO(InquiryCriteria criteria, Integer total){
         this.criteria = criteria;
         this.total = total;
 

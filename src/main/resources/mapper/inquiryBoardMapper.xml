@@ -154,7 +154,7 @@
         select board_inquiry_id, member_id, business_id, board_inquiry_title, board_inquiry_content, board_inquiry_register_date, board_inquiry_status
         from tbl_board_inquiry where board_inquiry_status = 1
         order by board_inquiry_id desc
-        limit #{startRow}, #{amount}
+        limit #{cri.startRow}, #{cri.amount}
     </select>
 
 </mapper>

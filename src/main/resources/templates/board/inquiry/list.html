@@ -57,7 +57,7 @@
                 <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}"><span><</span></a>
                 <th:block th:each="num:${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
                             <span th:text="${num}" th:if="${pageDTO.criteria.pageNum == num}"
-                                  style="margin-right: 15px; width: 26px;height: 26px;"></span>
+                                  style="margin-right: 15px; color: black;font-weight: 600;"></span>
                     <a class="changePage" th:unless="${pageDTO.criteria.pageNum == num}" th:href="${num}">
                         <span th:text="${num}" style="margin-right: 15px; width: 26px;height: 26px;"></span>
                     </a>
@@ -65,9 +65,9 @@
                 <a class="changePage" th:if="${pageDTO.next}"
                    th:href="${pageDTO.endPage + 1}"><span>></span></a>
             </div>
-            <form action="/board/inquiry/list" th:object="${criteria}" name="pageForm">
-                <input type="hidden" th:field="*{pageNum}">
-                <input type="hidden" th:field="*{amount}">
+            <form action="/board/inquiry/list" th:object="${pageDTO}" name="pageForm">
+                <input type="hidden" th:field="*{criteria.pageNum}">
+                <input type="hidden" th:field="*{criteria.amount}">
             </form>
         </div>
     </main>
@@ -83,40 +83,14 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/main/header.js"></script>
 <script th:inline="javascript">
     const memberId =[[${session.memberId}]];
     const businessId = [[${session.businessId}]];
     const inquiryVO = [[${inquiryVO}]];
     const pageDTO = [[${pageDTO}]];
-
 </script>
 <script>
-<<<<<<< HEAD
-    const $pageUl = $($('ul.page-box-layout')[0]);
 
-
-    if(businessId == null && memberId == null){
-        $inquiryWrap.hide();
-    }else {
-        $inquiryWrap.show();
-    }
-    pagingFunc(pageDTO);
-
-    function pagingFunc(pageDTO) {
-        $paging.empty();
-        let text = '';
-
-        text += `
-                    <li class="page-button-box">
-                        <a href="javascript:ajax(1)" name="pagingFirst"><<</a>
-                    </li>`;
-        if (`${pageDTO.prev}`) {
-            text +=
-                `
-                    <li class="page-button-box">
-                        <a href="javascript:ajax(${pageDTO.startPage - 1})" name="pagingPrev"><</a>
-                    </li>`;
     $(".inquire_write").click(function(){
         if(!memberId && !businessId){
             alert("로그인을 먼저 해주세요.");
@@ -124,86 +98,26 @@
         }
     });
 
-        let length = `${pageDTO.criteria.pageNum}`;
-        for (let i = 0; 0 < length; i++) {
-            text += `
-                    <li class="page-button-box">
-                        <a href="javascript:ajax(${pageDTO.startPage + i})" name="pagingList${i}">${pageDTO.startPage + i}</a>
-                    </li>
-                    `;
-        }
-
-        if (`${pageDTO.next}`) {
-            text += `
-                    <li class="page-button-box">
-                        <a href="javascript:ajax(${pageDTO.endPage + 1})" name="pagingNext">></a>
-                    </li>
-                    `;
-        }
-
-        text += `
-                    <li class="page-button-box">
-                        <a href="javascript:ajax(${pageDTO.realEnd})" name="pagingEnd">>></a>
-                    </li>
-        `
-        $paging.append(text);
-    }
-
-    function showInquiryList(boards) {
-        let $listUl = $($('ul.content-list-box')[0]);
-        $listUl.empty();
-        let text = ``;
-        boards.forEach(board => {
-            text += `
-                        <li class="content-list">
-                            <a href="/board/inquiry/detail?boardInquiryId=${board.boardInquiryId}"
-                               th:method="get"
-                               class="content-title">
-                                ${board.boardInquiryTitle}
-                            </a>
-                            <div class="content">
-                                ${board.boardInquiryContent}
-                            </div>
-                        </li>
-        `;
-        })
-        $listUl.append(text);
-    }
-
-    function ajax(startPage) {
-        $.ajax({
-            url: "/board/inquiry/list/ajax",
-            method: "GET",
-            data: {"startPage": JSON.parse(startPage)},
-            async: false,
-            contentType: "application/json; charset=utf-8",
-            success: function (result) {
-                let setUp = JSON.parse(result);
-                let boards = JSON.parse(setUp.boards);
-                let pageDTO = JSON.parse(setUp.pageDTO);
-                showInquiryList(boards);
-                pagingFunc(pageDTO);
-            },
-            error: function (e) {
-                console.log($(e));
-            }
-        })
-
-
     if (inquiryVO.length == 0) {
         $(".page-box").hide();
-        $(".no-content").show();
     } else {
-        $(".no-content").hide();
         $(".page-box").show();
     }
 
-    let $pageForm = $(pageForm);
+    let $pageForm = $(document.pageForm);
 
     $("a.changePage").on("click", function (e) {
         e.preventDefault();
-        $pageForm.find("input[name='pageNum']").val($(this).attr("href"));
-        $pageForm.submit();
+        let page = $(this).attr("href")
+        let amount = 10;
+        let url = "";
+
+        url = "/board/inquiry/list?pageNum=" + page + "&amount=" + amount;
+
+        location.href = url;
     });
+
+    console.log($pageForm.find("input[name='pageNum']"));
 </script>
+<script src="/js/main/header.js"></script>
 </html>

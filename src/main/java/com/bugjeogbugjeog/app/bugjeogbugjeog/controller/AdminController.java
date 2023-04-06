@@ -70,7 +70,7 @@ public class AdminController {
     @PostMapping("admin-memberModify")
     public RedirectView adminMemberModify(MemberVO memberVO){
         memberService.updateMember(memberVO);
-        return new RedirectView("/admins/admin-member/" + memberVO.getMemberId());
+        return new RedirectView("/admin/admin-member/" + memberVO.getMemberId());
     }
 
     /* 회원 삭제 */
