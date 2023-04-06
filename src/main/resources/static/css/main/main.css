@@ -367,8 +367,10 @@ span.svg_icon svg {
     display: block;
 
     /* margin: 0 166px; */
-    padding: 0px 0% 0 19.9%;
-    /* padding: 0px 0% 0 11.9%; */
+
+    /*padding: 0px 0% 0 19.9%;*/
+
+     padding: 0px 0% 0 11.7%;   /* 순철이 pc전용 .. */
 }
 
 .slick-track:before {
