@@ -77,4 +77,10 @@
     <select id="selectSequence" resultType="long">
         select last_insert_id() from tbl_board_business limit 0, 1
     </select>
+
+    <!-- 삭제 -->
+    <select id="delete">
+        delete from tbl_board_business
+        where board_business_id = #{boardBusinessId}
+    </select>
 </mapper>

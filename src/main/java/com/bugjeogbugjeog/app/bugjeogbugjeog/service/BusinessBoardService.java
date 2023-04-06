@@ -68,4 +68,9 @@ public class BusinessBoardService {
     public List<BoardBusinessDTO> getImagesById(Long boardBusinessId){
         return businessBoardDAO.findImages(boardBusinessId);
     }
+
+    //    삭제
+    public void remove(Long boardBusinessId){
+        businessBoardDAO.deleteFindById(boardBusinessId);
+    }
 }

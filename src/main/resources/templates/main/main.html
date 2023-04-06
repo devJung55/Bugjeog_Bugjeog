@@ -266,7 +266,7 @@
 
 
         <aside class="line_banner">
-            <a href="/board/business/write" class="line_banner_a">
+            <a th:href="${session.businessid == null ? '/main/' : '/board/business/write'}" class="line_banner_a">
                 <div class="line_banner_link">
                     <div class="line_banner_box">
                         <svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="28" height="28" viewBox="0 0 18 18">
