@@ -164,13 +164,15 @@
             <div class="modal-box">
                 <div class="modal-content-box">
                     <div class="modal-content-image-box">
-<!--                        <img src="../../../static/image/boardList/logo-icon.png">-->
                         <img src="/image/boardList/logo-icon.png">
                     </div>
                     <div class="modal-content-member-name-box">
-                        <span>
-                            임종욱
-                        </span>
+                        <th:block th:if="${session.memberId != null}">
+                        <span th:text="${member.memberName}"></span>
+                        </th:block>
+                        <th:block th:if="${session.businessId != null}">
+                            <span th:text="${businessId.businessCompanyName}"></span>
+                        </th:block>
                     </div>
                     <div class="modal-content-confirm-box">
                         해당 이름으로 게시글과 댓글이 등록됩니다.
