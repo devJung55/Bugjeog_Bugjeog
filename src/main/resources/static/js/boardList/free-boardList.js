@@ -105,7 +105,7 @@ const createDOM = function (board) {
                                         </div>
                                         <div class="content-persnal-distributor">
                                                             <!--유통업체인지 개인인지 구분 or 위에 의해서 따라오는건지-->
-                                             <div class="content-member-type">${isWriterMember ? '일반회원' : '유통업체'}</div>
+                                             <div class="content-member-type">${isWriterMember ? '개인회원' : '유통업체'}</div>
                                         </div>
                                     </div>
                                         <!--시간 구하는 법-->

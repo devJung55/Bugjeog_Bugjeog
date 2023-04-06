@@ -362,23 +362,23 @@
         $($(".new-reply-content")[i]).val(replyContent);
         $($(".reply_content")[i]).hide();
     });
-    //
-    // $("#reply_wrap_div").on("click", "button.save-reply", function () {
-    //     let i = $("button.save-reply").index(this);
-    //     let replyVO = new Object();
-    //     replyVO.replyId = $($("div.update")[i]).data("reply-id");
-    //     replyVO.replyContent = $($(".new-reply-content")[i]).val();
-    //     replyService.update(replyVO, function () {
-    //         showList();
-    //     });
-    // });
-    //
-    // $("#reply_wrap_div").on("click", "button.cancelBtn", function () {
-    //     let i = $("button.cancelBtn").index(this);
-    //     $($(".modify-reply-box")[i]).hide();
-    //     $($(".cancelBtn")[i]).hide();
-    //     $($(".modifyBtn")[i]).show();
-    // });
+
+    $("#reply_wrap_div").on("click", "button.save-reply", function () {
+        let i = $("button.save-reply").index(this);
+        let replyVO = new Object();
+        replyVO.replyId = $($("div.update")[i]).data("reply-id");
+        replyVO.replyContent = $($(".new-reply-content")[i]).val();
+        replyService.update(replyVO, function () {
+            showList();
+        });
+    });
+
+    $("#reply_wrap_div").on("click", "button.cancelBtn", function () {
+        let i = $("button.cancelBtn").index(this);
+        $($(".reply_content")[i]).show();
+    });
+
+
 
     $replyRegisterButton.click(function () {
         const replyContent = $("#reply_textarea").val();
@@ -446,7 +446,7 @@
                                                 <div style="display: flex; margin-bottom: 3px; align-items: center;">
                                                   <div id="reply_nickname">${reply.memberName}</div>
                                                 </div>
-                                                <span id="reply_date">${getTimePassed(reply.replyUpdateDate,reply.replyRegisterDate)}</span>
+                                                <span id="reply_date">${reply.replyUpdateDate}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -457,12 +457,12 @@
                         `
                                     <div id="float_delete" style="display: flex">
                                         <div class="update" data-reply-id="${reply.replyId}">
-<!--                                           <button type="button" class="modifyBtn">-->
-<!--                                            <span>수정</span>-->
-<!--                                            </button>-->
-<!--                                            <button type="button" class="cancelBtn" style="display: none">-->
-<!--                                            <span>취소</span>-->
-<!--                                            </button>-->
+                                           <button type="button" class="modifyBtn">
+                                            <span>수정</span>
+                                            </button>
+                                            <button type="button" class="cancelBtn" style="display: none">
+                                            <span>취소</span>
+                                            </button>
                                         </div>
                                         <div style="margin-left: 8px" class="delete" data-reply-id="${reply.replyId}">
                                             <button type="button" class="deleteBtn" >
@@ -475,22 +475,23 @@
                 text += `
                         </div>
                         <div class="reply_content">${reply.replyContent}</div>
-<!--                        <div class="modify-reply-box" style="display: none; padding-left: 44px;">-->
-<!--                            <div style="display: flex; position:relative; width:100%; height: 30px; border-radius: 10px; border: 1px solid #e1e2e3;">-->
-<!--                                <input type="text" placeholder="수정할 댓글을 입력해주세요." class="new-reply-content" style="width: 100%; outline: none; border:none; padding: 3px 5px; background: none;">-->
-<!--                                <div style="position: absolute; right: 8px; top: 8px; display: flex; font-size:13px;">-->
-<!--                                    <button type="button" id="save-reply">-->
-<!--                                        완료-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="modify-reply-box" style="display: none; padding-left: 44px;">
+                            <div style="display: flex; position:relative; width:100%; height: 30px; border-radius: 10px; border: 1px solid #e1e2e3;">
+                                <input type="text" placeholder="수정할 댓글을 입력해주세요." class="new-reply-content" style="width: 100%; outline: none; border:none; padding: 3px 5px; background: none;">
+                                <div style="position: absolute; right: 8px; top: 8px; display: flex; font-size:13px;">
+                                    <button type="button" id="save-reply">
+                                        완료
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `
             })
             $("#reply_wrap_div").html(text);
         });
     }
+
 
     $(document).ready(function () {
         /*등록 버튼 초기 색상 설정*/
