@@ -71,4 +71,28 @@
     <select id="select" resultType="freeReplyVO">
         select reply_id, board_free_id, member_id, business_id, reply_content, reply_register_date, reply_update_date from tbl_free_reply where reply_id = #{replyId}
     </select>
+
+    <select id="selectAllReplyList" resultType="replyDTO">
+        select r.reply_id, r.board_free_id,
+       case
+           when b.business_id is null then m.member_id
+           else null
+       end as member_id,
+               b.business_id, r.reply_content, r.reply_register_date, r.reply_update_date, member_email, member_password, member_phone_number, member_name, member_register_date, member_status, member_img_original_name,
+        member_img_uuid, member_img_path, business_email, business_password, business_ceo_name, business_number, business_company_name, business_phone_number,
+        business_establishment_date, business_register_date, business_status, business_img_original_name, business_img_uuid, business_img_path,
+        business_location, business_category
+        from bugjeog.tbl_free_reply r
+        left join bugjeog.tbl_business b
+        on r.business_id = b.business_id
+        left join bugjeog.tbl_member m
+        on r.member_id = m.member_id
+        where board_free_id = #{boardFreeId}
+        limit #{cri.offset}, #{cri.rowCount}
+    </select>
+
+    <select id="replyCountFreeBoard" resultType="int">
+        select count(reply_id) from tbl_free_reply where board_free_id = #{boardFreeId}
+    </select>
+
 </mapper>

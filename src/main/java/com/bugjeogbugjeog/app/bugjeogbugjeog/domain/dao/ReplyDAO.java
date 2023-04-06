@@ -1,7 +1,9 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dao;
 
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.ReplyDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardFreeVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -12,6 +14,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -81,6 +84,15 @@ public class ReplyDAO {
     // 댓글 조회
     public FreeReplyVO findById(Long replyId){
         return replyMapper.select(replyId);
+    }
+
+    public List<ReplyDTO> findAllByBoard(AdminCriteria criteria, Long boardFreeId){
+        return replyMapper.selectAllReplyList(criteria, boardFreeId);
+    }
+
+    // 게시물의 댓글 갯수
+    public Integer getReplyCountByFreeBoard(Long boardFreeId){
+        return replyMapper.replyCountFreeBoard(boardFreeId);
     }
 
 }

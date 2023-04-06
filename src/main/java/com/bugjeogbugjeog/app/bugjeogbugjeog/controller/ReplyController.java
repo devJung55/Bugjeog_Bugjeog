@@ -1,8 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardReplyDTO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.*;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BusinessVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.FreeReplyVO;
@@ -18,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,11 +31,25 @@ public class ReplyController {
 
     //    댓글 전체 조회
     @GetMapping("list/{page}")
-    public List<FreeReplyVO> showList(Long boardFreeId, @PathVariable("page") int page, Model model, HttpSession session){
-        Criteria criteria = new Criteria(page, 6);
-        List<BoardFreeDTO> boardList = freeBoardService.getListBoard(boardFreeId);
+    public Map<String, Object> showList(Long boardFreeId, @PathVariable("page") int page,  AdminCriteria criteria){
+        Map<String, Object> info = new HashMap<>();
+        int total = replyService.getReplyCountByFreeBoard(boardFreeId);
 
-        return replyService.getList(boardFreeId);
+        if (criteria.getPage() == 0){
+            criteria.create(1,5,total,5);
+        } else {
+            criteria.create(page,5, total,5);
+        }
+
+        info.put("replyDTO", replyService.selectAllReply(criteria, boardFreeId));
+        info.put("criteria", criteria);
+        return info;
+    }
+
+    // 댓글 갯수
+    @GetMapping("count")
+    public Integer count(@RequestParam("boardFreeId") Long boardFreeId){
+        return replyService.getReplyCountByFreeBoard(boardFreeId);
     }
 
     /*댓글 등록 */
