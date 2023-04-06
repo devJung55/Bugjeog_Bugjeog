@@ -350,18 +350,18 @@
 
     showList();
 
-    // $("#reply_wrap_div").on("click", "div.update", function () {
-    //     const replyContents = $("div.reply_content");
-    //     let i = $("div.update").index(this);
-    //     const replyContent = $($(".reply_content")[i]).text();
-    //     const replyId = $(this).data("reply-id");
-    //     $($(".modify-reply-box")[i]).show();
-    //     $($(".cancelBtn")[i]).show();
-    //     $($(".modifyBtn")[i]).hide();
-    //
-    //     $($(".new-reply-content")[i]).val(replyContent);
-    //     $($(".reply_content")[i]).hide();
-    // });
+    $("#reply_wrap_div").on("click", "div.update", function () {
+        const replyContents = $("div.reply_content");
+        let i = $("div.update").index(this);
+        const replyContent = $($(".reply_content")[i]).text();
+        const replyId = $(this).data("reply-id");
+        $($(".modify-reply-box")[i]).show();
+        $($(".cancelBtn")[i]).show();
+        $($(".modifyBtn")[i]).hide();
+
+        $($(".new-reply-content")[i]).val(replyContent);
+        $($(".reply_content")[i]).hide();
+    });
     //
     // $("#reply_wrap_div").on("click", "button.save-reply", function () {
     //     let i = $("button.save-reply").index(this);
@@ -385,10 +385,6 @@
         const boardFreeId = currentBoard.boardFreeId;
         console.log(boardFreeId)
         replyService.save({replyContent: replyContent, boardFreeId: boardFreeId}, function(){
-            $($(".cancelBtn")[i]).hide();
-            $($(".modifyBtn")[i]).show();
-            $($(".reply_content")[i]).show();
-
             showList();
         });
     });
