@@ -39,7 +39,7 @@ const createDOM = function (boardFree) {
                                 if(boardFree.memberId){
                                     text += `<div class="nickname" id="right_nickname">${boardFree.memberName}</div>
                                                 <div class="career_field" style="margin-right: 4px;">
-                                                    <div class="career field">일반유저</div>
+                                                    <div class="career field">개인회원</div>
                                                 </div>`
                                 }else {
                                     text += `<div class="nickname" id="right_nickname">${boardFree.businessCompanyName}</div>

@@ -88,6 +88,7 @@
         left join bugjeog.tbl_member m
         on r.member_id = m.member_id
         where board_free_id = #{boardFreeId}
+        order by r.reply_id desc
         limit #{cri.offset}, #{cri.rowCount}
     </select>
 
