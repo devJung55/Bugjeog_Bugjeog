@@ -49,4 +49,7 @@ public class BusinessBoardDAO {
     public List<BoardBusinessDTO> findImages(Long boardBusinessId){
         return businessBoardMapper.selectBoardImages(boardBusinessId);
     }
+
+    //    삭제
+    public void deleteFindById(Long boardBusinessId){businessBoardMapper.delete(boardBusinessId);}
 }
