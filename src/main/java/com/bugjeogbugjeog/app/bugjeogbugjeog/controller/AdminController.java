@@ -236,7 +236,7 @@ public class AdminController {
     @ResponseBody
     public void removeDistribution(@RequestParam("checkedIds[]")List<Long> checkIds){
         for (int i=0; i < checkIds.size(); i++){
-//            businessBoardService.remove(checkIds.get(i));
+            businessBoardService.remove(checkIds.get(i));
         }
     }
 
