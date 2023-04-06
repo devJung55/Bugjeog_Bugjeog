@@ -5,8 +5,8 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InquiryCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.mapper.InquiryBoardMapper;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.service.InquiryCriteria;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -66,9 +66,6 @@ public class InquiryBoardDAO {
         return inquiryBoardMapper.inquiryList();
     }
 
-    public List<BoardInquiryDTO> findAllByIdToInquire(InquiryCriteria inquiryCriteria) {
-        return inquiryBoardMapper.inquiryListPaging(inquiryCriteria);
-    }
 
     //    문의 작성 목록
     public List<BoardInquiryVO> findAllByIdToInquire(Long memberId, Criteria criteria) {
@@ -117,7 +114,7 @@ public class InquiryBoardDAO {
         return inquiryBoardMapper.count();
     }
 
-    public List<BoardInquiryVO> findAllList(Criteria criteria){
+    public List<BoardInquiryVO> findAllList(InquiryCriteria criteria){
         return inquiryBoardMapper.showAllList(criteria);
     }
 

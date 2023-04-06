@@ -5,7 +5,7 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardInquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.InquiryDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.BoardInquiryVO;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.Criteria;
+import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.vo.InquiryCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -40,10 +40,6 @@ public class InquiryBoardService {
         return inquiryBoardDAO.findAllByIdToInquire();
     }
 
-    //    리스트 조회
-    public List<BoardInquiryDTO> showList(InquiryCriteria inquiryCriteria){
-        return inquiryBoardDAO.findAllByIdToInquire(inquiryCriteria);
-    }
 
     public BoardInquiryDTO getBoard(Long boardInquiryId){
         return inquiryBoardDAO.findOneByBoardInquiryId(boardInquiryId);
@@ -77,7 +73,7 @@ public class InquiryBoardService {
     // 문의 카운트
     public Long count(){return inquiryBoardDAO.count();}
 
-    public List<BoardInquiryVO> getAllList(Criteria criteria){
+    public List<BoardInquiryVO> getAllList(InquiryCriteria criteria){
         return inquiryBoardDAO.findAllList(criteria);
     }
 
