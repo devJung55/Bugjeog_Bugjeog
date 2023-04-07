@@ -28,7 +28,7 @@ public class MemberRESTController {
         return memberService.checkPhoneNumber(memberPhoneNumber);
     }
 
-//    자영업자 인증번호 발송
+//    인증번호 발송
     @PostMapping("code")
     @ResponseBody
     public String smsCode(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
@@ -55,7 +55,7 @@ public class MemberRESTController {
         return memberService.businessCheckBusinessNumber(businessNumber);
     }
 
-//네이버 로그인
+//    네이버 로그인
     @PostMapping("login-naver")
     public Integer loginOauth(String memberEmail, HttpSession httpSession){
         Long memberId = memberService.loginNaverOauth(memberEmail);
