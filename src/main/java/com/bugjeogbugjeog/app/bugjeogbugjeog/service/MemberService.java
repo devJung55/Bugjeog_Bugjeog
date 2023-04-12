@@ -49,8 +49,8 @@ public class MemberService {
 
 //    자영업자 회원가입 인증번호 발송
     public String sendSMS(String memberPhoneNumber) {
-        String apiKey = "NCSTAASR5QSAVZVY";
-        String apiSecret = "HDLLZSAFK2XMLZLDLGUPVBFKATD1ABWP";
+        String apiKey = "NCSSJHRC2MJLJCUB";
+        String apiSecret = "HPMLM8ZX4IXDEBWLXU0TNB6RFDTJIZZ3";
         String fromNumber = "01071228966";
         String code = "";
 
