@@ -1,6 +1,6 @@
 기획 배경 한 줄 소개 - 북적북적
 
-<h2>1. 기획 배</h2>
+<h2>1. 기획 배경</h2>
 <div dir="auto" style="display: flex;">
 <img width="1180" alt="스크린샷 2022-12-27 오전 12 09 34" src="https://user-images.githubusercontent.com/109493547/209562752-6aad8301-2329-4ae2-ab8a-708d17c24b64.png" style = "width: 45%; height : 45%">
 <img width="1177" alt="스크린샷 2022-12-27 오전 12 18 04" src="https://user-images.githubusercontent.com/109493547/209563034-59cb851d-754d-43e2-a858-fe7a266d7154.png" style = "width: 45%; height : 45%">
