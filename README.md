@@ -41,3 +41,6 @@
 
 <h3>5-2. 총평</h3>
 <h4>🌟 두려워하지 말자. 나는 내 생각보다 집요한 사람이다. </h4>
+
+<h2>ERD</h2>
+<img width="100%" alt="erd" src="https://user-images.githubusercontent.com/109493547/209980568-1cf4273c-fc51-4615-8703-e11562ba5892.png">
