@@ -57,7 +57,7 @@
   
   
 <h3>6-4. 총평</h3>
-<h4>🌟 집요한 사람이 성장의 기대값이 크다. </h4>
+<h4>🌟 집요한 사람이 성장의 기대값이 크다. 🌟</h4>
 
 <h2>ERD</h2>
 <img width="100%" alt="erd" src="https://user-images.githubusercontent.com/122762465/233256293-bf474f1b-e0ee-4a77-b1e6-ef4ccd74d95b.png">
